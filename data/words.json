@@ -1,0 +1,69 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "name": "יסודות",
+      "subtopics": [
+        {
+          "name": "ברכות ונימוסים",
+          "words": [
+            {
+              "word": "Hello",
+              "translation": "שלום",
+              "examples": [
+                {
+                  "sentence": "Hello!",
+                  "translation": "שלום!"
+                },
+                {
+                  "sentence": "Hello, how are you?",
+                  "translation": "שלום, מה שלומך?"
+                },
+                {
+                  "sentence": "Hello, my friend.",
+                  "translation": "שלום, חבר שלי."
+                }
+              ]
+            },
+            {
+              "word": "Goodbye",
+              "translation": "להתראות",
+              "examples": [
+                {
+                  "sentence": "Goodbye!",
+                  "translation": "להתראות!"
+                },
+                {
+                  "sentence": "Goodbye, see you soon.",
+                  "translation": "להתראות, נתראה בקרוב."
+                },
+                {
+                  "sentence": "It's time to say goodbye.",
+                  "translation": "הגיע הזמן להגיד להתראות."
+                }
+              ]
+            },
+            {
+              "word": "Please",
+              "translation": "בבקשה",
+              "examples": [
+                {
+                  "sentence": "Please, come in.",
+                  "translation": "בבקשה, היכנס."
+                },
+                {
+                  "sentence": "Can you help me, please?",
+                  "translation": "האם אתה יכול לעזור לי, בבקשה?"
+                },
+                {
+                  "sentence": "Please take a seat.",
+                  "translation": "בבקשה שב."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

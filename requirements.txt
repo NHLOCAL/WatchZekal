@@ -1,0 +1,5 @@
+gTTS
+moviepy
+Pillow
+python-bidi
+arabic-reshaper
