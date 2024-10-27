@@ -937,19 +937,19 @@
             },
             {
               "word": "Do you mind if...?",
-              "translation": "האם אכפת לך אם...?",
+              "translation": "אכפת לך אם...?",
               "examples": [
                 {
                   "sentence": "Do you mind if I open the window?",
-                  "translation": "האם אכפת לך אם אפתח את החלון?"
+                  "translation": "אכפת לך אם אפתח את החלון?"
                 },
                 {
                   "sentence": "Do you mind if we change the meeting time?",
-                  "translation": "האם אכפת לך אם נשנה את זמן הפגישה?"
+                  "translation": "אכפת לך אם נשנה את זמן הפגישה?"
                 },
                 {
                   "sentence": "Do you mind if she joins us for dinner?",
-                  "translation": "האם אכפת לך אם היא תצטרף אלינו לארוחת ערב?"
+                  "translation": "אכפת לך אם היא תצטרף אלינו לארוחת ערב?"
                 }
               ]
             }
