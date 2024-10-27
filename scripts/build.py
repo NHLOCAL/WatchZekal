@@ -4,8 +4,16 @@ import random
 from gtts import gTTS
 from moviepy.editor import *
 from PIL import Image, ImageDraw, ImageFont
+
 import arabic_reshaper
 from bidi.algorithm import get_display
+
+# בדיקת זמינות ImageResampling
+try:
+    from PIL import ImageResampling
+    RESAMPLING = ImageResampling.LANCZOS
+except ImportError:
+    RESAMPLING = Image.LANCZOS  # fallback לגרסאות ישנות יותר
 
 # הגדרות בסיסיות
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # נתיב לסקריפט הנוכחי
@@ -20,20 +28,25 @@ TEMP_DIR = os.path.join(OUTPUT_DIR, 'temp')
 JSON_FILE = os.path.join(DATA_DIR, 'words.json')
 FONT_PATH = os.path.join(FONTS_DIR, 'arial.ttf')  # ודא שהגופן תומך בעברית
 SUBTOPIC_FONT_PATH = os.path.join(FONTS_DIR, 'arialbd.ttf')  # גופן מודגש עבור Subtopics
+WORD_FONT_PATH = os.path.join(FONTS_DIR, 'arialbd.ttf')  # גופן מודגש עבור מילים
 LOGO_PATH = os.path.join(LOGOS_DIR, 'logo.png')  # אם תרצה להשתמש בלוגו
 
 # הגדרות עיצוב
-FONT_SIZE = 80  # הגדלת גודל הגופן למילים ולמשפטים
-SUBTOPIC_FONT_SIZE = 100  # גודל גופן שונה ל-Subtopics
+FONT_SIZE = 80  # גודל גופן רגיל
+SUBTOPIC_FONT_SIZE = 100  # גודל גופן ל-Subtopics
 LEVEL_FONT_SIZE = 120  # גודל גופן למסך פתיחת Level
+WORD_FONT_SIZE = 100  # גודל גופן גדול יותר למילים
 BG_COLOR = (255, 255, 255)  # רקע לבן
-SUBTOPIC_BG_COLOR = (200, 200, 255)  # רקע שונה ל-Subtopics
-LEVEL_BG_COLOR = (255, 223, 186)  # רקע מיוחד למסך פתיחת Level
-TEXT_COLOR = (0, 0, 0)  # טקסט שחור
-SUBTOPIC_TEXT_COLOR = (0, 0, 128)  # צבע טקסט שונה ל-Subtopics
-LEVEL_TEXT_COLOR = (255, 69, 0)  # צבע טקסט שונה למסך פתיחת Level
-DURATION_PER_CLIP = 3  # משך כל קליפ בשניות
-TRANSITION_DURATION = 1  # משך האנימציה בשניות
+SUBTOPIC_BG_COLOR = (200, 200, 255)  # רקע ל-Subtopics
+LEVEL_BG_COLOR = (255, 223, 186)  # רקע למסך פתיחת Level
+TEXT_COLOR = (0, 0, 0)  # טקסט רגיל
+SUBTOPIC_TEXT_COLOR = (0, 0, 128)  # טקסט ל-Subtopics
+LEVEL_TEXT_COLOR = (255, 69, 0)  # טקסט למסך פתיחת Level
+WORD_TEXT_COLOR = (0, 0, 0)  # טקסט למילים
+TRANSITION_DURATION = 1  # משך המעבר בשניות
+
+# נתיב למוזיקת רקע (אם יש)
+BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')  # ודא שהקובץ קיים
 
 # ודא שתיקיות היצוא זמינות
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -56,56 +69,150 @@ def process_hebrew_text(text):
     bidi_text = get_display(reshaped_text)
     return bidi_text
 
-# פונקציה ליצירת תמונת רקע עם טקסט
-def create_image(text_lines, image_path, style='normal'):
-    # בחירת צבע רקע ועיצוב לפי הסגנון
-    if style == 'subtopic':
-        bg_color = SUBTOPIC_BG_COLOR
-        text_color = SUBTOPIC_TEXT_COLOR
-        font_size = SUBTOPIC_FONT_SIZE
-        font_path = SUBTOPIC_FONT_PATH
-    elif style == 'level':
-        bg_color = LEVEL_BG_COLOR
-        text_color = LEVEL_TEXT_COLOR
-        font_size = LEVEL_FONT_SIZE
-        font_path = SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
+# פונקציה ליצירת גרדיאנט
+def create_gradient_background(width, height, start_color, end_color, direction='vertical'):
+    base = Image.new('RGB', (width, height), start_color)
+    top = Image.new('RGB', (width, height), end_color)
+    mask = Image.new('L', (width, height))
+    
+    if direction == 'vertical':
+        for y in range(height):
+            mask.putpixel((0, y), int(255 * (y / height)))
+    elif direction == 'horizontal':
+        for x in range(width):
+            mask.putpixel((x, 0), int(255 * (x / width)))
+    # ניתן להוסיף כיוונים נוספים אם רוצים
+    
+    base.paste(top, (0, 0), mask)
+    return base
+
+# פונקציה להוספת לוגו
+def add_logo(image, logo_path, position='top-right', size=(200, 200), opacity=255):
+    logo = Image.open(logo_path).convert("RGBA")
+    logo = logo.resize(size, RESAMPLING)  # עדכון השימוש ב-LANCZOS
+    
+    # הגדרת שקיפות הלוגו
+    if opacity < 255:
+        alpha = logo.split()[3]
+        alpha = alpha.point(lambda p: p * opacity / 255)
+        logo.putalpha(alpha)
+    
+    img = image.convert("RGBA")
+    if position == 'top-right':
+        img.paste(logo, (img.width - logo.width - 50, 50), logo)
+    elif position == 'top-left':
+        img.paste(logo, (50, 50), logo)
+    elif position == 'bottom-right':
+        img.paste(logo, (img.width - logo.width - 50, img.height - logo.height - 50), logo)
+    elif position == 'bottom-left':
+        img.paste(logo, (50, img.height - logo.height - 50), logo)
     else:
-        bg_color = BG_COLOR
-        text_color = TEXT_COLOR
-        font_size = FONT_SIZE
-        font_path = FONT_PATH
+        raise ValueError("מיקום לא נתמך")
+    
+    return img
 
-    # יצירת תמונה
-    img = Image.new('RGB', (1920, 1080), color=bg_color)
+# פונקציה ליצירת תמונת רקע עם טקסט ותמיכה בסגנונות שונים לכל שורה
+def create_image(text_lines, image_path, style='normal', line_styles=None, add_logo_flag=False):
+    # הגדרת סגנונות
+    style_definitions = {
+        'normal': {
+            'bg_color': BG_COLOR,
+            'gradient': None,
+            'gradient_direction': 'vertical',
+            'text_color': TEXT_COLOR,
+            'font_size': FONT_SIZE,
+            'font_path': FONT_PATH
+        },
+        'subtopic': {
+            'bg_color': SUBTOPIC_BG_COLOR,
+            'gradient': None,
+            'gradient_direction': 'vertical',
+            'text_color': SUBTOPIC_TEXT_COLOR,
+            'font_size': SUBTOPIC_FONT_SIZE,
+            'font_path': SUBTOPIC_FONT_PATH
+        },
+        'level': {
+            'bg_color': LEVEL_BG_COLOR,
+            'gradient': None,
+            'gradient_direction': 'vertical',
+            'text_color': LEVEL_TEXT_COLOR,
+            'font_size': LEVEL_FONT_SIZE,
+            'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
+        },
+        'word': {
+            'bg_color': BG_COLOR,
+            'gradient': None,
+            'gradient_direction': 'vertical',
+            'text_color': WORD_TEXT_COLOR,
+            'font_size': WORD_FONT_SIZE,
+            'font_path': WORD_FONT_PATH  # גופן מודגש
+        },
+        'gradient_background': {
+            'bg_color': None,
+            'gradient': ((255, 255, 255), (200, 200, 255)),  # דוגמה ל-Start ו-End צבעים
+            'gradient_direction': 'vertical',
+            'text_color': TEXT_COLOR,
+            'font_size': FONT_SIZE,
+            'font_path': FONT_PATH
+        }
+    }
+    
+    # אם line_styles לא מוגדר, השתמש בסגנון הכללי לכל השורות
+    if line_styles is None:
+        line_styles = [style] * len(text_lines)
+    elif isinstance(line_styles, str):
+        line_styles = [line_styles] * len(text_lines)
+    elif isinstance(line_styles, list):
+        if len(line_styles) != len(text_lines):
+            raise ValueError("אורך רשימת הסגנונות חייב להתאים לאורך רשימת הטקסטים")
+    else:
+        raise TypeError("הפרמטר line_styles חייב להיות מחרוזת או רשימה של מחרוזות")
+    
+    # קבלת צבע הרקע או יצירת גרדיאנט
+    first_style = style_definitions[line_styles[0]]
+    if first_style['gradient']:
+        img = create_gradient_background(1920, 1080, first_style['gradient'][0], first_style['gradient'][1], first_style['gradient_direction'])
+    else:
+        img = Image.new('RGB', (1920, 1080), color=first_style['bg_color'])
+    
     draw = ImageDraw.Draw(img)
-    try:
-        font = ImageFont.truetype(font_path, font_size)
-    except IOError:
-        print(f"לא ניתן למצוא את הגופן בנתיב: {font_path}")
-        raise
-
-    # חישוב מיקום הטקסט במרכז האנכי והאופקי
+    
+    # חישוב גובה כולל
     total_height = 0
     processed_lines = []
-    for line in text_lines:
+    fonts = []
+    for i, line in enumerate(text_lines):
+        current_style = style_definitions[line_styles[i]]
         if is_hebrew(line):
             processed_line = process_hebrew_text(line)
         else:
             processed_line = line
+        try:
+            font = ImageFont.truetype(current_style['font_path'], current_style['font_size'])
+        except IOError:
+            print(f"לא ניתן למצוא את הגופן בנתיב: {current_style['font_path']}")
+            raise
         bbox = draw.textbbox((0, 0), processed_line, font=font)
         width = bbox[2] - bbox[0]
         height = bbox[3] - bbox[1]
-        processed_lines.append((processed_line, width, height))
-        total_height += height + 40  # רווח גדול יותר בין השורות
-
-    current_y = (img.height - total_height) / 2  # מרכז אנכי
-
-    for processed_line, width, height in processed_lines:
+        processed_lines.append((processed_line, width, height, current_style, font))
+        total_height += height + 40  # רווח בין השורות
+    
+    # מיקום ההתחלה במרכז אנכי
+    current_y = (img.height - total_height) / 2
+    
+    # ציור הטקסט
+    for processed_line, width, height, current_style, font in processed_lines:
         x_text = (img.width - width) / 2  # מרכז אופקי
-        draw.text((x_text, current_y), processed_line, font=font, fill=text_color)
+        draw.text((x_text, current_y), processed_line, font=font, fill=current_style['text_color'])
         current_y += height + 40  # רווח בין השורות
-
+    
+    # הוספת לוגו אם נדרש
+    if add_logo_flag:
+        img = add_logo(img, LOGO_PATH, position='top-right', size=(200, 200), opacity=200)
+    
     # שמירת התמונה
+    img = img.convert("RGB")  # המרת חזרה ל-RGB אם הוספנו אלפא
     img.save(image_path)
 
 # פונקציה ליצירת אודיו מהטקסט
@@ -128,18 +235,27 @@ def create_clip(image_path, audio_en_path, audio_he_path):
     img_clip = img_clip.set_audio(audio_total)
     return img_clip
 
+# פונקציה להוספת מוזיקת רקע
+def add_background_music(clip, music_path, volume=0.1):
+    background_music = AudioFileClip(music_path).volumex(volume)
+    # לולאה למוזיקה כדי שתתאים לאורך הקליפ
+    background_music = afx.audio_loop(background_music, duration=clip.duration)
+    # שילוב המוזיקה עם האודיו של הקליפ
+    final_audio = CompositeAudioClip([clip.audio, background_music])
+    return clip.set_audio(final_audio)
+
 # פונקציה ליצירת מסך פתיחה לכל Level
 def create_level_intro(level_num, level_name):
     intro_image_path = os.path.join(TEMP_DIR, f"level_{level_num}_intro.png")
     text_lines_intro = [f"Level {level_num}", level_name]
-    create_image(text_lines_intro, intro_image_path, style='level')
-
+    create_image(text_lines_intro, intro_image_path, style='level', add_logo_flag=True)
+    
     # יצירת אודיו לפתיחת Level
     audio_intro_en = os.path.join(TEMP_DIR, f"level_{level_num}_intro_en.mp3")
     audio_intro_he = os.path.join(TEMP_DIR, f"level_{level_num}_intro_he.mp3")
     create_audio(f"Level {level_num}", 'en', audio_intro_en)
     create_audio(level_name, 'iw', audio_intro_he)
-
+    
     # יצירת קליפ פתיחה
     clip_intro = create_clip(intro_image_path, audio_intro_en, audio_intro_he)
     return clip_intro
@@ -170,7 +286,7 @@ def slide_transition(clip1, clip2, duration=TRANSITION_DURATION):
     # שכבת הקליפים
     transition = CompositeVideoClip([clip1_moving, clip2_moving], size=(1920, 1080)).set_duration(duration)
     
-    # **הגדרת אודיו ל-None כדי למנוע בעיות באודיו**
+    # הגדרת אודיו ל-None כדי למנוע בעיות באודיו
     transition = transition.set_audio(None)
     
     return transition
@@ -194,7 +310,8 @@ for level in data['levels']:
     clips.append(clip_level_intro)
 
     # יצירת אנימציית מעבר אחרי פתיחת Level
-    # במקום להוסיף קליפ צבע, נשתמש במעבר החלקה לכניסה של הקליפ הבא
+    # אין צורך להוסיף מעבר כאן כי המעברים יתווספו בין הקליפים הבאים
+
     for subtopic in level['subtopics']:
         subtopic_name = subtopic['name']
         print(f"  מעבד Subtopic: {subtopic_name}")
@@ -203,7 +320,7 @@ for level in data['levels']:
         safe_subtopic_name = "".join([c for c in subtopic_name if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_")
         image_subtopic_path = os.path.join(TEMP_DIR, f"{safe_level_name}_subtopic_{safe_subtopic_name}.png")
         text_lines_subtopic = [subtopic_name]
-        create_image(text_lines_subtopic, image_subtopic_path, style='subtopic')
+        create_image(text_lines_subtopic, image_subtopic_path, style='subtopic', add_logo_flag=True)
 
         # יצירת אודיו Subtopic
         audio_subtopic_en = os.path.join(TEMP_DIR, f"{safe_level_name}_subtopic_{safe_subtopic_name}_en.mp3")
@@ -233,7 +350,11 @@ for level in data['levels']:
             safe_word_text = "".join([c for c in word_text if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_")
             image_word_path = os.path.join(TEMP_DIR, f"{safe_level_name}_word_{safe_word_text}.png")
             text_lines_word = [word_text, word_translation]
-            create_image(text_lines_word, image_word_path)  # עיצוב רגיל
+            
+            # הגדרת סגנונות לכל שורה: 'word' לשורה הראשונה, 'normal' לשורה השנייה
+            line_styles_word = ['word', 'normal']
+            
+            create_image(text_lines_word, image_word_path, style='normal', line_styles=line_styles_word, add_logo_flag=True)  # שימוש ב-line_styles
 
             # יצירת אודיו למילה ולתרגום
             audio_word_en = os.path.join(TEMP_DIR, f"{safe_level_name}_word_{safe_word_text}_en.mp3")
@@ -262,7 +383,7 @@ for level in data['levels']:
                 safe_sentence = "".join([c for c in sentence if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_")
                 image_example_path = os.path.join(TEMP_DIR, f"{safe_level_name}_word_{safe_word_text}_example_{idx+1}.png")
                 text_lines_example = [sentence, translation]
-                create_image(text_lines_example, image_example_path)  # עיצוב רגיל
+                create_image(text_lines_example, image_example_path, style='normal', add_logo_flag=True)  # עיצוב רגיל עם לוגו
 
                 # יצירת אודיו למשפט ולתרגום
                 audio_example_en = os.path.join(TEMP_DIR, f"{safe_level_name}_word_{safe_word_text}_example_{idx+1}_en.mp3")
@@ -299,6 +420,10 @@ for level in data['levels']:
     # איחוד כל הקליפים לסרטון אחד עבור ה-Level
     print(f"איחוד הקליפים לסרטון Level {level_num}: {level_name}")
     final_clip = concatenate_videoclips(clips, method="compose")
+
+    # הוספת מוזיקת רקע אם קיימת
+    if os.path.exists(BACKGROUND_MUSIC_PATH):
+        final_clip = add_background_music(final_clip, BACKGROUND_MUSIC_PATH, volume=0.1)
 
     # שמירת הוידאו
     print(f"שומר את הסרטון בנתיב: {video_path}")
