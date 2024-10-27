@@ -1,0 +1,961 @@
+{
+  "levels": [
+    {
+      "level": 9,
+      "name": "רגשות ותיאורים מורכבים",
+      "subtopics": [
+        {
+          "name": "רגשות",
+          "words": [
+            {
+              "word": "Happy",
+              "translation": "שמח",
+              "examples": [
+                {
+                  "sentence": "She was happy to receive the award for her hard work.",
+                  "translation": "היא הייתה שמחה לקבל את הפרס על עבודתה הקשה."
+                },
+                {
+                  "sentence": "He feels happy whenever he spends time with his family.",
+                  "translation": "הוא מרגיש שמח בכל פעם שהוא מבלה עם משפחתו."
+                },
+                {
+                  "sentence": "They are happy that their team won the championship.",
+                  "translation": "הם שמחים שקבוצתם זכתה באליפות."
+                }
+              ]
+            },
+            {
+              "word": "Sad",
+              "translation": "עצוב",
+              "examples": [
+                {
+                  "sentence": "She felt sad after saying goodbye to her friends.",
+                  "translation": "היא הרגישה עצובה לאחר שנפרדה מחבריה."
+                },
+                {
+                  "sentence": "He was sad because he didn't get the job he wanted.",
+                  "translation": "הוא היה עצוב כי הוא לא קיבל את העבודה שרצה."
+                },
+                {
+                  "sentence": "They became sad when their vacation was canceled.",
+                  "translation": "הם נעשו עצובים כשחופשתם בוטלה."
+                }
+              ]
+            },
+            {
+              "word": "Angry",
+              "translation": "כועס",
+              "examples": [
+                {
+                  "sentence": "He gets angry when people don't tell the truth.",
+                  "translation": "הוא כועס כשאנשים לא אומרים את האמת."
+                },
+                {
+                  "sentence": "She was angry that her flight was delayed again.",
+                  "translation": "היא הייתה כועסת שהטיסה שלה שוב התעכבה."
+                },
+                {
+                  "sentence": "They were angry with the results of the election.",
+                  "translation": "הם היו כועסים מתוצאות הבחירות."
+                }
+              ]
+            },
+            {
+              "word": "Afraid",
+              "translation": "מפחד",
+              "examples": [
+                {
+                  "sentence": "She is afraid of flying in airplanes.",
+                  "translation": "היא מפחדת לטוס במטוסים."
+                },
+                {
+                  "sentence": "He was afraid that he might fail the exam.",
+                  "translation": "הוא פחד שאולי ייכשל במבחן."
+                },
+                {
+                  "sentence": "They are afraid of losing their jobs due to the changes.",
+                  "translation": "הם מפחדים לאבד את עבודתם בשל השינויים."
+                }
+              ]
+            },
+            {
+              "word": "Excited",
+              "translation": "נרגש",
+              "examples": [
+                {
+                  "sentence": "She is excited about starting her new job next week.",
+                  "translation": "היא נרגשת להתחיל את עבודתה החדשה בשבוע הבא."
+                },
+                {
+                  "sentence": "He was excited when he heard the good news.",
+                  "translation": "הוא היה נרגש כשהוא שמע את החדשות הטובות."
+                },
+                {
+                  "sentence": "They are excited to travel abroad for the first time.",
+                  "translation": "הם נרגשים לנסוע לחו\"ל בפעם הראשונה."
+                }
+              ]
+            },
+            {
+              "word": "Bored",
+              "translation": "משועמם",
+              "examples": [
+                {
+                  "sentence": "He gets bored when he has nothing to do.",
+                  "translation": "הוא משתעמם כשאין לו מה לעשות."
+                },
+                {
+                  "sentence": "She was bored during the long lecture.",
+                  "translation": "היא הייתה משועממת במהלך ההרצאה הארוכה."
+                },
+                {
+                  "sentence": "They felt bored waiting for the delayed train.",
+                  "translation": "הם הרגישו משועממים בזמן שחיכו לרכבת המתעכבת."
+                }
+              ]
+            },
+            {
+              "word": "Surprised",
+              "translation": "מופתע",
+              "examples": [
+                {
+                  "sentence": "She was surprised to see him at the party.",
+                  "translation": "היא הייתה מופתעת לראות אותו במסיבה."
+                },
+                {
+                  "sentence": "He is surprised by the unexpected gift.",
+                  "translation": "הוא מופתע מהמתנה הבלתי צפויה."
+                },
+                {
+                  "sentence": "They were surprised that it started snowing in April.",
+                  "translation": "הם היו מופתעים שהתחיל לרדת שלג באפריל."
+                }
+              ]
+            },
+            {
+              "word": "Confused",
+              "translation": "מבולבל",
+              "examples": [
+                {
+                  "sentence": "He felt confused after reading the complex instructions.",
+                  "translation": "הוא הרגיש מבולבל לאחר שקרא את ההוראות המורכבות."
+                },
+                {
+                  "sentence": "She is confused about which path to take.",
+                  "translation": "היא מבולבלת לגבי איזה מסלול לבחור."
+                },
+                {
+                  "sentence": "They became confused during the difficult exam.",
+                  "translation": "הם נעשו מבולבלים במהלך המבחן הקשה."
+                }
+              ]
+            },
+            {
+              "word": "Nervous",
+              "translation": "עצבני",
+              "examples": [
+                {
+                  "sentence": "He is nervous about his job interview tomorrow.",
+                  "translation": "הוא עצבני לגבי ראיון העבודה שלו מחר."
+                },
+                {
+                  "sentence": "She gets nervous when speaking in public.",
+                  "translation": "היא נעשית עצבנית כשהיא מדברת בפני קהל."
+                },
+                {
+                  "sentence": "They were nervous before the big performance.",
+                  "translation": "הם היו עצבניים לפני ההופעה הגדולה."
+                }
+              ]
+            },
+            {
+              "word": "Proud",
+              "translation": "גאה",
+              "examples": [
+                {
+                  "sentence": "She is proud of her daughter's achievements.",
+                  "translation": "היא גאה בהישגי בתה."
+                },
+                {
+                  "sentence": "He felt proud after completing the marathon.",
+                  "translation": "הוא הרגיש גאה לאחר שסיים את המרתון."
+                },
+                {
+                  "sentence": "They are proud to be part of the team.",
+                  "translation": "הם גאים להיות חלק מהצוות."
+                }
+              ]
+            },
+            {
+              "word": "Lonely",
+              "translation": "בודד",
+              "examples": [
+                {
+                  "sentence": "He felt lonely after moving to a new city.",
+                  "translation": "הוא הרגיש בודד לאחר שעבר לעיר חדשה."
+                },
+                {
+                  "sentence": "She is lonely because her friends are away.",
+                  "translation": "היא בודדה כי חבריה אינם בסביבה."
+                },
+                {
+                  "sentence": "They became lonely during the long winter months.",
+                  "translation": "הם נעשו בודדים במהלך חודשי החורף הארוכים."
+                }
+              ]
+            },
+            {
+              "word": "Embarrassed",
+              "translation": "נבוך",
+              "examples": [
+                {
+                  "sentence": "He was embarrassed when he forgot his speech.",
+                  "translation": "הוא היה נבוך כשהוא שכח את הנאום שלו."
+                },
+                {
+                  "sentence": "She felt embarrassed after making a mistake.",
+                  "translation": "היא הרגישה נבוכה לאחר שעשתה טעות."
+                },
+                {
+                  "sentence": "They were embarrassed by the unexpected situation.",
+                  "translation": "הם היו נבוכים מהמצב הבלתי צפוי."
+                }
+              ]
+            },
+            {
+              "word": "Disappointed",
+              "translation": "מאוכזב",
+              "examples": [
+                {
+                  "sentence": "He was disappointed with the results of the test.",
+                  "translation": "הוא היה מאוכזב מתוצאות המבחן."
+                },
+                {
+                  "sentence": "She felt disappointed when her plans were canceled.",
+                  "translation": "היא הרגישה מאוכזבת כשש תוכניותיה בוטלו."
+                },
+                {
+                  "sentence": "They are disappointed that the concert was postponed.",
+                  "translation": "הם מאוכזבים שהקונצרט נדחה."
+                }
+              ]
+            },
+            {
+              "word": "Anxious",
+              "translation": "חרד",
+              "examples": [
+                {
+                  "sentence": "He is anxious about the upcoming exam.",
+                  "translation": "הוא חרד מהמבחן הקרוב."
+                },
+                {
+                  "sentence": "She feels anxious when flying in airplanes.",
+                  "translation": "היא חשה חרדה בעת טיסה במטוסים."
+                },
+                {
+                  "sentence": "They were anxious to hear the final decision.",
+                  "translation": "הם היו חרדים לשמוע את ההחלטה הסופית."
+                }
+              ]
+            },
+            {
+              "word": "Calm",
+              "translation": "רגוע",
+              "examples": [
+                {
+                  "sentence": "He remained calm during the emergency.",
+                  "translation": "הוא נשאר רגוע במהלך החירום."
+                },
+                {
+                  "sentence": "She feels calm when she practices meditation.",
+                  "translation": "היא מרגישה רגועה כשהיא מתרגלת מדיטציה."
+                },
+                {
+                  "sentence": "They tried to stay calm despite the chaos.",
+                  "translation": "הם ניסו להישאר רגועים למרות הכאוס."
+                }
+              ]
+            },
+            {
+              "word": "Jealous",
+              "translation": "מקנא",
+              "examples": [
+                {
+                  "sentence": "He was jealous of his friend's new car.",
+                  "translation": "הוא היה מקנא במכונית החדשה של חברו."
+                },
+                {
+                  "sentence": "She feels jealous when her sister gets more attention.",
+                  "translation": "היא חשה קנאה כאשר אחותה מקבלת יותר תשומת לב."
+                },
+                {
+                  "sentence": "They became jealous of their neighbor's success.",
+                  "translation": "הם נעשו מקנאים בהצלחת השכן שלהם."
+                }
+              ]
+            },
+            {
+              "word": "Hopeful",
+              "translation": "מלא תקווה",
+              "examples": [
+                {
+                  "sentence": "She is hopeful that she will get the job.",
+                  "translation": "היא מלאת תקווה שתתקבל לעבודה."
+                },
+                {
+                  "sentence": "He feels hopeful about the future.",
+                  "translation": "הוא מרגיש מלא תקווה לגבי העתיד."
+                },
+                {
+                  "sentence": "They remain hopeful despite the challenges.",
+                  "translation": "הם נשארים מלאי תקווה למרות האתגרים."
+                }
+              ]
+            },
+            {
+              "word": "Frustrated",
+              "translation": "מתוסכל",
+              "examples": [
+                {
+                  "sentence": "He is frustrated because the computer isn't working.",
+                  "translation": "הוא מתוסכל כי המחשב לא עובד."
+                },
+                {
+                  "sentence": "She felt frustrated trying to solve the problem.",
+                  "translation": "היא הרגישה מתוסכלת בניסיון לפתור את הבעיה."
+                },
+                {
+                  "sentence": "They became frustrated with the slow progress.",
+                  "translation": "הם נעשו מתוסכלים מההתקדמות האיטית."
+                }
+              ]
+            },
+            {
+              "word": "Tired",
+              "translation": "עייף",
+              "examples": [
+                {
+                  "sentence": "He is tired after working all night.",
+                  "translation": "הוא עייף לאחר שעבד כל הלילה."
+                },
+                {
+                  "sentence": "She feels tired because she didn't sleep well.",
+                  "translation": "היא מרגישה עייפה כי לא ישנה טוב."
+                },
+                {
+                  "sentence": "They are tired from the long journey.",
+                  "translation": "הם עייפים מהמסע הארוך."
+                }
+              ]
+            },
+            {
+              "word": "Relieved",
+              "translation": "חש הקלה",
+              "examples": [
+                {
+                  "sentence": "He was relieved when he found his lost keys.",
+                  "translation": "הוא חש הקלה כשהוא מצא את המפתחות שאבדו."
+                },
+                {
+                  "sentence": "She feels relieved after finishing her exams.",
+                  "translation": "היא חשה הקלה לאחר שסיימה את מבחניה."
+                },
+                {
+                  "sentence": "They were relieved to hear that everyone was safe.",
+                  "translation": "הם חשו הקלה לשמוע שכולם בטוחים."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "תיאורי אישיות",
+          "words": [
+            {
+              "word": "Friendly",
+              "translation": "ידידותי",
+              "examples": [
+                {
+                  "sentence": "She is friendly and makes new friends easily.",
+                  "translation": "היא ידידותית ומתחברת בקלות לחברים חדשים."
+                },
+                {
+                  "sentence": "He has a friendly smile that welcomes everyone.",
+                  "translation": "יש לו חיוך ידידותי שמקבל את כולם."
+                },
+                {
+                  "sentence": "They are friendly neighbors who always help.",
+                  "translation": "הם שכנים ידידותיים שתמיד עוזרים."
+                }
+              ]
+            },
+            {
+              "word": "Shy",
+              "translation": "ביישן",
+              "examples": [
+                {
+                  "sentence": "He is shy and doesn't like to speak in public.",
+                  "translation": "הוא ביישן ולא אוהב לדבר בפומבי."
+                },
+                {
+                  "sentence": "She felt shy when meeting new people.",
+                  "translation": "היא הרגישה ביישנית כשהכירה אנשים חדשים."
+                },
+                {
+                  "sentence": "They are shy but very kind once you get to know them.",
+                  "translation": "הם ביישנים אך מאוד אדיבים כשמכירים אותם."
+                }
+              ]
+            },
+            {
+              "word": "Brave",
+              "translation": "אמיץ",
+              "examples": [
+                {
+                  "sentence": "He was brave enough to climb the highest mountain.",
+                  "translation": "הוא היה אמיץ מספיק לטפס על ההר הגבוה ביותר."
+                },
+                {
+                  "sentence": "She showed brave behavior during the emergency.",
+                  "translation": "היא הראתה התנהגות אמיצה במהלך החירום."
+                },
+                {
+                  "sentence": "They are brave firefighters who save lives.",
+                  "translation": "הם כבאים אמיצים שמצילים חיים."
+                }
+              ]
+            },
+            {
+              "word": "Smart",
+              "translation": "חכם",
+              "examples": [
+                {
+                  "sentence": "He is a smart student who excels in mathematics.",
+                  "translation": "הוא תלמיד חכם שמצטיין במתמטיקה."
+                },
+                {
+                  "sentence": "She came up with a smart solution to the problem.",
+                  "translation": "היא חשבה על פתרון חכם לבעיה."
+                },
+                {
+                  "sentence": "They are smart and always learn new things quickly.",
+                  "translation": "הם חכמים ותמיד לומדים דברים חדשים במהירות."
+                }
+              ]
+            },
+            {
+              "word": "Funny",
+              "translation": "מצחיק",
+              "examples": [
+                {
+                  "sentence": "He tells funny stories that make everyone laugh.",
+                  "translation": "הוא מספר סיפורים מצחיקים שגורמים לכולם לצחוק."
+                },
+                {
+                  "sentence": "She has a funny way of explaining things.",
+                  "translation": "יש לה דרך מצחיקה להסביר דברים."
+                },
+                {
+                  "sentence": "They watched a funny movie last night.",
+                  "translation": "הם צפו בסרט מצחיק אמש."
+                }
+              ]
+            },
+            {
+              "word": "Kind",
+              "translation": "אדיב",
+              "examples": [
+                {
+                  "sentence": "She is always kind to animals and takes care of them.",
+                  "translation": "היא תמיד אדיבה לחיות ומטפלת בהן."
+                },
+                {
+                  "sentence": "He showed a kind gesture by helping the elderly.",
+                  "translation": "הוא הראה מחווה אדיבה על ידי עזרה לקשישים."
+                },
+                {
+                  "sentence": "They are kind people who volunteer in the community.",
+                  "translation": "הם אנשים אדיבים שמתנדבים בקהילה."
+                }
+              ]
+            },
+            {
+              "word": "Creative",
+              "translation": "יצירתי",
+              "examples": [
+                {
+                  "sentence": "She is creative and loves to paint and draw.",
+                  "translation": "היא יצירתית ואוהבת לצייר ולשרטט."
+                },
+                {
+                  "sentence": "He finds creative solutions to difficult problems.",
+                  "translation": "הוא מוצא פתרונות יצירתיים לבעיות קשות."
+                },
+                {
+                  "sentence": "They work in a creative industry full of innovation.",
+                  "translation": "הם עובדים בתעשייה יצירתית מלאה בחדשנות."
+                }
+              ]
+            },
+            {
+              "word": "Optimistic",
+              "translation": "אופטימי",
+              "examples": [
+                {
+                  "sentence": "He remains optimistic even in challenging times.",
+                  "translation": "הוא נשאר אופטימי אפילו בזמנים מאתגרים."
+                },
+                {
+                  "sentence": "She has an optimistic outlook on life.",
+                  "translation": "יש לה השקפה אופטימית על החיים."
+                },
+                {
+                  "sentence": "They are optimistic about the future of the project.",
+                  "translation": "הם אופטימיים לגבי עתיד הפרויקט."
+                }
+              ]
+            },
+            {
+              "word": "Pessimistic",
+              "translation": "פסימי",
+              "examples": [
+                {
+                  "sentence": "He tends to be pessimistic about new ideas.",
+                  "translation": "הוא נוטה להיות פסימי לגבי רעיונות חדשים."
+                },
+                {
+                  "sentence": "She has a pessimistic view due to past experiences.",
+                  "translation": "יש לה ראייה פסימית בשל חוויות עבר."
+                },
+                {
+                  "sentence": "They are pessimistic and expect the worst.",
+                  "translation": "הם פסימיים ומצפים לגרוע ביותר."
+                }
+              ]
+            },
+            {
+              "word": "Generous",
+              "translation": "נדיב",
+              "examples": [
+                {
+                  "sentence": "He is generous and donates to charity regularly.",
+                  "translation": "הוא נדיב ותורם לצדקה באופן קבוע."
+                },
+                {
+                  "sentence": "She made a generous offer to help with the project.",
+                  "translation": "היא עשתה הצעה נדיבה לעזור בפרויקט."
+                },
+                {
+                  "sentence": "They are generous hosts who welcome everyone.",
+                  "translation": "הם מארחים נדיבים שמקבלים את כולם."
+                }
+              ]
+            },
+            {
+              "word": "Serious",
+              "translation": "רציני",
+              "examples": [
+                {
+                  "sentence": "He is serious about his studies and works hard.",
+                  "translation": "הוא רציני לגבי לימודיו ועובד קשה."
+                },
+                {
+                  "sentence": "She has a serious expression on her face.",
+                  "translation": "יש לה הבעה רצינית על פניה."
+                },
+                {
+                  "sentence": "They had a serious discussion about the future.",
+                  "translation": "הם ניהלו דיון רציני לגבי העתיד."
+                }
+              ]
+            },
+            {
+              "word": "Lazy",
+              "translation": "עצלן",
+              "examples": [
+                {
+                  "sentence": "He is lazy and prefers to stay in bed all day.",
+                  "translation": "הוא עצלן ומעדיף להישאר במיטה כל היום."
+                },
+                {
+                  "sentence": "She feels lazy on weekends and does nothing.",
+                  "translation": "היא מרגישה עצלה בסופי שבוע ולא עושה כלום."
+                },
+                {
+                  "sentence": "They are lazy when it comes to household chores.",
+                  "translation": "הם עצלנים כשזה נוגע למטלות הבית."
+                }
+              ]
+            },
+            {
+              "word": "Energetic",
+              "translation": "נמרץ",
+              "examples": [
+                {
+                  "sentence": "He is energetic and enjoys sports and activities.",
+                  "translation": "הוא נמרץ ונהנה מספורט ופעילויות."
+                },
+                {
+                  "sentence": "She feels energetic after a good night's sleep.",
+                  "translation": "היא מרגישה נמרצת לאחר שנת לילה טובה."
+                },
+                {
+                  "sentence": "They are energetic children who love to play outside.",
+                  "translation": "הם ילדים נמרצים שאוהבים לשחק בחוץ."
+                }
+              ]
+            },
+            {
+              "word": "Honest",
+              "translation": "כנה",
+              "examples": [
+                {
+                  "sentence": "She is honest and always tells the truth.",
+                  "translation": "היא כנה ותמיד אומרת את האמת."
+                },
+                {
+                  "sentence": "He gave an honest answer to the difficult question.",
+                  "translation": "הוא נתן תשובה כנה לשאלה הקשה."
+                },
+                {
+                  "sentence": "They are honest people whom you can trust.",
+                  "translation": "הם אנשים כנים שאפשר לסמוך עליהם."
+                }
+              ]
+            },
+            {
+              "word": "Ambitious",
+              "translation": "שאפתן",
+              "examples": [
+                {
+                  "sentence": "He is ambitious and wants to succeed in his career.",
+                  "translation": "הוא שאפתן ורוצה להצליח בקריירה שלו."
+                },
+                {
+                  "sentence": "She has ambitious goals for the future.",
+                  "translation": "יש לה מטרות שאפתניות לעתיד."
+                },
+                {
+                  "sentence": "They are ambitious and work hard to achieve their dreams.",
+                  "translation": "הם שאפתנים ועובדים קשה כדי להשיג את חלומותיהם."
+                }
+              ]
+            },
+            {
+              "word": "Careless",
+              "translation": "חסר זהירות",
+              "examples": [
+                {
+                  "sentence": "He is careless and often makes mistakes.",
+                  "translation": "הוא חסר זהירות ולעיתים קרובות עושה טעויות."
+                },
+                {
+                  "sentence": "She was careless and lost her keys.",
+                  "translation": "היא הייתה חסרת זהירות ואיבדה את המפתחות שלה."
+                },
+                {
+                  "sentence": "They are careless drivers who don't follow the rules.",
+                  "translation": "הם נהגים חסרי זהירות שלא מצייתים לחוקים."
+                }
+              ]
+            },
+            {
+              "word": "Polite",
+              "translation": "מנומס",
+              "examples": [
+                {
+                  "sentence": "He is polite and always says 'please' and 'thank you'.",
+                  "translation": "הוא מנומס ותמיד אומר 'בבקשה' ו'תודה'."
+                },
+                {
+                  "sentence": "She teaches her children to be polite to others.",
+                  "translation": "היא מלמדת את ילדיה להיות מנומסים לאחרים."
+                },
+                {
+                  "sentence": "They received a polite response to their inquiry.",
+                  "translation": "הם קיבלו תשובה מנומסת לשאלתם."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "משפטים מורכבים",
+          "words": [
+            {
+              "word": "I like to...",
+              "translation": "אני אוהב ל...",
+              "examples": [
+                {
+                  "sentence": "I like to read books when it's quiet.",
+                  "translation": "אני אוהב לקרוא ספרים כששקט."
+                },
+                {
+                  "sentence": "I like to travel to new places every year.",
+                  "translation": "אני אוהב לנסוע למקומות חדשים כל שנה."
+                },
+                {
+                  "sentence": "I like to cook meals for my friends.",
+                  "translation": "אני אוהב לבשל ארוחות לחבריי."
+                }
+              ]
+            },
+            {
+              "word": "She doesn't want to...",
+              "translation": "היא לא רוצה ל...",
+              "examples": [
+                {
+                  "sentence": "She doesn't want to miss the concert tonight.",
+                  "translation": "היא לא רוצה לפספס את הקונצרט הערב."
+                },
+                {
+                  "sentence": "She doesn't want to talk about the problem now.",
+                  "translation": "היא לא רוצה לדבר על הבעיה עכשיו."
+                },
+                {
+                  "sentence": "She doesn't want to go shopping alone.",
+                  "translation": "היא לא רוצה ללכת לקניות לבד."
+                }
+              ]
+            },
+            {
+              "word": "They are going to...",
+              "translation": "הם הולכים ל...",
+              "examples": [
+                {
+                  "sentence": "They are going to start a new business together.",
+                  "translation": "הם הולכים להתחיל עסק חדש יחד."
+                },
+                {
+                  "sentence": "They are going to move to another country next year.",
+                  "translation": "הם הולכים לעבור למדינה אחרת בשנה הבאה."
+                },
+                {
+                  "sentence": "They are going to adopt a puppy from the shelter.",
+                  "translation": "הם הולכים לאמץ גור כלבים מהמקלט."
+                }
+              ]
+            },
+            {
+              "word": "We have to...",
+              "translation": "אנחנו צריכים ל...",
+              "examples": [
+                {
+                  "sentence": "We have to finish the project by Friday.",
+                  "translation": "אנחנו צריכים לסיים את הפרויקט עד יום שישי."
+                },
+                {
+                  "sentence": "We have to clean the house before guests arrive.",
+                  "translation": "אנחנו צריכים לנקות את הבית לפני שהאורחים מגיעים."
+                },
+                {
+                  "sentence": "We have to study hard to pass the exam.",
+                  "translation": "אנחנו צריכים ללמוד קשה כדי לעבור את המבחן."
+                }
+              ]
+            },
+            {
+              "word": "Do you know how to...?",
+              "translation": "האם אתה יודע איך ל...?",
+              "examples": [
+                {
+                  "sentence": "Do you know how to play the piano?",
+                  "translation": "האם אתה יודע איך לנגן על פסנתר?"
+                },
+                {
+                  "sentence": "Do you know how to get to the museum from here?",
+                  "translation": "האם אתה יודע איך להגיע למוזיאון מכאן?"
+                },
+                {
+                  "sentence": "Do you know how to fix a flat tire?",
+                  "translation": "האם אתה יודע איך לתקן פנצ'ר?"
+                }
+              ]
+            },
+            {
+              "word": "He used to...",
+              "translation": "הוא נהג ל...",
+              "examples": [
+                {
+                  "sentence": "He used to play football when he was younger.",
+                  "translation": "הוא נהג לשחק כדורגל כשהיה צעיר יותר."
+                },
+                {
+                  "sentence": "He used to live in Paris before moving here.",
+                  "translation": "הוא נהג לגור בפריז לפני שעבר לכאן."
+                },
+                {
+                  "sentence": "He used to eat meat, but now he's vegetarian.",
+                  "translation": "הוא נהג לאכול בשר, אבל עכשיו הוא צמחוני."
+                }
+              ]
+            },
+            {
+              "word": "She has been...",
+              "translation": "היא הייתה...",
+              "examples": [
+                {
+                  "sentence": "She has been working here for five years.",
+                  "translation": "היא עובדת כאן כבר חמש שנים."
+                },
+                {
+                  "sentence": "She has been learning Spanish since last summer.",
+                  "translation": "היא לומדת ספרדית מאז הקיץ שעבר."
+                },
+                {
+                  "sentence": "She has been feeling better after the treatment.",
+                  "translation": "היא מרגישה טוב יותר לאחר הטיפול."
+                }
+              ]
+            },
+            {
+              "word": "They would like to...",
+              "translation": "הם היו רוצים ל...",
+              "examples": [
+                {
+                  "sentence": "They would like to visit Japan someday.",
+                  "translation": "הם היו רוצים לבקר ביפן יום אחד."
+                },
+                {
+                  "sentence": "They would like to learn how to dance salsa.",
+                  "translation": "הם היו רוצים ללמוד לרקוד סלסה."
+                },
+                {
+                  "sentence": "They would like to buy a house near the beach.",
+                  "translation": "הם היו רוצים לקנות בית ליד החוף."
+                }
+              ]
+            },
+            {
+              "word": "If I could..., I would...",
+              "translation": "אם הייתי יכול..., הייתי...",
+              "examples": [
+                {
+                  "sentence": "If I could fly, I would travel the world.",
+                  "translation": "אם הייתי יכול לעוף, הייתי מטייל בעולם."
+                },
+                {
+                  "sentence": "If I could speak all languages, I would talk to everyone.",
+                  "translation": "אם הייתי יכול לדבר את כל השפות, הייתי מדבר עם כולם."
+                },
+                {
+                  "sentence": "If I could turn back time, I would fix my mistakes.",
+                  "translation": "אם הייתי יכול להחזיר את הזמן לאחור, הייתי מתקן את טעויותיי."
+                }
+              ]
+            },
+            {
+              "word": "It's important to...",
+              "translation": "זה חשוב ל...",
+              "examples": [
+                {
+                  "sentence": "It's important to eat healthy foods.",
+                  "translation": "זה חשוב לאכול מזונות בריאים."
+                },
+                {
+                  "sentence": "It's important to get enough sleep every night.",
+                  "translation": "זה חשוב לישון מספיק כל לילה."
+                },
+                {
+                  "sentence": "It's important to tell the truth.",
+                  "translation": "זה חשוב להגיד את האמת."
+                }
+              ]
+            },
+            {
+              "word": "I can't wait to...",
+              "translation": "אני לא יכול לחכות ל...",
+              "examples": [
+                {
+                  "sentence": "I can't wait to see the new movie.",
+                  "translation": "אני לא יכול לחכות לראות את הסרט החדש."
+                },
+                {
+                  "sentence": "I can't wait to meet my favorite author.",
+                  "translation": "אני לא יכול לחכות לפגוש את הסופר האהוב עליי."
+                },
+                {
+                  "sentence": "I can't wait to go on vacation next month.",
+                  "translation": "אני לא יכול לחכות לצאת לחופשה בחודש הבא."
+                }
+              ]
+            },
+            {
+              "word": "She was supposed to...",
+              "translation": "היא הייתה אמורה ל...",
+              "examples": [
+                {
+                  "sentence": "She was supposed to arrive an hour ago.",
+                  "translation": "היא הייתה אמורה להגיע לפני שעה."
+                },
+                {
+                  "sentence": "She was supposed to finish the report by today.",
+                  "translation": "היא הייתה אמורה לסיים את הדוח עד היום."
+                },
+                {
+                  "sentence": "She was supposed to join us for dinner.",
+                  "translation": "היא הייתה אמורה להצטרף אלינו לארוחת ערב."
+                }
+              ]
+            },
+            {
+              "word": "They might have...",
+              "translation": "אולי הם...",
+              "examples": [
+                {
+                  "sentence": "They might have forgotten about the meeting.",
+                  "translation": "אולי הם שכחו מהפגישה."
+                },
+                {
+                  "sentence": "They might have already left the office.",
+                  "translation": "אולי הם כבר עזבו את המשרד."
+                },
+                {
+                  "sentence": "They might have missed the train.",
+                  "translation": "אולי הם פספסו את הרכבת."
+                }
+              ]
+            },
+            {
+              "word": "We should have...",
+              "translation": "היינו צריכים ל...",
+              "examples": [
+                {
+                  "sentence": "We should have brought an umbrella.",
+                  "translation": "היינו צריכים להביא מטריה."
+                },
+                {
+                  "sentence": "We should have left earlier to avoid traffic.",
+                  "translation": "היינו צריכים לצאת מוקדם יותר כדי להימנע מפקקים."
+                },
+                {
+                  "sentence": "We should have booked tickets in advance.",
+                  "translation": "היינו צריכים להזמין כרטיסים מראש."
+                }
+              ]
+            },
+            {
+              "word": "Do you mind if...?",
+              "translation": "האם אכפת לך אם...?",
+              "examples": [
+                {
+                  "sentence": "Do you mind if I open the window?",
+                  "translation": "האם אכפת לך אם אפתח את החלון?"
+                },
+                {
+                  "sentence": "Do you mind if we change the meeting time?",
+                  "translation": "האם אכפת לך אם נשנה את זמן הפגישה?"
+                },
+                {
+                  "sentence": "Do you mind if she joins us for dinner?",
+                  "translation": "האם אכפת לך אם היא תצטרף אלינו לארוחת ערב?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
