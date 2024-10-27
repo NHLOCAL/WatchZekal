@@ -308,7 +308,7 @@ def create_outro():
     audio_outro_en = os.path.join(TEMP_DIR, "outro_en.mp3")
     audio_outro_he = os.path.join(TEMP_DIR, "outro_he.mp3")
     create_audio("Thank you for watching! Don't forget to like and subscribe. Watch more videos!", 'en', audio_outro_en)
-    create_audio("תודה שצפיתם! אל תשכחו לעשות לייק ולהירשם. צפו בעוד סרטונים!", 'iw', audio_outro_he)
+    create_audio("תודה שצפיתם! אל תשכחו לעשות like ולהירשם. צפו בעוד סרטונים!", 'iw', audio_outro_he)
     
     # יצירת קליפ הסיום
     clip_outro = create_clip(outro_image_path, audio_outro_en, audio_outro_he)

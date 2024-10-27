@@ -81,7 +81,7 @@
             },
             {
               "word": "Playing games",
-              "translation": "משחק במשחקים",
+              "translation": "לשחק משחקים",
               "examples": [
                 {
                   "sentence": "They spend the evening playing board games",
@@ -351,7 +351,7 @@
             },
             {
               "word": "Surfing",
-              "translation": "גלישה (בים)",
+              "translation": "גלישה",
               "examples": [
                 {
                   "sentence": "He goes surfing at the beach every morning",
@@ -757,7 +757,7 @@
             },
             {
               "word": "Never",
-              "translation": "אף פעם",
+              "translation": "לעולם לא",
               "examples": [
                 {
                   "sentence": "He never eats meat because he's vegetarian",
@@ -775,7 +775,7 @@
             },
             {
               "word": "Often",
-              "translation": "לעיתים קרובות",
+              "translation": "לעתים קרובות",
               "examples": [
                 {
                   "sentence": "He often reads before going to sleep",

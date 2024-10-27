@@ -48,8 +48,8 @@
               "translation": "דג",
               "examples": [
                 {
-                  "sentence": "They have fish swimming in the tank",
-                  "translation": "יש להם דגים שוחים באקווריום"
+                  "sentence": "They have fish swimming in the aquarium",
+                  "translation": "יש להם דגים ששוחים באקווריום"
                 },
                 {
                   "sentence": "The fish are colorful and beautiful",
@@ -157,7 +157,7 @@
               "examples": [
                 {
                   "sentence": "Sheep have thick wool coats",
-                  "translation": "לכבשים יש פרווה עבה"
+                  "translation": "לכבשים יש פרוות צמר עבה"
                 },
                 {
                   "sentence": "The shepherd watches over the sheep",
@@ -219,7 +219,7 @@
                 },
                 {
                   "sentence": "Ducks have webbed feet",
-                  "translation": "לברווזים יש רגליים עם קרום"
+                  "translation": "לברווזים יש רגליים עם קרום שחייה"
                 }
               ]
             }
@@ -256,11 +256,11 @@
                 },
                 {
                   "sentence": "The elephant is the largest land animal",
-                  "translation": "הפיל הוא חיית היבשה הגדולה ביותר"
+                  "translation": "הפיל הוא בעל החיים היבשתי הגדול ביותר"
                 },
                 {
                   "sentence": "They watched elephants bathing in the river",
-                  "translation": "הם צפו בפילים מתרחצים בנהר"
+                  "translation": "הם צפו בפילים רוחצים בנהר"
                 }
               ]
             },
@@ -535,7 +535,7 @@
                 },
                 {
                   "sentence": "The bridge crosses over the river",
-                  "translation": "הגשר עובר מעל הנהר"
+                  "translation": "הגשר חוצה מעל הנהר"
                 }
               ]
             },

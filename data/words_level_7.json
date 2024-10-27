@@ -121,7 +121,7 @@
               "examples": [
                 {
                   "sentence": "She called a taxi to go home",
-                  "translation": "היא קראה למונית כדי לחזור הביתה"
+                  "translation": "היא הזמינה מונית כדי לחזור הביתה"
                 },
                 {
                   "sentence": "The taxi driver was very friendly",
@@ -146,8 +146,8 @@
                   "translation": "אופנועים מהירים וזריזים"
                 },
                 {
-                  "sentence": "She bought a leather jacket for motorcycle riding",
-                  "translation": "היא קנתה מעיל עור לרכיבה על אופנוע"
+                  "sentence": "he bought a leather jacket for motorcycle riding",
+                  "translation": "הוא קנה מעיל עור לרכיבה על אופנוע"
                 }
               ]
             },
@@ -158,9 +158,6 @@
                 {
                   "sentence": "They took the subway to get downtown",
                   "translation": "הם נסעו ברכבת התחתית כדי להגיע למרכז העיר"
-                },
-                {
-                 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxית עמוסה בשעות העומס"
                 },
                 {
                   "sentence": "He uses the subway map to find his way",
@@ -295,7 +292,7 @@
                 },
                 {
                   "sentence": "The school has a big playground",
-                  "translation": "לבית הספר יש מגרש משחקים גדול"
+                  "translation": "בבית הספר יש מגרש משחקים גדול"
                 }
               ]
             },
@@ -584,7 +581,7 @@
                 },
                 {
                   "sentence": "The bank is on the right side",
-                  "translation": "הבנק בצד הימני"
+                  "translation": "הבנק בצד ימין"
                 },
                 {
                   "sentence": "He is right-handed",
