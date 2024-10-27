@@ -1,0 +1,817 @@
+{
+  "levels": [
+    {
+      "level": 8,
+      "name": "פעילויות ופנאי",
+      "subtopics": [
+        {
+          "name": "תחביבים",
+          "words": [
+            {
+              "word": "Reading",
+              "translation": "קריאה",
+              "examples": [
+                {
+                  "sentence": "She enjoys reading books in her free time.",
+                  "translation": "היא נהנית לקרוא ספרים בזמנה הפנוי."
+                },
+                {
+                  "sentence": "He is reading a fascinating mystery novel.",
+                  "translation": "הוא קורא רומן מסתורין מרתק."
+                },
+                {
+                  "sentence": "They spend hours reading at the library.",
+                  "translation": "הם מבלים שעות בקריאה בספרייה."
+                }
+              ]
+            },
+            {
+              "word": "Swimming",
+              "translation": "שחייה",
+              "examples": [
+                {
+                  "sentence": "They go swimming at the pool every weekend.",
+                  "translation": "הם הולכים לשחות בבריכה כל סוף שבוע."
+                },
+                {
+                  "sentence": "She is swimming in the ocean during vacation.",
+                  "translation": "היא שוחה באוקיינוס במהלך החופשה."
+                },
+                {
+                  "sentence": "Swimming is a great way to stay fit.",
+                  "translation": "שחייה היא דרך מצוינת לשמור על כושר."
+                }
+              ]
+            },
+            {
+              "word": "Singing",
+              "translation": "שירה",
+              "examples": [
+                {
+                  "sentence": "He loves singing in the choir at church.",
+                  "translation": "הוא אוהב לשיר במקהלה בכנסייה."
+                },
+                {
+                  "sentence": "She is singing her favorite song on stage.",
+                  "translation": "היא שרה את השיר האהוב עליה על הבמה."
+                },
+                {
+                  "sentence": "They enjoy singing karaoke with friends.",
+                  "translation": "הם נהנים לשיר קריוקי עם חברים."
+                }
+              ]
+            },
+            {
+              "word": "Dancing",
+              "translation": "ריקוד",
+              "examples": [
+                {
+                  "sentence": "They are dancing gracefully at the ballroom.",
+                  "translation": "הם רוקדים בחן באולם הריקודים."
+                },
+                {
+                  "sentence": "She takes dancing lessons every Tuesday evening.",
+                  "translation": "היא לוקחת שיעורי ריקוד כל יום שלישי בערב."
+                },
+                {
+                  "sentence": "He enjoys dancing to upbeat music.",
+                  "translation": "הוא נהנה לרקוד למוזיקה קצבית."
+                }
+              ]
+            },
+            {
+              "word": "Playing games",
+              "translation": "משחק במשחקים",
+              "examples": [
+                {
+                  "sentence": "They spend the evening playing board games.",
+                  "translation": "הם מבלים את הערב במשחקי לוח."
+                },
+                {
+                  "sentence": "He is playing video games with his brother.",
+                  "translation": "הוא משחק במשחקי וידאו עם אחיו."
+                },
+                {
+                  "sentence": "She enjoys playing card games with friends.",
+                  "translation": "היא נהנית לשחק משחקי קלפים עם חברים."
+                }
+              ]
+            },
+            {
+              "word": "Painting",
+              "translation": "ציור",
+              "examples": [
+                {
+                  "sentence": "She is painting a beautiful landscape on canvas.",
+                  "translation": "היא מציירת נוף יפה על בד."
+                },
+                {
+                  "sentence": "He enjoys painting abstract art in his studio.",
+                  "translation": "הוא נהנה לצייר אמנות מופשטת בסטודיו שלו."
+                },
+                {
+                  "sentence": "They attend a painting class every weekend.",
+                  "translation": "הם משתתפים בשיעור ציור כל סוף שבוע."
+                }
+              ]
+            },
+            {
+              "word": "Photography",
+              "translation": "צילום",
+              "examples": [
+                {
+                  "sentence": "He loves photography and takes pictures of nature.",
+                  "translation": "הוא אוהב צילום ומצלם תמונות של טבע."
+                },
+                {
+                  "sentence": "She is learning photography to capture special moments.",
+                  "translation": "היא לומדת צילום כדי לתפוס רגעים מיוחדים."
+                },
+                {
+                  "sentence": "They enjoy photography as a creative hobby.",
+                  "translation": "הם נהנים מצילום כתחביב יצירתי."
+                }
+              ]
+            },
+            {
+              "word": "Gardening",
+              "translation": "גינון",
+              "examples": [
+                {
+                  "sentence": "She spends hours gardening in her backyard.",
+                  "translation": "היא מבלה שעות בגינון בחצר האחורית שלה."
+                },
+                {
+                  "sentence": "They are gardening together, planting flowers.",
+                  "translation": "הם עושים גינון יחד, שותלים פרחים."
+                },
+                {
+                  "sentence": "He finds peace while gardening on weekends.",
+                  "translation": "הוא מוצא שלווה בזמן גינון בסופי שבוע."
+                }
+              ]
+            },
+            {
+              "word": "Cooking",
+              "translation": "בישול",
+              "examples": [
+                {
+                  "sentence": "She enjoys cooking new recipes for her family.",
+                  "translation": "היא נהנית לבשל מתכונים חדשים למשפחתה."
+                },
+                {
+                  "sentence": "He is cooking a delicious meal for dinner.",
+                  "translation": "הוא מבשל ארוחה טעימה לארוחת ערב."
+                },
+                {
+                  "sentence": "They like cooking together on holidays.",
+                  "translation": "הם אוהבים לבשל יחד בחגים."
+                }
+              ]
+            },
+            {
+              "word": "Hiking",
+              "translation": "טיול רגלי",
+              "examples": [
+                {
+                  "sentence": "They are hiking in the mountains this weekend.",
+                  "translation": "הם מטיילים בהרים בסוף השבוע הזה."
+                },
+                {
+                  "sentence": "He enjoys hiking and exploring nature trails.",
+                  "translation": "הוא נהנה מטיול רגלי וחקר שבילי טבע."
+                },
+                {
+                  "sentence": "She is hiking with friends in the forest.",
+                  "translation": "היא מטיילת רגלית עם חברים ביער."
+                }
+              ]
+            },
+            {
+              "word": "Fishing",
+              "translation": "דיג",
+              "examples": [
+                {
+                  "sentence": "He goes fishing early in the morning.",
+                  "translation": "הוא הולך לדוג מוקדם בבוקר."
+                },
+                {
+                  "sentence": "They enjoy fishing by the lake.",
+                  "translation": "הם נהנים לדוג ליד האגם."
+                },
+                {
+                  "sentence": "She caught a big fish while fishing yesterday.",
+                  "translation": "היא תפסה דג גדול בזמן שדגה אתמול."
+                }
+              ]
+            },
+            {
+              "word": "Cycling",
+              "translation": "רכיבה על אופניים",
+              "examples": [
+                {
+                  "sentence": "They are cycling through the countryside.",
+                  "translation": "הם רוכבים על אופניים דרך הכפר."
+                },
+                {
+                  "sentence": "He enjoys cycling for exercise and fun.",
+                  "translation": "הוא נהנה מרכיבה על אופניים לכושר וכיף."
+                },
+                {
+                  "sentence": "She bought a new bicycle for cycling trips.",
+                  "translation": "היא קנתה אופניים חדשים לטיולי רכיבה."
+                }
+              ]
+            },
+            {
+              "word": "Collecting",
+              "translation": "איסוף",
+              "examples": [
+                {
+                  "sentence": "He is collecting stamps from different countries.",
+                  "translation": "הוא אוסף בולים ממדינות שונות."
+                },
+                {
+                  "sentence": "She enjoys collecting antique coins.",
+                  "translation": "היא נהנית לאסוף מטבעות עתיקים."
+                },
+                {
+                  "sentence": "They are collecting rare books as a hobby.",
+                  "translation": "הם אוספים ספרים נדירים כתחביב."
+                }
+              ]
+            },
+            {
+              "word": "Drawing",
+              "translation": "ציור (ברישום)",
+              "examples": [
+                {
+                  "sentence": "She spends her evenings drawing portraits.",
+                  "translation": "היא מבלה את ערביה בציור פורטרטים."
+                },
+                {
+                  "sentence": "He is drawing a sketch of the city skyline.",
+                  "translation": "הוא מצייר סקיצה של קו הרקיע של העיר."
+                },
+                {
+                  "sentence": "They attend drawing classes together.",
+                  "translation": "הם משתתפים בשיעורי ציור יחד."
+                }
+              ]
+            },
+            {
+              "word": "Writing",
+              "translation": "כתיבה",
+              "examples": [
+                {
+                  "sentence": "He enjoys writing stories and poems.",
+                  "translation": "הוא נהנה לכתוב סיפורים ושירים."
+                },
+                {
+                  "sentence": "She is writing a novel about her adventures.",
+                  "translation": "היא כותבת רומן על הרפתקאותיה."
+                },
+                {
+                  "sentence": "They share their writing in a workshop.",
+                  "translation": "הם משתפים את כתיבתם בסדנה."
+                }
+              ]
+            },
+            {
+              "word": "Yoga",
+              "translation": "יוגה",
+              "examples": [
+                {
+                  "sentence": "She practices yoga every morning for relaxation.",
+                  "translation": "היא מתרגלת יוגה כל בוקר להרפיה."
+                },
+                {
+                  "sentence": "They are doing yoga together at the park.",
+                  "translation": "הם עושים יוגה יחד בפארק."
+                },
+                {
+                  "sentence": "He finds peace through yoga and meditation.",
+                  "translation": "הוא מוצא שלווה דרך יוגה ומדיטציה."
+                }
+              ]
+            },
+            {
+              "word": "Traveling",
+              "translation": "טיולים",
+              "examples": [
+                {
+                  "sentence": "They love traveling to new countries each year.",
+                  "translation": "הם אוהבים לטייל למדינות חדשות כל שנה."
+                },
+                {
+                  "sentence": "She is traveling around Europe this summer.",
+                  "translation": "היא מטיילת ברחבי אירופה בקיץ הזה."
+                },
+                {
+                  "sentence": "He enjoys traveling and learning about cultures.",
+                  "translation": "הוא נהנה לטייל וללמוד על תרבויות."
+                }
+              ]
+            },
+            {
+              "word": "Knitting",
+              "translation": "סריגה",
+              "examples": [
+                {
+                  "sentence": "She is knitting a sweater for her grandson.",
+                  "translation": "היא סורגת סוודר לנכדה."
+                },
+                {
+                  "sentence": "He learned knitting to make scarves.",
+                  "translation": "הוא למד לסרוג כדי להכין צעיפים."
+                },
+                {
+                  "sentence": "They meet weekly for a knitting circle.",
+                  "translation": "הם נפגשים שבועית למעגל סריגה."
+                }
+              ]
+            },
+            {
+              "word": "Playing chess",
+              "translation": "משחק שחמט",
+              "examples": [
+                {
+                  "sentence": "He enjoys playing chess with his grandfather.",
+                  "translation": "הוא נהנה לשחק שחמט עם סבו."
+                },
+                {
+                  "sentence": "She is learning strategies for playing chess.",
+                  "translation": "היא לומדת אסטרטגיות למשחק שחמט."
+                },
+                {
+                  "sentence": "They compete in chess tournaments.",
+                  "translation": "הם מתחרים בתחרויות שחמט."
+                }
+              ]
+            },
+            {
+              "word": "Surfing",
+              "translation": "גלישה (בים)",
+              "examples": [
+                {
+                  "sentence": "He goes surfing at the beach every morning.",
+                  "translation": "הוא הולך לגלוש בחוף כל בוקר."
+                },
+                {
+                  "sentence": "She is learning surfing during summer vacation.",
+                  "translation": "היא לומדת לגלוש במהלך חופשת הקיץ."
+                },
+                {
+                  "sentence": "They enjoy surfing big waves together.",
+                  "translation": "הם נהנים לגלוש על גלים גדולים יחד."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "פעילויות יומיומיות",
+          "words": [
+            {
+              "word": "Eating",
+              "translation": "אכילה",
+              "examples": [
+                {
+                  "sentence": "They are eating breakfast together.",
+                  "translation": "הם אוכלים ארוחת בוקר יחד."
+                },
+                {
+                  "sentence": "He enjoys eating healthy meals.",
+                  "translation": "הוא נהנה לאכול ארוחות בריאות."
+                },
+                {
+                  "sentence": "She is eating a delicious slice of cake.",
+                  "translation": "היא אוכלת פרוסת עוגה טעימה."
+                }
+              ]
+            },
+            {
+              "word": "Sleeping",
+              "translation": "שינה",
+              "examples": [
+                {
+                  "sentence": "She is sleeping peacefully in her bed.",
+                  "translation": "היא ישנה בשלווה במיטתה."
+                },
+                {
+                  "sentence": "They are sleeping late on weekends.",
+                  "translation": "הם ישנים מאוחר בסופי שבוע."
+                },
+                {
+                  "sentence": "He feels better after sleeping well.",
+                  "translation": "הוא מרגיש טוב יותר אחרי שינה טובה."
+                }
+              ]
+            },
+            {
+              "word": "Working",
+              "translation": "עבודה",
+              "examples": [
+                {
+                  "sentence": "He is working on a new project at the office.",
+                  "translation": "הוא עובד על פרויקט חדש במשרד."
+                },
+                {
+                  "sentence": "She enjoys working from home occasionally.",
+                  "translation": "היא נהנית לעבוד מהבית מדי פעם."
+                },
+                {
+                  "sentence": "They are working hard to meet the deadline.",
+                  "translation": "הם עובדים קשה כדי לעמוד בתאריך היעד."
+                }
+              ]
+            },
+            {
+              "word": "Studying",
+              "translation": "לימוד",
+              "examples": [
+                {
+                  "sentence": "She is studying for her final exams.",
+                  "translation": "היא לומדת למבחנים הסופיים שלה."
+                },
+                {
+                  "sentence": "They are studying together at the library.",
+                  "translation": "הם לומדים יחד בספרייה."
+                },
+                {
+                  "sentence": "He spends hours studying mathematics.",
+                  "translation": "הוא מבלה שעות בלימוד מתמטיקה."
+                }
+              ]
+            },
+            {
+              "word": "Shopping",
+              "translation": "קניות",
+              "examples": [
+                {
+                  "sentence": "She is shopping for new clothes at the mall.",
+                  "translation": "היא קונה בגדים חדשים בקניון."
+                },
+                {
+                  "sentence": "They enjoy shopping for fresh produce at the market.",
+                  "translation": "הם נהנים לקנות תוצרת טרייה בשוק."
+                },
+                {
+                  "sentence": "He is shopping online for a birthday gift.",
+                  "translation": "הוא קונה באינטרנט מתנת יום הולדת."
+                }
+              ]
+            },
+            {
+              "word": "Cooking",
+              "translation": "בישול",
+              "examples": [
+                {
+                  "sentence": "He is cooking dinner for his family tonight.",
+                  "translation": "הוא מבשל ארוחת ערב למשפחתו הערב."
+                },
+                {
+                  "sentence": "She enjoys cooking with fresh ingredients.",
+                  "translation": "היא נהנית לבשל עם מרכיבים טריים."
+                },
+                {
+                  "sentence": "They are cooking together for the holiday feast.",
+                  "translation": "הם מבשלים יחד לסעודת החג."
+                }
+              ]
+            },
+            {
+              "word": "Cleaning",
+              "translation": "ניקיון",
+              "examples": [
+                {
+                  "sentence": "She is cleaning the house before guests arrive.",
+                  "translation": "היא מנקה את הבית לפני שהאורחים מגיעים."
+                },
+                {
+                  "sentence": "They spend Saturday mornings cleaning together.",
+                  "translation": "הם מבלים את שבת בבוקר בניקיון יחד."
+                },
+                {
+                  "sentence": "He is cleaning his car in the driveway.",
+                  "translation": "הוא מנקה את המכונית שלו בכניסה."
+                }
+              ]
+            },
+            {
+              "word": "Exercising",
+              "translation": "התעמלות",
+              "examples": [
+                {
+                  "sentence": "He is exercising at the gym to stay healthy.",
+                  "translation": "הוא מתעמל בחדר הכושר כדי להישאר בריא."
+                },
+                {
+                  "sentence": "She enjoys exercising outdoors when it's sunny.",
+                  "translation": "היא נהנית להתעמל בחוץ כשהשמש זורחת."
+                },
+                {
+                  "sentence": "They are exercising together for motivation.",
+                  "translation": "הם מתעמלים יחד למוטיבציה."
+                }
+              ]
+            },
+            {
+              "word": "Driving",
+              "translation": "נהיגה",
+              "examples": [
+                {
+                  "sentence": "He is driving to work during rush hour.",
+                  "translation": "הוא נוהג לעבודה בשעת העומס."
+                },
+                {
+                  "sentence": "She enjoys driving along the coast.",
+                  "translation": "היא נהנית לנהוג לאורך החוף."
+                },
+                {
+                  "sentence": "They are driving to visit family in another city.",
+                  "translation": "הם נוהגים לבקר משפחה בעיר אחרת."
+                }
+              ]
+            },
+            {
+              "word": "Calling",
+              "translation": "שיחות טלפון",
+              "examples": [
+                {
+                  "sentence": "She is calling her friend to catch up.",
+                  "translation": "היא מתקשרת לחברתה להתעדכן."
+                },
+                {
+                  "sentence": "He spends time calling clients for business.",
+                  "translation": "הוא מבלה זמן בשיחות עם לקוחות לעסקים."
+                },
+                {
+                  "sentence": "They are calling their parents on the weekend.",
+                  "translation": "הם מתקשרים להוריהם בסוף השבוע."
+                }
+              ]
+            },
+            {
+              "word": "Watching TV",
+              "translation": "צפייה בטלוויזיה",
+              "examples": [
+                {
+                  "sentence": "They are watching TV after dinner.",
+                  "translation": "הם צופים בטלוויזיה אחרי ארוחת ערב."
+                },
+                {
+                  "sentence": "She enjoys watching documentaries.",
+                  "translation": "היא נהנית לצפות בסרטים תיעודיים."
+                },
+                {
+                  "sentence": "He is watching TV to relax after work.",
+                  "translation": "הוא צופה בטלוויזיה כדי להירגע אחרי העבודה."
+                }
+              ]
+            },
+            {
+              "word": "Listening to music",
+              "translation": "האזנה למוזיקה",
+              "examples": [
+                {
+                  "sentence": "She is listening to music while studying.",
+                  "translation": "היא מאזינה למוזיקה בזמן לימוד."
+                },
+                {
+                  "sentence": "He enjoys listening to classical music.",
+                  "translation": "הוא נהנה להאזין למוזיקה קלאסית."
+                },
+                {
+                  "sentence": "They are listening to music at the concert.",
+                  "translation": "הם מאזינים למוזיקה בקונצרט."
+                }
+              ]
+            },
+            {
+              "word": "Walking",
+              "translation": "הליכה",
+              "examples": [
+                {
+                  "sentence": "They are walking in the park every morning.",
+                  "translation": "הם הולכים בפארק כל בוקר."
+                },
+                {
+                  "sentence": "She enjoys walking her dog in the evening.",
+                  "translation": "היא נהנית להוליך את הכלב שלה בערב."
+                },
+                {
+                  "sentence": "He is walking to work to save money.",
+                  "translation": "הוא הולך לעבודה כדי לחסוך כסף."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ביטויי זמן",
+          "words": [
+            {
+              "word": "Today",
+              "translation": "היום",
+              "examples": [
+                {
+                  "sentence": "Today is a beautiful day for a picnic.",
+                  "translation": "היום הוא יום יפה לפיקניק."
+                },
+                {
+                  "sentence": "She has a meeting later today.",
+                  "translation": "יש לה פגישה מאוחר יותר היום."
+                },
+                {
+                  "sentence": "He is busy with work today.",
+                  "translation": "הוא עסוק בעבודה היום."
+                }
+              ]
+            },
+            {
+              "word": "Tomorrow",
+              "translation": "מחר",
+              "examples": [
+                {
+                  "sentence": "They are leaving for vacation tomorrow.",
+                  "translation": "הם יוצאים לחופשה מחר."
+                },
+                {
+                  "sentence": "She will finish the project by tomorrow.",
+                  "translation": "היא תסיים את הפרויקט עד מחר."
+                },
+                {
+                  "sentence": "He is meeting his friends tomorrow evening.",
+                  "translation": "הוא נפגש עם חבריו מחר בערב."
+                }
+              ]
+            },
+            {
+              "word": "Yesterday",
+              "translation": "אתמול",
+              "examples": [
+                {
+                  "sentence": "He watched a great movie yesterday.",
+                  "translation": "הוא צפה בסרט נהדר אתמול."
+                },
+                {
+                  "sentence": "She visited her grandmother yesterday.",
+                  "translation": "היא ביקרה את סבתה אתמול."
+                },
+                {
+                  "sentence": "They went hiking yesterday morning.",
+                  "translation": "הם הלכו לטייל אתמול בבוקר."
+                }
+              ]
+            },
+            {
+              "word": "Now",
+              "translation": "עכשיו",
+              "examples": [
+                {
+                  "sentence": "They are now arriving at the airport.",
+                  "translation": "הם עכשיו מגיעים לשדה התעופה."
+                },
+                {
+                  "sentence": "She is now starting her new job.",
+                  "translation": "היא עכשיו מתחילה את עבודתה החדשה."
+                },
+                {
+                  "sentence": "He is busy right now, please call later.",
+                  "translation": "הוא עסוק עכשיו, בבקשה התקשר מאוחר יותר."
+                }
+              ]
+            },
+            {
+              "word": "Later",
+              "translation": "מאוחר יותר",
+              "examples": [
+                {
+                  "sentence": "She will call you later this afternoon.",
+                  "translation": "היא תתקשר אליך מאוחר יותר אחר הצהריים."
+                },
+                {
+                  "sentence": "They are planning to meet later tonight.",
+                  "translation": "הם מתכננים להיפגש מאוחר יותר הלילה."
+                },
+                {
+                  "sentence": "He will finish the work later.",
+                  "translation": "הוא יסיים את העבודה מאוחר יותר."
+                }
+              ]
+            },
+            {
+              "word": "Soon",
+              "translation": "בקרוב",
+              "examples": [
+                {
+                  "sentence": "They will arrive soon, please wait.",
+                  "translation": "הם יגיעו בקרוב, בבקשה המתן."
+                },
+                {
+                  "sentence": "She hopes to see you again soon.",
+                  "translation": "היא מקווה לראות אותך שוב בקרוב."
+                },
+                {
+                  "sentence": "He is leaving for college soon.",
+                  "translation": "הוא עוזב למכללה בקרוב."
+                }
+              ]
+            },
+            {
+              "word": "Always",
+              "translation": "תמיד",
+              "examples": [
+                {
+                  "sentence": "She always smiles in the morning.",
+                  "translation": "היא תמיד מחייכת בבוקר."
+                },
+                {
+                  "sentence": "He always helps others when he can.",
+                  "translation": "הוא תמיד עוזר לאחרים כשהוא יכול."
+                },
+                {
+                  "sentence": "They always enjoy spending time together.",
+                  "translation": "הם תמיד נהנים לבלות יחד."
+                }
+              ]
+            },
+            {
+              "word": "Sometimes",
+              "translation": "לפעמים",
+              "examples": [
+                {
+                  "sentence": "He sometimes walks to work instead of driving.",
+                  "translation": "הוא לפעמים הולך לעבודה במקום לנהוג."
+                },
+                {
+                  "sentence": "She sometimes cooks dinner for her friends.",
+                  "translation": "היא לפעמים מבשלת ארוחת ערב לחבריה."
+                },
+                {
+                  "sentence": "They sometimes go to the movies on weekends.",
+                  "translation": "הם לפעמים הולכים לקולנוע בסופי שבוע."
+                }
+              ]
+            },
+            {
+              "word": "Never",
+              "translation": "אף פעם",
+              "examples": [
+                {
+                  "sentence": "He never eats meat because he's vegetarian.",
+                  "translation": "הוא אף פעם לא אוכל בשר כי הוא צמחוני."
+                },
+                {
+                  "sentence": "She never misses her yoga class.",
+                  "translation": "היא אף פעם לא מפספסת את שיעור היוגה שלה."
+                },
+                {
+                  "sentence": "They never travel without a camera.",
+                  "translation": "הם אף פעם לא מטיילים בלי מצלמה."
+                }
+              ]
+            },
+            {
+              "word": "Often",
+              "translation": "לעיתים קרובות",
+              "examples": [
+                {
+                  "sentence": "He often reads before going to sleep.",
+                  "translation": "הוא לעיתים קרובות קורא לפני השינה."
+                },
+                {
+                  "sentence": "She often visits her family on Sundays.",
+                  "translation": "היא לעיתים קרובות מבקרת את משפחתה בימי ראשון."
+                },
+                {
+                  "sentence": "They often go hiking in the mountains.",
+                  "translation": "הם לעיתים קרובות מטיילים בהרים."
+                }
+              ]
+            },
+            {
+              "word": "Rarely",
+              "translation": "לעיתים רחוקות",
+              "examples": [
+                {
+                  "sentence": "He rarely watches television.",
+                  "translation": "הוא לעיתים רחוקות צופה בטלוויזיה."
+                },
+                {
+                  "sentence": "She rarely eats fast food.",
+                  "translation": "היא לעיתים רחוקות אוכלת מזון מהיר."
+                },
+                {
+                  "sentence": "They rarely have time to relax.",
+                  "translation": "להם לעיתים רחוקות יש זמן להירגע."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

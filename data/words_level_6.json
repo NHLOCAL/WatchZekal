@@ -12,16 +12,16 @@
               "translation": "כלב",
               "examples": [
                 {
-                  "sentence": "The dog is barking.",
-                  "translation": "הכלב נובח."
+                  "sentence": "The dog is barking loudly.",
+                  "translation": "הכלב נובח בקול רם."
                 },
                 {
-                  "sentence": "She walks her dog every morning.",
-                  "translation": "היא מטיילת עם הכלב שלה כל בוקר."
+                  "sentence": "I take my dog for a walk.",
+                  "translation": "אני מוציא את הכלב שלי לטיול."
                 },
                 {
-                  "sentence": "Dogs are loyal animals.",
-                  "translation": "כלבים הם חיות נאמנות."
+                  "sentence": "She has a friendly dog at home.",
+                  "translation": "יש לה כלב ידידותי בבית."
                 }
               ]
             },
@@ -34,12 +34,12 @@
                   "translation": "החתול ישן על הספה."
                 },
                 {
-                  "sentence": "He feeds his cat fish.",
-                  "translation": "הוא מאכיל את החתול שלו בדגים."
+                  "sentence": "He feeds the cat every morning.",
+                  "translation": "הוא מאכיל את החתול כל בוקר."
                 },
                 {
-                  "sentence": "Cats like to climb trees.",
-                  "translation": "חתולים אוהבים לטפס על עצים."
+                  "sentence": "Her cat likes to play with yarn.",
+                  "translation": "החתול שלה אוהב לשחק בחוט."
                 }
               ]
             },
@@ -48,16 +48,16 @@
               "translation": "דג",
               "examples": [
                 {
-                  "sentence": "They have fish in the aquarium.",
-                  "translation": "יש להם דגים באקווריום."
+                  "sentence": "They have fish swimming in the tank.",
+                  "translation": "יש להם דגים שוחים באקווריום."
                 },
                 {
-                  "sentence": "She caught a big fish.",
-                  "translation": "היא תפסה דג גדול."
+                  "sentence": "The fish are colorful and beautiful.",
+                  "translation": "הדגים צבעוניים ויפים."
                 },
                 {
-                  "sentence": "Fish swim in the sea.",
-                  "translation": "דגים שוחים בים."
+                  "sentence": "He feeds the fish twice a day.",
+                  "translation": "הוא מאכיל את הדגים פעמיים ביום."
                 }
               ]
             },
@@ -66,16 +66,160 @@
               "translation": "ציפור",
               "examples": [
                 {
-                  "sentence": "The bird is singing.",
-                  "translation": "הציפור שרה."
+                  "sentence": "The bird sings in the morning.",
+                  "translation": "הציפור שרה בבוקר."
                 },
                 {
-                  "sentence": "He has a pet bird.",
-                  "translation": "יש לו ציפור מחמד."
+                  "sentence": "She has a pet bird in a cage.",
+                  "translation": "יש לה ציפור מחמד בכלוב."
                 },
                 {
-                  "sentence": "Birds fly in the sky.",
-                  "translation": "ציפורים עפות בשמיים."
+                  "sentence": "Birds fly high in the sky.",
+                  "translation": "ציפורים עפות גבוה בשמיים."
+                }
+              ]
+            },
+            {
+              "word": "Rabbit",
+              "translation": "ארנב",
+              "examples": [
+                {
+                  "sentence": "The rabbit eats carrots happily.",
+                  "translation": "הארנב אוכל גזרים בשמחה."
+                },
+                {
+                  "sentence": "He has a soft white rabbit.",
+                  "translation": "יש לו ארנב לבן ורך."
+                },
+                {
+                  "sentence": "Rabbits have long ears and fluffy tails.",
+                  "translation": "לארנבים יש אוזניים ארוכות וזנבות רכים."
+                }
+              ]
+            },
+            {
+              "word": "Hamster",
+              "translation": "אוגר",
+              "examples": [
+                {
+                  "sentence": "The hamster runs on the wheel.",
+                  "translation": "האוגר רץ על הגלגל."
+                },
+                {
+                  "sentence": "She keeps a hamster in her room.",
+                  "translation": "היא מחזיקה אוגר בחדר שלה."
+                },
+                {
+                  "sentence": "Hamsters are small and cute pets.",
+                  "translation": "אוגרים הם חיות מחמד קטנות וחמודות."
+                }
+              ]
+            },
+            {
+              "word": "Horse",
+              "translation": "סוס",
+              "examples": [
+                {
+                  "sentence": "He rides his horse every weekend.",
+                  "translation": "הוא רוכב על הסוס שלו כל סוף שבוע."
+                },
+                {
+                  "sentence": "The horse runs fast in the field.",
+                  "translation": "הסוס רץ מהר בשדה."
+                },
+                {
+                  "sentence": "They have a farm with horses.",
+                  "translation": "יש להם חווה עם סוסים."
+                }
+              ]
+            },
+            {
+              "word": "Cow",
+              "translation": "פרה",
+              "examples": [
+                {
+                  "sentence": "The cow gives us fresh milk.",
+                  "translation": "הפרה נותנת לנו חלב טרי."
+                },
+                {
+                  "sentence": "Cows are grazing in the meadow.",
+                  "translation": "פרות רועות באחו."
+                },
+                {
+                  "sentence": "He takes care of the cows on the farm.",
+                  "translation": "הוא מטפל בפרות בחווה."
+                }
+              ]
+            },
+            {
+              "word": "Sheep",
+              "translation": "כבשה",
+              "examples": [
+                {
+                  "sentence": "Sheep have thick wool coats.",
+                  "translation": "לכבשים יש פרווה עבה."
+                },
+                {
+                  "sentence": "The shepherd watches over the sheep.",
+                  "translation": "הרועה משגיח על הכבשים."
+                },
+                {
+                  "sentence": "They shear the sheep in the spring.",
+                  "translation": "הם גוזזים את הכבשים באביב."
+                }
+              ]
+            },
+            {
+              "word": "Goat",
+              "translation": "עז",
+              "examples": [
+                {
+                  "sentence": "The goat climbs the rocky hill.",
+                  "translation": "העז מטפסת על הגבעה הסלעית."
+                },
+                {
+                  "sentence": "They have goats for milk and cheese.",
+                  "translation": "יש להם עיזים לחלב וגבינה."
+                },
+                {
+                  "sentence": "Goats can eat almost anything.",
+                  "translation": "עיזים יכולות לאכול כמעט כל דבר."
+                }
+              ]
+            },
+            {
+              "word": "Chicken",
+              "translation": "תרנגולת",
+              "examples": [
+                {
+                  "sentence": "The chicken lays eggs daily.",
+                  "translation": "התרנגולת מטילה ביצים מדי יום."
+                },
+                {
+                  "sentence": "They keep chickens in the coop.",
+                  "translation": "הם מחזיקים תרנגולות בלול."
+                },
+                {
+                  "sentence": "Chickens scratch the ground for food.",
+                  "translation": "תרנגולות מגרדות את הקרקע כדי למצוא מזון."
+                }
+              ]
+            },
+            {
+              "word": "Duck",
+              "translation": "ברווז",
+              "examples": [
+                {
+                  "sentence": "The ducks swim in the pond.",
+                  "translation": "הברווזים שוחים בבריכה."
+                },
+                {
+                  "sentence": "She feeds the ducks bread crumbs.",
+                  "translation": "היא מאכילה את הברווזים בפירורי לחם."
+                },
+                {
+                  "sentence": "Ducks have webbed feet.",
+                  "translation": "לברווזים יש רגליים עם קרום."
                 }
               ]
             }
@@ -89,12 +233,12 @@
               "translation": "אריה",
               "examples": [
                 {
-                  "sentence": "The lion roars loudly.",
-                  "translation": "האריה שואג בקול רם."
+                  "sentence": "Lions live in the African savanna.",
+                  "translation": "אריות חיים בסוואנה האפריקאית."
                 },
                 {
-                  "sentence": "Lions live in the savannah.",
-                  "translation": "אריות חיים בסוואנה."
+                  "sentence": "The lion roars loudly in the jungle.",
+                  "translation": "האריה שואג בקול רם בג'ונגל."
                 },
                 {
                   "sentence": "He saw a lion at the zoo.",
@@ -107,16 +251,16 @@
               "translation": "פיל",
               "examples": [
                 {
+                  "sentence": "Elephants have long trunks and big ears.",
+                  "translation": "לפילים יש חדקים ארוכים ואוזניים גדולות."
+                },
+                {
                   "sentence": "The elephant is the largest land animal.",
-                  "translation": "הפיל הוא החיה היבשתית הגדולה ביותר."
+                  "translation": "הפיל הוא חיית היבשה הגדולה ביותר."
                 },
                 {
-                  "sentence": "She rode on an elephant.",
-                  "translation": "היא רכבה על פיל."
-                },
-                {
-                  "sentence": "Elephants have long trunks.",
-                  "translation": "לפילים יש חדקים ארוכים."
+                  "sentence": "They watched elephants bathing in the river.",
+                  "translation": "הם צפו בפילים מתרחצים בנהר."
                 }
               ]
             },
@@ -125,16 +269,16 @@
               "translation": "טיגריס",
               "examples": [
                 {
-                  "sentence": "Tigers have striped fur.",
-                  "translation": "לטיגריסים יש פרווה מפוספסת."
+                  "sentence": "The tiger has stripes on its fur.",
+                  "translation": "לטיגריס יש פסים על הפרווה שלו."
                 },
                 {
-                  "sentence": "He watched a tiger hunt.",
-                  "translation": "הוא צפה בטיגריס ציד."
+                  "sentence": "Tigers are strong and fast hunters.",
+                  "translation": "טיגריסים הם ציידים חזקים ומהירים."
                 },
                 {
-                  "sentence": "Tigers are solitary animals.",
-                  "translation": "טיגריסים הם חיות בודדות."
+                  "sentence": "She read a book about tigers.",
+                  "translation": "היא קראה ספר על טיגריסים."
                 }
               ]
             },
@@ -143,16 +287,196 @@
               "translation": "קוף",
               "examples": [
                 {
-                  "sentence": "Monkeys swing from trees.",
-                  "translation": "קופים מתנדנדים מעצים."
+                  "sentence": "The monkey is climbing the tree quickly.",
+                  "translation": "הקוף מטפס על העץ במהירות."
                 },
                 {
-                  "sentence": "She fed the monkeys bananas.",
-                  "translation": "היא האכילה את הקופים בבננות."
+                  "sentence": "Monkeys eat bananas and fruits.",
+                  "translation": "קופים אוכלים בננות ופירות."
                 },
                 {
-                  "sentence": "Monkeys are intelligent.",
-                  "translation": "קופים חכמים."
+                  "sentence": "They saw monkeys playing in the forest.",
+                  "translation": "הם ראו קופים משחקים ביער."
+                }
+              ]
+            },
+            {
+              "word": "Giraffe",
+              "translation": "ג'ירפה",
+              "examples": [
+                {
+                  "sentence": "Giraffes have very long necks.",
+                  "translation": "לג'ירפות יש צווארים מאוד ארוכים."
+                },
+                {
+                  "sentence": "The giraffe eats leaves from tall trees.",
+                  "translation": "הג'ירפה אוכלת עלים מעצים גבוהים."
+                },
+                {
+                  "sentence": "He took a photo of a giraffe.",
+                  "translation": "הוא צילם תמונה של ג'ירפה."
+                }
+              ]
+            },
+            {
+              "word": "Zebra",
+              "translation": "זברה",
+              "examples": [
+                {
+                  "sentence": "Zebras have black and white stripes.",
+                  "translation": "לזברות יש פסים שחורים ולבנים."
+                },
+                {
+                  "sentence": "The zebra runs swiftly across the plains.",
+                  "translation": "הזברה רצה במהירות על פני המישורים."
+                },
+                {
+                  "sentence": "They watched zebras grazing in the wild.",
+                  "translation": "הם צפו בזברות רועות בטבע."
+                }
+              ]
+            },
+            {
+              "word": "Bear",
+              "translation": "דוב",
+              "examples": [
+                {
+                  "sentence": "The bear is searching for honey.",
+                  "translation": "הדוב מחפש דבש."
+                },
+                {
+                  "sentence": "Bears hibernate during the winter.",
+                  "translation": "דובים נמצאים בתרדמת חורף במהלך החורף."
+                },
+                {
+                  "sentence": "She saw a bear catching fish.",
+                  "translation": "היא ראתה דוב תופס דגים."
+                }
+              ]
+            },
+            {
+              "word": "Wolf",
+              "translation": "זאב",
+              "examples": [
+                {
+                  "sentence": "Wolves hunt in packs.",
+                  "translation": "זאבים צדים בלהקות."
+                },
+                {
+                  "sentence": "The wolf howls at the moon.",
+                  "translation": "הזאב מיילל אל הירח."
+                },
+                {
+                  "sentence": "He read a story about a wolf.",
+                  "translation": "הוא קרא סיפור על זאב."
+                }
+              ]
+            },
+            {
+              "word": "Fox",
+              "translation": "שועל",
+              "examples": [
+                {
+                  "sentence": "The fox is clever and quick.",
+                  "translation": "השועל חכם ומהיר."
+                },
+                {
+                  "sentence": "Foxes live in dens underground.",
+                  "translation": "שועלים חיים במאורות מתחת לאדמה."
+                },
+                {
+                  "sentence": "They spotted a fox in the field.",
+                  "translation": "הם הבחינו בשועל בשדה."
+                }
+              ]
+            },
+            {
+              "word": "Kangaroo",
+              "translation": "קנגורו",
+              "examples": [
+                {
+                  "sentence": "Kangaroos jump high with strong legs.",
+                  "translation": "קנגורו קופצים גבוה עם רגליים חזקות."
+                },
+                {
+                  "sentence": "The kangaroo carries its baby in a pouch.",
+                  "translation": "הקנגורו נושא את התינוק בכיס."
+                },
+                {
+                  "sentence": "They saw kangaroos in Australia.",
+                  "translation": "הם ראו קנגורו באוסטרליה."
+                }
+              ]
+            },
+            {
+              "word": "Panda",
+              "translation": "פנדה",
+              "examples": [
+                {
+                  "sentence": "Pandas eat bamboo all day.",
+                  "translation": "פנדות אוכלות במבוק כל היום."
+                },
+                {
+                  "sentence": "The panda has black and white fur.",
+                  "translation": "לפנדה יש פרווה שחורה ולבנה."
+                },
+                {
+                  "sentence": "She loves watching videos of pandas.",
+                  "translation": "היא אוהבת לצפות בסרטונים של פנדות."
+                }
+              ]
+            },
+            {
+              "word": "Snake",
+              "translation": "נחש",
+              "examples": [
+                {
+                  "sentence": "The snake slithers silently through the grass.",
+                  "translation": "הנחש זוחל בשקט דרך הדשא."
+                },
+                {
+                  "sentence": "Some snakes are venomous and dangerous.",
+                  "translation": "חלק מהנחשים ארסיים ומסוכנים."
+                },
+                {
+                  "sentence": "He is afraid of snakes.",
+                  "translation": "הוא מפחד מנחשים."
+                }
+              ]
+            },
+            {
+              "word": "Eagle",
+              "translation": "נשר",
+              "examples": [
+                {
+                  "sentence": "The eagle soars high above the mountains.",
+                  "translation": "הנשר מרחף גבוה מעל ההרים."
+                },
+                {
+                  "sentence": "Eagles have sharp eyes and strong talons.",
+                  "translation": "לנשרים יש עיניים חדות וטפרים חזקים."
+                },
+                {
+                  "sentence": "They watched an eagle catching a fish.",
+                  "translation": "הם צפו בנשר תופס דג."
+                }
+              ]
+            },
+            {
+              "word": "Crocodile",
+              "translation": "תנין",
+              "examples": [
+                {
+                  "sentence": "Crocodiles live in rivers and swamps.",
+                  "translation": "תנינים חיים בנהרות ובביצות."
+                },
+                {
+                  "sentence": "The crocodile has a powerful bite.",
+                  "translation": "לתנין יש נשיכה חזקה."
+                },
+                {
+                  "sentence": "They saw a crocodile sunbathing on the bank.",
+                  "translation": "הם ראו תנין משתזף על הגדה."
                 }
               ]
             }
@@ -166,16 +490,16 @@
               "translation": "עץ",
               "examples": [
                 {
-                  "sentence": "The tree is tall.",
-                  "translation": "העץ גבוה."
+                  "sentence": "The tree is full of green leaves.",
+                  "translation": "העץ מלא בעלים ירוקים."
                 },
                 {
-                  "sentence": "They planted a tree.",
-                  "translation": "הם שתלו עץ."
+                  "sentence": "They planted a tree in the garden.",
+                  "translation": "הם שתלו עץ בגינה."
                 },
                 {
-                  "sentence": "Birds nest in trees.",
-                  "translation": "ציפורים מקננות בעצים."
+                  "sentence": "Birds build nests in trees.",
+                  "translation": "ציפורים בונות קנים בעצים."
                 }
               ]
             },
@@ -184,16 +508,16 @@
               "translation": "פרח",
               "examples": [
                 {
-                  "sentence": "She picked a flower.",
-                  "translation": "היא קטפה פרח."
+                  "sentence": "She picked a beautiful red flower.",
+                  "translation": "היא קטפה פרח אדום יפה."
                 },
                 {
-                  "sentence": "Flowers bloom in spring.",
+                  "sentence": "Flowers bloom in the spring.",
                   "translation": "פרחים פורחים באביב."
                 },
                 {
-                  "sentence": "The garden is full of flowers.",
-                  "translation": "הגינה מלאה בפרחים."
+                  "sentence": "Bees collect nectar from flowers.",
+                  "translation": "דבורים אוספות צוף מפרחים."
                 }
               ]
             },
@@ -202,16 +526,16 @@
               "translation": "נהר",
               "examples": [
                 {
-                  "sentence": "The river flows to the sea.",
-                  "translation": "הנהר זורם לים."
+                  "sentence": "The river flows through the city.",
+                  "translation": "הנהר זורם דרך העיר."
                 },
                 {
-                  "sentence": "They swam in the river.",
-                  "translation": "הם שחו בנהר."
+                  "sentence": "They went fishing in the river.",
+                  "translation": "הם הלכו לדוג בנהר."
                 },
                 {
-                  "sentence": "A bridge crosses the river.",
-                  "translation": "גשר חוצה את הנהר."
+                  "sentence": "The bridge crosses over the river.",
+                  "translation": "הגשר עובר מעל הנהר."
                 }
               ]
             },
@@ -220,16 +544,16 @@
               "translation": "הר",
               "examples": [
                 {
-                  "sentence": "They climbed the mountain.",
-                  "translation": "הם טיפסו על ההר."
+                  "sentence": "We climbed the mountain yesterday.",
+                  "translation": "טיפסנו על ההר אתמול."
                 },
                 {
-                  "sentence": "Snow covers the mountain.",
-                  "translation": "שלג מכסה את ההר."
+                  "sentence": "Snow covers the mountain peak.",
+                  "translation": "שלג מכסה את פסגת ההר."
                 },
                 {
-                  "sentence": "The mountain is majestic.",
-                  "translation": "ההר מרשים."
+                  "sentence": "The mountain view is breathtaking.",
+                  "translation": "הנוף מההר עוצר נשימה."
                 }
               ]
             },
@@ -238,16 +562,196 @@
               "translation": "שמיים",
               "examples": [
                 {
-                  "sentence": "The sky is blue.",
-                  "translation": "השמיים כחולים."
+                  "sentence": "The sky is clear and blue today.",
+                  "translation": "השמיים צלולים וכחולים היום."
                 },
                 {
-                  "sentence": "Stars shine in the sky at night.",
-                  "translation": "כוכבים זורחים בשמיים בלילה."
+                  "sentence": "Stars shine brightly in the night sky.",
+                  "translation": "כוכבים נוצצים בבהירות בשמי הלילה."
                 },
                 {
-                  "sentence": "Clouds float in the sky.",
+                  "sentence": "Clouds are floating in the sky.",
                   "translation": "עננים צפים בשמיים."
+                }
+              ]
+            },
+            {
+              "word": "Ocean",
+              "translation": "אוקיינוס",
+              "examples": [
+                {
+                  "sentence": "They sailed across the ocean.",
+                  "translation": "הם הפליגו מעבר לאוקיינוס."
+                },
+                {
+                  "sentence": "The ocean is vast and deep.",
+                  "translation": "האוקיינוס רחב ועמוק."
+                },
+                {
+                  "sentence": "Whales live in the ocean.",
+                  "translation": "לווייתנים חיים באוקיינוס."
+                }
+              ]
+            },
+            {
+              "word": "Sun",
+              "translation": "שמש",
+              "examples": [
+                {
+                  "sentence": "The sun rises in the east.",
+                  "translation": "השמש זורחת במזרח."
+                },
+                {
+                  "sentence": "She wears sunglasses to protect her eyes from the sun.",
+                  "translation": "היא מרכיבה משקפי שמש כדי להגן על עיניה מהשמש."
+                },
+                {
+                  "sentence": "The sun sets in the evening.",
+                  "translation": "השמש שוקעת בערב."
+                }
+              ]
+            },
+            {
+              "word": "Moon",
+              "translation": "ירח",
+              "examples": [
+                {
+                  "sentence": "The moon shines at night.",
+                  "translation": "הירח מאיר בלילה."
+                },
+                {
+                  "sentence": "They watched the full moon together.",
+                  "translation": "הם צפו בירח המלא יחד."
+                },
+                {
+                  "sentence": "Astronauts have walked on the moon.",
+                  "translation": "אסטרונאוטים הלכו על הירח."
+                }
+              ]
+            },
+            {
+              "word": "Rain",
+              "translation": "גשם",
+              "examples": [
+                {
+                  "sentence": "It's raining outside, bring an umbrella.",
+                  "translation": "יורד גשם בחוץ, קח מטריה."
+                },
+                {
+                  "sentence": "The plants grow after the rain.",
+                  "translation": "הצמחים גדלים אחרי הגשם."
+                },
+                {
+                  "sentence": "They danced in the rain happily.",
+                  "translation": "הם רקדו בגשם בשמחה."
+                }
+              ]
+            },
+            {
+              "word": "Cloud",
+              "translation": "ענן",
+              "examples": [
+                {
+                  "sentence": "The sky is filled with clouds.",
+                  "translation": "השמיים מלאים בעננים."
+                },
+                {
+                  "sentence": "That cloud looks like a rabbit.",
+                  "translation": "הענן הזה נראה כמו ארנב."
+                },
+                {
+                  "sentence": "Dark clouds mean a storm is coming.",
+                  "translation": "עננים כהים מצביעים על סופה שמתקרבת."
+                }
+              ]
+            },
+            {
+              "word": "Wind",
+              "translation": "רוח",
+              "examples": [
+                {
+                  "sentence": "The wind is blowing strongly today.",
+                  "translation": "הרוח נושבת בחוזקה היום."
+                },
+                {
+                  "sentence": "He flew a kite in the wind.",
+                  "translation": "הוא העיף עפיפון ברוח."
+                },
+                {
+                  "sentence": "The wind moves the leaves on the trees.",
+                  "translation": "הרוח מזיזה את העלים על העצים."
+                }
+              ]
+            },
+            {
+              "word": "Rock",
+              "translation": "סלע",
+              "examples": [
+                {
+                  "sentence": "They sat on a large rock by the sea.",
+                  "translation": "הם ישבו על סלע גדול ליד הים."
+                },
+                {
+                  "sentence": "The mountain is made of hard rock.",
+                  "translation": "ההר עשוי מסלע קשה."
+                },
+                {
+                  "sentence": "He collects interesting rocks.",
+                  "translation": "הוא אוסף סלעים מעניינים."
+                }
+              ]
+            },
+            {
+              "word": "Sand",
+              "translation": "חול",
+              "examples": [
+                {
+                  "sentence": "Children play in the sand at the beach.",
+                  "translation": "ילדים משחקים בחול בחוף הים."
+                },
+                {
+                  "sentence": "The desert is full of sand dunes.",
+                  "translation": "המדבר מלא בדיונות חול."
+                },
+                {
+                  "sentence": "She built a sandcastle.",
+                  "translation": "היא בנתה ארמון חול."
+                }
+              ]
+            },
+            {
+              "word": "Star",
+              "translation": "כוכב",
+              "examples": [
+                {
+                  "sentence": "They looked at the stars at night.",
+                  "translation": "הם הביטו בכוכבים בלילה."
+                },
+                {
+                  "sentence": "The north star guides travelers.",
+                  "translation": "כוכב הצפון מדריך מטיילים."
+                },
+                {
+                  "sentence": "Stars are shining in the sky.",
+                  "translation": "כוכבים נוצצים בשמיים."
+                }
+              ]
+            },
+            {
+              "word": "Rainbow",
+              "translation": "קשת בענן",
+              "examples": [
+                {
+                  "sentence": "After the rain, a rainbow appeared.",
+                  "translation": "אחרי הגשם, הופיעה קשת בענן."
+                },
+                {
+                  "sentence": "The rainbow has many colors.",
+                  "translation": "לקשת בענן יש צבעים רבים."
+                },
+                {
+                  "sentence": "They took a picture of the rainbow.",
+                  "translation": "הם צילמו תמונה של הקשת בענן."
                 }
               ]
             }
