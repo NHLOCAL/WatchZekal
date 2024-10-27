@@ -1,9 +1,7 @@
 name: Generate Videos
 
 on:
-  push:
-    branches:
-      - main  # הפעלת הפעולה כשיש דחיפה לענף הראשי (main)
+  workflow_dispatch:
 
 jobs:
   build-and-upload:

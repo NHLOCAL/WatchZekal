@@ -1,0 +1,259 @@
+{
+  "levels": [
+    {
+      "level": 6,
+      "name": "בעלי חיים וטבע",
+      "subtopics": [
+        {
+          "name": "חיות בית",
+          "words": [
+            {
+              "word": "Dog",
+              "translation": "כלב",
+              "examples": [
+                {
+                  "sentence": "The dog is barking.",
+                  "translation": "הכלב נובח."
+                },
+                {
+                  "sentence": "She walks her dog every morning.",
+                  "translation": "היא מטיילת עם הכלב שלה כל בוקר."
+                },
+                {
+                  "sentence": "Dogs are loyal animals.",
+                  "translation": "כלבים הם חיות נאמנות."
+                }
+              ]
+            },
+            {
+              "word": "Cat",
+              "translation": "חתול",
+              "examples": [
+                {
+                  "sentence": "The cat is sleeping on the sofa.",
+                  "translation": "החתול ישן על הספה."
+                },
+                {
+                  "sentence": "He feeds his cat fish.",
+                  "translation": "הוא מאכיל את החתול שלו בדגים."
+                },
+                {
+                  "sentence": "Cats like to climb trees.",
+                  "translation": "חתולים אוהבים לטפס על עצים."
+                }
+              ]
+            },
+            {
+              "word": "Fish",
+              "translation": "דג",
+              "examples": [
+                {
+                  "sentence": "They have fish in the aquarium.",
+                  "translation": "יש להם דגים באקווריום."
+                },
+                {
+                  "sentence": "She caught a big fish.",
+                  "translation": "היא תפסה דג גדול."
+                },
+                {
+                  "sentence": "Fish swim in the sea.",
+                  "translation": "דגים שוחים בים."
+                }
+              ]
+            },
+            {
+              "word": "Bird",
+              "translation": "ציפור",
+              "examples": [
+                {
+                  "sentence": "The bird is singing.",
+                  "translation": "הציפור שרה."
+                },
+                {
+                  "sentence": "He has a pet bird.",
+                  "translation": "יש לו ציפור מחמד."
+                },
+                {
+                  "sentence": "Birds fly in the sky.",
+                  "translation": "ציפורים עפות בשמיים."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "חיות בר",
+          "words": [
+            {
+              "word": "Lion",
+              "translation": "אריה",
+              "examples": [
+                {
+                  "sentence": "The lion roars loudly.",
+                  "translation": "האריה שואג בקול רם."
+                },
+                {
+                  "sentence": "Lions live in the savannah.",
+                  "translation": "אריות חיים בסוואנה."
+                },
+                {
+                  "sentence": "He saw a lion at the zoo.",
+                  "translation": "הוא ראה אריה בגן החיות."
+                }
+              ]
+            },
+            {
+              "word": "Elephant",
+              "translation": "פיל",
+              "examples": [
+                {
+                  "sentence": "The elephant is the largest land animal.",
+                  "translation": "הפיל הוא החיה היבשתית הגדולה ביותר."
+                },
+                {
+                  "sentence": "She rode on an elephant.",
+                  "translation": "היא רכבה על פיל."
+                },
+                {
+                  "sentence": "Elephants have long trunks.",
+                  "translation": "לפילים יש חדקים ארוכים."
+                }
+              ]
+            },
+            {
+              "word": "Tiger",
+              "translation": "טיגריס",
+              "examples": [
+                {
+                  "sentence": "Tigers have striped fur.",
+                  "translation": "לטיגריסים יש פרווה מפוספסת."
+                },
+                {
+                  "sentence": "He watched a tiger hunt.",
+                  "translation": "הוא צפה בטיגריס ציד."
+                },
+                {
+                  "sentence": "Tigers are solitary animals.",
+                  "translation": "טיגריסים הם חיות בודדות."
+                }
+              ]
+            },
+            {
+              "word": "Monkey",
+              "translation": "קוף",
+              "examples": [
+                {
+                  "sentence": "Monkeys swing from trees.",
+                  "translation": "קופים מתנדנדים מעצים."
+                },
+                {
+                  "sentence": "She fed the monkeys bananas.",
+                  "translation": "היא האכילה את הקופים בבננות."
+                },
+                {
+                  "sentence": "Monkeys are intelligent.",
+                  "translation": "קופים חכמים."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "אלמנטים של טבע",
+          "words": [
+            {
+              "word": "Tree",
+              "translation": "עץ",
+              "examples": [
+                {
+                  "sentence": "The tree is tall.",
+                  "translation": "העץ גבוה."
+                },
+                {
+                  "sentence": "They planted a tree.",
+                  "translation": "הם שתלו עץ."
+                },
+                {
+                  "sentence": "Birds nest in trees.",
+                  "translation": "ציפורים מקננות בעצים."
+                }
+              ]
+            },
+            {
+              "word": "Flower",
+              "translation": "פרח",
+              "examples": [
+                {
+                  "sentence": "She picked a flower.",
+                  "translation": "היא קטפה פרח."
+                },
+                {
+                  "sentence": "Flowers bloom in spring.",
+                  "translation": "פרחים פורחים באביב."
+                },
+                {
+                  "sentence": "The garden is full of flowers.",
+                  "translation": "הגינה מלאה בפרחים."
+                }
+              ]
+            },
+            {
+              "word": "River",
+              "translation": "נהר",
+              "examples": [
+                {
+                  "sentence": "The river flows to the sea.",
+                  "translation": "הנהר זורם לים."
+                },
+                {
+                  "sentence": "They swam in the river.",
+                  "translation": "הם שחו בנהר."
+                },
+                {
+                  "sentence": "A bridge crosses the river.",
+                  "translation": "גשר חוצה את הנהר."
+                }
+              ]
+            },
+            {
+              "word": "Mountain",
+              "translation": "הר",
+              "examples": [
+                {
+                  "sentence": "They climbed the mountain.",
+                  "translation": "הם טיפסו על ההר."
+                },
+                {
+                  "sentence": "Snow covers the mountain.",
+                  "translation": "שלג מכסה את ההר."
+                },
+                {
+                  "sentence": "The mountain is majestic.",
+                  "translation": "ההר מרשים."
+                }
+              ]
+            },
+            {
+              "word": "Sky",
+              "translation": "שמיים",
+              "examples": [
+                {
+                  "sentence": "The sky is blue.",
+                  "translation": "השמיים כחולים."
+                },
+                {
+                  "sentence": "Stars shine in the sky at night.",
+                  "translation": "כוכבים זורחים בשמיים בלילה."
+                },
+                {
+                  "sentence": "Clouds float in the sky.",
+                  "translation": "עננים צפים בשמיים."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,942 @@
+{
+  "levels": [
+    {
+      "level": 7,
+      "name": "תחבורה ומקומות בעיר",
+      "subtopics": [
+        {
+          "name": "אמצעי תחבורה",
+          "words": [
+            {
+              "word": "Car",
+              "translation": "מכונית",
+              "examples": [
+                {
+                  "sentence": "He drives a car to work.",
+                  "translation": "הוא נוהג במכונית לעבודה."
+                },
+                {
+                  "sentence": "The car is parked outside.",
+                  "translation": "המכונית חונה בחוץ."
+                },
+                {
+                  "sentence": "She bought a new car.",
+                  "translation": "היא קנתה מכונית חדשה."
+                }
+              ]
+            },
+            {
+              "word": "Bus",
+              "translation": "אוטובוס",
+              "examples": [
+                {
+                  "sentence": "They take the bus to school.",
+                  "translation": "הם נוסעים באוטובוס לבית הספר."
+                },
+                {
+                  "sentence": "The bus arrives at 8 AM.",
+                  "translation": "האוטובוס מגיע בשעה 8 בבוקר."
+                },
+                {
+                  "sentence": "He is waiting for the bus.",
+                  "translation": "הוא מחכה לאוטובוס."
+                }
+              ]
+            },
+            {
+              "word": "Train",
+              "translation": "רכבת",
+              "examples": [
+                {
+                  "sentence": "She travels by train.",
+                  "translation": "היא נוסעת ברכבת."
+                },
+                {
+                  "sentence": "The train station is nearby.",
+                  "translation": "תחנת הרכבת נמצאת בקרבת מקום."
+                },
+                {
+                  "sentence": "They took the train to the city.",
+                  "translation": "הם לקחו את הרכבת לעיר."
+                }
+              ]
+            },
+            {
+              "word": "Bicycle",
+              "translation": "אופניים",
+              "examples": [
+                {
+                  "sentence": "He rides his bicycle to work.",
+                  "translation": "הוא רוכב על אופניו לעבודה."
+                },
+                {
+                  "sentence": "She bought a new bicycle.",
+                  "translation": "היא קנתה אופניים חדשים."
+                },
+                {
+                  "sentence": "Bicycles are eco-friendly.",
+                  "translation": "אופניים הם ידידותיים לסביבה."
+                }
+              ]
+            },
+            {
+              "word": "Airplane",
+              "translation": "מטוס",
+              "examples": [
+                {
+                  "sentence": "They are flying on an airplane.",
+                  "translation": "הם טסים במטוס."
+                },
+                {
+                  "sentence": "The airplane landed safely.",
+                  "translation": "המטוס נחת בבטחה."
+                },
+                {
+                  "sentence": "He is afraid of airplanes.",
+                  "translation": "הוא מפחד ממטוסים."
+                }
+              ]
+            },
+            {
+              "word": "Boat",
+              "translation": "סירה",
+              "examples": [
+                {
+                  "sentence": "She sailed a boat.",
+                  "translation": "היא הפליגה בסירה."
+                },
+                {
+                  "sentence": "They went fishing on a boat.",
+                  "translation": "הם הלכו לדוג בסירה."
+                },
+                {
+                  "sentence": "The boat is on the lake.",
+                  "translation": "הסירה על האגם."
+                }
+              ]
+            },
+            {
+              "word": "Motorcycle",
+              "translation": "אופנוע",
+              "examples": [
+                {
+                  "sentence": "He rides a motorcycle.",
+                  "translation": "הוא רוכב על אופנוע."
+                },
+                {
+                  "sentence": "Motorcycles are fast.",
+                  "translation": "אופנועים מהירים."
+                },
+                {
+                  "sentence": "She learned to drive a motorcycle.",
+                  "translation": "היא למדה לנהוג באופנוע."
+                }
+              ]
+            },
+            {
+              "word": "Taxi",
+              "translation": "מונית",
+              "examples": [
+                {
+                  "sentence": "They took a taxi to the hotel.",
+                  "translation": "הם לקחו מונית למלון."
+                },
+                {
+                  "sentence": "The taxi driver is friendly.",
+                  "translation": "נהג המונית ידידותי."
+                },
+                {
+                  "sentence": "She waved to hail a taxi.",
+                  "translation": "היא נופפה לעצור מונית."
+                }
+              ]
+            },
+            {
+              "word": "Subway",
+              "translation": "רכבת תחתית",
+              "examples": [
+                {
+                  "sentence": "The subway is crowded.",
+                  "translation": "הרכבת התחתית צפופה."
+                },
+                {
+                  "sentence": "She bought a subway ticket.",
+                  "translation": "היא קנתה כרטיס לרכבת התחתית."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "מקומות ציבוריים",
+          "words": [
+            {
+              "word": "School",
+              "translation": "בית ספר",
+              "examples": [
+                {
+                  "sentence": "The children are at school.",
+                  "translation": "הילדים בבית הספר."
+                },
+                {
+                  "sentence": "She teaches at a school.",
+                  "translation": "היא מלמדת בבית ספר."
+                },
+                {
+                  "sentence": "School starts at 8 AM.",
+                  "translation": "בית הספר מתחיל בשעה 8 בבוקר."
+                }
+              ]
+            },
+            {
+              "word": "Hospital",
+              "translation": "בית חולים",
+              "examples": [
+                {
+                  "sentence": "He works at the hospital.",
+                  "translation": "הוא עובד בבית החולים."
+                },
+                {
+                  "sentence": "She visited her friend in the hospital.",
+                  "translation": "היא ביקרה את חברתה בבית החולים."
+                },
+                {
+                  "sentence": "The hospital is open 24 hours.",
+                  "translation": "בית החולים פתוח 24 שעות."
+                }
+              ]
+            },
+            {
+              "word": "Park",
+              "translation": "פארק",
+              "examples": [
+                {
+                  "sentence": "They walk in the park.",
+                  "translation": "הם מטיילים בפארק."
+                },
+                {
+                  "sentence": "The park is beautiful in spring.",
+                  "translation": "הפארק יפה באביב."
+                },
+                {
+                  "sentence": "Children play in the park.",
+                  "translation": "ילדים משחקים בפארק."
+                }
+              ]
+            },
+            {
+              "word": "Store",
+              "translation": "חנות",
+              "examples": [
+                {
+                  "sentence": "She bought groceries at the store.",
+                  "translation": "היא קנתה מצרכים בחנות."
+                },
+                {
+                  "sentence": "The store opens at 9 AM.",
+                  "translation": "החנות נפתחת בשעה 9 בבוקר."
+                },
+                {
+                  "sentence": "He works in a clothing store.",
+                  "translation": "הוא עובד בחנות בגדים."
+                }
+              ]
+            },
+            {
+              "word": "Restaurant",
+              "translation": "מסעדה",
+              "examples": [
+                {
+                  "sentence": "They ate dinner at a restaurant.",
+                  "translation": "הם אכלו ארוחת ערב במסעדה."
+                },
+                {
+                  "sentence": "The restaurant serves Italian food.",
+                  "translation": "המסעדה מגישה אוכל איטלקי."
+                },
+                {
+                  "sentence": "She made a reservation at the restaurant.",
+                  "translation": "היא הזמינה מקום במסעדה."
+                }
+              ]
+            },
+            {
+              "word": "Library",
+              "translation": "ספרייה",
+              "examples": [
+                {
+                  "sentence": "He studies at the library.",
+                  "translation": "הוא לומד בספרייה."
+                },
+                {
+                  "sentence": "The library has many books.",
+                  "translation": "לספרייה יש הרבה ספרים."
+                },
+                {
+                  "sentence": "She borrowed a book from the library.",
+                  "translation": "היא השאילה ספר מהספרייה."
+                }
+              ]
+            },
+            {
+              "word": "Museum",
+              "translation": "מוזיאון",
+              "examples": [
+                {
+                  "sentence": "They visited the art museum.",
+                  "translation": "הם ביקרו במוזיאון האמנות."
+                },
+                {
+                  "sentence": "The museum is closed on Mondays.",
+                  "translation": "המוזיאון סגור בימי שני."
+                },
+                {
+                  "sentence": "He enjoys going to museums.",
+                  "translation": "הוא נהנה ללכת למוזיאונים."
+                }
+              ]
+            },
+            {
+              "word": "Bank",
+              "translation": "בנק",
+              "examples": [
+                {
+                  "sentence": "She works at the bank.",
+                  "translation": "היא עובדת בבנק."
+                },
+                {
+                  "sentence": "He deposited money in the bank.",
+                  "translation": "הוא הפקיד כסף בבנק."
+                },
+                {
+                  "sentence": "The bank closes at 5 PM.",
+                  "translation": "הבנק נסגר בשעה 5 בערב."
+                }
+              ]
+            },
+            {
+              "word": "Cinema",
+              "translation": "קולנוע",
+              "examples": [
+                {
+                  "sentence": "They watched a movie at the cinema.",
+                  "translation": "הם צפו בסרט בקולנוע."
+                },
+                {
+                  "sentence": "The cinema has comfortable seats.",
+                  "translation": "לקולנוע יש מושבים נוחים."
+                },
+                {
+                  "sentence": "She bought popcorn at the cinema.",
+                  "translation": "היא קנתה פופקורן בקולנוע."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "הכוונה וניווט",
+          "words": [
+            {
+              "word": "Left",
+              "translation": "שמאלה",
+              "examples": [
+                {
+                  "sentence": "Turn left at the corner.",
+                  "translation": "פנה שמאלה בפינה."
+                },
+                {
+                  "sentence": "The shop is on the left.",
+                  "translation": "החנות נמצאת משמאל."
+                },
+                {
+                  "sentence": "He writes with his left hand.",
+                  "translation": "הוא כותב עם יד שמאל."
+                }
+              ]
+            },
+            {
+              "word": "Right",
+              "translation": "ימינה",
+              "examples": [
+                {
+                  "sentence": "Turn right at the traffic light.",
+                  "translation": "פנה ימינה ברמזור."
+                },
+                {
+                  "sentence": "The bank is on the right.",
+                  "translation": "הבנק נמצא מימין."
+                },
+                {
+                  "sentence": "She is always right.",
+                  "translation": "היא תמיד צודקת."
+                }
+              ]
+            },
+            {
+              "word": "Straight",
+              "translation": "ישר",
+              "examples": [
+                {
+                  "sentence": "Go straight ahead.",
+                  "translation": "לך ישר קדימה."
+                },
+                {
+                  "sentence": "He has straight hair.",
+                  "translation": "יש לו שיער ישר."
+                },
+                {
+                  "sentence": "The road goes straight.",
+                  "translation": "הכביש הולך ישר."
+                }
+              ]
+            },
+            {
+              "word": "Near",
+              "translation": "קרוב",
+              "examples": [
+                {
+                  "sentence": "The park is near the school.",
+                  "translation": "הפארק קרוב לבית הספר."
+                },
+                {
+                  "sentence": "She lives near here.",
+                  "translation": "היא גרה בקרבת מקום."
+                },
+                {
+                  "sentence": "The store is near the bank.",
+                  "translation": "החנות קרובה לבנק."
+                }
+              ]
+            },
+            {
+              "word": "Far",
+              "translation": "רחוק",
+              "examples": [
+                {
+                  "sentence": "He lives far from the city.",
+                  "translation": "הוא גר רחוק מהעיר."
+                },
+                {
+                  "sentence": "The station is not far.",
+                  "translation": "התחנה לא רחוקה."
+                },
+                {
+                  "sentence": "They traveled far away.",
+                  "translation": "הם נסעו רחוק."
+                }
+              ]
+            },
+            {
+              "word": "Between",
+              "translation": "בין",
+              "examples": [
+                {
+                  "sentence": "The bank is between the store and the park.",
+                  "translation": "הבנק נמצא בין החנות לפארק."
+                },
+                {
+                  "sentence": "She sat between her friends.",
+                  "translation": "היא ישבה בין חבריה."
+                },
+                {
+                  "sentence": "There is a tree between the houses.",
+                  "translation": "יש עץ בין הבתים."
+                }
+              ]
+            },
+            {
+              "word": "Next to",
+              "translation": "ליד",
+              "examples": [
+                {
+                  "sentence": "The restaurant is next to the cinema.",
+                  "translation": "המסעדה ליד הקולנוע."
+                },
+                {
+                  "sentence": "He stands next to his car.",
+                  "translation": "הוא עומד ליד המכונית שלו."
+                },
+                {
+                  "sentence": "She sat next to me.",
+                  "translation": "היא ישבה לידי."
+                }
+              ]
+            },
+            {
+              "word": "Across from",
+              "translation": "ממול",
+              "examples": [
+                {
+                  "sentence": "The library is across from the park.",
+                  "translation": "הספרייה ממול הפארק."
+                },
+                {
+                  "sentence": "He lives across from the school.",
+                  "translation": "הוא גר ממול לבית הספר."
+                },
+                {
+                  "sentence": "The bus stop is across from the bank.",
+                  "translation": "תחנת האוטובוס ממול לבנק."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 8,
+      "name": "פעילויות ופנאי",
+      "subtopics": [
+        {
+          "name": "תחביבים",
+          "words": [
+            {
+              "word": "Reading",
+              "translation": "קריאה",
+              "examples": [
+                {
+                  "sentence": "She enjoys reading books.",
+                  "translation": "היא נהנית לקרוא ספרים."
+                },
+                {
+                  "sentence": "Reading improves knowledge.",
+                  "translation": "קריאה משפרת את הידע."
+                },
+                {
+                  "sentence": "He spends his time reading.",
+                  "translation": "הוא מבלה את זמנו בקריאה."
+                }
+              ]
+            },
+            {
+              "word": "Swimming",
+              "translation": "שחייה",
+              "examples": [
+                {
+                  "sentence": "They go swimming every weekend.",
+                  "translation": "הם הולכים לשחות כל סוף שבוע."
+                },
+                {
+                  "sentence": "Swimming is good exercise.",
+                  "translation": "שחייה היא פעילות גופנית טובה."
+                },
+                {
+                  "sentence": "She loves swimming in the sea.",
+                  "translation": "היא אוהבת לשחות בים."
+                }
+              ]
+            },
+            {
+              "word": "Singing",
+              "translation": "שירה",
+              "examples": [
+                {
+                  "sentence": "He enjoys singing in the choir.",
+                  "translation": "הוא נהנה לשיר במקהלה."
+                },
+                {
+                  "sentence": "Singing makes her happy.",
+                  "translation": "שירה משמחת אותה."
+                },
+                {
+                  "sentence": "They practice singing together.",
+                  "translation": "הם מתרגלים שירה יחד."
+                }
+              ]
+            },
+            {
+              "word": "Dancing",
+              "translation": "ריקוד",
+              "examples": [
+                {
+                  "sentence": "She is good at dancing.",
+                  "translation": "היא טובה בריקוד."
+                },
+                {
+                  "sentence": "They went dancing last night.",
+                  "translation": "הם הלכו לרקוד אתמול בלילה."
+                },
+                {
+                  "sentence": "Dancing is fun.",
+                  "translation": "ריקוד הוא כיף."
+                }
+              ]
+            },
+            {
+              "word": "Playing games",
+              "translation": "משחק במשחקים",
+              "examples": [
+                {
+                  "sentence": "He enjoys playing games on his computer.",
+                  "translation": "הוא נהנה לשחק משחקים במחשב שלו."
+                },
+                {
+                  "sentence": "They are playing board games.",
+                  "translation": "הם משחקים משחקי לוח."
+                },
+                {
+                  "sentence": "She likes playing games with friends.",
+                  "translation": "היא אוהבת לשחק משחקים עם חברים."
+                }
+              ]
+            },
+            {
+              "word": "Painting",
+              "translation": "ציור",
+              "examples": [
+                {
+                  "sentence": "She spends her free time painting.",
+                  "translation": "היא מבלה את זמנה הפנוי בציור."
+                },
+                {
+                  "sentence": "Painting is his passion.",
+                  "translation": "ציור הוא התשוקה שלו."
+                },
+                {
+                  "sentence": "They are painting a landscape.",
+                  "translation": "הם מציירים נוף."
+                }
+              ]
+            },
+            {
+              "word": "Photography",
+              "translation": "צילום",
+              "examples": [
+                {
+                  "sentence": "He enjoys photography.",
+                  "translation": "הוא נהנה מצילום."
+                },
+                {
+                  "sentence": "She took a photography course.",
+                  "translation": "היא לקחה קורס צילום."
+                },
+                {
+                  "sentence": "Photography captures moments.",
+                  "translation": "צילום לוכד רגעים."
+                }
+              ]
+            },
+            {
+              "word": "Cooking",
+              "translation": "בישול",
+              "examples": [
+                {
+                  "sentence": "She loves cooking new recipes.",
+                  "translation": "היא אוהבת לבשל מתכונים חדשים."
+                },
+                {
+                  "sentence": "Cooking is relaxing for him.",
+                  "translation": "בישול מרגיע אותו."
+                },
+                {
+                  "sentence": "They enjoy cooking together.",
+                  "translation": "הם נהנים לבשל יחד."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "פעילויות יומיומיות",
+          "words": [
+            {
+              "word": "Eating",
+              "translation": "אכילה",
+              "examples": [
+                {
+                  "sentence": "He is eating breakfast.",
+                  "translation": "הוא אוכל ארוחת בוקר."
+                },
+                {
+                  "sentence": "She enjoys eating healthy food.",
+                  "translation": "היא נהנית לאכול אוכל בריא."
+                },
+                {
+                  "sentence": "They are eating at a restaurant.",
+                  "translation": "הם אוכלים במסעדה."
+                }
+              ]
+            },
+            {
+              "word": "Sleeping",
+              "translation": "שינה",
+              "examples": [
+                {
+                  "sentence": "She is sleeping now.",
+                  "translation": "היא ישנה עכשיו."
+                },
+                {
+                  "sentence": "He needs eight hours of sleep.",
+                  "translation": "הוא צריך שמונה שעות שינה."
+                },
+                {
+                  "sentence": "Sleeping well is important.",
+                  "translation": "לישון טוב זה חשוב."
+                }
+              ]
+            },
+            {
+              "word": "Working",
+              "translation": "עבודה",
+              "examples": [
+                {
+                  "sentence": "He is working late tonight.",
+                  "translation": "הוא עובד מאוחר הלילה."
+                },
+                {
+                  "sentence": "She enjoys her work.",
+                  "translation": "היא נהנית מעבודתה."
+                },
+                {
+                  "sentence": "They are working on a project.",
+                  "translation": "הם עובדים על פרויקט."
+                }
+              ]
+            },
+            {
+              "word": "Studying",
+              "translation": "לימוד",
+              "examples": [
+                {
+                  "sentence": "She is studying for an exam.",
+                  "translation": "היא לומדת למבחן."
+                },
+                {
+                  "sentence": "Studying requires concentration.",
+                  "translation": "לימוד דורש ריכוז."
+                },
+                {
+                  "sentence": "He is studying English.",
+                  "translation": "הוא לומד אנגלית."
+                }
+              ]
+            },
+            {
+              "word": "Shopping",
+              "translation": "קניות",
+              "examples": [
+                {
+                  "sentence": "They went shopping yesterday.",
+                  "translation": "הם הלכו לקניות אתמול."
+                },
+                {
+                  "sentence": "She enjoys shopping for clothes.",
+                  "translation": "היא נהנית לקנות בגדים."
+                },
+                {
+                  "sentence": "Shopping can be expensive.",
+                  "translation": "קניות יכולות להיות יקרות."
+                }
+              ]
+            },
+            {
+              "word": "Cleaning",
+              "translation": "ניקיון",
+              "examples": [
+                {
+                  "sentence": "He is cleaning the house.",
+                  "translation": "הוא מנקה את הבית."
+                },
+                {
+                  "sentence": "Cleaning is necessary.",
+                  "translation": "ניקיון הכרחי."
+                },
+                {
+                  "sentence": "She spends Saturday cleaning.",
+                  "translation": "היא מבלה את יום שבת בניקיון."
+                }
+              ]
+            },
+            {
+              "word": "Exercising",
+              "translation": "פעילות גופנית",
+              "examples": [
+                {
+                  "sentence": "They are exercising at the gym.",
+                  "translation": "הם מתאמנים בחדר הכושר."
+                },
+                {
+                  "sentence": "Exercising keeps you healthy.",
+                  "translation": "פעילות גופנית שומרת על הבריאות."
+                },
+                {
+                  "sentence": "He enjoys exercising outdoors.",
+                  "translation": "הוא נהנה להתאמן בחוץ."
+                }
+              ]
+            },
+            {
+              "word": "Driving",
+              "translation": "נהיגה",
+              "examples": [
+                {
+                  "sentence": "She is driving to work.",
+                  "translation": "היא נוהגת לעבודה."
+                },
+                {
+                  "sentence": "He enjoys driving at night.",
+                  "translation": "הוא נהנה לנהוג בלילה."
+                },
+                {
+                  "sentence": "Driving requires attention.",
+                  "translation": "נהיגה דורשת תשומת לב."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ביטויי זמן",
+          "words": [
+            {
+              "word": "Today",
+              "translation": "היום",
+              "examples": [
+                {
+                  "sentence": "Today is a good day.",
+                  "translation": "היום הוא יום טוב."
+                },
+                {
+                  "sentence": "She has a meeting today.",
+                  "translation": "יש לה פגישה היום."
+                },
+                {
+                  "sentence": "He is busy today.",
+                  "translation": "הוא עסוק היום."
+                }
+              ]
+            },
+            {
+              "word": "Tomorrow",
+              "translation": "מחר",
+              "examples": [
+                {
+                  "sentence": "We will go shopping tomorrow.",
+                  "translation": "נלך לקניות מחר."
+                },
+                {
+                  "sentence": "Tomorrow is her birthday.",
+                  "translation": "מחר יום ההולדת שלה."
+                },
+                {
+                  "sentence": "He will call you tomorrow.",
+                  "translation": "הוא יתקשר אליך מחר."
+                }
+              ]
+            },
+            {
+              "word": "Yesterday",
+              "translation": "אתמול",
+              "examples": [
+                {
+                  "sentence": "She visited me yesterday.",
+                  "translation": "היא ביקרה אותי אתמול."
+                },
+                {
+                  "sentence": "Yesterday was a busy day.",
+                  "translation": "אתמול היה יום עמוס."
+                },
+                {
+                  "sentence": "They arrived yesterday.",
+                  "translation": "הם הגיעו אתמול."
+                }
+              ]
+            },
+            {
+              "word": "Now",
+              "translation": "עכשיו",
+              "examples": [
+                {
+                  "sentence": "He is working now.",
+                  "translation": "הוא עובד עכשיו."
+                },
+                {
+                  "sentence": "Now is the time to act.",
+                  "translation": "עכשיו הזמן לפעול."
+                },
+                {
+                  "sentence": "She is eating now.",
+                  "translation": "היא אוכלת עכשיו."
+                }
+              ]
+            },
+            {
+              "word": "Later",
+              "translation": "מאוחר יותר",
+              "examples": [
+                {
+                  "sentence": "I will see you later.",
+                  "translation": "אראה אותך מאוחר יותר."
+                },
+                {
+                  "sentence": "She will finish her work later.",
+                  "translation": "היא תסיים את עבודתה מאוחר יותר."
+                },
+                {
+                  "sentence": "He will call later.",
+                  "translation": "הוא יתקשר מאוחר יותר."
+                }
+              ]
+            },
+            {
+              "word": "Soon",
+              "translation": "בקרוב",
+              "examples": [
+                {
+                  "sentence": "They will arrive soon.",
+                  "translation": "הם יגיעו בקרוב."
+                },
+                {
+                  "sentence": "She hopes to see him soon.",
+                  "translation": "היא מקווה לראות אותו בקרוב."
+                },
+                {
+                  "sentence": "The movie starts soon.",
+                  "translation": "הסרט מתחיל בקרוב."
+                }
+              ]
+            },
+            {
+              "word": "Always",
+              "translation": "תמיד",
+              "examples": [
+                {
+                  "sentence": "He always tells the truth.",
+                  "translation": "הוא תמיד אומר את האמת."
+                },
+                {
+                  "sentence": "She is always on time.",
+                  "translation": "היא תמיד מגיעה בזמן."
+                },
+                {
+                  "sentence": "They always help each other.",
+                  "translation": "הם תמיד עוזרים זה לזה."
+                }
+              ]
+            },
+            {
+              "word": "Never",
+              "translation": "אף פעם",
+              "examples": [
+                {
+                  "sentence": "He never lies.",
+                  "translation": "הוא אף פעם לא משקר."
+                },
+                {
+                  "sentence": "She never eats meat.",
+                  "translation": "היא אף פעם לא אוכלת בשר."
+                },
+                {
+                  "sentence": "They never give up.",
+                  "translation": "הם אף פעם לא מוותרים."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
