@@ -29,7 +29,7 @@ jobs:
       # שלב 4: הרצת הסקריפט ליצירת הסרטונים
       - name: Run video generation script
         run: |
-          python scripts/build.py  # עדכן את הנתיב לקובץ הסקריפט שלך
+          python -u scripts/build.py  # עדכן את הנתיב לקובץ הסקריפט שלך
 
       # שלב 5: העלאת קבצי הוידאו שנוצרו כחפצים (artifacts)
       - name: Upload videos as artifacts
