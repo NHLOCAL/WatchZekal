@@ -166,6 +166,5 @@ __pycache__/
 *.pyd
 *.mp4
 *.mp3
-*.png
 *.log
 output/
