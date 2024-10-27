@@ -1,0 +1,39 @@
+name: Generate Videos
+
+on:
+  push:
+    branches:
+      - main  # הפעלת הפעולה כשיש דחיפה לענף הראשי (main)
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      # שלב 1: Checkout - הורדת קבצי הריפוזיטורי
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # שלב 2: התקנת Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # שלב 3: התקנת כל התלויות
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # ודא שיש לך קובץ requirements.txt עם כל התלויות הנדרשות (כמו moviepy, gTTS וכו')
+
+      # שלב 4: הרצת הסקריפט ליצירת הסרטונים
+      - name: Run video generation script
+        run: |
+          python scripts/build.py  # עדכן את הנתיב לקובץ הסקריפט שלך
+
+      # שלב 5: העלאת קבצי הוידאו שנוצרו כחפצים (artifacts)
+      - name: Upload videos as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: generated-videos
+          path: output/videos/*.mp4  # ודא שהנתיב תואם לתיקייה שבה נשמרים הסרטונים שנוצרים

@@ -25,7 +25,7 @@ OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'videos')
 TEMP_DIR = os.path.join(OUTPUT_DIR, 'temp')
 
 # נתיבים לקבצים
-JSON_FILE = os.path.join(DATA_DIR, 'words.json')
+JSON_FILE = os.path.join(DATA_DIR, 'words_level_1-3.json')
 FONT_PATH = os.path.join(FONTS_DIR, 'arial.ttf')  # ודא שהגופן תומך בעברית
 SUBTOPIC_FONT_PATH = os.path.join(FONTS_DIR, 'arialbd.ttf')  # גופן מודגש עבור Subtopics
 WORD_FONT_PATH = os.path.join(FONTS_DIR, 'arialbd.ttf')  # גופן מודגש עבור מילים
