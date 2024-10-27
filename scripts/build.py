@@ -190,7 +190,7 @@ def create_image(text_lines, image_path, style='normal', line_styles=None, add_l
         try:
             font = ImageFont.truetype(current_style['font_path'], current_style['font_size'])
         except IOError:
-            print(f"לא ניתן למצוא את הגופן בנתיב: {current_style['font_path']}")
+            print(f"לא ניתן למצוא את הגופן בנתיב: {current_style['font_path']}", flush=True)
             raise
         bbox = draw.textbbox((0, 0), processed_line, font=font)
         width = bbox[2] - bbox[0]
@@ -221,7 +221,7 @@ def create_audio(text, lang, audio_path):
         tts = gTTS(text=text, lang=lang)
         tts.save(audio_path)
     except ValueError as e:
-        print(f"שגיאה ביצירת אודיו עבור הטקסט: '{text}' בשפה: '{lang}'. פרטים: {e}")
+        print(f"שגיאה ביצירת אודיו עבור הטקסט: '{text}' בשפה: '{lang}'. פרטים: {e}", flush=True)
         raise
 
 # פונקציה ליצירת קליפ עם תמונה ואודיו
@@ -295,7 +295,7 @@ def slide_transition(clip1, clip2, duration=TRANSITION_DURATION):
 for level in data['levels']:
     level_num = level['level']
     level_name = level['name']
-    print(f"מעבד Level {level_num}: {level_name}")
+    print(f"מעבד Level {level_num}: {level_name}", flush=True)
 
     # יצירת שם קובץ וידאו בטוח
     safe_level_name = "".join([c for c in level_name if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_")
@@ -314,7 +314,7 @@ for level in data['levels']:
 
     for subtopic in level['subtopics']:
         subtopic_name = subtopic['name']
-        print(f"  מעבד Subtopic: {subtopic_name}")
+        print(f"  מעבד Subtopic: {subtopic_name}", flush=True)
 
         # יצירת כותרת Subtopic עם עיצוב ייחודי
         safe_subtopic_name = "".join([c for c in subtopic_name if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_")
@@ -344,7 +344,7 @@ for level in data['levels']:
             word_translation = word['translation']
             examples = word['examples']
 
-            print(f"    מעבד מילה: {word_text} - {word_translation}")
+            print(f"    מעבד מילה: {word_text} - {word_translation}", flush=True)
 
             # יצירת תמונה ראשונה: המילה והתרגום
             safe_word_text = "".join([c for c in word_text if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_")
@@ -377,7 +377,7 @@ for level in data['levels']:
                 sentence = example['sentence']
                 translation = example['translation']
 
-                print(f"      מעבד משפט: {sentence} - {translation}")
+                print(f"      מעבד משפט: {sentence} - {translation}", flush=True)
 
                 # יצירת תמונה למשפט
                 safe_sentence = "".join([c for c in sentence if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_")
@@ -418,7 +418,7 @@ for level in data['levels']:
         os.remove(audio_subtopic_he)
 
     # איחוד כל הקליפים לסרטון אחד עבור ה-Level
-    print(f"איחוד הקליפים לסרטון Level {level_num}: {level_name}")
+    print(f"איחוד הקליפים לסרטון Level {level_num}: {level_name}", flush=True)
     final_clip = concatenate_videoclips(clips, method="compose")
 
     # הוספת מוזיקת רקע אם קיימת
@@ -426,7 +426,7 @@ for level in data['levels']:
         final_clip = add_background_music(final_clip, BACKGROUND_MUSIC_PATH, volume=0.1)
 
     # שמירת הוידאו
-    print(f"שומר את הסרטון בנתיב: {video_path}")
+    print(f"שומר את הסרטון בנתיב: {video_path}", flush=True)
     final_clip.write_videofile(video_path, fps=24, codec='libx264', audio_codec='aac')
 
     # ניקוי קבצים זמניים לאחר שמירת הוידאו
@@ -435,4 +435,4 @@ for level in data['levels']:
         if os.path.isfile(temp_file_path):
             os.remove(temp_file_path)
 
-print("יצירת כל הסרטונים הסתיימה!")
+print("יצירת כל הסרטונים הסתיימה!", flush=True)
