@@ -24,9 +24,9 @@ TEMP_DIR = os.path.join(OUTPUT_DIR, 'temp')
 
 # נתיבים לקבצים
 JSON_FILE = os.path.join(DATA_DIR, 'words.json')
-FONT_PATH = os.path.join(FONTS_DIR, 'arial.ttf')  # ודא שהגופן תומך בעברית
-SUBTOPIC_FONT_PATH = os.path.join(FONTS_DIR, 'arialbd.ttf')  # גופן מודגש עבור Subtopics
-WORD_FONT_PATH = os.path.join(FONTS_DIR, 'arialbd.ttf')  # גופן מודגש עבור מילים
+FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Regular.ttf')  # ודא שהגופן תומך בעברית
+SUBTOPIC_FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Bold.ttf')  # גופן מודגש עבור Subtopics
+WORD_FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Bold.ttf')  # גופן מודגש עבור מילים
 LOGO_PATH = os.path.join(LOGOS_DIR, 'logo.png')  # אם תרצה להשתמש בלוגו
 
 # הגדרות עיצוב
@@ -128,6 +128,14 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
             'text_color': TEXT_COLOR,
             'font_size': FONT_SIZE,
             'font_path': FONT_PATH
+        },
+        'outro': {  # סגנון חדש ל-Outro
+            'bg_color': (50, 150, 200),  # צבע רקע כחול נעים
+            'gradient': None,
+            'gradient_direction': 'vertical',
+            'text_color': (255, 255, 255),  # טקסט לבן
+            'font_size': 100,
+            'font_path': FONT_PATH
         }
     }
     
@@ -172,8 +180,11 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
         processed_lines.append((processed_line, width, height, current_style, font))
         total_height += height + 40  # רווח בין השורות
     
-    # מיקום ההתחלה במרכז אנכי
-    current_y = (img.height - total_height) / 2
+    # מיקום ההתחלה במרכז אנכי, עם התאמות ספציפיות ל-Outro
+    if style == 'outro':
+        current_y = 100  # התחלה מעט למעלה
+    else:
+        current_y = (img.height - total_height) / 2
     
     # ציור הטקסט
     for processed_line, width, height, current_style, font in processed_lines:
@@ -184,6 +195,7 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
     # שמירת התמונה
     img = img.convert("RGB")  # המרת חזרה ל-RGB אם הוספנו אלפא
     img.save(image_path)
+
 
 # פונקציה ליצירת אודיו מהטקסט
 def create_audio(text, lang, audio_path):
@@ -262,7 +274,7 @@ def slide_transition(clip1, clip2, duration=TRANSITION_DURATION):
     return transition
 
 # פונקציה להוספת לוגו לסרטון
-def add_logo_to_video(clip, logo_path, position='top-right', size=(150, 150), opacity=255, margin=(50, 50)):
+def add_logo_to_video(clip, logo_path, position='top-right', size=(180, 180), opacity=255, margin=(50, 50)):
     # פתיחת תמונת הלוגו באמצעות PIL
     logo_image = Image.open(logo_path).convert("RGBA")
     
@@ -292,27 +304,67 @@ def add_logo_to_video(clip, logo_path, position='top-right', size=(150, 150), op
         logo = logo.set_pos((clip.w - logo.w - x_margin, clip.h - logo.h - y_margin))
     elif position == 'bottom-left':
         logo = logo.set_pos((x_margin, clip.h - logo.h - y_margin))
+    elif position == 'bottom-center':  # הוספת תמיכה ב-bottom-center
+        x_position = (clip.w - logo.w) / 2
+        y_position = clip.h - logo.h - y_margin
+        logo = logo.set_pos((x_position, y_position))
     else:
         raise ValueError("מיקום לא נתמך")
     
     # שילוב הלוגו עם הסרטון
     return CompositeVideoClip([clip, logo])
 
+
 # פונקציה ליצירת קטע סיום
 def create_outro():
     outro_image_path = os.path.join(TEMP_DIR, "outro.png")
-    text_lines_outro = ["Thank you for watching!", "Don't forget to like and subscribe.", "Watch more videos!"]
-    create_image(text_lines_outro, outro_image_path, style='normal')
+    
+    # טקסטים חדשים עם שם הערוץ
+    text_lines_outro = [
+        "זה קל! - לימוד אנגלית בקלי קלות",
+        "תודה שצפיתם!",
+        "אל תשכחו לעשות לייק ולהירשם לערוץ",
+        "לחצו על הפעמון לקבלת התראות",
+        "צפו בסרטונים נוספים!"
+    ]
+    
+    # יצירת תמונת ה-Outro עם הסגנון החדש
+    create_image(text_lines_outro, outro_image_path, style='outro')
     
     # יצירת אודיו לקליפ הסיום
     audio_outro_en = os.path.join(TEMP_DIR, "outro_en.mp3")
     audio_outro_he = os.path.join(TEMP_DIR, "outro_he.mp3")
-    create_audio("Thank you for watching! Don't forget to like and subscribe. Watch more videos!", 'en', audio_outro_en)
-    create_audio("תודה שצפיתם! אל תשכחו לעשות like ולהירשם. צפו בעוד סרטונים!", 'iw', audio_outro_he)
+    create_audio("This is easy! Thank you for watching! Don't forget to like and subscribe to the channel. Click the bell for notifications. Watch more videos!", 'en', audio_outro_en)
+    create_audio("זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם לערוץ. לחצו על הפעמון לקבלת התראות. צפו בסרטונים נוספים!", 'iw', audio_outro_he)
     
     # יצירת קליפ הסיום
     clip_outro = create_clip(outro_image_path, audio_outro_en, audio_outro_he)
+    
+    # הוספת אייקונים (אם יש)
+    # הנחה: יש לך אייקונים כמו like.png, subscribe.png, bell.png בתיקיית LOGOS_DIR
+    # ניתן להוריד אייקונים מאתרים כמו https://icons8.com/ ולמקם אותם בתיקיית הלוגואים
+    icons = [
+        {"path": os.path.join(LOGOS_DIR, "like.png"), "position": "bottom-left"},
+        {"path": os.path.join(LOGOS_DIR, "subscribe.png"), "position": "bottom-center"},
+        {"path": os.path.join(LOGOS_DIR, "bell.png"), "position": "bottom-right"}
+    ]
+    
+    for icon in icons:
+        if os.path.exists(icon["path"]):
+            clip_outro = add_logo_to_video(
+                clip_outro,
+                icon["path"],
+                position=icon["position"],
+                size=(100, 100),  # גודל מתאים לאייקונים
+                opacity=255,
+                margin=(50, 50)
+            )
+        else:
+            print(f"האייקון לא נמצא בנתיב: {icon['path']}", flush=True)
+    
     return clip_outro
+
+
 
 # לולאה דרך כל הרמות
 for level in data['levels']:
@@ -464,7 +516,7 @@ for level in data['levels']:
 
     # שמירת הוידאו
     print(f"שומר את הסרטון בנתיב: {video_path}", flush=True)
-    final_clip.write_videofile(video_path, fps=24, codec='libx264', audio_codec='aac', threads=8)
+    final_clip.write_videofile(video_path, fps=24, codec='libx264', audio_codec='aac')
 
     # ניקוי קבצים זמניים לאחר שמירת הוידאו
     for temp_file in os.listdir(TEMP_DIR):
