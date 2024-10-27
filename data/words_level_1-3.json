@@ -12,8 +12,8 @@
               "translation": "שלום",
               "examples": [
                 {
-                  "sentence": "Hello!",
-                  "translation": "שלום!"
+                  "sentence": "Hello there!",
+                  "translation": "שלום לך!"
                 },
                 {
                   "sentence": "Hello, how are you?",
@@ -30,8 +30,8 @@
               "translation": "להתראות",
               "examples": [
                 {
-                  "sentence": "Goodbye!",
-                  "translation": "להתראות!"
+                  "sentence": "Goodbye for now.",
+                  "translation": "להתראות בינתיים."
                 },
                 {
                   "sentence": "Goodbye, see you soon.",
