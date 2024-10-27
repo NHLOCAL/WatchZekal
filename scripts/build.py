@@ -1,5 +1,6 @@
 import json
 import os
+import random
 from gtts import gTTS
 from moviepy.editor import *
 from PIL import Image, ImageDraw, ImageFont
@@ -32,7 +33,7 @@ TEXT_COLOR = (0, 0, 0)  # טקסט שחור
 SUBTOPIC_TEXT_COLOR = (0, 0, 128)  # צבע טקסט שונה ל-Subtopics
 LEVEL_TEXT_COLOR = (255, 69, 0)  # צבע טקסט שונה למסך פתיחת Level
 DURATION_PER_CLIP = 3  # משך כל קליפ בשניות
-DELAY_BETWEEN_CLIPS = 1  # משך ההמתנה בין קליפים בשניות
+TRANSITION_DURATION = 1  # משך האנימציה בשניות
 
 # ודא שתיקיות היצוא זמינות
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -143,6 +144,37 @@ def create_level_intro(level_num, level_name):
     clip_intro = create_clip(intro_image_path, audio_intro_en, audio_intro_he)
     return clip_intro
 
+# פונקציה ליצירת מעבר החלקה בין שני קליפים
+def slide_transition(clip1, clip2, duration=TRANSITION_DURATION):
+    # בחר כיוון אקראי
+    direction = random.choice(['left', 'right', 'up', 'down'])
+    
+    # הגדר את תנועת הקליפים בהתאם לכיוון
+    if direction == 'left':
+        move_out = lambda t: (-1920 * t / duration, 'center')
+        move_in = lambda t: (1920 - 1920 * t / duration, 'center')
+    elif direction == 'right':
+        move_out = lambda t: (1920 * t / duration, 'center')
+        move_in = lambda t: (-1920 + 1920 * t / duration, 'center')
+    elif direction == 'up':
+        move_out = lambda t: ('center', -1080 * t / duration)
+        move_in = lambda t: ('center', 1080 - 1080 * t / duration)
+    elif direction == 'down':
+        move_out = lambda t: ('center', 1080 * t / duration)
+        move_in = lambda t: ('center', -1080 + 1080 * t / duration)
+    
+    # קטעים עם אנימציית מיקום
+    clip1_moving = clip1.set_position(move_out).set_duration(duration)
+    clip2_moving = clip2.set_position(move_in).set_duration(duration)
+    
+    # שכבת הקליפים
+    transition = CompositeVideoClip([clip1_moving, clip2_moving], size=(1920, 1080)).set_duration(duration)
+    
+    # **הגדרת אודיו ל-None כדי למנוע בעיות באודיו**
+    transition = transition.set_audio(None)
+    
+    return transition
+
 # לולאה דרך כל הרמות
 for level in data['levels']:
     level_num = level['level']
@@ -161,10 +193,8 @@ for level in data['levels']:
     clip_level_intro = create_level_intro(level_num, level_name)
     clips.append(clip_level_intro)
 
-    # יצירת השהייה אחרי פתיחת Level
-    blank_clip = ColorClip(size=(1920, 1080), color=BG_COLOR, duration=DELAY_BETWEEN_CLIPS)
-    clips.append(blank_clip)
-
+    # יצירת אנימציית מעבר אחרי פתיחת Level
+    # במקום להוסיף קליפ צבע, נשתמש במעבר החלקה לכניסה של הקליפ הבא
     for subtopic in level['subtopics']:
         subtopic_name = subtopic['name']
         print(f"  מעבד Subtopic: {subtopic_name}")
@@ -183,10 +213,14 @@ for level in data['levels']:
 
         # יצירת קליפ Subtopic
         clip_subtopic = create_clip(image_subtopic_path, audio_subtopic_en, audio_subtopic_he)
+        
+        # אם יש כבר קליפ קודם, ניצור מעבר בין הקליפ הקודם לחדש
+        if clips:
+            previous_clip = clips[-1]
+            transition = slide_transition(previous_clip, clip_subtopic)
+            clips.append(transition)
+        
         clips.append(clip_subtopic)
-
-        # יצירת השהייה אחרי Subtopic
-        clips.append(blank_clip)
 
         for word in subtopic['words']:
             word_text = word['word']
@@ -209,10 +243,14 @@ for level in data['levels']:
 
             # יצירת קליפ מילה
             clip_word = create_clip(image_word_path, audio_word_en, audio_word_he)
+            
+            # יצירת מעבר
+            if clips:
+                previous_clip = clips[-1]
+                transition = slide_transition(previous_clip, clip_word)
+                clips.append(transition)
+            
             clips.append(clip_word)
-
-            # יצירת השהייה אחרי מילה
-            clips.append(blank_clip)
 
             for idx, example in enumerate(examples):
                 sentence = example['sentence']
@@ -234,10 +272,14 @@ for level in data['levels']:
 
                 # יצירת קליפ משפט
                 clip_example = create_clip(image_example_path, audio_example_en, audio_example_he)
+                
+                # יצירת מעבר
+                if clips:
+                    previous_clip = clips[-1]
+                    transition = slide_transition(previous_clip, clip_example)
+                    clips.append(transition)
+                
                 clips.append(clip_example)
-
-                # יצירת השהייה אחרי משפט
-                clips.append(blank_clip)
 
                 # ניקוי קבצים זמניים למשפט
                 os.remove(image_example_path)
