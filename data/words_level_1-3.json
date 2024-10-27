@@ -158,7 +158,7 @@
             },
             {
               "word": "Am",
-              "translation": "הוא/היא (בהווה, גוף ראשון)",
+              "translation": "אני (פועל עזר בזמן הווה)",
               "examples": [
                 {
                   "sentence": "I am a student.",
@@ -827,12 +827,12 @@
               "translation": "שש עשרה",
               "examples": [
                 {
-                  "sentence": "She turns sixteen tomorrow.",
-                  "translation": "היא הופכת לשש עשרה מחר."
+                  "sentence": "The box contains sixteen chocolates.",
+                  "translation": "הקופסה מכילה שש-עשרה שוקולדים."
                 },
                 {
-                  "sentence": "Sixteen candles on the cake.",
-                  "translation": "שש עשרה נרות על העוגה."
+                  "sentence": "She turns sixteen tomorrow.",
+                  "translation": "היא תהיה בת שש עשרה מחר."
                 },
                 {
                   "sentence": "They have sixteen dollars.",
@@ -969,7 +969,7 @@
                 },
                 {
                   "sentence": "She crossed her legs.",
-                  "translation": "היא חצתה את רגליה."
+                  "translation": "היא שילבה את רגליה."
                 },
                 {
                   "sentence": "Long legs help him run fast.",
@@ -987,7 +987,7 @@
                 },
                 {
                   "sentence": "Keep an eye on the bag.",
-                  "translation": "שמור עין על התיק."
+                  "translation": "שים עין על התיק."
                 },
                 {
                   "sentence": "He winked his eye.",
