@@ -1,0 +1,673 @@
+{
+  "levels": [
+    {
+      "level": 4,
+      "name": "הבית וחפצים יומיומיים",
+      "subtopics": [
+        {
+          "name": "חדרי הבית",
+          "words": [
+            {
+              "word": "Bedroom",
+              "translation": "חדר שינה",
+              "examples": [
+                {
+                  "sentence": "She sleeps in the bedroom",
+                  "translation": "היא ישנה בחדר השינה"
+                },
+                {
+                  "sentence": "The bedroom is upstairs",
+                  "translation": "חדר השינה בקומה העליונה"
+                },
+                {
+                  "sentence": "They painted the bedroom",
+                  "translation": "הם צבעו את חדר השינה"
+                }
+              ]
+            },
+            {
+              "word": "Kitchen",
+              "translation": "מטבח",
+              "examples": [
+                {
+                  "sentence": "The kitchen is clean",
+                  "translation": "המטבח נקי"
+                },
+                {
+                  "sentence": "She cooks in the kitchen",
+                  "translation": "היא מבשלת במטבח"
+                },
+                {
+                  "sentence": "They eat in the kitchen",
+                  "translation": "הם אוכלים במטבח"
+                }
+              ]
+            },
+            {
+              "word": "Bathroom",
+              "translation": "חדר אמבטיה",
+              "examples": [
+                {
+                  "sentence": "He showers in the bathroom",
+                  "translation": "הוא מתקלח בחדר האמבטיה"
+                },
+                {
+                  "sentence": "The bathroom is small",
+                  "translation": "חדר האמבטיה קטן"
+                },
+                {
+                  "sentence": "She cleans the bathroom",
+                  "translation": "היא מנקה את חדר האמבטיה"
+                }
+              ]
+            },
+            {
+              "word": "Living room",
+              "translation": "סלון",
+              "examples": [
+                {
+                  "sentence": "We relax in the living room",
+                  "translation": "אנחנו נרגעים בסלון"
+                },
+                {
+                  "sentence": "The living room has a sofa",
+                  "translation": "בסלון יש ספה"
+                },
+                {
+                  "sentence": "They watch TV in the living room",
+                  "translation": "הם צופים בטלוויזיה בסלון"
+                }
+              ]
+            },
+            {
+              "word": "Dining room",
+              "translation": "חדר אוכל",
+              "examples": [
+                {
+                  "sentence": "We eat in the dining room",
+                  "translation": "אנחנו אוכלים בחדר האוכל"
+                },
+                {
+                  "sentence": "The dining room is big",
+                  "translation": "חדר האוכל גדול"
+                },
+                {
+                  "sentence": "They have dinner in the dining room",
+                  "translation": "הם אוכלים ארוחת ערב בחדר האוכל"
+                }
+              ]
+            },
+            {
+              "word": "Garage",
+              "translation": "מוסך",
+              "examples": [
+                {
+                  "sentence": "The car is in the garage",
+                  "translation": "המכונית במוסך"
+                },
+                {
+                  "sentence": "He works in the garage",
+                  "translation": "הוא עובד במוסך"
+                },
+                {
+                  "sentence": "The garage door is open",
+                  "translation": "דלת המוסך פתוחה"
+                }
+              ]
+            },
+            {
+              "word": "Garden",
+              "translation": "גינה",
+              "examples": [
+                {
+                  "sentence": "Flowers grow in the garden",
+                  "translation": "פרחים גדלים בגינה"
+                },
+                {
+                  "sentence": "They sit in the garden",
+                  "translation": "הם יושבים בגינה"
+                },
+                {
+                  "sentence": "The garden is beautiful",
+                  "translation": "הגינה יפה"
+                }
+              ]
+            },
+            {
+              "word": "Hallway",
+              "translation": "מסדרון",
+              "examples": [
+                {
+                  "sentence": "The hallway is long",
+                  "translation": "המסדרון ארוך"
+                },
+                {
+                  "sentence": "She walks down the hallway",
+                  "translation": "היא הולכת לאורך המסדרון"
+                },
+                {
+                  "sentence": "Pictures hang in the hallway",
+                  "translation": "תמונות תלויות במסדרון"
+                }
+              ]
+            },
+            {
+              "word": "Attic",
+              "translation": "עליית גג",
+              "examples": [
+                {
+                  "sentence": "He stores boxes in the attic",
+                  "translation": "הוא מאחסן קופסאות בעליית הגג"
+                },
+                {
+                  "sentence": "The attic is dusty",
+                  "translation": "עליית הגג מאובקת"
+                },
+                {
+                  "sentence": "She climbs up to the attic",
+                  "translation": "היא מטפסת לעליית הגג"
+                }
+              ]
+            },
+            {
+              "word": "Basement",
+              "translation": "מרתף",
+              "examples": [
+                {
+                  "sentence": "They play games in the basement",
+                  "translation": "הם משחקים משחקים במרתף"
+                },
+                {
+                  "sentence": "The basement is cold",
+                  "translation": "המרתף קר"
+                },
+                {
+                  "sentence": "He stores tools in the basement",
+                  "translation": "הוא מאחסן כלים במרתף"
+                }
+              ]
+            },
+            {
+              "word": "Study",
+              "translation": "חדר עבודה",
+              "examples": [
+                {
+                  "sentence": "She reads in the study",
+                  "translation": "היא קוראת בחדר העבודה"
+                },
+                {
+                  "sentence": "The study has many books",
+                  "translation": "בחדר העבודה יש הרבה ספרים"
+                },
+                {
+                  "sentence": "He works in the study",
+                  "translation": "הוא עובד בחדר העבודה"
+                }
+              ]
+            },
+            {
+              "word": "Laundry room",
+              "translation": "חדר כביסה",
+              "examples": [
+                {
+                  "sentence": "She washes clothes in the laundry room",
+                  "translation": "היא מכבסת בגדים בחדר הכביסה"
+                },
+                {
+                  "sentence": "The laundry room is small",
+                  "translation": "חדר הכביסה קטן"
+                },
+                {
+                  "sentence": "He dries clothes in the laundry room",
+                  "translation": "הוא מייבש בגדים בחדר הכביסה"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ריהוט ומכשירים",
+          "words": [
+            {
+              "word": "Bed",
+              "translation": "מיטה",
+              "examples": [
+                {
+                  "sentence": "The bed is comfortable",
+                  "translation": "המיטה נוחה"
+                },
+                {
+                  "sentence": "He sleeps on the bed",
+                  "translation": "הוא ישן על המיטה"
+                },
+                {
+                  "sentence": "They bought a new bed",
+                  "translation": "הם קנו מיטה חדשה"
+                }
+              ]
+            },
+            {
+              "word": "Table",
+              "translation": "שולחן",
+              "examples": [
+                {
+                  "sentence": "Dinner is on the table",
+                  "translation": "ארוחת הערב על השולחן"
+                },
+                {
+                  "sentence": "She sets the table",
+                  "translation": "היא מסדרת את השולחן"
+                },
+                {
+                  "sentence": "The table is wooden",
+                  "translation": "השולחן מעץ"
+                }
+              ]
+            },
+            {
+              "word": "Chair",
+              "translation": "כיסא",
+              "examples": [
+                {
+                  "sentence": "Sit on the chair",
+                  "translation": "שב על הכיסא"
+                },
+                {
+                  "sentence": "The chair is broken",
+                  "translation": "הכיסא שבור"
+                },
+                {
+                  "sentence": "He bought four chairs",
+                  "translation": "הוא קנה ארבעה כיסאות"
+                }
+              ]
+            },
+            {
+              "word": "Refrigerator",
+              "translation": "מקרר",
+              "examples": [
+                {
+                  "sentence": "Milk is in the refrigerator",
+                  "translation": "החלב במקרר"
+                },
+                {
+                  "sentence": "The refrigerator is full",
+                  "translation": "המקרר מלא"
+                },
+                {
+                  "sentence": "They need a new refrigerator",
+                  "translation": "הם צריכים מקרר חדש"
+                }
+              ]
+            },
+            {
+              "word": "Television",
+              "translation": "טלוויזיה",
+              "examples": [
+                {
+                  "sentence": "Turn on the television",
+                  "translation": "הפעל את הטלוויזיה"
+                },
+                {
+                  "sentence": "She watches movies on the television",
+                  "translation": "היא צופה בסרטים בטלוויזיה"
+                },
+                {
+                  "sentence": "The television is big",
+                  "translation": "הטלוויזיה גדולה"
+                }
+              ]
+            },
+            {
+              "word": "Sofa",
+              "translation": "ספה",
+              "examples": [
+                {
+                  "sentence": "They sit on the sofa",
+                  "translation": "הם יושבים על הספה"
+                },
+                {
+                  "sentence": "The sofa is comfortable",
+                  "translation": "הספה נוחה"
+                },
+                {
+                  "sentence": "He sleeps on the sofa sometimes",
+                  "translation": "הוא ישן על הספה לפעמים"
+                }
+              ]
+            },
+            {
+              "word": "Lamp",
+              "translation": "מנורה",
+              "examples": [
+                {
+                  "sentence": "Turn off the lamp",
+                  "translation": "כבה את המנורה"
+                },
+                {
+                  "sentence": "The lamp is bright",
+                  "translation": "המנורה בהירה"
+                },
+                {
+                  "sentence": "She bought a new lamp",
+                  "translation": "היא קנתה מנורה חדשה"
+                }
+              ]
+            },
+            {
+              "word": "Oven",
+              "translation": "תנור",
+              "examples": [
+                {
+                  "sentence": "Bake the cake in the oven",
+                  "translation": "אפה את העוגה בתנור"
+                },
+                {
+                  "sentence": "The oven is hot",
+                  "translation": "התנור חם"
+                },
+                {
+                  "sentence": "They cooked chicken in the oven",
+                  "translation": "הם בישלו עוף בתנור"
+                }
+              ]
+            },
+            {
+              "word": "Microwave",
+              "translation": "מיקרוגל",
+              "examples": [
+                {
+                  "sentence": "Heat the food in the microwave",
+                  "translation": "חמם את האוכל במיקרוגל"
+                },
+                {
+                  "sentence": "The microwave is quick",
+                  "translation": "המיקרוגל מהיר"
+                },
+                {
+                  "sentence": "She uses the microwave daily",
+                  "translation": "היא משתמשת במיקרוגל מדי יום"
+                }
+              ]
+            },
+            {
+              "word": "Wardrobe",
+              "translation": "ארון בגדים",
+              "examples": [
+                {
+                  "sentence": "Clothes are in the wardrobe",
+                  "translation": "הבגדים בארון הבגדים"
+                },
+                {
+                  "sentence": "The wardrobe is large",
+                  "translation": "ארון הבגדים גדול"
+                },
+                {
+                  "sentence": "He opens the wardrobe",
+                  "translation": "הוא פותח את ארון הבגדים"
+                }
+              ]
+            },
+            {
+              "word": "Desk",
+              "translation": "שולחן כתיבה",
+              "examples": [
+                {
+                  "sentence": "She works at the desk",
+                  "translation": "היא עובדת בשולחן הכתיבה"
+                },
+                {
+                  "sentence": "The desk has drawers",
+                  "translation": "לשולחן הכתיבה יש מגירות"
+                },
+                {
+                  "sentence": "He bought a new desk",
+                  "translation": "הוא קנה שולחן כתיבה חדש"
+                }
+              ]
+            },
+            {
+              "word": "Bookshelf",
+              "translation": "מדף ספרים",
+              "examples": [
+                {
+                  "sentence": "Books are on the bookshelf",
+                  "translation": "הספרים על מדף הספרים"
+                },
+                {
+                  "sentence": "The bookshelf is full",
+                  "translation": "מדף הספרים מלא"
+                },
+                {
+                  "sentence": "She arranges the bookshelf",
+                  "translation": "היא מסדרת את מדף הספרים"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "כלי בית",
+          "words": [
+            {
+              "word": "Spoon",
+              "translation": "כף",
+              "examples": [
+                {
+                  "sentence": "Eat soup with a spoon",
+                  "translation": "אכול מרק עם כף"
+                },
+                {
+                  "sentence": "The spoon is silver",
+                  "translation": "הכף מכסף"
+                },
+                {
+                  "sentence": "She stirred the tea with a spoon",
+                  "translation": "היא ערבבה את התה עם כף"
+                }
+              ]
+            },
+            {
+              "word": "Fork",
+              "translation": "מזלג",
+              "examples": [
+                {
+                  "sentence": "Use the fork to eat",
+                  "translation": "השתמש במזלג כדי לאכול"
+                },
+                {
+                  "sentence": "The fork is on the table",
+                  "translation": "המזלג על השולחן"
+                },
+                {
+                  "sentence": "He dropped the fork",
+                  "translation": "הוא הפיל את המזלג"
+                }
+              ]
+            },
+            {
+              "word": "Knife",
+              "translation": "סכין",
+              "examples": [
+                {
+                  "sentence": "Cut the bread with a knife",
+                  "translation": "חתוך את הלחם עם סכין"
+                },
+                {
+                  "sentence": "The knife is sharp",
+                  "translation": "הסכין חדה"
+                },
+                {
+                  "sentence": "She holds the knife carefully",
+                  "translation": "היא מחזיקה את הסכין בזהירות"
+                }
+              ]
+            },
+            {
+              "word": "Plate",
+              "translation": "צלחת",
+              "examples": [
+                {
+                  "sentence": "Put the food on the plate",
+                  "translation": "שים את האוכל על הצלחת"
+                },
+                {
+                  "sentence": "The plate is white",
+                  "translation": "הצלחת לבנה"
+                },
+                {
+                  "sentence": "He washes the plates",
+                  "translation": "הוא שוטף את הצלחות"
+                }
+              ]
+            },
+            {
+              "word": "Cup",
+              "translation": "ספל",
+              "examples": [
+                {
+                  "sentence": "I drink tea from a cup",
+                  "translation": "אני שותה תה מספל"
+                },
+                {
+                  "sentence": "The cup is empty",
+                  "translation": "הספל ריק"
+                },
+                {
+                  "sentence": "She broke the cup",
+                  "translation": "היא שברה את הספל"
+                }
+              ]
+            },
+            {
+              "word": "Glass",
+              "translation": "כוס",
+              "examples": [
+                {
+                  "sentence": "Pour water into the glass",
+                  "translation": "שפוך מים לכוס"
+                },
+                {
+                  "sentence": "The glass is full",
+                  "translation": "הכוס מלאה"
+                },
+                {
+                  "sentence": "He drinks juice from a glass",
+                  "translation": "הוא שותה מיץ מכוס"
+                }
+              ]
+            },
+            {
+              "word": "Bowl",
+              "translation": "קערה",
+              "examples": [
+                {
+                  "sentence": "Mix the salad in a bowl",
+                  "translation": "ערבב את הסלט בקערה"
+                },
+                {
+                  "sentence": "The bowl is large",
+                  "translation": "הקערה גדולה"
+                },
+                {
+                  "sentence": "She serves soup in bowls",
+                  "translation": "היא מגישה מרק בקערות"
+                }
+              ]
+            },
+            {
+              "word": "Pot",
+              "translation": "סיר",
+              "examples": [
+                {
+                  "sentence": "Boil water in the pot",
+                  "translation": "רתח מים בסיר"
+                },
+                {
+                  "sentence": "The pot is on the stove",
+                  "translation": "הסיר על הכיריים"
+                },
+                {
+                  "sentence": "She cooks soup in the pot",
+                  "translation": "היא מבשלת מרק בסיר"
+                }
+              ]
+            },
+            {
+              "word": "Pan",
+              "translation": "מחבת",
+              "examples": [
+                {
+                  "sentence": "Fry eggs in the pan",
+                  "translation": "טגן ביצים במחבת"
+                },
+                {
+                  "sentence": "The pan is hot",
+                  "translation": "המחבת חמה"
+                },
+                {
+                  "sentence": "He cleans the pan after cooking",
+                  "translation": "הוא מנקה את המחבת לאחר הבישול"
+                }
+              ]
+            },
+            {
+              "word": "Kettle",
+              "translation": "קומקום",
+              "examples": [
+                {
+                  "sentence": "Heat water in the kettle",
+                  "translation": "חמם מים בקומקום"
+                },
+                {
+                  "sentence": "The kettle is boiling",
+                  "translation": "הקומקום רותח"
+                },
+                {
+                  "sentence": "She pours tea from the kettle",
+                  "translation": "היא מוזגת תה מהקומקום"
+                }
+              ]
+            },
+            {
+              "word": "Toaster",
+              "translation": "מצנם",
+              "examples": [
+                {
+                  "sentence": "Toast bread in the toaster",
+                  "translation": "טוסט לחם במצנם"
+                },
+                {
+                  "sentence": "The toaster is old",
+                  "translation": "המצנם ישן"
+                },
+                {
+                  "sentence": "He bought a new toaster",
+                  "translation": "הוא קנה מצנם חדש"
+                }
+              ]
+            },
+            {
+              "word": "Blender",
+              "translation": "בלנדר",
+              "examples": [
+                {
+                  "sentence": "Blend fruits in the blender",
+                  "translation": "ערבב פירות בבלנדר"
+                },
+                {
+                  "sentence": "The blender is noisy",
+                  "translation": "הבלנדר רועש"
+                },
+                {
+                  "sentence": "She makes smoothies with the blender",
+                  "translation": "היא מכינה שייקים עם הבלנדר"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

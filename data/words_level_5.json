@@ -1,0 +1,835 @@
+{
+  "levels": [
+    {
+      "level": 5,
+      "name": "מזון ומשקאות",
+      "subtopics": [
+        {
+          "name": "פירות וירקות",
+          "words": [
+            {
+              "word": "Apple",
+              "translation": "תפוח",
+              "examples": [
+                {
+                  "sentence": "I like to eat an apple",
+                  "translation": "אני אוהב לאכול תפוח"
+                },
+                {
+                  "sentence": "She picked an apple from the tree",
+                  "translation": "היא קטפה תפוח מהעץ"
+                },
+                {
+                  "sentence": "Apples are red or green",
+                  "translation": "תפוחים הם אדומים או ירוקים"
+                }
+              ]
+            },
+            {
+              "word": "Banana",
+              "translation": "בננה",
+              "examples": [
+                {
+                  "sentence": "Monkeys love bananas",
+                  "translation": "קופים אוהבים בננות"
+                },
+                {
+                  "sentence": "He ate a banana for breakfast",
+                  "translation": "הוא אכל בננה לארוחת בוקר"
+                },
+                {
+                  "sentence": "Bananas are yellow and sweet",
+                  "translation": "בננות צהובות ומתוקות"
+                }
+              ]
+            },
+            {
+              "word": "Orange",
+              "translation": "תפוז",
+              "examples": [
+                {
+                  "sentence": "She drank orange juice",
+                  "translation": "היא שתתה מיץ תפוזים"
+                },
+                {
+                  "sentence": "Oranges have vitamin C",
+                  "translation": "תפוזים מכילים ויטמין C"
+                },
+                {
+                  "sentence": "I peeled an orange",
+                  "translation": "קילפתי תפוז"
+                }
+              ]
+            },
+            {
+              "word": "Carrot",
+              "translation": "גזר",
+              "examples": [
+                {
+                  "sentence": "Rabbits eat carrots",
+                  "translation": "ארנבים אוכלים גזרים"
+                },
+                {
+                  "sentence": "He chopped the carrots",
+                  "translation": "הוא קצץ את הגזרים"
+                },
+                {
+                  "sentence": "Carrots are good for your eyes",
+                  "translation": "גזרים טובים לעיניים שלך"
+                }
+              ]
+            },
+            {
+              "word": "Tomato",
+              "translation": "עגבנייה",
+              "examples": [
+                {
+                  "sentence": "She sliced a tomato",
+                  "translation": "היא פרסה עגבנייה"
+                },
+                {
+                  "sentence": "Tomatoes are red and juicy",
+                  "translation": "עגבניות אדומות ועסיסיות"
+                },
+                {
+                  "sentence": "He added tomatoes to the salad",
+                  "translation": "הוא הוסיף עגבניות לסלט"
+                }
+              ]
+            },
+            {
+              "word": "Potato",
+              "translation": "תפוח אדמה",
+              "examples": [
+                {
+                  "sentence": "We baked potatoes",
+                  "translation": "אפינו תפוחי אדמה"
+                },
+                {
+                  "sentence": "French fries are made from potatoes",
+                  "translation": "צ'יפס עשוי מתפוחי אדמה"
+                },
+                {
+                  "sentence": "Potatoes grow underground",
+                  "translation": "תפוחי אדמה גדלים מתחת לאדמה"
+                }
+              ]
+            },
+            {
+              "word": "Cucumber",
+              "translation": "מלפפון",
+              "examples": [
+                {
+                  "sentence": "She made a cucumber salad",
+                  "translation": "היא הכינה סלט מלפפונים"
+                },
+                {
+                  "sentence": "Cucumbers are green and fresh",
+                  "translation": "מלפפונים ירוקים ורעננים"
+                },
+                {
+                  "sentence": "He sliced cucumbers thinly",
+                  "translation": "הוא פרס מלפפונים דק"
+                }
+              ]
+            },
+            {
+              "word": "Strawberry",
+              "translation": "תות",
+              "examples": [
+                {
+                  "sentence": "I love strawberry ice cream",
+                  "translation": "אני אוהב גלידת תות"
+                },
+                {
+                  "sentence": "She picked strawberries in the field",
+                  "translation": "היא קטפה תותים בשדה"
+                },
+                {
+                  "sentence": "Strawberries are sweet and red",
+                  "translation": "תותים מתוקים ואדומים"
+                }
+              ]
+            },
+            {
+              "word": "Grapes",
+              "translation": "ענבים",
+              "examples": [
+                {
+                  "sentence": "He ate green grapes",
+                  "translation": "הוא אכל ענבים ירוקים"
+                },
+                {
+                  "sentence": "Grapes grow on vines",
+                  "translation": "ענבים גדלים על גפנים"
+                },
+                {
+                  "sentence": "They made wine from grapes",
+                  "translation": "הם ייצרו יין מענבים"
+                }
+              ]
+            },
+            {
+              "word": "Watermelon",
+              "translation": "אבטיח",
+              "examples": [
+                {
+                  "sentence": "We ate watermelon at the picnic",
+                  "translation": "אכלנו אבטיח בפיקניק"
+                },
+                {
+                  "sentence": "Watermelons are big and juicy",
+                  "translation": "אבטיחים גדולים ועסיסיים"
+                },
+                {
+                  "sentence": "She bought a watermelon from the market",
+                  "translation": "היא קנתה אבטיח מהשוק"
+                }
+              ]
+            },
+            {
+              "word": "Lettuce",
+              "translation": "חסה",
+              "examples": [
+                {
+                  "sentence": "He put lettuce in the sandwich",
+                  "translation": "הוא שם חסה בכריך"
+                },
+                {
+                  "sentence": "Lettuce is green and crunchy",
+                  "translation": "חסה ירוקה ופריכה"
+                },
+                {
+                  "sentence": "She grows lettuce in her garden",
+                  "translation": "היא מגדלת חסה בגינה שלה"
+                }
+              ]
+            },
+            {
+              "word": "Onion",
+              "translation": "בצל",
+              "examples": [
+                {
+                  "sentence": "He chopped an onion",
+                  "translation": "הוא קצץ בצל"
+                },
+                {
+                  "sentence": "Onions can make you cry",
+                  "translation": "בצל יכול לגרום לך לבכות"
+                },
+                {
+                  "sentence": "She fried onions for the soup",
+                  "translation": "היא טיגנה בצל למרק"
+                }
+              ]
+            },
+            {
+              "word": "Pepper",
+              "translation": "פלפל",
+              "examples": [
+                {
+                  "sentence": "She added red peppers to the dish",
+                  "translation": "היא הוסיפה פלפלים אדומים למנה"
+                },
+                {
+                  "sentence": "Peppers can be spicy",
+                  "translation": "פלפלים יכולים להיות חריפים"
+                },
+                {
+                  "sentence": "He stuffed the peppers with rice",
+                  "translation": "הוא מילא את הפלפלים באורז"
+                }
+              ]
+            },
+            {
+              "word": "Corn",
+              "translation": "תירס",
+              "examples": [
+                {
+                  "sentence": "They ate corn on the cob",
+                  "translation": "הם אכלו קלח תירס"
+                },
+                {
+                  "sentence": "Corn is yellow and sweet",
+                  "translation": "תירס צהוב ומתוק"
+                },
+                {
+                  "sentence": "She boiled the corn",
+                  "translation": "היא בישלה את התירס"
+                }
+              ]
+            },
+            {
+              "word": "Broccoli",
+              "translation": "ברוקולי",
+              "examples": [
+                {
+                  "sentence": "He doesn't like broccoli",
+                  "translation": "הוא לא אוהב ברוקולי"
+                },
+                {
+                  "sentence": "Broccoli is healthy",
+                  "translation": "ברוקולי בריא"
+                },
+                {
+                  "sentence": "She steamed the broccoli",
+                  "translation": "היא אדתה את הברוקולי"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "משקאות",
+          "words": [
+            {
+              "word": "Water",
+              "translation": "מים",
+              "examples": [
+                {
+                  "sentence": "Drink water every day",
+                  "translation": "שתה מים כל יום"
+                },
+                {
+                  "sentence": "The water is cold",
+                  "translation": "המים קרים"
+                },
+                {
+                  "sentence": "She poured water into the glass",
+                  "translation": "היא מזגה מים לכוס"
+                }
+              ]
+            },
+            {
+              "word": "Juice",
+              "translation": "מיץ",
+              "examples": [
+                {
+                  "sentence": "He likes orange juice",
+                  "translation": "הוא אוהב מיץ תפוזים"
+                },
+                {
+                  "sentence": "The juice is sweet",
+                  "translation": "המיץ מתוק"
+                },
+                {
+                  "sentence": "She made fresh juice",
+                  "translation": "היא הכינה מיץ טרי"
+                }
+              ]
+            },
+            {
+              "word": "Milk",
+              "translation": "חלב",
+              "examples": [
+                {
+                  "sentence": "She drinks milk with cookies",
+                  "translation": "היא שותה חלב עם עוגיות"
+                },
+                {
+                  "sentence": "Milk is white",
+                  "translation": "חלב לבן"
+                },
+                {
+                  "sentence": "He added milk to his coffee",
+                  "translation": "הוא הוסיף חלב לקפה שלו"
+                }
+              ]
+            },
+            {
+              "word": "Coffee",
+              "translation": "קפה",
+              "examples": [
+                {
+                  "sentence": "He drinks coffee every morning",
+                  "translation": "הוא שותה קפה כל בוקר"
+                },
+                {
+                  "sentence": "The coffee is hot",
+                  "translation": "הקפה חם"
+                },
+                {
+                  "sentence": "She likes black coffee",
+                  "translation": "היא אוהבת קפה שחור"
+                }
+              ]
+            },
+            {
+              "word": "Tea",
+              "translation": "תה",
+              "examples": [
+                {
+                  "sentence": "Would you like some tea?",
+                  "translation": "האם תרצה תה?"
+                },
+                {
+                  "sentence": "She drinks green tea",
+                  "translation": "היא שותה תה ירוק"
+                },
+                {
+                  "sentence": "The tea is bitter without sugar",
+                  "translation": "התה מר בלי סוכר"
+                }
+              ]
+            },
+            {
+              "word": "Soda",
+              "translation": "סודה",
+              "examples": [
+                {
+                  "sentence": "He bought a can of soda",
+                  "translation": "הוא קנה פחית סודה"
+                },
+                {
+                  "sentence": "Soda is fizzy",
+                  "translation": "סודה תוססת"
+                },
+                {
+                  "sentence": "They serve soda at the party",
+                  "translation": "הם מגישים סודה במסיבה"
+                }
+              ]
+            },
+            {
+              "word": "Wine",
+              "translation": "יין",
+              "examples": [
+                {
+                  "sentence": "They drank red wine",
+                  "translation": "הם שתו יין אדום"
+                },
+                {
+                  "sentence": "Wine is made from grapes",
+                  "translation": "יין עשוי מענבים"
+                },
+                {
+                  "sentence": "She poured wine into the glass",
+                  "translation": "היא מזגה יין לכוס"
+                }
+              ]
+            },
+            {
+              "word": "Beer",
+              "translation": "בירה",
+              "examples": [
+                {
+                  "sentence": "He ordered a cold beer",
+                  "translation": "הוא הזמין בירה קרה"
+                },
+                {
+                  "sentence": "Beer is popular in Germany",
+                  "translation": "בירה פופולרית בגרמניה"
+                },
+                {
+                  "sentence": "They drank beer at the bar",
+                  "translation": "הם שתו בירה בבר"
+                }
+              ]
+            },
+            {
+              "word": "Smoothie",
+              "translation": "שייק",
+              "examples": [
+                {
+                  "sentence": "She made a fruit smoothie",
+                  "translation": "היא הכינה שייק פירות"
+                },
+                {
+                  "sentence": "Smoothies are healthy",
+                  "translation": "שייקים בריאים"
+                },
+                {
+                  "sentence": "He likes banana smoothies",
+                  "translation": "הוא אוהב שייק בננה"
+                }
+              ]
+            },
+            {
+              "word": "Hot chocolate",
+              "translation": "שוקו חם",
+              "examples": [
+                {
+                  "sentence": "She drinks hot chocolate in winter",
+                  "translation": "היא שותה שוקו חם בחורף"
+                },
+                {
+                  "sentence": "Hot chocolate is sweet",
+                  "translation": "שוקו חם מתוק"
+                },
+                {
+                  "sentence": "He added marshmallows to his hot chocolate",
+                  "translation": "הוא הוסיף מרשמלו לשוקו החם שלו"
+                }
+              ]
+            },
+            {
+              "word": "Lemonade",
+              "translation": "לימונדה",
+              "examples": [
+                {
+                  "sentence": "They sold lemonade at the stand",
+                  "translation": "הם מכרו לימונדה בדוכן"
+                },
+                {
+                  "sentence": "Lemonade is refreshing",
+                  "translation": "לימונדה מרעננת"
+                },
+                {
+                  "sentence": "She made lemonade with lemons and sugar",
+                  "translation": "היא הכינה לימונדה עם לימונים וסוכר"
+                }
+              ]
+            },
+            {
+              "word": "Cocktail",
+              "translation": "קוקטייל",
+              "examples": [
+                {
+                  "sentence": "He ordered a cocktail at the bar",
+                  "translation": "הוא הזמין קוקטייל בבר"
+                },
+                {
+                  "sentence": "Cocktails have mixed drinks",
+                  "translation": "קוקטיילים הם משקאות מעורבבים"
+                },
+                {
+                  "sentence": "She enjoys fruity cocktails",
+                  "translation": "היא נהנית מקוקטיילים פירותיים"
+                }
+              ]
+            },
+            {
+              "word": "Energy drink",
+              "translation": "משקה אנרגיה",
+              "examples": [
+                {
+                  "sentence": "He drank an energy drink before the game",
+                  "translation": "הוא שתה משקה אנרגיה לפני המשחק"
+                },
+                {
+                  "sentence": "Energy drinks contain caffeine",
+                  "translation": "משקאות אנרגיה מכילים קפאין"
+                },
+                {
+                  "sentence": "She avoids energy drinks",
+                  "translation": "היא נמנעת ממשקאות אנרגיה"
+                }
+              ]
+            },
+            {
+              "word": "Milkshake",
+              "translation": "מילקשייק",
+              "examples": [
+                {
+                  "sentence": "They shared a chocolate milkshake",
+                  "translation": "הם חלקו מילקשייק שוקולד"
+                },
+                {
+                  "sentence": "Milkshakes are cold and sweet",
+                  "translation": "מילקשייקים קרים ומתוקים"
+                },
+                {
+                  "sentence": "He loves strawberry milkshakes",
+                  "translation": "הוא אוהב מילקשייק תות"
+                }
+              ]
+            },
+            {
+              "word": "Mineral water",
+              "translation": "מים מינרלים",
+              "examples": [
+                {
+                  "sentence": "She prefers mineral water",
+                  "translation": "היא מעדיפה מים מינרלים"
+                },
+                {
+                  "sentence": "Mineral water is healthy",
+                  "translation": "מים מינרלים בריאים"
+                },
+                {
+                  "sentence": "They ordered mineral water at the restaurant",
+                  "translation": "הם הזמינו מים מינרלים במסעדה"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ארוחות",
+          "words": [
+            {
+              "word": "Breakfast",
+              "translation": "ארוחת בוקר",
+              "examples": [
+                {
+                  "sentence": "She eats cereal for breakfast",
+                  "translation": "היא אוכלת דגנים לארוחת בוקר"
+                },
+                {
+                  "sentence": "Breakfast is important",
+                  "translation": "ארוחת הבוקר חשובה"
+                },
+                {
+                  "sentence": "They had eggs for breakfast",
+                  "translation": "הם אכלו ביצים לארוחת בוקר"
+                }
+              ]
+            },
+            {
+              "word": "Lunch",
+              "translation": "ארוחת צהריים",
+              "examples": [
+                {
+                  "sentence": "She is cooking lunch",
+                  "translation": "היא מבשלת ארוחת צהריים"
+                },
+                {
+                  "sentence": "They eat lunch at noon",
+                  "translation": "הם אוכלים ארוחת צהריים בצהריים"
+                },
+                {
+                  "sentence": "He packed a lunch for work",
+                  "translation": "הוא ארז ארוחת צהריים לעבודה"
+                }
+              ]
+            },
+            {
+              "word": "Dinner",
+              "translation": "ארוחת ערב",
+              "examples": [
+                {
+                  "sentence": "We have dinner at 7 PM",
+                  "translation": "אנחנו אוכלים ארוחת ערב בשעה 7"
+                },
+                {
+                  "sentence": "She prepared a big dinner",
+                  "translation": "היא הכינה ארוחת ערב גדולה"
+                },
+                {
+                  "sentence": "Dinner is ready",
+                  "translation": "ארוחת הערב מוכנה"
+                }
+              ]
+            },
+            {
+              "word": "Snack",
+              "translation": "חטיף",
+              "examples": [
+                {
+                  "sentence": "He ate a snack between meals",
+                  "translation": "הוא אכל חטיף בין הארוחות"
+                },
+                {
+                  "sentence": "Snacks can be healthy",
+                  "translation": "חטיפים יכולים להיות בריאים"
+                },
+                {
+                  "sentence": "She packed snacks for the trip",
+                  "translation": "היא ארזה חטיפים לטיול"
+                }
+              ]
+            },
+            {
+              "word": "Dessert",
+              "translation": "קינוח",
+              "examples": [
+                {
+                  "sentence": "Ice cream is a dessert",
+                  "translation": "גלידה היא קינוח"
+                },
+                {
+                  "sentence": "She baked a cake for dessert",
+                  "translation": "היא אפתה עוגה לקינוח"
+                },
+                {
+                  "sentence": "They love sweet desserts",
+                  "translation": "הם אוהבים קינוחים מתוקים"
+                }
+              ]
+            },
+            {
+              "word": "Appetizer",
+              "translation": "מתאבן",
+              "examples": [
+                {
+                  "sentence": "We ordered appetizers before the meal",
+                  "translation": "הזמנו מתאבנים לפני הארוחה"
+                },
+                {
+                  "sentence": "An appetizer can be a small dish",
+                  "translation": "מתאבן יכול להיות מנה קטנה"
+                },
+                {
+                  "sentence": "She made bruschetta as an appetizer",
+                  "translation": "היא הכינה ברוסקטה כמתאבן"
+                }
+              ]
+            },
+            {
+              "word": "Main course",
+              "translation": "מנה עיקרית",
+              "examples": [
+                {
+                  "sentence": "The main course is fish",
+                  "translation": "המנה העיקרית היא דג"
+                },
+                {
+                  "sentence": "He enjoyed the main course",
+                  "translation": "הוא נהנה מהמנה העיקרית"
+                },
+                {
+                  "sentence": "They served steak as the main course",
+                  "translation": "הם הגישו סטייק כמנה עיקרית"
+                }
+              ]
+            },
+            {
+              "word": "Supper",
+              "translation": "ארוחת ערב קלה",
+              "examples": [
+                {
+                  "sentence": "She had a light supper",
+                  "translation": "היא אכלה ארוחת ערב קלה"
+                },
+                {
+                  "sentence": "Supper is usually late",
+                  "translation": "ארוחת ערב קלה בדרך כלל מאוחרת"
+                },
+                {
+                  "sentence": "He prepared sandwiches for supper",
+                  "translation": "הוא הכין כריכים לארוחת ערב קלה"
+                }
+              ]
+            },
+            {
+              "word": "Brunch",
+              "translation": "בראנץ'",
+              "examples": [
+                {
+                  "sentence": "They went out for brunch",
+                  "translation": "הם יצאו לבראנץ'"
+                },
+                {
+                  "sentence": "Brunch is between breakfast and lunch",
+                  "translation": "בראנץ' הוא בין ארוחת בוקר לצהריים"
+                },
+                {
+                  "sentence": "She hosted a brunch party",
+                  "translation": "היא אירחה מסיבת בראנץ'"
+                }
+              ]
+            },
+            {
+              "word": "Buffet",
+              "translation": "מזנון",
+              "examples": [
+                {
+                  "sentence": "The hotel offers a buffet breakfast",
+                  "translation": "המלון מציע מזנון ארוחת בוקר"
+                },
+                {
+                  "sentence": "They enjoyed the buffet dinner",
+                  "translation": "הם נהנו מארוחת הערב במזנון"
+                },
+                {
+                  "sentence": "Buffet allows you to choose food",
+                  "translation": "מזנון מאפשר לך לבחור אוכל"
+                }
+              ]
+            },
+            {
+              "word": "Picnic",
+              "translation": "פיקניק",
+              "examples": [
+                {
+                  "sentence": "They had a picnic in the park",
+                  "translation": "הם ערכו פיקניק בפארק"
+                },
+                {
+                  "sentence": "She packed sandwiches for the picnic",
+                  "translation": "היא ארזה כריכים לפיקניק"
+                },
+                {
+                  "sentence": "Picnics are fun in summer",
+                  "translation": "פיקניקים כיפיים בקיץ"
+                }
+              ]
+            },
+            {
+              "word": "Barbecue",
+              "translation": "על האש",
+              "examples": [
+                {
+                  "sentence": "He grilled meat at the barbecue",
+                  "translation": "הוא צלה בשר על האש"
+                },
+                {
+                  "sentence": "They invited friends to a barbecue",
+                  "translation": "הם הזמינו חברים לעל האש"
+                },
+                {
+                  "sentence": "Barbecues are popular in summer",
+                  "translation": "על האש פופולרי בקיץ"
+                }
+              ]
+            },
+            {
+              "word": "Salad",
+              "translation": "סלט",
+              "examples": [
+                {
+                  "sentence": "She made a fresh salad",
+                  "translation": "היא הכינה סלט טרי"
+                },
+                {
+                  "sentence": "Salad is healthy",
+                  "translation": "סלט בריא"
+                },
+                {
+                  "sentence": "He added dressing to the salad",
+                  "translation": "הוא הוסיף רוטב לסלט"
+                }
+              ]
+            },
+            {
+              "word": "Soup",
+              "translation": "מרק",
+              "examples": [
+                {
+                  "sentence": "They served chicken soup",
+                  "translation": "הם הגישו מרק עוף"
+                },
+                {
+                  "sentence": "Soup is warm and comforting",
+                  "translation": "מרק חם ומנחם"
+                },
+                {
+                  "sentence": "She cooks vegetable soup",
+                  "translation": "היא מבשלת מרק ירקות"
+                }
+              ]
+            },
+            {
+              "word": "Sandwich",
+              "translation": "כריך",
+              "examples": [
+                {
+                  "sentence": "He ate a cheese sandwich",
+                  "translation": "הוא אכל כריך גבינה"
+                },
+                {
+                  "sentence": "Sandwiches are easy to make",
+                  "translation": "כריכים קלים להכנה"
+                },
+                {
+                  "sentence": "She packed sandwiches for lunch",
+                  "translation": "היא ארזה כריכים לארוחת צהריים"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

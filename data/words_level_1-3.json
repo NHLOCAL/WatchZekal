@@ -20,8 +20,8 @@
                   "translation": "שלום, מה שלומך?"
                 },
                 {
-                  "sentence": "Hello, my friend.",
-                  "translation": "שלום, חבר שלי."
+                  "sentence": "Hello, my friend",
+                  "translation": "שלום, חבר שלי"
                 }
               ]
             },
@@ -30,16 +30,16 @@
               "translation": "להתראות",
               "examples": [
                 {
-                  "sentence": "Goodbye for now.",
-                  "translation": "להתראות בינתיים."
+                  "sentence": "Goodbye for now",
+                  "translation": "להתראות בינתיים"
                 },
                 {
-                  "sentence": "Goodbye, see you soon.",
-                  "translation": "להתראות, נתראה בקרוב."
+                  "sentence": "Goodbye, see you soon",
+                  "translation": "להתראות, נתראה בקרוב"
                 },
                 {
-                  "sentence": "It's time to say goodbye.",
-                  "translation": "הגיע הזמן להגיד להתראות."
+                  "sentence": "It's time to say goodbye",
+                  "translation": "הגיע הזמן להגיד להתראות"
                 }
               ]
             },
@@ -48,16 +48,16 @@
               "translation": "בבקשה",
               "examples": [
                 {
-                  "sentence": "Please, come in.",
-                  "translation": "בבקשה, היכנס."
+                  "sentence": "Please, come in",
+                  "translation": "בבקשה, היכנס"
                 },
                 {
                   "sentence": "Can you help me, please?",
                   "translation": "האם אתה יכול לעזור לי, בבקשה?"
                 },
                 {
-                  "sentence": "Please take a seat.",
-                  "translation": "בבקשה שב."
+                  "sentence": "Please take a seat",
+                  "translation": "בבקשה שב"
                 }
               ]
             },
@@ -66,16 +66,16 @@
               "translation": "תודה",
               "examples": [
                 {
-                  "sentence": "Thank you very much.",
-                  "translation": "תודה רבה."
+                  "sentence": "Thank you very much",
+                  "translation": "תודה רבה"
                 },
                 {
-                  "sentence": "Thank you for your help.",
-                  "translation": "תודה על העזרה שלך."
+                  "sentence": "Thank you for your help",
+                  "translation": "תודה על העזרה שלך"
                 },
                 {
-                  "sentence": "No, thank you.",
-                  "translation": "לא, תודה."
+                  "sentence": "No, thank you",
+                  "translation": "לא, תודה"
                 }
               ]
             },
@@ -84,16 +84,16 @@
               "translation": "כן",
               "examples": [
                 {
-                  "sentence": "Yes, I understand.",
-                  "translation": "כן, אני מבין."
+                  "sentence": "Yes, I understand",
+                  "translation": "כן, אני מבין"
                 },
                 {
-                  "sentence": "Yes, please.",
-                  "translation": "כן, בבקשה."
+                  "sentence": "Yes, please",
+                  "translation": "כן, בבקשה"
                 },
                 {
-                  "sentence": "Is this yours? Yes.",
-                  "translation": "האם זה שלך? כן."
+                  "sentence": "Is this yours? Yes",
+                  "translation": "האם זה שלך? כן"
                 }
               ]
             },
@@ -102,16 +102,16 @@
               "translation": "לא",
               "examples": [
                 {
-                  "sentence": "No, I don't want it.",
-                  "translation": "לא, אני לא רוצה את זה."
+                  "sentence": "No, I don't want it",
+                  "translation": "לא, אני לא רוצה את זה"
                 },
                 {
-                  "sentence": "No, thank you.",
-                  "translation": "לא, תודה."
+                  "sentence": "No, thank you",
+                  "translation": "לא, תודה"
                 },
                 {
-                  "sentence": "Is this yours? No.",
-                  "translation": "האם זה שלך? לא."
+                  "sentence": "Is this yours? No",
+                  "translation": "האם זה שלך? לא"
                 }
               ]
             }
@@ -125,16 +125,16 @@
               "translation": "שם",
               "examples": [
                 {
-                  "sentence": "My name is Sarah.",
-                  "translation": "שמי שרה."
+                  "sentence": "My name is Sarah",
+                  "translation": "שמי שרה"
                 },
                 {
                   "sentence": "What is your name?",
                   "translation": "מה שמך?"
                 },
                 {
-                  "sentence": "His name is John.",
-                  "translation": "שמו ג'ון."
+                  "sentence": "His name is John",
+                  "translation": "שמו ג'ון"
                 }
               ]
             },
@@ -143,16 +143,16 @@
               "translation": "אני",
               "examples": [
                 {
-                  "sentence": "I am happy.",
-                  "translation": "אני שמח."
+                  "sentence": "I am happy",
+                  "translation": "אני שמח"
                 },
                 {
-                  "sentence": "I like coffee.",
-                  "translation": "אני אוהב קפה."
+                  "sentence": "I like coffee",
+                  "translation": "אני אוהב קפה"
                 },
                 {
-                  "sentence": "I have a dog.",
-                  "translation": "יש לי כלב."
+                  "sentence": "I have a dog",
+                  "translation": "יש לי כלב"
                 }
               ]
             },
@@ -161,16 +161,16 @@
               "translation": "אני (פועל עזר בזמן הווה)",
               "examples": [
                 {
-                  "sentence": "I am a student.",
-                  "translation": "אני תלמיד."
+                  "sentence": "I am a student",
+                  "translation": "אני תלמיד"
                 },
                 {
-                  "sentence": "I am from Israel.",
-                  "translation": "אני מישראל."
+                  "sentence": "I am from Israel",
+                  "translation": "אני מישראל"
                 },
                 {
-                  "sentence": "I am 20 years old.",
-                  "translation": "אני בן 20."
+                  "sentence": "I am 20 years old",
+                  "translation": "אני בן 20"
                 }
               ]
             },
@@ -179,16 +179,16 @@
               "translation": "מ-",
               "examples": [
                 {
-                  "sentence": "She is from France.",
-                  "translation": "היא מצרפת."
+                  "sentence": "She is from France",
+                  "translation": "היא מצרפת"
                 },
                 {
-                  "sentence": "We come from the city.",
-                  "translation": "אנחנו מגיעים מהעיר."
+                  "sentence": "We come from the city",
+                  "translation": "אנחנו מגיעים מהעיר"
                 },
                 {
-                  "sentence": "I have a gift from my friend.",
-                  "translation": "יש לי מתנה מחבר שלי."
+                  "sentence": "I have a gift from my friend",
+                  "translation": "יש לי מתנה מחבר שלי"
                 }
               ]
             },
@@ -197,16 +197,16 @@
               "translation": "אתה/את",
               "examples": [
                 {
-                  "sentence": "You are my friend.",
-                  "translation": "אתה חבר שלי."
+                  "sentence": "You are my friend",
+                  "translation": "אתה חבר שלי"
                 },
                 {
                   "sentence": "Are you okay?",
                   "translation": "האם אתה בסדר?"
                 },
                 {
-                  "sentence": "You have a nice car.",
-                  "translation": "יש לך מכונית נחמדה."
+                  "sentence": "You have a nice car",
+                  "translation": "יש לך מכונית נחמדה"
                 }
               ]
             }
@@ -220,16 +220,16 @@
               "translation": "אחד",
               "examples": [
                 {
-                  "sentence": "One apple.",
-                  "translation": "תפוח אחד."
+                  "sentence": "One apple",
+                  "translation": "תפוח אחד"
                 },
                 {
-                  "sentence": "I have one brother.",
-                  "translation": "יש לי אח אחד."
+                  "sentence": "I have one brother",
+                  "translation": "יש לי אח אחד"
                 },
                 {
-                  "sentence": "Give me one moment.",
-                  "translation": "תן לי רגע אחד."
+                  "sentence": "Give me one moment",
+                  "translation": "תן לי רגע אחד"
                 }
               ]
             },
@@ -238,16 +238,16 @@
               "translation": "שתיים",
               "examples": [
                 {
-                  "sentence": "Two books.",
-                  "translation": "שני ספרים."
+                  "sentence": "Two books",
+                  "translation": "שני ספרים"
                 },
                 {
-                  "sentence": "We have two dogs.",
-                  "translation": "יש לנו שני כלבים."
+                  "sentence": "We have two dogs",
+                  "translation": "יש לנו שני כלבים"
                 },
                 {
-                  "sentence": "She bought two dresses.",
-                  "translation": "היא קנתה שתי שמלות."
+                  "sentence": "She bought two dresses",
+                  "translation": "היא קנתה שתי שמלות"
                 }
               ]
             },
@@ -256,16 +256,16 @@
               "translation": "שלוש",
               "examples": [
                 {
-                  "sentence": "Three cars.",
-                  "translation": "שלוש מכוניות."
+                  "sentence": "Three cars",
+                  "translation": "שלוש מכוניות"
                 },
                 {
-                  "sentence": "He has three sisters.",
-                  "translation": "יש לו שלוש אחיות."
+                  "sentence": "He has three sisters",
+                  "translation": "יש לו שלוש אחיות"
                 },
                 {
-                  "sentence": "They ate three sandwiches.",
-                  "translation": "הם אכלו שלושה סנדוויצ'ים."
+                  "sentence": "They ate three sandwiches",
+                  "translation": "הם אכלו שלושה סנדוויצ'ים"
                 }
               ]
             },
@@ -274,16 +274,16 @@
               "translation": "ארבע",
               "examples": [
                 {
-                  "sentence": "Four chairs.",
-                  "translation": "ארבעה כיסאות."
+                  "sentence": "Four chairs",
+                  "translation": "ארבעה כיסאות"
                 },
                 {
-                  "sentence": "We need four tickets.",
-                  "translation": "אנחנו צריכים ארבעה כרטיסים."
+                  "sentence": "We need four tickets",
+                  "translation": "אנחנו צריכים ארבעה כרטיסים"
                 },
                 {
-                  "sentence": "She has four cats.",
-                  "translation": "יש לה ארבעה חתולים."
+                  "sentence": "She has four cats",
+                  "translation": "יש לה ארבעה חתולים"
                 }
               ]
             },
@@ -292,16 +292,16 @@
               "translation": "חמש",
               "examples": [
                 {
-                  "sentence": "Five apples.",
-                  "translation": "חמישה תפוחים."
+                  "sentence": "Five apples",
+                  "translation": "חמישה תפוחים"
                 },
                 {
-                  "sentence": "He ran five miles.",
-                  "translation": "הוא רץ חמישה מיילים."
+                  "sentence": "He ran five miles",
+                  "translation": "הוא רץ חמישה מיילים"
                 },
                 {
-                  "sentence": "They bought five gifts.",
-                  "translation": "הם קנו חמישה מתנות."
+                  "sentence": "They bought five gifts",
+                  "translation": "הם קנו חמישה מתנות"
                 }
               ]
             }
@@ -315,16 +315,16 @@
               "translation": "אדום",
               "examples": [
                 {
-                  "sentence": "The apple is red.",
-                  "translation": "התפוח אדום."
+                  "sentence": "The apple is red",
+                  "translation": "התפוח אדום"
                 },
                 {
-                  "sentence": "She wears a red dress.",
-                  "translation": "היא לובשת שמלה אדומה."
+                  "sentence": "She wears a red dress",
+                  "translation": "היא לובשת שמלה אדומה"
                 },
                 {
-                  "sentence": "Red is my favorite color.",
-                  "translation": "אדום הוא הצבע האהוב עליי."
+                  "sentence": "Red is my favorite color",
+                  "translation": "אדום הוא הצבע האהוב עליי"
                 }
               ]
             },
@@ -333,16 +333,16 @@
               "translation": "כחול",
               "examples": [
                 {
-                  "sentence": "The sky is blue.",
-                  "translation": "השמיים כחולים."
+                  "sentence": "The sky is blue",
+                  "translation": "השמיים כחולים"
                 },
                 {
-                  "sentence": "He has blue eyes.",
-                  "translation": "יש לו עיניים כחולות."
+                  "sentence": "He has blue eyes",
+                  "translation": "יש לו עיניים כחולות"
                 },
                 {
-                  "sentence": "I like the blue car.",
-                  "translation": "אני אוהב את המכונית הכחולה."
+                  "sentence": "I like the blue car",
+                  "translation": "אני אוהב את המכונית הכחולה"
                 }
               ]
             },
@@ -351,16 +351,16 @@
               "translation": "ירוק",
               "examples": [
                 {
-                  "sentence": "The grass is green.",
-                  "translation": "הדשא ירוק."
+                  "sentence": "The grass is green",
+                  "translation": "הדשא ירוק"
                 },
                 {
-                  "sentence": "She bought a green shirt.",
-                  "translation": "היא קנתה חולצה ירוקה."
+                  "sentence": "She bought a green shirt",
+                  "translation": "היא קנתה חולצה ירוקה"
                 },
                 {
-                  "sentence": "Green trees are beautiful.",
-                  "translation": "עצים ירוקים הם יפים."
+                  "sentence": "Green trees are beautiful",
+                  "translation": "עצים ירוקים הם יפים"
                 }
               ]
             },
@@ -369,16 +369,16 @@
               "translation": "צהוב",
               "examples": [
                 {
-                  "sentence": "The sun looks yellow.",
-                  "translation": "השמש נראית צהובה."
+                  "sentence": "The sun looks yellow",
+                  "translation": "השמש נראית צהובה"
                 },
                 {
-                  "sentence": "He has a yellow bike.",
-                  "translation": "יש לו אופניים צהובים."
+                  "sentence": "He has a yellow bike",
+                  "translation": "יש לו אופניים צהובים"
                 },
                 {
-                  "sentence": "The banana is yellow.",
-                  "translation": "הבננה צהובה."
+                  "sentence": "The banana is yellow",
+                  "translation": "הבננה צהובה"
                 }
               ]
             },
@@ -387,16 +387,16 @@
               "translation": "שחור",
               "examples": [
                 {
-                  "sentence": "I have a black cat.",
-                  "translation": "יש לי חתול שחור."
+                  "sentence": "I have a black cat",
+                  "translation": "יש לי חתול שחור"
                 },
                 {
-                  "sentence": "She wears black shoes.",
-                  "translation": "היא נועלת נעליים שחורות."
+                  "sentence": "She wears black shoes",
+                  "translation": "היא נועלת נעליים שחורות"
                 },
                 {
-                  "sentence": "The night is black.",
-                  "translation": "הלילה שחור."
+                  "sentence": "The night is black",
+                  "translation": "הלילה שחור"
                 }
               ]
             }
@@ -416,16 +416,16 @@
               "translation": "אמא",
               "examples": [
                 {
-                  "sentence": "My mother is kind.",
-                  "translation": "אמי נחמדה."
+                  "sentence": "My mother is kind",
+                  "translation": "אמי נחמדה"
                 },
                 {
-                  "sentence": "She is a mother of two.",
-                  "translation": "היא אמא לשניים."
+                  "sentence": "She is a mother of two",
+                  "translation": "היא אמא לשניים"
                 },
                 {
-                  "sentence": "Mother cooks dinner.",
-                  "translation": "אמא מבשלת ארוחת ערב."
+                  "sentence": "Mother cooks dinner",
+                  "translation": "אמא מבשלת ארוחת ערב"
                 }
               ]
             },
@@ -434,16 +434,16 @@
               "translation": "אבא",
               "examples": [
                 {
-                  "sentence": "His father is tall.",
-                  "translation": "אביו גבוה."
+                  "sentence": "His father is tall",
+                  "translation": "אביו גבוה"
                 },
                 {
-                  "sentence": "Father goes to work.",
-                  "translation": "אבא הולך לעבודה."
+                  "sentence": "Father goes to work",
+                  "translation": "אבא הולך לעבודה"
                 },
                 {
-                  "sentence": "I love my father.",
-                  "translation": "אני אוהב את אבא שלי."
+                  "sentence": "I love my father",
+                  "translation": "אני אוהב את אבא שלי"
                 }
               ]
             },
@@ -452,16 +452,16 @@
               "translation": "אח",
               "examples": [
                 {
-                  "sentence": "I have a brother.",
-                  "translation": "יש לי אח."
+                  "sentence": "I have a brother",
+                  "translation": "יש לי אח"
                 },
                 {
-                  "sentence": "His brother is older.",
-                  "translation": "אחיו מבוגר יותר."
+                  "sentence": "His brother is older",
+                  "translation": "אחיו מבוגר יותר"
                 },
                 {
-                  "sentence": "Brother and sister play.",
-                  "translation": "אח ואחות משחקים."
+                  "sentence": "Brother and sister play",
+                  "translation": "אח ואחות משחקים"
                 }
               ]
             },
@@ -470,16 +470,16 @@
               "translation": "אחות",
               "examples": [
                 {
-                  "sentence": "She is my sister.",
-                  "translation": "היא אחותי."
+                  "sentence": "She is my sister",
+                  "translation": "היא אחותי"
                 },
                 {
-                  "sentence": "Her sister is young.",
-                  "translation": "אחותה צעירה."
+                  "sentence": "Her sister is young",
+                  "translation": "אחותה צעירה"
                 },
                 {
-                  "sentence": "I help my sister.",
-                  "translation": "אני עוזר לאחותי."
+                  "sentence": "I help my sister",
+                  "translation": "אני עוזר לאחותי"
                 }
               ]
             },
@@ -488,16 +488,16 @@
               "translation": "סבתא",
               "examples": [
                 {
-                  "sentence": "Grandmother tells stories.",
-                  "translation": "סבתא מספרת סיפורים."
+                  "sentence": "Grandmother tells stories",
+                  "translation": "סבתא מספרת סיפורים"
                 },
                 {
-                  "sentence": "I visit my grandmother.",
-                  "translation": "אני מבקר את סבתא שלי."
+                  "sentence": "I visit my grandmother",
+                  "translation": "אני מבקר את סבתא שלי"
                 },
                 {
-                  "sentence": "She loves her grandmother.",
-                  "translation": "היא אוהבת את סבתא שלה."
+                  "sentence": "She loves her grandmother",
+                  "translation": "היא אוהבת את סבתא שלה"
                 }
               ]
             },
@@ -506,16 +506,16 @@
               "translation": "סבא",
               "examples": [
                 {
-                  "sentence": "His grandfather is funny.",
-                  "translation": "סבא שלו מצחיק."
+                  "sentence": "His grandfather is funny",
+                  "translation": "סבא שלו מצחיק"
                 },
                 {
-                  "sentence": "Grandfather plays chess.",
-                  "translation": "סבא משחק שחמט."
+                  "sentence": "Grandfather plays chess",
+                  "translation": "סבא משחק שחמט"
                 },
                 {
-                  "sentence": "We go fishing with grandfather.",
-                  "translation": "אנחנו הולכים לדוג עם סבא."
+                  "sentence": "We go fishing with grandfather",
+                  "translation": "אנחנו הולכים לדוג עם סבא"
                 }
               ]
             }
@@ -529,16 +529,16 @@
               "translation": "יום ראשון",
               "examples": [
                 {
-                  "sentence": "Today is Sunday.",
-                  "translation": "היום יום ראשון."
+                  "sentence": "Today is Sunday",
+                  "translation": "היום יום ראשון"
                 },
                 {
-                  "sentence": "We rest on Sunday.",
-                  "translation": "אנחנו נחים ביום ראשון."
+                  "sentence": "We rest on Sunday",
+                  "translation": "אנחנו נחים ביום ראשון"
                 },
                 {
-                  "sentence": "Sunday is the first day.",
-                  "translation": "יום ראשון הוא היום הראשון."
+                  "sentence": "Sunday is the first day",
+                  "translation": "יום ראשון הוא היום הראשון"
                 }
               ]
             },
@@ -547,16 +547,16 @@
               "translation": "יום שני",
               "examples": [
                 {
-                  "sentence": "Monday comes after Sunday.",
-                  "translation": "יום שני מגיע אחרי יום ראשון."
+                  "sentence": "Monday comes after Sunday",
+                  "translation": "יום שני מגיע אחרי יום ראשון"
                 },
                 {
-                  "sentence": "I have school on Monday.",
-                  "translation": "יש לי בית ספר ביום שני."
+                  "sentence": "I have school on Monday",
+                  "translation": "יש לי בית ספר ביום שני"
                 },
                 {
-                  "sentence": "She works on Monday.",
-                  "translation": "היא עובדת ביום שני."
+                  "sentence": "She works on Monday",
+                  "translation": "היא עובדת ביום שני"
                 }
               ]
             },
@@ -565,16 +565,16 @@
               "translation": "יום שלישי",
               "examples": [
                 {
-                  "sentence": "Tuesday is my favorite day.",
-                  "translation": "יום שלישי הוא היום האהוב עליי."
+                  "sentence": "Tuesday is my favorite day",
+                  "translation": "יום שלישי הוא היום האהוב עליי"
                 },
                 {
-                  "sentence": "We play soccer on Tuesday.",
-                  "translation": "אנחנו משחקים כדורגל ביום שלישי."
+                  "sentence": "We play soccer on Tuesday",
+                  "translation": "אנחנו משחקים כדורגל ביום שלישי"
                 },
                 {
-                  "sentence": "He has a meeting on Tuesday.",
-                  "translation": "יש לו פגישה ביום שלישי."
+                  "sentence": "He has a meeting on Tuesday",
+                  "translation": "יש לו פגישה ביום שלישי"
                 }
               ]
             },
@@ -583,16 +583,16 @@
               "translation": "יום רביעי",
               "examples": [
                 {
-                  "sentence": "Midweek is Wednesday.",
-                  "translation": "אמצע השבוע הוא יום רביעי."
+                  "sentence": "Midweek is Wednesday",
+                  "translation": "אמצע השבוע הוא יום רביעי"
                 },
                 {
-                  "sentence": "She visits on Wednesday.",
-                  "translation": "היא מבקרת ביום רביעי."
+                  "sentence": "She visits on Wednesday",
+                  "translation": "היא מבקרת ביום רביעי"
                 },
                 {
-                  "sentence": "Wednesday is busy.",
-                  "translation": "יום רביעי עמוס."
+                  "sentence": "Wednesday is busy",
+                  "translation": "יום רביעי עמוס"
                 }
               ]
             },
@@ -601,16 +601,16 @@
               "translation": "יום חמישי",
               "examples": [
                 {
-                  "sentence": "Thursday is almost weekend.",
-                  "translation": "יום חמישי הוא כמעט סוף השבוע."
+                  "sentence": "Thursday is almost weekend",
+                  "translation": "יום חמישי הוא כמעט סוף השבוע"
                 },
                 {
-                  "sentence": "We have a test on Thursday.",
-                  "translation": "יש לנו מבחן ביום חמישי."
+                  "sentence": "We have a test on Thursday",
+                  "translation": "יש לנו מבחן ביום חמישי"
                 },
                 {
-                  "sentence": "He travels on Thursday.",
-                  "translation": "הוא נוסע ביום חמישי."
+                  "sentence": "He travels on Thursday",
+                  "translation": "הוא נוסע ביום חמישי"
                 }
               ]
             },
@@ -619,16 +619,16 @@
               "translation": "יום שישי",
               "examples": [
                 {
-                  "sentence": "Friday is the last workday.",
-                  "translation": "יום שישי הוא היום האחרון לעבודה."
+                  "sentence": "Friday is the last workday",
+                  "translation": "יום שישי הוא היום האחרון לעבודה"
                 },
                 {
-                  "sentence": "We celebrate on Friday.",
-                  "translation": "אנחנו חוגגים ביום שישי."
+                  "sentence": "We celebrate on Friday",
+                  "translation": "אנחנו חוגגים ביום שישי"
                 },
                 {
-                  "sentence": "She finishes early on Friday.",
-                  "translation": "היא מסיימת מוקדם ביום שישי."
+                  "sentence": "She finishes early on Friday",
+                  "translation": "היא מסיימת מוקדם ביום שישי"
                 }
               ]
             },
@@ -637,16 +637,16 @@
               "translation": "יום שבת",
               "examples": [
                 {
-                  "sentence": "Saturday is the weekend.",
-                  "translation": "יום שבת הוא סוף השבוע."
+                  "sentence": "Saturday is the weekend",
+                  "translation": "יום שבת הוא סוף השבוע"
                 },
                 {
-                  "sentence": "They relax on Saturday.",
-                  "translation": "הם נרגעים ביום שבת."
+                  "sentence": "They relax on Saturday",
+                  "translation": "הם נרגעים ביום שבת"
                 },
                 {
-                  "sentence": "Saturday night is fun.",
-                  "translation": "ליל שבת הוא כיף."
+                  "sentence": "Saturday night is fun",
+                  "translation": "ליל שבת הוא כיף"
                 }
               ]
             }
@@ -664,12 +664,12 @@
                   "translation": "בוקר טוב!"
                 },
                 {
-                  "sentence": "I eat breakfast in the morning.",
-                  "translation": "אני אוכל ארוחת בוקר בבוקר."
+                  "sentence": "I eat breakfast in the morning",
+                  "translation": "אני אוכל ארוחת בוקר בבוקר"
                 },
                 {
-                  "sentence": "The sun rises in the morning.",
-                  "translation": "השמש זורחת בבוקר."
+                  "sentence": "The sun rises in the morning",
+                  "translation": "השמש זורחת בבוקר"
                 }
               ]
             },
@@ -682,12 +682,12 @@
                   "translation": "צהריים טובים!"
                 },
                 {
-                  "sentence": "She studies in the afternoon.",
-                  "translation": "היא לומדת בצהריים."
+                  "sentence": "She studies in the afternoon",
+                  "translation": "היא לומדת בצהריים"
                 },
                 {
-                  "sentence": "We meet in the afternoon.",
-                  "translation": "אנחנו נפגשים בצהריים."
+                  "sentence": "We meet in the afternoon",
+                  "translation": "אנחנו נפגשים בצהריים"
                 }
               ]
             },
@@ -700,12 +700,12 @@
                   "translation": "ערב טוב!"
                 },
                 {
-                  "sentence": "They have dinner in the evening.",
-                  "translation": "הם אוכלים ארוחת ערב בערב."
+                  "sentence": "They have dinner in the evening",
+                  "translation": "הם אוכלים ארוחת ערב בערב"
                 },
                 {
-                  "sentence": "The sky is beautiful in the evening.",
-                  "translation": "השמיים יפים בערב."
+                  "sentence": "The sky is beautiful in the evening",
+                  "translation": "השמיים יפים בערב"
                 }
               ]
             },
@@ -718,12 +718,12 @@
                   "translation": "לילה טוב!"
                 },
                 {
-                  "sentence": "He sleeps at night.",
-                  "translation": "הוא ישן בלילה."
+                  "sentence": "He sleeps at night",
+                  "translation": "הוא ישן בלילה"
                 },
                 {
-                  "sentence": "The stars shine at night.",
-                  "translation": "הכוכבים זורחים בלילה."
+                  "sentence": "The stars shine at night",
+                  "translation": "הכוכבים זורחים בלילה"
                 }
               ]
             }
@@ -737,16 +737,16 @@
               "translation": "אחת עשרה",
               "examples": [
                 {
-                  "sentence": "She is eleven years old.",
-                  "translation": "היא בת אחת עשרה."
+                  "sentence": "She is eleven years old",
+                  "translation": "היא בת אחת עשרה"
                 },
                 {
-                  "sentence": "Eleven players on a team.",
-                  "translation": "אחת עשרה שחקנים בקבוצה."
+                  "sentence": "Eleven players on a team",
+                  "translation": "אחת עשרה שחקנים בקבוצה"
                 },
                 {
-                  "sentence": "The clock shows eleven.",
-                  "translation": "השעון מראה אחת עשרה."
+                  "sentence": "The clock shows eleven",
+                  "translation": "השעון מראה אחת עשרה"
                 }
               ]
             },
@@ -755,16 +755,16 @@
               "translation": "שתים עשרה",
               "examples": [
                 {
-                  "sentence": "It's twelve o'clock.",
-                  "translation": "השעה שתים עשרה."
+                  "sentence": "It's twelve o'clock",
+                  "translation": "השעה שתים עשרה"
                 },
                 {
-                  "sentence": "He bought twelve eggs.",
-                  "translation": "הוא קנה שתים עשרה ביצים."
+                  "sentence": "He bought twelve eggs",
+                  "translation": "הוא קנה שתים עשרה ביצים"
                 },
                 {
-                  "sentence": "Twelve months in a year.",
-                  "translation": "שתים עשרה חודשים בשנה."
+                  "sentence": "Twelve months in a year",
+                  "translation": "שתים עשרה חודשים בשנה"
                 }
               ]
             },
@@ -773,16 +773,16 @@
               "translation": "שלוש עשרה",
               "examples": [
                 {
-                  "sentence": "She has thirteen dolls.",
-                  "translation": "יש לה שלוש עשרה בובות."
+                  "sentence": "She has thirteen dolls",
+                  "translation": "יש לה שלוש עשרה בובות"
                 },
                 {
-                  "sentence": "Thirteen is a lucky number.",
-                  "translation": "שלוש עשרה הוא מספר מזל."
+                  "sentence": "Thirteen is a lucky number",
+                  "translation": "שלוש עשרה הוא מספר מזל"
                 },
                 {
-                  "sentence": "He is thirteen today.",
-                  "translation": "הוא בן שלוש עשרה היום."
+                  "sentence": "He is thirteen today",
+                  "translation": "הוא בן שלוש עשרה היום"
                 }
               ]
             },
@@ -791,16 +791,16 @@
               "translation": "ארבע עשרה",
               "examples": [
                 {
-                  "sentence": "Fourteen students in the class.",
-                  "translation": "ארבע עשרה תלמידים בכיתה."
+                  "sentence": "Fourteen students in the class",
+                  "translation": "ארבע עשרה תלמידים בכיתה"
                 },
                 {
-                  "sentence": "She ran fourteen miles.",
-                  "translation": "היא רצה ארבעה עשר מיילים."
+                  "sentence": "She ran fourteen miles",
+                  "translation": "היא רצה ארבעה עשר מיילים"
                 },
                 {
-                  "sentence": "The book has fourteen chapters.",
-                  "translation": "הספר מכיל ארבעה עשר פרקים."
+                  "sentence": "The book has fourteen chapters",
+                  "translation": "הספר מכיל ארבעה עשר פרקים"
                 }
               ]
             },
@@ -809,16 +809,16 @@
               "translation": "חמש עשרה",
               "examples": [
                 {
-                  "sentence": "He is fifteen years old.",
-                  "translation": "הוא בן חמש עשרה."
+                  "sentence": "He is fifteen years old",
+                  "translation": "הוא בן חמש עשרה"
                 },
                 {
-                  "sentence": "Fifteen minutes left.",
-                  "translation": "נשארו חמש עשרה דקות."
+                  "sentence": "Fifteen minutes left",
+                  "translation": "נשארו חמש עשרה דקות"
                 },
                 {
-                  "sentence": "She scored fifteen points.",
-                  "translation": "היא השיגה חמש עשרה נקודות."
+                  "sentence": "She scored fifteen points",
+                  "translation": "היא השיגה חמש עשרה נקודות"
                 }
               ]
             },
@@ -827,16 +827,16 @@
               "translation": "שש עשרה",
               "examples": [
                 {
-                  "sentence": "The box contains sixteen chocolates.",
-                  "translation": "הקופסה מכילה שש-עשרה שוקולדים."
+                  "sentence": "The box contains sixteen chocolates",
+                  "translation": "הקופסה מכילה שש-עשרה שוקולדים"
                 },
                 {
-                  "sentence": "She turns sixteen tomorrow.",
-                  "translation": "היא תהיה בת שש עשרה מחר."
+                  "sentence": "She turns sixteen tomorrow",
+                  "translation": "היא תהיה בת שש עשרה מחר"
                 },
                 {
-                  "sentence": "They have sixteen dollars.",
-                  "translation": "יש להם שש עשרה דולר."
+                  "sentence": "They have sixteen dollars",
+                  "translation": "יש להם שש עשרה דולר"
                 }
               ]
             },
@@ -845,16 +845,16 @@
               "translation": "שבע עשרה",
               "examples": [
                 {
-                  "sentence": "Seventeen people attended.",
-                  "translation": "שבע עשרה אנשים נכחו."
+                  "sentence": "Seventeen people attended",
+                  "translation": "שבע עשרה אנשים נכחו"
                 },
                 {
-                  "sentence": "Room seventeen is upstairs.",
-                  "translation": "חדר שבע עשרה הוא בקומה העליונה."
+                  "sentence": "Room seventeen is upstairs",
+                  "translation": "חדר שבע עשרה הוא בקומה העליונה"
                 },
                 {
-                  "sentence": "She read seventeen books.",
-                  "translation": "היא קראה שבעה עשר ספרים."
+                  "sentence": "She read seventeen books",
+                  "translation": "היא קראה שבעה עשר ספרים"
                 }
               ]
             },
@@ -863,16 +863,16 @@
               "translation": "שמונה עשרה",
               "examples": [
                 {
-                  "sentence": "He is eighteen and can vote.",
-                  "translation": "הוא בן שמונה עשרה ויכול להצביע."
+                  "sentence": "He is eighteen and can vote",
+                  "translation": "הוא בן שמונה עשרה ויכול להצביע"
                 },
                 {
-                  "sentence": "Eighteen wheels on the truck.",
-                  "translation": "שמונה עשרה גלגלים במשאית."
+                  "sentence": "Eighteen wheels on the truck",
+                  "translation": "שמונה עשרה גלגלים במשאית"
                 },
                 {
-                  "sentence": "They traveled eighteen miles.",
-                  "translation": "הם נסעו שמונה עשר מיילים."
+                  "sentence": "They traveled eighteen miles",
+                  "translation": "הם נסעו שמונה עשר מיילים"
                 }
               ]
             },
@@ -881,16 +881,16 @@
               "translation": "תשע עשרה",
               "examples": [
                 {
-                  "sentence": "Nineteen students passed.",
-                  "translation": "תשע עשרה תלמידים עברו."
+                  "sentence": "Nineteen students passed",
+                  "translation": "תשע עשרה תלמידים עברו"
                 },
                 {
-                  "sentence": "He waited nineteen minutes.",
-                  "translation": "הוא חיכה תשע עשרה דקות."
+                  "sentence": "He waited nineteen minutes",
+                  "translation": "הוא חיכה תשע עשרה דקות"
                 },
                 {
-                  "sentence": "She collected nineteen stamps.",
-                  "translation": "היא אספה תשע עשרה בולים."
+                  "sentence": "She collected nineteen stamps",
+                  "translation": "היא אספה תשע עשרה בולים"
                 }
               ]
             },
@@ -899,16 +899,16 @@
               "translation": "עשרים",
               "examples": [
                 {
-                  "sentence": "She is twenty years old.",
-                  "translation": "היא בת עשרים."
+                  "sentence": "She is twenty years old",
+                  "translation": "היא בת עשרים"
                 },
                 {
-                  "sentence": "Twenty people came.",
-                  "translation": "עשרים אנשים באו."
+                  "sentence": "Twenty people came",
+                  "translation": "עשרים אנשים באו"
                 },
                 {
-                  "sentence": "They planted twenty trees.",
-                  "translation": "הם שתלו עשרים עצים."
+                  "sentence": "They planted twenty trees",
+                  "translation": "הם שתלו עשרים עצים"
                 }
               ]
             }
@@ -928,16 +928,16 @@
               "translation": "ראש",
               "examples": [
                 {
-                  "sentence": "He wears a hat on his head.",
-                  "translation": "הוא חובש כובע על ראשו."
+                  "sentence": "He wears a hat on his head",
+                  "translation": "הוא חובש כובע על ראשו"
                 },
                 {
-                  "sentence": "My head hurts.",
-                  "translation": "כואב לי הראש."
+                  "sentence": "My head hurts",
+                  "translation": "כואב לי הראש"
                 },
                 {
-                  "sentence": "She nodded her head.",
-                  "translation": "היא הנהנה בראשה."
+                  "sentence": "She nodded her head",
+                  "translation": "היא הנהנה בראשה"
                 }
               ]
             },
@@ -946,16 +946,16 @@
               "translation": "יד",
               "examples": [
                 {
-                  "sentence": "Raise your hand.",
-                  "translation": "הרם את ידך."
+                  "sentence": "Raise your hand",
+                  "translation": "הרם את ידך"
                 },
                 {
-                  "sentence": "She holds the baby in her hands.",
-                  "translation": "היא מחזיקה את התינוק בידיה."
+                  "sentence": "She holds the baby in her hands",
+                  "translation": "היא מחזיקה את התינוק בידיה"
                 },
                 {
-                  "sentence": "Wash your hands before eating.",
-                  "translation": "שטוף את ידיך לפני האכילה."
+                  "sentence": "Wash your hands before eating",
+                  "translation": "שטוף את ידיך לפני האכילה"
                 }
               ]
             },
@@ -964,16 +964,16 @@
               "translation": "רגל",
               "examples": [
                 {
-                  "sentence": "He broke his leg.",
-                  "translation": "הוא שבר את רגלו."
+                  "sentence": "He broke his leg",
+                  "translation": "הוא שבר את רגלו"
                 },
                 {
-                  "sentence": "She crossed her legs.",
-                  "translation": "היא שילבה את רגליה."
+                  "sentence": "She crossed her legs",
+                  "translation": "היא שילבה את רגליה"
                 },
                 {
-                  "sentence": "Long legs help him run fast.",
-                  "translation": "רגליים ארוכות עוזרות לו לרוץ מהר."
+                  "sentence": "Long legs help him run fast",
+                  "translation": "רגליים ארוכות עוזרות לו לרוץ מהר"
                 }
               ]
             },
@@ -982,16 +982,16 @@
               "translation": "עין",
               "examples": [
                 {
-                  "sentence": "She has blue eyes.",
-                  "translation": "יש לה עיניים כחולות."
+                  "sentence": "She has blue eyes",
+                  "translation": "יש לה עיניים כחולות"
                 },
                 {
-                  "sentence": "Keep an eye on the bag.",
-                  "translation": "שים עין על התיק."
+                  "sentence": "Keep an eye on the bag",
+                  "translation": "שים עין על התיק"
                 },
                 {
-                  "sentence": "He winked his eye.",
-                  "translation": "הוא קרץ בעינו."
+                  "sentence": "He winked his eye",
+                  "translation": "הוא קרץ בעינו"
                 }
               ]
             },
@@ -1000,16 +1000,16 @@
               "translation": "אוזן",
               "examples": [
                 {
-                  "sentence": "Listen with your ears.",
-                  "translation": "הקשיבו עם האוזניים שלכם."
+                  "sentence": "Listen with your ears",
+                  "translation": "הקשיבו עם האוזניים שלכם"
                 },
                 {
-                  "sentence": "She wears earrings in her ears.",
-                  "translation": "היא עונדת עגילים באוזניה."
+                  "sentence": "She wears earrings in her ears",
+                  "translation": "היא עונדת עגילים באוזניה"
                 },
                 {
-                  "sentence": "His ears are cold.",
-                  "translation": "האוזניים שלו קרות."
+                  "sentence": "His ears are cold",
+                  "translation": "האוזניים שלו קרות"
                 }
               ]
             },
@@ -1018,16 +1018,16 @@
               "translation": "פה",
               "examples": [
                 {
-                  "sentence": "Open your mouth.",
-                  "translation": "פתח את פיך."
+                  "sentence": "Open your mouth",
+                  "translation": "פתח את פיך"
                 },
                 {
-                  "sentence": "She smiled with her mouth.",
-                  "translation": "היא חייכה עם פיה."
+                  "sentence": "She smiled with her mouth",
+                  "translation": "היא חייכה עם פיה"
                 },
                 {
-                  "sentence": "Don't talk with your mouth full.",
-                  "translation": "אל תדבר עם פה מלא."
+                  "sentence": "Don't talk with your mouth full",
+                  "translation": "אל תדבר עם פה מלא"
                 }
               ]
             },
@@ -1036,16 +1036,16 @@
               "translation": "אף",
               "examples": [
                 {
-                  "sentence": "He has a small nose.",
-                  "translation": "יש לו אף קטן."
+                  "sentence": "He has a small nose",
+                  "translation": "יש לו אף קטן"
                 },
                 {
-                  "sentence": "She smells flowers with her nose.",
-                  "translation": "היא מריחה פרחים עם אפה."
+                  "sentence": "She smells flowers with her nose",
+                  "translation": "היא מריחה פרחים עם אפה"
                 },
                 {
-                  "sentence": "Cover your nose when you sneeze.",
-                  "translation": "כסה את אפך כשאתה מתעטש."
+                  "sentence": "Cover your nose when you sneeze",
+                  "translation": "כסה את אפך כשאתה מתעטש"
                 }
               ]
             }
@@ -1059,16 +1059,16 @@
               "translation": "חולצה",
               "examples": [
                 {
-                  "sentence": "I wear a blue shirt.",
-                  "translation": "אני לובש חולצה כחולה."
+                  "sentence": "I wear a blue shirt",
+                  "translation": "אני לובש חולצה כחולה"
                 },
                 {
-                  "sentence": "His shirt is dirty.",
-                  "translation": "החולצה שלו מלוכלכת."
+                  "sentence": "His shirt is dirty",
+                  "translation": "החולצה שלו מלוכלכת"
                 },
                 {
-                  "sentence": "She bought a new shirt.",
-                  "translation": "היא קנתה חולצה חדשה."
+                  "sentence": "She bought a new shirt",
+                  "translation": "היא קנתה חולצה חדשה"
                 }
               ]
             },
@@ -1077,16 +1077,16 @@
               "translation": "מכנסיים",
               "examples": [
                 {
-                  "sentence": "He wears black pants.",
-                  "translation": "הוא לובש מכנסיים שחורים."
+                  "sentence": "He wears black pants",
+                  "translation": "הוא לובש מכנסיים שחורים"
                 },
                 {
-                  "sentence": "My pants are too long.",
-                  "translation": "המכנסיים שלי ארוכים מדי."
+                  "sentence": "My pants are too long",
+                  "translation": "המכנסיים שלי ארוכים מדי"
                 },
                 {
-                  "sentence": "She needs new pants.",
-                  "translation": "היא צריכה מכנסיים חדשים."
+                  "sentence": "She needs new pants",
+                  "translation": "היא צריכה מכנסיים חדשים"
                 }
               ]
             },
@@ -1095,16 +1095,16 @@
               "translation": "נעליים",
               "examples": [
                 {
-                  "sentence": "Put on your shoes.",
-                  "translation": "נעול את הנעליים שלך."
+                  "sentence": "Put on your shoes",
+                  "translation": "נעול את הנעליים שלך"
                 },
                 {
-                  "sentence": "Her shoes are red.",
-                  "translation": "הנעליים שלה אדומות."
+                  "sentence": "Her shoes are red",
+                  "translation": "הנעליים שלה אדומות"
                 },
                 {
-                  "sentence": "I bought new running shoes.",
-                  "translation": "קניתי נעלי ריצה חדשות."
+                  "sentence": "I bought new running shoes",
+                  "translation": "קניתי נעלי ריצה חדשות"
                 }
               ]
             },
@@ -1113,16 +1113,16 @@
               "translation": "כובע",
               "examples": [
                 {
-                  "sentence": "He wears a hat.",
-                  "translation": "הוא חובש כובע."
+                  "sentence": "He wears a hat",
+                  "translation": "הוא חובש כובע"
                 },
                 {
-                  "sentence": "Her hat is stylish.",
-                  "translation": "הכובע שלה אופנתי."
+                  "sentence": "Her hat is stylish",
+                  "translation": "הכובע שלה אופנתי"
                 },
                 {
-                  "sentence": "I lost my hat.",
-                  "translation": "איבדתי את הכובע שלי."
+                  "sentence": "I lost my hat",
+                  "translation": "איבדתי את הכובע שלי"
                 }
               ]
             },
@@ -1131,16 +1131,16 @@
               "translation": "שמלה",
               "examples": [
                 {
-                  "sentence": "She wears a beautiful dress.",
-                  "translation": "היא לובשת שמלה יפה."
+                  "sentence": "She wears a beautiful dress",
+                  "translation": "היא לובשת שמלה יפה"
                 },
                 {
-                  "sentence": "The dress is too short.",
-                  "translation": "השמלה קצרה מדי."
+                  "sentence": "The dress is too short",
+                  "translation": "השמלה קצרה מדי"
                 },
                 {
-                  "sentence": "I like your dress.",
-                  "translation": "אני אוהב את השמלה שלך."
+                  "sentence": "I like your dress",
+                  "translation": "אני אוהב את השמלה שלך"
                 }
               ]
             },
@@ -1149,16 +1149,16 @@
               "translation": "גרביים",
               "examples": [
                 {
-                  "sentence": "Wear warm socks.",
-                  "translation": "לבש גרביים חמות."
+                  "sentence": "Wear warm socks",
+                  "translation": "לבש גרביים חמות"
                 },
                 {
-                  "sentence": "I can't find my socks.",
-                  "translation": "אני לא מוצא את הגרביים שלי."
+                  "sentence": "I can't find my socks",
+                  "translation": "אני לא מוצא את הגרביים שלי"
                 },
                 {
-                  "sentence": "Her socks are pink.",
-                  "translation": "הגרביים שלה ורודות."
+                  "sentence": "Her socks are pink",
+                  "translation": "הגרביים שלה ורודות"
                 }
               ]
             }
@@ -1172,16 +1172,16 @@
               "translation": "גדול",
               "examples": [
                 {
-                  "sentence": "The elephant is big.",
-                  "translation": "הפיל גדול."
+                  "sentence": "The elephant is big",
+                  "translation": "הפיל גדול"
                 },
                 {
-                  "sentence": "She lives in a big house.",
-                  "translation": "היא גרה בבית גדול."
+                  "sentence": "She lives in a big house",
+                  "translation": "היא גרה בבית גדול"
                 },
                 {
-                  "sentence": "He has a big dog.",
-                  "translation": "יש לו כלב גדול."
+                  "sentence": "He has a big dog",
+                  "translation": "יש לו כלב גדול"
                 }
               ]
             },
@@ -1190,16 +1190,16 @@
               "translation": "קטן",
               "examples": [
                 {
-                  "sentence": "The mouse is small.",
-                  "translation": "העכבר קטן."
+                  "sentence": "The mouse is small",
+                  "translation": "העכבר קטן"
                 },
                 {
-                  "sentence": "They bought a small car.",
-                  "translation": "הם קנו מכונית קטנה."
+                  "sentence": "They bought a small car",
+                  "translation": "הם קנו מכונית קטנה"
                 },
                 {
-                  "sentence": "She has small hands.",
-                  "translation": "יש לה ידיים קטנות."
+                  "sentence": "She has small hands",
+                  "translation": "יש לה ידיים קטנות"
                 }
               ]
             },
@@ -1208,16 +1208,16 @@
               "translation": "מהיר",
               "examples": [
                 {
-                  "sentence": "The cheetah is fast.",
-                  "translation": "הצ'יטה מהירה."
+                  "sentence": "The cheetah is fast",
+                  "translation": "הצ'יטה מהירה"
                 },
                 {
-                  "sentence": "He runs very fast.",
-                  "translation": "הוא רץ מאוד מהר."
+                  "sentence": "He runs very fast",
+                  "translation": "הוא רץ מאוד מהר"
                 },
                 {
-                  "sentence": "She drives a fast car.",
-                  "translation": "היא נוהגת במכונית מהירה."
+                  "sentence": "She drives a fast car",
+                  "translation": "היא נוהגת במכונית מהירה"
                 }
               ]
             },
@@ -1226,16 +1226,16 @@
               "translation": "איטי",
               "examples": [
                 {
-                  "sentence": "The turtle is slow.",
-                  "translation": "הצב איטי."
+                  "sentence": "The turtle is slow",
+                  "translation": "הצב איטי"
                 },
                 {
-                  "sentence": "Traffic is slow today.",
-                  "translation": "התנועה איטית היום."
+                  "sentence": "Traffic is slow today",
+                  "translation": "התנועה איטית היום"
                 },
                 {
-                  "sentence": "He walks slowly.",
-                  "translation": "הוא הולך לאט."
+                  "sentence": "He walks slowly",
+                  "translation": "הוא הולך לאט"
                 }
               ]
             },
@@ -1244,16 +1244,16 @@
               "translation": "חם",
               "examples": [
                 {
-                  "sentence": "The soup is hot.",
-                  "translation": "המרק חם."
+                  "sentence": "The soup is hot",
+                  "translation": "המרק חם"
                 },
                 {
-                  "sentence": "It's hot outside.",
-                  "translation": "חם בחוץ."
+                  "sentence": "It's hot outside",
+                  "translation": "חם בחוץ"
                 },
                 {
-                  "sentence": "She likes hot coffee.",
-                  "translation": "היא אוהבת קפה חם."
+                  "sentence": "She likes hot coffee",
+                  "translation": "היא אוהבת קפה חם"
                 }
               ]
             },
@@ -1262,16 +1262,16 @@
               "translation": "קר",
               "examples": [
                 {
-                  "sentence": "The ice is cold.",
-                  "translation": "הקרח קר."
+                  "sentence": "The ice is cold",
+                  "translation": "הקרח קר"
                 },
                 {
-                  "sentence": "It's cold in winter.",
-                  "translation": "קר בחורף."
+                  "sentence": "It's cold in winter",
+                  "translation": "קר בחורף"
                 },
                 {
-                  "sentence": "He drinks cold water.",
-                  "translation": "הוא שותה מים קרים."
+                  "sentence": "He drinks cold water",
+                  "translation": "הוא שותה מים קרים"
                 }
               ]
             }
