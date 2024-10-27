@@ -93,7 +93,7 @@
                 },
                 {
                   "sentence": "She enjoys playing card games with friends",
-                  "translation": "היא נהנית לשחק משחקי קלפים עם חברים"
+                  "translation": "היא נהנית לשחק משחקי קלפים עם חברות"
                 }
               ]
             },
@@ -301,7 +301,7 @@
               "examples": [
                 {
                   "sentence": "They love traveling to new countries each year",
-                  "translation": "הם אוהבים לטייל למדינות חדשות כל שנה"
+                  "translation": "הם אוהבים לטייל במדינות חדשות כל שנה"
                 },
                 {
                   "sentence": "She is traveling around Europe this summer",
@@ -489,12 +489,12 @@
                   "translation": "היא מנקה את הבית לפני שהאורחים מגיעים"
                 },
                 {
-                  "sentence": "They spend Saturday mornings cleaning together",
-                  "translation": "הם מבלים את שבת בבוקר בניקיון יחד"
+                  "sentence": "They spend Friday morning cleaning together",
+                  "translation": "הם מבלים את שישי בבוקר בניקיון יחד"
                 },
                 {
                   "sentence": "He is cleaning his car in the driveway",
-                  "translation": "הוא מנקה את המכונית שלו בכניסה"
+                  "translation": "הוא מנקה את המכונית שלו בחניה"
                 }
               ]
             },
@@ -757,7 +757,7 @@
             },
             {
               "word": "Never",
-              "translation": "לעולם לא",
+              "translation": "אף פעם",
               "examples": [
                 {
                   "sentence": "He never eats meat because he's vegetarian",
