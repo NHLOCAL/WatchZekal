@@ -129,7 +129,7 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
             'font_size': FONT_SIZE,
             'font_path': FONT_PATH
         },
-        'outro': {  # סגנון חדש ל-Outro
+        'outro': {  # סגנון ל-Outro
             'bg_color': (50, 150, 200),  # צבע רקע כחול נעים
             'gradient': None,
             'gradient_direction': 'vertical',
@@ -137,12 +137,20 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
             'font_size': 60,  # גודל גופן קטן יותר לטקסט רגיל
             'font_path': FONT_PATH
         },
-        'outro_title': {  # סגנון מיוחד לכותרת ה-Outro
+        'outro_title': {  # סגנון לכותרת הראשית של Outro
             'bg_color': (50, 150, 200),  # אותו צבע רקע כחול נעים
             'gradient': None,
             'gradient_direction': 'vertical',
             'text_color': (255, 255, 255),  # טקסט לבן
             'font_size': 120,  # גודל גופן גדול יותר
+            'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
+        },
+        'outro_subtitle': {  # סגנון לתת-כותרת של Outro
+            'bg_color': (50, 150, 200),  # אותו צבע רקע כחול נעים
+            'gradient': None,
+            'gradient_direction': 'vertical',
+            'text_color': (255, 255, 255),  # טקסט לבן
+            'font_size': 100,  # גודל גופן מעט קטן יותר מהכותרת
             'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
         }
     }
@@ -199,7 +207,14 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
     for i, (processed_line, width, height, current_style, font) in enumerate(processed_lines):
         x_text = (img.width - width) / 2  # מרכז אופקי
         draw.text((x_text, current_y), processed_line, font=font, fill=current_style['text_color'])
-        current_y += height + 40  # רווח בין השורות
+        
+        # קביעת רווח בין השורות
+        if i == 1:  # אחרי השורה השנייה "לימוד אנגלית בקלי קלות"
+            spacing = 60  # רווח גדול יותר
+        else:
+            spacing = 40  # רווח רגיל
+        
+        current_y += height + spacing  # רווח בין השורות
     
     # שמירת התמונה
     img = img.convert("RGB")  # המרת חזרה ל-RGB אם הוספנו אלפא
@@ -327,18 +342,18 @@ def create_outro():
     outro_image_path = os.path.join(TEMP_DIR, "outro.png")
     
     # טקסטים חדשים עם שם הערוץ
-    # הכותרת תהיה גדולה ומודגשת, יתר השורות קטנות יותר
+    # הכותרת תהיה גדולה ומודגשת, השורה השנייה מעט קטנה יותר
     text_lines_outro = [
-        "זה קל! - לימוד אנגלית בקלי קלות",
+        "זה קל!",
+        "לימוד אנגלית בקלי קלות",
         "Thank you for watching!",
         "Don't forget to like and subscribe."
     ]
     
-    # הגדרת סגנונות לכל שורה: הכותרת גדולה ומודגשת, יתר השורות קטנות יותר
-    # נניח שהכותרת היא השורה הראשונה, והיתר בסגנון 'outro'
-    line_styles_outro = ['outro_title'] + ['outro'] * (len(text_lines_outro) - 1)
+    # הגדרת סגנונות לכל שורה: הכותרת הראשונה 'outro_title', השנייה 'outro_subtitle', והיתר 'outro'
+    line_styles_outro = ['outro_title', 'outro_subtitle', 'outro', 'outro']
     
-    # יצירת תמונת ה-Outro עם הסגנון החדש
+    # יצירת תמונת ה-Outro עם הסגנונות החדשים
     create_image(text_lines_outro, outro_image_path, style='outro', line_styles=line_styles_outro)
     
     # יצירת אודיו לקליפ הסיום
