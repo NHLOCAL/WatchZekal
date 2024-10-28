@@ -346,8 +346,8 @@ def create_outro():
     # ניצור שני קבצי אודיו נפרדים ונשלב אותם יחד
     audio_outro_en = os.path.join(TEMP_DIR, "outro_en.mp3")
     audio_outro_he = os.path.join(TEMP_DIR, "outro_he.mp3")
-    create_audio("Thank you for watching! Don't forget to like and subscribe.", 'en', audio_outro_en)
-    create_audio("זה קל! תודה שצפיתם! אל תשכחו לעשות לייק ולהירשם.", 'iw', audio_outro_he)
+    create_audio("It's easy! Thank you for watching! Don't forget to like and subscribe.", 'en', audio_outro_en)
+    create_audio("זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם.", 'iw', audio_outro_he)
     
     # יצירת קליפ הסיום
     clip_outro = create_clip(outro_image_path, audio_outro_en, audio_outro_he)
@@ -504,7 +504,7 @@ for level in data['levels']:
 
     # שמירת הוידאו
     print(f"שומר את הסרטון בנתיב: {video_path}", flush=True)
-    final_clip.write_videofile(video_path, fps=24, codec='libx264', audio_codec='aac', threads=8)
+    final_clip.write_videofile(video_path, fps=24, codec='libx264', audio_codec='aac')
 
     # ניקוי קבצים זמניים לאחר שמירת הוידאו
     for temp_file in os.listdir(TEMP_DIR):
