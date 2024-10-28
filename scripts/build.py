@@ -61,7 +61,7 @@ BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')  # וד
 # הגדרות MoviePy
 VIDEO_SIZE = (1920, 1080)
 FPS = 24
-THREADS = 8
+THREADS = 4
 
 # פונקציה לסניטיזציה של שמות קבצים
 def sanitize_filename(filename):
