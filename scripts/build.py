@@ -194,14 +194,14 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
         width = bbox[2] - bbox[0]
         height = bbox[3] - bbox[1]
         processed_lines.append((processed_line, width, height, current_style, font))
-        total_height += height + 40  # רווח בין השורות (הגדלנו ל-40)
+        # הוספת רווח נוסף אחרי השורה השנייה אם זה Outro_subtitle
+        if i == 1 and line_styles[i] == 'outro_subtitle':
+            total_height += height + 60  # רווח גדול יותר אחרי השורה השנייה
+        else:
+            total_height += height + 40  # רווח רגיל
     
-    # מיקום ההתחלה במרכז אנכי, עם התאמות ספציפיות ל-Outro
-    if style.startswith('outro'):
-        # נניח שהכותרת הראשונה היא הגדולה
-        current_y = 150  # התחלה מעט למעלה
-    else:
-        current_y = (img.height - total_height) / 2
+    # מיקום ההתחלה במרכז אנכי
+    current_y = (img.height - total_height) / 2
     
     # ציור הטקסט
     for i, (processed_line, width, height, current_style, font) in enumerate(processed_lines):
@@ -209,7 +209,7 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
         draw.text((x_text, current_y), processed_line, font=font, fill=current_style['text_color'])
         
         # קביעת רווח בין השורות
-        if i == 1:  # אחרי השורה השנייה "לימוד אנגלית בקלי קלות"
+        if i == 1 and line_styles[i] == 'outro_subtitle':  # אחרי השורה השנייה "לימוד אנגלית בקלי קלות"
             spacing = 60  # רווח גדול יותר
         else:
             spacing = 40  # רווח רגיל
