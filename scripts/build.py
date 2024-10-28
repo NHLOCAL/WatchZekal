@@ -41,6 +41,11 @@ FONT_SIZE = 80  # גודל גופן רגיל
 SUBTOPIC_FONT_SIZE = 100  # גודל גופן ל-Subtopics
 LEVEL_FONT_SIZE = 120  # גודל גופן למסך פתיחת Level
 WORD_FONT_SIZE = 100  # גודל גופן גדול יותר למילים
+
+# הגדרות רווח בין שורות
+LINE_SPACING_NORMAL = 60  # רווח רגיל בין השורות
+LINE_SPACING_OUTRO_SUBTITLE = 80  # רווח גדול יותר אחרי שורה מסוימת
+
 BG_COLOR = (200, 210, 230)  # רקע מעט כהה יותר למילים ולמשפטים
 SUBTOPIC_BG_COLOR = (200, 220, 255)  # רקע ל-Subtopics
 LEVEL_BG_COLOR = (255, 223, 186)  # רקע למסך פתיחת Level
@@ -163,9 +168,9 @@ class ImageCreator:
             height = bbox[3] - bbox[1]
             processed_lines.append((processed_line, width, height, current_style, font))
             if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':
-                total_height += height + 60  # רווח גדול יותר אחרי השורה השנייה
+                total_height += height + LINE_SPACING_OUTRO_SUBTITLE  # רווח גדול יותר אחרי השורה השנייה
             else:
-                total_height += height + 40  # רווח רגיל
+                total_height += height + LINE_SPACING_NORMAL  # רווח רגיל
 
         # מיקום ההתחלה במרכז אנכי
         current_y = (img.height - total_height) / 2
@@ -177,9 +182,9 @@ class ImageCreator:
 
             # קביעת רווח בין השורות
             if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':  # אחרי השורה השנייה "לימוד אנגלית בקלי קלות"
-                spacing = 60  # רווח גדול יותר
+                spacing = LINE_SPACING_OUTRO_SUBTITLE  # רווח גדול יותר
             else:
-                spacing = 40  # רווח רגיל
+                spacing = LINE_SPACING_NORMAL  # רווח רגיל
 
             current_y += height + spacing  # רווח בין השורות
 
@@ -478,7 +483,7 @@ class VideoAssembler:
                 clip_subtopic,
                 audio_results.get((subtopic_name, 'en'), ""),
                 audio_results.get((subtopic_name, 'iw'), ""),
-                min_duration=3  # **הוספת מינימום משך 5 שניות**
+                min_duration=4.5  # **הוספת מינימום משך 5 שניות**
             )
 
             # יצירת מעבר בין הקליפ הקודם לחדש
