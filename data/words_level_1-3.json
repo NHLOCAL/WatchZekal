@@ -304,6 +304,96 @@
                   "translation": "הם קנו חמישה מתנות"
                 }
               ]
+            },
+            {
+              "word": "Six",
+              "translation": "שש",
+              "examples": [
+                {
+                  "sentence": "Six students",
+                  "translation": "שישה תלמידים"
+                },
+                {
+                  "sentence": "He is six years old",
+                  "translation": "הוא בן שש"
+                },
+                {
+                  "sentence": "Six dogs",
+                  "translation": "שישה כלבים"
+                }
+              ]
+            },
+            {
+              "word": "Seven",
+              "translation": "שבע",
+              "examples": [
+                {
+                  "sentence": "Seven days a week",
+                  "translation": "שבעה ימים בשבוע"
+                },
+                {
+                  "sentence": "Room number seven",
+                  "translation": "חדר מספר שבע"
+                },
+                {
+                  "sentence": "Seven colors",
+                  "translation": "שבעה צבעים"
+                }
+              ]
+            },
+            {
+              "word": "Eight",
+              "translation": "שמונה",
+              "examples": [
+                {
+                  "sentence": "Eight legs",
+                  "translation": "שמונה רגליים"
+                },
+                {
+                  "sentence": "It's eight o'clock",
+                  "translation": "השעה שמונה"
+                },
+                {
+                  "sentence": "Eight people",
+                  "translation": "שמונה אנשים"
+                }
+              ]
+            },
+            {
+              "word": "Nine",
+              "translation": "תשע",
+              "examples": [
+                {
+                  "sentence": "Nine months",
+                  "translation": "תשעה חודשים"
+                },
+                {
+                  "sentence": "Nine flowers",
+                  "translation": "תשעה פרחים"
+                },
+                {
+                  "sentence": "Class number nine",
+                  "translation": "כיתה מספר תשע"
+                }
+              ]
+            },
+            {
+              "word": "Ten",
+              "translation": "עשר",
+              "examples": [
+                {
+                  "sentence": "Ten fingers",
+                  "translation": "עשר אצבעות"
+                },
+                {
+                  "sentence": "I can count to ten",
+                  "translation": "אני יכול לספור עד עשר"
+                },
+                {
+                  "sentence": "Ten students",
+                  "translation": "עשרה תלמידים"
+                }
+              ]
             }
           ]
         },

@@ -23,7 +23,7 @@ THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 TEMP_DIR = os.path.join(OUTPUT_DIR, 'temp')
 
 # נתיבים לקבצים
-JSON_FILE = os.path.join(DATA_DIR, 'words.json')
+JSON_FILE = os.path.join(DATA_DIR, 'words_level_1-3.json')
 FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Regular.ttf')  # ודא שהגופן תומך בעברית
 SUBTOPIC_FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Bold.ttf')  # גופן מודגש עבור Subtopics
 WORD_FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Bold.ttf')  # גופן מודגש עבור מילים
@@ -519,7 +519,7 @@ for level in data['levels']:
 
     # שמירת הוידאו
     print(f"שומר את הסרטון בנתיב: {video_path}", flush=True)
-    final_clip.write_videofile(video_path, fps=24, codec='libx264', audio_codec='aac')
+    final_clip.write_videofile(video_path, fps=24, codec='libx264', audio_codec='aac', threads=8)
 
     # ניקוי קבצים זמניים לאחר שמירת הוידאו
     for temp_file in os.listdir(TEMP_DIR):
