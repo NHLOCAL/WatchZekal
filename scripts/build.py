@@ -29,7 +29,8 @@ OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'videos')
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 
 # נתיבים לקבצים
-JSON_FILE = os.path.join(DATA_DIR, 'words_level_1-3.json')
+json_name = input('add json name:\n>>>')
+JSON_FILE = os.path.join(DATA_DIR, f'{json_name}.json')
 FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Regular.ttf')  # ודא שהגופן תומך בעברית
 SUBTOPIC_FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Bold.ttf')  # גופן מודגש עבור Subtopics
 WORD_FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Bold.ttf')  # גופן מודגש עבור מילים
@@ -148,7 +149,7 @@ class ImageCreator:
         total_height = 0
         processed_lines = []
         for i, line in enumerate(text_lines):
-            if line_styles:
+            if line_styles and i < len(line_styles):
                 current_style = style_definitions[line_styles[i]]
             else:
                 current_style = style_definitions['normal']
@@ -299,7 +300,7 @@ class VideoCreator:
         filename = f"{'_'.join(text_lines)}.png"
         temp_image_path = self.file_manager.get_temp_path(filename)
         img.save(temp_image_path)
-        # יצירת קליפ ללא הגדרת משך, יוגדר לפי האודיו
+        # יצירת קליפ ללא הגדרת משך, יוגדר לפי האודיו או min_duration
         return ImageClip(temp_image_path)
 
     def create_audio_clips(self, audio_paths):
@@ -314,11 +315,14 @@ class VideoCreator:
         else:
             return None
 
-    def create_clip(self, image_clip, audio_en_path, audio_he_path):
+    def create_clip(self, image_clip, audio_en_path, audio_he_path, min_duration=0):
         audio_total = self.create_audio_clips([audio_en_path, audio_he_path])
         if audio_total:
-            image_clip = image_clip.set_duration(audio_total.duration)
+            duration = max(audio_total.duration, min_duration)
+            image_clip = image_clip.set_duration(duration)
             image_clip = image_clip.set_audio(audio_total)
+        else:
+            image_clip = image_clip.set_duration(min_duration)
         return image_clip
 
     def slide_transition(self, clip1, clip2, duration=TRANSITION_DURATION):
@@ -401,7 +405,8 @@ class VideoCreator:
         clip_intro = self.create_clip(
             clip_intro,
             audio_results.get((f"Level {level_num}", 'en'), ""),
-            audio_results.get((level_name, 'iw'), "")
+            audio_results.get((level_name, 'iw'), ""),
+            min_duration=5  # **הוספת מינימום משך 5 שניות**
         )
         return clip_intro
 
@@ -472,7 +477,8 @@ class VideoAssembler:
             clip_subtopic = self.video_creator.create_clip(
                 clip_subtopic,
                 audio_results.get((subtopic_name, 'en'), ""),
-                audio_results.get((subtopic_name, 'iw'), "")
+                audio_results.get((subtopic_name, 'iw'), ""),
+                min_duration=3  # **הוספת מינימום משך 5 שניות**
             )
 
             # יצירת מעבר בין הקליפ הקודם לחדש
@@ -546,11 +552,11 @@ class VideoAssembler:
 
                     clips.append(clip_example)
 
-            # הוספת קטע הסיום
-            clip_outro = self.video_creator.create_outro()
-            transition = self.video_creator.slide_transition(clips[-1], clip_outro)
-            clips.append(transition)
-            clips.append(clip_outro)
+        # יצירת קטע הסיום
+        clip_outro = self.video_creator.create_outro()
+        transition = self.video_creator.slide_transition(clips[-1], clip_outro)
+        clips.append(transition)
+        clips.append(clip_outro)
 
         # איחוד כל הקליפים לסרטון אחד עבור ה-Level
         logging.info(f"איחוד הקליפים לסרטון Level {level_num}: {level_name}")
