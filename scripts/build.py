@@ -44,7 +44,7 @@ WORD_TEXT_COLOR = (0, 0, 0)  # טקסט למילים
 TRANSITION_DURATION = 1  # משך המעבר בשניות
 
 # נתיב למוזיקת רקע (אם יש)
-BACKGROUNDS_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')  # ודא שהקובץ קיים
+BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')  # ודא שהקובץ קיים
 
 # ודא שתיקיות היצוא זמינות
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -134,7 +134,7 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
             'gradient': None,
             'gradient_direction': 'vertical',
             'text_color': (255, 255, 255),  # טקסט לבן
-            'font_size': 100,
+            'font_size': 60,  # גודל גופן קטן יותר לטקסט רגיל
             'font_path': FONT_PATH
         },
         'outro_title': {  # סגנון מיוחד לכותרת ה-Outro
@@ -143,7 +143,7 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
             'gradient_direction': 'vertical',
             'text_color': (255, 255, 255),  # טקסט לבן
             'font_size': 120,  # גודל גופן גדול יותר
-            'font_path': FONT_PATH  # ניתן להשתמש בגופן מודגש אם רוצים
+            'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
         }
     }
     
@@ -186,7 +186,7 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
         width = bbox[2] - bbox[0]
         height = bbox[3] - bbox[1]
         processed_lines.append((processed_line, width, height, current_style, font))
-        total_height += height + 20  # רווח בין השורות
+        total_height += height + 40  # רווח בין השורות (הגדלנו ל-40)
     
     # מיקום ההתחלה במרכז אנכי, עם התאמות ספציפיות ל-Outro
     if style.startswith('outro'):
@@ -199,7 +199,7 @@ def create_image(text_lines, image_path, style='normal', line_styles=None):
     for i, (processed_line, width, height, current_style, font) in enumerate(processed_lines):
         x_text = (img.width - width) / 2  # מרכז אופקי
         draw.text((x_text, current_y), processed_line, font=font, fill=current_style['text_color'])
-        current_y += height + 20  # רווח בין השורות
+        current_y += height + 40  # רווח בין השורות
     
     # שמירת התמונה
     img = img.convert("RGB")  # המרת חזרה ל-RGB אם הוספנו אלפא
@@ -218,8 +218,8 @@ def create_audio(text, lang, audio_path):
 def create_clip(image_path, audio_en_path, audio_he_path):
     audio_en = AudioFileClip(audio_en_path)
     audio_he = AudioFileClip(audio_he_path)
-    # חיבור האודיו באנגלית והעברית יחד
-    audio_total = CompositeAudioClip([audio_en, audio_he])
+    # חיבור האודיו באנגלית והעברית אחד אחרי השני
+    audio_total = concatenate_audioclips([audio_en, audio_he])
     # יצירת קליפ תמונה עם משך בהתאם לאודיו
     img_clip = ImageClip(image_path).set_duration(audio_total.duration)
     img_clip = img_clip.set_audio(audio_total)
@@ -331,13 +331,11 @@ def create_outro():
     text_lines_outro = [
         "זה קל! - לימוד אנגלית בקלי קלות",
         "Thank you for watching!",
-        "Don't forget to like and subscribe.",
-        "Click the bell for notifications.",
-        "Watch more videos!"
+        "Don't forget to like and subscribe."
     ]
     
     # הגדרת סגנונות לכל שורה: הכותרת גדולה ומודגשת, יתר השורות קטנות יותר
-    # נניח שהכותרת היא השורה הראשונה, והיתר בסגנון 'normal'
+    # נניח שהכותרת היא השורה הראשונה, והיתר בסגנון 'outro'
     line_styles_outro = ['outro_title'] + ['outro'] * (len(text_lines_outro) - 1)
     
     # יצירת תמונת ה-Outro עם הסגנון החדש
@@ -348,8 +346,8 @@ def create_outro():
     # ניצור שני קבצי אודיו נפרדים ונשלב אותם יחד
     audio_outro_en = os.path.join(TEMP_DIR, "outro_en.mp3")
     audio_outro_he = os.path.join(TEMP_DIR, "outro_he.mp3")
-    create_audio("Thank you for watching! Don't forget to like and subscribe. Click the bell for notifications. Watch more videos!", 'en', audio_outro_en)
-    create_audio("זה קל! תודה שצפיתם! אל תשכחו לעשות לייק ולהירשם לערוץ. לחצו על הפעמון לקבלת התראות. צפו בסרטונים נוספים!", 'iw', audio_outro_he)
+    create_audio("Thank you for watching! Don't forget to like and subscribe.", 'en', audio_outro_en)
+    create_audio("זה קל! תודה שצפיתם! אל תשכחו לעשות לייק ולהירשם.", 'iw', audio_outro_he)
     
     # יצירת קליפ הסיום
     clip_outro = create_clip(outro_image_path, audio_outro_en, audio_outro_he)
@@ -498,8 +496,8 @@ for level in data['levels']:
     final_clip = concatenate_videoclips(clips, method="compose")
 
     # הוספת מוזיקת רקע אם קיימת
-    if os.path.exists(BACKGROUNDS_MUSIC_PATH):
-        final_clip = add_background_music(final_clip, BACKGROUNDS_MUSIC_PATH, volume=0.1)
+    if os.path.exists(BACKGROUND_MUSIC_PATH):
+        final_clip = add_background_music(final_clip, BACKGROUND_MUSIC_PATH, volume=0.1)
 
     # הוספת הלוגו לסרטון
     final_clip = add_logo_to_video(final_clip, LOGO_PATH, position='top-right', size=(150, 150), opacity=200, margin=(20, 20))
