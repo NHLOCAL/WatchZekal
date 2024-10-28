@@ -29,7 +29,7 @@ OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'videos')
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 
 # נתיבים לקבצים
-JSON_FILE = os.path.join(DATA_DIR, 'words.json')
+JSON_FILE = os.path.join(DATA_DIR, 'words_level_1-3.json')
 FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Regular.ttf')  # ודא שהגופן תומך בעברית
 SUBTOPIC_FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Bold.ttf')  # גופן מודגש עבור Subtopics
 WORD_FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Bold.ttf')  # גופן מודגש עבור מילים
@@ -130,7 +130,13 @@ class ImageCreator:
             return self.cache[cache_key]
 
         # יצירת רקע
-        first_style = style_definitions[line_styles[0]] if line_styles else style_definitions['normal']
+        if line_styles:
+            # אם line_styles מוגדר, נשתמש בסגנון לכל שורה
+            first_style = style_definitions[line_styles[0]]
+        else:
+            # אחרת, נשתמש בסגנון הכללי
+            first_style = style_definitions['normal']
+
         if first_style['gradient']:
             img = self.create_gradient_background(1920, 1080, first_style['gradient'][0], first_style['gradient'][1], first_style['gradient_direction'])
         else:
@@ -142,7 +148,10 @@ class ImageCreator:
         total_height = 0
         processed_lines = []
         for i, line in enumerate(text_lines):
-            current_style = style_definitions[line_styles[i]] if line_styles else style_definitions['normal']
+            if line_styles:
+                current_style = style_definitions[line_styles[i]]
+            else:
+                current_style = style_definitions['normal']
             if is_hebrew(line):
                 processed_line = process_hebrew_text(line)
             else:
@@ -290,8 +299,8 @@ class VideoCreator:
         filename = f"{'_'.join(text_lines)}.png"
         temp_image_path = self.file_manager.get_temp_path(filename)
         img.save(temp_image_path)
-        # יצירת קליפ עם משך מותאם לפי האודיו
-        return ImageClip(temp_image_path).set_duration(5)  # משך ברירת מחדל, יותאם לפי האודיו
+        # יצירת קליפ ללא הגדרת משך, יוגדר לפי האודיו
+        return ImageClip(temp_image_path)
 
     def create_audio_clips(self, audio_paths):
         audio_clips = []
@@ -379,7 +388,9 @@ class VideoCreator:
 
     def create_level_intro(self, level_num, level_name):
         text_lines_intro = [f"Level {level_num}", level_name]
-        clip_intro = self.create_image_clip(text_lines_intro, 'level')
+        # הגדרת סגנון לכל שורה: 'level' לכל שורה
+        line_styles_intro = ['level', 'level']
+        clip_intro = self.create_image_clip(text_lines_intro, 'level', line_styles_intro)
 
         # יצירת אודיו לפתיחת Level
         audio_tasks = [
@@ -387,7 +398,11 @@ class VideoCreator:
             (level_name, 'iw')
         ]
         audio_results = self.audio_creator.create_audios(audio_tasks)
-        clip_intro = self.create_clip(clip_intro, audio_results.get((f"Level {level_num}", 'en'), ""), audio_results.get((level_name, 'iw'), ""))
+        clip_intro = self.create_clip(
+            clip_intro,
+            audio_results.get((f"Level {level_num}", 'en'), ""),
+            audio_results.get((level_name, 'iw'), "")
+        )
         return clip_intro
 
     def create_outro(self):
@@ -406,8 +421,11 @@ class VideoCreator:
             ("זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם.", 'iw')
         ]
         audio_results = self.audio_creator.create_audios(audio_tasks)
-        clip_outro = self.create_clip(clip_outro, audio_results.get(("It's easy! Thank you for watching! Don't forget to like and subscribe.", 'en'), ""), 
-                                      audio_results.get(("זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם.", 'iw'), ""))
+        clip_outro = self.create_clip(
+            clip_outro,
+            audio_results.get(("It's easy! Thank you for watching! Don't forget to like and subscribe.", 'en'), ""),
+            audio_results.get(("זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם.", 'iw'), "")
+        )
         return clip_outro
 
 class VideoAssembler:
@@ -441,9 +459,9 @@ class VideoAssembler:
             logging.info(f"  מעבד Subtopic: {subtopic_name}")
 
             # יצירת כותרת Subtopic עם עיצוב ייחודי
-            safe_subtopic_name = sanitize_filename("".join([c for c in subtopic_name if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
             text_lines_subtopic = [subtopic_name]
-            clip_subtopic = self.video_creator.create_image_clip(text_lines_subtopic, 'subtopic')
+            line_styles_subtopic = ['subtopic']
+            clip_subtopic = self.video_creator.create_image_clip(text_lines_subtopic, 'subtopic', line_styles_subtopic)
 
             # יצירת אודיו Subtopic
             audio_tasks = [
@@ -451,8 +469,11 @@ class VideoAssembler:
                 (subtopic_name, 'iw')
             ]
             audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-            clip_subtopic = self.video_creator.create_clip(clip_subtopic, audio_results.get((subtopic_name, 'en'), ""), 
-                                                           audio_results.get((subtopic_name, 'iw'), ""))
+            clip_subtopic = self.video_creator.create_clip(
+                clip_subtopic,
+                audio_results.get((subtopic_name, 'en'), ""),
+                audio_results.get((subtopic_name, 'iw'), "")
+            )
 
             # יצירת מעבר בין הקליפ הקודם לחדש
             if clips:
@@ -470,10 +491,9 @@ class VideoAssembler:
                 logging.info(f"    מעבד מילה: {word_text} - {word_translation}")
 
                 # יצירת תמונה ראשונה: המילה והתרגום
-                safe_word_text = sanitize_filename("".join([c for c in word_text if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
                 text_lines_word = [word_text, word_translation]
                 line_styles_word = ['word', 'normal']
-                clip_word = self.video_creator.create_image_clip(text_lines_word, 'normal', line_styles_word)
+                clip_word = self.video_creator.create_image_clip(text_lines_word, 'word', line_styles_word)
 
                 # יצירת אודיו למילה ולתרגום
                 audio_tasks = [
@@ -481,8 +501,11 @@ class VideoAssembler:
                     (word_translation, 'iw')
                 ]
                 audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-                clip_word = self.video_creator.create_clip(clip_word, audio_results.get((word_text, 'en'), ""), 
-                                                          audio_results.get((word_translation, 'iw'), ""))
+                clip_word = self.video_creator.create_clip(
+                    clip_word,
+                    audio_results.get((word_text, 'en'), ""),
+                    audio_results.get((word_translation, 'iw'), "")
+                )
 
                 # יצירת מעבר
                 if clips:
@@ -499,9 +522,9 @@ class VideoAssembler:
                     logging.info(f"      מעבד משפט: {sentence} - {translation}")
 
                     # יצירת תמונה למשפט
-                    safe_sentence = sanitize_filename("".join([c for c in sentence if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
                     text_lines_example = [sentence, translation]
-                    clip_example = self.video_creator.create_image_clip(text_lines_example, 'normal')
+                    line_styles_example = ['normal', 'normal']
+                    clip_example = self.video_creator.create_image_clip(text_lines_example, 'normal', line_styles_example)
 
                     # יצירת אודיו למשפט ולתרגום
                     audio_tasks = [
@@ -509,8 +532,11 @@ class VideoAssembler:
                         (translation, 'iw')
                     ]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-                    clip_example = self.video_creator.create_clip(clip_example, audio_results.get((sentence, 'en'), ""), 
-                                                                 audio_results.get((translation, 'iw'), ""))
+                    clip_example = self.video_creator.create_clip(
+                        clip_example,
+                        audio_results.get((sentence, 'en'), ""),
+                        audio_results.get((translation, 'iw'), "")
+                    )
 
                     # יצירת מעבר
                     if clips:
@@ -520,7 +546,7 @@ class VideoAssembler:
 
                     clips.append(clip_example)
 
-            # הוספת מעבר לקליפ הסיום
+            # הוספת קטע הסיום
             clip_outro = self.video_creator.create_outro()
             transition = self.video_creator.slide_transition(clips[-1], clip_outro)
             clips.append(transition)
@@ -538,7 +564,14 @@ class VideoAssembler:
             final_clip = final_clip.set_audio(final_audio)
 
         # הוספת הלוגו לסרטון
-        final_clip = self.video_creator.add_logo_to_video(final_clip, LOGO_PATH, position='top-right', size=(150, 150), opacity=200, margin=(20, 20))
+        final_clip = self.video_creator.add_logo_to_video(
+            final_clip,
+            LOGO_PATH,
+            position='top-right',
+            size=(150, 150),
+            opacity=200,
+            margin=(20, 20)
+        )
 
         # שמירת הוידאו
         logging.info(f"שומר את הסרטון בנתיב: {video_path}")
