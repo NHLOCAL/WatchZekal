@@ -12,16 +12,16 @@
               "translation": "שלום",
               "examples": [
                 {
-                  "sentence": "Hello!",
-                  "translation": "שלום!"
+                  "sentence": "Hello there!",
+                  "translation": "שלום לך!"
                 },
                 {
                   "sentence": "Hello, how are you?",
                   "translation": "שלום, מה שלומך?"
                 },
                 {
-                  "sentence": "Hello, my friend.",
-                  "translation": "שלום, חבר שלי."
+                  "sentence": "Hello, my friend",
+                  "translation": "שלום, חבר שלי"
                 }
               ]
             },
@@ -30,16 +30,16 @@
               "translation": "להתראות",
               "examples": [
                 {
-                  "sentence": "Goodbye!",
-                  "translation": "להתראות!"
+                  "sentence": "Goodbye for now",
+                  "translation": "להתראות בינתיים"
                 },
                 {
-                  "sentence": "Goodbye, see you soon.",
-                  "translation": "להתראות, נתראה בקרוב."
+                  "sentence": "Goodbye, see you soon",
+                  "translation": "להתראות, נתראה בקרוב"
                 },
                 {
-                  "sentence": "It's time to say goodbye.",
-                  "translation": "הגיע הזמן להגיד להתראות."
+                  "sentence": "It's time to say goodbye",
+                  "translation": "הגיע הזמן להגיד להתראות"
                 }
               ]
             },
