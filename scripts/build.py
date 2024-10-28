@@ -1,13 +1,20 @@
 import json
 import os
 import random
+import re
 import numpy as np
 from gtts import gTTS
 from moviepy.editor import *
 from PIL import Image, ImageDraw, ImageFont
-
 import arabic_reshaper
 from bidi.algorithm import get_display
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import tempfile
+import logging
+from functools import lru_cache
+
+# הגדרת רמת הלוגינג
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # עדכון שימוש ב-LANCZOS
 RESAMPLING = Image.LANCZOS
@@ -20,10 +27,9 @@ FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 LOGOS_DIR = os.path.join(ASSETS_DIR, 'logos')
 OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'videos')
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
-TEMP_DIR = os.path.join(OUTPUT_DIR, 'temp')
 
 # נתיבים לקבצים
-JSON_FILE = os.path.join(DATA_DIR, 'words_level_1-3.json')
+JSON_FILE = os.path.join(DATA_DIR, 'words.json')
 FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Regular.ttf')  # ודא שהגופן תומך בעברית
 SUBTOPIC_FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Bold.ttf')  # גופן מודגש עבור Subtopics
 WORD_FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Bold.ttf')  # גופן מודגש עבור מילים
@@ -46,14 +52,18 @@ TRANSITION_DURATION = 1  # משך המעבר בשניות
 # נתיב למוזיקת רקע (אם יש)
 BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')  # ודא שהקובץ קיים
 
-# ודא שתיקיות היצוא זמינות
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-os.makedirs(TEMP_DIR, exist_ok=True)
-os.makedirs(THUMBNAILS_DIR, exist_ok=True)
+# הגדרות MoviePy
+VIDEO_SIZE = (1920, 1080)
+FPS = 24
+THREADS = 8
 
-# קריאת קובץ JSON
-with open(JSON_FILE, 'r', encoding='utf-8') as f:
-    data = json.load(f)
+# פונקציה לסניטיזציה של שמות קבצים
+def sanitize_filename(filename):
+    """
+    מסיר תווים בלתי חוקיים משם קובץ ומחליף אותם ב-underscore.
+    """
+    # הגדרת תווים בלתי חוקיים ב-Windows
+    return re.sub(r'[<>:"/\\|?*]', '_', filename)
 
 # פונקציה לבדוק אם הטקסט בעברית
 def is_hebrew(text):
@@ -68,463 +78,510 @@ def process_hebrew_text(text):
     bidi_text = get_display(reshaped_text)
     return bidi_text
 
-# פונקציה ליצירת גרדיאנט
-def create_gradient_background(width, height, start_color, end_color, direction='vertical'):
-    base = Image.new('RGB', (width, height), start_color)
-    top = Image.new('RGB', (width, height), end_color)
-    mask = Image.new('L', (width, height))
-    
-    if direction == 'vertical':
-        for y in range(height):
-            mask.putpixel((0, y), int(255 * (y / height)))
-    elif direction == 'horizontal':
-        for x in range(width):
-            mask.putpixel((x, 0), int(255 * (x / width)))
-    # ניתן להוסיף כיוונים נוספים אם רוצים
-    
-    base.paste(top, (0, 0), mask)
-    return base
+class FileManager:
+    def __init__(self, output_dir, thumbnails_dir):
+        self.output_dir = output_dir
+        self.thumbnails_dir = thumbnails_dir
+        os.makedirs(self.output_dir, exist_ok=True)
+        os.makedirs(self.thumbnails_dir, exist_ok=True)
+        self.temp_dir = tempfile.TemporaryDirectory()
 
-# פונקציה ליצירת תמונת רקע עם טקסט ותמיכה בסגנונות שונים לכל שורה
-def create_image(text_lines, image_path, style='normal', line_styles=None):
-    # הגדרת סגנונות
-    style_definitions = {
-        'normal': {
-            'bg_color': BG_COLOR,
-            'gradient': None,
-            'gradient_direction': 'vertical',
-            'text_color': TEXT_COLOR,
-            'font_size': FONT_SIZE,
-            'font_path': FONT_PATH
-        },
-        'subtopic': {
-            'bg_color': SUBTOPIC_BG_COLOR,
-            'gradient': None,
-            'gradient_direction': 'vertical',
-            'text_color': SUBTOPIC_TEXT_COLOR,
-            'font_size': SUBTOPIC_FONT_SIZE,
-            'font_path': SUBTOPIC_FONT_PATH
-        },
-        'level': {
-            'bg_color': LEVEL_BG_COLOR,
-            'gradient': None,
-            'gradient_direction': 'vertical',
-            'text_color': LEVEL_TEXT_COLOR,
-            'font_size': LEVEL_FONT_SIZE,
-            'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
-        },
-        'word': {
-            'bg_color': BG_COLOR,
-            'gradient': None,
-            'gradient_direction': 'vertical',
-            'text_color': WORD_TEXT_COLOR,
-            'font_size': WORD_FONT_SIZE,
-            'font_path': WORD_FONT_PATH  # גופן מודגש
-        },
-        'gradient_background': {
-            'bg_color': None,
-            'gradient': ((255, 255, 255), (200, 200, 255)),  # דוגמה ל-Start ו-End צבעים
-            'gradient_direction': 'vertical',
-            'text_color': TEXT_COLOR,
-            'font_size': FONT_SIZE,
-            'font_path': FONT_PATH
-        },
-        'outro': {  # סגנון ל-Outro
-            'bg_color': (50, 150, 200),  # צבע רקע כחול נעים
-            'gradient': None,
-            'gradient_direction': 'vertical',
-            'text_color': (255, 255, 255),  # טקסט לבן
-            'font_size': 60,  # גודל גופן קטן יותר לטקסט רגיל
-            'font_path': FONT_PATH
-        },
-        'outro_title': {  # סגנון לכותרת הראשית של Outro
-            'bg_color': (50, 150, 200),  # אותו צבע רקע כחול נעים
-            'gradient': None,
-            'gradient_direction': 'vertical',
-            'text_color': (255, 255, 255),  # טקסט לבן
-            'font_size': 120,  # גודל גופן גדול יותר
-            'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
-        },
-        'outro_subtitle': {  # סגנון לתת-כותרת של Outro
-            'bg_color': (50, 150, 200),  # אותו צבע רקע כחול נעים
-            'gradient': None,
-            'gradient_direction': 'vertical',
-            'text_color': (255, 255, 255),  # טקסט לבן
-            'font_size': 100,  # גודל גופן מעט קטן יותר מהכותרת
-            'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
-        }
-    }
-    
-    # אם line_styles לא מוגדר, השתמש בסגנון הכללי לכל השורות
-    if line_styles is None:
-        line_styles = [style] * len(text_lines)
-    elif isinstance(line_styles, str):
-        line_styles = [line_styles] * len(text_lines)
-    elif isinstance(line_styles, list):
-        if len(line_styles) != len(text_lines):
-            raise ValueError("אורך רשימת הסגנונות חייב להתאים לאורך רשימת הטקסטים")
-    else:
-        raise TypeError("הפרמטר line_styles חייב להיות מחרוזת או רשימה של מחרוזות")
-    
-    # קבלת צבע הרקע או יצירת גרדיאנט
-    first_style = style_definitions[line_styles[0]]
-    if first_style['gradient']:
-        img = create_gradient_background(1920, 1080, first_style['gradient'][0], first_style['gradient'][1], first_style['gradient_direction'])
-    else:
-        img = Image.new('RGB', (1920, 1080), color=first_style['bg_color'])
-    
-    draw = ImageDraw.Draw(img)
-    
-    # חישוב גובה כולל
-    total_height = 0
-    processed_lines = []
-    fonts = []
-    for i, line in enumerate(text_lines):
-        current_style = style_definitions[line_styles[i]]
-        if is_hebrew(line):
-            processed_line = process_hebrew_text(line)
-        else:
-            processed_line = line
+    def get_temp_path(self, filename):
+        sanitized_filename = sanitize_filename(filename)
+        return os.path.join(self.temp_dir.name, sanitized_filename)
+
+    def cleanup(self):
+        self.temp_dir.cleanup()
+
+class ImageCreator:
+    def __init__(self, fonts):
+        self.fonts = fonts
+        self.cache = {}
+
+    @lru_cache(maxsize=None)
+    def get_font(self, font_path, font_size):
         try:
-            font = ImageFont.truetype(current_style['font_path'], current_style['font_size'])
+            return ImageFont.truetype(font_path, font_size)
         except IOError:
-            print(f"לא ניתן למצוא את הגופן בנתיב: {current_style['font_path']}", flush=True)
+            logging.error(f"לא ניתן למצוא את הגופן בנתיב: {font_path}")
             raise
-        bbox = draw.textbbox((0, 0), processed_line, font=font)
-        width = bbox[2] - bbox[0]
-        height = bbox[3] - bbox[1]
-        processed_lines.append((processed_line, width, height, current_style, font))
-        # הוספת רווח נוסף אחרי השורה השנייה אם זה Outro_subtitle
-        if i == 1 and line_styles[i] == 'outro_subtitle':
-            total_height += height + 60  # רווח גדול יותר אחרי השורה השנייה
+
+    def create_gradient_background(self, width, height, start_color, end_color, direction='vertical'):
+        base = Image.new('RGB', (width, height), start_color)
+        top = Image.new('RGB', (width, height), end_color)
+        mask = Image.new('L', (width, height))
+
+        if direction == 'vertical':
+            for y in range(height):
+                mask.putpixel((0, y), int(255 * (y / height)))
+        elif direction == 'horizontal':
+            for x in range(width):
+                mask.putpixel((x, 0), int(255 * (x / width)))
+        # ניתן להוסיף כיוונים נוספים אם רוצים
+
+        base.paste(top, (0, 0), mask)
+        return base
+
+    def create_image(self, text_lines, style_definitions, line_styles=None):
+        # שימוש בקאשינג למניעת יצירת תמונות חוזרות
+        cache_key = tuple(text_lines) + tuple(line_styles or [])
+        if cache_key in self.cache:
+            logging.info("שימוש בתמונה מקאש")
+            return self.cache[cache_key]
+
+        # יצירת רקע
+        first_style = style_definitions[line_styles[0]] if line_styles else style_definitions['normal']
+        if first_style['gradient']:
+            img = self.create_gradient_background(1920, 1080, first_style['gradient'][0], first_style['gradient'][1], first_style['gradient_direction'])
         else:
-            total_height += height + 40  # רווח רגיל
-    
-    # מיקום ההתחלה במרכז אנכי
-    current_y = (img.height - total_height) / 2
-    
-    # ציור הטקסט
-    for i, (processed_line, width, height, current_style, font) in enumerate(processed_lines):
-        x_text = (img.width - width) / 2  # מרכז אופקי
-        draw.text((x_text, current_y), processed_line, font=font, fill=current_style['text_color'])
-        
-        # קביעת רווח בין השורות
-        if i == 1 and line_styles[i] == 'outro_subtitle':  # אחרי השורה השנייה "לימוד אנגלית בקלי קלות"
-            spacing = 60  # רווח גדול יותר
+            img = Image.new('RGB', (1920, 1080), color=first_style['bg_color'])
+
+        draw = ImageDraw.Draw(img)
+
+        # חישוב גובה כולל
+        total_height = 0
+        processed_lines = []
+        for i, line in enumerate(text_lines):
+            current_style = style_definitions[line_styles[i]] if line_styles else style_definitions['normal']
+            if is_hebrew(line):
+                processed_line = process_hebrew_text(line)
+            else:
+                processed_line = line
+            font = self.get_font(current_style['font_path'], current_style['font_size'])
+            bbox = draw.textbbox((0, 0), processed_line, font=font)
+            width = bbox[2] - bbox[0]
+            height = bbox[3] - bbox[1]
+            processed_lines.append((processed_line, width, height, current_style, font))
+            if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':
+                total_height += height + 60  # רווח גדול יותר אחרי השורה השנייה
+            else:
+                total_height += height + 40  # רווח רגיל
+
+        # מיקום ההתחלה במרכז אנכי
+        current_y = (img.height - total_height) / 2
+
+        # ציור הטקסט
+        for i, (processed_line, width, height, current_style, font) in enumerate(processed_lines):
+            x_text = (img.width - width) / 2  # מרכז אופקי
+            draw.text((x_text, current_y), processed_line, font=font, fill=current_style['text_color'])
+
+            # קביעת רווח בין השורות
+            if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':  # אחרי השורה השנייה "לימוד אנגלית בקלי קלות"
+                spacing = 60  # רווח גדול יותר
+            else:
+                spacing = 40  # רווח רגיל
+
+            current_y += height + spacing  # רווח בין השורות
+
+        # שמירת התמונה בזיכרון
+        img = img.convert("RGB")  # המרת חזרה ל-RGB אם הוספנו אלפא
+        self.cache[cache_key] = img
+        return img
+
+class AudioCreator:
+    def __init__(self, temp_dir):
+        self.temp_dir = temp_dir
+        self.executor = ThreadPoolExecutor(max_workers=THREADS)
+
+    def create_audio_task(self, text, lang):
+        try:
+            tts = gTTS(text=text, lang=lang)
+            with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3', dir=self.temp_dir.name) as tmp_file:
+                tts.save(tmp_file.name)
+                return tmp_file.name
+        except ValueError as e:
+            logging.error(f"שגיאה ביצירת אודיו עבור הטקסט: '{text}' בשפה: '{lang}'. פרטים: {e}")
+            raise
+
+    def create_audios(self, tasks):
+        futures = {self.executor.submit(self.create_audio_task, text, lang): (text, lang) for text, lang in tasks}
+        results = {}
+        for future in as_completed(futures):
+            text, lang = futures[future]
+            try:
+                audio_path = future.result()
+                results[(text, lang)] = audio_path
+                logging.info(f"אודיו נוצר עבור: '{text}' בשפה: '{lang}'")
+            except Exception as e:
+                logging.error(f"שגיאה ביצירת אודיו עבור: '{text}' בשפה: '{lang}'. פרטים: {e}")
+        return results
+
+    def shutdown(self):
+        self.executor.shutdown(wait=True)
+
+class VideoCreator:
+    def __init__(self, file_manager, image_creator, audio_creator):
+        self.file_manager = file_manager
+        self.image_creator = image_creator
+        self.audio_creator = audio_creator
+        self.style_definitions = self.define_styles()
+
+    def define_styles(self):
+        return {
+            'normal': {
+                'bg_color': BG_COLOR,
+                'gradient': None,
+                'gradient_direction': 'vertical',
+                'text_color': TEXT_COLOR,
+                'font_size': FONT_SIZE,
+                'font_path': FONT_PATH
+            },
+            'subtopic': {
+                'bg_color': SUBTOPIC_BG_COLOR,
+                'gradient': None,
+                'gradient_direction': 'vertical',
+                'text_color': SUBTOPIC_TEXT_COLOR,
+                'font_size': SUBTOPIC_FONT_SIZE,
+                'font_path': SUBTOPIC_FONT_PATH
+            },
+            'level': {
+                'bg_color': LEVEL_BG_COLOR,
+                'gradient': None,
+                'gradient_direction': 'vertical',
+                'text_color': LEVEL_TEXT_COLOR,
+                'font_size': LEVEL_FONT_SIZE,
+                'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
+            },
+            'word': {
+                'bg_color': BG_COLOR,
+                'gradient': None,
+                'gradient_direction': 'vertical',
+                'text_color': WORD_TEXT_COLOR,
+                'font_size': WORD_FONT_SIZE,
+                'font_path': WORD_FONT_PATH  # גופן מודגש
+            },
+            'gradient_background': {
+                'bg_color': None,
+                'gradient': ((255, 255, 255), (200, 200, 255)),  # דוגמה ל-Start ו-End צבעים
+                'gradient_direction': 'vertical',
+                'text_color': TEXT_COLOR,
+                'font_size': FONT_SIZE,
+                'font_path': FONT_PATH
+            },
+            'outro': {  # סגנון ל-Outro
+                'bg_color': (50, 150, 200),  # צבע רקע כחול נעים
+                'gradient': None,
+                'gradient_direction': 'vertical',
+                'text_color': (255, 255, 255),  # טקסט לבן
+                'font_size': 60,  # גודל גופן קטן יותר לטקסט רגיל
+                'font_path': FONT_PATH
+            },
+            'outro_title': {  # סגנון לכותרת הראשית של Outro
+                'bg_color': (50, 150, 200),  # אותו צבע רקע כחול נעים
+                'gradient': None,
+                'gradient_direction': 'vertical',
+                'text_color': (255, 255, 255),  # טקסט לבן
+                'font_size': 120,  # גודל גופן גדול יותר
+                'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
+            },
+            'outro_subtitle': {  # סגנון לתת-כותרת של Outro
+                'bg_color': (50, 150, 200),  # אותו צבע רקע כחול נעים
+                'gradient': None,
+                'gradient_direction': 'vertical',
+                'text_color': (255, 255, 255),  # טקסט לבן
+                'font_size': 100,  # גודל גופן מעט קטן יותר מהכותרת
+                'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
+            }
+        }
+
+    def create_image_clip(self, text_lines, style, line_styles=None):
+        img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles)
+        # יצירת שם קובץ בטוח
+        filename = f"{'_'.join(text_lines)}.png"
+        temp_image_path = self.file_manager.get_temp_path(filename)
+        img.save(temp_image_path)
+        # יצירת קליפ עם משך מותאם לפי האודיו
+        return ImageClip(temp_image_path).set_duration(5)  # משך ברירת מחדל, יותאם לפי האודיו
+
+    def create_audio_clips(self, audio_paths):
+        audio_clips = []
+        for path in audio_paths:
+            if os.path.exists(path):
+                audio_clips.append(AudioFileClip(path))
+            else:
+                logging.warning(f"אודיו לא נמצא בנתיב: {path}")
+        if audio_clips:
+            return concatenate_audioclips(audio_clips)
         else:
-            spacing = 40  # רווח רגיל
-        
-        current_y += height + spacing  # רווח בין השורות
-    
-    # שמירת התמונה
-    img = img.convert("RGB")  # המרת חזרה ל-RGB אם הוספנו אלפא
-    img.save(image_path)
+            return None
 
-# פונקציה ליצירת אודיו מהטקסט
-def create_audio(text, lang, audio_path):
-    try:
-        tts = gTTS(text=text, lang=lang)
-        tts.save(audio_path)
-    except ValueError as e:
-        print(f"שגיאה ביצירת אודיו עבור הטקסט: '{text}' בשפה: '{lang}'. פרטים: {e}", flush=True)
-        raise
+    def create_clip(self, image_clip, audio_en_path, audio_he_path):
+        audio_total = self.create_audio_clips([audio_en_path, audio_he_path])
+        if audio_total:
+            image_clip = image_clip.set_duration(audio_total.duration)
+            image_clip = image_clip.set_audio(audio_total)
+        return image_clip
 
-# פונקציה ליצירת קליפ עם תמונה ואודיו
-def create_clip(image_path, audio_en_path, audio_he_path):
-    audio_en = AudioFileClip(audio_en_path)
-    audio_he = AudioFileClip(audio_he_path)
-    # חיבור האודיו באנגלית והעברית אחד אחרי השני
-    audio_total = concatenate_audioclips([audio_en, audio_he])
-    # יצירת קליפ תמונה עם משך בהתאם לאודיו
-    img_clip = ImageClip(image_path).set_duration(audio_total.duration)
-    img_clip = img_clip.set_audio(audio_total)
-    return img_clip
+    def slide_transition(self, clip1, clip2, duration=TRANSITION_DURATION):
+        # בחר כיוון אקראי
+        direction = random.choice(['left', 'right', 'up', 'down'])
 
-# פונקציה להוספת מוזיקת רקע
-def add_background_music(clip, music_path, volume=0.1):
-    background_music = AudioFileClip(music_path).volumex(volume)
-    # לולאה למוזיקה כדי שתתאים לאורך הקליפ
-    background_music = afx.audio_loop(background_music, duration=clip.duration)
-    # שילוב המוזיקה עם האודיו של הקליפ
-    final_audio = CompositeAudioClip([clip.audio, background_music])
-    return clip.set_audio(final_audio)
+        # הגדר את תנועת הקליפים בהתאם לכיוון
+        if direction == 'left':
+            move_out = lambda t: (-VIDEO_SIZE[0] * t / duration, 'center')
+            move_in = lambda t: (VIDEO_SIZE[0] - VIDEO_SIZE[0] * t / duration, 'center')
+        elif direction == 'right':
+            move_out = lambda t: (VIDEO_SIZE[0] * t / duration, 'center')
+            move_in = lambda t: (-VIDEO_SIZE[0] + VIDEO_SIZE[0] * t / duration, 'center')
+        elif direction == 'up':
+            move_out = lambda t: ('center', -VIDEO_SIZE[1] * t / duration)
+            move_in = lambda t: ('center', VIDEO_SIZE[1] - VIDEO_SIZE[1] * t / duration)
+        elif direction == 'down':
+            move_out = lambda t: ('center', VIDEO_SIZE[1] * t / duration)
+            move_in = lambda t: ('center', -VIDEO_SIZE[1] + VIDEO_SIZE[1] * t / duration)
 
-# פונקציה ליצירת מסך פתיחה לכל Level
-def create_level_intro(level_num, level_name):
-    intro_image_path = os.path.join(TEMP_DIR, f"level_{level_num}_intro.png")
-    text_lines_intro = [f"Level {level_num}", level_name]
-    create_image(text_lines_intro, intro_image_path, style='level')
-    
-    # יצירת אודיו לפתיחת Level
-    audio_intro_en = os.path.join(TEMP_DIR, f"level_{level_num}_intro_en.mp3")
-    audio_intro_he = os.path.join(TEMP_DIR, f"level_{level_num}_intro_he.mp3")
-    create_audio(f"Level {level_num}", 'en', audio_intro_en)
-    create_audio(level_name, 'iw', audio_intro_he)
-    
-    # יצירת קליפ פתיחה
-    clip_intro = create_clip(intro_image_path, audio_intro_en, audio_intro_he)
-    return clip_intro, intro_image_path
+        # קטעים עם אנימציית מיקום
+        clip1_moving = clip1.set_position(move_out).set_duration(duration)
+        clip2_moving = clip2.set_position(move_in).set_duration(duration)
 
-# פונקציה ליצירת מעבר החלקה בין שני קליפים
-def slide_transition(clip1, clip2, duration=TRANSITION_DURATION):
-    # בחר כיוון אקראי
-    direction = random.choice(['left', 'right', 'up', 'down'])
-    
-    # הגדר את תנועת הקליפים בהתאם לכיוון
-    if direction == 'left':
-        move_out = lambda t: (-1920 * t / duration, 'center')
-        move_in = lambda t: (1920 - 1920 * t / duration, 'center')
-    elif direction == 'right':
-        move_out = lambda t: (1920 * t / duration, 'center')
-        move_in = lambda t: (-1920 + 1920 * t / duration, 'center')
-    elif direction == 'up':
-        move_out = lambda t: ('center', -1080 * t / duration)
-        move_in = lambda t: ('center', 1080 - 1080 * t / duration)
-    elif direction == 'down':
-        move_out = lambda t: ('center', 1080 * t / duration)
-        move_in = lambda t: ('center', -1080 + 1080 * t / duration)
-    
-    # קטעים עם אנימציית מיקום
-    clip1_moving = clip1.set_position(move_out).set_duration(duration)
-    clip2_moving = clip2.set_position(move_in).set_duration(duration)
-    
-    # שכבת הקליפים
-    transition = CompositeVideoClip([clip1_moving, clip2_moving], size=(1920, 1080)).set_duration(duration)
-    
-    # הגדרת אודיו ל-None כדי למנוע בעיות באודיו
-    transition = transition.set_audio(None)
-    
-    return transition
+        # שכבת הקליפים
+        transition = CompositeVideoClip([clip1_moving, clip2_moving], size=VIDEO_SIZE).set_duration(duration)
 
-# פונקציה להוספת לוגו לסרטון
-def add_logo_to_video(clip, logo_path, position='top-right', size=(180, 180), opacity=255, margin=(50, 50)):
-    # פתיחת תמונת הלוגו באמצעות PIL
-    logo_image = Image.open(logo_path).convert("RGBA")
-    
-    # שינוי גודל הלוגו עם LANCZOS
-    logo_image = logo_image.resize(size, Image.LANCZOS)
-    
-    # התאמת שקיפות הלוגו
-    if opacity < 255:
-        alpha = logo_image.split()[3]
-        alpha = alpha.point(lambda p: p * (opacity / 255))
-        logo_image.putalpha(alpha)
-    
-    # המרת תמונת PIL למערך numpy
-    logo_array = np.array(logo_image)
-    
-    # יצירת ImageClip מהמערך
-    logo = (ImageClip(logo_array)
-            .set_duration(clip.duration))
-    
-    # הגדרת מיקום עם מרווח מהשוליים
-    x_margin, y_margin = margin
-    if position == 'top-right':
-        logo = logo.set_pos((clip.w - logo.w - x_margin, y_margin))
-    elif position == 'top-left':
-        logo = logo.set_pos((x_margin, y_margin))
-    elif position == 'bottom-right':
-        logo = logo.set_pos((clip.w - logo.w - x_margin, clip.h - logo.h - y_margin))
-    elif position == 'bottom-left':
-        logo = logo.set_pos((x_margin, clip.h - logo.h - y_margin))
-    elif position == 'bottom-center':  # הוספת תמיכה ב-bottom-center
-        x_position = (clip.w - logo.w) / 2
-        y_position = clip.h - logo.h - y_margin
-        logo = logo.set_pos((x_position, y_position))
-    else:
-        raise ValueError("מיקום לא נתמך")
-    
-    # שילוב הלוגו עם הסרטון
-    return CompositeVideoClip([clip, logo])
+        # הגדרת אודיו ל-None כדי למנוע בעיות באודיו
+        transition = transition.set_audio(None)
 
-# פונקציה ליצירת קטע סיום (Outro)
-def create_outro():
-    outro_image_path = os.path.join(TEMP_DIR, "outro.png")
-    
-    # טקסטים חדשים עם שם הערוץ
-    # הכותרת תהיה גדולה ומודגשת, השורה השנייה מעט קטנה יותר
-    text_lines_outro = [
-        "זה קל!",
-        "לימוד אנגלית בקלי קלות",
-        "Thank you for watching!",
-        "Don't forget to like and subscribe."
-    ]
-    
-    # הגדרת סגנונות לכל שורה: הכותרת הראשונה 'outro_title', השנייה 'outro_subtitle', והיתר 'outro'
-    line_styles_outro = ['outro_title', 'outro_subtitle', 'outro', 'outro']
-    
-    # יצירת תמונת ה-Outro עם הסגנונות החדשים
-    create_image(text_lines_outro, outro_image_path, style='outro', line_styles=line_styles_outro)
-    
-    # יצירת אודיו לקליפ הסיום
-    # האודיו יהיה באנגלית ובעברית
-    # ניצור שני קבצי אודיו נפרדים ונשלב אותם יחד
-    audio_outro_en = os.path.join(TEMP_DIR, "outro_en.mp3")
-    audio_outro_he = os.path.join(TEMP_DIR, "outro_he.mp3")
-    create_audio("It's easy! Thank you for watching! Don't forget to like and subscribe.", 'en', audio_outro_en)
-    create_audio("זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם.", 'iw', audio_outro_he)
-    
-    # יצירת קליפ הסיום
-    clip_outro = create_clip(outro_image_path, audio_outro_en, audio_outro_he)
-    
-    return clip_outro
+        return transition
 
-# לולאה דרך כל הרמות
-for level in data['levels']:
-    level_num = level['level']
-    level_name = level['name']
-    print(f"מעבד Level {level_num}: {level_name}", flush=True)
+    def add_logo_to_video(self, clip, logo_path, position='top-right', size=(180, 180), opacity=255, margin=(50, 50)):
+        try:
+            logo_image = Image.open(logo_path).convert("RGBA")
+            logo_image = logo_image.resize(size, RESAMPLING)
 
-    # יצירת שם קובץ וידאו בטוח
-    safe_level_name = "".join([c for c in level_name if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_")
-    video_filename = f"Level_{level_num}_{safe_level_name}.mp4"
-    video_path = os.path.join(OUTPUT_DIR, video_filename)
+            if opacity < 255:
+                alpha = logo_image.split()[3]
+                alpha = alpha.point(lambda p: p * (opacity / 255))
+                logo_image.putalpha(alpha)
 
-    # רשימה לאחסון הקליפים
-    clips = []
+            logo_array = np.array(logo_image)
+            logo = (ImageClip(logo_array)
+                    .set_duration(clip.duration))
 
-    # יצירת קליפ פתיחה ל-Level
-    clip_level_intro, intro_image_path = create_level_intro(level_num, level_name)
-    clips.append(clip_level_intro)
+            x_margin, y_margin = margin
+            if position == 'top-right':
+                logo = logo.set_pos((clip.w - logo.w - x_margin, y_margin))
+            elif position == 'top-left':
+                logo = logo.set_pos((x_margin, y_margin))
+            elif position == 'bottom-right':
+                logo = logo.set_pos((clip.w - logo.w - x_margin, clip.h - logo.h - y_margin))
+            elif position == 'bottom-left':
+                logo = logo.set_pos((x_margin, clip.h - logo.h - y_margin))
+            elif position == 'bottom-center':
+                x_position = (clip.w - logo.w) / 2
+                y_position = clip.h - logo.h - y_margin
+                logo = logo.set_pos((x_position, y_position))
+            else:
+                raise ValueError("מיקום לא נתמך")
 
-    # שמירת התמונה כמקדימה (Thumbnail)
-    thumbnail_path = os.path.join(THUMBNAILS_DIR, f"Level_{level_num}_thumbnail.png")
-    os.makedirs(THUMBNAILS_DIR, exist_ok=True)
-    # העתקת התמונה במקום להעביר אותה, כדי לשמור אותה גם לקליפ
-    from shutil import copyfile
-    copyfile(intro_image_path, thumbnail_path)
-    print(f"שומר תמונת תצוגה מקדימה בנתיב: {thumbnail_path}", flush=True)
+            return CompositeVideoClip([clip, logo])
+        except Exception as e:
+            logging.error(f"שגיאה בהוספת הלוגו: {e}")
+            return clip
 
-    for subtopic in level['subtopics']:
-        subtopic_name = subtopic['name']
-        print(f"  מעבד Subtopic: {subtopic_name}", flush=True)
+    def create_level_intro(self, level_num, level_name):
+        text_lines_intro = [f"Level {level_num}", level_name]
+        clip_intro = self.create_image_clip(text_lines_intro, 'level')
 
-        # יצירת כותרת Subtopic עם עיצוב ייחודי
-        safe_subtopic_name = "".join([c for c in subtopic_name if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_")
-        image_subtopic_path = os.path.join(TEMP_DIR, f"{safe_level_name}_subtopic_{safe_subtopic_name}.png")
-        text_lines_subtopic = [subtopic_name]
-        create_image(text_lines_subtopic, image_subtopic_path, style='subtopic')
+        # יצירת אודיו לפתיחת Level
+        audio_tasks = [
+            (f"Level {level_num}", 'en'),
+            (level_name, 'iw')
+        ]
+        audio_results = self.audio_creator.create_audios(audio_tasks)
+        clip_intro = self.create_clip(clip_intro, audio_results.get((f"Level {level_num}", 'en'), ""), audio_results.get((level_name, 'iw'), ""))
+        return clip_intro
 
-        # יצירת אודיו Subtopic
-        audio_subtopic_en = os.path.join(TEMP_DIR, f"{safe_level_name}_subtopic_{safe_subtopic_name}_en.mp3")
-        audio_subtopic_he = os.path.join(TEMP_DIR, f"{safe_level_name}_subtopic_{safe_subtopic_name}_he.mp3")
-        create_audio(subtopic_name, 'en', audio_subtopic_en)
-        create_audio(subtopic_name, 'iw', audio_subtopic_he)  # שינוי 'he' ל-'iw'
+    def create_outro(self):
+        text_lines_outro = [
+            "זה קל!",
+            "לימוד אנגלית בקלי קלות",
+            "Thank you for watching!",
+            "Don't forget to like and subscribe."
+        ]
+        line_styles_outro = ['outro_title', 'outro_subtitle', 'outro', 'outro']
+        clip_outro = self.create_image_clip(text_lines_outro, 'outro', line_styles_outro)
 
-        # יצירת קליפ Subtopic
-        clip_subtopic = create_clip(image_subtopic_path, audio_subtopic_en, audio_subtopic_he)
-        
-        # אם יש כבר קליפ קודם, ניצור מעבר בין הקליפ הקודם לחדש
-        if clips:
-            previous_clip = clips[-1]
-            transition = slide_transition(previous_clip, clip_subtopic)
-            clips.append(transition)
-        
-        clips.append(clip_subtopic)
+        # יצירת אודיו לקליפ הסיום
+        audio_tasks = [
+            ("It's easy! Thank you for watching! Don't forget to like and subscribe.", 'en'),
+            ("זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם.", 'iw')
+        ]
+        audio_results = self.audio_creator.create_audios(audio_tasks)
+        clip_outro = self.create_clip(clip_outro, audio_results.get(("It's easy! Thank you for watching! Don't forget to like and subscribe.", 'en'), ""), 
+                                      audio_results.get(("זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם.", 'iw'), ""))
+        return clip_outro
 
-        for word in subtopic['words']:
-            word_text = word['word']
-            word_translation = word['translation']
-            examples = word['examples']
+class VideoAssembler:
+    def __init__(self, file_manager, image_creator, audio_creator):
+        self.video_creator = VideoCreator(file_manager, image_creator, audio_creator)
 
-            print(f"    מעבד מילה: {word_text} - {word_translation}", flush=True)
+    def assemble_level_video(self, level, output_dir, thumbnails_dir):
+        level_num = level['level']
+        level_name = level['name']
+        logging.info(f"מעבד Level {level_num}: {level_name}")
 
-            # יצירת תמונה ראשונה: המילה והתרגום
-            safe_word_text = "".join([c for c in word_text if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_")
-            image_word_path = os.path.join(TEMP_DIR, f"{safe_level_name}_word_{safe_word_text}.png")
-            text_lines_word = [word_text, word_translation]
-            
-            # הגדרת סגנונות לכל שורה: 'word' לשורה הראשונה, 'normal' לשורה השנייה
-            line_styles_word = ['word', 'normal']
-            
-            create_image(text_lines_word, image_word_path, style='normal', line_styles=line_styles_word)
+        # יצירת שם קובץ וידאו בטוח
+        safe_level_name = sanitize_filename("".join([c for c in level_name if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
+        video_filename = f"Level_{level_num}_{safe_level_name}.mp4"
+        video_path = os.path.join(output_dir, video_filename)
 
-            # יצירת אודיו למילה ולתרגום
-            audio_word_en = os.path.join(TEMP_DIR, f"{safe_level_name}_word_{safe_word_text}_en.mp3")
-            audio_word_he = os.path.join(TEMP_DIR, f"{safe_level_name}_word_{safe_word_text}_he.mp3")
-            create_audio(word_text, 'en', audio_word_en)
-            create_audio(word_translation, 'iw', audio_word_he)  # שינוי 'he' ל-'iw'
+        # רשימה לאחסון הקליפים
+        clips = []
 
-            # יצירת קליפ מילה
-            clip_word = create_clip(image_word_path, audio_word_en, audio_word_he)
-            
-            # יצירת מעבר
+        # יצירת קליפ פתיחה ל-Level
+        clip_level_intro = self.video_creator.create_level_intro(level_num, level_name)
+        clips.append(clip_level_intro)
+
+        # שמירת התמונה כמקדימה (Thumbnail)
+        thumbnail_path = os.path.join(thumbnails_dir, f"Level_{level_num}_thumbnail.png")
+        clip_level_intro.save_frame(thumbnail_path, t=0)
+        logging.info(f"שומר תמונת תצוגה מקדימה בנתיב: {thumbnail_path}")
+
+        for subtopic in level['subtopics']:
+            subtopic_name = subtopic['name']
+            logging.info(f"  מעבד Subtopic: {subtopic_name}")
+
+            # יצירת כותרת Subtopic עם עיצוב ייחודי
+            safe_subtopic_name = sanitize_filename("".join([c for c in subtopic_name if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
+            text_lines_subtopic = [subtopic_name]
+            clip_subtopic = self.video_creator.create_image_clip(text_lines_subtopic, 'subtopic')
+
+            # יצירת אודיו Subtopic
+            audio_tasks = [
+                (subtopic_name, 'en'),
+                (subtopic_name, 'iw')
+            ]
+            audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+            clip_subtopic = self.video_creator.create_clip(clip_subtopic, audio_results.get((subtopic_name, 'en'), ""), 
+                                                           audio_results.get((subtopic_name, 'iw'), ""))
+
+            # יצירת מעבר בין הקליפ הקודם לחדש
             if clips:
                 previous_clip = clips[-1]
-                transition = slide_transition(previous_clip, clip_word)
+                transition = self.video_creator.slide_transition(previous_clip, clip_subtopic)
                 clips.append(transition)
-            
-            clips.append(clip_word)
 
-            for idx, example in enumerate(examples):
-                sentence = example['sentence']
-                translation = example['translation']
+            clips.append(clip_subtopic)
 
-                print(f"      מעבד משפט: {sentence} - {translation}", flush=True)
+            for word in subtopic['words']:
+                word_text = word['word']
+                word_translation = word['translation']
+                examples = word['examples']
 
-                # יצירת תמונה למשפט
-                safe_sentence = "".join([c for c in sentence if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_")
-                image_example_path = os.path.join(TEMP_DIR, f"{safe_level_name}_word_{safe_word_text}_example_{idx+1}.png")
-                text_lines_example = [sentence, translation]
-                create_image(text_lines_example, image_example_path, style='normal')
+                logging.info(f"    מעבד מילה: {word_text} - {word_translation}")
 
-                # יצירת אודיו למשפט ולתרגום
-                audio_example_en = os.path.join(TEMP_DIR, f"{safe_level_name}_word_{safe_word_text}_example_{idx+1}_en.mp3")
-                audio_example_he = os.path.join(TEMP_DIR, f"{safe_level_name}_word_{safe_word_text}_example_{idx+1}_he.mp3")
-                create_audio(sentence, 'en', audio_example_en)
-                create_audio(translation, 'iw', audio_example_he)  # שינוי 'he' ל-'iw'
+                # יצירת תמונה ראשונה: המילה והתרגום
+                safe_word_text = sanitize_filename("".join([c for c in word_text if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
+                text_lines_word = [word_text, word_translation]
+                line_styles_word = ['word', 'normal']
+                clip_word = self.video_creator.create_image_clip(text_lines_word, 'normal', line_styles_word)
 
-                # יצירת קליפ משפט
-                clip_example = create_clip(image_example_path, audio_example_en, audio_example_he)
-                
+                # יצירת אודיו למילה ולתרגום
+                audio_tasks = [
+                    (word_text, 'en'),
+                    (word_translation, 'iw')
+                ]
+                audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                clip_word = self.video_creator.create_clip(clip_word, audio_results.get((word_text, 'en'), ""), 
+                                                          audio_results.get((word_translation, 'iw'), ""))
+
                 # יצירת מעבר
                 if clips:
                     previous_clip = clips[-1]
-                    transition = slide_transition(previous_clip, clip_example)
+                    transition = self.video_creator.slide_transition(previous_clip, clip_word)
                     clips.append(transition)
-                
-                clips.append(clip_example)
 
-                # ניקוי קבצים זמניים למשפט
-                os.remove(image_example_path)
-                os.remove(audio_example_en)
-                os.remove(audio_example_he)
+                clips.append(clip_word)
 
-            # ניקוי קבצים זמניים למילה
-            os.remove(image_word_path)
-            os.remove(audio_word_en)
-            os.remove(audio_word_he)
+                for idx, example in enumerate(examples):
+                    sentence = example['sentence']
+                    translation = example['translation']
 
-        # ניקוי קבצים זמניים ל-Subtopic
-        os.remove(image_subtopic_path)
-        os.remove(audio_subtopic_en)
-        os.remove(audio_subtopic_he)
+                    logging.info(f"      מעבד משפט: {sentence} - {translation}")
 
-    # הוספת קטע הסיום
-    clip_outro = create_outro()
-    transition = slide_transition(clips[-1], clip_outro)
-    clips.append(transition)
-    clips.append(clip_outro)
+                    # יצירת תמונה למשפט
+                    safe_sentence = sanitize_filename("".join([c for c in sentence if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
+                    text_lines_example = [sentence, translation]
+                    clip_example = self.video_creator.create_image_clip(text_lines_example, 'normal')
 
-    # איחוד כל הקליפים לסרטון אחד עבור ה-Level
-    print(f"איחוד הקליפים לסרטון Level {level_num}: {level_name}", flush=True)
-    final_clip = concatenate_videoclips(clips, method="compose")
+                    # יצירת אודיו למשפט ולתרגום
+                    audio_tasks = [
+                        (sentence, 'en'),
+                        (translation, 'iw')
+                    ]
+                    audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                    clip_example = self.video_creator.create_clip(clip_example, audio_results.get((sentence, 'en'), ""), 
+                                                                 audio_results.get((translation, 'iw'), ""))
 
-    # הוספת מוזיקת רקע אם קיימת
-    if os.path.exists(BACKGROUND_MUSIC_PATH):
-        final_clip = add_background_music(final_clip, BACKGROUND_MUSIC_PATH, volume=0.1)
+                    # יצירת מעבר
+                    if clips:
+                        previous_clip = clips[-1]
+                        transition = self.video_creator.slide_transition(previous_clip, clip_example)
+                        clips.append(transition)
 
-    # הוספת הלוגו לסרטון
-    final_clip = add_logo_to_video(final_clip, LOGO_PATH, position='top-right', size=(150, 150), opacity=200, margin=(20, 20))
+                    clips.append(clip_example)
 
-    # שמירת הוידאו
-    print(f"שומר את הסרטון בנתיב: {video_path}", flush=True)
-    final_clip.write_videofile(video_path, fps=24, codec='libx264', audio_codec='aac', threads=8)
+            # הוספת מעבר לקליפ הסיום
+            clip_outro = self.video_creator.create_outro()
+            transition = self.video_creator.slide_transition(clips[-1], clip_outro)
+            clips.append(transition)
+            clips.append(clip_outro)
 
-    # ניקוי קבצים זמניים לאחר שמירת הוידאו
-    for temp_file in os.listdir(TEMP_DIR):
-        temp_file_path = os.path.join(TEMP_DIR, temp_file)
-        if os.path.isfile(temp_file_path):
-            os.remove(temp_file_path)
+        # איחוד כל הקליפים לסרטון אחד עבור ה-Level
+        logging.info(f"איחוד הקליפים לסרטון Level {level_num}: {level_name}")
+        final_clip = concatenate_videoclips(clips, method="compose")
 
-print("יצירת כל הסרטונים הסתיימה!", flush=True)
+        # הוספת מוזיקת רקע אם קיימת
+        if os.path.exists(BACKGROUND_MUSIC_PATH):
+            background_music = AudioFileClip(BACKGROUND_MUSIC_PATH).volumex(0.1)
+            background_music = afx.audio_loop(background_music, duration=final_clip.duration)
+            final_audio = CompositeAudioClip([final_clip.audio, background_music])
+            final_clip = final_clip.set_audio(final_audio)
+
+        # הוספת הלוגו לסרטון
+        final_clip = self.video_creator.add_logo_to_video(final_clip, LOGO_PATH, position='top-right', size=(150, 150), opacity=200, margin=(20, 20))
+
+        # שמירת הוידאו
+        logging.info(f"שומר את הסרטון בנתיב: {video_path}")
+        final_clip.write_videofile(video_path, fps=FPS, codec='libx264', audio_codec='aac', threads=THREADS)
+
+    def shutdown(self):
+        self.video_creator.audio_creator.shutdown()
+
+def main():
+    # ניהול קבצים
+    file_manager = FileManager(OUTPUT_DIR, THUMBNAILS_DIR)
+
+    try:
+        # קריאת קובץ JSON
+        with open(JSON_FILE, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        # יצירת אובייקטים
+        image_creator = ImageCreator(fonts={
+            'normal': FONT_PATH,
+            'subtopic': SUBTOPIC_FONT_PATH,
+            'level': SUBTOPIC_FONT_PATH,
+            'word': WORD_FONT_PATH,
+            'outro': FONT_PATH,
+            'outro_title': SUBTOPIC_FONT_PATH,
+            'outro_subtitle': SUBTOPIC_FONT_PATH
+        })
+        audio_creator = AudioCreator(file_manager.temp_dir)
+        video_assembler = VideoAssembler(file_manager, image_creator, audio_creator)
+
+        # לולאה דרך כל הרמות
+        for level in data['levels']:
+            video_assembler.assemble_level_video(level, OUTPUT_DIR, THUMBNAILS_DIR)
+
+        logging.info("יצירת כל הסרטונים הסתיימה!")
+
+    except Exception as e:
+        logging.error(f"שגיאה כללית בתהליך יצירת הסרטונים: {e}")
+
+    finally:
+        # ניקוי קבצים זמניים וסגירת ThreadPoolExecutor
+        file_manager.cleanup()
+        video_assembler.shutdown()
+
+if __name__ == "__main__":
+    main()
