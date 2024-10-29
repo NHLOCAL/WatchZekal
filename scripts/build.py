@@ -306,13 +306,15 @@ class VideoCreator:
         temp_image_path = self.file_manager.get_temp_path(filename)
         img.save(temp_image_path)
         # יצירת קליפ ללא הגדרת משך, יוגדר לפי האודיו או min_duration
-        return ImageClip(temp_image_path)
+        image_clip = ImageClip(temp_image_path)
+        return image_clip
 
     def create_audio_clips(self, audio_paths):
         audio_clips = []
         for path in audio_paths:
             if os.path.exists(path):
-                audio_clips.append(AudioFileClip(path))
+                audio_clip = AudioFileClip(path)
+                audio_clips.append(audio_clip)
             else:
                 logging.warning(f"אודיו לא נמצא בנתיב: {path}")
         if audio_clips:
@@ -455,145 +457,165 @@ class VideoAssembler:
         # רשימה לאחסון הקליפים
         clips = []
 
-        # יצירת קליפ פתיחה ל-Level
-        clip_level_intro = self.video_creator.create_level_intro(level_num, level_name)
-        clips.append(clip_level_intro)
+        try:
+            # יצירת קליפ פתיחה ל-Level
+            clip_level_intro = self.video_creator.create_level_intro(level_num, level_name)
+            clips.append(clip_level_intro)
 
-        # שמירת התמונה כמקדימה (Thumbnail)
-        thumbnail_path = os.path.join(thumbnails_dir, f"Level_{level_num}_thumbnail.png")
-        clip_level_intro.save_frame(thumbnail_path, t=0)
-        logging.info(f"שומר תמונת תצוגה מקדימה בנתיב: {thumbnail_path}")
+            # שמירת התמונה כמקדימה (Thumbnail)
+            thumbnail_path = os.path.join(thumbnails_dir, f"Level_{level_num}_thumbnail.png")
+            clip_level_intro.save_frame(thumbnail_path, t=0)
+            logging.info(f"שומר תמונת תצוגה מקדימה בנתיב: {thumbnail_path}")
 
-        for subtopic in level['subtopics']:
-            subtopic_name = subtopic['name']
-            logging.info(f"  מעבד Subtopic: {subtopic_name}")
+            for subtopic in level['subtopics']:
+                subtopic_name = subtopic['name']
+                logging.info(f"  מעבד Subtopic: {subtopic_name}")
 
-            # יצירת כותרת Subtopic עם עיצוב ייחודי
-            text_lines_subtopic = [subtopic_name]
-            line_styles_subtopic = ['subtopic']
-            clip_subtopic = self.video_creator.create_image_clip(text_lines_subtopic, 'subtopic', line_styles_subtopic)
+                # יצירת כותרת Subtopic עם עיצוב ייחודי
+                text_lines_subtopic = [subtopic_name]
+                line_styles_subtopic = ['subtopic']
+                clip_subtopic = self.video_creator.create_image_clip(text_lines_subtopic, 'subtopic', line_styles_subtopic)
 
-            # יצירת אודיו Subtopic
-            audio_tasks = [
-                (subtopic_name, 'en'),
-                (subtopic_name, 'iw')
-            ]
-            audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-            clip_subtopic = self.video_creator.create_clip(
-                clip_subtopic,
-                audio_results.get((subtopic_name, 'en'), ""),
-                audio_results.get((subtopic_name, 'iw'), ""),
-                min_duration=4.5  # **הוספת מינימום משך 5 שניות**
-            )
-
-            # יצירת מעבר בין הקליפ הקודם לחדש
-            if clips:
-                previous_clip = clips[-1]
-                transition = self.video_creator.slide_transition(previous_clip, clip_subtopic)
-                clips.append(transition)
-
-            clips.append(clip_subtopic)
-
-            for word in subtopic['words']:
-                word_text = word['word']
-                word_translation = word['translation']
-                examples = word['examples']
-
-                logging.info(f"    מעבד מילה: {word_text} - {word_translation}")
-
-                # יצירת תמונה ראשונה: המילה והתרגום
-                text_lines_word = [word_text, word_translation]
-                line_styles_word = ['word', 'normal']
-                clip_word = self.video_creator.create_image_clip(text_lines_word, 'word', line_styles_word)
-
-                # יצירת אודיו למילה ולתרגום
+                # יצירת אודיו Subtopic
                 audio_tasks = [
-                    (word_text, 'en'),
-                    (word_translation, 'iw')
+                    (subtopic_name, 'en'),
+                    (subtopic_name, 'iw')
                 ]
                 audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-                clip_word = self.video_creator.create_clip(
-                    clip_word,
-                    audio_results.get((word_text, 'en'), ""),
-                    audio_results.get((word_translation, 'iw'), "")
+                clip_subtopic = self.video_creator.create_clip(
+                    clip_subtopic,
+                    audio_results.get((subtopic_name, 'en'), ""),
+                    audio_results.get((subtopic_name, 'iw'), ""),
+                    min_duration=4.5  # **הוספת מינימום משך 4.5 שניות**
                 )
 
-                # יצירת מעבר
+                # יצירת מעבר בין הקליפ הקודם לחדש
                 if clips:
                     previous_clip = clips[-1]
-                    transition = self.video_creator.slide_transition(previous_clip, clip_word)
+                    transition = self.video_creator.slide_transition(previous_clip, clip_subtopic)
                     clips.append(transition)
 
-                clips.append(clip_word)
+                clips.append(clip_subtopic)
 
-                for idx, example in enumerate(examples):
-                    sentence = example['sentence']
-                    translation = example['translation']
+                for word in subtopic['words']:
+                    word_text = word['word']
+                    word_translation = word['translation']
+                    examples = word['examples']
 
-                    logging.info(f"      מעבד משפט: {sentence} - {translation}")
+                    logging.info(f"    מעבד מילה: {word_text} - {word_translation}")
 
-                    # יצירת תמונה למשפט
-                    text_lines_example = [sentence, translation]
-                    line_styles_example = ['normal', 'normal']
-                    clip_example = self.video_creator.create_image_clip(text_lines_example, 'normal', line_styles_example)
+                    # יצירת תמונה ראשונה: המילה והתרגום
+                    text_lines_word = [word_text, word_translation]
+                    line_styles_word = ['word', 'normal']
+                    clip_word = self.video_creator.create_image_clip(text_lines_word, 'word', line_styles_word)
 
-                    # יצירת אודיו למשפט ולתרגום
+                    # יצירת אודיו למילה ולתרגום
                     audio_tasks = [
-                        (sentence, 'en'),
-                        (translation, 'iw')
+                        (word_text, 'en'),
+                        (word_translation, 'iw')
                     ]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-                    clip_example = self.video_creator.create_clip(
-                        clip_example,
-                        audio_results.get((sentence, 'en'), ""),
-                        audio_results.get((translation, 'iw'), "")
+                    clip_word = self.video_creator.create_clip(
+                        clip_word,
+                        audio_results.get((word_text, 'en'), ""),
+                        audio_results.get((word_translation, 'iw'), "")
                     )
 
                     # יצירת מעבר
                     if clips:
                         previous_clip = clips[-1]
-                        transition = self.video_creator.slide_transition(previous_clip, clip_example)
+                        transition = self.video_creator.slide_transition(previous_clip, clip_word)
                         clips.append(transition)
 
-                    clips.append(clip_example)
+                    clips.append(clip_word)
 
-        # יצירת קטע הסיום
-        clip_outro = self.video_creator.create_outro()
-        transition = self.video_creator.slide_transition(clips[-1], clip_outro)
-        clips.append(transition)
-        clips.append(clip_outro)
+                    for idx, example in enumerate(examples):
+                        sentence = example['sentence']
+                        translation = example['translation']
 
-        # איחוד כל הקליפים לסרטון אחד עבור ה-Level
-        logging.info(f"איחוד הקליפים לסרטון Level {level_num}: {level_name}")
-        final_clip = concatenate_videoclips(clips, method="compose")
+                        logging.info(f"      מעבד משפט: {sentence} - {translation}")
 
-        # הוספת מוזיקת רקע אם קיימת
-        if os.path.exists(BACKGROUND_MUSIC_PATH):
-            background_music = AudioFileClip(BACKGROUND_MUSIC_PATH).volumex(0.1)
-            background_music = afx.audio_loop(background_music, duration=final_clip.duration)
-            final_audio = CompositeAudioClip([final_clip.audio, background_music])
-            final_clip = final_clip.set_audio(final_audio)
+                        # יצירת תמונה למשפט
+                        text_lines_example = [sentence, translation]
+                        line_styles_example = ['normal', 'normal']
+                        clip_example = self.video_creator.create_image_clip(text_lines_example, 'normal', line_styles_example)
 
-        # הוספת הלוגו לסרטון
-        final_clip = self.video_creator.add_logo_to_video(
-            final_clip,
-            LOGO_PATH,
-            position='top-right',
-            size=(150, 150),
-            opacity=200,
-            margin=(20, 20)
-        )
+                        # יצירת אודיו למשפט ולתרגום
+                        audio_tasks = [
+                            (sentence, 'en'),
+                            (translation, 'iw')
+                        ]
+                        audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                        clip_example = self.video_creator.create_clip(
+                            clip_example,
+                            audio_results.get((sentence, 'en'), ""),
+                            audio_results.get((translation, 'iw'), "")
+                        )
 
-        # שמירת הוידאו
-        logging.info(f"שומר את הסרטון בנתיב: {video_path}")
-        final_clip.write_videofile(video_path, fps=FPS, codec='libx264', audio_codec='aac', threads=THREADS)
+                        # יצירת מעבר
+                        if clips:
+                            previous_clip = clips[-1]
+                            transition = self.video_creator.slide_transition(previous_clip, clip_example)
+                            clips.append(transition)
+
+                        clips.append(clip_example)
+
+            # יצירת קטע הסיום
+            clip_outro = self.video_creator.create_outro()
+            transition = self.video_creator.slide_transition(clips[-1], clip_outro)
+            clips.append(transition)
+            clips.append(clip_outro)
+
+            # איחוד כל הקליפים לסרטון אחד עבור ה-Level
+            logging.info(f"איחוד הקליפים לסרטון Level {level_num}: {level_name}")
+            final_clip = concatenate_videoclips(clips, method="compose")
+
+            # הוספת מוזיקת רקע אם קיימת
+            if os.path.exists(BACKGROUND_MUSIC_PATH):
+                background_music = AudioFileClip(BACKGROUND_MUSIC_PATH).volumex(0.1)
+                background_music = afx.audio_loop(background_music, duration=final_clip.duration)
+                final_audio = CompositeAudioClip([final_clip.audio, background_music])
+                final_clip = final_clip.set_audio(final_audio)
+                # סגירת background_music ו-final_audio לאחר השימוש
+                background_music.close()
+                final_audio.close()
+
+            # הוספת הלוגו לסרטון
+            final_clip = self.video_creator.add_logo_to_video(
+                final_clip,
+                LOGO_PATH,
+                position='top-right',
+                size=(150, 150),
+                opacity=200,
+                margin=(20, 20)
+            )
+
+            # שמירת הוידאו
+            logging.info(f"שומר את הסרטון בנתיב: {video_path}")
+            final_clip.write_videofile(video_path, fps=FPS, codec='libx264', audio_codec='aac', threads=THREADS)
+
+        except Exception as e:
+            logging.error(f"שגיאה בתהליך הרכבת הוידאו ל-Level {level_num}: {e}")
+        finally:
+            # סגירת כל הקליפים
+            for clip in clips:
+                clip.close()
+            # סגירת final_clip אם לא כבר סגור
+            if 'final_clip' in locals():
+                final_clip.close()
 
     def shutdown(self):
         self.video_creator.audio_creator.shutdown()
 
+def close_clips(clips):
+    for clip in clips:
+        clip.close()
+
 def main():
     # ניהול קבצים
     file_manager = FileManager(OUTPUT_DIR, THUMBNAILS_DIR)
+
+    video_assembler = None  # אתחול מראש
 
     try:
         # קריאת קובץ JSON
@@ -624,8 +646,10 @@ def main():
 
     finally:
         # ניקוי קבצים זמניים וסגירת ThreadPoolExecutor
-        file_manager.cleanup()
-        video_assembler.shutdown()
+        if file_manager:
+            file_manager.cleanup()
+        if video_assembler:
+            video_assembler.shutdown()
 
 if __name__ == "__main__":
     main()
