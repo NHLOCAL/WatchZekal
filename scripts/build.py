@@ -1,4 +1,5 @@
 import json
+import sys
 import os
 import random
 import re
@@ -29,7 +30,7 @@ OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'videos')
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 
 # נתיבים לקבצים
-json_name = input('add json name:\n>>>')
+json_name = str(sys.argv[1])
 JSON_FILE = os.path.join(DATA_DIR, f'{json_name}.json')
 FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Regular.ttf')  # ודא שהגופן תומך בעברית
 SUBTOPIC_FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Bold.ttf')  # גופן מודגש עבור Subtopics
@@ -61,7 +62,7 @@ BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')  # וד
 # הגדרות MoviePy
 VIDEO_SIZE = (1920, 1080)
 FPS = 24
-THREADS = 4
+THREADS = 8
 
 # פונקציה לסניטיזציה של שמות קבצים
 def sanitize_filename(filename):
