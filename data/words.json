@@ -1,69 +1,29 @@
 {
-  "levels": [
-    {
-      "level": 0,
-      "name": "יסודות",
-      "subtopics": [
+    "levels": [
         {
-          "name": "ברכות ונימוסים",
-          "words": [
-            {
-              "word": "Hello",
-              "translation": "שלום",
-              "examples": [
+            "level": 0,
+            "name": "בסיס",
+            "subtopics": [
                 {
-                  "sentence": "Hello there!",
-                  "translation": "שלום לך!"
-                },
-                {
-                  "sentence": "Hello, how are you?",
-                  "translation": "שלום, מה שלומך?"
-                },
-                {
-                  "sentence": "Hello, my friend",
-                  "translation": "שלום, חבר שלי"
+                    "name": "נושא משנה 1",
+                    "words": [
+                        {
+                            "word": "Word1",
+                            "translation": "תרגום1",
+                            "examples": [
+                                {
+                                    "sentence": "This is an example sentence that is quite long and needs to be wrapped properly.",
+                                    "translation": "זהו משפט דוגמה שהוא די ארוך וצריך לעטוף אותו כראוי בלי עין רעה"
+                                },
+								{
+                                    "sentence": "This is an example sentence",
+                                    "translation": "זהו משפט דוגמה"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            },
-            {
-              "word": "Goodbye",
-              "translation": "להתראות",
-              "examples": [
-                {
-                  "sentence": "Goodbye for now",
-                  "translation": "להתראות בינתיים"
-                },
-                {
-                  "sentence": "Goodbye, see you soon",
-                  "translation": "להתראות, נתראה בקרוב"
-                },
-                {
-                  "sentence": "It's time to say goodbye",
-                  "translation": "הגיע הזמן להגיד להתראות"
-                }
-              ]
-            },
-            {
-              "word": "Please",
-              "translation": "בבקשה",
-              "examples": [
-                {
-                  "sentence": "Please, come in.",
-                  "translation": "בבקשה, היכנס."
-                },
-                {
-                  "sentence": "Can you help me, please?",
-                  "translation": "האם אתה יכול לעזור לי, בבקשה?"
-                },
-                {
-                  "sentence": "Please take a seat.",
-                  "translation": "בבקשה שב."
-                }
-              ]
-            }
-          ]
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

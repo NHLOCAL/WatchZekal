@@ -46,6 +46,8 @@ WORD_FONT_SIZE = 100  # גודל גופן גדול יותר למילים
 # הגדרות רווח בין שורות
 LINE_SPACING_NORMAL = 60  # רווח רגיל בין השורות
 LINE_SPACING_OUTRO_SUBTITLE = 80  # רווח גדול יותר אחרי שורה מסוימת
+LINE_SPACING_WITHIN_SENTENCE = 40  # רווח קטן בין שורות בתוך אותו משפט
+LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION = 60  # רווח גדול בין משפט לתרגומו
 
 BG_COLOR = (200, 210, 230)  # רקע מעט כהה יותר למילים ולמשפטים
 SUBTOPIC_BG_COLOR = (200, 220, 255)  # רקע ל-Subtopics
@@ -129,6 +131,30 @@ class ImageCreator:
         base.paste(top, (0, 0), mask)
         return base
 
+    def split_text_into_lines(self, text, font, max_width, draw):
+        """
+        מפצל טקסט לשורות כך שכל שורה לא תעבור את הרוחב המקסימלי.
+        """
+        words = text.split()
+        lines = []
+        current_line = ""
+
+        for word in words:
+            test_line = f"{current_line} {word}".strip()
+            bbox = draw.textbbox((0, 0), test_line, font=font)
+            width = bbox[2] - bbox[0]
+            if width <= max_width:
+                current_line = test_line
+            else:
+                if current_line:
+                    lines.append(current_line)
+                current_line = word
+
+        if current_line:
+            lines.append(current_line)
+
+        return lines
+
     def create_image(self, text_lines, style_definitions, line_styles=None):
         # שימוש בקאשינג למניעת יצירת תמונות חוזרות
         cache_key = tuple(text_lines) + tuple(line_styles or [])
@@ -151,6 +177,9 @@ class ImageCreator:
 
         draw = ImageDraw.Draw(img)
 
+        # הגדרת רוחב מקסימלי לטקסט (לדוגמה: 1720 פיקסלים מתוך 1920 עם שוליים)
+        MAX_TEXT_WIDTH = 1720
+
         # חישוב גובה כולל
         total_height = 0
         processed_lines = []
@@ -159,33 +188,84 @@ class ImageCreator:
                 current_style = style_definitions[line_styles[i]]
             else:
                 current_style = style_definitions['normal']
-            if is_hebrew(line):
-                processed_line = process_hebrew_text(line)
-            else:
-                processed_line = line
+
             font = self.get_font(current_style['font_path'], current_style['font_size'])
-            bbox = draw.textbbox((0, 0), processed_line, font=font)
-            width = bbox[2] - bbox[0]
-            height = bbox[3] - bbox[1]
-            processed_lines.append((processed_line, width, height, current_style, font))
-            if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':
-                total_height += height + LINE_SPACING_OUTRO_SUBTITLE  # רווח גדול יותר אחרי השורה השנייה
+
+            if is_hebrew(line):
+                # פיצול שורות במידת הצורך לפני עיבוד
+                split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
+                for split_line in split_lines:
+                    processed_line = process_hebrew_text(split_line)
+                    processed_style = current_style.copy()
+                    # הוספת שם הסגנון לשימוש בהמשך
+                    processed_style['style_name'] = line_styles[i] if line_styles and i < len(line_styles) else 'normal'
+                    bbox = draw.textbbox((0, 0), processed_line, font=font)
+                    width = bbox[2] - bbox[0]
+                    height = bbox[3] - bbox[1]
+                    processed_lines.append((processed_line, width, height, processed_style, font))
+                    # הגדרת רווח בהתאם לסגנון
+                    if processed_style['style_name'] == 'sentence':
+                        spacing = LINE_SPACING_WITHIN_SENTENCE
+                    elif processed_style['style_name'] == 'translation':
+                        spacing = LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION
+                    else:
+                        spacing = LINE_SPACING_NORMAL
+                    if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':
+                        spacing = LINE_SPACING_OUTRO_SUBTITLE  # רווח גדול יותר אחרי השורה השנייה
+                    total_height += height + spacing  # רווח בין השורות
             else:
-                total_height += height + LINE_SPACING_NORMAL  # רווח רגיל
+                # פיצול שורות במידת הצורך לפני עיבוד
+                split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
+                for split_line in split_lines:
+                    processed_line = split_line
+                    processed_style = current_style.copy()
+                    # הוספת שם הסגנון לשימוש בהמשך
+                    processed_style['style_name'] = line_styles[i] if line_styles and i < len(line_styles) else 'normal'
+                    bbox = draw.textbbox((0, 0), processed_line, font=font)
+                    width = bbox[2] - bbox[0]
+                    height = bbox[3] - bbox[1]
+                    processed_lines.append((processed_line, width, height, processed_style, font))
+                    # הגדרת רווח בהתאם לסגנון
+                    if processed_style['style_name'] == 'sentence':
+                        spacing = LINE_SPACING_WITHIN_SENTENCE
+                    elif processed_style['style_name'] == 'translation':
+                        spacing = LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION
+                    else:
+                        spacing = LINE_SPACING_NORMAL
+                    if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':
+                        spacing = LINE_SPACING_OUTRO_SUBTITLE  # רווח גדול יותר אחרי השורה השנייה
+                    total_height += height + spacing  # רווח בין השורות
+
+        # הסרת הרווח הנוסף בסוף
+        if processed_lines:
+            total_height -= spacing
 
         # מיקום ההתחלה במרכז אנכי
         current_y = (img.height - total_height) / 2
 
         # ציור הטקסט
-        for i, (processed_line, width, height, current_style, font) in enumerate(processed_lines):
-            x_text = (img.width - width) / 2  # מרכז אופקי
+        for idx, (processed_line, width, height, current_style, font) in enumerate(processed_lines):
+            style_name = current_style.get('style_name', 'normal')
+            if style_name in ['sentence', 'translation']:
+                # יישור לימין עבור טקסט עברי
+                x_text = (img.width - width) / 2  # ניתן לשנות ל- img.width - width - שוליים אם רוצים יישור מוחלט לימין
+            else:
+                # יישור למרכז עבור טקסט LTR
+                x_text = (img.width - width) / 2  # מרכז אופקי
+
             draw.text((x_text, current_y), processed_line, font=font, fill=current_style['text_color'])
 
             # קביעת רווח בין השורות
-            if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':  # אחרי השורה השנייה "לימוד אנגלית בקלי קלות"
-                spacing = LINE_SPACING_OUTRO_SUBTITLE  # רווח גדול יותר
+            if idx < len(processed_lines) - 1:
+                next_style = processed_lines[idx + 1][3].get('style_name', 'normal')
+                if style_name == 'sentence' and next_style == 'translation':
+                    spacing = LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION
+                elif style_name in ['sentence', 'translation']:
+                    spacing = LINE_SPACING_WITHIN_SENTENCE
+                else:
+                    spacing = LINE_SPACING_NORMAL
             else:
-                spacing = LINE_SPACING_NORMAL  # רווח רגיל
+                spacing = 0  # אין רווח לאחר השורה האחרונה
 
             current_y += height + spacing  # רווח בין השורות
 
@@ -235,6 +315,7 @@ class VideoCreator:
     def define_styles(self):
         return {
             'normal': {
+                'style_name': 'normal',
                 'bg_color': BG_COLOR,
                 'gradient': None,
                 'gradient_direction': 'vertical',
@@ -243,6 +324,7 @@ class VideoCreator:
                 'font_path': FONT_PATH
             },
             'subtopic': {
+                'style_name': 'subtopic',
                 'bg_color': SUBTOPIC_BG_COLOR,
                 'gradient': None,
                 'gradient_direction': 'vertical',
@@ -251,6 +333,7 @@ class VideoCreator:
                 'font_path': SUBTOPIC_FONT_PATH
             },
             'level': {
+                'style_name': 'level',
                 'bg_color': LEVEL_BG_COLOR,
                 'gradient': None,
                 'gradient_direction': 'vertical',
@@ -259,6 +342,7 @@ class VideoCreator:
                 'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
             },
             'word': {
+                'style_name': 'word',
                 'bg_color': BG_COLOR,
                 'gradient': None,
                 'gradient_direction': 'vertical',
@@ -267,6 +351,7 @@ class VideoCreator:
                 'font_path': WORD_FONT_PATH  # גופן מודגש
             },
             'gradient_background': {
+                'style_name': 'gradient_background',
                 'bg_color': None,
                 'gradient': ((255, 255, 255), (200, 200, 255)),  # דוגמה ל-Start ו-End צבעים
                 'gradient_direction': 'vertical',
@@ -275,6 +360,7 @@ class VideoCreator:
                 'font_path': FONT_PATH
             },
             'outro': {  # סגנון ל-Outro
+                'style_name': 'outro',
                 'bg_color': (50, 150, 200),  # צבע רקע כחול נעים
                 'gradient': None,
                 'gradient_direction': 'vertical',
@@ -283,6 +369,7 @@ class VideoCreator:
                 'font_path': FONT_PATH
             },
             'outro_title': {  # סגנון לכותרת הראשית של Outro
+                'style_name': 'outro_title',
                 'bg_color': (50, 150, 200),  # אותו צבע רקע כחול נעים
                 'gradient': None,
                 'gradient_direction': 'vertical',
@@ -291,12 +378,31 @@ class VideoCreator:
                 'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
             },
             'outro_subtitle': {  # סגנון לתת-כותרת של Outro
+                'style_name': 'outro_subtitle',
                 'bg_color': (50, 150, 200),  # אותו צבע רקע כחול נעים
                 'gradient': None,
                 'gradient_direction': 'vertical',
                 'text_color': (255, 255, 255),  # טקסט לבן
                 'font_size': 100,  # גודל גופן מעט קטן יותר מהכותרת
                 'font_path': SUBTOPIC_FONT_PATH  # שימוש בגופן מודגש
+            },
+            'sentence': {  # סגנון למשפטים
+                'style_name': 'sentence',
+                'bg_color': BG_COLOR,
+                'gradient': None,
+                'gradient_direction': 'vertical',
+                'text_color': TEXT_COLOR,
+                'font_size': FONT_SIZE,
+                'font_path': FONT_PATH
+            },
+            'translation': {  # סגנון לתרגומים
+                'style_name': 'translation',
+                'bg_color': BG_COLOR,
+                'gradient': None,
+                'gradient_direction': 'vertical',
+                'text_color': TEXT_COLOR,
+                'font_size': FONT_SIZE,
+                'font_path': FONT_PATH
             }
         }
 
@@ -538,7 +644,7 @@ class VideoAssembler:
 
                         # יצירת תמונה למשפט
                         text_lines_example = [sentence, translation]
-                        line_styles_example = ['normal', 'normal']
+                        line_styles_example = ['sentence', 'translation']
                         clip_example = self.video_creator.create_image_clip(text_lines_example, 'normal', line_styles_example)
 
                         # יצירת אודיו למשפט ולתרגום
@@ -631,7 +737,9 @@ def main():
             'word': WORD_FONT_PATH,
             'outro': FONT_PATH,
             'outro_title': SUBTOPIC_FONT_PATH,
-            'outro_subtitle': SUBTOPIC_FONT_PATH
+            'outro_subtitle': SUBTOPIC_FONT_PATH,
+            'sentence': 'sentence',
+            'translation': 'translation'
         })
         audio_creator = AudioCreator(file_manager.temp_dir)
         video_assembler = VideoAssembler(file_manager, image_creator, audio_creator)
