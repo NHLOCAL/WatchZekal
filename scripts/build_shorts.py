@@ -235,10 +235,10 @@ class ImageCreator:
                 if style_name in self.styles_require_bright_blur:
                     # הגברת הבהירות
                     enhancer = ImageEnhance.Brightness(img)
-                    img = enhancer.enhance(1.0)  # ניתן לשנות את הערך לפי הצורך
+                    img = enhancer.enhance(1.0)  # ערך 1.0 לפי בקשתך
 
                     # טשטוש קל
-                    img = img.filter(ImageFilter.GaussianBlur(radius=5))  # ניתן לשנות את הערך לפי הצורך
+                    img = img.filter(ImageFilter.GaussianBlur(radius=5))  # רדיוס 5 לפי בקשתך
 
                     # הוספת שכבת הדגשה
                     overlay = Image.new('RGBA', img.size, self.overlay_color)
@@ -292,10 +292,12 @@ class ImageCreator:
                             try:
                                 if processed_style['style_name'] == 'sentence':
                                     segment_style = style_definitions['sentence_bold']
+                                elif processed_style['style_name'] == 'call_to_action':
+                                    segment_style = style_definitions['call_to_action']
                                 else:
                                     segment_style = style_definitions['word']
                             except KeyError:
-                                logging.error(f"סגנון 'sentence_bold' או 'word' לא נמצא בקובץ העיצובים.")
+                                logging.error(f"סגנון 'sentence_bold', 'word' או 'call_to_action' לא נמצא בקובץ העיצובים.")
                                 raise
                             segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
                             segment_color = tuple(segment_style['text_color'])
@@ -376,8 +378,8 @@ class ImageCreator:
             line_width = sum([segment[1] for segment in line_info])
             x_text = (WIDTH - line_width) / 2
             for segment_text, width, height, segment_font, segment_color in line_info:
-                # בדיקת סגנון לטקסט עם זוהר (לדוגמה: 'topic' ו-'video_number')
-                if processed_style['style_name'] in ['topic', 'video_number']:
+                # בדיקת סגנון לטקסט עם זוהר (לדוגמה: 'topic', 'video_number', 'call_to_action')
+                if processed_style['style_name'] in ['topic', 'video_number', 'call_to_action']:
                     # הגדרת זוהר לבן עבה יותר
                     glow_color = (255, 255, 255)
                     # הגדרת היסטות רבות יותר כדי ליצור זוהר עבה
@@ -530,7 +532,7 @@ class VideoCreator:
 
     def add_logo_clip(self, duration=5, background_image_path=None):
         """
-        יוצר קליפ לוגו עם תמונת רקע מותאמת ולוגו מעוגל במרכז המסך.
+        יוצר קליפ לוגו עם מסגרת לבנה עגולה סביב הלוגו במרכז המסך.
         """
         try:
             # יצירת התמונה הבסיסית
@@ -564,13 +566,28 @@ class VideoCreator:
             logo_image = logo_image.crop((0, 0, size, size))
             logo_image.putalpha(mask)
 
+            # הגדרת רוחב מסגרת
+            border_width = 10  # ניתן לשנות את הערך לפי הצורך
+
+            # יצירת תמונה חדשה עם מסגרת לבנה
+            bordered_size = (size + 2 * border_width, size + 2 * border_width)
+            bordered_logo = Image.new('RGBA', bordered_size, (255, 255, 255, 0))
+            bordered_logo_draw = ImageDraw.Draw(bordered_logo)
+            # ציור מסגרת לבנה עגולה
+            bordered_logo_draw.ellipse((0, 0, bordered_size[0], bordered_size[1]), fill=(255, 255, 255, 255))
+            bordered_logo_draw.ellipse((border_width, border_width, bordered_size[0]-border_width, bordered_size[1]-border_width), fill=(0, 0, 0, 0))
+            # הדבקת הלוגו על המסגרת
+            bordered_logo.paste(logo_image, (border_width, border_width), logo_image)
+
             # שינוי גודל הלוגו
             new_size = int(WIDTH * 0.7)  # 70% מרוחב המסך
-            logo_image = logo_image.resize((new_size, new_size), RESAMPLING)
+            bordered_logo = bordered_logo.resize((new_size, new_size), RESAMPLING)
 
             # מיקום הלוגו במרכז
             logo_position = ((WIDTH - new_size) // 2, (HEIGHT - new_size) // 2)
-            background.paste(logo_image, logo_position, logo_image)
+
+            # הדבקת הלוגו עם המסגרת על הרקע
+            background.paste(bordered_logo, logo_position, bordered_logo)
 
             # שמירת התמונה הזמנית
             temp_image_path = self.file_manager.get_temp_path("logo_outro.png")
