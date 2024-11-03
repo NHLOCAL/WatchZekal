@@ -7,7 +7,7 @@ import numpy as np
 from gtts import gTTS
 from moviepy.editor import *
 from moviepy.audio.fx.audio_loop import audio_loop
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 import arabic_reshaper
 from bidi.algorithm import get_display
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -107,10 +107,14 @@ class FileManager:
     def cleanup(self):
         self.temp_dir.cleanup()
 
+
+
 class ImageCreator:
     def __init__(self, styles):
         self.styles = styles
         self.cache = {}
+        # הגדרת סגנונות שדורשים עיבוד רקע
+        self.styles_require_bright_blur = {'word', 'sentence', 'sentence_bold', 'translation'}
 
     @lru_cache(maxsize=None)
     def get_font(self, font_path, font_size):
@@ -223,6 +227,16 @@ class ImageCreator:
                     raise
 
                 img = Image.new('RGB', (WIDTH, HEIGHT), color=tuple(first_style['bg_color']))
+
+        # אם הסגנון דורש עיבוד רקע (בהירות וטשטוש)
+        if line_styles:
+            for style_name in line_styles:
+                if style_name in self.styles_require_bright_blur:
+                    enhancer = ImageEnhance.Brightness(img)
+                    img = enhancer.enhance(1)  # הגברת הבהירות (ניתן לשנות לפי הצורך)
+                    img = img.filter(ImageFilter.GaussianBlur(radius=7))  # טשטוש קל (ניתן לשנות לפי הצורך)
+                    logging.info(f"עיבוד רקע עבור הסגנון: {style_name}")
+                    break  # מספיק לעבד פעם אחת אם יש לפחות סגנון אחד שדורש עיבוד
 
         draw = ImageDraw.Draw(img)
 
@@ -378,6 +392,7 @@ class ImageCreator:
         img = img.convert("RGB")  # המרת חזרה ל-RGB אם הוספנו אלפא
         self.cache[cache_key] = img
         return img
+
 
 def remove_asterisks(text):
     """
