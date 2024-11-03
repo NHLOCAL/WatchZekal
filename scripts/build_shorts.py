@@ -6,7 +6,7 @@ import re
 import numpy as np
 from gtts import gTTS
 from moviepy.editor import *
-from moviepy.audio.fx.audio_loop import audio_loop  # ייבוא נכון של audio_loop
+from moviepy.audio.fx.audio_loop import audio_loop
 from PIL import Image, ImageDraw, ImageFont
 import arabic_reshaper
 from bidi.algorithm import get_display
@@ -196,7 +196,12 @@ class ImageCreator:
                 img = Image.new('RGB', (WIDTH, HEIGHT), color=(255, 255, 255))
             elif line_styles:
                 # אם line_styles מוגדר, נשתמש בסגנון לכל שורה
-                first_style = style_definitions[line_styles[0]]
+                try:
+                    first_style = style_definitions[line_styles[0]]
+                except KeyError:
+                    logging.error(f"סגנון '{line_styles[0]}' לא נמצא בקובץ העיצובים.")
+                    raise
+
                 if first_style.get('gradient'):
                     img = self.create_gradient_background(
                         WIDTH, HEIGHT, 
@@ -208,12 +213,12 @@ class ImageCreator:
                     img = Image.new('RGB', (WIDTH, HEIGHT), color=tuple(first_style['bg_color']))
             else:
                 # אחרת, נשתמש בסגנון הכללי
-                first_style = style_definitions.get('normal', {
-                    "bg_color": [255, 255, 255],
-                    "text_color": [0, 0, 0],
-                    "font_size": 80,
-                    "font_path": "Rubik-Regular.ttf"
-                })
+                try:
+                    first_style = style_definitions['normal']
+                except KeyError:
+                    logging.error("סגנון 'normal' לא נמצא בקובץ העיצובים.")
+                    raise
+
                 img = Image.new('RGB', (WIDTH, HEIGHT), color=tuple(first_style['bg_color']))
 
         draw = ImageDraw.Draw(img)
@@ -226,14 +231,18 @@ class ImageCreator:
         processed_lines = []
         for i, line in enumerate(text_lines):
             if line_styles and i < len(line_styles):
-                current_style = style_definitions[line_styles[i]]
+                style_name = line_styles[i]
+                try:
+                    current_style = style_definitions[style_name]
+                except KeyError:
+                    logging.error(f"סגנון '{style_name}' לא נמצא בקובץ העיצובים.")
+                    raise
             else:
-                current_style = style_definitions.get('normal', {
-                    "bg_color": [255, 255, 255],
-                    "text_color": [0, 0, 0],
-                    "font_size": 80,
-                    "font_path": "Rubik-Regular.ttf"
-                })
+                try:
+                    current_style = style_definitions['normal']
+                except KeyError:
+                    logging.error("סגנון 'normal' לא נמצא בקובץ העיצובים.")
+                    raise
 
             font = self.get_font(current_style['font_path'], current_style['font_size'])
 
@@ -244,17 +253,20 @@ class ImageCreator:
                     processed_line = process_hebrew_text(split_line)
                     segments = self.parse_bold(processed_line)
                     processed_style = current_style.copy()
-                    # הוספת שם הסגנון לשימוש בהמשך
-                    processed_style['style_name'] = line_styles[i] if line_styles and i < len(line_styles) else 'normal'
+                    processed_style['style_name'] = style_name if line_styles and i < len(line_styles) else 'normal'
                     
                     line_info = []
                     line_height = 0
                     for segment_text, is_bold in segments:
                         if is_bold:
-                            if processed_style['style_name'] == 'sentence':
-                                segment_style = style_definitions.get('sentence_bold', current_style)
-                            else:
-                                segment_style = style_definitions.get('word', current_style)
+                            try:
+                                if processed_style['style_name'] == 'sentence':
+                                    segment_style = style_definitions['sentence_bold']
+                                else:
+                                    segment_style = style_definitions['word']
+                            except KeyError:
+                                logging.error(f"סגנון 'sentence_bold' או 'word' לא נמצא בקובץ העיצובים.")
+                                raise
                             segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
                             segment_color = tuple(segment_style['text_color'])
                         else:
@@ -283,18 +295,21 @@ class ImageCreator:
                 for split_line in split_lines:
                     processed_line = split_line
                     processed_style = current_style.copy()
-                    # הוספת שם הסגנון לשימוש בהמשך
-                    processed_style['style_name'] = line_styles[i] if line_styles and i < len(line_styles) else 'normal'
+                    processed_style['style_name'] = style_name if line_styles and i < len(line_styles) else 'normal'
                     segments = self.parse_bold(processed_line)
                     
                     line_info = []
                     line_height = 0
                     for segment_text, is_bold in segments:
                         if is_bold:
-                            if processed_style['style_name'] == 'sentence':
-                                segment_style = style_definitions.get('sentence_bold', current_style)
-                            else:
-                                segment_style = style_definitions.get('word', current_style)
+                            try:
+                                if processed_style['style_name'] == 'sentence':
+                                    segment_style = style_definitions['sentence_bold']
+                                else:
+                                    segment_style = style_definitions['word']
+                            except KeyError:
+                                logging.error(f"סגנון 'sentence_bold' או 'word' לא נמצא בקובץ העיצובים.")
+                                raise
                             segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
                             segment_color = tuple(segment_style['text_color'])
                         else:
@@ -331,6 +346,28 @@ class ImageCreator:
             line_width = sum([segment[1] for segment in line_info])
             x_text = (WIDTH - line_width) / 2
             for segment_text, width, height, segment_font, segment_color in line_info:
+                # הגדרת זוהר לבן עבה סביב האותיות
+                if processed_style['style_name'] in ['topic', 'video_number']:
+                    # צבע הזוהר לבן
+                    glow_color = (255, 255, 255)
+                    # הגדרת היסטות רבות יותר כדי ליצור זוהר עבה
+                    offsets = [
+                        (-3, -3), (-3, 0), (-3, 3),
+                        (0, -3), (0, 3),
+                        (3, -3), (3, 0), (3, 3),
+                        (-2, -2), (-2, 2), (2, -2), (2, 2),
+                        (-4, 0), (4, 0), (0, -4), (0, 4)
+                    ]
+                    # ציור הזוהר מסביב לטקסט
+                    for offset in offsets:
+                        draw.text(
+                            (x_text + offset[0], current_y + (line_height - height) / 2 + offset[1]), 
+                            segment_text, font=segment_font, fill=glow_color
+                        )
+                # ציור הטקסט הרגיל במרכז הזוהר
+                draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
+
+                # ציור הטקסט הרגיל
                 draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
                 x_text += width  # הזזת מיקום ה-X לחלק הבא
 
@@ -506,7 +543,7 @@ class VideoCreator:
     def create_intro_clip(self, title, video_number):
         try:
             # הגדרת נתיב לתמונת הרקע לפי ה-title
-            background_image_filename = f"{sanitize_filename(title)}.png"  # הנחה שהקבצים הם png
+            background_image_filename = f"{sanitize_filename(title)}.png"  # שימוש ב-PNG
             background_image_path = os.path.join(BACKGROUNDS_DIR, background_image_filename)
             if not os.path.exists(background_image_path):
                 logging.warning(f"תמונת הרקע '{background_image_filename}' לא נמצאה בתיקיית הרקעים. ישתמש ברקע לבן.")
@@ -562,7 +599,7 @@ class VideoAssemblerShorts:
         self.video_creator = VideoCreator(file_manager, image_creator, audio_creator, style_definitions)
 
     def assemble_shorts_videos(self, data, output_dir, thumbnails_dir):
-        videos = data  # התיקון כאן, מכיוון שהפורמט העדכני הוא רשימה
+        videos = data  # הפורמט העדכני הוא רשימה
 
         for video_data in videos:
             video_number = video_data['video_number']
@@ -600,8 +637,7 @@ class VideoAssemblerShorts:
                 ]
                 audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
 
-                # **שינוי עיקרי כאן**:
-                # ניצור רק פעם אחת את השמע עבור 'word' ונשתמש בו פעמיים
+                # יצירת רשימת נתיבי האודיו
                 audio_paths_word = []
                 # עבור 'word' - קריאה באנגלית
                 english_audio = audio_results.get((word, 'en', True), "")
@@ -638,8 +674,7 @@ class VideoAssemblerShorts:
                     ]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
 
-                    # **שינוי עיקרי כאן**:
-                    # ניצור רק פעם אחת את השמע עבור 'sentence' ונשתמש בו פעמיים
+                    # יצירת רשימת נתיבי האודיו
                     audio_paths_example = []
                     # עבור 'sentence' - קריאה באנגלית
                     english_audio_sentence = audio_results.get((sentence, 'en', True), "")
@@ -729,63 +764,28 @@ def main():
         with open(STYLES_JSON_FILE, 'r', encoding='utf-8') as f:
             style_definitions = json.load(f)
 
-        # ודא שסגנונות חדשים מוגדרים
-        if 'topic' not in style_definitions:
-            style_definitions['topic'] = {
-                "style_name": "topic",
-                "bg_color": [255, 255, 255],
-                "text_color": [0, 0, 0],
-                "font_size": 100,
-                "font_path": "Rubik-Bold.ttf"
-            }
-        if 'video_number' not in style_definitions:
-            style_definitions['video_number'] = {
-                "style_name": "video_number",
-                "bg_color": [255, 255, 255],
-                "text_color": [0, 0, 0],
-                "font_size": 80,
-                "font_path": "Rubik-Regular.ttf"
-            }
-        if 'word' not in style_definitions:
-            style_definitions['word'] = {
-                "style_name": "word",
-                "bg_color": [255, 255, 255],
-                "text_color": [0, 0, 0],
-                "font_size": 90,
-                "font_path": "Rubik-Bold.ttf"
-            }
-        if 'translation' not in style_definitions:
-            style_definitions['translation'] = {
-                "style_name": "translation",
-                "bg_color": [255, 255, 255],
-                "text_color": [0, 0, 0],
-                "font_size": 70,
-                "font_path": "Rubik-Regular.ttf"
-            }
-        if 'sentence' not in style_definitions:
-            style_definitions['sentence'] = {
-                "style_name": "sentence",
-                "bg_color": [255, 255, 255],
-                "text_color": [0, 0, 0],
-                "font_size": 80,
-                "font_path": "Rubik-Regular.ttf"
-            }
-        if 'sentence_bold' not in style_definitions:
-            style_definitions['sentence_bold'] = {
-                "style_name": "sentence_bold",
-                "bg_color": [255, 255, 255],
-                "text_color": [0, 0, 0],
-                "font_size": 80,
-                "font_path": "Rubik-Bold.ttf"
-            }
-        if 'call_to_action' not in style_definitions:
-            style_definitions['call_to_action'] = {
-                "style_name": "call_to_action",
-                "bg_color": [255, 255, 255],
-                "text_color": [0, 0, 0],
-                "font_size": 80,
-                "font_path": "Rubik-Regular.ttf"
-            }
+        # בדיקה שכל הסגנונות הנדרשים קיימים בקובץ העיצובים
+        required_styles = {
+            "normal",
+            "subtopic",
+            "level",
+            "word",
+            "gradient_background",
+            "outro",
+            "outro_title",
+            "outro_subtitle",
+            "sentence",
+            "sentence_bold",
+            "translation",
+            "call_to_action",
+            "topic",
+            "video_number"
+        }
+
+        missing_styles = required_styles - set(style_definitions.keys())
+        if missing_styles:
+            logging.error(f"סגנונות חסרים בקובץ העיצובים: {', '.join(missing_styles)}. ודא שכל הסגנונות הדרושים מוגדרים.")
+            sys.exit(1)  # יציאה מהסקריפט עם קוד שגיאה
 
         # יצירת אובייקטים
         image_creator = ImageCreator(styles=style_definitions)
@@ -797,6 +797,10 @@ def main():
 
         logging.info("יצירת כל הסרטונים הסתיימה!")
 
+    except FileNotFoundError as e:
+        logging.error(f"לא ניתן למצוא קובץ: {e.filename}")
+    except json.JSONDecodeError as e:
+        logging.error(f"שגיאה בפענוח קובץ JSON: {e}")
     except Exception as e:
         logging.error(f"שגיאה כללית בתהליך יצירת הסרטונים: {e}")
 
