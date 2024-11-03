@@ -13,11 +13,12 @@ from bidi.algorithm import get_display
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import tempfile
 import logging
-from datetime import datetime
 from functools import lru_cache
+from datetime import datetime
 
 # הגדרת נתיב לתיקיית הלוגים
-LOGS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+LOGS_DIR = os.path.join(BASE_DIR, 'logs')
 os.makedirs(LOGS_DIR, exist_ok=True)  # יצירת התיקייה אם היא לא קיימת
 
 # יצירת שם קובץ לוג ייחודי על בסיס התאריך והשעה
@@ -42,11 +43,11 @@ logging.getLogger().addHandler(file_handler)
 RESAMPLING = Image.LANCZOS
 
 # הגדרות בסיסיות
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # נתיב לסקריפט הנוכחי
 DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'shorts')  # שינוי לתיקיית "shorts"
 ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
 FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 LOGOS_DIR = os.path.join(ASSETS_DIR, 'logos')
+BACKGROUNDS_DIR = os.path.join(ASSETS_DIR, 'backgrounds')  # תיקיית רקעים
 OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'shorts')  # הוספת "shorts" לנתיב היציאה
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 
@@ -173,35 +174,47 @@ class ImageCreator:
                 segments.append((part, False))       # חלק רגיל
         return segments
 
-    def create_image(self, text_lines, style_definitions, line_styles=None):
+    def create_image(self, text_lines, style_definitions, line_styles=None, background_image_path=None):
         # שימוש בקאשינג למניעת יצירת תמונות חוזרות
-        cache_key = tuple(text_lines) + tuple(line_styles or [])
+        cache_key = tuple(text_lines) + tuple(line_styles or []) + (background_image_path,)
         if cache_key in self.cache:
             logging.info("שימוש בתמונה מקאש")
             return self.cache[cache_key]
 
         # יצירת רקע
-        if line_styles:
-            # אם line_styles מוגדר, נשתמש בסגנון לכל שורה
-            first_style = style_definitions[line_styles[0]]
+        if background_image_path and os.path.exists(background_image_path):
+            try:
+                img = Image.open(background_image_path).convert("RGB")
+                img = img.resize((WIDTH, HEIGHT), RESAMPLING)
+                logging.info(f"שימש רקע מהתמונה: {background_image_path}")
+            except Exception as e:
+                logging.error(f"שגיאה בטעינת תמונת הרקע: {e}")
+                img = Image.new('RGB', (WIDTH, HEIGHT), color=(255, 255, 255))
         else:
-            # אחרת, נשתמש בסגנון הכללי
-            first_style = style_definitions.get('normal', {
-                "bg_color": [255, 255, 255],
-                "text_color": [0, 0, 0],
-                "font_size": 80,
-                "font_path": "Rubik-Regular.ttf"
-            })
-
-        if first_style.get('gradient'):
-            img = self.create_gradient_background(
-                WIDTH, HEIGHT, 
-                first_style['gradient'][0], 
-                first_style['gradient'][1], 
-                first_style['gradient_direction']
-            )
-        else:
-            img = Image.new('RGB', (WIDTH, HEIGHT), color=tuple(first_style['bg_color']))
+            if line_styles and 'intro' in line_styles:
+                # אם אין תמונה מתאימה, להשתמש בצבע רקע ברירת מחדל
+                img = Image.new('RGB', (WIDTH, HEIGHT), color=(255, 255, 255))
+            elif line_styles:
+                # אם line_styles מוגדר, נשתמש בסגנון לכל שורה
+                first_style = style_definitions[line_styles[0]]
+                if first_style.get('gradient'):
+                    img = self.create_gradient_background(
+                        WIDTH, HEIGHT, 
+                        first_style['gradient'][0], 
+                        first_style['gradient'][1], 
+                        first_style['gradient_direction']
+                    )
+                else:
+                    img = Image.new('RGB', (WIDTH, HEIGHT), color=tuple(first_style['bg_color']))
+            else:
+                # אחרת, נשתמש בסגנון הכללי
+                first_style = style_definitions.get('normal', {
+                    "bg_color": [255, 255, 255],
+                    "text_color": [0, 0, 0],
+                    "font_size": 80,
+                    "font_path": "Rubik-Regular.ttf"
+                })
+                img = Image.new('RGB', (WIDTH, HEIGHT), color=tuple(first_style['bg_color']))
 
         draw = ImageDraw.Draw(img)
 
@@ -329,13 +342,11 @@ class ImageCreator:
         self.cache[cache_key] = img
         return img
 
-
 def remove_asterisks(text):
     """
     מסירה את הכוכביות מטקסט המשמש להדגשה, כך שהמערכת לא תקריא אותן.
     """
     return text.replace("**", "")
-
 
 class AudioCreator:
     def __init__(self, temp_dir):
@@ -382,7 +393,6 @@ class AudioCreator:
     def shutdown(self):
         self.executor.shutdown(wait=True)
 
-
 class VideoCreator:
     def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
         self.file_manager = file_manager
@@ -390,8 +400,8 @@ class VideoCreator:
         self.audio_creator = audio_creator
         self.style_definitions = style_definitions
 
-    def create_image_clip(self, text_lines, style, line_styles=None):
-        img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles)
+    def create_image_clip(self, text_lines, style, line_styles=None, background_image_path=None):
+        img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles, background_image_path)
         # יצירת שם קובץ בטוח
         filename = f"{'_'.join([sanitize_filename(line) for line in text_lines])}.png"
         temp_image_path = self.file_manager.get_temp_path(filename)
@@ -493,23 +503,30 @@ class VideoCreator:
             logging.error(f"שגיאה ביצירת קליפ הלוגו: {e}")
             return None
 
-    def create_intro_clip(self, topic_name, video_number):
+    def create_intro_clip(self, title, video_number):
         try:
-            text_lines_intro = [topic_name, f"#{video_number}"]
+            # הגדרת נתיב לתמונת הרקע לפי ה-title
+            background_image_filename = f"{sanitize_filename(title)}.png"  # הנחה שהקבצים הם png
+            background_image_path = os.path.join(BACKGROUNDS_DIR, background_image_filename)
+            if not os.path.exists(background_image_path):
+                logging.warning(f"תמונת הרקע '{background_image_filename}' לא נמצאה בתיקיית הרקעים. ישתמש ברקע לבן.")
+                background_image_path = None  # ייעשה שימוש ברקע ברירת מחדל
+
+            text_lines_intro = [title, f"#{video_number}"]
             line_styles_intro = ['topic', 'video_number']
 
-            clip_intro = self.create_image_clip(text_lines_intro, 'intro', line_styles_intro)
+            clip_intro = self.create_image_clip(text_lines_intro, 'intro', line_styles_intro, background_image_path)
 
             # יצירת אודיו (אופציונלי)
             audio_tasks = [
-                (topic_name, 'iw'),
+                (title, 'iw'),
                 (f"מספר {video_number}", 'iw')
             ]
             audio_results = self.audio_creator.create_audios(audio_tasks)
             clip_intro = self.create_clip(
                 clip_intro,
                 [
-                    audio_results.get((topic_name, 'iw'), ""),
+                    audio_results.get((title, 'iw'), ""),
                     audio_results.get((f"מספר {video_number}", 'iw'), ""),
                 ],
                 min_duration=3  # משך מינימלי
@@ -545,12 +562,10 @@ class VideoAssemblerShorts:
         self.video_creator = VideoCreator(file_manager, image_creator, audio_creator, style_definitions)
 
     def assemble_shorts_videos(self, data, output_dir, thumbnails_dir):
-        videos = data
+        videos = data  # התיקון כאן, מכיוון שהפורמט העדכני הוא רשימה
 
-        # חלץ את שם הנושא מהשדה title במקום 'נושא'
         for video_data in videos:
             video_number = video_data['video_number']
-            topic_name = video_data['title']  # שינוי כאן לשדה title במקום נושא
             title = video_data['title']
             word = video_data['word']
             translation = video_data['translation']
@@ -569,7 +584,7 @@ class VideoAssemblerShorts:
 
             try:
                 # יצירת קליפ פתיחה עם שם הנושא ומספר הסרטון
-                intro_clip = self.video_creator.create_intro_clip(topic_name, video_number)
+                intro_clip = self.video_creator.create_intro_clip(title, video_number)
                 if intro_clip:
                     clips.append(intro_clip)
 
@@ -726,6 +741,46 @@ def main():
         if 'video_number' not in style_definitions:
             style_definitions['video_number'] = {
                 "style_name": "video_number",
+                "bg_color": [255, 255, 255],
+                "text_color": [0, 0, 0],
+                "font_size": 80,
+                "font_path": "Rubik-Regular.ttf"
+            }
+        if 'word' not in style_definitions:
+            style_definitions['word'] = {
+                "style_name": "word",
+                "bg_color": [255, 255, 255],
+                "text_color": [0, 0, 0],
+                "font_size": 90,
+                "font_path": "Rubik-Bold.ttf"
+            }
+        if 'translation' not in style_definitions:
+            style_definitions['translation'] = {
+                "style_name": "translation",
+                "bg_color": [255, 255, 255],
+                "text_color": [0, 0, 0],
+                "font_size": 70,
+                "font_path": "Rubik-Regular.ttf"
+            }
+        if 'sentence' not in style_definitions:
+            style_definitions['sentence'] = {
+                "style_name": "sentence",
+                "bg_color": [255, 255, 255],
+                "text_color": [0, 0, 0],
+                "font_size": 80,
+                "font_path": "Rubik-Regular.ttf"
+            }
+        if 'sentence_bold' not in style_definitions:
+            style_definitions['sentence_bold'] = {
+                "style_name": "sentence_bold",
+                "bg_color": [255, 255, 255],
+                "text_color": [0, 0, 0],
+                "font_size": 80,
+                "font_path": "Rubik-Bold.ttf"
+            }
+        if 'call_to_action' not in style_definitions:
+            style_definitions['call_to_action'] = {
+                "style_name": "call_to_action",
                 "bg_color": [255, 255, 255],
                 "text_color": [0, 0, 0],
                 "font_size": 80,
