@@ -132,6 +132,8 @@
         "gradient_direction": "vertical",
         "text_color": [0, 0, 0],
         "font_size": 100,
-        "font_path": "Rubik-Bold.ttf"
+        "font_path": "Rubik-Bold.ttf",
+        "border_color": [255, 255, 255],
+        "border_width": 10
     }
 }

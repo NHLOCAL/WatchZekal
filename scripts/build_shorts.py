@@ -566,20 +566,28 @@ class VideoCreator:
             logo_image = logo_image.crop((0, 0, size, size))
             logo_image.putalpha(mask)
 
-            # הגדרת רוחב מסגרת
-            border_width = 10  # ניתן לשנות את הערך לפי הצורך
+            # קריאת הגדרות המסגרת מקובץ ה-JSON
+            logo_style = self.style_definitions.get('logo', {})
+            border_color = tuple(logo_style.get('border_color', [255, 255, 255]))  # ברירת מחדל לבן
+            border_width = logo_style.get('border_width', 10)  # ברירת מחדל לעובי 10
 
-            # יצירת תמונה חדשה עם מסגרת לבנה
+            # יצירת תמונה חדשה עם מסגרת עגולה
             bordered_size = (size + 2 * border_width, size + 2 * border_width)
-            bordered_logo = Image.new('RGBA', bordered_size, (255, 255, 255, 0))
+            bordered_logo = Image.new('RGBA', bordered_size, (0, 0, 0, 0))
             bordered_logo_draw = ImageDraw.Draw(bordered_logo)
-            # ציור מסגרת לבנה עגולה
-            bordered_logo_draw.ellipse((0, 0, bordered_size[0], bordered_size[1]), fill=(255, 255, 255, 255))
-            bordered_logo_draw.ellipse((border_width, border_width, bordered_size[0]-border_width, bordered_size[1]-border_width), fill=(0, 0, 0, 0))
-            # הדבקת הלוגו על המסגרת
+
+            # ציור מסגרת עגולה בצבע המסגרת
+            bordered_logo_draw.ellipse((0, 0, bordered_size[0], bordered_size[1]), fill=border_color)
+
+            # יצירת מסכה פנימית לשקיפות
+            inner_mask = Image.new('L', (size, size), 0)
+            inner_draw = ImageDraw.Draw(inner_mask)
+            inner_draw.ellipse((0, 0, size, size), fill=255)
+
+            # הדבקת הלוגו המעוגל על המסגרת
             bordered_logo.paste(logo_image, (border_width, border_width), logo_image)
 
-            # שינוי גודל הלוגו
+            # שינוי גודל הלוגו עם המסגרת
             new_size = int(WIDTH * 0.7)  # 70% מרוחב המסך
             bordered_logo = bordered_logo.resize((new_size, new_size), RESAMPLING)
 
