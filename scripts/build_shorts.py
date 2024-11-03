@@ -13,10 +13,30 @@ from bidi.algorithm import get_display
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import tempfile
 import logging
+from datetime import datetime
 from functools import lru_cache
 
-# הגדרת רמת הלוגינג
+# הגדרת נתיב לתיקיית הלוגים
+LOGS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs')
+os.makedirs(LOGS_DIR, exist_ok=True)  # יצירת התיקייה אם היא לא קיימת
+
+# יצירת שם קובץ לוג ייחודי על בסיס התאריך והשעה
+log_filename = datetime.now().strftime("video_creation_%Y%m%d_%H%M%S.log")
+log_filepath = os.path.join(LOGS_DIR, log_filename)
+
+# הגדרת רמת הלוגינג ותבנית הלוגים
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# יצירת FileHandler לכתיבת הלוגים לקובץ ייחודי בתיקיית הלוגים
+file_handler = logging.FileHandler(log_filepath, mode='w', encoding='utf-8')
+file_handler.setLevel(logging.INFO)
+
+# הגדרת פורמט ל-FileHandler
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+
+# הוספת FileHandler ללוגר הראשי
+logging.getLogger().addHandler(file_handler)
 
 # עדכון שימוש ב-LANCZOS
 RESAMPLING = Image.LANCZOS
