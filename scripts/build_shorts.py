@@ -202,7 +202,10 @@ class ImageCreator:
                     logging.error(f"סגנון '{line_styles[0]}' לא נמצא בקובץ העיצובים.")
                     raise
 
-                if first_style.get('gradient'):
+                if first_style.get('background_image'):
+                    # כעת, לא נשתמש ב-background_image מהסגנון, אלא נקבע זאת על בסיס ה-title
+                    img = Image.new('RGB', (WIDTH, HEIGHT), color=tuple(first_style['bg_color']))
+                elif first_style.get('gradient'):
                     img = self.create_gradient_background(
                         WIDTH, HEIGHT, 
                         first_style['gradient'][0], 
@@ -346,9 +349,9 @@ class ImageCreator:
             line_width = sum([segment[1] for segment in line_info])
             x_text = (WIDTH - line_width) / 2
             for segment_text, width, height, segment_font, segment_color in line_info:
-                # הגדרת זוהר לבן עבה סביב האותיות
+                # בדיקת סגנון לטקסט עם זוהר (לדוגמה: 'topic' ו-'video_number')
                 if processed_style['style_name'] in ['topic', 'video_number']:
-                    # צבע הזוהר לבן
+                    # הגדרת זוהר לבן עבה יותר
                     glow_color = (255, 255, 255)
                     # הגדרת היסטות רבות יותר כדי ליצור זוהר עבה
                     offsets = [
@@ -365,9 +368,6 @@ class ImageCreator:
                             segment_text, font=segment_font, fill=glow_color
                         )
                 # ציור הטקסט הרגיל במרכז הזוהר
-                draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
-
-                # ציור הטקסט הרגיל
                 draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
                 x_text += width  # הזזת מיקום ה-X לחלק הבא
 
@@ -500,11 +500,29 @@ class VideoCreator:
 
         return transition
 
-    def add_logo_clip(self, duration=5, bg_color=(173, 216, 230)):
+    def add_logo_clip(self, duration=5, background_image_path=None):
         """
-        יוצר קליפ לוגו עם רקע בצבע מותאם ולוגו מעוגל במרכז המסך.
+        יוצר קליפ לוגו עם תמונת רקע מותאמת ולוגו מעוגל במרכז המסך.
         """
         try:
+            # יצירת התמונה הבסיסית
+            if background_image_path and os.path.exists(background_image_path):
+                try:
+                    background = Image.open(background_image_path).convert("RGB")
+                    background = background.resize((WIDTH, HEIGHT), RESAMPLING)
+                    logging.info(f"שימש רקע מהתמונה: {background_image_path} עבור הלוגו")
+                except Exception as e:
+                    logging.error(f"שגיאה בטעינת תמונת הרקע עבור הלוגו: {e}")
+                    background = Image.new('RGB', (WIDTH, HEIGHT), color=(173, 216, 230))
+            else:
+                # אם אין תמונת רקע, השתמש ברקע צבעי
+                logo_style = self.style_definitions.get('logo', None)
+                if logo_style and 'bg_color' in logo_style:
+                    bg_color = tuple(logo_style['bg_color'])
+                else:
+                    bg_color = (173, 216, 230)  # צבע ברירת מחדל
+                background = Image.new('RGB', (WIDTH, HEIGHT), color=bg_color)
+
             # טעינת הלוגו
             logo_image = Image.open(LOGO_PATH).convert("RGBA")
 
@@ -522,9 +540,6 @@ class VideoCreator:
             new_size = int(WIDTH * 0.7)  # 70% מרוחב המסך
             logo_image = logo_image.resize((new_size, new_size), RESAMPLING)
 
-            # יצירת רקע עם צבע מוגדר
-            background = Image.new('RGBA', (WIDTH, HEIGHT), bg_color + (255,))  # הוספת שקיפות מלאה
-
             # מיקום הלוגו במרכז
             logo_position = ((WIDTH - new_size) // 2, (HEIGHT - new_size) // 2)
             background.paste(logo_image, logo_position, logo_image)
@@ -540,19 +555,12 @@ class VideoCreator:
             logging.error(f"שגיאה ביצירת קליפ הלוגו: {e}")
             return None
 
-    def create_intro_clip(self, title, video_number):
+    def create_intro_clip(self, title, video_number, background_image_path):
         try:
-            # הגדרת נתיב לתמונת הרקע לפי ה-title
-            background_image_filename = f"{sanitize_filename(title)}.png"  # שימוש ב-PNG
-            background_image_path = os.path.join(BACKGROUNDS_DIR, background_image_filename)
-            if not os.path.exists(background_image_path):
-                logging.warning(f"תמונת הרקע '{background_image_filename}' לא נמצאה בתיקיית הרקעים. ישתמש ברקע לבן.")
-                background_image_path = None  # ייעשה שימוש ברקע ברירת מחדל
-
             text_lines_intro = [title, f"#{video_number}"]
             line_styles_intro = ['topic', 'video_number']
 
-            clip_intro = self.create_image_clip(text_lines_intro, 'intro', line_styles_intro, background_image_path)
+            clip_intro = self.create_image_clip(text_lines_intro, 'topic', line_styles_intro, background_image_path)
 
             # יצירת אודיו (אופציונלי)
             audio_tasks = [
@@ -573,30 +581,47 @@ class VideoCreator:
             logging.error(f"שגיאה ביצירת קליפ הפתיחה: {e}")
             return None
 
-    def create_outro(self, call_to_action):
-        text_lines_outro = [
-            call_to_action
-        ]
-        line_styles_outro = ['call_to_action']
-        clip_outro = self.create_image_clip(text_lines_outro, 'call_to_action', line_styles_outro)
+    def create_outro(self, call_to_action, background_image_path):
+        try:
+            text_lines_outro = [
+                call_to_action
+            ]
+            line_styles_outro = ['call_to_action']
 
-        # יצירת אודיו לקריאה לפעולה
-        audio_tasks = [
-            (call_to_action, 'iw')
-        ]
-        audio_results = self.audio_creator.create_audios(audio_tasks)
-        clip_outro = self.create_clip(
-            clip_outro,
-            [
-                audio_results.get((call_to_action, 'iw'), "")
-            ],
-            min_duration=4  # משך מינימלי
-        )
-        return clip_outro
+            clip_outro = self.create_image_clip(text_lines_outro, 'outro', line_styles_outro, background_image_path)
+
+            # יצירת אודיו לקריאה לפעולה
+            audio_tasks = [
+                (call_to_action, 'iw')
+            ]
+            audio_results = self.audio_creator.create_audios(audio_tasks)
+            clip_outro = self.create_clip(
+                clip_outro,
+                [
+                    audio_results.get((call_to_action, 'iw'), "")
+                ],
+                min_duration=4  # משך מינימלי
+            )
+            return clip_outro
+        except Exception as e:
+            logging.error(f"שגיאה ביצירת קליפ הסיום: {e}")
+            return None
 
 class VideoAssemblerShorts:
     def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
         self.video_creator = VideoCreator(file_manager, image_creator, audio_creator, style_definitions)
+
+    def determine_background_image_path(self, title):
+        """
+        קובע את נתיב תמונת הרקע על בסיס ה-title.
+        מחפש תמונה בפורמט PNG בתיקיית הרקעים עם שם תואם ל-title.
+        """
+        background_image_filename = f"{sanitize_filename(title)}.png"  # שימוש ב-PNG
+        background_image_path = os.path.join(BACKGROUNDS_DIR, background_image_filename)
+        if not os.path.exists(background_image_path):
+            logging.warning(f"תמונת הרקע '{background_image_filename}' לא נמצאה בתיקיית הרקעים. ישתמש ברקע לבן.")
+            background_image_path = None  # ייעשה שימוש ברקע ברירת מחדל
+        return background_image_path
 
     def assemble_shorts_videos(self, data, output_dir, thumbnails_dir):
         videos = data  # הפורמט העדכני הוא רשימה
@@ -616,19 +641,22 @@ class VideoAssemblerShorts:
             video_filename = f"Short_{video_number}_{safe_title}.mp4"
             video_path = os.path.join(output_dir, video_filename)
 
+            # קביעת נתיב תמונת הרקע על בסיס ה-title
+            background_image_path = self.determine_background_image_path(title)
+
             # רשימה לאחסון הקליפים
             clips = []
 
             try:
                 # יצירת קליפ פתיחה עם שם הנושא ומספר הסרטון
-                intro_clip = self.video_creator.create_intro_clip(title, video_number)
+                intro_clip = self.video_creator.create_intro_clip(title, video_number, background_image_path)
                 if intro_clip:
                     clips.append(intro_clip)
 
                 # הצגת המילה והתרגום
                 text_lines_word = [word, translation]
                 line_styles_word = ['word', 'translation']
-                clip_word = self.video_creator.create_image_clip(text_lines_word, 'word', line_styles_word)
+                clip_word = self.video_creator.create_image_clip(text_lines_word, 'word', line_styles_word, background_image_path)
 
                 # יצירת אודיו למילה ולתרגום
                 audio_tasks = [
@@ -665,7 +693,7 @@ class VideoAssemblerShorts:
 
                     text_lines_example = [sentence, ex_translation]
                     line_styles_example = ['sentence', 'translation']
-                    clip_example = self.video_creator.create_image_clip(text_lines_example, 'sentence', line_styles_example)
+                    clip_example = self.video_creator.create_image_clip(text_lines_example, 'sentence', line_styles_example, background_image_path)
 
                     # יצירת אודיו למשפט ולתרגום
                     audio_tasks = [
@@ -704,13 +732,14 @@ class VideoAssemblerShorts:
 
                 # קריאה לפעולה
                 if call_to_action:
-                    clip_outro = self.video_creator.create_outro(call_to_action)
-                    transition = self.video_creator.slide_transition(clips[-1], clip_outro)
-                    clips.append(transition)
-                    clips.append(clip_outro)
+                    clip_outro = self.video_creator.create_outro(call_to_action, background_image_path)
+                    if clip_outro:
+                        transition = self.video_creator.slide_transition(clips[-1], clip_outro)
+                        clips.append(transition)
+                        clips.append(clip_outro)
 
                 # הוספת קליפ הלוגו בסוף
-                logo_clip = self.video_creator.add_logo_clip(duration=5)
+                logo_clip = self.video_creator.add_logo_clip(duration=5, background_image_path=background_image_path)
                 if logo_clip:
                     transition = self.video_creator.slide_transition(clips[-1], logo_clip)
                     clips.append(transition)
@@ -779,7 +808,8 @@ def main():
             "translation",
             "call_to_action",
             "topic",
-            "video_number"
+            "video_number",
+            "logo"  # סגנון חדש עבור הלוגו
         }
 
         missing_styles = required_styles - set(style_definitions.keys())
