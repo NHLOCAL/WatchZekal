@@ -1,321 +1,317 @@
-{
-    "נושא 10": "תקשורת ומדיה",
-    "סרטונים": [
-      {
-        "video_number": 1,
-        "title": "תקשורת",
-        "word": "Broadcast",
-        "translation": "שידור",
-        "examples": [
+[
+  {
+      "video_number": 1,
+      "title": "תקשורת ומדיה",
+      "word": "Broadcast",
+      "translation": "שידור",
+      "examples": [
           {
-            "sentence": "The news **broadcast** starts at 8 PM",
-            "translation": "שידור החדשות מתחיל ב-8 בערב"
+              "sentence": "The news **broadcast** starts at 8 PM",
+              "translation": "שידור החדשות מתחיל בשעה 8 בערב"
           },
           {
-            "sentence": "They watched the live **broadcast**",
-            "translation": "הם צפו בשידור החי"
+              "sentence": "They watched the live **broadcast** of the event",
+              "translation": "הם צפו בשידור החי של האירוע"
           },
           {
-            "sentence": "The event will be **broadcast** worldwide",
-            "translation": "האירוע ישודר ברחבי העולם"
+              "sentence": "The **broadcast** was interrupted due to technical issues",
+              "translation": "השידור הופסק עקב בעיות טכניות"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה אתם אוהבים לצפות בשידור חי באנגלית"
-      },
-      {
-        "video_number": 2,
-        "title": "תקשורת",
-        "word": "Journalist",
-        "translation": "עיתונאי",
-        "examples": [
+      ],
+      "call_to_action": "ספרו לנו, מהו השידור האהוב עליכם?"
+  },
+  {
+      "video_number": 2,
+      "title": "תקשורת ומדיה",
+      "word": "Journalist",
+      "translation": "עיתונאי",
+      "examples": [
           {
-            "sentence": "She is a respected **journalist**",
-            "translation": "היא עיתונאית מכובדת"
+              "sentence": "She is a respected **journalist**",
+              "translation": "היא עיתונאית מכובדת"
           },
           {
-            "sentence": "He wants to become a **journalist**",
-            "translation": "הוא רוצה להיות עיתונאי"
+              "sentence": "The **journalist** interviewed the president",
+              "translation": "העיתונאי ראיין את הנשיא"
           },
           {
-            "sentence": "**Journalists** report the news",
-            "translation": "עיתונאים מדווחים את החדשות"
+              "sentence": "**Journalists** report the news to the public",
+              "translation": "עיתונאים מדווחים את החדשות לציבור"
           }
-        ],
-        "call_to_action": "כתבו בתגובות אם הייתם רוצים להיות עיתונאים ולמה באנגלית"
-      },
-      {
-        "video_number": 3,
-        "title": "תקשורת",
-        "word": "Interview",
-        "translation": "ראיון",
-        "examples": [
+      ],
+      "call_to_action": "כתבו לנו, האם הייתם רוצים להיות עיתונאים?"
+  },
+  {
+      "video_number": 3,
+      "title": "תקשורת ומדיה",
+      "word": "Interview",
+      "translation": "ראיון",
+      "examples": [
           {
-            "sentence": "They will **interview** the author",
-            "translation": "הם יראיינו את הסופר"
+              "sentence": "They will **interview** the author",
+              "translation": "הם יראיינו את המחבר"
           },
           {
-            "sentence": "She prepared for the job **interview**",
-            "translation": "היא התכוננה לראיון העבודה"
+              "sentence": "The job **interview** went well",
+              "translation": "ראיון העבודה עבר טוב"
           },
           {
-            "sentence": "The **interview** was broadcast on radio",
-            "translation": "הראיון שודר ברדיו"
+              "sentence": "She prepared questions for the **interview**",
+              "translation": "היא הכינה שאלות לראיון"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איך אתם מתכוננים לראיונות באנגלית"
-      },
-      {
-        "video_number": 4,
-        "title": "תקשורת",
-        "word": "Headline",
-        "translation": "כותרת ראשית",
-        "examples": [
+      ],
+      "call_to_action": "רשמו בתגובות, איך אתם מתכוננים לראיון?"
+  },
+  {
+      "video_number": 4,
+      "title": "תקשורת ומדיה",
+      "word": "Headline",
+      "translation": "כותרת ראשית",
+      "examples": [
           {
-            "sentence": "The **headline** caught my attention",
-            "translation": "הכותרת הראשית תפסה את תשומת לבי"
+              "sentence": "The **headline** caught my attention",
+              "translation": "הכותרת הראשית תפסה את תשומת ליבי"
           },
           {
-            "sentence": "They wrote an eye-catching **headline**",
-            "translation": "הם כתבו כותרת ראשית מושכת עין"
+              "sentence": "He writes **headlines** for the newspaper",
+              "translation": "הוא כותב כותרות ראשיות לעיתון"
           },
           {
-            "sentence": "**Headlines** summarize the news",
-            "translation": "כותרות ראשיות מסכמות את החדשות"
+              "sentence": "**Headlines** often summarize the main story",
+              "translation": "כותרות ראשיות מסכמות לעיתים את הסיפור המרכזי"
           }
-        ],
-        "call_to_action": "ספרו לנו מה הייתה הכותרת האחרונה שקראתם באנגלית"
-      },
-      {
-        "video_number": 5,
-        "title": "תקשורת",
-        "word": "Article",
-        "translation": "מאמר",
-        "examples": [
+      ],
+      "call_to_action": "ספרו לנו, מה הייתה הכותרת שתפסה אתכם לאחרונה?"
+  },
+  {
+      "video_number": 5,
+      "title": "תקשורת ומדיה",
+      "word": "Article",
+      "translation": "מאמר",
+      "examples": [
           {
-            "sentence": "I read an interesting **article**",
-            "translation": "קראתי מאמר מעניין"
+              "sentence": "I read an interesting **article**",
+              "translation": "קראתי מאמר מעניין"
           },
           {
-            "sentence": "She writes **articles** for a magazine",
-            "translation": "היא כותבת מאמרים למגזין"
+              "sentence": "She wrote an **article** about technology",
+              "translation": "היא כתבה מאמר על טכנולוגיה"
           },
           {
-            "sentence": "They published his **article** online",
-            "translation": "הם פרסמו את המאמר שלו ברשת"
+              "sentence": "The **article** was published online",
+              "translation": "המאמר פורסם באינטרנט"
           }
-        ],
-        "call_to_action": "שתפו בתגובות על מאמר מעניין שקראתם באנגלית"
-      },
-      {
-        "video_number": 6,
-        "title": "תקשורת",
-        "word": "Advertisement",
-        "translation": "פרסומת",
-        "examples": [
+      ],
+      "call_to_action": "כתבו לנו, על מה הייתם רוצים לקרוא מאמר?"
+  },
+  {
+      "video_number": 6,
+      "title": "תקשורת ומדיה",
+      "word": "Advertisement",
+      "translation": "פרסומת",
+      "examples": [
           {
-            "sentence": "The **advertisement** was creative",
-            "translation": "הפרסומת הייתה יצירתית"
+              "sentence": "They saw the **advertisement** on TV",
+              "translation": "הם ראו את הפרסומת בטלוויזיה"
           },
           {
-            "sentence": "They launched a new **advertisement** campaign",
-            "translation": "הם השיקו קמפיין פרסומי חדש"
+              "sentence": "The **advertisement** promotes a new product",
+              "translation": "הפרסומת מקדמת מוצר חדש"
           },
           {
-            "sentence": "**Advertisements** influence consumers",
-            "translation": "פרסומות משפיעות על צרכנים"
+              "sentence": "**Advertisements** can be creative and fun",
+              "translation": "פרסומות יכולות להיות יצירתיות ומהנות"
           }
-        ],
-        "call_to_action": "כתבו בתגובות על פרסומת שזכורה לכם באנגלית"
-      },
-      {
-        "video_number": 7,
-        "title": "תקשורת",
-        "word": "Broadcast",
-        "translation": "שידור",
-        "examples": [
+      ],
+      "call_to_action": "רשמו בתגובות, איזו פרסומת אהובה עליכם?"
+  },
+  {
+      "video_number": 7,
+      "title": "תקשורת ומדיה",
+      "word": "Podcast",
+      "translation": "פודקאסט",
+      "examples": [
           {
-            "sentence": "The event will be **broadcast** live",
-            "translation": "האירוע ישודר בשידור חי"
+              "sentence": "She listens to a **podcast** on her commute",
+              "translation": "היא מאזינה לפודקאסט בדרך לעבודה"
           },
           {
-            "sentence": "They watched the **broadcast** together",
-            "translation": "הם צפו בשידור יחד"
+              "sentence": "They started a new **podcast** about science",
+              "translation": "הם התחילו פודקאסט חדש על מדע"
           },
           {
-            "sentence": "**Broadcasting** has evolved over time",
-            "translation": "השידור התפתח לאורך הזמן"
+              "sentence": "**Podcasts** are becoming increasingly popular",
+              "translation": "פודקאסטים הופכים לפופולריים יותר ויותר"
           }
-        ],
-        "call_to_action": "ספרו לנו אם אתם מעדיפים לצפות בשידור או בהקלטה באנגלית"
-      },
-      {
-        "video_number": 8,
-        "title": "תקשורת",
-        "word": "Subscribe",
-        "translation": "להירשם (מנוי)",
-        "examples": [
+      ],
+      "call_to_action": "ספרו לנו, איזה פודקאסט אתם ממליצים לשמוע?"
+  },
+  {
+      "video_number": 8,
+      "title": "תקשורת ומדיה",
+      "word": "Social Media",
+      "translation": "רשתות חברתיות",
+      "examples": [
           {
-            "sentence": "Don't forget to **subscribe** to our channel",
-            "translation": "אל תשכחו להירשם לערוץ שלנו"
+              "sentence": "She shares photos on **social media**",
+              "translation": "היא משתפת תמונות ברשתות חברתיות"
           },
           {
-            "sentence": "She **subscribed** to the newsletter",
-            "translation": "היא נרשמה לניוזלטר"
+              "sentence": "**Social media** connects people worldwide",
+              "translation": "רשתות חברתיות מחברות אנשים ברחבי העולם"
           },
           {
-            "sentence": "They have many **subscribers**",
-            "translation": "יש להם הרבה מנויים"
+              "sentence": "They use **social media** for marketing",
+              "translation": "הם משתמשים ברשתות חברתיות לשיווק"
           }
-        ],
-        "call_to_action": "שתפו בתגובות לאיזה ערוצים אתם מנויים באנגלית"
-      },
-      {
-        "video_number": 9,
-        "title": "תקשורת",
-        "word": "Podcast",
-        "translation": "פודקאסט",
-        "examples": [
+      ],
+      "call_to_action": "כתבו לנו, מהי הרשת החברתית המועדפת עליכם?"
+  },
+  {
+      "video_number": 9,
+      "title": "תקשורת ומדיה",
+      "word": "Editor",
+      "translation": "עורך",
+      "examples": [
           {
-            "sentence": "I listen to a **podcast** during my commute",
-            "translation": "אני מאזין לפודקאסט במהלך הנסיעה"
+              "sentence": "The **editor** revised the article",
+              "translation": "העורך ערך את המאמר"
           },
           {
-            "sentence": "She hosts a popular **podcast**",
-            "translation": "היא מנחה פודקאסט פופולרי"
+              "sentence": "She works as an **editor** for a magazine",
+              "translation": "היא עובדת כעורכת במגזין"
           },
           {
-            "sentence": "**Podcasts** cover various topics",
-            "translation": "פודקאסטים מכסים נושאים שונים"
+              "sentence": "An **editor** improves the quality of writing",
+              "translation": "עורך משפר את איכות הכתיבה"
           }
-        ],
-        "call_to_action": "ספרו לנו על פודקאסט מומלץ שלכם באנגלית"
-      },
-      {
-        "video_number": 10,
-        "title": "תקשורת",
-        "word": "Viral",
-        "translation": "ויראלי",
-        "examples": [
+      ],
+      "call_to_action": "רשמו בתגובות, האם אתם אוהבים לערוך תוכן?"
+  },
+  {
+      "video_number": 10,
+      "title": "תקשורת ומדיה",
+      "word": "Press",
+      "translation": "עיתונות",
+      "examples": [
           {
-            "sentence": "The video went **viral** overnight",
-            "translation": "הווידאו הפך לויראלי בין לילה"
+              "sentence": "Freedom of the **press** is important",
+              "translation": "חופש העיתונות הוא חשוב"
           },
           {
-            "sentence": "They hope their content becomes **viral**",
-            "translation": "הם מקווים שהתוכן שלהם יהפוך לויראלי"
+              "sentence": "The **press** covered the event extensively",
+              "translation": "העיתונות סיקרה את האירוע בהרחבה"
           },
           {
-            "sentence": "**Viral** posts spread quickly",
-            "translation": "פוסטים ויראליים מתפשטים במהירות"
+              "sentence": "She has a career in the **press**",
+              "translation": "יש לה קריירה בעיתונות"
           }
-        ],
-        "call_to_action": "כתבו בתגובות על תוכן ויראלי שנתקלתם בו באנגלית"
-      },
-      {
-        "video_number": 11,
-        "title": "תקשורת",
-        "word": "Influencer",
-        "translation": "משפיען",
-        "examples": [
+      ],
+      "call_to_action": "ספרו לנו, מה אתם חושבים על תפקיד העיתונות בחברה?"
+  },
+  {
+      "video_number": 11,
+      "title": "תקשורת ומדיה",
+      "word": "Subscription",
+      "translation": "מנוי",
+      "examples": [
           {
-            "sentence": "She is a social media **influencer**",
-            "translation": "היא משפיענית ברשתות החברתיות"
+              "sentence": "He renewed his magazine **subscription**",
+              "translation": "הוא חידש את המנוי למגזין"
           },
           {
-            "sentence": "**Influencers** collaborate with brands",
-            "translation": "משפיענים משתפים פעולה עם מותגים"
+              "sentence": "They offer monthly **subscriptions**",
+              "translation": "הם מציעים מנויים חודשיים"
           },
           {
-            "sentence": "He became an **influencer** accidentally",
-            "translation": "הוא הפך למשפיען במקרה"
+              "sentence": "She canceled her streaming **subscription**",
+              "translation": "היא ביטלה את המנוי לשירות הסטרימינג"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מי הוא המשפיען האהוב עליכם באנגלית"
-      },
-      {
-        "video_number": 12,
-        "title": "תקשורת",
-        "word": "Hashtag",
-        "translation": "האשטאג",
-        "examples": [
+      ],
+      "call_to_action": "כתבו לנו, לאילו שירותים אתם מנויים?"
+  },
+  {
+      "video_number": 12,
+      "title": "תקשורת ומדיה",
+      "word": "Channel",
+      "translation": "ערוץ",
+      "examples": [
           {
-            "sentence": "Use the **hashtag** to join the conversation",
-            "translation": "השתמשו בהאשטאג כדי להצטרף לשיחה"
+              "sentence": "Change the **channel**, please",
+              "translation": "בבקשה החלף ערוץ"
           },
           {
-            "sentence": "The campaign's **hashtag** trended globally",
-            "translation": "ההאשטאג של הקמפיין הפך לפופולרי עולמי"
+              "sentence": "She started her own YouTube **channel**",
+              "translation": "היא פתחה ערוץ יוטיוב משלה"
           },
           {
-            "sentence": "**Hashtags** categorize content",
-            "translation": "האשטאגים מקטלגים תוכן"
+              "sentence": "There are many **channels** to choose from",
+              "translation": "יש הרבה ערוצים לבחור מהם"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה האשטאג האהוב עליכם באנגלית"
-      },
-      {
-        "video_number": 13,
-        "title": "תקשורת",
-        "word": "Platform",
-        "translation": "פלטפורמה",
-        "examples": [
+      ],
+      "call_to_action": "רשמו בתגובות, מהו הערוץ המועדף עליכם?"
+  },
+  {
+      "video_number": 13,
+      "title": "תקשורת ומדיה",
+      "word": "Breaking News",
+      "translation": "חדשות מתפרצות",
+      "examples": [
           {
-            "sentence": "They launched a new social **platform**",
-            "translation": "הם השיקו פלטפורמה חברתית חדשה"
+              "sentence": "We interrupt this program for **breaking news**",
+              "translation": "אנו מפסיקים את התוכנית לחדשות מתפרצות"
           },
           {
-            "sentence": "Choose the right **platform** for your content",
-            "translation": "בחר את הפלטפורמה הנכונה לתוכן שלך"
+              "sentence": "**Breaking news** reports are immediate",
+              "translation": "דיווחי חדשות מתפרצות הם מיידיים"
           },
           {
-            "sentence": "She uses multiple **platforms** to share ideas",
-            "translation": "היא משתמשת בפלטפורמות מרובות לשיתוף רעיונות"
+              "sentence": "They received **breaking news** alerts",
+              "translation": "הם קיבלו התראות חדשות מתפרצות"
           }
-        ],
-        "call_to_action": "ספרו לנו באיזו פלטפורמה אתם משתמשים הכי הרבה באנגלית"
-      },
-      {
-        "video_number": 14,
-        "title": "תקשורת",
-        "word": "Engagement",
-        "translation": "מעורבות",
-        "examples": [
+      ],
+      "call_to_action": "ספרו לנו, איך אתם מתעדכנים בחדשות מתפרצות?"
+  },
+  {
+      "video_number": 14,
+      "title": "תקשורת ומדיה",
+      "word": "Audience",
+      "translation": "קהל",
+      "examples": [
           {
-            "sentence": "High **engagement** boosts visibility",
-            "translation": "מעורבות גבוהה מגבירה נראות"
+              "sentence": "The **audience** applauded after the show",
+              "translation": "הקהל מחא כפיים אחרי המופע"
           },
           {
-            "sentence": "They track **engagement** metrics",
-            "translation": "הם עוקבים אחרי מדדי מעורבות"
+              "sentence": "She engaged the **audience** with her speech",
+              "translation": "היא שיתפה את הקהל בנאומה"
           },
           {
-            "sentence": "User **engagement** is key to growth",
-            "translation": "מעורבות משתמשים היא המפתח לצמיחה"
+              "sentence": "The **audience** enjoyed the performance",
+              "translation": "הקהל נהנה מההופעה"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איך אתם מגבירים מעורבות בתוכן שלכם באנגלית"
-      },
-      {
-        "video_number": 15,
-        "title": "תקשורת",
-        "word": "Algorithm",
-        "translation": "אלגוריתם",
-        "examples": [
+      ],
+      "call_to_action": "כתבו לנו, מהי ההופעה האחרונה שראיתם מול קהל?"
+  },
+  {
+      "video_number": 15,
+      "title": "תקשורת ומדיה",
+      "word": "Publication",
+      "translation": "פרסום",
+      "examples": [
           {
-            "sentence": "The **algorithm** changed again",
-            "translation": "האלגוריתם השתנה שוב"
+              "sentence": "His book is ready for **publication**",
+              "translation": "הספר שלו מוכן לפרסום"
           },
           {
-            "sentence": "They study the **algorithm** to optimize posts",
-            "translation": "הם חוקרים את האלגוריתם כדי לייעל פוסטים"
+              "sentence": "The **publication** date is next month",
+              "translation": "תאריך הפרסום הוא בחודש הבא"
           },
           {
-            "sentence": "**Algorithms** determine what we see online",
-            "translation": "אלגוריתמים קובעים מה אנחנו רואים ברשת"
+              "sentence": "She works in the **publishing** industry",
+              "translation": "היא עובדת בתעשיית הפרסום"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה אתם חושבים על אלגוריתמים ברשתות החברתיות באנגלית"
-      }
-    ]
+      ],
+      "call_to_action": "רשמו בתגובות, האם אתם כותבים או מפרסמים תוכן?"
   }
-  
+]

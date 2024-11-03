@@ -1,321 +1,317 @@
-{
-    "נושא 8": "נסיעות וטיולים",
-    "סרטונים": [
-      {
-        "video_number": 1,
-        "title": "נסיעות",
-        "word": "Destination",
-        "translation": "יעד",
-        "examples": [
+[
+  {
+      "video_number": 1,
+      "title": "נסיעות וטיולים",
+      "word": "Destination",
+      "translation": "יעד",
+      "examples": [
           {
-            "sentence": "Our next **destination** is Japan",
-            "translation": "היעד הבא שלנו הוא יפן"
+              "sentence": "Our next **destination** is Japan",
+              "translation": "היעד הבא שלנו הוא יפן"
           },
           {
-            "sentence": "They chose a tropical **destination**",
-            "translation": "הם בחרו יעד טרופי"
+              "sentence": "They chose a tropical **destination** for their honeymoon",
+              "translation": "הם בחרו יעד טרופי לירח הדבש שלהם"
           },
           {
-            "sentence": "What's your dream **destination**?",
-            "translation": "מהו היעד החלומי שלך?"
+              "sentence": "Paris is a popular tourist **destination**",
+              "translation": "פריז היא יעד תיירותי פופולרי"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה היעד הבא שלכם באנגלית"
-      },
-      {
-        "video_number": 2,
-        "title": "נסיעות",
-        "word": "Passport",
-        "translation": "דרכון",
-        "examples": [
+      ],
+      "call_to_action": "מהו היעד המועדף עליכם לטיול? שתפו באנגלית!"
+  },
+  {
+      "video_number": 2,
+      "title": "נסיעות וטיולים",
+      "word": "Passport",
+      "translation": "דרכון",
+      "examples": [
           {
-            "sentence": "Don't forget your **passport**",
-            "translation": "אל תשכח את הדרכון שלך"
+              "sentence": "Don't forget your **passport**",
+              "translation": "אל תשכח את הדרכון שלך"
           },
           {
-            "sentence": "Her **passport** expired last month",
-            "translation": "הדרכון שלה פג תוקף בחודש שעבר"
+              "sentence": "Her **passport** expired last month",
+              "translation": "הדרכון שלה פג תוקף בחודש שעבר"
           },
           {
-            "sentence": "He keeps his **passport** safe",
-            "translation": "הוא שומר את הדרכון שלו בטוח"
+              "sentence": "You need a valid **passport** to travel abroad",
+              "translation": "אתה צריך דרכון בתוקף כדי לנסוע לחו\"ל"
           }
-        ],
-        "call_to_action": "כתבו בתגובות אם יש לכם דרכון ואיפה הייתם רוצים להשתמש בו באנגלית"
-      },
-      {
-        "video_number": 3,
-        "title": "נסיעות",
-        "word": "Luggage",
-        "translation": "מטען",
-        "examples": [
+      ],
+      "call_to_action": "מתי לאחרונה חידשתם את הדרכון שלכם? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 3,
+      "title": "נסיעות וטיולים",
+      "word": "Luggage",
+      "translation": "מטען",
+      "examples": [
           {
-            "sentence": "Pack your **luggage** lightly",
-            "translation": "ארוז את המטען שלך בקלילות"
+              "sentence": "Pack your **luggage** lightly",
+              "translation": "ארוז את המטען שלך בקלילות"
           },
           {
-            "sentence": "Their **luggage** got lost",
-            "translation": "המטען שלהם אבד"
+              "sentence": "She lost her **luggage** at the airport",
+              "translation": "היא איבדה את המטען שלה בשדה התעופה"
           },
           {
-            "sentence": "She bought new **luggage** for the trip",
-            "translation": "היא קנתה מטען חדש לטיול"
+              "sentence": "They bought new **luggage** for the trip",
+              "translation": "הם קנו מטען חדש לטיול"
           }
-        ],
-        "call_to_action": "ספרו לנו מה אתם אורזים לטיול באנגלית"
-      },
-      {
-        "video_number": 4,
-        "title": "נסיעות",
-        "word": "Tourist",
-        "translation": "תייר",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם תמיד לוקחים איתכם במזוודה? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 4,
+      "title": "נסיעות וטיולים",
+      "word": "Tourist",
+      "translation": "תייר",
+      "examples": [
           {
-            "sentence": "The city is full of **tourists**",
-            "translation": "העיר מלאה בתיירים"
+              "sentence": "The city is full of **tourists**",
+              "translation": "העיר מלאה בתיירים"
           },
           {
-            "sentence": "He felt like a **tourist** in his own town",
-            "translation": "הוא הרגיש כמו תייר בעירו שלו"
+              "sentence": "He works as a **tourist** guide",
+              "translation": "הוא עובד כמדריך תיירים"
           },
           {
-            "sentence": "**Tourists** often visit museums",
-            "translation": "תיירים מבקרים לעיתים קרובות במוזיאונים"
+              "sentence": "**Tourists** often visit historical sites",
+              "translation": "תיירים מבקרים לעיתים קרובות באתרים היסטוריים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איפה הייתם רוצים להיות תיירים באנגלית"
-      },
-      {
-        "video_number": 5,
-        "title": "נסיעות",
-        "word": "Journey",
-        "translation": "מסע",
-        "examples": [
+      ],
+      "call_to_action": "מהו המקום התיירותי האהוב עליכם? שתפו באנגלית!"
+  },
+  {
+      "video_number": 5,
+      "title": "נסיעות וטיולים",
+      "word": "Journey",
+      "translation": "מסע",
+      "examples": [
           {
-            "sentence": "The **journey** was unforgettable",
-            "translation": "המסע היה בלתי נשכח"
+              "sentence": "The **journey** was unforgettable",
+              "translation": "המסע היה בלתי נשכח"
           },
           {
-            "sentence": "Life is a continuous **journey**",
-            "translation": "החיים הם מסע מתמשך"
+              "sentence": "They began their **journey** early in the morning",
+              "translation": "הם התחילו את המסע שלהם מוקדם בבוקר"
           },
           {
-            "sentence": "They began their **journey** at dawn",
-            "translation": "הם החלו את המסע שלהם עם עלות השחר"
+              "sentence": "He wrote a book about his **journey** around the world",
+              "translation": "הוא כתב ספר על המסע שלו סביב העולם"
           }
-        ],
-        "call_to_action": "כתבו בתגובות על מסע שתרצו לעשות באנגלית"
-      },
-      {
-        "video_number": 6,
-        "title": "נסיעות",
-        "word": "Souvenir",
-        "translation": "מזכרת",
-        "examples": [
+      ],
+      "call_to_action": "מה היה המסע המרגש ביותר שלכם? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 6,
+      "title": "נסיעות וטיולים",
+      "word": "Itinerary",
+      "translation": "מסלול",
+      "examples": [
           {
-            "sentence": "She bought a **souvenir** from Paris",
-            "translation": "היא קנתה מזכרת מפריז"
+              "sentence": "They planned their **itinerary** carefully",
+              "translation": "הם תכננו את המסלול שלהם בקפידה"
           },
           {
-            "sentence": "**Souvenirs** remind us of our trips",
-            "translation": "מזכרות מזכירות לנו את הטיולים שלנו"
+              "sentence": "The **itinerary** includes visits to several museums",
+              "translation": "המסלול כולל ביקורים בכמה מוזיאונים"
           },
           {
-            "sentence": "He collects **souvenirs** from around the world",
-            "translation": "הוא אוסף מזכרות מרחבי העולם"
+              "sentence": "She shared her travel **itinerary** with friends",
+              "translation": "היא שיתפה את מסלול הטיול שלה עם חברים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איזו מזכרת מיוחדת יש לכם באנגלית"
-      },
-      {
-        "video_number": 7,
-        "title": "נסיעות",
-        "word": "Itinerary",
-        "translation": "מסלול (תוכנית נסיעה)",
-        "examples": [
+      ],
+      "call_to_action": "איך אתם מתכננים את המסלול שלכם? שתפו טיפים באנגלית!"
+  },
+  {
+      "video_number": 7,
+      "title": "נסיעות וטיולים",
+      "word": "Souvenir",
+      "translation": "מזכרת",
+      "examples": [
           {
-            "sentence": "They planned their **itinerary** carefully",
-            "translation": "הם תכננו את המסלול שלהם בקפידה"
+              "sentence": "She bought a **souvenir** from each country",
+              "translation": "היא קנתה מזכרת מכל מדינה"
           },
           {
-            "sentence": "Our **itinerary** includes five cities",
-            "translation": "המסלול שלנו כולל חמש ערים"
+              "sentence": "They sell **souvenirs** at the gift shop",
+              "translation": "הם מוכרים מזכרות בחנות המתנות"
           },
           {
-            "sentence": "She lost her travel **itinerary**",
-            "translation": "היא איבדה את מסלול הנסיעה שלה"
+              "sentence": "He keeps a collection of travel **souvenirs**",
+              "translation": "הוא שומר אוסף של מזכרות מטיולים"
           }
-        ],
-        "call_to_action": "ספרו לנו איך אתם מתכננים את הטיולים שלכם באנגלית"
-      },
-      {
-        "video_number": 8,
-        "title": "נסיעות",
-        "word": "Backpack",
-        "translation": "תרמיל",
-        "examples": [
+      ],
+      "call_to_action": "מה המזכרת המיוחדת ביותר שיש לכם? שתפו באנגלית!"
+  },
+  {
+      "video_number": 8,
+      "title": "נסיעות וטיולים",
+      "word": "Accommodation",
+      "translation": "מקום לינה",
+      "examples": [
           {
-            "sentence": "He carried a heavy **backpack**",
-            "translation": "הוא נשא תרמיל כבד"
+              "sentence": "They booked their **accommodation** in advance",
+              "translation": "הם הזמינו את מקום הלינה שלהם מראש"
           },
           {
-            "sentence": "**Backpacking** is popular among youth",
-            "translation": "טיול תרמילאים פופולרי בקרב צעירים"
+              "sentence": "The **accommodation** was comfortable and affordable",
+              "translation": "מקום הלינה היה נוח ובמחיר סביר"
           },
           {
-            "sentence": "She packed essentials in her **backpack**",
-            "translation": "היא ארזה דברים חיוניים בתרמיל שלה"
+              "sentence": "She searched for **accommodations** near the city center",
+              "translation": "היא חיפשה מקומות לינה ליד מרכז העיר"
           }
-        ],
-        "call_to_action": "כתבו בתגובות אם יצאתם לטיול תרמילאים ואיפה באנגלית"
-      },
-      {
-        "video_number": 9,
-        "title": "נסיעות",
-        "word": "Explore",
-        "translation": "לחקור",
-        "examples": [
+      ],
+      "call_to_action": "מהי צורת הלינה המועדפת עליכם בטיולים? שתפו באנגלית!"
+  },
+  {
+      "video_number": 9,
+      "title": "נסיעות וטיולים",
+      "word": "Adventure",
+      "translation": "הרפתקה",
+      "examples": [
           {
-            "sentence": "They love to **explore** new places",
-            "translation": "הם אוהבים לחקור מקומות חדשים"
+              "sentence": "They are seeking a new **adventure**",
+              "translation": "הם מחפשים הרפתקה חדשה"
           },
           {
-            "sentence": "She wants to **explore** the jungle",
-            "translation": "היא רוצה לחקור את הג'ונגל"
+              "sentence": "Her life is full of exciting **adventures**",
+              "translation": "חייה מלאים בהרפתקאות מרגשות"
           },
           {
-            "sentence": "**Exploring** cultures is fascinating",
-            "translation": "חקירת תרבויות היא מרתקת"
+              "sentence": "He wrote a book about his **adventures**",
+              "translation": "הוא כתב ספר על ההרפתקאות שלו"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה הייתם רוצים לחקור באנגלית"
-      },
-      {
-        "video_number": 10,
-        "title": "נסיעות",
-        "word": "Reservation",
-        "translation": "הזמנה (מראש)",
-        "examples": [
+      ],
+      "call_to_action": "מהי ההרפתקה הגדולה ביותר שלכם? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 10,
+      "title": "נסיעות וטיולים",
+      "word": "Excursion",
+      "translation": "טיול קצר",
+      "examples": [
           {
-            "sentence": "We have a **reservation** at the hotel",
-            "translation": "יש לנו הזמנה במלון"
+              "sentence": "We went on an **excursion** to the nearby island",
+              "translation": "יצאנו לטיול קצר לאי הסמוך"
           },
           {
-            "sentence": "She made a **reservation** for dinner",
-            "translation": "היא עשתה הזמנה לארוחת ערב"
+              "sentence": "The cruise offers several **excursions**",
+              "translation": "ההפלגה מציעה כמה טיולים קצרים"
           },
           {
-            "sentence": "Do you have a **reservation**?",
-            "translation": "האם יש לך הזמנה?"
+              "sentence": "She enjoyed the **excursion** to the mountains",
+              "translation": "היא נהנתה מהטיול הקצר להרים"
           }
-        ],
-        "call_to_action": "ספרו לנו אם אתם מזמינים מקומות מראש או ספונטניים באנגלית"
-      },
-      {
-        "video_number": 11,
-        "title": "נסיעות",
-        "word": "Scenery",
-        "translation": "נוף",
-        "examples": [
+      ],
+      "call_to_action": "היכן יצאתם לטיול קצר לאחרונה? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 11,
+      "title": "נסיעות וטיולים",
+      "word": "Backpacking",
+      "translation": "תרמילאות",
+      "examples": [
           {
-            "sentence": "The mountain **scenery** is breathtaking",
-            "translation": "הנוף ההררי עוצר נשימה"
+              "sentence": "He is **backpacking** through South America",
+              "translation": "הוא מטייל תרמילאות בדרום אמריקה"
           },
           {
-            "sentence": "They stopped to admire the **scenery**",
-            "translation": "הם עצרו להתפעל מהנוף"
+              "sentence": "**Backpacking** allows for flexible travel plans",
+              "translation": "תרמילאות מאפשרת תוכניות נסיעה גמישות"
           },
           {
-            "sentence": "She painted the beautiful **scenery**",
-            "translation": "היא ציירה את הנוף היפה"
+              "sentence": "They love the freedom of **backpacking**",
+              "translation": "הם אוהבים את החופש של התרמילאות"
           }
-        ],
-        "call_to_action": "כתבו בתגובות על נוף שאהבתם באנגלית"
-      },
-      {
-        "video_number": 12,
-        "title": "נסיעות",
-        "word": "Customs",
-        "translation": "מכס (במעבר גבול)",
-        "examples": [
+      ],
+      "call_to_action": "האם יצאתם פעם לטיול תרמילאים? שתפו את החוויות באנגלית!"
+  },
+  {
+      "video_number": 12,
+      "title": "נסיעות וטיולים",
+      "word": "Explore",
+      "translation": "לחקור",
+      "examples": [
           {
-            "sentence": "We went through **customs** quickly",
-            "translation": "עברנו את המכס במהירות"
+              "sentence": "They want to **explore** new places",
+              "translation": "הם רוצים לחקור מקומות חדשים"
           },
           {
-            "sentence": "**Customs** officers checked our bags",
-            "translation": "פקידי המכס בדקו את התיקים שלנו"
+              "sentence": "She loves to **explore** different cultures",
+              "translation": "היא אוהבת לחקור תרבויות שונות"
           },
           {
-            "sentence": "He declared items at **customs**",
-            "translation": "הוא הצהיר על פריטים במכס"
+              "sentence": "He spent the day **exploring** the city",
+              "translation": "הוא בילה את היום בחקר העיר"
           }
-        ],
-        "call_to_action": "שתפו בתגובות חוויות שלכם במעברי גבול באנגלית"
-      },
-      {
-        "video_number": 13,
-        "title": "נסיעות",
-        "word": "Embark",
-        "translation": "לעלות (על כלי תחבורה)",
-        "examples": [
+      ],
+      "call_to_action": "מה המקום הבא שאתם רוצים לחקור? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 13,
+      "title": "נסיעות וטיולים",
+      "word": "Culture",
+      "translation": "תרבות",
+      "examples": [
           {
-            "sentence": "They will **embark** on a cruise",
-            "translation": "הם יעלו לשיט"
+              "sentence": "Traveling allows you to experience new **cultures**",
+              "translation": "נסיעה מאפשרת לך לחוות תרבויות חדשות"
           },
           {
-            "sentence": "Passengers **embark** at Gate 5",
-            "translation": "נוסעים עולים בשער 5"
+              "sentence": "They enjoyed learning about the local **culture**",
+              "translation": "הם נהנו ללמוד על התרבות המקומית"
           },
           {
-            "sentence": "She is ready to **embark** on her journey",
-            "translation": "היא מוכנה לעלות למסעה"
+              "sentence": "She studies **cultural** differences",
+              "translation": "היא חוקרת הבדלים תרבותיים"
           }
-        ],
-        "call_to_action": "ספרו לנו על מסע שאתם עומדים להתחיל באנגלית"
-      },
-      {
-        "video_number": 14,
-        "title": "נסיעות",
-        "word": "Currency",
-        "translation": "מטבע (כסף)",
-        "examples": [
+      ],
+      "call_to_action": "איזו תרבות אתם מוצאים מעניינת במיוחד? שתפו באנגלית!"
+  },
+  {
+      "video_number": 14,
+      "title": "נסיעות וטיולים",
+      "word": "Expedition",
+      "translation": "משלחת",
+      "examples": [
           {
-            "sentence": "What's the local **currency**?",
-            "translation": "מהו המטבע המקומי?"
+              "sentence": "He joined an **expedition** to the Arctic",
+              "translation": "הוא הצטרף למשלחת לארקטי"
           },
           {
-            "sentence": "They exchanged **currency** at the bank",
-            "translation": "הם החליפו מטבע בבנק"
+              "sentence": "The **expedition** discovered new species",
+              "translation": "המשלחת גילתה מינים חדשים"
           },
           {
-            "sentence": "Carry some cash in the local **currency**",
-            "translation": "נשא מעט מזומן במטבע המקומי"
+              "sentence": "She prepared for the mountain **expedition**",
+              "translation": "היא התכוננה למשלחת להר"
           }
-        ],
-        "call_to_action": "כתבו בתגובות אם החלפתם מטבע לאחרונה ואיזה באנגלית"
-      },
-      {
-        "video_number": 15,
-        "title": "נסיעות",
-        "word": "Landmark",
-        "translation": "סימן דרך (אתר מוכר)",
-        "examples": [
+      ],
+      "call_to_action": "האם הייתם רוצים להצטרף למשלחת? לאן? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 15,
+      "title": "נסיעות וטיולים",
+      "word": "Visa",
+      "translation": "ויזה",
+      "examples": [
           {
-            "sentence": "The Eiffel Tower is a famous **landmark**",
-            "translation": "מגדל אייפל הוא סימן דרך מפורסם"
+              "sentence": "You need a **visa** to enter the country",
+              "translation": "אתה צריך ויזה כדי להיכנס למדינה"
           },
           {
-            "sentence": "They visited all the city's **landmarks**",
-            "translation": "הם ביקרו בכל סימני הדרך של העיר"
+              "sentence": "She applied for a tourist **visa**",
+              "translation": "היא הגישה בקשה לויזת תייר"
           },
           {
-            "sentence": "She photographed the historic **landmark**",
-            "translation": "היא צילמה את סימן הדרך ההיסטורי"
+              "sentence": "His **visa** was approved last week",
+              "translation": "הויזה שלו אושרה בשבוע שעבר"
           }
-        ],
-        "call_to_action": "שתפו בתגובות על סימן דרך שהרשים אתכם באנגלית"
-      }
-    ]
+      ],
+      "call_to_action": "האם נאלצתם להתמודד עם בקשת ויזה? שתפו את החוויה באנגלית!"
   }
-  
+]

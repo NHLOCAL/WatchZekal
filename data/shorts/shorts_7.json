@@ -1,321 +1,317 @@
-{
-    "נושא 7": "מזון ומשקאות מתקדמים",
-    "סרטונים": [
-      {
-        "video_number": 1,
-        "title": "מזון מתקדם",
-        "word": "Vegetarian",
-        "translation": "צמחוני",
-        "examples": [
+[
+  {
+      "video_number": 1,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Vegetarian",
+      "translation": "צמחוני",
+      "examples": [
           {
-            "sentence": "He follows a **vegetarian** diet",
-            "translation": "הוא נוהג בתזונה צמחונית"
+              "sentence": "He follows a **vegetarian** diet",
+              "translation": "הוא מקיים תזונה צמחונית"
           },
           {
-            "sentence": "She ordered a **vegetarian** meal",
-            "translation": "היא הזמינה ארוחה צמחונית"
+              "sentence": "They offer **vegetarian** options on the menu",
+              "translation": "הם מציעים אפשרויות צמחוניות בתפריט"
           },
           {
-            "sentence": "**Vegetarian** options are available",
-            "translation": "אפשרויות צמחוניות זמינות"
+              "sentence": "She became a **vegetarian** for health reasons",
+              "translation": "היא הפכה לצמחונית מסיבות בריאותיות"
           }
-        ],
-        "call_to_action": "כתבו בתגובות אם אתם צמחונים או אוהבים מנות צמחוניות באנגלית"
-      },
-      {
-        "video_number": 2,
-        "title": "מזון מתקדם",
-        "word": "Recipe",
-        "translation": "מתכון",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם צמחונים? שתפו את המנות הצמחוניות האהובות עליכם באנגלית!"
+  },
+  {
+      "video_number": 2,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Recipe",
+      "translation": "מתכון",
+      "examples": [
           {
-            "sentence": "This **recipe** is easy to follow",
-            "translation": "המתכון הזה קל לעקוב אחריו"
+              "sentence": "This **recipe** is easy to follow",
+              "translation": "המתכון הזה קל לביצוע"
           },
           {
-            "sentence": "She shared a new **recipe** with me",
-            "translation": "היא שיתפה אותי במתכון חדש"
+              "sentence": "She shared her secret **recipe** with me",
+              "translation": "היא שיתפה איתי את המתכון הסודי שלה"
           },
           {
-            "sentence": "He collects old **recipes**",
-            "translation": "הוא אוסף מתכונים ישנים"
+              "sentence": "He collected **recipes** from around the world",
+              "translation": "הוא אסף מתכונים מכל העולם"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מתכון אהוב עליכם באנגלית"
-      },
-      {
-        "video_number": 3,
-        "title": "מזון מתקדם",
-        "word": "Ingredient",
-        "translation": "מרכיב",
-        "examples": [
+      ],
+      "call_to_action": "מה המתכון האהוב עליכם? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 3,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Ingredient",
+      "translation": "מרכיב",
+      "examples": [
           {
-            "sentence": "We need one more **ingredient**",
-            "translation": "אנחנו צריכים עוד מרכיב אחד"
+              "sentence": "We need one more **ingredient**",
+              "translation": "אנחנו צריכים מרכיב אחד נוסף"
           },
           {
-            "sentence": "Check the **ingredients** list",
-            "translation": "בדוק את רשימת המרכיבים"
+              "sentence": "Salt is a common **ingredient** in cooking",
+              "translation": "מלח הוא מרכיב נפוץ בבישול"
           },
           {
-            "sentence": "Fresh **ingredients** make better food",
-            "translation": "מרכיבים טריים יוצרים אוכל טוב יותר"
+              "sentence": "He checked the **ingredients** list on the package",
+              "translation": "הוא בדק את רשימת המרכיבים על האריזה"
           }
-        ],
-        "call_to_action": "ספרו לנו על מרכיב סודי במתכונים שלכם באנגלית"
-      },
-      {
-        "video_number": 4,
-        "title": "מזון מתקדם",
-        "word": "Flavor",
-        "translation": "טעם",
-        "examples": [
+      ],
+      "call_to_action": "מה המרכיב הסודי שלכם במתכונים? שתפו באנגלית!"
+  },
+  {
+      "video_number": 4,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Flavor",
+      "translation": "טעם",
+      "examples": [
           {
-            "sentence": "The soup has a rich **flavor**",
-            "translation": "למרק יש טעם עשיר"
+              "sentence": "The soup has a rich **flavor**",
+              "translation": "למרק יש טעם עשיר"
           },
           {
-            "sentence": "I love the **flavor** of chocolate",
-            "translation": "אני אוהב את הטעם של שוקולד"
+              "sentence": "Vanilla is my favorite ice cream **flavor**",
+              "translation": "וניל הוא טעם הגלידה המועדף עליי"
           },
           {
-            "sentence": "They added spices for more **flavor**",
-            "translation": "הם הוסיפו תבלינים לעוד טעם"
+              "sentence": "She added spices to enhance the **flavor**",
+              "translation": "היא הוסיפה תבלינים כדי לשפר את הטעם"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה הטעם האהוב עליכם באנגלית"
-      },
-      {
-        "video_number": 5,
-        "title": "מזון מתקדם",
-        "word": "Cuisine",
-        "translation": "מטבח (סגנון בישול)",
-        "examples": [
+      ],
+      "call_to_action": "מהו הטעם האהוב עליכם? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 5,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Cuisine",
+      "translation": "מטבח (סגנון בישול)",
+      "examples": [
           {
-            "sentence": "Italian **cuisine** is popular worldwide",
-            "translation": "המטבח האיטלקי פופולרי ברחבי העולם"
+              "sentence": "Italian **cuisine** is popular worldwide",
+              "translation": "המטבח האיטלקי פופולרי ברחבי העולם"
           },
           {
-            "sentence": "She enjoys exploring Asian **cuisine**",
-            "translation": "היא נהנית לחקור את המטבח האסייתי"
+              "sentence": "She enjoys exploring new **cuisines**",
+              "translation": "היא נהנית לחקור מטבחים חדשים"
           },
           {
-            "sentence": "They tried a new French **cuisine** restaurant",
-            "translation": "הם ניסו מסעדת מטבח צרפתי חדשה"
+              "sentence": "They specialize in French **cuisine**",
+              "translation": "הם מתמחים במטבח צרפתי"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איזה סגנון מטבח אתם אוהבים באנגלית"
-      },
-      {
-        "video_number": 6,
-        "title": "מזון מתקדם",
-        "word": "Appetizer",
-        "translation": "מנה ראשונה",
-        "examples": [
+      ],
+      "call_to_action": "איזה מטבח אתם הכי אוהבים? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 6,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Gourmet",
+      "translation": "גורמה",
+      "examples": [
           {
-            "sentence": "We ordered an **appetizer** to share",
-            "translation": "הזמנו מנה ראשונה לשיתוף"
+              "sentence": "They dined at a **gourmet** restaurant",
+              "translation": "הם אכלו במסעדת גורמה"
           },
           {
-            "sentence": "The **appetizers** were delicious",
-            "translation": "המנות הראשונות היו טעימות"
+              "sentence": "He enjoys cooking **gourmet** meals at home",
+              "translation": "הוא נהנה לבשל ארוחות גורמה בבית"
           },
           {
-            "sentence": "An **appetizer** before the main course",
-            "translation": "מנה ראשונה לפני המנה העיקרית"
+              "sentence": "She is a **gourmet** chef",
+              "translation": "היא שף גורמה"
           }
-        ],
-        "call_to_action": "ספרו לנו על מנת פתיחה שאתם אוהבים באנגלית"
-      },
-      {
-        "video_number": 7,
-        "title": "מזון מתקדם",
-        "word": "Dessert",
-        "translation": "קינוח",
-        "examples": [
+      ],
+      "call_to_action": "מהי מנת הגורמה המועדפת עליכם? שתפו באנגלית!"
+  },
+  {
+      "video_number": 7,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Appetizer",
+      "translation": "מתאבן",
+      "examples": [
           {
-            "sentence": "Chocolate cake is my favorite **dessert**",
-            "translation": "עוגת שוקולד היא הקינוח האהוב עליי"
+              "sentence": "We ordered an **appetizer** before the main course",
+              "translation": "הזמנו מתאבן לפני המנה העיקרית"
           },
           {
-            "sentence": "They served fruit for **dessert**",
-            "translation": "הם הגישו פירות לקינוח"
+              "sentence": "The **appetizers** were delicious",
+              "translation": "המתאבנים היו טעימים"
           },
           {
-            "sentence": "Would you like **dessert**?",
-            "translation": "האם תרצה קינוח?"
+              "sentence": "She prepared several **appetizers** for the party",
+              "translation": "היא הכינה כמה מתאבנים למסיבה"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה הקינוח המועדף עליכם באנגלית"
-      },
-      {
-        "video_number": 8,
-        "title": "מזון מתקדם",
-        "word": "Beverage",
-        "translation": "משקה",
-        "examples": [
+      ],
+      "call_to_action": "מהו המתאבן האהוב עליכם? שתפו את המתכון באנגלית!"
+  },
+  {
+      "video_number": 8,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Dessert",
+      "translation": "קינוח",
+      "examples": [
           {
-            "sentence": "What's your favorite **beverage**?",
-            "translation": "מה המשקה האהוב עליך?"
+              "sentence": "Chocolate cake is my favorite **dessert**",
+              "translation": "עוגת שוקולד היא הקינוח המועדף עליי"
           },
           {
-            "sentence": "They offered us hot **beverages**",
-            "translation": "הם הציעו לנו משקאות חמים"
+              "sentence": "She baked a pie for **dessert**",
+              "translation": "היא אפתה פאי לקינוח"
           },
           {
-            "sentence": "Water is a healthy **beverage** choice",
-            "translation": "מים הם בחירת משקה בריאה"
+              "sentence": "They served ice cream as **dessert**",
+              "translation": "הם הגישו גלידה כקינוח"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה אתם אוהבים לשתות באנגלית"
-      },
-      {
-        "video_number": 9,
-        "title": "מזון מתקדם",
-        "word": "Spicy",
-        "translation": "חריף",
-        "examples": [
+      ],
+      "call_to_action": "מהו הקינוח שאתם הכי אוהבים? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 9,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Beverage",
+      "translation": "משקה",
+      "examples": [
           {
-            "sentence": "I enjoy **spicy** food",
-            "translation": "אני נהנה מאוכל חריף"
+              "sentence": "What **beverage** would you like?",
+              "translation": "איזה משקה תרצה?"
           },
           {
-            "sentence": "This dish is too **spicy** for me",
-            "translation": "המנה הזו חריפה מדי בשבילי"
+              "sentence": "They offer a variety of **beverages**",
+              "translation": "הם מציעים מגוון משקאות"
           },
           {
-            "sentence": "They added chili for a **spicy** flavor",
-            "translation": "הם הוסיפו צ'ילי לטעם חריף"
+              "sentence": "Water is the healthiest **beverage**",
+              "translation": "מים הם המשקה הבריא ביותר"
           }
-        ],
-        "call_to_action": "ספרו לנו אם אתם אוהבים אוכל חריף באנגלית"
-      },
-      {
-        "video_number": 10,
-        "title": "מזון מתקדם",
-        "word": "Ingredient",
-        "translation": "מרכיב",
-        "examples": [
+      ],
+      "call_to_action": "מהו המשקה המועדף עליכם? שתפו באנגלית!"
+  },
+  {
+      "video_number": 10,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Organic",
+      "translation": "אורגני",
+      "examples": [
           {
-            "sentence": "Sugar is a key **ingredient** in cakes",
-            "translation": "סוכר הוא מרכיב מרכזי בעוגות"
+              "sentence": "They buy **organic** fruits and vegetables",
+              "translation": "הם קונים פירות וירקות אורגניים"
           },
           {
-            "sentence": "She forgot an **ingredient** in the soup",
-            "translation": "היא שכחה מרכיב במרק"
+              "sentence": "She prefers **organic** food",
+              "translation": "היא מעדיפה אוכל אורגני"
           },
           {
-            "sentence": "Fresh **ingredients** make a difference",
-            "translation": "מרכיבים טריים עושים את ההבדל"
+              "sentence": "**Organic** farming is better for the environment",
+              "translation": "חקלאות אורגנית טובה יותר לסביבה"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איזה מרכיב אתם תמיד משתמשים בו באנגלית"
-      },
-      {
-        "video_number": 11,
-        "title": "מזון מתקדם",
-        "word": "Organic",
-        "translation": "אורגני",
-        "examples": [
+      ],
+      "call_to_action": "מה דעתכם על מזון אורגני? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 11,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Fermentation",
+      "translation": "תסיסה",
+      "examples": [
           {
-            "sentence": "They prefer **organic** vegetables",
-            "translation": "הם מעדיפים ירקות אורגניים"
+              "sentence": "**Fermentation** is used to make yogurt",
+              "translation": "תסיסה משמשת להכנת יוגורט"
           },
           {
-            "sentence": "She shops at the **organic** market",
-            "translation": "היא קונה בשוק האורגני"
+              "sentence": "Wine is produced through **fermentation**",
+              "translation": "יין מיוצר באמצעות תסיסה"
           },
           {
-            "sentence": "**Organic** food can be more expensive",
-            "translation": "אוכל אורגני יכול להיות יקר יותר"
+              "sentence": "She is studying the process of **fermentation**",
+              "translation": "היא לומדת את תהליך התסיסה"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה דעתכם על מזון אורגני באנגלית"
-      },
-      {
-        "video_number": 12,
-        "title": "מזון מתקדם",
-        "word": "Grill",
-        "translation": "גריל",
-        "examples": [
+      ],
+      "call_to_action": "האם הכנתם פעם מזון מותסס? שתפו את הניסיון שלכם באנגלית!"
+  },
+  {
+      "video_number": 12,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Umami",
+      "translation": "אומאמי",
+      "examples": [
           {
-            "sentence": "We like to **grill** vegetables",
-            "translation": "אנחנו אוהבים לצלות ירקות"
+              "sentence": "**Umami** is known as the fifth taste",
+              "translation": "אומאמי ידוע כטעם החמישי"
           },
           {
-            "sentence": "He cooked the meat on the **grill**",
-            "translation": "הוא בישל את הבשר על הגריל"
+              "sentence": "Mushrooms have a strong **umami** flavor",
+              "translation": "לפטריות יש טעם אומאמי חזק"
           },
           {
-            "sentence": "A summer **grill** party is fun",
-            "translation": "מסיבת גריל בקיץ היא כיפית"
+              "sentence": "She added soy sauce for extra **umami**",
+              "translation": "היא הוסיפה רוטב סויה לתוספת אומאמי"
           }
-        ],
-        "call_to_action": "ספרו לנו על מאכלים שאתם אוהבים לצלות באנגלית"
-      },
-      {
-        "video_number": 13,
-        "title": "מזון מתקדם",
-        "word": "Fermented",
-        "translation": "מותסס",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם יודעים על אומאמי? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 13,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Gluten-free",
+      "translation": "ללא גלוטן",
+      "examples": [
           {
-            "sentence": "**Fermented** foods are good for digestion",
-            "translation": "מזונות מותססים טובים לעיכול"
+              "sentence": "He follows a **gluten-free** diet",
+              "translation": "הוא מקיים תזונה ללא גלוטן"
           },
           {
-            "sentence": "She enjoys **fermented** drinks",
-            "translation": "היא נהנית ממשקאות מותססים"
+              "sentence": "They offer **gluten-free** bread",
+              "translation": "הם מציעים לחם ללא גלוטן"
           },
           {
-            "sentence": "Kimchi is a **fermented** Korean dish",
-            "translation": "קיםצ'י הוא מאכל קוריאני מותסס"
+              "sentence": "She is allergic to gluten and eats **gluten-free** foods",
+              "translation": "היא אלרגית לגלוטן ואוכלת מזון ללא גלוטן"
           }
-        ],
-        "call_to_action": "כתבו בתגובות אם ניסיתם מזון מותסס באנגלית"
-      },
-      {
-        "video_number": 14,
-        "title": "מזון מתקדם",
-        "word": "Savory",
-        "translation": "מלוח (טעים, לא מתוק)",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם מכירים מישהו שאוכל ללא גלוטן? שתפו באנגלית!"
+  },
+  {
+      "video_number": 14,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Vegan",
+      "translation": "טבעוני",
+      "examples": [
           {
-            "sentence": "I prefer **savory** snacks",
-            "translation": "אני מעדיף חטיפים מלוחים"
+              "sentence": "She decided to become **vegan**",
+              "translation": "היא החליטה להפוך לטבעונית"
           },
           {
-            "sentence": "The pie had a **savory** filling",
-            "translation": "לפאי היה מילוי מלוח"
+              "sentence": "They serve delicious **vegan** dishes",
+              "translation": "הם מגישים מנות טבעוניות טעימות"
           },
           {
-            "sentence": "**Savory** dishes are satisfying",
-            "translation": "מנות מלוחות משביעות רצון"
+              "sentence": "Being **vegan** means avoiding animal products",
+              "translation": "להיות טבעוני משמעותו להימנע ממוצרים מהחי"
           }
-        ],
-        "call_to_action": "שתפו בתגובות האם אתם אוהבים אוכל מלוח או מתוק באנגלית"
-      },
-      {
-        "video_number": 15,
-        "title": "מזון מתקדם",
-        "word": "Fusion",
-        "translation": "מיזוג (סגנון בישול משולב)",
-        "examples": [
+      ],
+      "call_to_action": "מה דעתכם על תזונה טבעונית? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 15,
+      "title": "מזון ומשקאות מתקדמים",
+      "word": "Culinary",
+      "translation": "קולינרי",
+      "examples": [
           {
-            "sentence": "**Fusion** cuisine combines flavors",
-            "translation": "מטבח מיזוג משלב טעמים"
+              "sentence": "He attended a **culinary** school",
+              "translation": "הוא למד בבית ספר קולינרי"
           },
           {
-            "sentence": "They opened a **fusion** restaurant",
-            "translation": "הם פתחו מסעדת מיזוג"
+              "sentence": "She has great **culinary** skills",
+              "translation": "יש לה כישורים קולינריים מצוינים"
           },
           {
-            "sentence": "She enjoys cooking **fusion** dishes",
-            "translation": "היא נהנית לבשל מנות מיזוג"
+              "sentence": "They organized a **culinary** tour",
+              "translation": "הם ארגנו סיור קולינרי"
           }
-        ],
-        "call_to_action": "ספרו לנו אם ניסיתם מטבח מיזוג ומה חשבתם באנגלית"
-      }
-    ]
+      ],
+      "call_to_action": "האם הייתם רוצים ללמוד קולינריה? ספרו לנו באנגלית!"
   }
-  
+]
