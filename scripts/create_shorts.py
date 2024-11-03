@@ -139,6 +139,19 @@ class ImageCreator:
 
         return lines
 
+    def parse_bold(self, text):
+        """
+        מפרק טקסט לחלקים מודגשים ולא מודגשים.
+        """
+        parts = re.split(r'(\*\*[^*]+\*\*)', text)
+        segments = []
+        for part in parts:
+            if part.startswith('**') and part.endswith('**'):
+                segments.append((part[2:-2], True))  # חלק מודגש
+            else:
+                segments.append((part, False))       # חלק רגיל
+        return segments
+
     def create_image(self, text_lines, style_definitions, line_styles=None):
         # שימוש בקאשינג למניעת יצירת תמונות חוזרות
         cache_key = tuple(text_lines) + tuple(line_styles or [])
@@ -185,13 +198,30 @@ class ImageCreator:
                 split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
                 for split_line in split_lines:
                     processed_line = process_hebrew_text(split_line)
+                    segments = self.parse_bold(processed_line)
                     processed_style = current_style.copy()
                     # הוספת שם הסגנון לשימוש בהמשך
                     processed_style['style_name'] = line_styles[i] if line_styles and i < len(line_styles) else 'normal'
-                    bbox = draw.textbbox((0, 0), processed_line, font=font)
-                    width = bbox[2] - bbox[0]
-                    height = bbox[3] - bbox[1]
-                    processed_lines.append((processed_line, width, height, processed_style, font))
+                    
+                    line_info = []
+                    line_height = 0
+                    for segment_text, is_bold in segments:
+                        if is_bold:
+                            segment_style = style_definitions.get('sentence_bold', current_style)
+                            segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
+                            segment_color = tuple(segment_style['text_color'])
+                        else:
+                            segment_style = current_style
+                            segment_font = font
+                            segment_color = tuple(segment_style['text_color'])
+                        
+                        bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
+                        width = bbox[2] - bbox[0]
+                        height = bbox[3] - bbox[1]
+                        line_info.append((segment_text, width, height, segment_font, segment_color))
+                        if height > line_height:
+                            line_height = height
+                    processed_lines.append((line_info, line_height, processed_style))
                     # הגדרת רווח בהתאם לסגנון
                     if processed_style['style_name'] == 'sentence':
                         spacing = LINE_SPACING_WITHIN_SENTENCE
@@ -199,7 +229,7 @@ class ImageCreator:
                         spacing = LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION
                     else:
                         spacing = LINE_SPACING_NORMAL
-                    total_height += height + spacing  # רווח בין השורות
+                    total_height += line_height + spacing  # רווח בין השורות
             else:
                 # פיצול שורות במידת הצורך לפני עיבוד
                 split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
@@ -208,10 +238,27 @@ class ImageCreator:
                     processed_style = current_style.copy()
                     # הוספת שם הסגנון לשימוש בהמשך
                     processed_style['style_name'] = line_styles[i] if line_styles and i < len(line_styles) else 'normal'
-                    bbox = draw.textbbox((0, 0), processed_line, font=font)
-                    width = bbox[2] - bbox[0]
-                    height = bbox[3] - bbox[1]
-                    processed_lines.append((processed_line, width, height, processed_style, font))
+                    segments = self.parse_bold(processed_line)
+                    
+                    line_info = []
+                    line_height = 0
+                    for segment_text, is_bold in segments:
+                        if is_bold:
+                            segment_style = style_definitions.get('sentence_bold', current_style)
+                            segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
+                            segment_color = tuple(segment_style['text_color'])
+                        else:
+                            segment_style = current_style
+                            segment_font = font
+                            segment_color = tuple(segment_style['text_color'])
+                        
+                        bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
+                        width = bbox[2] - bbox[0]
+                        height = bbox[3] - bbox[1]
+                        line_info.append((segment_text, width, height, segment_font, segment_color))
+                        if height > line_height:
+                            line_height = height
+                    processed_lines.append((line_info, line_height, processed_style))
                     # הגדרת רווח בהתאם לסגנון
                     if processed_style['style_name'] == 'sentence':
                         spacing = LINE_SPACING_WITHIN_SENTENCE
@@ -219,7 +266,7 @@ class ImageCreator:
                         spacing = LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION
                     else:
                         spacing = LINE_SPACING_NORMAL
-                    total_height += height + spacing  # רווח בין השורות
+                    total_height += line_height + spacing  # רווח בין השורות
 
         # הסרת הרווח הנוסף בסוף
         if processed_lines:
@@ -229,26 +276,16 @@ class ImageCreator:
         current_y = (HEIGHT - total_height) / 2
 
         # ציור הטקסט
-        for idx, (processed_line, width, height, current_style, font) in enumerate(processed_lines):
-            style_name = current_style.get('style_name', 'normal')
-            # יישור למרכז עבור כל הטקסט
-            x_text = (WIDTH - width) / 2
-
-            draw.text((x_text, current_y), processed_line, font=font, fill=tuple(current_style['text_color']))
+        for line_info, line_height, current_style in processed_lines:
+            # חישוב רוחב השורה הכולל
+            line_width = sum([segment[1] for segment in line_info])
+            x_text = (WIDTH - line_width) / 2
+            for segment_text, width, height, segment_font, segment_color in line_info:
+                draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
+                x_text += width  # הזזת מיקום ה-X לחלק הבא
 
             # קביעת רווח בין השורות
-            if idx < len(processed_lines) - 1:
-                next_style = processed_lines[idx + 1][3].get('style_name', 'normal')
-                if style_name == 'sentence' and next_style == 'translation':
-                    spacing = LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION
-                elif style_name in ['sentence', 'translation']:
-                    spacing = LINE_SPACING_WITHIN_SENTENCE
-                else:
-                    spacing = LINE_SPACING_NORMAL
-            else:
-                spacing = 0  # אין רווח לאחר השורה האחרונה
-
-            current_y += height + spacing  # רווח בין השורות
+            current_y += line_height + spacing  # רווח בין השורות
 
         # שמירת התמונה בזיכרון
         img = img.convert("RGB")  # המרת חזרה ל-RGB אם הוספנו אלפא
@@ -308,7 +345,7 @@ class VideoCreator:
     def create_image_clip(self, text_lines, style, line_styles=None):
         img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles)
         # יצירת שם קובץ בטוח
-        filename = f"{'_'.join(text_lines)}.png"
+        filename = f"{'_'.join([sanitize_filename(line) for line in text_lines])}.png"
         temp_image_path = self.file_manager.get_temp_path(filename)
         img.save(temp_image_path)
         # יצירת קליפ ללא הגדרת משך, יוגדר לפי האודיו או min_duration
@@ -484,7 +521,145 @@ class VideoAssemblerShorts:
 
                     text_lines_example = [sentence, ex_translation]
                     line_styles_example = ['sentence', 'translation']
-                    clip_example = self.video_creator.create_image_clip(text_lines_example, 'normal', line_styles_example)
+                    clip_example = self.video_creator.create_image_clip(text_lines_example, 'sentence', line_styles_example)
+
+                    # יצירת אודיו למשפט ולתרגום
+                    audio_tasks = [
+                        (sentence, 'en', True),
+                        (ex_translation, 'iw'),
+                    ]
+                    audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                    clip_example = self.video_creator.create_clip(
+                        clip_example,
+                        [
+                            audio_results.get((sentence, 'en', True), ""),
+                            audio_results.get((ex_translation, 'iw'), ""),
+                        ],
+                        min_duration=4  # משך מינימלי
+                    )
+
+                    # יצירת מעבר
+                    if clips:
+                        previous_clip = clips[-1]
+                        transition = self.video_creator.slide_transition(previous_clip, clip_example)
+                        clips.append(transition)
+
+                    clips.append(clip_example)
+
+                # קריאה לפעולה
+                if call_to_action:
+                    clip_outro = self.video_creator.create_outro(call_to_action)
+                    transition = self.video_creator.slide_transition(clips[-1], clip_outro)
+                    clips.append(transition)
+                    clips.append(clip_outro)
+
+                # איחוד הקליפים לסרטון אחד
+                logging.info(f"איחוד הקליפים לסרטון מספר {video_number}: {title}")
+                final_clip = concatenate_videoclips(clips, method="compose")
+
+                # הוספת מוזיקת רקע אם קיימת
+                if os.path.exists(BACKGROUND_MUSIC_PATH):
+                    background_music = AudioFileClip(BACKGROUND_MUSIC_PATH).volumex(0.1)
+                    background_music = afx.audio_loop(background_music, duration=final_clip.duration)
+                    final_audio = CompositeAudioClip([final_clip.audio, background_music])
+                    final_clip = final_clip.set_audio(final_audio)
+                    # סגירת background_music ו-final_audio לאחר השימוש
+                    background_music.close()
+                    final_audio.close()
+
+                # הוספת הלוגו לסרטון
+                final_clip = self.video_creator.add_logo_to_video(
+                    final_clip,
+                    LOGO_PATH,
+                    position='top-right',
+                    size=(100, 100),  # גודל קטן יותר
+                    opacity=200,
+                    margin=(20, 20)
+                )
+
+                # שמירת הוידאו
+                logging.info(f"שומר את הסרטון בנתיב: {video_path}")
+                final_clip.write_videofile(video_path, fps=FPS, codec='libx264', audio_codec='aac', threads=THREADS)
+
+                # שמירת תמונת תצוגה מקדימה
+                thumbnail_path = os.path.join(thumbnails_dir, f"Short_{video_number}_thumbnail.png")
+                final_clip.save_frame(thumbnail_path, t=0)
+                logging.info(f"שומר תמונת תצוגה מקדימה בנתיב: {thumbnail_path}")
+
+            except Exception as e:
+                logging.error(f"שגיאה בתהליך הרכבת הוידאו לסרטון מספר {video_number}: {e}")
+            finally:
+                # סגירת כל הקליפים
+                for clip in clips:
+                    clip.close()
+                # סגירת final_clip אם לא כבר סגור
+                if 'final_clip' in locals():
+                    final_clip.close()
+
+    def shutdown(self):
+        self.video_creator.audio_creator.shutdown()
+
+class VideoAssemblerShorts:
+    def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
+        self.video_creator = VideoCreator(file_manager, image_creator, audio_creator, style_definitions)
+
+    def assemble_shorts_videos(self, data, output_dir, thumbnails_dir):
+        videos = data['סרטונים']
+        topic_name = data.get('נושא 0', 'Unknown Topic')
+
+        for video_data in videos:
+            video_number = video_data['video_number']
+            title = video_data['title']
+            word = video_data['word']
+            translation = video_data['translation']
+            examples = video_data['examples']
+            call_to_action = video_data.get('call_to_action', '')
+
+            logging.info(f"מעבד סרטון מספר {video_number}: {title}")
+
+            # יצירת שם קובץ וידאו בטוח
+            safe_title = sanitize_filename("".join([c for c in title if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
+            video_filename = f"Short_{video_number}_{safe_title}.mp4"
+            video_path = os.path.join(output_dir, video_filename)
+
+            # רשימה לאחסון הקליפים
+            clips = []
+
+            try:
+                # פתיח עם סמל הערוץ (אם יש)
+                if os.path.exists(LOGO_PATH):
+                    logo_clip = self.video_creator.add_logo_to_video(ImageClip(np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)).set_duration(0.5), LOGO_PATH, size=(150, 150), opacity=200, margin=(20, 20))
+                    clips.append(logo_clip)
+
+                # הצגת המילה והתרגום
+                text_lines_word = [word, translation]
+                line_styles_word = ['word', 'translation']
+                clip_word = self.video_creator.create_image_clip(text_lines_word, 'word', line_styles_word)
+
+                # יצירת אודיו למילה ולתרגום
+                audio_tasks = [
+                    (word, 'en', True),  # אנגלית באיטיות
+                    (translation, 'iw'),
+                ]
+                audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                clip_word = self.video_creator.create_clip(
+                    clip_word,
+                    [
+                        audio_results.get((word, 'en', True), ""),
+                        audio_results.get((translation, 'iw'), ""),
+                    ],
+                    min_duration=3  # משך מינימלי
+                )
+                clips.append(clip_word)
+
+                # משפטים לדוגמה
+                for example in examples:
+                    sentence = example['sentence']
+                    ex_translation = example['translation']
+
+                    text_lines_example = [sentence, ex_translation]
+                    line_styles_example = ['sentence', 'translation']
+                    clip_example = self.video_creator.create_image_clip(text_lines_example, 'sentence', line_styles_example)
 
                     # יצירת אודיו למשפט ולתרגום
                     audio_tasks = [
