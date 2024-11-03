@@ -34,7 +34,7 @@ THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 json_name = str(sys.argv[1])
 JSON_FILE = os.path.join(DATA_DIR, f'{json_name}.json')
 STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles_shorts.json')  # שינוי לקובץ העיצובים החדש
-LOGO_PATH = os.path.join(LOGOS_DIR, 'logo.png')  # אם תרצה להשתמש בלוגו
+LOGO_PATH = os.path.join(LOGOS_DIR, 'logo_colored.png')
 
 # הגדרות רווח בין שורות
 LINE_SPACING_NORMAL = 60  # רווח רגיל בין השורות
@@ -432,20 +432,40 @@ class VideoCreator:
 
         return transition
 
-    def add_logo_clip(self, duration=5):
+    def add_logo_clip(self, duration=5, bg_color=(173, 216, 230)):
+        """
+        יוצר קליפ לוגו עם רקע בצבע מותאם ולוגו מעוגל במרכז המסך.
+        """
         try:
+            # טעינת הלוגו
             logo_image = Image.open(LOGO_PATH).convert("RGBA")
-            logo_image = logo_image.resize((int(WIDTH * 0.8), int(HEIGHT * 0.8)), RESAMPLING)
 
-            # יצירת רקע לבן
-            background = Image.new('RGB', (WIDTH, HEIGHT), (255, 255, 255))
+            # יצירת מסכה מעגלית
+            size = min(logo_image.size)
+            mask = Image.new('L', (size, size), 0)
+            draw = ImageDraw.Draw(mask)
+            draw.ellipse((0, 0, size, size), fill=255)
+
+            # חיתוך הלוגו לצורה מעגלית
+            logo_image = logo_image.crop((0, 0, size, size))
+            logo_image.putalpha(mask)
+
+            # שינוי גודל הלוגו
+            new_size = int(WIDTH * 0.7)  # 70% מרוחב המסך
+            logo_image = logo_image.resize((new_size, new_size), RESAMPLING)
+
+            # יצירת רקע עם צבע מוגדר
+            background = Image.new('RGBA', (WIDTH, HEIGHT), bg_color + (255,))  # הוספת שקיפות מלאה
+
             # מיקום הלוגו במרכז
-            logo_position = ((WIDTH - logo_image.width) // 2, (HEIGHT - logo_image.height) // 2)
+            logo_position = ((WIDTH - new_size) // 2, (HEIGHT - new_size) // 2)
             background.paste(logo_image, logo_position, logo_image)
 
+            # שמירת התמונה הזמנית
             temp_image_path = self.file_manager.get_temp_path("logo_outro.png")
-            background.save(temp_image_path)
+            background.convert("RGB").save(temp_image_path)
 
+            # יצירת קליפ הווידאו
             clip = ImageClip(temp_image_path).set_duration(duration)
             return clip
         except Exception as e:
