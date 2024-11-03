@@ -1,0 +1,321 @@
+{
+    "נושא 9": "הסביבה וטבע",
+    "סרטונים": [
+      {
+        "video_number": 1,
+        "title": "טבע",
+        "word": "Forest",
+        "translation": "יער",
+        "examples": [
+          {
+            "sentence": "We hiked through the **forest**",
+            "translation": "הלכנו בטיול דרך היער"
+          },
+          {
+            "sentence": "**Forests** are home to many animals",
+            "translation": "יערות הם בית להרבה בעלי חיים"
+          },
+          {
+            "sentence": "She loves the sounds of the **forest**",
+            "translation": "היא אוהבת את הצלילים של היער"
+          }
+        ],
+        "call_to_action": "כתבו בתגובות על חוויה שלכם ביער באנגלית"
+      },
+      {
+        "video_number": 2,
+        "title": "טבע",
+        "word": "Ocean",
+        "translation": "אוקיינוס",
+        "examples": [
+          {
+            "sentence": "The **ocean** is vast and deep",
+            "translation": "האוקיינוס רחב ועמוק"
+          },
+          {
+            "sentence": "They sailed across the **ocean**",
+            "translation": "הם הפליגו מעבר לאוקיינוס"
+          },
+          {
+            "sentence": "**Ocean** life is diverse",
+            "translation": "חיי האוקיינוס מגוונים"
+          }
+        ],
+        "call_to_action": "שתפו בתגובות מה אתם אוהבים באוקיינוס באנגלית"
+      },
+      {
+        "video_number": 3,
+        "title": "טבע",
+        "word": "Desert",
+        "translation": "מדבר",
+        "examples": [
+          {
+            "sentence": "Life in the **desert** is challenging",
+            "translation": "החיים במדבר הם מאתגרים"
+          },
+          {
+            "sentence": "Camels are common in the **desert**",
+            "translation": "גמלים נפוצים במדבר"
+          },
+          {
+            "sentence": "They camped under the **desert** stars",
+            "translation": "הם חנו תחת כוכבי המדבר"
+          }
+        ],
+        "call_to_action": "ספרו לנו אם ביקרתם במדבר ואיך היה באנגלית"
+      },
+      {
+        "video_number": 4,
+        "title": "טבע",
+        "word": "Mountain",
+        "translation": "הר",
+        "examples": [
+          {
+            "sentence": "They climbed the highest **mountain**",
+            "translation": "הם טיפסו על ההר הגבוה ביותר"
+          },
+          {
+            "sentence": "**Mountains** offer spectacular views",
+            "translation": "הרים מציעים נופים מרהיבים"
+          },
+          {
+            "sentence": "She lives near the **mountains**",
+            "translation": "היא גרה ליד ההרים"
+          }
+        ],
+        "call_to_action": "כתבו בתגובות אם אתם אוהבים לטפס על הרים באנגלית"
+      },
+      {
+        "video_number": 5,
+        "title": "טבע",
+        "word": "River",
+        "translation": "נהר",
+        "examples": [
+          {
+            "sentence": "The **river** flows to the sea",
+            "translation": "הנהר זורם לים"
+          },
+          {
+            "sentence": "They went fishing by the **river**",
+            "translation": "הם הלכו לדוג ליד הנהר"
+          },
+          {
+            "sentence": "**Rivers** provide water for crops",
+            "translation": "נהרות מספקים מים לגידולים"
+          }
+        ],
+        "call_to_action": "שתפו בתגובות על נהר שהייתם בו באנגלית"
+      },
+      {
+        "video_number": 6,
+        "title": "טבע",
+        "word": "Climate",
+        "translation": "אקלים",
+        "examples": [
+          {
+            "sentence": "**Climate** change affects everyone",
+            "translation": "שינוי האקלים משפיע על כולם"
+          },
+          {
+            "sentence": "They study the **climate** patterns",
+            "translation": "הם חוקרים את דפוסי האקלים"
+          },
+          {
+            "sentence": "The region has a tropical **climate**",
+            "translation": "לאזור יש אקלים טרופי"
+          }
+        ],
+        "call_to_action": "ספרו לנו מה אתם חושבים על שינוי האקלים באנגלית"
+      },
+      {
+        "video_number": 7,
+        "title": "טבע",
+        "word": "Wildlife",
+        "translation": "חיות בר",
+        "examples": [
+          {
+            "sentence": "**Wildlife** conservation is important",
+            "translation": "שמירת חיות הבר היא חשובה"
+          },
+          {
+            "sentence": "They photographed the **wildlife**",
+            "translation": "הם צילמו את חיות הבר"
+          },
+          {
+            "sentence": "Safaris offer close encounters with **wildlife**",
+            "translation": "ספארי מציע מפגשים קרובים עם חיות בר"
+          }
+        ],
+        "call_to_action": "שתפו בתגובות איזה חיות בר אתם אוהבים באנגלית"
+      },
+      {
+        "video_number": 8,
+        "title": "טבע",
+        "word": "Ecosystem",
+        "translation": "מערכת אקולוגית",
+        "examples": [
+          {
+            "sentence": "The rainforest is a complex **ecosystem**",
+            "translation": "היער הגשם הוא מערכת אקולוגית מורכבת"
+          },
+          {
+            "sentence": "Pollution harms the **ecosystem**",
+            "translation": "זיהום פוגע במערכת האקולוגית"
+          },
+          {
+            "sentence": "They study marine **ecosystems**",
+            "translation": "הם חוקרים מערכות אקולוגיות ימיות"
+          }
+        ],
+        "call_to_action": "כתבו בתגובות מה אתם יודעים על מערכות אקולוגיות באנגלית"
+      },
+      {
+        "video_number": 9,
+        "title": "טבע",
+        "word": "Conservation",
+        "translation": "שימור",
+        "examples": [
+          {
+            "sentence": "**Conservation** of nature is vital",
+            "translation": "שימור הטבע הוא חיוני"
+          },
+          {
+            "sentence": "She works in wildlife **conservation**",
+            "translation": "היא עובדת בשימור חיות בר"
+          },
+          {
+            "sentence": "They support forest **conservation** efforts",
+            "translation": "הם תומכים במאמצי שימור יערות"
+          }
+        ],
+        "call_to_action": "ספרו לנו איך אתם תורמים לשימור הסביבה באנגלית"
+      },
+      {
+        "video_number": 10,
+        "title": "טבע",
+        "word": "Habitat",
+        "translation": "בית גידול",
+        "examples": [
+          {
+            "sentence": "The desert is a harsh **habitat**",
+            "translation": "המדבר הוא בית גידול קשה"
+          },
+          {
+            "sentence": "Deforestation destroys animal **habitats**",
+            "translation": "כריתת יערות הורסת בתי גידול של בעלי חיים"
+          },
+          {
+            "sentence": "They are protecting the panda's **habitat**",
+            "translation": "הם מגנים על בית הגידול של הפנדה"
+          }
+        ],
+        "call_to_action": "שתפו בתגובות איזה בתי גידול חשובים לשימור לדעתכם באנגלית"
+      },
+      {
+        "video_number": 11,
+        "title": "טבע",
+        "word": "Pollution",
+        "translation": "זיהום",
+        "examples": [
+          {
+            "sentence": "**Pollution** affects air quality",
+            "translation": "זיהום משפיע על איכות האוויר"
+          },
+          {
+            "sentence": "They are fighting water **pollution**",
+            "translation": "הם נלחמים בזיהום מים"
+          },
+          {
+            "sentence": "**Pollution** is a global issue",
+            "translation": "זיהום הוא נושא עולמי"
+          }
+        ],
+        "call_to_action": "כתבו בתגובות איך אפשר להפחית זיהום באנגלית"
+      },
+      {
+        "video_number": 12,
+        "title": "טבע",
+        "word": "Recycle",
+        "translation": "למחזר",
+        "examples": [
+          {
+            "sentence": "We should **recycle** more",
+            "translation": "עלינו למחזר יותר"
+          },
+          {
+            "sentence": "She **recycles** paper and plastic",
+            "translation": "היא ממחזרת נייר ופלסטיק"
+          },
+          {
+            "sentence": "**Recycling** reduces waste",
+            "translation": "מיחזור מפחית פסולת"
+          }
+        ],
+        "call_to_action": "ספרו לנו מה אתם ממחזרים בבית באנגלית"
+      },
+      {
+        "video_number": 13,
+        "title": "טבע",
+        "word": "Sustainable",
+        "translation": "בר-קיימא",
+        "examples": [
+          {
+            "sentence": "They use **sustainable** materials",
+            "translation": "הם משתמשים בחומרים ברי-קיימא"
+          },
+          {
+            "sentence": "**Sustainable** energy is the future",
+            "translation": "אנרגיה ברת-קיימא היא העתיד"
+          },
+          {
+            "sentence": "She promotes **sustainable** living",
+            "translation": "היא מקדמת חיים ברי-קיימא"
+          }
+        ],
+        "call_to_action": "שתפו בתגובות איך אתם חיים בצורה ברת-קיימא באנגלית"
+      },
+      {
+        "video_number": 14,
+        "title": "טבע",
+        "word": "Renewable",
+        "translation": "מתחדש",
+        "examples": [
+          {
+            "sentence": "**Renewable** resources are important",
+            "translation": "משאבים מתחדשים הם חשובים"
+          },
+          {
+            "sentence": "They invest in **renewable** energy",
+            "translation": "הם משקיעים באנרגיה מתחדשת"
+          },
+          {
+            "sentence": "Wind and solar are **renewable** sources",
+            "translation": "רוח ושמש הם מקורות מתחדשים"
+          }
+        ],
+        "call_to_action": "כתבו בתגובות מה אתם יודעים על אנרגיה מתחדשת באנגלית"
+      },
+      {
+        "video_number": 15,
+        "title": "טבע",
+        "word": "Extinct",
+        "translation": "נכחד",
+        "examples": [
+          {
+            "sentence": "Dinosaurs are **extinct** animals",
+            "translation": "דינוזאורים הם בעלי חיים נכחדים"
+          },
+          {
+            "sentence": "They work to save **extinct** species",
+            "translation": "הם עובדים להצלת מינים נכחדים"
+          },
+          {
+            "sentence": "Many species are becoming **extinct**",
+            "translation": "הרבה מינים נכחדים"
+          }
+        ],
+        "call_to_action": "שתפו בתגובות איך אפשר למנוע הכחדה של בעלי חיים באנגלית"
+      }
+    ]
+  }
+  

@@ -1,0 +1,321 @@
+{
+    "נושא 7": "מזון ומשקאות מתקדמים",
+    "סרטונים": [
+      {
+        "video_number": 1,
+        "title": "מזון מתקדם",
+        "word": "Vegetarian",
+        "translation": "צמחוני",
+        "examples": [
+          {
+            "sentence": "He follows a **vegetarian** diet",
+            "translation": "הוא נוהג בתזונה צמחונית"
+          },
+          {
+            "sentence": "She ordered a **vegetarian** meal",
+            "translation": "היא הזמינה ארוחה צמחונית"
+          },
+          {
+            "sentence": "**Vegetarian** options are available",
+            "translation": "אפשרויות צמחוניות זמינות"
+          }
+        ],
+        "call_to_action": "כתבו בתגובות אם אתם צמחונים או אוהבים מנות צמחוניות באנגלית"
+      },
+      {
+        "video_number": 2,
+        "title": "מזון מתקדם",
+        "word": "Recipe",
+        "translation": "מתכון",
+        "examples": [
+          {
+            "sentence": "This **recipe** is easy to follow",
+            "translation": "המתכון הזה קל לעקוב אחריו"
+          },
+          {
+            "sentence": "She shared a new **recipe** with me",
+            "translation": "היא שיתפה אותי במתכון חדש"
+          },
+          {
+            "sentence": "He collects old **recipes**",
+            "translation": "הוא אוסף מתכונים ישנים"
+          }
+        ],
+        "call_to_action": "שתפו בתגובות מתכון אהוב עליכם באנגלית"
+      },
+      {
+        "video_number": 3,
+        "title": "מזון מתקדם",
+        "word": "Ingredient",
+        "translation": "מרכיב",
+        "examples": [
+          {
+            "sentence": "We need one more **ingredient**",
+            "translation": "אנחנו צריכים עוד מרכיב אחד"
+          },
+          {
+            "sentence": "Check the **ingredients** list",
+            "translation": "בדוק את רשימת המרכיבים"
+          },
+          {
+            "sentence": "Fresh **ingredients** make better food",
+            "translation": "מרכיבים טריים יוצרים אוכל טוב יותר"
+          }
+        ],
+        "call_to_action": "ספרו לנו על מרכיב סודי במתכונים שלכם באנגלית"
+      },
+      {
+        "video_number": 4,
+        "title": "מזון מתקדם",
+        "word": "Flavor",
+        "translation": "טעם",
+        "examples": [
+          {
+            "sentence": "The soup has a rich **flavor**",
+            "translation": "למרק יש טעם עשיר"
+          },
+          {
+            "sentence": "I love the **flavor** of chocolate",
+            "translation": "אני אוהב את הטעם של שוקולד"
+          },
+          {
+            "sentence": "They added spices for more **flavor**",
+            "translation": "הם הוסיפו תבלינים לעוד טעם"
+          }
+        ],
+        "call_to_action": "כתבו בתגובות מה הטעם האהוב עליכם באנגלית"
+      },
+      {
+        "video_number": 5,
+        "title": "מזון מתקדם",
+        "word": "Cuisine",
+        "translation": "מטבח (סגנון בישול)",
+        "examples": [
+          {
+            "sentence": "Italian **cuisine** is popular worldwide",
+            "translation": "המטבח האיטלקי פופולרי ברחבי העולם"
+          },
+          {
+            "sentence": "She enjoys exploring Asian **cuisine**",
+            "translation": "היא נהנית לחקור את המטבח האסייתי"
+          },
+          {
+            "sentence": "They tried a new French **cuisine** restaurant",
+            "translation": "הם ניסו מסעדת מטבח צרפתי חדשה"
+          }
+        ],
+        "call_to_action": "שתפו בתגובות איזה סגנון מטבח אתם אוהבים באנגלית"
+      },
+      {
+        "video_number": 6,
+        "title": "מזון מתקדם",
+        "word": "Appetizer",
+        "translation": "מנה ראשונה",
+        "examples": [
+          {
+            "sentence": "We ordered an **appetizer** to share",
+            "translation": "הזמנו מנה ראשונה לשיתוף"
+          },
+          {
+            "sentence": "The **appetizers** were delicious",
+            "translation": "המנות הראשונות היו טעימות"
+          },
+          {
+            "sentence": "An **appetizer** before the main course",
+            "translation": "מנה ראשונה לפני המנה העיקרית"
+          }
+        ],
+        "call_to_action": "ספרו לנו על מנת פתיחה שאתם אוהבים באנגלית"
+      },
+      {
+        "video_number": 7,
+        "title": "מזון מתקדם",
+        "word": "Dessert",
+        "translation": "קינוח",
+        "examples": [
+          {
+            "sentence": "Chocolate cake is my favorite **dessert**",
+            "translation": "עוגת שוקולד היא הקינוח האהוב עליי"
+          },
+          {
+            "sentence": "They served fruit for **dessert**",
+            "translation": "הם הגישו פירות לקינוח"
+          },
+          {
+            "sentence": "Would you like **dessert**?",
+            "translation": "האם תרצה קינוח?"
+          }
+        ],
+        "call_to_action": "כתבו בתגובות מה הקינוח המועדף עליכם באנגלית"
+      },
+      {
+        "video_number": 8,
+        "title": "מזון מתקדם",
+        "word": "Beverage",
+        "translation": "משקה",
+        "examples": [
+          {
+            "sentence": "What's your favorite **beverage**?",
+            "translation": "מה המשקה האהוב עליך?"
+          },
+          {
+            "sentence": "They offered us hot **beverages**",
+            "translation": "הם הציעו לנו משקאות חמים"
+          },
+          {
+            "sentence": "Water is a healthy **beverage** choice",
+            "translation": "מים הם בחירת משקה בריאה"
+          }
+        ],
+        "call_to_action": "שתפו בתגובות מה אתם אוהבים לשתות באנגלית"
+      },
+      {
+        "video_number": 9,
+        "title": "מזון מתקדם",
+        "word": "Spicy",
+        "translation": "חריף",
+        "examples": [
+          {
+            "sentence": "I enjoy **spicy** food",
+            "translation": "אני נהנה מאוכל חריף"
+          },
+          {
+            "sentence": "This dish is too **spicy** for me",
+            "translation": "המנה הזו חריפה מדי בשבילי"
+          },
+          {
+            "sentence": "They added chili for a **spicy** flavor",
+            "translation": "הם הוסיפו צ'ילי לטעם חריף"
+          }
+        ],
+        "call_to_action": "ספרו לנו אם אתם אוהבים אוכל חריף באנגלית"
+      },
+      {
+        "video_number": 10,
+        "title": "מזון מתקדם",
+        "word": "Ingredient",
+        "translation": "מרכיב",
+        "examples": [
+          {
+            "sentence": "Sugar is a key **ingredient** in cakes",
+            "translation": "סוכר הוא מרכיב מרכזי בעוגות"
+          },
+          {
+            "sentence": "She forgot an **ingredient** in the soup",
+            "translation": "היא שכחה מרכיב במרק"
+          },
+          {
+            "sentence": "Fresh **ingredients** make a difference",
+            "translation": "מרכיבים טריים עושים את ההבדל"
+          }
+        ],
+        "call_to_action": "כתבו בתגובות איזה מרכיב אתם תמיד משתמשים בו באנגלית"
+      },
+      {
+        "video_number": 11,
+        "title": "מזון מתקדם",
+        "word": "Organic",
+        "translation": "אורגני",
+        "examples": [
+          {
+            "sentence": "They prefer **organic** vegetables",
+            "translation": "הם מעדיפים ירקות אורגניים"
+          },
+          {
+            "sentence": "She shops at the **organic** market",
+            "translation": "היא קונה בשוק האורגני"
+          },
+          {
+            "sentence": "**Organic** food can be more expensive",
+            "translation": "אוכל אורגני יכול להיות יקר יותר"
+          }
+        ],
+        "call_to_action": "שתפו בתגובות מה דעתכם על מזון אורגני באנגלית"
+      },
+      {
+        "video_number": 12,
+        "title": "מזון מתקדם",
+        "word": "Grill",
+        "translation": "גריל",
+        "examples": [
+          {
+            "sentence": "We like to **grill** vegetables",
+            "translation": "אנחנו אוהבים לצלות ירקות"
+          },
+          {
+            "sentence": "He cooked the meat on the **grill**",
+            "translation": "הוא בישל את הבשר על הגריל"
+          },
+          {
+            "sentence": "A summer **grill** party is fun",
+            "translation": "מסיבת גריל בקיץ היא כיפית"
+          }
+        ],
+        "call_to_action": "ספרו לנו על מאכלים שאתם אוהבים לצלות באנגלית"
+      },
+      {
+        "video_number": 13,
+        "title": "מזון מתקדם",
+        "word": "Fermented",
+        "translation": "מותסס",
+        "examples": [
+          {
+            "sentence": "**Fermented** foods are good for digestion",
+            "translation": "מזונות מותססים טובים לעיכול"
+          },
+          {
+            "sentence": "She enjoys **fermented** drinks",
+            "translation": "היא נהנית ממשקאות מותססים"
+          },
+          {
+            "sentence": "Kimchi is a **fermented** Korean dish",
+            "translation": "קיםצ'י הוא מאכל קוריאני מותסס"
+          }
+        ],
+        "call_to_action": "כתבו בתגובות אם ניסיתם מזון מותסס באנגלית"
+      },
+      {
+        "video_number": 14,
+        "title": "מזון מתקדם",
+        "word": "Savory",
+        "translation": "מלוח (טעים, לא מתוק)",
+        "examples": [
+          {
+            "sentence": "I prefer **savory** snacks",
+            "translation": "אני מעדיף חטיפים מלוחים"
+          },
+          {
+            "sentence": "The pie had a **savory** filling",
+            "translation": "לפאי היה מילוי מלוח"
+          },
+          {
+            "sentence": "**Savory** dishes are satisfying",
+            "translation": "מנות מלוחות משביעות רצון"
+          }
+        ],
+        "call_to_action": "שתפו בתגובות האם אתם אוהבים אוכל מלוח או מתוק באנגלית"
+      },
+      {
+        "video_number": 15,
+        "title": "מזון מתקדם",
+        "word": "Fusion",
+        "translation": "מיזוג (סגנון בישול משולב)",
+        "examples": [
+          {
+            "sentence": "**Fusion** cuisine combines flavors",
+            "translation": "מטבח מיזוג משלב טעמים"
+          },
+          {
+            "sentence": "They opened a **fusion** restaurant",
+            "translation": "הם פתחו מסעדת מיזוג"
+          },
+          {
+            "sentence": "She enjoys cooking **fusion** dishes",
+            "translation": "היא נהנית לבשל מנות מיזוג"
+          }
+        ],
+        "call_to_action": "ספרו לנו אם ניסיתם מטבח מיזוג ומה חשבתם באנגלית"
+      }
+    ]
+  }
+  
