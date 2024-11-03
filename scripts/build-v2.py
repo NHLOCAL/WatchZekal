@@ -22,11 +22,11 @@ RESAMPLING = Image.LANCZOS
 
 # הגדרות בסיסיות
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # נתיב לסקריפט הנוכחי
-DATA_DIR = os.path.join(BASE_DIR, '..', 'data')
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'levels')
 ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
 FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 LOGOS_DIR = os.path.join(ASSETS_DIR, 'logos')
-OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'videos')
+OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output')
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 
 # נתיבים לקבצים
