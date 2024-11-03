@@ -1,0 +1,47 @@
+{
+    "נושא 1": "מזג אוויר ותופעות טבע",
+    "סרטונים": [
+    {
+        "video_number": 0,
+        "title": "מזג אוויר",
+        "word": "Cloudy",
+        "translation": "מעונן",
+        "examples": [
+            {
+                "sentence": "It is **cloudy** today; we might get rain.",
+                "translation": "היום מעונן; אולי ירד גשם."
+            },
+            {
+                "sentence": "A **cloudy** sky can be beautiful.",
+                "translation": "שמיים מעוננים יכולים להיות יפים."
+            },
+            {
+                "sentence": "The forecast says it will be **cloudy** all week.",
+                "translation": "התחזית אומרת שיהיה מעונן כל השבוע."
+            }
+        ],
+        "call_to_action": "כתבו בתגובות איך אתם מתארים את מזג האוויר באנגלית!"
+    },
+    {
+        "video_number": 3,
+        "title": "תחביבים",
+        "word": "Gardening",
+        "translation": "גינון",
+        "examples": [
+            {
+                "sentence": "**Gardening** is her favorite weekend activity.",
+                "translation": "גינון הוא הפעילות המועדפת עליה בסופי השבוע."
+            },
+            {
+                "sentence": "He enjoys **gardening** with his family.",
+                "translation": "הוא נהנה לעסוק בגינון עם משפחתו."
+            },
+            {
+                "sentence": "Many people find **gardening** relaxing.",
+                "translation": "הרבה אנשים מוצאים בגינון רוגע."
+            }
+        ],
+        "call_to_action": "ספרו לנו בתגובות על התחביבים שלכם באנגלית!"
+    }
+  ]
+}
