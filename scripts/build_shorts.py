@@ -525,19 +525,12 @@ class VideoAssemblerShorts:
         self.video_creator = VideoCreator(file_manager, image_creator, audio_creator, style_definitions)
 
     def assemble_shorts_videos(self, data, output_dir, thumbnails_dir):
-        videos = data['סרטונים']
+        videos = data
 
-        # איתור שם הנושא
-        topic_name = None
-        for key in data:
-            if key.startswith('נושא'):
-                topic_name = data[key]
-                break
-        if not topic_name:
-            topic_name = 'Unknown Topic'
-
+        # חלץ את שם הנושא מהשדה title במקום 'נושא'
         for video_data in videos:
             video_number = video_data['video_number']
+            topic_name = video_data['title']  # שינוי כאן לשדה title במקום נושא
             title = video_data['title']
             word = video_data['word']
             translation = video_data['translation']
