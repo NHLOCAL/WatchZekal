@@ -8,16 +8,16 @@
         "translation": "התעמלות",
         "examples": [
           {
-            "sentence": "**Exercise** is important for health.",
-            "translation": "התעמלות חשובה לבריאות."
+            "sentence": "**Exercise** is important for health",
+            "translation": "התעמלות חשובה לבריאות"
           },
           {
-            "sentence": "She does **exercise** every morning.",
-            "translation": "היא מתעמלת כל בוקר."
+            "sentence": "She does **exercise** every morning",
+            "translation": "היא מתעמלת כל בוקר"
           },
           {
-            "sentence": "**Exercising** keeps you fit.",
-            "translation": "התעמלות שומרת אותך בכושר."
+            "sentence": "**Exercising** keeps you fit",
+            "translation": "התעמלות שומרת אותך בכושר"
           }
         ],
         "call_to_action": "שתפו בתגובות איזה סוג התעמלות אתם עושים באנגלית!"
@@ -29,16 +29,16 @@
         "translation": "תזונה",
         "examples": [
           {
-            "sentence": "Good **nutrition** keeps you strong.",
-            "translation": "תזונה טובה שומרת עליך חזק."
+            "sentence": "Good **nutrition** keeps you strong",
+            "translation": "תזונה טובה שומרת עליך חזק"
           },
           {
-            "sentence": "He studies **nutrition** at university.",
-            "translation": "הוא לומד תזונה באוניברסיטה."
+            "sentence": "He studies **nutrition** at university",
+            "translation": "הוא לומד תזונה באוניברסיטה"
           },
           {
-            "sentence": "**Nutritionists** help plan diets.",
-            "translation": "תזונאים עוזרים לתכנן דיאטות."
+            "sentence": "**Nutritionists** help plan diets",
+            "translation": "תזונאים עוזרים לתכנן דיאטות"
           }
         ],
         "call_to_action": "כתבו בתגובות מה אתם אוכלים לבריאות טובה באנגלית!"
@@ -50,16 +50,16 @@
         "translation": "תרופה",
         "examples": [
           {
-            "sentence": "He took **medicine** for his cold.",
-            "translation": "הוא לקח תרופה להצטננות."
+            "sentence": "He took **medicine** for his cold",
+            "translation": "הוא לקח תרופה להצטננות"
           },
           {
-            "sentence": "**Medicine** should be taken carefully.",
-            "translation": "תרופה יש לקחת בזהירות."
+            "sentence": "**Medicine** should be taken carefully",
+            "translation": "תרופה יש לקחת בזהירות"
           },
           {
-            "sentence": "She studies **medicine** to become a doctor.",
-            "translation": "היא לומדת רפואה כדי להיות רופאה."
+            "sentence": "She studies **medicine** to become a doctor",
+            "translation": "היא לומדת רפואה כדי להיות רופאה"
           }
         ],
         "call_to_action": "שתפו בתגובות איך אתם נשארים בריאים באנגלית!"
@@ -71,16 +71,16 @@
         "translation": "אלרגיה",
         "examples": [
           {
-            "sentence": "She has an **allergy** to nuts.",
-            "translation": "יש לה אלרגיה לאגוזים."
+            "sentence": "She has an **allergy** to nuts",
+            "translation": "יש לה אלרגיה לאגוזים"
           },
           {
-            "sentence": "**Allergies** can cause sneezing.",
-            "translation": "אלרגיות יכולות לגרום להתעטשות."
+            "sentence": "**Allergies** can cause sneezing",
+            "translation": "אלרגיות יכולות לגרום להתעטשות"
           },
           {
-            "sentence": "He carries medicine for his **allergy**.",
-            "translation": "הוא נושא תרופה לאלרגיה שלו."
+            "sentence": "He carries medicine for his **allergy**",
+            "translation": "הוא נושא תרופה לאלרגיה שלו"
           }
         ],
         "call_to_action": "כתבו בתגובות אם יש לכם אלרגיות באנגלית!"
@@ -92,16 +92,16 @@
         "translation": "טיפול",
         "examples": [
           {
-            "sentence": "**Therapy** helped him recover.",
-            "translation": "טיפול עזר לו להחלים."
+            "sentence": "**Therapy** helped him recover",
+            "translation": "טיפול עזר לו להחלים"
           },
           {
-            "sentence": "She goes to physical **therapy**.",
-            "translation": "היא הולכת לטיפול פיזיותרפיה."
+            "sentence": "She goes to physical **therapy**",
+            "translation": "היא הולכת לטיפול פיזיותרפיה"
           },
           {
-            "sentence": "**Therapists** provide support.",
-            "translation": "מטפלים מספקים תמיכה."
+            "sentence": "**Therapists** provide support",
+            "translation": "מטפלים מספקים תמיכה"
           }
         ],
         "call_to_action": "שתפו בתגובות מה דעתכם על טיפולים באנגלית!"
@@ -113,16 +113,16 @@
         "translation": "חיסון",
         "examples": [
           {
-            "sentence": "He received a **vaccine** for the flu.",
-            "translation": "הוא קיבל חיסון לשפעת."
+            "sentence": "He received a **vaccine** for the flu",
+            "translation": "הוא קיבל חיסון לשפעת"
           },
           {
-            "sentence": "**Vaccines** prevent diseases.",
-            "translation": "חיסונים מונעים מחלות."
+            "sentence": "**Vaccines** prevent diseases",
+            "translation": "חיסונים מונעים מחלות"
           },
           {
-            "sentence": "She is developing a new **vaccine**.",
-            "translation": "היא מפתחת חיסון חדש."
+            "sentence": "She is developing a new **vaccine**",
+            "translation": "היא מפתחת חיסון חדש"
           }
         ],
         "call_to_action": "כתבו בתגובות מה אתם יודעים על חיסונים באנגלית!"
@@ -134,16 +134,16 @@
         "translation": "רופא",
         "examples": [
           {
-            "sentence": "She visited the **doctor** for a check-up.",
-            "translation": "היא ביקרה אצל הרופא לבדיקת בריאות."
+            "sentence": "She visited the **doctor** for a check-up",
+            "translation": "היא ביקרה אצל הרופא לבדיקת בריאות"
           },
           {
-            "sentence": "**Doctors** help people get better.",
-            "translation": "רופאים עוזרים לאנשים להחלים."
+            "sentence": "**Doctors** help people get better",
+            "translation": "רופאים עוזרים לאנשים להחלים"
           },
           {
-            "sentence": "He wants to become a **doctor**.",
-            "translation": "הוא רוצה להיות רופא."
+            "sentence": "He wants to become a **doctor**",
+            "translation": "הוא רוצה להיות רופא"
           }
         ],
         "call_to_action": "שתפו בתגובות איך אומרים רופא באנגלית!"
@@ -155,16 +155,16 @@
         "translation": "מחלה",
         "examples": [
           {
-            "sentence": "**Diseases** can be prevented.",
-            "translation": "מחלות ניתן למנוע."
+            "sentence": "**Diseases** can be prevented",
+            "translation": "מחלות ניתן למנוע"
           },
           {
-            "sentence": "He is fighting a rare **disease**.",
-            "translation": "הוא נלחם במחלה נדירה."
+            "sentence": "He is fighting a rare **disease**",
+            "translation": "הוא נלחם במחלה נדירה"
           },
           {
-            "sentence": "Research helps cure **diseases**.",
-            "translation": "מחקר עוזר לרפא מחלות."
+            "sentence": "Research helps cure **diseases**",
+            "translation": "מחקר עוזר לרפא מחלות"
           }
         ],
         "call_to_action": "כתבו בתגובות מה אתם עושים כדי להישאר בריאים באנגלית!"
@@ -176,16 +176,16 @@
         "translation": "בית חולים",
         "examples": [
           {
-            "sentence": "He works at the **hospital**.",
-            "translation": "הוא עובד בבית החולים."
+            "sentence": "He works at the **hospital**",
+            "translation": "הוא עובד בבית החולים"
           },
           {
-            "sentence": "She was admitted to the **hospital**.",
-            "translation": "היא אושפזה בבית החולים."
+            "sentence": "She was admitted to the **hospital**",
+            "translation": "היא אושפזה בבית החולים"
           },
           {
-            "sentence": "**Hospitals** provide medical care.",
-            "translation": "בתי חולים מספקים טיפול רפואי."
+            "sentence": "**Hospitals** provide medical care",
+            "translation": "בתי חולים מספקים טיפול רפואי"
           }
         ],
         "call_to_action": "שתפו בתגובות אם ביקרתם בבית חולים באנגלית!"
@@ -197,16 +197,16 @@
         "translation": "ניתוח",
         "examples": [
           {
-            "sentence": "He underwent **surgery** last week.",
-            "translation": "הוא עבר ניתוח בשבוע שעבר."
+            "sentence": "He underwent **surgery** last week",
+            "translation": "הוא עבר ניתוח בשבוע שעבר"
           },
           {
-            "sentence": "**Surgery** can save lives.",
-            "translation": "ניתוח יכול להציל חיים."
+            "sentence": "**Surgery** can save lives",
+            "translation": "ניתוח יכול להציל חיים"
           },
           {
-            "sentence": "She is a **surgery** nurse.",
-            "translation": "היא אחות ניתוח."
+            "sentence": "She is a **surgery** nurse",
+            "translation": "היא אחות ניתוח"
           }
         ],
         "call_to_action": "כתבו בתגובות מה אתם חושבים על ניתוחים באנגלית!"
@@ -218,16 +218,16 @@
         "translation": "תסמין",
         "examples": [
           {
-            "sentence": "Fever is a common **symptom**.",
-            "translation": "חום הוא תסמין נפוץ."
+            "sentence": "Fever is a common **symptom**",
+            "translation": "חום הוא תסמין נפוץ"
           },
           {
-            "sentence": "He described his **symptoms** to the doctor.",
-            "translation": "הוא תיאר את התסמינים שלו לרופא."
+            "sentence": "He described his **symptoms** to the doctor",
+            "translation": "הוא תיאר את התסמינים שלו לרופא"
           },
           {
-            "sentence": "**Symptoms** help diagnose illnesses.",
-            "translation": "תסמינים עוזרים לאבחן מחלות."
+            "sentence": "**Symptoms** help diagnose illnesses",
+            "translation": "תסמינים עוזרים לאבחן מחלות"
           }
         ],
         "call_to_action": "שתפו בתגובות איך אתם מרגישים היום באנגלית!"
@@ -239,16 +239,16 @@
         "translation": "החלמה",
         "examples": [
           {
-            "sentence": "She is on the road to **recovery**.",
-            "translation": "היא בדרך להחלמה."
+            "sentence": "She is on the road to **recovery**",
+            "translation": "היא בדרך להחלמה"
           },
           {
-            "sentence": "**Recovery** takes time.",
-            "translation": "החלמה לוקחת זמן."
+            "sentence": "**Recovery** takes time",
+            "translation": "החלמה לוקחת זמן"
           },
           {
-            "sentence": "They celebrated his **recovery**.",
-            "translation": "הם חגגו את החלמתו."
+            "sentence": "They celebrated his **recovery**",
+            "translation": "הם חגגו את החלמתו"
           }
         ],
         "call_to_action": "כתבו בתגובות איך אתם מתאוששים ממחלה באנגלית!"
@@ -260,16 +260,16 @@
         "translation": "מניעה",
         "examples": [
           {
-            "sentence": "**Prevention** is better than cure.",
-            "translation": "מניעה עדיפה על טיפול."
+            "sentence": "**Prevention** is better than cure",
+            "translation": "מניעה עדיפה על טיפול"
           },
           {
-            "sentence": "Vaccines are a form of **prevention**.",
-            "translation": "חיסונים הם צורה של מניעה."
+            "sentence": "Vaccines are a form of **prevention**",
+            "translation": "חיסונים הם צורה של מניעה"
           },
           {
-            "sentence": "He believes in **disease prevention**.",
-            "translation": "הוא מאמין במניעת מחלות."
+            "sentence": "He believes in **disease prevention**",
+            "translation": "הוא מאמין במניעת מחלות"
           }
         ],
         "call_to_action": "כתבו בתגובות איך אתם מונעים מחלות באנגלית!"
@@ -281,16 +281,16 @@
         "translation": "אבחנה",
         "examples": [
           {
-            "sentence": "Early **diagnosis** is important.",
-            "translation": "אבחנה מוקדמת חשובה."
+            "sentence": "Early **diagnosis** is important",
+            "translation": "אבחנה מוקדמת חשובה"
           },
           {
-            "sentence": "She received a **diagnosis** from the specialist.",
-            "translation": "היא קיבלה אבחנה מהמומחה."
+            "sentence": "She received a **diagnosis** from the specialist",
+            "translation": "היא קיבלה אבחנה מהמומחה"
           },
           {
-            "sentence": "**Diagnosis** helps in treatment.",
-            "translation": "אבחנה עוזרת בטיפול."
+            "sentence": "**Diagnosis** helps in treatment",
+            "translation": "אבחנה עוזרת בטיפול"
           }
         ],
         "call_to_action": "שתפו בתגובות מה אתם יודעים על אבחנות רפואיות באנגלית!"
@@ -302,16 +302,16 @@
         "translation": "בריאות",
         "examples": [
           {
-            "sentence": "**Health** is wealth.",
-            "translation": "בריאות היא עושר."
+            "sentence": "**Health** is wealth",
+            "translation": "בריאות היא עושר"
           },
           {
-            "sentence": "She takes care of her **health**.",
-            "translation": "היא שומרת על הבריאות שלה."
+            "sentence": "She takes care of her **health**",
+            "translation": "היא שומרת על הבריאות שלה"
           },
           {
-            "sentence": "Good **health** leads to happiness.",
-            "translation": "בריאות טובה מובילה לאושר."
+            "sentence": "Good **health** leads to happiness",
+            "translation": "בריאות טובה מובילה לאושר"
           }
         ],
         "call_to_action": "כתבו בתגובות איך אתם שומרים על הבריאות שלכם באנגלית!"
