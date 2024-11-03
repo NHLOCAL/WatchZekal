@@ -108,13 +108,14 @@ class FileManager:
         self.temp_dir.cleanup()
 
 
-
 class ImageCreator:
     def __init__(self, styles):
         self.styles = styles
         self.cache = {}
         # הגדרת סגנונות שדורשים עיבוד רקע
         self.styles_require_bright_blur = {'word', 'sentence', 'sentence_bold', 'translation'}
+        # הגדרת צבע ורמת שקיפות לשכבת ההדגשה
+        self.overlay_color = (173, 216, 230, 150)  # תכלת בהיר עם שקיפות של 50%
 
     @lru_cache(maxsize=None)
     def get_font(self, font_path, font_size):
@@ -228,14 +229,26 @@ class ImageCreator:
 
                 img = Image.new('RGB', (WIDTH, HEIGHT), color=tuple(first_style['bg_color']))
 
-        # אם הסגנון דורש עיבוד רקע (בהירות וטשטוש)
+        # אם הסגנון דורש עיבוד רקע (בהירות וטשטוש) והוספת שכבת הדגשה
         if line_styles:
             for style_name in line_styles:
                 if style_name in self.styles_require_bright_blur:
+                    # הגברת הבהירות
                     enhancer = ImageEnhance.Brightness(img)
-                    img = enhancer.enhance(1)  # הגברת הבהירות (ניתן לשנות לפי הצורך)
-                    img = img.filter(ImageFilter.GaussianBlur(radius=7))  # טשטוש קל (ניתן לשנות לפי הצורך)
-                    logging.info(f"עיבוד רקע עבור הסגנון: {style_name}")
+                    img = enhancer.enhance(1.0)  # ניתן לשנות את הערך לפי הצורך
+
+                    # טשטוש קל
+                    img = img.filter(ImageFilter.GaussianBlur(radius=5))  # ניתן לשנות את הערך לפי הצורך
+
+                    # הוספת שכבת הדגשה
+                    overlay = Image.new('RGBA', img.size, self.overlay_color)
+                    img = img.convert('RGBA')
+                    img = Image.alpha_composite(img, overlay)
+
+                    # המרת חזרה ל-RGB
+                    img = img.convert('RGB')
+
+                    logging.info(f"עיבוד רקע והוספת שכבת הדגשה עבור הסגנון: {style_name}")
                     break  # מספיק לעבד פעם אחת אם יש לפחות סגנון אחד שדורש עיבוד
 
         draw = ImageDraw.Draw(img)
