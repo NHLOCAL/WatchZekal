@@ -284,7 +284,7 @@
           },
           {
               "sentence": "She engaged the **audience** with her speech",
-              "translation": "היא שיתפה את הקהל בנאומה"
+              "translation": "היא ריתקה את הקהל בנאומה"
           },
           {
               "sentence": "The **audience** enjoyed the performance",
@@ -297,15 +297,15 @@
       "video_number": 15,
       "title": "תקשורת ומדיה",
       "word": "Publication",
-      "translation": "פרסום",
+      "translation": "הוצאה לאור או פרסום",
       "examples": [
           {
               "sentence": "His book is ready for **publication**",
-              "translation": "הספר שלו מוכן לפרסום"
+              "translation": "הספר שלו מוכן להוצאה לאור"
           },
           {
               "sentence": "The **publication** date is next month",
-              "translation": "תאריך הפרסום הוא בחודש הבא"
+              "translation": "תאריך ההוצאה לאור הוא בחודש הבא"
           },
           {
               "sentence": "She works in the **publishing** industry",
