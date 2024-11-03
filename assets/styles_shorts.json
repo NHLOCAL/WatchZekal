@@ -113,7 +113,7 @@
         "gradient": null,
         "gradient_direction": "vertical",
         "text_color": [0, 0, 128],
-        "font_size": 100,
+        "font_size": 140,
         "font_path": "Rubik-Bold.ttf"
     },
     "video_number": {
@@ -122,7 +122,7 @@
         "gradient": null,
         "gradient_direction": "vertical",
         "text_color": [0, 0, 128],
-        "font_size": 80,
+        "font_size": 120,
         "font_path": "Rubik-Regular.ttf"
     }
 }
