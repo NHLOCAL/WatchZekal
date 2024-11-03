@@ -6,6 +6,7 @@ import re
 import numpy as np
 from gtts import gTTS
 from moviepy.editor import *
+from moviepy.audio.fx.audio_loop import audio_loop  # ייבוא נכון של audio_loop
 from PIL import Image, ImageDraw, ImageFont
 import arabic_reshaper
 from bidi.algorithm import get_display
@@ -165,9 +166,14 @@ class ImageCreator:
             first_style = style_definitions[line_styles[0]]
         else:
             # אחרת, נשתמש בסגנון הכללי
-            first_style = style_definitions['normal']
+            first_style = style_definitions.get('normal', {
+                "bg_color": [255, 255, 255],
+                "text_color": [0, 0, 0],
+                "font_size": 80,
+                "font_path": "Rubik-Regular.ttf"
+            })
 
-        if first_style['gradient']:
+        if first_style.get('gradient'):
             img = self.create_gradient_background(
                 WIDTH, HEIGHT, 
                 first_style['gradient'][0], 
@@ -189,7 +195,12 @@ class ImageCreator:
             if line_styles and i < len(line_styles):
                 current_style = style_definitions[line_styles[i]]
             else:
-                current_style = style_definitions['normal']
+                current_style = style_definitions.get('normal', {
+                    "bg_color": [255, 255, 255],
+                    "text_color": [0, 0, 0],
+                    "font_size": 80,
+                    "font_path": "Rubik-Regular.ttf"
+                })
 
             font = self.get_font(current_style['font_path'], current_style['font_size'])
 
@@ -207,7 +218,10 @@ class ImageCreator:
                     line_height = 0
                     for segment_text, is_bold in segments:
                         if is_bold:
-                            segment_style = style_definitions.get('sentence_bold', current_style)
+                            if processed_style['style_name'] == 'sentence':
+                                segment_style = style_definitions.get('sentence_bold', current_style)
+                            else:
+                                segment_style = style_definitions.get('word', current_style)
                             segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
                             segment_color = tuple(segment_style['text_color'])
                         else:
@@ -244,7 +258,10 @@ class ImageCreator:
                     line_height = 0
                     for segment_text, is_bold in segments:
                         if is_bold:
-                            segment_style = style_definitions.get('sentence_bold', current_style)
+                            if processed_style['style_name'] == 'sentence':
+                                segment_style = style_definitions.get('sentence_bold', current_style)
+                            else:
+                                segment_style = style_definitions.get('word', current_style)
                             segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
                             segment_color = tuple(segment_style['text_color'])
                         else:
@@ -276,7 +293,7 @@ class ImageCreator:
         current_y = (HEIGHT - total_height) / 2
 
         # ציור הטקסט
-        for line_info, line_height, current_style in processed_lines:
+        for line_info, line_height, processed_style in processed_lines:
             # חישוב רוחב השורה הכולל
             line_width = sum([segment[1] for segment in line_info])
             x_text = (WIDTH - line_width) / 2
@@ -292,6 +309,14 @@ class ImageCreator:
         self.cache[cache_key] = img
         return img
 
+
+def remove_asterisks(text):
+    """
+    מסירה את הכוכביות מטקסט המשמש להדגשה, כך שהמערכת לא תקריא אותן.
+    """
+    return text.replace("**", "")
+
+
 class AudioCreator:
     def __init__(self, temp_dir):
         self.temp_dir = temp_dir
@@ -299,7 +324,9 @@ class AudioCreator:
 
     def create_audio_task(self, text, lang, slow=False):
         try:
-            tts = gTTS(text=text, lang=lang, slow=slow)
+            # הסרת הכוכביות מהטקסט לפני ההקראה
+            clean_text = remove_asterisks(text)
+            tts = gTTS(text=clean_text, lang=lang, slow=slow)
             with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3', dir=self.temp_dir.name) as tmp_file:
                 tts.save(tmp_file.name)
                 return tmp_file.name
@@ -327,7 +354,7 @@ class AudioCreator:
             try:
                 audio_path = future.result()
                 results[tuple(task)] = audio_path
-                logging.info(f"אודיו נוצר עבור: '{task[0]}' בשפה: '{task[1]}' עם slow={task[2] if len(task) == 3 else False}")
+                logging.info(f"אודיו נוצר עבור: '{task[0]}' בשפה: '{task[1]}' עם slow={'True' if len(task) == 3 and task[2] else 'False'}")
             except Exception as e:
                 logging.error(f"שגיאה ביצירת אודיו עבור: '{task[0]}' בשפה: '{task[1]}'. פרטים: {e}")
         return results
@@ -405,40 +432,51 @@ class VideoCreator:
 
         return transition
 
-    def add_logo_to_video(self, clip, logo_path, position='top-right', size=(100, 100), opacity=200, margin=(20, 20)):
+    def add_logo_clip(self, duration=5):
         try:
-            logo_image = Image.open(logo_path).convert("RGBA")
-            logo_image = logo_image.resize(size, RESAMPLING)
+            logo_image = Image.open(LOGO_PATH).convert("RGBA")
+            logo_image = logo_image.resize((int(WIDTH * 0.8), int(HEIGHT * 0.8)), RESAMPLING)
 
-            if opacity < 255:
-                alpha = logo_image.split()[3]
-                alpha = alpha.point(lambda p: p * (opacity / 255))
-                logo_image.putalpha(alpha)
+            # יצירת רקע לבן
+            background = Image.new('RGB', (WIDTH, HEIGHT), (255, 255, 255))
+            # מיקום הלוגו במרכז
+            logo_position = ((WIDTH - logo_image.width) // 2, (HEIGHT - logo_image.height) // 2)
+            background.paste(logo_image, logo_position, logo_image)
 
-            logo_array = np.array(logo_image)
-            logo = (ImageClip(logo_array)
-                    .set_duration(clip.duration))
+            temp_image_path = self.file_manager.get_temp_path("logo_outro.png")
+            background.save(temp_image_path)
 
-            x_margin, y_margin = margin
-            if position == 'top-right':
-                logo = logo.set_pos((clip.w - logo.w - x_margin, y_margin))
-            elif position == 'top-left':
-                logo = logo.set_pos((x_margin, y_margin))
-            elif position == 'bottom-right':
-                logo = logo.set_pos((clip.w - logo.w - x_margin, clip.h - logo.h - y_margin))
-            elif position == 'bottom-left':
-                logo = logo.set_pos((x_margin, clip.h - logo.h - y_margin))
-            elif position == 'bottom-center':
-                x_position = (clip.w - logo.w) / 2
-                y_position = clip.h - logo.h - y_margin
-                logo = logo.set_pos((x_position, y_position))
-            else:
-                raise ValueError("מיקום לא נתמך")
-
-            return CompositeVideoClip([clip, logo])
-        except Exception as e:
-            logging.error(f"שגיאה בהוספת הלוגו: {e}")
+            clip = ImageClip(temp_image_path).set_duration(duration)
             return clip
+        except Exception as e:
+            logging.error(f"שגיאה ביצירת קליפ הלוגו: {e}")
+            return None
+
+    def create_intro_clip(self, topic_name, video_number):
+        try:
+            text_lines_intro = [topic_name, f"#{video_number}"]
+            line_styles_intro = ['topic', 'video_number']
+
+            clip_intro = self.create_image_clip(text_lines_intro, 'intro', line_styles_intro)
+
+            # יצירת אודיו (אופציונלי)
+            audio_tasks = [
+                (topic_name, 'iw'),
+                (f"מספר {video_number}", 'iw')
+            ]
+            audio_results = self.audio_creator.create_audios(audio_tasks)
+            clip_intro = self.create_clip(
+                clip_intro,
+                [
+                    audio_results.get((topic_name, 'iw'), ""),
+                    audio_results.get((f"מספר {video_number}", 'iw'), ""),
+                ],
+                min_duration=3  # משך מינימלי
+            )
+            return clip_intro
+        except Exception as e:
+            logging.error(f"שגיאה ביצירת קליפ הפתיחה: {e}")
+            return None
 
     def create_outro(self, call_to_action):
         text_lines_outro = [
@@ -467,7 +505,15 @@ class VideoAssemblerShorts:
 
     def assemble_shorts_videos(self, data, output_dir, thumbnails_dir):
         videos = data['סרטונים']
-        topic_name = data.get('נושא 0', 'Unknown Topic')
+
+        # איתור שם הנושא
+        topic_name = None
+        for key in data:
+            if key.startswith('נושא'):
+                topic_name = data[key]
+                break
+        if not topic_name:
+            topic_name = 'Unknown Topic'
 
         for video_data in videos:
             video_number = video_data['video_number']
@@ -488,10 +534,10 @@ class VideoAssemblerShorts:
             clips = []
 
             try:
-                # פתיח עם סמל הערוץ (אם יש)
-                if os.path.exists(LOGO_PATH):
-                    logo_clip = self.video_creator.add_logo_to_video(ImageClip(np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)).set_duration(0.5), LOGO_PATH, size=(150, 150), opacity=200, margin=(20, 20))
-                    clips.append(logo_clip)
+                # יצירת קליפ פתיחה עם שם הנושא ומספר הסרטון
+                intro_clip = self.video_creator.create_intro_clip(topic_name, video_number)
+                if intro_clip:
+                    clips.append(intro_clip)
 
                 # הצגת המילה והתרגום
                 text_lines_word = [word, translation]
@@ -553,6 +599,13 @@ class VideoAssemblerShorts:
                     clips.append(transition)
                     clips.append(clip_outro)
 
+                # הוספת קליפ הלוגו בסוף
+                logo_clip = self.video_creator.add_logo_clip(duration=5)
+                if logo_clip:
+                    transition = self.video_creator.slide_transition(clips[-1], logo_clip)
+                    clips.append(transition)
+                    clips.append(logo_clip)
+
                 # איחוד הקליפים לסרטון אחד
                 logging.info(f"איחוד הקליפים לסרטון מספר {video_number}: {title}")
                 final_clip = concatenate_videoclips(clips, method="compose")
@@ -560,22 +613,12 @@ class VideoAssemblerShorts:
                 # הוספת מוזיקת רקע אם קיימת
                 if os.path.exists(BACKGROUND_MUSIC_PATH):
                     background_music = AudioFileClip(BACKGROUND_MUSIC_PATH).volumex(0.1)
-                    background_music = afx.audio_loop(background_music, duration=final_clip.duration)
+                    background_music = audio_loop(background_music, duration=final_clip.duration)
                     final_audio = CompositeAudioClip([final_clip.audio, background_music])
                     final_clip = final_clip.set_audio(final_audio)
                     # סגירת background_music ו-final_audio לאחר השימוש
                     background_music.close()
                     final_audio.close()
-
-                # הוספת הלוגו לסרטון
-                final_clip = self.video_creator.add_logo_to_video(
-                    final_clip,
-                    LOGO_PATH,
-                    position='top-right',
-                    size=(100, 100),  # גודל קטן יותר
-                    opacity=200,
-                    margin=(20, 20)
-                )
 
                 # שמירת הוידאו
                 logging.info(f"שומר את הסרטון בנתיב: {video_path}")
@@ -596,8 +639,142 @@ class VideoAssemblerShorts:
                 if 'final_clip' in locals():
                     final_clip.close()
 
-    def shutdown(self):
-        self.video_creator.audio_creator.shutdown()
+    class VideoCreator:
+        def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
+            self.file_manager = file_manager
+            self.image_creator = image_creator
+            self.audio_creator = audio_creator
+            self.style_definitions = style_definitions
+
+        def create_image_clip(self, text_lines, style, line_styles=None):
+            img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles)
+            # יצירת שם קובץ בטוח
+            filename = f"{'_'.join([sanitize_filename(line) for line in text_lines])}.png"
+            temp_image_path = self.file_manager.get_temp_path(filename)
+            img.save(temp_image_path)
+            # יצירת קליפ ללא הגדרת משך, יוגדר לפי האודיו או min_duration
+            image_clip = ImageClip(temp_image_path)
+            return image_clip
+
+        def create_audio_clips(self, audio_paths):
+            audio_clips = []
+            for path in audio_paths:
+                if os.path.exists(path):
+                    audio_clip = AudioFileClip(path)
+                    audio_clips.append(audio_clip)
+                else:
+                    logging.warning(f"אודיו לא נמצא בנתיב: {path}")
+            if audio_clips:
+                return concatenate_audioclips(audio_clips)
+            else:
+                return None
+
+        def create_clip(self, image_clip, audio_paths, min_duration=0):
+            audio_total = self.create_audio_clips(audio_paths)
+            if audio_total:
+                duration = max(audio_total.duration, min_duration)
+                image_clip = image_clip.set_duration(duration)
+                image_clip = image_clip.set_audio(audio_total)
+            else:
+                image_clip = image_clip.set_duration(min_duration)
+            return image_clip
+
+        def slide_transition(self, clip1, clip2, duration=1):
+            # בחר כיוון אקראי
+            direction = random.choice(['left', 'right', 'up', 'down'])
+
+            # הגדר את תנועת הקליפים בהתאם לכיוון
+            if direction == 'left':
+                move_out = lambda t: (-VIDEO_SIZE[0] * t / duration, 'center')
+                move_in = lambda t: (VIDEO_SIZE[0] - VIDEO_SIZE[0] * t / duration, 'center')
+            elif direction == 'right':
+                move_out = lambda t: (VIDEO_SIZE[0] * t / duration, 'center')
+                move_in = lambda t: (-VIDEO_SIZE[0] + VIDEO_SIZE[0] * t / duration, 'center')
+            elif direction == 'up':
+                move_out = lambda t: ('center', -VIDEO_SIZE[1] * t / duration)
+                move_in = lambda t: ('center', VIDEO_SIZE[1] - VIDEO_SIZE[1] * t / duration)
+            elif direction == 'down':
+                move_out = lambda t: ('center', VIDEO_SIZE[1] * t / duration)
+                move_in = lambda t: ('center', -VIDEO_SIZE[1] + VIDEO_SIZE[1] * t / duration)
+
+            # קטעים עם אנימציית מיקום
+            clip1_moving = clip1.set_position(move_out).set_duration(duration)
+            clip2_moving = clip2.set_position(move_in).set_duration(duration)
+
+            # שכבת הקליפים
+            transition = CompositeVideoClip([clip1_moving, clip2_moving], size=VIDEO_SIZE).set_duration(duration)
+
+            # הגדרת אודיו ל-None כדי למנוע בעיות באודיו
+            transition = transition.set_audio(None)
+
+            return transition
+
+        def add_logo_clip(self, duration=5):
+            try:
+                logo_image = Image.open(LOGO_PATH).convert("RGBA")
+                logo_image = logo_image.resize((int(WIDTH * 0.8), int(HEIGHT * 0.8)), RESAMPLING)
+
+                # יצירת רקע לבן
+                background = Image.new('RGB', (WIDTH, HEIGHT), (255, 255, 255))
+                # מיקום הלוגו במרכז
+                logo_position = ((WIDTH - logo_image.width) // 2, (HEIGHT - logo_image.height) // 2)
+                background.paste(logo_image, logo_position, logo_image)
+
+                temp_image_path = self.file_manager.get_temp_path("logo_outro.png")
+                background.save(temp_image_path)
+
+                clip = ImageClip(temp_image_path).set_duration(duration)
+                return clip
+            except Exception as e:
+                logging.error(f"שגיאה ביצירת קליפ הלוגו: {e}")
+                return None
+
+        def create_intro_clip(self, topic_name, video_number):
+            try:
+                text_lines_intro = [topic_name, f"#{video_number}"]
+                line_styles_intro = ['topic', 'video_number']
+
+                clip_intro = self.create_image_clip(text_lines_intro, 'intro', line_styles_intro)
+
+                # יצירת אודיו (אופציונלי)
+                audio_tasks = [
+                    (topic_name, 'iw'),
+                    (f"מספר {video_number}", 'iw')
+                ]
+                audio_results = self.audio_creator.create_audios(audio_tasks)
+                clip_intro = self.create_clip(
+                    clip_intro,
+                    [
+                        audio_results.get((topic_name, 'iw'), ""),
+                        audio_results.get((f"מספר {video_number}", 'iw'), ""),
+                    ],
+                    min_duration=3  # משך מינימלי
+                )
+                return clip_intro
+            except Exception as e:
+                logging.error(f"שגיאה ביצירת קליפ הפתיחה: {e}")
+                return None
+
+        def create_outro(self, call_to_action):
+            text_lines_outro = [
+                call_to_action
+            ]
+            line_styles_outro = ['call_to_action']
+            clip_outro = self.create_image_clip(text_lines_outro, 'call_to_action', line_styles_outro)
+
+            # יצירת אודיו לקריאה לפעולה
+            audio_tasks = [
+                (call_to_action, 'iw')
+            ]
+            audio_results = self.audio_creator.create_audios(audio_tasks)
+            clip_outro = self.create_clip(
+                clip_outro,
+                [
+                    audio_results.get((call_to_action, 'iw'), "")
+                ],
+                min_duration=4  # משך מינימלי
+            )
+            return clip_outro
 
 class VideoAssemblerShorts:
     def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
@@ -605,7 +782,15 @@ class VideoAssemblerShorts:
 
     def assemble_shorts_videos(self, data, output_dir, thumbnails_dir):
         videos = data['סרטונים']
-        topic_name = data.get('נושא 0', 'Unknown Topic')
+
+        # איתור שם הנושא
+        topic_name = None
+        for key in data:
+            if key.startswith('נושא'):
+                topic_name = data[key]
+                break
+        if not topic_name:
+            topic_name = 'Unknown Topic'
 
         for video_data in videos:
             video_number = video_data['video_number']
@@ -626,10 +811,10 @@ class VideoAssemblerShorts:
             clips = []
 
             try:
-                # פתיח עם סמל הערוץ (אם יש)
-                if os.path.exists(LOGO_PATH):
-                    logo_clip = self.video_creator.add_logo_to_video(ImageClip(np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)).set_duration(0.5), LOGO_PATH, size=(150, 150), opacity=200, margin=(20, 20))
-                    clips.append(logo_clip)
+                # יצירת קליפ פתיחה עם שם הנושא ומספר הסרטון
+                intro_clip = self.video_creator.create_intro_clip(topic_name, video_number)
+                if intro_clip:
+                    clips.append(intro_clip)
 
                 # הצגת המילה והתרגום
                 text_lines_word = [word, translation]
@@ -691,6 +876,13 @@ class VideoAssemblerShorts:
                     clips.append(transition)
                     clips.append(clip_outro)
 
+                # הוספת קליפ הלוגו בסוף
+                logo_clip = self.video_creator.add_logo_clip(duration=5)
+                if logo_clip:
+                    transition = self.video_creator.slide_transition(clips[-1], logo_clip)
+                    clips.append(transition)
+                    clips.append(logo_clip)
+
                 # איחוד הקליפים לסרטון אחד
                 logging.info(f"איחוד הקליפים לסרטון מספר {video_number}: {title}")
                 final_clip = concatenate_videoclips(clips, method="compose")
@@ -698,22 +890,12 @@ class VideoAssemblerShorts:
                 # הוספת מוזיקת רקע אם קיימת
                 if os.path.exists(BACKGROUND_MUSIC_PATH):
                     background_music = AudioFileClip(BACKGROUND_MUSIC_PATH).volumex(0.1)
-                    background_music = afx.audio_loop(background_music, duration=final_clip.duration)
+                    background_music = audio_loop(background_music, duration=final_clip.duration)
                     final_audio = CompositeAudioClip([final_clip.audio, background_music])
                     final_clip = final_clip.set_audio(final_audio)
                     # סגירת background_music ו-final_audio לאחר השימוש
                     background_music.close()
                     final_audio.close()
-
-                # הוספת הלוגו לסרטון
-                final_clip = self.video_creator.add_logo_to_video(
-                    final_clip,
-                    LOGO_PATH,
-                    position='top-right',
-                    size=(100, 100),  # גודל קטן יותר
-                    opacity=200,
-                    margin=(20, 20)
-                )
 
                 # שמירת הוידאו
                 logging.info(f"שומר את הסרטון בנתיב: {video_path}")
@@ -734,43 +916,59 @@ class VideoAssemblerShorts:
                 if 'final_clip' in locals():
                     final_clip.close()
 
-    def shutdown(self):
-        self.video_creator.audio_creator.shutdown()
+    def main():
+        # ניהול קבצים
+        file_manager = FileManager(OUTPUT_DIR, THUMBNAILS_DIR)
 
-def main():
-    # ניהול קבצים
-    file_manager = FileManager(OUTPUT_DIR, THUMBNAILS_DIR)
+        video_assembler = None  # אתחול מראש
 
-    video_assembler = None  # אתחול מראש
+        try:
+            # קריאת קובץ JSON
+            with open(JSON_FILE, 'r', encoding='utf-8') as f:
+                data = json.load(f)
 
-    try:
-        # קריאת קובץ JSON
-        with open(JSON_FILE, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+            # קריאת קובץ העיצובים
+            with open(STYLES_JSON_FILE, 'r', encoding='utf-8') as f:
+                style_definitions = json.load(f)
 
-        # קריאת קובץ העיצובים
-        with open(STYLES_JSON_FILE, 'r', encoding='utf-8') as f:
-            style_definitions = json.load(f)
+            # ודא שסגנונות חדשים מוגדרים
+            if 'topic' not in style_definitions:
+                style_definitions['topic'] = {
+                    "style_name": "topic",
+                    "bg_color": [255, 255, 255],
+                    "text_color": [0, 0, 0],
+                    "font_size": 100,
+                    "font_path": "Rubik-Bold.ttf"
+                }
+            if 'video_number' not in style_definitions:
+                style_definitions['video_number'] = {
+                    "style_name": "video_number",
+                    "bg_color": [255, 255, 255],
+                    "text_color": [0, 0, 0],
+                    "font_size": 80,
+                    "font_path": "Rubik-Regular.ttf"
+                }
 
-        # יצירת אובייקטים
-        image_creator = ImageCreator(styles=style_definitions)
-        audio_creator = AudioCreator(file_manager.temp_dir)
-        video_assembler = VideoAssemblerShorts(file_manager, image_creator, audio_creator, style_definitions)
+            # יצירת אובייקטים
+            image_creator = ImageCreator(styles=style_definitions)
+            audio_creator = AudioCreator(file_manager.temp_dir)
+            video_assembler = VideoAssemblerShorts(file_manager, image_creator, audio_creator, style_definitions)
 
-        # הרכבת סרטוני ה-Shorts
-        video_assembler.assemble_shorts_videos(data, OUTPUT_DIR, THUMBNAILS_DIR)
+            # הרכבת סרטוני ה-Shorts
+            video_assembler.assemble_shorts_videos(data, OUTPUT_DIR, THUMBNAILS_DIR)
 
-        logging.info("יצירת כל הסרטונים הסתיימה!")
+            logging.info("יצירת כל הסרטונים הסתיימה!")
 
-    except Exception as e:
-        logging.error(f"שגיאה כללית בתהליך יצירת הסרטונים: {e}")
+        except Exception as e:
+            logging.error(f"שגיאה כללית בתהליך יצירת הסרטונים: {e}")
 
-    finally:
-        # ניקוי קבצים זמניים וסגירת ThreadPoolExecutor
-        if file_manager:
-            file_manager.cleanup()
-        if video_assembler:
-            video_assembler.shutdown()
+        finally:
+            # ניקוי קבצים זמניים וסגירת ThreadPoolExecutor
+            if file_manager:
+                file_manager.cleanup()
+            # סגירת אובייקט האודיו בלבד
+            if audio_creator:
+                audio_creator.shutdown()
 
-if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        main()
