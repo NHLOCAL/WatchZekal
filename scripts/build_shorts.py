@@ -362,6 +362,7 @@ class AudioCreator:
     def shutdown(self):
         self.executor.shutdown(wait=True)
 
+
 class VideoCreator:
     def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
         self.file_manager = file_manager
@@ -570,12 +571,25 @@ class VideoAssemblerShorts:
                     (translation, 'iw'),
                 ]
                 audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+
+                # **שינוי עיקרי כאן**:
+                # ניצור רק פעם אחת את השמע עבור 'word' ונשתמש בו פעמיים
+                audio_paths_word = []
+                # עבור 'word' - קריאה באנגלית
+                english_audio = audio_results.get((word, 'en', True), "")
+                if english_audio:
+                    audio_paths_word.append(english_audio)  # קריאה אחת באנגלית
+                # עבור 'translation' - קריאה בעברית
+                hebrew_audio_translation = audio_results.get((translation, 'iw'), "")
+                if hebrew_audio_translation:
+                    audio_paths_word.append(hebrew_audio_translation)  # קריאה אחת בעברית
+                # עבור 'word' - קריאה שוב באנגלית
+                if english_audio:
+                    audio_paths_word.append(english_audio)  # קריאה שנייה באנגלית
+
                 clip_word = self.video_creator.create_clip(
                     clip_word,
-                    [
-                        audio_results.get((word, 'en', True), ""),
-                        audio_results.get((translation, 'iw'), ""),
-                    ],
+                    audio_paths_word,
                     min_duration=3  # משך מינימלי
                 )
                 clips.append(clip_word)
@@ -595,12 +609,25 @@ class VideoAssemblerShorts:
                         (ex_translation, 'iw'),
                     ]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+
+                    # **שינוי עיקרי כאן**:
+                    # ניצור רק פעם אחת את השמע עבור 'sentence' ונשתמש בו פעמיים
+                    audio_paths_example = []
+                    # עבור 'sentence' - קריאה באנגלית
+                    english_audio_sentence = audio_results.get((sentence, 'en', True), "")
+                    if english_audio_sentence:
+                        audio_paths_example.append(english_audio_sentence)  # קריאה אחת באנגלית
+                    # עבור 'translation' - קריאה בעברית
+                    hebrew_audio_ex_translation = audio_results.get((ex_translation, 'iw'), "")
+                    if hebrew_audio_ex_translation:
+                        audio_paths_example.append(hebrew_audio_ex_translation)  # קריאה אחת בעברית
+                    # עבור 'sentence' - קריאה שוב באנגלית
+                    if english_audio_sentence:
+                        audio_paths_example.append(english_audio_sentence)  # קריאה שנייה באנגלית
+
                     clip_example = self.video_creator.create_clip(
                         clip_example,
-                        [
-                            audio_results.get((sentence, 'en', True), ""),
-                            audio_results.get((ex_translation, 'iw'), ""),
-                        ],
+                        audio_paths_example,
                         min_duration=4  # משך מינימלי
                     )
 
@@ -659,336 +686,59 @@ class VideoAssemblerShorts:
                 if 'final_clip' in locals():
                     final_clip.close()
 
-    class VideoCreator:
-        def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
-            self.file_manager = file_manager
-            self.image_creator = image_creator
-            self.audio_creator = audio_creator
-            self.style_definitions = style_definitions
+def main():
+    # ניהול קבצים
+    file_manager = FileManager(OUTPUT_DIR, THUMBNAILS_DIR)
 
-        def create_image_clip(self, text_lines, style, line_styles=None):
-            img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles)
-            # יצירת שם קובץ בטוח
-            filename = f"{'_'.join([sanitize_filename(line) for line in text_lines])}.png"
-            temp_image_path = self.file_manager.get_temp_path(filename)
-            img.save(temp_image_path)
-            # יצירת קליפ ללא הגדרת משך, יוגדר לפי האודיו או min_duration
-            image_clip = ImageClip(temp_image_path)
-            return image_clip
+    video_assembler = None  # אתחול מראש
 
-        def create_audio_clips(self, audio_paths):
-            audio_clips = []
-            for path in audio_paths:
-                if os.path.exists(path):
-                    audio_clip = AudioFileClip(path)
-                    audio_clips.append(audio_clip)
-                else:
-                    logging.warning(f"אודיו לא נמצא בנתיב: {path}")
-            if audio_clips:
-                return concatenate_audioclips(audio_clips)
-            else:
-                return None
+    try:
+        # קריאת קובץ JSON
+        with open(JSON_FILE, 'r', encoding='utf-8') as f:
+            data = json.load(f)
 
-        def create_clip(self, image_clip, audio_paths, min_duration=0):
-            audio_total = self.create_audio_clips(audio_paths)
-            if audio_total:
-                duration = max(audio_total.duration, min_duration)
-                image_clip = image_clip.set_duration(duration)
-                image_clip = image_clip.set_audio(audio_total)
-            else:
-                image_clip = image_clip.set_duration(min_duration)
-            return image_clip
+        # קריאת קובץ העיצובים
+        with open(STYLES_JSON_FILE, 'r', encoding='utf-8') as f:
+            style_definitions = json.load(f)
 
-        def slide_transition(self, clip1, clip2, duration=1):
-            # בחר כיוון אקראי
-            direction = random.choice(['left', 'right', 'up', 'down'])
+        # ודא שסגנונות חדשים מוגדרים
+        if 'topic' not in style_definitions:
+            style_definitions['topic'] = {
+                "style_name": "topic",
+                "bg_color": [255, 255, 255],
+                "text_color": [0, 0, 0],
+                "font_size": 100,
+                "font_path": "Rubik-Bold.ttf"
+            }
+        if 'video_number' not in style_definitions:
+            style_definitions['video_number'] = {
+                "style_name": "video_number",
+                "bg_color": [255, 255, 255],
+                "text_color": [0, 0, 0],
+                "font_size": 80,
+                "font_path": "Rubik-Regular.ttf"
+            }
 
-            # הגדר את תנועת הקליפים בהתאם לכיוון
-            if direction == 'left':
-                move_out = lambda t: (-VIDEO_SIZE[0] * t / duration, 'center')
-                move_in = lambda t: (VIDEO_SIZE[0] - VIDEO_SIZE[0] * t / duration, 'center')
-            elif direction == 'right':
-                move_out = lambda t: (VIDEO_SIZE[0] * t / duration, 'center')
-                move_in = lambda t: (-VIDEO_SIZE[0] + VIDEO_SIZE[0] * t / duration, 'center')
-            elif direction == 'up':
-                move_out = lambda t: ('center', -VIDEO_SIZE[1] * t / duration)
-                move_in = lambda t: ('center', VIDEO_SIZE[1] - VIDEO_SIZE[1] * t / duration)
-            elif direction == 'down':
-                move_out = lambda t: ('center', VIDEO_SIZE[1] * t / duration)
-                move_in = lambda t: ('center', -VIDEO_SIZE[1] + VIDEO_SIZE[1] * t / duration)
+        # יצירת אובייקטים
+        image_creator = ImageCreator(styles=style_definitions)
+        audio_creator = AudioCreator(file_manager.temp_dir)
+        video_assembler = VideoAssemblerShorts(file_manager, image_creator, audio_creator, style_definitions)
 
-            # קטעים עם אנימציית מיקום
-            clip1_moving = clip1.set_position(move_out).set_duration(duration)
-            clip2_moving = clip2.set_position(move_in).set_duration(duration)
+        # הרכבת סרטוני ה-Shorts
+        video_assembler.assemble_shorts_videos(data, OUTPUT_DIR, THUMBNAILS_DIR)
 
-            # שכבת הקליפים
-            transition = CompositeVideoClip([clip1_moving, clip2_moving], size=VIDEO_SIZE).set_duration(duration)
+        logging.info("יצירת כל הסרטונים הסתיימה!")
 
-            # הגדרת אודיו ל-None כדי למנוע בעיות באודיו
-            transition = transition.set_audio(None)
+    except Exception as e:
+        logging.error(f"שגיאה כללית בתהליך יצירת הסרטונים: {e}")
 
-            return transition
+    finally:
+        # ניקוי קבצים זמניים וסגירת ThreadPoolExecutor
+        if file_manager:
+            file_manager.cleanup()
+        # סגירת אובייקט האודיו בלבד
+        if audio_creator:
+            audio_creator.shutdown()
 
-        def add_logo_clip(self, duration=5):
-            try:
-                logo_image = Image.open(LOGO_PATH).convert("RGBA")
-                logo_image = logo_image.resize((int(WIDTH * 0.8), int(HEIGHT * 0.8)), RESAMPLING)
-
-                # יצירת רקע לבן
-                background = Image.new('RGB', (WIDTH, HEIGHT), (255, 255, 255))
-                # מיקום הלוגו במרכז
-                logo_position = ((WIDTH - logo_image.width) // 2, (HEIGHT - logo_image.height) // 2)
-                background.paste(logo_image, logo_position, logo_image)
-
-                temp_image_path = self.file_manager.get_temp_path("logo_outro.png")
-                background.save(temp_image_path)
-
-                clip = ImageClip(temp_image_path).set_duration(duration)
-                return clip
-            except Exception as e:
-                logging.error(f"שגיאה ביצירת קליפ הלוגו: {e}")
-                return None
-
-        def create_intro_clip(self, topic_name, video_number):
-            try:
-                text_lines_intro = [topic_name, f"#{video_number}"]
-                line_styles_intro = ['topic', 'video_number']
-
-                clip_intro = self.create_image_clip(text_lines_intro, 'intro', line_styles_intro)
-
-                # יצירת אודיו (אופציונלי)
-                audio_tasks = [
-                    (topic_name, 'iw'),
-                    (f"מספר {video_number}", 'iw')
-                ]
-                audio_results = self.audio_creator.create_audios(audio_tasks)
-                clip_intro = self.create_clip(
-                    clip_intro,
-                    [
-                        audio_results.get((topic_name, 'iw'), ""),
-                        audio_results.get((f"מספר {video_number}", 'iw'), ""),
-                    ],
-                    min_duration=3  # משך מינימלי
-                )
-                return clip_intro
-            except Exception as e:
-                logging.error(f"שגיאה ביצירת קליפ הפתיחה: {e}")
-                return None
-
-        def create_outro(self, call_to_action):
-            text_lines_outro = [
-                call_to_action
-            ]
-            line_styles_outro = ['call_to_action']
-            clip_outro = self.create_image_clip(text_lines_outro, 'call_to_action', line_styles_outro)
-
-            # יצירת אודיו לקריאה לפעולה
-            audio_tasks = [
-                (call_to_action, 'iw')
-            ]
-            audio_results = self.audio_creator.create_audios(audio_tasks)
-            clip_outro = self.create_clip(
-                clip_outro,
-                [
-                    audio_results.get((call_to_action, 'iw'), "")
-                ],
-                min_duration=4  # משך מינימלי
-            )
-            return clip_outro
-
-class VideoAssemblerShorts:
-    def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
-        self.video_creator = VideoCreator(file_manager, image_creator, audio_creator, style_definitions)
-
-    def assemble_shorts_videos(self, data, output_dir, thumbnails_dir):
-        videos = data['סרטונים']
-
-        # איתור שם הנושא
-        topic_name = None
-        for key in data:
-            if key.startswith('נושא'):
-                topic_name = data[key]
-                break
-        if not topic_name:
-            topic_name = 'Unknown Topic'
-
-        for video_data in videos:
-            video_number = video_data['video_number']
-            title = video_data['title']
-            word = video_data['word']
-            translation = video_data['translation']
-            examples = video_data['examples']
-            call_to_action = video_data.get('call_to_action', '')
-
-            logging.info(f"מעבד סרטון מספר {video_number}: {title}")
-
-            # יצירת שם קובץ וידאו בטוח
-            safe_title = sanitize_filename("".join([c for c in title if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
-            video_filename = f"Short_{video_number}_{safe_title}.mp4"
-            video_path = os.path.join(output_dir, video_filename)
-
-            # רשימה לאחסון הקליפים
-            clips = []
-
-            try:
-                # יצירת קליפ פתיחה עם שם הנושא ומספר הסרטון
-                intro_clip = self.video_creator.create_intro_clip(topic_name, video_number)
-                if intro_clip:
-                    clips.append(intro_clip)
-
-                # הצגת המילה והתרגום
-                text_lines_word = [word, translation]
-                line_styles_word = ['word', 'translation']
-                clip_word = self.video_creator.create_image_clip(text_lines_word, 'word', line_styles_word)
-
-                # יצירת אודיו למילה ולתרגום
-                audio_tasks = [
-                    (word, 'en', True),  # אנגלית באיטיות
-                    (translation, 'iw'),
-                ]
-                audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-                clip_word = self.video_creator.create_clip(
-                    clip_word,
-                    [
-                        audio_results.get((word, 'en', True), ""),
-                        audio_results.get((translation, 'iw'), ""),
-                    ],
-                    min_duration=3  # משך מינימלי
-                )
-                clips.append(clip_word)
-
-                # משפטים לדוגמה
-                for example in examples:
-                    sentence = example['sentence']
-                    ex_translation = example['translation']
-
-                    text_lines_example = [sentence, ex_translation]
-                    line_styles_example = ['sentence', 'translation']
-                    clip_example = self.video_creator.create_image_clip(text_lines_example, 'sentence', line_styles_example)
-
-                    # יצירת אודיו למשפט ולתרגום
-                    audio_tasks = [
-                        (sentence, 'en', True),
-                        (ex_translation, 'iw'),
-                    ]
-                    audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-                    clip_example = self.video_creator.create_clip(
-                        clip_example,
-                        [
-                            audio_results.get((sentence, 'en', True), ""),
-                            audio_results.get((ex_translation, 'iw'), ""),
-                        ],
-                        min_duration=4  # משך מינימלי
-                    )
-
-                    # יצירת מעבר
-                    if clips:
-                        previous_clip = clips[-1]
-                        transition = self.video_creator.slide_transition(previous_clip, clip_example)
-                        clips.append(transition)
-
-                    clips.append(clip_example)
-
-                # קריאה לפעולה
-                if call_to_action:
-                    clip_outro = self.video_creator.create_outro(call_to_action)
-                    transition = self.video_creator.slide_transition(clips[-1], clip_outro)
-                    clips.append(transition)
-                    clips.append(clip_outro)
-
-                # הוספת קליפ הלוגו בסוף
-                logo_clip = self.video_creator.add_logo_clip(duration=5)
-                if logo_clip:
-                    transition = self.video_creator.slide_transition(clips[-1], logo_clip)
-                    clips.append(transition)
-                    clips.append(logo_clip)
-
-                # איחוד הקליפים לסרטון אחד
-                logging.info(f"איחוד הקליפים לסרטון מספר {video_number}: {title}")
-                final_clip = concatenate_videoclips(clips, method="compose")
-
-                # הוספת מוזיקת רקע אם קיימת
-                if os.path.exists(BACKGROUND_MUSIC_PATH):
-                    background_music = AudioFileClip(BACKGROUND_MUSIC_PATH).volumex(0.1)
-                    background_music = audio_loop(background_music, duration=final_clip.duration)
-                    final_audio = CompositeAudioClip([final_clip.audio, background_music])
-                    final_clip = final_clip.set_audio(final_audio)
-                    # סגירת background_music ו-final_audio לאחר השימוש
-                    background_music.close()
-                    final_audio.close()
-
-                # שמירת הוידאו
-                logging.info(f"שומר את הסרטון בנתיב: {video_path}")
-                final_clip.write_videofile(video_path, fps=FPS, codec='libx264', audio_codec='aac', threads=THREADS)
-
-                # שמירת תמונת תצוגה מקדימה
-                thumbnail_path = os.path.join(thumbnails_dir, f"Short_{video_number}_thumbnail.png")
-                final_clip.save_frame(thumbnail_path, t=0)
-                logging.info(f"שומר תמונת תצוגה מקדימה בנתיב: {thumbnail_path}")
-
-            except Exception as e:
-                logging.error(f"שגיאה בתהליך הרכבת הוידאו לסרטון מספר {video_number}: {e}")
-            finally:
-                # סגירת כל הקליפים
-                for clip in clips:
-                    clip.close()
-                # סגירת final_clip אם לא כבר סגור
-                if 'final_clip' in locals():
-                    final_clip.close()
-
-    def main():
-        # ניהול קבצים
-        file_manager = FileManager(OUTPUT_DIR, THUMBNAILS_DIR)
-
-        video_assembler = None  # אתחול מראש
-
-        try:
-            # קריאת קובץ JSON
-            with open(JSON_FILE, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-
-            # קריאת קובץ העיצובים
-            with open(STYLES_JSON_FILE, 'r', encoding='utf-8') as f:
-                style_definitions = json.load(f)
-
-            # ודא שסגנונות חדשים מוגדרים
-            if 'topic' not in style_definitions:
-                style_definitions['topic'] = {
-                    "style_name": "topic",
-                    "bg_color": [255, 255, 255],
-                    "text_color": [0, 0, 0],
-                    "font_size": 100,
-                    "font_path": "Rubik-Bold.ttf"
-                }
-            if 'video_number' not in style_definitions:
-                style_definitions['video_number'] = {
-                    "style_name": "video_number",
-                    "bg_color": [255, 255, 255],
-                    "text_color": [0, 0, 0],
-                    "font_size": 80,
-                    "font_path": "Rubik-Regular.ttf"
-                }
-
-            # יצירת אובייקטים
-            image_creator = ImageCreator(styles=style_definitions)
-            audio_creator = AudioCreator(file_manager.temp_dir)
-            video_assembler = VideoAssemblerShorts(file_manager, image_creator, audio_creator, style_definitions)
-
-            # הרכבת סרטוני ה-Shorts
-            video_assembler.assemble_shorts_videos(data, OUTPUT_DIR, THUMBNAILS_DIR)
-
-            logging.info("יצירת כל הסרטונים הסתיימה!")
-
-        except Exception as e:
-            logging.error(f"שגיאה כללית בתהליך יצירת הסרטונים: {e}")
-
-        finally:
-            # ניקוי קבצים זמניים וסגירת ThreadPoolExecutor
-            if file_manager:
-                file_manager.cleanup()
-            # סגירת אובייקט האודיו בלבד
-            if audio_creator:
-                audio_creator.shutdown()
-
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
