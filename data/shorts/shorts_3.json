@@ -35,8 +35,8 @@
               "translation": "אני צריך מחשב נייד חדש לבית הספר"
           },
           {
-              "sentence": "**Laptops** are portable computers",
-              "translation": "מחשבים ניידים הם מחשבים ניידים"
+              "sentence": "**Laptops** are convenient because they are portable",
+              "translation": "מחשבים ניידים נוחים לשימוש בגלל שהם ניידים"
           }
       ],
       "call_to_action": "איזה גאדג'ט אתם הכי אוהבים? שתפו בתגובות!"
@@ -70,7 +70,7 @@
       "examples": [
           {
               "sentence": "The **software** needs to be updated",
-              "translation": "התוכנה צריכה לעדכן"
+              "translation": "התוכנה זקוקה לעדכון"
           },
           {
               "sentence": "She develops **software** for companies",
