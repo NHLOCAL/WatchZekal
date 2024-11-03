@@ -1,321 +1,317 @@
-{
-    "נושא 6": "רגשות ותחושות",
-    "סרטונים": [
-      {
-        "video_number": 1,
-        "title": "רגשות",
-        "word": "Excited",
-        "translation": "נרגש",
-        "examples": [
+[
+  {
+      "video_number": 1,
+      "title": "רגשות ותחושות",
+      "word": "Excited",
+      "translation": "נרגש",
+      "examples": [
           {
-            "sentence": "I am **excited** about the concert tonight",
-            "translation": "אני נרגש לקראת ההופעה הלילה"
+              "sentence": "I am **excited** about the trip",
+              "translation": "אני נרגש מהטיול"
           },
           {
-            "sentence": "She was **excited** to start her new job",
-            "translation": "היא הייתה נרגשת להתחיל את העבודה החדשה שלה"
+              "sentence": "She is **excited** to start her new job",
+              "translation": "היא נרגשת להתחיל את העבודה החדשה שלה"
           },
           {
-            "sentence": "They felt **excited** during the trip",
-            "translation": "הם הרגישו נרגשים במהלך הטיול"
+              "sentence": "They were **excited** to meet the celebrity",
+              "translation": "הם היו נרגשים לפגוש את הסלבריטי"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה גורם לכם להתרגש באנגלית"
-      },
-      {
-        "video_number": 2,
-        "title": "רגשות",
-        "word": "Nervous",
-        "translation": "עצבני",
-        "examples": [
+      ],
+      "call_to_action": "מה מרגש אתכם? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 2,
+      "title": "רגשות ותחושות",
+      "word": "Nervous",
+      "translation": "עצבני",
+      "examples": [
           {
-            "sentence": "He feels **nervous** before exams",
-            "translation": "הוא מרגיש עצבני לפני מבחנים"
+              "sentence": "He feels **nervous** before exams",
+              "translation": "הוא מרגיש עצבני לפני מבחנים"
           },
           {
-            "sentence": "She gets **nervous** when speaking in public",
-            "translation": "היא נעשית עצבנית כשמדברת בפני קהל"
+              "sentence": "She was **nervous** about the interview",
+              "translation": "היא הייתה עצבנית לגבי הראיון"
           },
           {
-            "sentence": "I am **nervous** about the interview",
-            "translation": "אני עצבני לגבי הראיון"
+              "sentence": "They are **nervous** to speak in public",
+              "translation": "הם עצבניים לדבר בציבור"
           }
-        ],
-        "call_to_action": "כתבו לנו בתגובות איך אתם מתמודדים עם עצבנות באנגלית"
-      },
-      {
-        "video_number": 3,
-        "title": "רגשות",
-        "word": "Proud",
-        "translation": "גאה",
-        "examples": [
+      ],
+      "call_to_action": "איך אתם מתמודדים עם עצבנות? שתפו באנגלית!"
+  },
+  {
+      "video_number": 3,
+      "title": "רגשות ותחושות",
+      "word": "Proud",
+      "translation": "גאה",
+      "examples": [
           {
-            "sentence": "They are **proud** of their achievements",
-            "translation": "הם גאים בהישגיהם"
+              "sentence": "They are **proud** of their achievements",
+              "translation": "הם גאים בהישגיהם"
           },
           {
-            "sentence": "She felt **proud** after winning the award",
-            "translation": "היא הרגישה גאה לאחר שזכתה בפרס"
+              "sentence": "She felt **proud** when she won the award",
+              "translation": "היא הרגישה גאה כשהיא זכתה בפרס"
           },
           {
-            "sentence": "He is **proud** to be part of the team",
-            "translation": "הוא גאה להיות חלק מהצוות"
+              "sentence": "He is **proud** of his son's success",
+              "translation": "הוא גאה בהצלחת בנו"
           }
-        ],
-        "call_to_action": "שתפו אותנו במה אתם גאים באנגלית"
-      },
-      {
-        "video_number": 4,
-        "title": "רגשות",
-        "word": "Bored",
-        "translation": "משועמם",
-        "examples": [
+      ],
+      "call_to_action": "על מה אתם גאים? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 4,
+      "title": "רגשות ותחושות",
+      "word": "Bored",
+      "translation": "משועמם",
+      "examples": [
           {
-            "sentence": "She was **bored** during the lecture",
-            "translation": "היא הייתה משועממת במהלך ההרצאה"
+              "sentence": "She was **bored** during the lecture",
+              "translation": "היא הייתה משועממת במהלך ההרצאה"
           },
           {
-            "sentence": "I get **bored** when I have nothing to do",
-            "translation": "אני משתעמם כשאין לי מה לעשות"
+              "sentence": "He gets **bored** easily",
+              "translation": "הוא משתעמם בקלות"
           },
           {
-            "sentence": "They felt **bored** on the long flight",
-            "translation": "הם הרגישו משועממים בטיסה הארוכה"
+              "sentence": "They felt **bored** on the rainy day",
+              "translation": "הם הרגישו משועממים ביום הגשום"
           }
-        ],
-        "call_to_action": "ספרו לנו איך אתם מתגברים על שעמום באנגלית"
-      },
-      {
-        "video_number": 5,
-        "title": "רגשות",
-        "word": "Curious",
-        "translation": "סקרן",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם עושים כשמשעמם לכם? שתפו רעיונות באנגלית!"
+  },
+  {
+      "video_number": 5,
+      "title": "רגשות ותחושות",
+      "word": "Curious",
+      "translation": "סקרן",
+      "examples": [
           {
-            "sentence": "Children are naturally **curious**",
-            "translation": "ילדים הם סקרנים מטבעם"
+              "sentence": "Children are naturally **curious**",
+              "translation": "ילדים הם באופן טבעי סקרנים"
           },
           {
-            "sentence": "He was **curious** about the new technology",
-            "translation": "הוא היה סקרן לגבי הטכנולוגיה החדשה"
+              "sentence": "She was **curious** about the new neighbor",
+              "translation": "היא הייתה סקרנית לגבי השכן החדש"
           },
           {
-            "sentence": "She is always **curious** to learn more",
-            "translation": "היא תמיד סקרנית ללמוד עוד"
+              "sentence": "He is always **curious** to learn more",
+              "translation": "הוא תמיד סקרן ללמוד עוד"
           }
-        ],
-        "call_to_action": "כתבו בתגובות על מה אתם סקרנים באנגלית"
-      },
-      {
-        "video_number": 6,
-        "title": "רגשות",
-        "word": "Happy",
-        "translation": "שמח",
-        "examples": [
+      ],
+      "call_to_action": "על מה אתם סקרנים לדעת עוד? שתפו באנגלית!"
+  },
+  {
+      "video_number": 6,
+      "title": "רגשות ותחושות",
+      "word": "Happy",
+      "translation": "שמח",
+      "examples": [
           {
-            "sentence": "I feel **happy** when I see my friends",
-            "translation": "אני מרגיש שמח כשאני רואה את חבריי"
+              "sentence": "She feels **happy** when she is with friends",
+              "translation": "היא מרגישה שמחה כשהיא עם חברים"
           },
           {
-            "sentence": "She was **happy** with the results",
-            "translation": "היא הייתה שמחה מהתוצאות"
+              "sentence": "He was **happy** to hear the good news",
+              "translation": "הוא היה שמח לשמוע את החדשות הטובות"
           },
           {
-            "sentence": "They look **happy** together",
-            "translation": "הם נראים שמחים יחד"
+              "sentence": "They live a **happy** life together",
+              "translation": "הם חיים חיים שמחים יחד"
           }
-        ],
-        "call_to_action": "שתפו אותנו מה עושה אתכם שמחים באנגלית"
-      },
-      {
-        "video_number": 7,
-        "title": "רגשות",
-        "word": "Sad",
-        "translation": "עצוב",
-        "examples": [
+      ],
+      "call_to_action": "מה גורם לכם אושר? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 7,
+      "title": "רגשות ותחושות",
+      "word": "Sad",
+      "translation": "עצוב",
+      "examples": [
           {
-            "sentence": "He felt **sad** after the movie",
-            "translation": "הוא הרגיש עצוב לאחר הסרט"
+              "sentence": "He felt **sad** after the movie ended",
+              "translation": "הוא הרגיש עצוב אחרי שהסרט נגמר"
           },
           {
-            "sentence": "She looks **sad** today",
-            "translation": "היא נראית עצובה היום"
+              "sentence": "She was **sad** to say goodbye",
+              "translation": "היא הייתה עצובה להיפרד"
           },
           {
-            "sentence": "It's normal to feel **sad** sometimes",
-            "translation": "זה נורמלי להרגיש עצוב לפעמים"
+              "sentence": "They shared their **sad** stories",
+              "translation": "הם חלקו את הסיפורים העצובים שלהם"
           }
-        ],
-        "call_to_action": "כתבו לנו בתגובות איך אתם מתמודדים עם עצב באנגלית"
-      },
-      {
-        "video_number": 8,
-        "title": "רגשות",
-        "word": "Angry",
-        "translation": "כועס",
-        "examples": [
+      ],
+      "call_to_action": "איך אתם מתמודדים עם עצב? שתפו באנגלית!"
+  },
+  {
+      "video_number": 8,
+      "title": "רגשות ותחושות",
+      "word": "Angry",
+      "translation": "כועס",
+      "examples": [
           {
-            "sentence": "He gets **angry** when he's hungry",
-            "translation": "הוא כועס כשהוא רעב"
+              "sentence": "He gets **angry** when he's hungry",
+              "translation": "הוא כועס כשהוא רעב"
           },
           {
-            "sentence": "She was **angry** about the delay",
-            "translation": "היא הייתה כועסת על העיכוב"
+              "sentence": "She was **angry** about the mistake",
+              "translation": "היא הייתה כועסת על הטעות"
           },
           {
-            "sentence": "They try not to get **angry** easily",
-            "translation": "הם מנסים לא לכעוס בקלות"
+              "sentence": "They tried to calm their **angry** friend",
+              "translation": "הם ניסו להרגיע את חברם הכועס"
           }
-        ],
-        "call_to_action": "ספרו לנו איך אתם מרגיעים את עצמכם באנגלית"
-      },
-      {
-        "video_number": 9,
-        "title": "רגשות",
-        "word": "Scared",
-        "translation": "מפוחד",
-        "examples": [
+      ],
+      "call_to_action": "מה מרגיע אתכם כשאתם כועסים? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 9,
+      "title": "רגשות ותחושות",
+      "word": "Confused",
+      "translation": "מבולבל",
+      "examples": [
           {
-            "sentence": "The loud noise made him **scared**",
-            "translation": "הרעש החזק הפחיד אותו"
+              "sentence": "She felt **confused** by the instructions",
+              "translation": "היא הרגישה מבולבלת מההנחיות"
           },
           {
-            "sentence": "She is **scared** of spiders",
-            "translation": "היא מפחדת מעכבישים"
+              "sentence": "He was **confused** about the schedule",
+              "translation": "הוא היה מבולבל לגבי לוח הזמנים"
           },
           {
-            "sentence": "They felt **scared** during the storm",
-            "translation": "הם הרגישו מפוחדים במהלך הסערה"
+              "sentence": "The complicated problem left them **confused**",
+              "translation": "הבעיה המורכבת הותירה אותם מבולבלים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה מפחיד אתכם באנגלית"
-      },
-      {
-        "video_number": 10,
-        "title": "רגשות",
-        "word": "Confused",
-        "translation": "מבולבל",
-        "examples": [
+      ],
+      "call_to_action": "מה עוזר לכם להבהיר בלבול? שתפו באנגלית!"
+  },
+  {
+      "video_number": 10,
+      "title": "רגשות ותחושות",
+      "word": "Surprised",
+      "translation": "מופתע",
+      "examples": [
           {
-            "sentence": "I was **confused** by the instructions",
-            "translation": "הייתי מבולבל מההוראות"
+              "sentence": "He was **surprised** by the birthday party",
+              "translation": "הוא היה מופתע ממסיבת יום ההולדת"
           },
           {
-            "sentence": "She looked **confused** after the lecture",
-            "translation": "היא נראתה מבולבלת אחרי ההרצאה"
+              "sentence": "She looked **surprised** when she saw the gift",
+              "translation": "היא נראתה מופתעת כשהיא ראתה את המתנה"
           },
           {
-            "sentence": "They were **confused** about the schedule",
-            "translation": "הם היו מבולבלים לגבי הלו\"ז"
+              "sentence": "They were **surprised** to win the contest",
+              "translation": "הם היו מופתעים לזכות בתחרות"
           }
-        ],
-        "call_to_action": "כתבו לנו בתגובות איך אתם מתמודדים עם בלבול באנגלית"
-      },
-      {
-        "video_number": 11,
-        "title": "רגשות",
-        "word": "Surprised",
-        "translation": "מופתע",
-        "examples": [
+      ],
+      "call_to_action": "מתי הופתעתם לאחרונה? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 11,
+      "title": "רגשות ותחושות",
+      "word": "Lonely",
+      "translation": "בודד",
+      "examples": [
           {
-            "sentence": "He was **surprised** by the party",
-            "translation": "הוא היה מופתע מהמסיבה"
+              "sentence": "She felt **lonely** in the new city",
+              "translation": "היא הרגישה בודדה בעיר החדשה"
           },
           {
-            "sentence": "She looked **surprised** to see us",
-            "translation": "היא נראתה מופתעת לראות אותנו"
+              "sentence": "He was **lonely** after his friends moved away",
+              "translation": "הוא היה בודד אחרי שחבריו עברו"
           },
           {
-            "sentence": "They were **surprised** by the news",
-            "translation": "הם היו מופתעים מהחדשות"
+              "sentence": "They adopted a pet to feel less **lonely**",
+              "translation": "הם אימצו חיית מחמד כדי להרגיש פחות בודדים"
           }
-        ],
-        "call_to_action": "שתפו אותנו בהפתעה שחוויתם באנגלית"
-      },
-      {
-        "video_number": 12,
-        "title": "רגשות",
-        "word": "Relaxed",
-        "translation": "רגוע",
-        "examples": [
+      ],
+      "call_to_action": "איך אתם מתמודדים עם בדידות? שתפו באנגלית!"
+  },
+  {
+      "video_number": 12,
+      "title": "רגשות ותחושות",
+      "word": "Grateful",
+      "translation": "אסיר תודה",
+      "examples": [
           {
-            "sentence": "She feels **relaxed** after yoga",
-            "translation": "היא מרגישה רגועה אחרי יוגה"
+              "sentence": "She was **grateful** for the help",
+              "translation": "היא הייתה אסירת תודה על העזרה"
           },
           {
-            "sentence": "He looked **relaxed** on vacation",
-            "translation": "הוא נראה רגוע בחופשה"
+              "sentence": "He felt **grateful** for his family",
+              "translation": "הוא הרגיש אסיר תודה על משפחתו"
           },
           {
-            "sentence": "They are **relaxed** by the beach",
-            "translation": "הם רגועים על חוף הים"
+              "sentence": "They were **grateful** to have a home",
+              "translation": "הם היו אסירי תודה שיש להם בית"
           }
-        ],
-        "call_to_action": "ספרו לנו מה מרגיע אתכם באנגלית"
-      },
-      {
-        "video_number": 13,
-        "title": "רגשות",
-        "word": "Jealous",
-        "translation": "קנאי",
-        "examples": [
+      ],
+      "call_to_action": "על מה אתם אסירי תודה? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 13,
+      "title": "רגשות ותחושות",
+      "word": "Anxious",
+      "translation": "חרד",
+      "examples": [
           {
-            "sentence": "He was **jealous** of his friend's success",
-            "translation": "הוא היה קנאי להצלחת חברו"
+              "sentence": "He feels **anxious** before public speaking",
+              "translation": "הוא מרגיש חרד לפני דיבור בציבור"
           },
           {
-            "sentence": "She felt **jealous** when she saw the gift",
-            "translation": "היא הרגישה קנאה כשראתה את המתנה"
+              "sentence": "She was **anxious** about the test results",
+              "translation": "היא הייתה חרדה לגבי תוצאות המבחן"
           },
           {
-            "sentence": "They tried not to be **jealous**",
-            "translation": "הם ניסו לא להיות קנאים"
+              "sentence": "They tried to calm their **anxious** friend",
+              "translation": "הם ניסו להרגיע את חברתם החרדה"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איך אתם מתמודדים עם קנאה באנגלית"
-      },
-      {
-        "video_number": 14,
-        "title": "רגשות",
-        "word": "Grateful",
-        "translation": "אסיר תודה",
-        "examples": [
+      ],
+      "call_to_action": "מה עוזר לכם להתמודד עם חרדה? שתפו באנגלית!"
+  },
+  {
+      "video_number": 14,
+      "title": "רגשות ותחושות",
+      "word": "Relaxed",
+      "translation": "רגוע",
+      "examples": [
           {
-            "sentence": "I am **grateful** for your help",
-            "translation": "אני אסיר תודה על עזרתך"
+              "sentence": "She feels **relaxed** after yoga",
+              "translation": "היא מרגישה רגועה אחרי יוגה"
           },
           {
-            "sentence": "She feels **grateful** for her family",
-            "translation": "היא אסירת תודה למשפחתה"
+              "sentence": "He was **relaxed** during the vacation",
+              "translation": "הוא היה רגוע במהלך החופשה"
           },
           {
-            "sentence": "They were **grateful** for the support",
-            "translation": "הם היו אסירי תודה על התמיכה"
+              "sentence": "They enjoyed a **relaxed** evening at home",
+              "translation": "הם נהנו מערב רגוע בבית"
           }
-        ],
-        "call_to_action": "שתפו בתגובות על מה אתם מודים באנגלית"
-      },
-      {
-        "video_number": 15,
-        "title": "רגשות",
-        "word": "Lonely",
-        "translation": "בודד",
-        "examples": [
+      ],
+      "call_to_action": "מה גורם לכם להרגיש רגועים? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 15,
+      "title": "רגשות ותחושות",
+      "word": "Hopeful",
+      "translation": "מלא תקווה",
+      "examples": [
           {
-            "sentence": "He felt **lonely** in the new city",
-            "translation": "הוא הרגיש בודד בעיר החדשה"
+              "sentence": "She is **hopeful** about the future",
+              "translation": "היא מלאת תקווה לגבי העתיד"
           },
           {
-            "sentence": "She was **lonely** after her friends left",
-            "translation": "היא הייתה בודדה לאחר שחבריה עזבו"
+              "sentence": "He remains **hopeful** despite challenges",
+              "translation": "הוא נשאר מלא תקווה למרות האתגרים"
           },
           {
-            "sentence": "They tried to avoid feeling **lonely**",
-            "translation": "הם ניסו להימנע מלהרגיש בודדים"
+              "sentence": "They felt **hopeful** after the meeting",
+              "translation": "הם הרגישו מלאי תקווה אחרי הפגישה"
           }
-        ],
-        "call_to_action": "ספרו לנו איך אתם מתמודדים עם בדידות באנגלית"
-      }
-    ]
+      ],
+      "call_to_action": "מה נותן לכם תקווה? שתפו איתנו באנגלית!"
   }
-  
+]

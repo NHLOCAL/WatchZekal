@@ -1,321 +1,317 @@
-{
-    "נושא 3": "טכנולוגיה וגאדג'טים",
-    "סרטונים": [
-      {
-        "video_number": 1,
-        "title": "טכנולוגיה",
-        "word": "Smartphone",
-        "translation": "סמארטפון",
-        "examples": [
+[
+  {
+      "video_number": 1,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Smartphone",
+      "translation": "סמארטפון",
+      "examples": [
           {
-            "sentence": "I bought a new **smartphone** yesterday",
-            "translation": "קניתי סמארטפון חדש אתמול"
+              "sentence": "I bought a new **smartphone** yesterday",
+              "translation": "קניתי סמארטפון חדש אתמול"
           },
           {
-            "sentence": "**Smartphones** have many features",
-            "translation": "לסמארטפונים יש הרבה תכונות"
+              "sentence": "She uses her **smartphone** to check emails",
+              "translation": "היא משתמשת בסמארטפון שלה כדי לבדוק מיילים"
           },
           {
-            "sentence": "She uses her **smartphone** for work",
-            "translation": "היא משתמשת בסמארטפון שלה לעבודה"
+              "sentence": "**Smartphones** have many features",
+              "translation": "לסמארטפונים יש הרבה תכונות"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה האפליקציה האהובה עליכם באנגלית!"
-      },
-      {
-        "video_number": 2,
-        "title": "טכנולוגיה",
-        "word": "Laptop",
-        "translation": "מחשב נייד",
-        "examples": [
+      ],
+      "call_to_action": "מה האפליקציה המועדפת עליכם? כתבו לנו באנגלית!"
+  },
+  {
+      "video_number": 2,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Laptop",
+      "translation": "מחשב נייד",
+      "examples": [
           {
-            "sentence": "He carries his **laptop** everywhere",
-            "translation": "הוא נושא את המחשב הנייד שלו לכל מקום"
+              "sentence": "She uses her **laptop** for work",
+              "translation": "היא משתמשת במחשב הנייד שלה לעבודה"
           },
           {
-            "sentence": "**Laptops** are convenient for travel",
-            "translation": "מחשבים ניידים נוחים לנסיעות"
+              "sentence": "I need a new **laptop** for school",
+              "translation": "אני צריך מחשב נייד חדש לבית הספר"
           },
           {
-            "sentence": "I need a new **laptop** for school",
-            "translation": "אני צריך מחשב נייד חדש לבית הספר"
+              "sentence": "**Laptops** are portable computers",
+              "translation": "מחשבים ניידים הם מחשבים ניידים"
           }
-        ],
-        "call_to_action": "כתבו בתגובות אם אתם מעדיפים מחשב נייד או שולחני באנגלית!"
-      },
-      {
-        "video_number": 3,
-        "title": "טכנולוגיה",
-        "word": "Tablet",
-        "translation": "טאבלט",
-        "examples": [
+      ],
+      "call_to_action": "איזה גאדג'ט אתם הכי אוהבים? שתפו בתגובות!"
+  },
+  {
+      "video_number": 3,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Tablet",
+      "translation": "טאבלט",
+      "examples": [
           {
-            "sentence": "A **tablet** is convenient for reading",
-            "translation": "טאבלט נוח לקריאה"
+              "sentence": "A **tablet** is convenient for reading",
+              "translation": "טאבלט נוח לקריאה"
           },
           {
-            "sentence": "She watches movies on her **tablet**",
-            "translation": "היא צופה בסרטים בטאבלט שלה"
+              "sentence": "He bought a **tablet** for his son",
+              "translation": "הוא קנה טאבלט לבנו"
           },
           {
-            "sentence": "**Tablets** are lighter than laptops",
-            "translation": "טאבלטים קלים יותר ממחשבים ניידים"
+              "sentence": "**Tablets** are lighter than laptops",
+              "translation": "טאבלטים קלים יותר ממחשבים ניידים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה אתם עושים עם הטאבלט שלכם באנגלית!"
-      },
-      {
-        "video_number": 4,
-        "title": "טכנולוגיה",
-        "word": "Software",
-        "translation": "תוכנה",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם משתמשים בטאבלט? למה? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 4,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Software",
+      "translation": "תוכנה",
+      "examples": [
           {
-            "sentence": "The **software** needs to be updated",
-            "translation": "התוכנה צריכה להתעדכן"
+              "sentence": "The **software** needs to be updated",
+              "translation": "התוכנה צריכה לעדכן"
           },
           {
-            "sentence": "He develops **software** for companies",
-            "translation": "הוא מפתח תוכנה לחברות"
+              "sentence": "She develops **software** for companies",
+              "translation": "היא מפתחת תוכנה לחברות"
           },
           {
-            "sentence": "**Software** engineers are in demand",
-            "translation": "מהנדסי תוכנה מבוקשים"
+              "sentence": "**Software** is essential for computers",
+              "translation": "תוכנה חיונית למחשבים"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איזה תוכנה אתם אוהבים באנגלית!"
-      },
-      {
-        "video_number": 5,
-        "title": "טכנולוגיה",
-        "word": "Battery",
-        "translation": "סוללה",
-        "examples": [
+      ],
+      "call_to_action": "מהי התוכנה המועדפת עליכם? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 5,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Battery",
+      "translation": "סוללה",
+      "examples": [
           {
-            "sentence": "My phone's **battery** is low",
-            "translation": "הסוללה של הטלפון שלי חלשה"
+              "sentence": "My phone's **battery** is low",
+              "translation": "הסוללה של הטלפון שלי חלשה"
           },
           {
-            "sentence": "He bought a spare **battery**",
-            "translation": "הוא קנה סוללה חלופית"
+              "sentence": "He needs to replace the **battery**",
+              "translation": "הוא צריך להחליף את הסוללה"
           },
           {
-            "sentence": "**Batteries** power our devices",
-            "translation": "סוללות מפעילות את המכשירים שלנו"
+              "sentence": "**Batteries** power our devices",
+              "translation": "סוללות מפעילות את המכשירים שלנו"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איך אתם חוסכים בסוללה באנגלית!"
-      },
-      {
-        "video_number": 6,
-        "title": "טכנולוגיה",
-        "word": "Application",
-        "translation": "אפליקציה",
-        "examples": [
+      ],
+      "call_to_action": "איך אתם חוסכים בסוללה? שתפו טיפים באנגלית!"
+  },
+  {
+      "video_number": 6,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Headphones",
+      "translation": "אוזניות",
+      "examples": [
           {
-            "sentence": "This **application** helps you learn languages",
-            "translation": "אפליקציה זו עוזרת לך ללמוד שפות"
+              "sentence": "I listen to music with my **headphones**",
+              "translation": "אני מקשיב למוזיקה עם האוזניות שלי"
           },
           {
-            "sentence": "He is developing a new **application**",
-            "translation": "הוא מפתח אפליקציה חדשה"
+              "sentence": "She bought new wireless **headphones**",
+              "translation": "היא קנתה אוזניות אלחוטיות חדשות"
           },
           {
-            "sentence": "**Applications** make smartphones useful",
-            "translation": "אפליקציות הופכות את הסמארטפונים לשימושיים"
+              "sentence": "**Headphones** can block out noise",
+              "translation": "אוזניות יכולות לחסום רעש"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איזה אפליקציה אתם ממליצים עליה באנגלית!"
-      },
-      {
-        "video_number": 7,
-        "title": "טכנולוגיה",
-        "word": "Keyboard",
-        "translation": "מקלדת",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם שומעים באוזניות? שתפו בתגובות באנגלית!"
+  },
+  {
+      "video_number": 7,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Keyboard",
+      "translation": "מקלדת",
+      "examples": [
           {
-            "sentence": "I prefer a mechanical **keyboard**",
-            "translation": "אני מעדיף מקלדת מכנית"
+              "sentence": "The **keyboard** is wireless",
+              "translation": "המקלדת אלחוטית"
           },
           {
-            "sentence": "The **keyboard** is wireless",
-            "translation": "המקלדת אלחוטית"
+              "sentence": "He types quickly on the **keyboard**",
+              "translation": "הוא מקליד במהירות על המקלדת"
           },
           {
-            "sentence": "She spilled coffee on her **keyboard**",
-            "translation": "היא שפכה קפה על המקלדת שלה"
+              "sentence": "**Keyboards** can have different layouts",
+              "translation": "למקלדות יכולות להיות פריסות שונות"
           }
-        ],
-        "call_to_action": "שתפו בתגובות אם אתם משתמשים במקלדת בעברית או באנגלית!"
-      },
-      {
-        "video_number": 8,
-        "title": "טכנולוגיה",
-        "word": "Headphones",
-        "translation": "אוזניות",
-        "examples": [
+      ],
+      "call_to_action": "איזו מקלדת אתם מעדיפים? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 8,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Mouse",
+      "translation": "עכבר",
+      "examples": [
           {
-            "sentence": "He listens to music with his **headphones**",
-            "translation": "הוא מאזין למוזיקה עם האוזניות שלו"
+              "sentence": "He bought a new **mouse** for his computer",
+              "translation": "הוא קנה עכבר חדש למחשב שלו"
           },
           {
-            "sentence": "**Headphones** can be noise-canceling",
-            "translation": "אוזניות יכולות להיות מבטלות רעשים"
+              "sentence": "The **mouse** is ergonomic",
+              "translation": "העכבר ארגונומי"
           },
           {
-            "sentence": "She forgot her **headphones** at home",
-            "translation": "היא שכחה את האוזניות שלה בבית"
+              "sentence": "**Mice** can be wired or wireless",
+              "translation": "עכברים יכולים להיות חוטיים או אלחוטיים"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה אתם שומעים עכשיו באנגלית!"
-      },
-      {
-        "video_number": 9,
-        "title": "טכנולוגיה",
-        "word": "Router",
-        "translation": "נתב",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם משתמשים בעכבר או במגע? שתפו באנגלית!"
+  },
+  {
+      "video_number": 9,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Charger",
+      "translation": "מטען",
+      "examples": [
           {
-            "sentence": "The internet **router** is not working",
-            "translation": "הנתב של האינטרנט לא עובד"
+              "sentence": "I forgot my phone **charger** at home",
+              "translation": "שכחתי את המטען של הטלפון בבית"
           },
           {
-            "sentence": "He reset the **router**",
-            "translation": "הוא אתחל את הנתב"
+              "sentence": "She needs a new **charger**",
+              "translation": "היא צריכה מטען חדש"
           },
           {
-            "sentence": "**Routers** connect devices to the internet",
-            "translation": "נתבים מחברים מכשירים לאינטרנט"
+              "sentence": "**Chargers** are essential for devices",
+              "translation": "מטענים חיוניים למכשירים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות אם היו לכם בעיות באינטרנט באנגלית!"
-      },
-      {
-        "video_number": 10,
-        "title": "טכנולוגיה",
-        "word": "Drone",
-        "translation": "רחפן",
-        "examples": [
+      ],
+      "call_to_action": "איך אתם מטעינים את המכשירים שלכם? שתפו באנגלית!"
+  },
+  {
+      "video_number": 10,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Monitor",
+      "translation": "מסך",
+      "examples": [
           {
-            "sentence": "He flies his **drone** in the park",
-            "translation": "הוא מטיס את הרחפן שלו בפארק"
+              "sentence": "He bought a large **monitor** for gaming",
+              "translation": "הוא קנה מסך גדול למשחקים"
           },
           {
-            "sentence": "**Drones** can take aerial photos",
-            "translation": "רחפנים יכולים לצלם תמונות אוויר"
+              "sentence": "The **monitor** has high resolution",
+              "translation": "למסך יש רזולוציה גבוהה"
           },
           {
-            "sentence": "She got a **drone** for her birthday",
-            "translation": "היא קיבלה רחפן ליום ההולדת"
+              "sentence": "She connects her laptop to a **monitor**",
+              "translation": "היא מחברת את המחשב הנייד שלה למסך"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה אתם חושבים על רחפנים באנגלית!"
-      },
-      {
-        "video_number": 11,
-        "title": "טכנולוגיה",
-        "word": "Bluetooth",
-        "translation": "בלוטות'",
-        "examples": [
+      ],
+      "call_to_action": "איזה גודל מסך אתם מעדיפים? כתבו לנו באנגלית!"
+  },
+  {
+      "video_number": 11,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Camera",
+      "translation": "מצלמה",
+      "examples": [
           {
-            "sentence": "Connect the speakers via **Bluetooth**",
-            "translation": "חברו את הרמקולים דרך בלוטות'"
+              "sentence": "She bought a new **camera** for her trip",
+              "translation": "היא קנתה מצלמה חדשה לטיול שלה"
           },
           {
-            "sentence": "**Bluetooth** allows wireless communication",
-            "translation": "בלוטות' מאפשר תקשורת אלחוטית"
+              "sentence": "The **camera** takes high-quality photos",
+              "translation": "המצלמה מצלמת תמונות באיכות גבוהה"
           },
           {
-            "sentence": "He uses **Bluetooth** headphones",
-            "translation": "הוא משתמש באוזניות בלוטות'"
+              "sentence": "He enjoys using the **camera** on his phone",
+              "translation": "הוא נהנה להשתמש במצלמה בטלפון שלו"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איזה מכשירי בלוטות' יש לכם באנגלית!"
-      },
-      {
-        "video_number": 12,
-        "title": "טכנולוגיה",
-        "word": "USB",
-        "translation": "יו.אס.בי",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם אוהבים לצלם? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 12,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Printer",
+      "translation": "מדפסת",
+      "examples": [
           {
-            "sentence": "Plug the drive into the **USB** port",
-            "translation": "חברו את הכונן לכניסת ה-USB"
+              "sentence": "The **printer** is out of ink",
+              "translation": "המדפסת נגמר לה הדיו"
           },
           {
-            "sentence": "She bought a **USB** cable",
-            "translation": "היא קנתה כבל USB"
+              "sentence": "She printed the document using the **printer**",
+              "translation": "היא הדפיסה את המסמך באמצעות המדפסת"
           },
           {
-            "sentence": "**USB** devices are common",
-            "translation": "מכשירי USB נפוצים"
+              "sentence": "**Printers** can print in color or black and white",
+              "translation": "מדפסות יכולות להדפיס בצבע או בשחור-לבן"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איזה אביזרי USB אתם משתמשים באנגלית!"
-      },
-      {
-        "video_number": 13,
-        "title": "טכנולוגיה",
-        "word": "Cloud",
-        "translation": "ענן (טכנולוגי)",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם משתמשים במדפסת בבית? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 13,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Router",
+      "translation": "נתב",
+      "examples": [
           {
-            "sentence": "Save your files to the **cloud**",
-            "translation": "שמור את הקבצים שלך לענן"
+              "sentence": "The **router** connects devices to the internet",
+              "translation": "הנתב מחבר מכשירים לאינטרנט"
           },
           {
-            "sentence": "**Cloud** computing is popular",
-            "translation": "מחשוב ענן הוא פופולרי"
+              "sentence": "He reset the **router** to fix the connection",
+              "translation": "הוא איפס את הנתב כדי לתקן את החיבור"
           },
           {
-            "sentence": "She accesses her photos from the **cloud**",
-            "translation": "היא ניגשת לתמונות שלה מהענן"
+              "sentence": "**Routers** can be wired or wireless",
+              "translation": "נתבים יכולים להיות חוטיים או אלחוטיים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות אם אתם משתמשים בענן לאחסון באנגלית!"
-      },
-      {
-        "video_number": 14,
-        "title": "טכנולוגיה",
-        "word": "Firewall",
-        "translation": "חומת אש",
-        "examples": [
+      ],
+      "call_to_action": "איך האינטרנט שלכם בבית? שתפו בתגובות באנגלית!"
+  },
+  {
+      "video_number": 14,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Drone",
+      "translation": "רחפן",
+      "examples": [
           {
-            "sentence": "The **firewall** protects the network",
-            "translation": "חומת האש מגנה על הרשת"
+              "sentence": "He flies his **drone** for fun",
+              "translation": "הוא מטיס את הרחפן שלו לכיף"
           },
           {
-            "sentence": "He configured the **firewall** settings",
-            "translation": "הוא הגדיר את הגדרות חומת האש"
+              "sentence": "The **drone** captured aerial photos",
+              "translation": "הרחפן צילם תמונות מהאוויר"
           },
           {
-            "sentence": "**Firewalls** prevent unauthorized access",
-            "translation": "חומות אש מונעות גישה לא מורשית"
+              "sentence": "**Drones** can be used for delivery",
+              "translation": "רחפנים יכולים לשמש למשלוחים"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה אתם יודעים על אבטחת מידע באנגלית!"
-      },
-      {
-        "video_number": 15,
-        "title": "טכנולוגיה",
-        "word": "Virtual Reality",
-        "translation": "מציאות מדומה",
-        "examples": [
+      ],
+      "call_to_action": "האם הטסתם פעם רחפן? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 15,
+      "title": "טכנולוגיה וגאדג'טים",
+      "word": "Virtual Reality",
+      "translation": "מציאות מדומה",
+      "examples": [
           {
-            "sentence": "**Virtual reality** games are immersive",
-            "translation": "משחקי מציאות מדומה הם סוחפים"
+              "sentence": "**Virtual reality** games are immersive",
+              "translation": "משחקי מציאות מדומה הם סוחפים"
           },
           {
-            "sentence": "She tried **virtual reality** for the first time",
-            "translation": "היא ניסתה מציאות מדומה לראשונה"
+              "sentence": "She tried **virtual reality** for the first time",
+              "translation": "היא ניסתה מציאות מדומה בפעם הראשונה"
           },
           {
-            "sentence": "**Virtual reality** is used in training",
-            "translation": "מציאות מדומה משמשת בהכשרה"
+              "sentence": "**Virtual reality** can be used for training",
+              "translation": "מציאות מדומה יכולה לשמש לאימונים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות אם הייתם רוצים לנסות מציאות מדומה באנגלית!"
-      }
-    ]
+      ],
+      "call_to_action": "מה אתם חושבים על מציאות מדומה? כתבו לנו באנגלית!"
   }
-  
+]

@@ -1,321 +1,317 @@
-{
-    "נושא 2": "מקצועות ועבודות",
-    "סרטונים": [
-      {
-        "video_number": 1,
-        "title": "מקצועות",
-        "word": "Engineer",
-        "translation": "מהנדס",
-        "examples": [
+[
+  {
+      "video_number": 1,
+      "title": "מקצועות ועבודות",
+      "word": "Engineer",
+      "translation": "מהנדס",
+      "examples": [
           {
-            "sentence": "My brother is an **engineer** who builds bridges",
-            "translation": "אחי הוא מהנדס שבונה גשרים"
+              "sentence": "My brother is an **engineer** who builds bridges",
+              "translation": "אחי הוא מהנדס שבונה גשרים"
           },
           {
-            "sentence": "She wants to become an electrical **engineer**",
-            "translation": "היא רוצה להיות מהנדסת חשמל"
+              "sentence": "She became an **engineer** after years of study",
+              "translation": "היא הפכה למהנדסת לאחר שנים של לימוד"
           },
           {
-            "sentence": "**Engineers** solve complex problems",
-            "translation": "מהנדסים פותרים בעיות מורכבות"
+              "sentence": "The **engineer** designed a new device",
+              "translation": "המהנדס תכנן מכשיר חדש"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איזה מקצוע מעניין אתכם באנגלית!"
-      },
-      {
-        "video_number": 2,
-        "title": "מקצועות",
-        "word": "Artist",
-        "translation": "אמן",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם מכירים מהנדס? שתפו בתגובות באנגלית!"
+  },
+  {
+      "video_number": 2,
+      "title": "מקצועות ועבודות",
+      "word": "Artist",
+      "translation": "אמן",
+      "examples": [
           {
-            "sentence": "She is an **artist** who paints landscapes",
-            "translation": "היא אמנית שמציירת נופים"
+              "sentence": "She is an **artist** who paints landscapes",
+              "translation": "היא אמנית שצובעת נופים"
           },
           {
-            "sentence": "The **artist** displayed his work at the gallery",
-            "translation": "האמן הציג את עבודתו בגלריה"
+              "sentence": "The **artist** exhibited his work in a gallery",
+              "translation": "האמן הציג את עבודתו בגלריה"
           },
           {
-            "sentence": "**Artists** express emotions through art",
-            "translation": "אמנים מביעים רגשות דרך אומנות"
+              "sentence": "Being an **artist** requires creativity",
+              "translation": "להיות אמן דורש יצירתיות"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מי האמן האהוב עליכם באנגלית!"
-      },
-      {
-        "video_number": 3,
-        "title": "מקצועות",
-        "word": "Chef",
-        "translation": "שף",
-        "examples": [
+      ],
+      "call_to_action": "מי האמן האהוב עליכם? כתבו לנו באנגלית!"
+  },
+  {
+      "video_number": 3,
+      "title": "מקצועות ועבודות",
+      "word": "Chef",
+      "translation": "שף",
+      "examples": [
           {
-            "sentence": "The **chef** prepared a delicious meal",
-            "translation": "השף הכין ארוחה טעימה"
+              "sentence": "The **chef** prepared a delicious meal",
+              "translation": "השף הכין ארוחה טעימה"
           },
           {
-            "sentence": "She dreams of becoming a **chef**",
-            "translation": "היא חולמת להיות שף"
+              "sentence": "She dreams of becoming a **chef**",
+              "translation": "היא חולמת להיות שף"
           },
           {
-            "sentence": "**Chefs** work in busy kitchens",
-            "translation": "שפים עובדים במטבחים עסוקים"
+              "sentence": "The **chef** works in a famous restaurant",
+              "translation": "השף עובד במסעדה מפורסמת"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה המנה האהובה עליכם באנגלית!"
-      },
-      {
-        "video_number": 4,
-        "title": "מקצועות",
-        "word": "Pilot",
-        "translation": "טייס",
-        "examples": [
+      ],
+      "call_to_action": "מה המנה האהובה עליכם? שתפו בתגובות באנגלית!"
+  },
+  {
+      "video_number": 4,
+      "title": "מקצועות ועבודות",
+      "word": "Pilot",
+      "translation": "טייס",
+      "examples": [
           {
-            "sentence": "The **pilot** landed the plane smoothly",
-            "translation": "הטייס נחת את המטוס בצורה חלקה"
+              "sentence": "The **pilot** landed the plane smoothly",
+              "translation": "הטייס נחת את המטוס בצורה חלקה"
           },
           {
-            "sentence": "He is training to be a **pilot**",
-            "translation": "הוא מתאמן להיות טייס"
+              "sentence": "He trained for years to become a **pilot**",
+              "translation": "הוא התאמן שנים כדי להפוך לטייס"
           },
           {
-            "sentence": "**Pilots** travel around the world",
-            "translation": "טייסים נוסעים סביב העולם"
+              "sentence": "Being a **pilot** is a challenging job",
+              "translation": "להיות טייס זה עבודה מאתגרת"
           }
-        ],
-        "call_to_action": "שתפו בתגובות אם הייתם רוצים להיות טייסים באנגלית!"
-      },
-      {
-        "video_number": 5,
-        "title": "מקצועות",
-        "word": "Nurse",
-        "translation": "אח/אחות",
-        "examples": [
+      ],
+      "call_to_action": "האם הייתם רוצים להיות טייסים? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 5,
+      "title": "מקצועות ועבודות",
+      "word": "Nurse",
+      "translation": "אחות",
+      "examples": [
           {
-            "sentence": "The **nurse** took care of the patients",
-            "translation": "האחות טיפלה במטופלים"
+              "sentence": "The **nurse** took care of the patients",
+              "translation": "האחות טיפלה בחולים"
           },
           {
-            "sentence": "He works as a **nurse** at the hospital",
-            "translation": "הוא עובד כאח בבית החולים"
+              "sentence": "He thanked the **nurse** for her help",
+              "translation": "הוא הודה לאחות על עזרתה"
           },
           {
-            "sentence": "**Nurses** are essential in healthcare",
-            "translation": "אחים ואחיות חיוניים במערכת הבריאות"
+              "sentence": "Being a **nurse** requires compassion",
+              "translation": "להיות אחות דורש חמלה"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איך אומרים 'אחות' באנגלית!"
-      },
-      {
-        "video_number": 6,
-        "title": "מקצועות",
-        "word": "Lawyer",
-        "translation": "עורך דין",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם מכירים אחות מסורה? שתפו בתגובות!"
+  },
+  {
+      "video_number": 6,
+      "title": "מקצועות ועבודות",
+      "word": "Teacher",
+      "translation": "מורה",
+      "examples": [
           {
-            "sentence": "She consulted a **lawyer** about the contract",
-            "translation": "היא התייעצה עם עורך דין לגבי החוזה"
+              "sentence": "The **teacher** explained the lesson clearly",
+              "translation": "המורה הסביר את השיעור בבירור"
           },
           {
-            "sentence": "He is a successful **lawyer** in the city",
-            "translation": "הוא עורך דין מצליח בעיר"
+              "sentence": "She is a dedicated **teacher**",
+              "translation": "היא מורה מסורה"
           },
           {
-            "sentence": "**Lawyers** represent clients in court",
-            "translation": "עורכי דין מייצגים לקוחות בבית המשפט"
+              "sentence": "Students respect a good **teacher**",
+              "translation": "תלמידים מכבדים מורה טוב"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה דעתכם על מקצוע עריכת הדין באנגלית!"
-      },
-      {
-        "video_number": 7,
-        "title": "מקצועות",
-        "word": "Architect",
-        "translation": "אדריכל",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם אוהבים במורה שלכם? כתבו לנו באנגלית!"
+  },
+  {
+      "video_number": 7,
+      "title": "מקצועות ועבודות",
+      "word": "Doctor",
+      "translation": "רופא",
+      "examples": [
           {
-            "sentence": "The **architect** designed a modern building",
-            "translation": "האדריכל תכנן בניין מודרני"
+              "sentence": "The **doctor** examined the patient",
+              "translation": "הרופא בדק את החולה"
           },
           {
-            "sentence": "She studied to become an **architect**",
-            "translation": "היא למדה להיות אדריכלית"
+              "sentence": "She wants to become a **doctor**",
+              "translation": "היא רוצה להפוך לרופאה"
           },
           {
-            "sentence": "**Architects** combine art and engineering",
-            "translation": "אדריכלים משלבים אומנות והנדסה"
+              "sentence": "A **doctor** helps people stay healthy",
+              "translation": "רופא עוזר לאנשים להישאר בריאים"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איזה מבנה אדריכלי אתם אוהבים באנגלית!"
-      },
-      {
-        "video_number": 8,
-        "title": "מקצועות",
-        "word": "Teacher",
-        "translation": "מורה",
-        "examples": [
+      ],
+      "call_to_action": "האם ביקרתם רופא לאחרונה? שתפו באנגלית!"
+  },
+  {
+      "video_number": 8,
+      "title": "מקצועות ועבודות",
+      "word": "Lawyer",
+      "translation": "עורך דין",
+      "examples": [
           {
-            "sentence": "The **teacher** explained the lesson clearly",
-            "translation": "המורה הסביר את השיעור בבירור"
+              "sentence": "The **lawyer** represented his client in court",
+              "translation": "עורך הדין ייצג את הלקוח שלו בבית המשפט"
           },
           {
-            "sentence": "She is an English **teacher**",
-            "translation": "היא מורה לאנגלית"
+              "sentence": "She consulted a **lawyer** for legal advice",
+              "translation": "היא התייעצה עם עורך דין לקבלת ייעוץ משפטי"
           },
           {
-            "sentence": "**Teachers** inspire their students",
-            "translation": "מורים מעוררים השראה בתלמידיהם"
+              "sentence": "Being a **lawyer** requires knowledge of the law",
+              "translation": "להיות עורך דין דורש ידע בחוק"
           }
-        ],
-        "call_to_action": "שתפו בתגובות על מורה שזכרתם באנגלית!"
-      },
-      {
-        "video_number": 9,
-        "title": "מקצועות",
-        "word": "Dentist",
-        "translation": "רופא שיניים",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם יודעים על מקצוע עריכת הדין? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 9,
+      "title": "מקצועות ועבודות",
+      "word": "Farmer",
+      "translation": "חקלאי",
+      "examples": [
           {
-            "sentence": "I have an appointment with the **dentist**",
-            "translation": "יש לי תור אצל רופא השיניים"
+              "sentence": "The **farmer** wakes up early every day",
+              "translation": "החקלאי מתעורר מוקדם כל יום"
           },
           {
-            "sentence": "**Dentists** help keep your teeth healthy",
-            "translation": "רופאי שיניים עוזרים לשמור על שיניים בריאות"
+              "sentence": "**Farmers** grow crops and raise animals",
+              "translation": "חקלאים מגדלים גידולים ובעלי חיים"
           },
           {
-            "sentence": "She is studying to be a **dentist**",
-            "translation": "היא לומדת להיות רופאת שיניים"
+              "sentence": "She visited a **farm** to learn about agriculture",
+              "translation": "היא ביקרה בחווה כדי ללמוד על חקלאות"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איך אתם שומרים על שיניים בריאות באנגלית!"
-      },
-      {
-        "video_number": 10,
-        "title": "מקצועות",
-        "word": "Photographer",
-        "translation": "צלם",
-        "examples": [
+      ],
+      "call_to_action": "האם הייתם בחווה? שתפו את החוויה באנגלית!"
+  },
+  {
+      "video_number": 10,
+      "title": "מקצועות ועבודות",
+      "word": "Architect",
+      "translation": "אדריכל",
+      "examples": [
           {
-            "sentence": "The **photographer** took amazing pictures",
-            "translation": "הצלם צילם תמונות מדהימות"
+              "sentence": "The **architect** designed a modern building",
+              "translation": "האדריכל תכנן בניין מודרני"
           },
           {
-            "sentence": "She works as a wedding **photographer**",
-            "translation": "היא עובדת כצלמת חתונות"
+              "sentence": "She studied to become an **architect**",
+              "translation": "היא למדה כדי להפוך לאדריכלית"
           },
           {
-            "sentence": "**Photographers** capture special moments",
-            "translation": "צלמים מתעדים רגעים מיוחדים"
+              "sentence": "**Architects** plan and design structures",
+              "translation": "אדריכלים מתכננים ומעצבים מבנים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות תמונה שאתם אוהבים באנגלית!"
-      },
-      {
-        "video_number": 11,
-        "title": "מקצועות",
-        "word": "Scientist",
-        "translation": "מדען",
-        "examples": [
+      ],
+      "call_to_action": "מהו המבנה האהוב עליכם? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 11,
+      "title": "מקצועות ועבודות",
+      "word": "Accountant",
+      "translation": "רואה חשבון",
+      "examples": [
           {
-            "sentence": "The **scientist** made a new discovery",
-            "translation": "המדען עשה תגלית חדשה"
+              "sentence": "The **accountant** prepared the financial report",
+              "translation": "רואה החשבון הכין את הדוח הכספי"
           },
           {
-            "sentence": "She wants to be a **scientist** in the future",
-            "translation": "היא רוצה להיות מדענית בעתיד"
+              "sentence": "She hired an **accountant** for her business",
+              "translation": "היא שכרה רואה חשבון לעסק שלה"
           },
           {
-            "sentence": "**Scientists** explore the unknown",
-            "translation": "מדענים חוקרים את הלא נודע"
+              "sentence": "**Accountants** manage money matters",
+              "translation": "רואי חשבון מנהלים ענייני כסף"
           }
-        ],
-        "call_to_action": "כתבו בתגובות על מדען מפורסם באנגלית!"
-      },
-      {
-        "video_number": 12,
-        "title": "מקצועות",
-        "word": "Mechanic",
-        "translation": "מכונאי",
-        "examples": [
+      ],
+      "call_to_action": "האם חשבתם להיות רואי חשבון? כתבו לנו באנגלית!"
+  },
+  {
+      "video_number": 12,
+      "title": "מקצועות ועבודות",
+      "word": "Firefighter",
+      "translation": "כבאי",
+      "examples": [
           {
-            "sentence": "The **mechanic** fixed my car quickly",
-            "translation": "המכונאי תיקן את הרכב שלי במהירות"
+              "sentence": "The **firefighter** rescued the family",
+              "translation": "הכבאי הציל את המשפחה"
           },
           {
-            "sentence": "He works as a **mechanic** in a garage",
-            "translation": "הוא עובד כמכונאי במוסך"
+              "sentence": "**Firefighters** are brave individuals",
+              "translation": "כבאים הם אנשים אמיצים"
           },
           {
-            "sentence": "**Mechanics** repair engines",
-            "translation": "מכונאים מתקנים מנועים"
+              "sentence": "He became a **firefighter** to help others",
+              "translation": "הוא הפך לכבאי כדי לעזור לאחרים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות אם אתם אוהבים לתקן דברים באנגלית!"
-      },
-      {
-        "video_number": 13,
-        "title": "מקצועות",
-        "word": "Pharmacist",
-        "translation": "רוקח",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם חושבים על עבודת הכבאים? שתפו באנגלית!"
+  },
+  {
+      "video_number": 13,
+      "title": "מקצועות ועבודות",
+      "word": "Journalist",
+      "translation": "עיתונאי",
+      "examples": [
           {
-            "sentence": "The **pharmacist** gave me the medicine",
-            "translation": "הרוקח נתן לי את התרופה"
+              "sentence": "She is a respected **journalist**",
+              "translation": "היא עיתונאית מכובדת"
           },
           {
-            "sentence": "She is studying to be a **pharmacist**",
-            "translation": "היא לומדת להיות רוקחת"
+              "sentence": "The **journalist** wrote an interesting article",
+              "translation": "העיתונאי כתב מאמר מעניין"
           },
           {
-            "sentence": "**Pharmacists** understand medications",
-            "translation": "רוקחים מבינים בתרופות"
+              "sentence": "**Journalists** report the news",
+              "translation": "עיתונאים מדווחים על החדשות"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה חשוב לדעת על תרופות באנגלית!"
-      },
-      {
-        "video_number": 14,
-        "title": "מקצועות",
-        "word": "Firefighter",
-        "translation": "כבאי",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם קוראים עיתונים? מה אתם אוהבים לקרוא?"
+  },
+  {
+      "video_number": 14,
+      "title": "מקצועות ועבודות",
+      "word": "Mechanic",
+      "translation": "מכונאי",
+      "examples": [
           {
-            "sentence": "The **firefighter** rescued the cat",
-            "translation": "הכבאי הציל את החתול"
+              "sentence": "The **mechanic** fixed my car",
+              "translation": "המכונאי תיקן את המכונית שלי"
           },
           {
-            "sentence": "**Firefighters** are brave",
-            "translation": "כבאים הם אמיצים"
+              "sentence": "He works as a **mechanic** in a garage",
+              "translation": "הוא עובד כמכונאי במוסך"
           },
           {
-            "sentence": "He became a **firefighter** to help others",
-            "translation": "הוא הפך לכבאי כדי לעזור לאחרים"
+              "sentence": "Good **mechanics** are hard to find",
+              "translation": "קשה למצוא מכונאים טובים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מי הוא גיבור בעיניכם באנגלית!"
-      },
-      {
-        "video_number": 15,
-        "title": "מקצועות",
-        "word": "Musician",
-        "translation": "מוזיקאי",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם יודעים לתקן דברים? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 15,
+      "title": "מקצועות ועבודות",
+      "word": "Scientist",
+      "translation": "מדען",
+      "examples": [
           {
-            "sentence": "She is a talented **musician**",
-            "translation": "היא מוזיקאית מוכשרת"
+              "sentence": "The **scientist** made a new discovery",
+              "translation": "המדען עשה תגלית חדשה"
           },
           {
-            "sentence": "The **musician** played the piano beautifully",
-            "translation": "המוזיקאי ניגן בפסנתר בצורה יפהפייה"
+              "sentence": "She wants to be a **scientist** when she grows up",
+              "translation": "היא רוצה להיות מדענית כשהיא תגדל"
           },
           {
-            "sentence": "**Musicians** often perform on stage",
-            "translation": "מוזיקאים מופיעים לעיתים קרובות על הבמה"
+              "sentence": "**Scientists** conduct experiments",
+              "translation": "מדענים מבצעים ניסויים"
           }
-        ],
-        "call_to_action": "כתבו בתגובות על מוזיקאי שאתם אוהבים באנגלית!"
-      }
-    ]
+      ],
+      "call_to_action": "איזה תחום במדע מעניין אתכם? שתפו באנגלית!"
   }
-  
+]

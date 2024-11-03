@@ -1,321 +1,317 @@
-{
-    "נושא 4": "תחביבים ופעילויות פנאי",
-    "סרטונים": [
-      {
-        "video_number": 1,
-        "title": "תחביבים",
-        "word": "Photography",
-        "translation": "צילום",
-        "examples": [
+[
+  {
+      "video_number": 1,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Photography",
+      "translation": "צילום",
+      "examples": [
           {
-            "sentence": "**Photography** is his favorite hobby",
-            "translation": "צילום הוא התחביב המועדף עליו"
+              "sentence": "**Photography** is his favorite hobby",
+              "translation": "צילום הוא התחביב המועדף עליו"
           },
           {
-            "sentence": "She enjoys **photography** in her free time",
-            "translation": "היא נהנית לעסוק בצילום בזמנה הפנוי"
+              "sentence": "She enjoys **photography** during her travels",
+              "translation": "היא נהנית לצלם במהלך הטיולים שלה"
           },
           {
-            "sentence": "**Photography** captures moments",
-            "translation": "צילום לוכד רגעים"
+              "sentence": "He bought a new camera to improve his **photography** skills",
+              "translation": "הוא קנה מצלמה חדשה כדי לשפר את כישורי הצילום שלו"
           }
-        ],
-        "call_to_action": "שתפו בתגובות תמונה שצילמתם באנגלית!"
-      },
-      {
-        "video_number": 2,
-        "title": "תחביבים",
-        "word": "Gardening",
-        "translation": "גינון",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם אוהבים לצלם? שתפו איתנו בתגובות באנגלית!"
+  },
+  {
+      "video_number": 2,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Gardening",
+      "translation": "גינון",
+      "examples": [
           {
-            "sentence": "She enjoys **gardening** on weekends",
-            "translation": "היא נהנית לעסוק בגינון בסופי שבוע"
+              "sentence": "She enjoys **gardening** on weekends",
+              "translation": "היא נהנית לעסוק בגינון בסופי השבוע"
           },
           {
-            "sentence": "**Gardening** relaxes the mind",
-            "translation": "גינון מרגיע את הנפש"
+              "sentence": "**Gardening** helps him relax after work",
+              "translation": "גינון עוזר לו להירגע אחרי העבודה"
           },
           {
-            "sentence": "He grows vegetables through **gardening**",
-            "translation": "הוא מגדל ירקות באמצעות גינון"
+              "sentence": "They grow vegetables in their **gardening** space",
+              "translation": "הם מגדלים ירקות בשטח הגינון שלהם"
           }
-        ],
-        "call_to_action": "כתבו בתגובות אם יש לכם גינה באנגלית!"
-      },
-      {
-        "video_number": 3,
-        "title": "תחביבים",
-        "word": "Hiking",
-        "translation": "טיול רגלי",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם מגדלים בגינה שלכם? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 3,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Hiking",
+      "translation": "טיול רגלי",
+      "examples": [
           {
-            "sentence": "They go **hiking** every summer",
-            "translation": "הם יוצאים לטיול רגלי כל קיץ"
+              "sentence": "We go **hiking** in the mountains",
+              "translation": "אנחנו יוצאים לטיול רגלי בהרים"
           },
           {
-            "sentence": "**Hiking** is good exercise",
-            "translation": "טיול רגלי הוא פעילות גופנית טובה"
+              "sentence": "**Hiking** is a great way to explore nature",
+              "translation": "טיול רגלי הוא דרך נהדרת לחקור את הטבע"
           },
           {
-            "sentence": "She bought new boots for **hiking**",
-            "translation": "היא קנתה מגפיים חדשים לטיול רגלי"
+              "sentence": "They planned a **hiking** trip for the weekend",
+              "translation": "הם תכננו טיול רגלי לסוף השבוע"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איפה אתם אוהבים לטייל באנגלית!"
-      },
-      {
-        "video_number": 4,
-        "title": "תחביבים",
-        "word": "Cooking",
-        "translation": "בישול",
-        "examples": [
+      ],
+      "call_to_action": "איפה המקום האהוב עליכם לטיולים רגליים? שתפו אותנו באנגלית!"
+  },
+  {
+      "video_number": 4,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Cooking",
+      "translation": "בישול",
+      "examples": [
           {
-            "sentence": "**Cooking** is both fun and useful",
-            "translation": "בישול הוא גם כיף וגם שימושי"
+              "sentence": "**Cooking** is both fun and useful",
+              "translation": "בישול הוא גם מהנה וגם שימושי"
           },
           {
-            "sentence": "He is learning **cooking** from his mother",
-            "translation": "הוא לומד בישול מאמו"
+              "sentence": "He enjoys **cooking** meals for his family",
+              "translation": "הוא נהנה לבשל ארוחות למשפחתו"
           },
           {
-            "sentence": "**Cooking** classes are popular",
-            "translation": "שיעורי בישול פופולריים"
+              "sentence": "She is learning **cooking** from her grandmother",
+              "translation": "היא לומדת בישול מסבתה"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה המנה שאתם אוהבים לבשל באנגלית!"
-      },
-      {
-        "video_number": 5,
-        "title": "תחביבים",
-        "word": "Dancing",
-        "translation": "ריקוד",
-        "examples": [
+      ],
+      "call_to_action": "מה המנה האהובה עליכם לבשל? שתפו את המתכון באנגלית!"
+  },
+  {
+      "video_number": 5,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Dancing",
+      "translation": "ריקוד",
+      "examples": [
           {
-            "sentence": "They are learning **dancing** together",
-            "translation": "הם לומדים לרקוד יחד"
+              "sentence": "They are learning **dancing** together",
+              "translation": "הם לומדים לרקוד יחד"
           },
           {
-            "sentence": "**Dancing** is a great way to exercise",
-            "translation": "ריקוד הוא דרך מצוינת להתעמל"
+              "sentence": "**Dancing** is a fun way to exercise",
+              "translation": "ריקוד הוא דרך מהנה להתעמל"
           },
           {
-            "sentence": "She enjoys **dancing** at parties",
-            "translation": "היא נהנית לרקוד במסיבות"
+              "sentence": "She practices **dancing** every evening",
+              "translation": "היא מתרגלת ריקוד כל ערב"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איזה סגנון ריקוד אתם אוהבים באנגלית!"
-      },
-      {
-        "video_number": 6,
-        "title": "תחביבים",
-        "word": "Reading",
-        "translation": "קריאה",
-        "examples": [
+      ],
+      "call_to_action": "איזה סגנון ריקוד אתם אוהבים? כתבו לנו באנגלית!"
+  },
+  {
+      "video_number": 6,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Painting",
+      "translation": "ציור",
+      "examples": [
           {
-            "sentence": "**Reading** expands your knowledge",
-            "translation": "קריאה מרחיבה את הידע שלך"
+              "sentence": "He spends his free time **painting**",
+              "translation": "הוא מבלה את זמנו הפנוי בציור"
           },
           {
-            "sentence": "He spends hours **reading** books",
-            "translation": "הוא מבלה שעות בקריאת ספרים"
+              "sentence": "She enjoys **painting** landscapes",
+              "translation": "היא נהנית לצייר נופים"
           },
           {
-            "sentence": "**Reading** is her favorite pastime",
-            "translation": "קריאה היא הבילוי המועדף עליה"
+              "sentence": "**Painting** allows her to express her creativity",
+              "translation": "הציור מאפשר לה להביע את היצירתיות שלה"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איזה ספר אתם קוראים עכשיו באנגלית!"
-      },
-      {
-        "video_number": 7,
-        "title": "תחביבים",
-        "word": "Fishing",
-        "translation": "דיג",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם מציירים? שתפו את היצירות שלכם באנגלית!"
+  },
+  {
+      "video_number": 7,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Reading",
+      "translation": "קריאה",
+      "examples": [
           {
-            "sentence": "He goes **fishing** on the lake",
-            "translation": "הוא הולך לדוג באגם"
+              "sentence": "**Reading** is a great way to learn",
+              "translation": "קריאה היא דרך נהדרת ללמוד"
           },
           {
-            "sentence": "**Fishing** requires patience",
-            "translation": "דיג דורש סבלנות"
+              "sentence": "She loves **reading** mystery novels",
+              "translation": "היא אוהבת לקרוא רומנים מסתוריים"
           },
           {
-            "sentence": "They enjoy **fishing** together",
-            "translation": "הם נהנים לדוג יחד"
+              "sentence": "He spends hours **reading** every day",
+              "translation": "הוא מבלה שעות בקריאה כל יום"
           }
-        ],
-        "call_to_action": "כתבו בתגובות אם ניסיתם לדוג באנגלית!"
-      },
-      {
-        "video_number": 8,
-        "title": "תחביבים",
-        "word": "Knitting",
-        "translation": "סריגה",
-        "examples": [
+      ],
+      "call_to_action": "מה הספר האהוב עליכם? שתפו אותנו באנגלית!"
+  },
+  {
+      "video_number": 8,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Writing",
+      "translation": "כתיבה",
+      "examples": [
           {
-            "sentence": "**Knitting** is a creative hobby",
-            "translation": "סריגה היא תחביב יצירתי"
+              "sentence": "She enjoys **writing** short stories",
+              "translation": "היא נהנית לכתוב סיפורים קצרים"
           },
           {
-            "sentence": "She made a scarf by **knitting**",
-            "translation": "היא הכינה צעיף באמצעות סריגה"
+              "sentence": "**Writing** helps him express his thoughts",
+              "translation": "כתיבה עוזרת לו להביע את מחשבותיו"
           },
           {
-            "sentence": "**Knitting** helps her relax",
-            "translation": "סריגה עוזרת לה להירגע"
+              "sentence": "He is **writing** a novel",
+              "translation": "הוא כותב רומן"
           }
-        ],
-        "call_to_action": "שתפו בתגובות אם אתם אוהבים ליצור דברים באנגלית!"
-      },
-      {
-        "video_number": 9,
-        "title": "תחביבים",
-        "word": "Painting",
-        "translation": "ציור",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם כותבים? שתפו קטע באנגלית!"
+  },
+  {
+      "video_number": 9,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Fishing",
+      "translation": "דיג",
+      "examples": [
           {
-            "sentence": "He enjoys **painting** landscapes",
-            "translation": "הוא נהנה לצייר נופים"
+              "sentence": "They went **fishing** by the lake",
+              "translation": "הם הלכו לדוג ליד האגם"
           },
           {
-            "sentence": "**Painting** allows expression",
-            "translation": "ציור מאפשר ביטוי"
+              "sentence": "**Fishing** is relaxing for him",
+              "translation": "דיג מרגיע עבורו"
           },
           {
-            "sentence": "She took a **painting** class",
-            "translation": "היא לקחה שיעור ציור"
+              "sentence": "She caught a big fish while **fishing**",
+              "translation": "היא תפסה דג גדול בזמן הדיג"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה אתם אוהבים לצייר באנגלית!"
-      },
-      {
-        "video_number": 10,
-        "title": "תחביבים",
-        "word": "Cooking",
-        "translation": "בישול",
-        "examples": [
+      ],
+      "call_to_action": "האם ניסיתם לדוג? שתפו את החוויה שלכם באנגלית!"
+  },
+  {
+      "video_number": 10,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Knitting",
+      "translation": "סריגה",
+      "examples": [
           {
-            "sentence": "**Cooking** new recipes is fun",
-            "translation": "בישול מתכונים חדשים הוא כיף"
+              "sentence": "**Knitting** scarves is her hobby",
+              "translation": "סריגת צעיפים היא התחביב שלה"
           },
           {
-            "sentence": "He watches **cooking** shows on TV",
-            "translation": "הוא צופה בתוכניות בישול בטלוויזיה"
+              "sentence": "He learned **knitting** from his grandmother",
+              "translation": "הוא למד לסרוג מסבתו"
           },
           {
-            "sentence": "**Cooking** brings people together",
-            "translation": "בישול מקרב בין אנשים"
+              "sentence": "**Knitting** requires patience",
+              "translation": "סריגה דורשת סבלנות"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מתכון שאתם אוהבים באנגלית!"
-      },
-      {
-        "video_number": 11,
-        "title": "תחביבים",
-        "word": "Cycling",
-        "translation": "רכיבה על אופניים",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם סורגים? שתפו מה יצרתם באנגלית!"
+  },
+  {
+      "video_number": 11,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Cycling",
+      "translation": "רכיבה על אופניים",
+      "examples": [
           {
-            "sentence": "**Cycling** is good for health",
-            "translation": "רכיבה על אופניים טובה לבריאות"
+              "sentence": "**Cycling** is good exercise",
+              "translation": "רכיבה על אופניים היא התעמלות טובה"
           },
           {
-            "sentence": "They go **cycling** every morning",
-            "translation": "הם הולכים לרכוב על אופניים כל בוקר"
+              "sentence": "They go **cycling** every morning",
+              "translation": "הם יוצאים לרכיבה על אופניים כל בוקר"
           },
           {
-            "sentence": "He bought a new **cycling** helmet",
-            "translation": "הוא קנה קסדת רכיבה חדשה"
+              "sentence": "He enjoys **cycling** in the park",
+              "translation": "הוא נהנה לרכוב על אופניים בפארק"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איפה אתם אוהבים לרכוב באנגלית!"
-      },
-      {
-        "video_number": 12,
-        "title": "תחביבים",
-        "word": "Writing",
-        "translation": "כתיבה",
-        "examples": [
+      ],
+      "call_to_action": "איפה אתם אוהבים לרכוב על אופניים? שתפו באנגלית!"
+  },
+  {
+      "video_number": 12,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Swimming",
+      "translation": "שחייה",
+      "examples": [
           {
-            "sentence": "**Writing** helps express thoughts",
-            "translation": "כתיבה עוזרת להביע מחשבות"
+              "sentence": "**Swimming** is her favorite sport",
+              "translation": "שחייה היא הספורט המועדף עליה"
           },
           {
-            "sentence": "She is **writing** a novel",
-            "translation": "היא כותבת רומן"
+              "sentence": "He goes **swimming** at the beach",
+              "translation": "הוא הולך לשחות בחוף הים"
           },
           {
-            "sentence": "He enjoys **writing** poetry",
-            "translation": "הוא נהנה לכתוב שירה"
+              "sentence": "They enjoy **swimming** together",
+              "translation": "הם נהנים לשחות יחד"
           }
-        ],
-        "call_to_action": "שתפו בתגובות אם אתם כותבים באנגלית!"
-      },
-      {
-        "video_number": 13,
-        "title": "תחביבים",
-        "word": "Cooking",
-        "translation": "בישול",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם אוהבים לשחות? איפה? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 13,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Collecting",
+      "translation": "איסוף",
+      "examples": [
           {
-            "sentence": "They are hosting a **cooking** class",
-            "translation": "הם מארחים שיעור בישול"
+              "sentence": "She enjoys **collecting** stamps",
+              "translation": "היא נהנית לאסוף בולים"
           },
           {
-            "sentence": "She loves **cooking** for her family",
-            "translation": "היא אוהבת לבשל למשפחתה"
+              "sentence": "**Collecting** coins is his hobby",
+              "translation": "איסוף מטבעות הוא התחביב שלו"
           },
           {
-            "sentence": "**Cooking** can be an art",
-            "translation": "בישול יכול להיות אמנות"
+              "sentence": "They have been **collecting** antiques for years",
+              "translation": "הם אוספים עתיקות כבר שנים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איזה מטבח אתם אוהבים באנגלית!"
-      },
-      {
-        "video_number": 14,
-        "title": "תחביבים",
-        "word": "Traveling",
-        "translation": "נסיעות",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם אוספים? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 14,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Gaming",
+      "translation": "משחקי מחשב",
+      "examples": [
           {
-            "sentence": "**Traveling** broadens the mind",
-            "translation": "נסיעות מרחיבות את האופקים"
+              "sentence": "**Gaming** is popular among teenagers",
+              "translation": "משחקי מחשב פופולריים בקרב בני נוער"
           },
           {
-            "sentence": "They are **traveling** to new countries",
-            "translation": "הם נוסעים למדינות חדשות"
+              "sentence": "He spends his evenings **gaming** with friends",
+              "translation": "הוא מבלה את ערבייו במשחקים עם חברים"
           },
           {
-            "sentence": "She enjoys **traveling** alone",
-            "translation": "היא נהנית לנסוע לבד"
+              "sentence": "She enjoys **gaming** on her console",
+              "translation": "היא נהנית לשחק בקונסולה שלה"
           }
-        ],
-        "call_to_action": "כתבו בתגובות לאן הייתם רוצים לנסוע באנגלית!"
-      },
-      {
-        "video_number": 15,
-        "title": "תחביבים",
-        "word": "Swimming",
-        "translation": "שחייה",
-        "examples": [
+      ],
+      "call_to_action": "מה המשחק האהוב עליכם? שתפו בתגובות באנגלית!"
+  },
+  {
+      "video_number": 15,
+      "title": "תחביבים ופעילויות פנאי",
+      "word": "Traveling",
+      "translation": "נסיעה",
+      "examples": [
           {
-            "sentence": "**Swimming** is great exercise",
-            "translation": "שחייה היא פעילות גופנית מצוינת"
+              "sentence": "**Traveling** allows you to see new places",
+              "translation": "נסיעה מאפשרת לך לראות מקומות חדשים"
           },
           {
-            "sentence": "He goes **swimming** every weekend",
-            "translation": "הוא הולך לשחות כל סוף שבוע"
+              "sentence": "They love **traveling** around the world",
+              "translation": "הם אוהבים לנסוע ברחבי העולם"
           },
           {
-            "sentence": "She teaches **swimming** to children",
-            "translation": "היא מלמדת שחייה לילדים"
+              "sentence": "She writes a blog about her **traveling** experiences",
+              "translation": "היא כותבת בלוג על חוויות הנסיעה שלה"
           }
-        ],
-        "call_to_action": "שתפו בתגובות אם אתם אוהבים לשחות באנגלית!"
-      }
-    ]
+      ],
+      "call_to_action": "מה היעד הבא שלכם לטיול? כתבו לנו באנגלית!"
   }
-  
+]

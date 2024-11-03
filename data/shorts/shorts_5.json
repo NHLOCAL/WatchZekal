@@ -1,321 +1,317 @@
-{
-    "נושא 5": "בריאות ורפואה",
-    "סרטונים": [
-      {
-        "video_number": 1,
-        "title": "בריאות",
-        "word": "Exercise",
-        "translation": "התעמלות",
-        "examples": [
+[
+  {
+      "video_number": 1,
+      "title": "בריאות ורפואה",
+      "word": "Exercise",
+      "translation": "התעמלות",
+      "examples": [
           {
-            "sentence": "**Exercise** is important for health",
-            "translation": "התעמלות חשובה לבריאות"
+              "sentence": "**Exercise** is important for health",
+              "translation": "התעמלות חשובה לבריאות"
           },
           {
-            "sentence": "She does **exercise** every morning",
-            "translation": "היא מתעמלת כל בוקר"
+              "sentence": "He does **exercise** every morning",
+              "translation": "הוא עושה התעמלות כל בוקר"
           },
           {
-            "sentence": "**Exercising** keeps you fit",
-            "translation": "התעמלות שומרת אותך בכושר"
+              "sentence": "They recommend regular **exercise**",
+              "translation": "הם ממליצים על התעמלות סדירה"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איזה סוג התעמלות אתם עושים באנגלית!"
-      },
-      {
-        "video_number": 2,
-        "title": "בריאות",
-        "word": "Nutrition",
-        "translation": "תזונה",
-        "examples": [
+      ],
+      "call_to_action": "איך אתם מתעמלים? שתפו את שגרת הכושר שלכם באנגלית!"
+  },
+  {
+      "video_number": 2,
+      "title": "בריאות ורפואה",
+      "word": "Nutrition",
+      "translation": "תזונה",
+      "examples": [
           {
-            "sentence": "Good **nutrition** keeps you strong",
-            "translation": "תזונה טובה שומרת עליך חזק"
+              "sentence": "Good **nutrition** keeps you strong",
+              "translation": "תזונה טובה שומרת אותך חזק"
           },
           {
-            "sentence": "He studies **nutrition** at university",
-            "translation": "הוא לומד תזונה באוניברסיטה"
+              "sentence": "She studies **nutrition** at university",
+              "translation": "היא לומדת תזונה באוניברסיטה"
           },
           {
-            "sentence": "**Nutritionists** help plan diets",
-            "translation": "תזונאים עוזרים לתכנן דיאטות"
+              "sentence": "They focus on proper **nutrition** for athletes",
+              "translation": "הם מתמקדים בתזונה נכונה לספורטאים"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה אתם אוכלים לבריאות טובה באנגלית!"
-      },
-      {
-        "video_number": 3,
-        "title": "בריאות",
-        "word": "Medicine",
-        "translation": "תרופה",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם אוכלים כדי לשמור על בריאותכם? כתבו לנו באנגלית!"
+  },
+  {
+      "video_number": 3,
+      "title": "בריאות ורפואה",
+      "word": "Medicine",
+      "translation": "תרופה",
+      "examples": [
           {
-            "sentence": "He took **medicine** for his cold",
-            "translation": "הוא לקח תרופה להצטננות"
+              "sentence": "He took **medicine** for his cold",
+              "translation": "הוא לקח תרופה להצטננות שלו"
           },
           {
-            "sentence": "**Medicine** should be taken carefully",
-            "translation": "תרופה יש לקחת בזהירות"
+              "sentence": "The doctor prescribed a new **medicine**",
+              "translation": "הרופא רשם תרופה חדשה"
           },
           {
-            "sentence": "She studies **medicine** to become a doctor",
-            "translation": "היא לומדת רפואה כדי להיות רופאה"
+              "sentence": "**Medicine** can help you recover",
+              "translation": "תרופה יכולה לעזור לך להחלים"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איך אתם נשארים בריאים באנגלית!"
-      },
-      {
-        "video_number": 4,
-        "title": "בריאות",
-        "word": "Allergy",
-        "translation": "אלרגיה",
-        "examples": [
+      ],
+      "call_to_action": "מה דעתכם על תרופות טבעיות? שתפו באנגלית!"
+  },
+  {
+      "video_number": 4,
+      "title": "בריאות ורפואה",
+      "word": "Allergy",
+      "translation": "אלרגיה",
+      "examples": [
           {
-            "sentence": "She has an **allergy** to nuts",
-            "translation": "יש לה אלרגיה לאגוזים"
+              "sentence": "She has an **allergy** to nuts",
+              "translation": "יש לה אלרגיה לאגוזים"
           },
           {
-            "sentence": "**Allergies** can cause sneezing",
-            "translation": "אלרגיות יכולות לגרום להתעטשות"
+              "sentence": "He carries medicine for his **allergy**",
+              "translation": "הוא נושא תרופה לאלרגיה שלו"
           },
           {
-            "sentence": "He carries medicine for his **allergy**",
-            "translation": "הוא נושא תרופה לאלרגיה שלו"
+              "sentence": "**Allergies** can be serious",
+              "translation": "אלרגיות יכולות להיות חמורות"
           }
-        ],
-        "call_to_action": "כתבו בתגובות אם יש לכם אלרגיות באנגלית!"
-      },
-      {
-        "video_number": 5,
-        "title": "בריאות",
-        "word": "Therapy",
-        "translation": "טיפול",
-        "examples": [
+      ],
+      "call_to_action": "האם יש לכם אלרגיה למשהו? ספרו לנו באנגלית!"
+  },
+  {
+      "video_number": 5,
+      "title": "בריאות ורפואה",
+      "word": "Therapy",
+      "translation": "טיפול",
+      "examples": [
           {
-            "sentence": "**Therapy** helped him recover",
-            "translation": "טיפול עזר לו להחלים"
+              "sentence": "**Therapy** helped him recover",
+              "translation": "טיפול עזר לו להחלים"
           },
           {
-            "sentence": "She goes to physical **therapy**",
-            "translation": "היא הולכת לטיפול פיזיותרפיה"
+              "sentence": "She goes to physical **therapy**",
+              "translation": "היא הולכת לפיזיותרפיה"
           },
           {
-            "sentence": "**Therapists** provide support",
-            "translation": "מטפלים מספקים תמיכה"
+              "sentence": "They started a new **therapy** program",
+              "translation": "הם התחילו תוכנית טיפול חדשה"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה דעתכם על טיפולים באנגלית!"
-      },
-      {
-        "video_number": 6,
-        "title": "בריאות",
-        "word": "Vaccine",
-        "translation": "חיסון",
-        "examples": [
+      ],
+      "call_to_action": "מה דעתכם על טיפולים אלטרנטיביים? שתפו באנגלית!"
+  },
+  {
+      "video_number": 6,
+      "title": "בריאות ורפואה",
+      "word": "Vaccine",
+      "translation": "חיסון",
+      "examples": [
           {
-            "sentence": "He received a **vaccine** for the flu",
-            "translation": "הוא קיבל חיסון לשפעת"
+              "sentence": "He received a **vaccine** against the flu",
+              "translation": "הוא קיבל חיסון נגד שפעת"
           },
           {
-            "sentence": "**Vaccines** prevent diseases",
-            "translation": "חיסונים מונעים מחלות"
+              "sentence": "**Vaccines** prevent diseases",
+              "translation": "חיסונים מונעים מחלות"
           },
           {
-            "sentence": "She is developing a new **vaccine**",
-            "translation": "היא מפתחת חיסון חדש"
+              "sentence": "She studied the effects of the **vaccine**",
+              "translation": "היא חקרה את השפעות החיסון"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה אתם יודעים על חיסונים באנגלית!"
-      },
-      {
-        "video_number": 7,
-        "title": "בריאות",
-        "word": "Doctor",
-        "translation": "רופא",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם חושבים על חיסונים? שתפו את דעתכם באנגלית!"
+  },
+  {
+      "video_number": 7,
+      "title": "בריאות ורפואה",
+      "word": "Diagnosis",
+      "translation": "אבחון",
+      "examples": [
           {
-            "sentence": "She visited the **doctor** for a check-up",
-            "translation": "היא ביקרה אצל הרופא לבדיקת בריאות"
+              "sentence": "The doctor gave a clear **diagnosis**",
+              "translation": "הרופא נתן אבחון ברור"
           },
           {
-            "sentence": "**Doctors** help people get better",
-            "translation": "רופאים עוזרים לאנשים להחלים"
+              "sentence": "**Diagnosis** is the first step to treatment",
+              "translation": "אבחון הוא הצעד הראשון לטיפול"
           },
           {
-            "sentence": "He wants to become a **doctor**",
-            "translation": "הוא רוצה להיות רופא"
+              "sentence": "She waited anxiously for the **diagnosis**",
+              "translation": "היא חיכתה בחרדה לאבחון"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איך אומרים רופא באנגלית!"
-      },
-      {
-        "video_number": 8,
-        "title": "בריאות",
-        "word": "Disease",
-        "translation": "מחלה",
-        "examples": [
+      ],
+      "call_to_action": "כמה חשוב לדעת את האבחנה הנכונה? שתפו באנגלית!"
+  },
+  {
+      "video_number": 8,
+      "title": "בריאות ורפואה",
+      "word": "Recovery",
+      "translation": "החלמה",
+      "examples": [
           {
-            "sentence": "**Diseases** can be prevented",
-            "translation": "מחלות ניתן למנוע"
+              "sentence": "He is on the road to **recovery**",
+              "translation": "הוא בדרך להחלמה"
           },
           {
-            "sentence": "He is fighting a rare **disease**",
-            "translation": "הוא נלחם במחלה נדירה"
+              "sentence": "Her **recovery** was faster than expected",
+              "translation": "ההחלמה שלה הייתה מהירה מהמצופה"
           },
           {
-            "sentence": "Research helps cure **diseases**",
-            "translation": "מחקר עוזר לרפא מחלות"
+              "sentence": "They celebrated his **recovery**",
+              "translation": "הם חגגו את החלמתו"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה אתם עושים כדי להישאר בריאים באנגלית!"
-      },
-      {
-        "video_number": 9,
-        "title": "בריאות",
-        "word": "Hospital",
-        "translation": "בית חולים",
-        "examples": [
+      ],
+      "call_to_action": "איך אתם מתמודדים עם החלמה ממחלה? שתפו באנגלית!"
+  },
+  {
+      "video_number": 9,
+      "title": "בריאות ורפואה",
+      "word": "Prevention",
+      "translation": "מניעה",
+      "examples": [
           {
-            "sentence": "He works at the **hospital**",
-            "translation": "הוא עובד בבית החולים"
+              "sentence": "**Prevention** is better than cure",
+              "translation": "מניעה עדיפה על טיפול"
           },
           {
-            "sentence": "She was admitted to the **hospital**",
-            "translation": "היא אושפזה בבית החולים"
+              "sentence": "They focus on disease **prevention**",
+              "translation": "הם מתמקדים במניעת מחלות"
           },
           {
-            "sentence": "**Hospitals** provide medical care",
-            "translation": "בתי חולים מספקים טיפול רפואי"
+              "sentence": "Healthy habits aid in **prevention**",
+              "translation": "הרגלים בריאים מסייעים במניעה"
           }
-        ],
-        "call_to_action": "שתפו בתגובות אם ביקרתם בבית חולים באנגלית!"
-      },
-      {
-        "video_number": 10,
-        "title": "בריאות",
-        "word": "Surgery",
-        "translation": "ניתוח",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם עושים כדי למנוע מחלות? שתפו באנגלית!"
+  },
+  {
+      "video_number": 10,
+      "title": "בריאות ורפואה",
+      "word": "Symptoms",
+      "translation": "תסמינים",
+      "examples": [
           {
-            "sentence": "He underwent **surgery** last week",
-            "translation": "הוא עבר ניתוח בשבוע שעבר"
+              "sentence": "She experienced flu-like **symptoms**",
+              "translation": "היא חוותה תסמינים דמויי שפעת"
           },
           {
-            "sentence": "**Surgery** can save lives",
-            "translation": "ניתוח יכול להציל חיים"
+              "sentence": "Recognizing **symptoms** is important",
+              "translation": "הכרת התסמינים חשובה"
           },
           {
-            "sentence": "She is a **surgery** nurse",
-            "translation": "היא אחות ניתוח"
+              "sentence": "He described his **symptoms** to the doctor",
+              "translation": "הוא תיאר את התסמינים שלו לרופא"
           }
-        ],
-        "call_to_action": "כתבו בתגובות מה אתם חושבים על ניתוחים באנגלית!"
-      },
-      {
-        "video_number": 11,
-        "title": "בריאות",
-        "word": "Symptom",
-        "translation": "תסמין",
-        "examples": [
+      ],
+      "call_to_action": "איך אתם מתמודדים עם תסמינים? שתפו איתנו באנגלית!"
+  },
+  {
+      "video_number": 11,
+      "title": "בריאות ורפואה",
+      "word": "Surgery",
+      "translation": "ניתוח",
+      "examples": [
           {
-            "sentence": "Fever is a common **symptom**",
-            "translation": "חום הוא תסמין נפוץ"
+              "sentence": "He had **surgery** on his knee",
+              "translation": "הוא עבר ניתוח בברך"
           },
           {
-            "sentence": "He described his **symptoms** to the doctor",
-            "translation": "הוא תיאר את התסמינים שלו לרופא"
+              "sentence": "**Surgery** can be life-saving",
+              "translation": "ניתוח יכול להציל חיים"
           },
           {
-            "sentence": "**Symptoms** help diagnose illnesses",
-            "translation": "תסמינים עוזרים לאבחן מחלות"
+              "sentence": "She is recovering after the **surgery**",
+              "translation": "היא מחלימה אחרי הניתוח"
           }
-        ],
-        "call_to_action": "שתפו בתגובות איך אתם מרגישים היום באנגלית!"
-      },
-      {
-        "video_number": 12,
-        "title": "בריאות",
-        "word": "Recovery",
-        "translation": "החלמה",
-        "examples": [
+      ],
+      "call_to_action": "האם עברתם ניתוח? איך הייתה החוויה? שתפו באנגלית!"
+  },
+  {
+      "video_number": 12,
+      "title": "בריאות ורפואה",
+      "word": "Prescription",
+      "translation": "מרשם",
+      "examples": [
           {
-            "sentence": "She is on the road to **recovery**",
-            "translation": "היא בדרך להחלמה"
+              "sentence": "The doctor gave her a **prescription**",
+              "translation": "הרופא נתן לה מרשם"
           },
           {
-            "sentence": "**Recovery** takes time",
-            "translation": "החלמה לוקחת זמן"
+              "sentence": "He filled the **prescription** at the pharmacy",
+              "translation": "הוא מילא את המרשם בבית המרקחת"
           },
           {
-            "sentence": "They celebrated his **recovery**",
-            "translation": "הם חגגו את החלמתו"
+              "sentence": "**Prescriptions** are required for some medicines",
+              "translation": "מרשמים נדרשים עבור חלק מהתרופות"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איך אתם מתאוששים ממחלה באנגלית!"
-      },
-      {
-        "video_number": 13,
-        "title": "בריאות",
-        "word": "Prevention",
-        "translation": "מניעה",
-        "examples": [
+      ],
+      "call_to_action": "האם אתם שומרים את המרשמים שלכם? שתפו באנגלית!"
+  },
+  {
+      "video_number": 13,
+      "title": "בריאות ורפואה",
+      "word": "Infection",
+      "translation": "זיהום",
+      "examples": [
           {
-            "sentence": "**Prevention** is better than cure",
-            "translation": "מניעה עדיפה על טיפול"
+              "sentence": "He got an **infection** after the injury",
+              "translation": "הוא קיבל זיהום לאחר הפציעה"
           },
           {
-            "sentence": "Vaccines are a form of **prevention**",
-            "translation": "חיסונים הם צורה של מניעה"
+              "sentence": "Antibiotics can treat bacterial **infections**",
+              "translation": "אנטיביוטיקה יכולה לטפל בזיהומים חיידקיים"
           },
           {
-            "sentence": "He believes in **disease prevention**",
-            "translation": "הוא מאמין במניעת מחלות"
+              "sentence": "They took measures to prevent **infection**",
+              "translation": "הם נקטו אמצעים למניעת זיהום"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איך אתם מונעים מחלות באנגלית!"
-      },
-      {
-        "video_number": 14,
-        "title": "בריאות",
-        "word": "Diagnosis",
-        "translation": "אבחנה",
-        "examples": [
+      ],
+      "call_to_action": "איך נמנעים מזיהומים? שתפו טיפים באנגלית!"
+  },
+  {
+      "video_number": 14,
+      "title": "בריאות ורפואה",
+      "word": "Wellness",
+      "translation": "בריאות כללית",
+      "examples": [
           {
-            "sentence": "Early **diagnosis** is important",
-            "translation": "אבחנה מוקדמת חשובה"
+              "sentence": "They promote **wellness** through healthy living",
+              "translation": "הם מקדמים בריאות כללית דרך חיים בריאים"
           },
           {
-            "sentence": "She received a **diagnosis** from the specialist",
-            "translation": "היא קיבלה אבחנה מהמומחה"
+              "sentence": "She attends a **wellness** retreat",
+              "translation": "היא משתתפת בריטריט בריאות"
           },
           {
-            "sentence": "**Diagnosis** helps in treatment",
-            "translation": "אבחנה עוזרת בטיפול"
+              "sentence": "**Wellness** includes both body and mind",
+              "translation": "בריאות כללית כוללת את הגוף והנפש"
           }
-        ],
-        "call_to_action": "שתפו בתגובות מה אתם יודעים על אבחנות רפואיות באנגלית!"
-      },
-      {
-        "video_number": 15,
-        "title": "בריאות",
-        "word": "Health",
-        "translation": "בריאות",
-        "examples": [
+      ],
+      "call_to_action": "מה אתם עושים למען הבריאות הכללית שלכם? שתפו באנגלית!"
+  },
+  {
+      "video_number": 15,
+      "title": "בריאות ורפואה",
+      "word": "Stress",
+      "translation": "לחץ",
+      "examples": [
           {
-            "sentence": "**Health** is wealth",
-            "translation": "בריאות היא עושר"
+              "sentence": "**Stress** can affect your health",
+              "translation": "לחץ יכול להשפיע על בריאותך"
           },
           {
-            "sentence": "She takes care of her **health**",
-            "translation": "היא שומרת על הבריאות שלה"
+              "sentence": "He tries to reduce **stress** by meditating",
+              "translation": "הוא מנסה להפחית לחץ באמצעות מדיטציה"
           },
           {
-            "sentence": "Good **health** leads to happiness",
-            "translation": "בריאות טובה מובילה לאושר"
+              "sentence": "They manage **stress** through exercise",
+              "translation": "הם מנהלים לחץ דרך התעמלות"
           }
-        ],
-        "call_to_action": "כתבו בתגובות איך אתם שומרים על הבריאות שלכם באנגלית!"
-      }
-    ]
+      ],
+      "call_to_action": "איך אתם מתמודדים עם לחץ? שתפו שיטות באנגלית!"
   }
-  
+]
