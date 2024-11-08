@@ -1,7 +1,7 @@
 [
   {
       "video_number": 1,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Vegetarian",
       "translation": "צמחוני",
       "examples": [
@@ -22,7 +22,7 @@
   },
   {
       "video_number": 2,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Recipe",
       "translation": "מתכון",
       "examples": [
@@ -43,7 +43,7 @@
   },
   {
       "video_number": 3,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Ingredient",
       "translation": "מרכיב",
       "examples": [
@@ -64,7 +64,7 @@
   },
   {
       "video_number": 4,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Flavor",
       "translation": "טעם",
       "examples": [
@@ -85,7 +85,7 @@
   },
   {
       "video_number": 5,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Cuisine",
       "translation": "מטבח (סגנון בישול)",
       "examples": [
@@ -106,7 +106,7 @@
   },
   {
       "video_number": 6,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Gourmet",
       "translation": "גורמה",
       "examples": [
@@ -127,7 +127,7 @@
   },
   {
       "video_number": 7,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Appetizer",
       "translation": "מתאבן",
       "examples": [
@@ -148,7 +148,7 @@
   },
   {
       "video_number": 8,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Dessert",
       "translation": "קינוח",
       "examples": [
@@ -169,7 +169,7 @@
   },
   {
       "video_number": 9,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Beverage",
       "translation": "משקה",
       "examples": [
@@ -190,7 +190,7 @@
   },
   {
       "video_number": 10,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Organic",
       "translation": "אורגני",
       "examples": [
@@ -211,7 +211,7 @@
   },
   {
       "video_number": 11,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Fermentation",
       "translation": "תסיסה",
       "examples": [
@@ -232,7 +232,7 @@
   },
   {
       "video_number": 12,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Umami",
       "translation": "אומאמי",
       "examples": [
@@ -253,7 +253,7 @@
   },
   {
       "video_number": 13,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Gluten-free",
       "translation": "ללא גלוטן",
       "examples": [
@@ -274,7 +274,7 @@
   },
   {
       "video_number": 14,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Vegan",
       "translation": "טבעוני",
       "examples": [
@@ -295,7 +295,7 @@
   },
   {
       "video_number": 15,
-      "title": "מזון ומשקאות מתקדמים",
+      "title": "מזון ומשקאות",
       "word": "Culinary",
       "translation": "קולינרי",
       "examples": [
