@@ -61,6 +61,7 @@ LOGO_PATH = os.path.join(LOGOS_DIR, 'logo_colored.png')
 LINE_SPACING_NORMAL = 60  # רווח רגיל בין השורות
 LINE_SPACING_WITHIN_SENTENCE = 40  # רווח קטן בין שורות בתוך אותו משפט
 LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION = 60  # רווח גדול בין משפט לתרגומו
+# הסרתי את LINE_SPACING_INTRO_SUBTITLE כדי להשתמש ברווח רגיל לכל השורות
 
 # נתיב למוזיקת רקע (אם יש)
 BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')  # ודא שהקובץ קיים
@@ -196,7 +197,7 @@ class ImageCreator:
                 logging.error(f"שגיאה בטעינת תמונת הרקע: {e}")
                 img = Image.new('RGB', (WIDTH, HEIGHT), color=(255, 255, 255))
         else:
-            if line_styles and 'intro' in line_styles:
+            if line_styles and 'intro_subtitle' in line_styles:
                 # אם אין תמונה מתאימה, להשתמש בצבע רקע ברירת מחדל
                 img = Image.new('RGB', (WIDTH, HEIGHT), color=(255, 255, 255))
             elif line_styles:
@@ -294,10 +295,12 @@ class ImageCreator:
                                     segment_style = style_definitions['sentence_bold']
                                 elif processed_style['style_name'] == 'call_to_action':
                                     segment_style = style_definitions['call_to_action']
+                                elif processed_style['style_name'] == 'intro_subtitle':
+                                    segment_style = style_definitions['intro_subtitle']
                                 else:
                                     segment_style = style_definitions['word']
                             except KeyError:
-                                logging.error(f"סגנון 'sentence_bold', 'word' או 'call_to_action' לא נמצא בקובץ העיצובים.")
+                                logging.error(f"סגנון 'sentence_bold', 'word', 'call_to_action' או 'intro_subtitle' לא נמצא בקובץ העיצובים.")
                                 raise
                             segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
                             segment_color = tuple(segment_style['text_color'])
@@ -309,15 +312,13 @@ class ImageCreator:
                         bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
                         width = bbox[2] - bbox[0]
                         height = bbox[3] - bbox[1]
-                        line_info.append((segment_text, width, height, segment_font, segment_color))
+                        line_info.append((segment_text, width, height, segment_font, segment_color, segment_style))
                         if height > line_height:
                             line_height = height
                     processed_lines.append((line_info, line_height, processed_style))
                     # הגדרת רווח בהתאם לסגנון
-                    if processed_style['style_name'] == 'sentence':
-                        spacing = LINE_SPACING_WITHIN_SENTENCE
-                    elif processed_style['style_name'] == 'translation':
-                        spacing = LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION
+                    if processed_style['style_name'] in ['sentence', 'translation', 'intro_subtitle']:
+                        spacing = LINE_SPACING_NORMAL  # רווח רגיל לכל הסגנונות
                     else:
                         spacing = LINE_SPACING_NORMAL
                     total_height += line_height + spacing  # רווח בין השורות
@@ -352,15 +353,13 @@ class ImageCreator:
                         bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
                         width = bbox[2] - bbox[0]
                         height = bbox[3] - bbox[1]
-                        line_info.append((segment_text, width, height, segment_font, segment_color))
+                        line_info.append((segment_text, width, height, segment_font, segment_color, segment_style))
                         if height > line_height:
                             line_height = height
                     processed_lines.append((line_info, line_height, processed_style))
                     # הגדרת רווח בהתאם לסגנון
-                    if processed_style['style_name'] == 'sentence':
-                        spacing = LINE_SPACING_WITHIN_SENTENCE
-                    elif processed_style['style_name'] == 'translation':
-                        spacing = LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION
+                    if processed_style['style_name'] in ['sentence', 'translation']:
+                        spacing = LINE_SPACING_NORMAL  # רווח רגיל לכל הסגנונות
                     else:
                         spacing = LINE_SPACING_NORMAL
                     total_height += line_height + spacing  # רווח בין השורות
@@ -377,7 +376,7 @@ class ImageCreator:
             # חישוב רוחב השורה הכולל
             line_width = sum([segment[1] for segment in line_info])
             x_text = (WIDTH - line_width) / 2
-            for segment_text, width, height, segment_font, segment_color in line_info:
+            for segment_text, width, height, segment_font, segment_color, segment_style in line_info:
                 # בדיקת סגנון לטקסט עם זוהר (לדוגמה: 'topic', 'video_number', 'call_to_action')
                 if processed_style['style_name'] in ['topic', 'video_number', 'call_to_action']:
                     # הגדרת זוהר לבן עבה יותר
@@ -397,6 +396,14 @@ class ImageCreator:
                             segment_text, font=segment_font, fill=glow_color
                         )
                 # ציור הטקסט הרגיל במרכז הזוהר
+                if 'outline_color' in segment_style and 'outline_width' in segment_style:
+                    outline_color = tuple(segment_style['outline_color'])
+                    outline_width = segment_style['outline_width']
+                    # ציור מסגרת בטקסט על ידי ציור הטקסט עם הזזות
+                    for dx in range(-outline_width, outline_width + 1):
+                        for dy in range(-outline_width, outline_width + 1):
+                            if dx != 0 or dy != 0:
+                                draw.text((x_text + dx, current_y + dy + (line_height - height) / 2), segment_text, font=segment_font, fill=outline_color)
                 draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
                 x_text += width  # הזזת מיקום ה-X לחלק הבא
 
@@ -602,24 +609,27 @@ class VideoCreator:
             logging.error(f"שגיאה ביצירת קליפ הלוגו: {e}")
             return None
 
-    def create_intro_clip(self, title, video_number, background_image_path):
+    def create_intro_clip(self, intro_subtitle, title, video_number, background_image_path):
         try:
-            text_lines_intro = [title, f"#{video_number}"]
-            line_styles_intro = ['topic', 'video_number']
+            # סדר השורות: intro_subtitle מעל, אחריו title ומספר הסרטון
+            text_lines_intro = [intro_subtitle, title, f"#{video_number}"]
+            line_styles_intro = ['intro_subtitle', 'topic', 'video_number']
 
-            clip_intro = self.create_image_clip(text_lines_intro, 'topic', line_styles_intro, background_image_path)
+            clip_intro = self.create_image_clip(text_lines_intro, 'intro_subtitle', line_styles_intro, background_image_path)
 
-            # יצירת אודיו (אופציונלי)
+            # יצירת אודיו רק לשם הנושא ומספר הסרטון, לא למשפט הנוסף
             audio_tasks = [
                 (title, 'iw'),
                 (f"מספר {video_number}", 'iw')
+                # לא מוסיפים את המשפט "למד מילים חדשות בשישים שניות"
             ]
             audio_results = self.audio_creator.create_audios(audio_tasks)
             clip_intro = self.create_clip(
                 clip_intro,
                 [
                     audio_results.get((title, 'iw'), ""),
-                    audio_results.get((f"מספר {video_number}", 'iw'), ""),
+                    audio_results.get((f"מספר {video_number}", 'iw'), "")
+                    # לא מוסיפים את הנתיב לאודיו של המשפט הנוסף
                 ],
                 min_duration=3  # משך מינימלי
             )
@@ -680,6 +690,7 @@ class VideoAssemblerShorts:
             translation = video_data['translation']
             examples = video_data['examples']
             call_to_action = video_data.get('call_to_action', '')
+            intro_subtitle_text = "למד מילים חדשות בשישים שניות"  # המשפט הנוסף
 
             logging.info(f"מעבד סרטון מספר {video_number}: {title}")
 
@@ -695,8 +706,8 @@ class VideoAssemblerShorts:
             clips = []
 
             try:
-                # יצירת קליפ פתיחה עם שם הנושא ומספר הסרטון
-                intro_clip = self.video_creator.create_intro_clip(title, video_number, background_image_path)
+                # יצירת קליפ פתיחה עם intro_subtitle, שם הנושא ומספר הסרטון
+                intro_clip = self.video_creator.create_intro_clip(intro_subtitle_text, title, video_number, background_image_path)
                 if intro_clip:
                     clips.append(intro_clip)
 
@@ -856,7 +867,8 @@ def main():
             "call_to_action",
             "topic",
             "video_number",
-            "logo"  # סגנון חדש עבור הלוגו
+            "logo",
+            "intro_subtitle"  # סגנון חדש עבור משפט הפתיחה הנוסף
         }
 
         missing_styles = required_styles - set(style_definitions.keys())
