@@ -501,8 +501,8 @@ class VideoCreator:
         return image_clip
 
     def slide_transition(self, clip1, clip2, duration=1):
-        # בחר כיוון אקראי
-        direction = random.choice(['left', 'right', 'up', 'down'])
+        # בחר כיוון משמאל לימין או מימין לשמאל בלבד
+        direction = random.choice(['left', 'right'])
 
         # הגדר את תנועת הקליפים בהתאם לכיוון
         if direction == 'left':
@@ -511,12 +511,6 @@ class VideoCreator:
         elif direction == 'right':
             move_out = lambda t: (VIDEO_SIZE[0] * t / duration, 'center')
             move_in = lambda t: (-VIDEO_SIZE[0] + VIDEO_SIZE[0] * t / duration, 'center')
-        elif direction == 'up':
-            move_out = lambda t: ('center', -VIDEO_SIZE[1] * t / duration)
-            move_in = lambda t: ('center', VIDEO_SIZE[1] - VIDEO_SIZE[1] * t / duration)
-        elif direction == 'down':
-            move_out = lambda t: ('center', VIDEO_SIZE[1] * t / duration)
-            move_in = lambda t: ('center', -VIDEO_SIZE[1] + VIDEO_SIZE[1] * t / duration)
 
         # קטעים עם אנימציית מיקום
         clip1_moving = clip1.set_position(move_out).set_duration(duration)
