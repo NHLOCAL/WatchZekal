@@ -61,7 +61,7 @@ LOGO_PATH = os.path.join(LOGOS_DIR, 'logo_colored.png')
 LINE_SPACING_NORMAL = 60  # רווח רגיל בין השורות
 LINE_SPACING_WITHIN_SENTENCE = 40  # רווח קטן בין שורות בתוך אותו משפט
 LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION = 60  # רווח גדול בין משפט לתרגומו
-# הסרתי את LINE_SPACING_INTRO_SUBTITLE כדי להשתמש ברווח רגיל לכל השורות
+# הסרנו את LINE_SPACING_INTRO_SUBTITLE כדי להשתמש ברווח רגיל לכל השורות
 
 # נתיב למוזיקת רקע (אם יש)
 BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')  # ודא שהקובץ קיים
@@ -257,35 +257,115 @@ class ImageCreator:
         # הגדרת רוחב מקסימלי לטקסט (לדוגמה: רוחב התמונה פחות שוליים)
         MAX_TEXT_WIDTH = WIDTH - 100
 
-        # חישוב גובה כולל
-        total_height = 0
-        processed_lines = []
+        # חלוקת השורות ל-intro_subtitle ולשאר השורות
+        intro_subtitle_lines = []
+        intro_subtitle_styles = []
+        other_lines = []
+        other_styles = []
+
         for i, line in enumerate(text_lines):
-            if line_styles and i < len(line_styles):
-                style_name = line_styles[i]
-                try:
-                    current_style = style_definitions[style_name]
-                except KeyError:
-                    logging.error(f"סגנון '{style_name}' לא נמצא בקובץ העיצובים.")
-                    raise
+            if line_styles and i < len(line_styles) and line_styles[i] == 'intro_subtitle':
+                intro_subtitle_lines.append(line)
+                intro_subtitle_styles.append('intro_subtitle')
             else:
-                try:
-                    current_style = style_definitions['normal']
-                except KeyError:
-                    logging.error("סגנון 'normal' לא נמצא בקובץ העיצובים.")
-                    raise
+                other_lines.append(line)
+                if line_styles and i < len(line_styles):
+                    other_styles.append(line_styles[i])
+                else:
+                    other_styles.append('normal')
+
+        # חישוב גובה כולל ל-intro_subtitle ולשאר השורות
+        processed_intro = []
+        total_height_intro = 0
+        for i, line in enumerate(intro_subtitle_lines):
+            style_name = intro_subtitle_styles[i] if i < len(intro_subtitle_styles) else 'normal'
+            try:
+                current_style = style_definitions[style_name]
+            except KeyError:
+                logging.error(f"סגנון '{style_name}' לא נמצא בקובץ העיצובים.")
+                raise
 
             font = self.get_font(current_style['font_path'], current_style['font_size'])
 
             if is_hebrew(line):
-                # פיצול שורות במידת הצורך לפני עיבוד
                 split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
                 for split_line in split_lines:
                     processed_line = process_hebrew_text(split_line)
                     segments = self.parse_bold(processed_line)
                     processed_style = current_style.copy()
-                    processed_style['style_name'] = style_name if line_styles and i < len(line_styles) else 'normal'
-                    
+                    line_info = []
+                    line_height = 0
+                    for segment_text, is_bold in segments:
+                        if is_bold:
+                            try:
+                                segment_style = style_definitions['intro_subtitle']
+                            except KeyError:
+                                logging.error(f"סגנון 'intro_subtitle' לא נמצא בקובץ העיצובים.")
+                                raise
+                            segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
+                            segment_color = tuple(segment_style['text_color'])
+                        else:
+                            segment_style = current_style
+                            segment_font = font
+                            segment_color = tuple(segment_style['text_color'])
+
+                        bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
+                        width = bbox[2] - bbox[0]
+                        height = bbox[3] - bbox[1]
+                        line_info.append((segment_text, width, height, segment_font, segment_color, segment_style))
+                        if height > line_height:
+                            line_height = height
+                    processed_intro.append((line_info, line_height, processed_style))
+                    total_height_intro += line_height + LINE_SPACING_NORMAL
+            else:
+                split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
+                for split_line in split_lines:
+                    processed_line = split_line
+                    processed_style = current_style.copy()
+                    line_info = []
+                    line_height = 0
+                    segments = self.parse_bold(processed_line)
+                    for segment_text, is_bold in segments:
+                        if is_bold:
+                            try:
+                                segment_style = style_definitions['intro_subtitle']
+                            except KeyError:
+                                logging.error(f"סגנון 'intro_subtitle' לא נמצא בקובץ העיצובים.")
+                                raise
+                            segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
+                            segment_color = tuple(segment_style['text_color'])
+                        else:
+                            segment_style = current_style
+                            segment_font = font
+                            segment_color = tuple(segment_style['text_color'])
+
+                        bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
+                        width = bbox[2] - bbox[0]
+                        height = bbox[3] - bbox[1]
+                        line_info.append((segment_text, width, height, segment_font, segment_color, segment_style))
+                        if height > line_height:
+                            line_height = height
+                    processed_intro.append((line_info, line_height, processed_style))
+                    total_height_intro += line_height + LINE_SPACING_NORMAL
+
+        processed_other = []
+        total_height_other = 0
+        for i, line in enumerate(other_lines):
+            style_name = other_styles[i] if i < len(other_styles) else 'normal'
+            try:
+                current_style = style_definitions[style_name]
+            except KeyError:
+                logging.error(f"סגנון '{style_name}' לא נמצא בקובץ העיצובים.")
+                raise
+
+            font = self.get_font(current_style['font_path'], current_style['font_size'])
+
+            if is_hebrew(line):
+                split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
+                for split_line in split_lines:
+                    processed_line = process_hebrew_text(split_line)
+                    segments = self.parse_bold(processed_line)
+                    processed_style = current_style.copy()
                     line_info = []
                     line_height = 0
                     for segment_text, is_bold in segments:
@@ -295,12 +375,10 @@ class ImageCreator:
                                     segment_style = style_definitions['sentence_bold']
                                 elif processed_style['style_name'] == 'call_to_action':
                                     segment_style = style_definitions['call_to_action']
-                                elif processed_style['style_name'] == 'intro_subtitle':
-                                    segment_style = style_definitions['intro_subtitle']
                                 else:
                                     segment_style = style_definitions['word']
                             except KeyError:
-                                logging.error(f"סגנון 'sentence_bold', 'word', 'call_to_action' או 'intro_subtitle' לא נמצא בקובץ העיצובים.")
+                                logging.error(f"סגנון 'sentence_bold', 'word', 'call_to_action' לא נמצא בקובץ העיצובים.")
                                 raise
                             segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
                             segment_color = tuple(segment_style['text_color'])
@@ -308,31 +386,27 @@ class ImageCreator:
                             segment_style = current_style
                             segment_font = font
                             segment_color = tuple(segment_style['text_color'])
-                        
+
                         bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
                         width = bbox[2] - bbox[0]
                         height = bbox[3] - bbox[1]
                         line_info.append((segment_text, width, height, segment_font, segment_color, segment_style))
                         if height > line_height:
                             line_height = height
-                    processed_lines.append((line_info, line_height, processed_style))
-                    # הגדרת רווח בהתאם לסגנון
-                    if processed_style['style_name'] in ['sentence', 'translation', 'intro_subtitle']:
+                    processed_other.append((line_info, line_height, processed_style))
+                    if processed_style['style_name'] in ['sentence', 'translation']:
                         spacing = LINE_SPACING_NORMAL  # רווח רגיל לכל הסגנונות
                     else:
                         spacing = LINE_SPACING_NORMAL
-                    total_height += line_height + spacing  # רווח בין השורות
+                    total_height_other += line_height + spacing
             else:
-                # פיצול שורות במידת הצורך לפני עיבוד
                 split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
                 for split_line in split_lines:
                     processed_line = split_line
                     processed_style = current_style.copy()
-                    processed_style['style_name'] = style_name if line_styles and i < len(line_styles) else 'normal'
-                    segments = self.parse_bold(processed_line)
-                    
                     line_info = []
                     line_height = 0
+                    segments = self.parse_bold(processed_line)
                     for segment_text, is_bold in segments:
                         if is_bold:
                             try:
@@ -349,30 +423,56 @@ class ImageCreator:
                             segment_style = current_style
                             segment_font = font
                             segment_color = tuple(segment_style['text_color'])
-                        
+
                         bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
                         width = bbox[2] - bbox[0]
                         height = bbox[3] - bbox[1]
                         line_info.append((segment_text, width, height, segment_font, segment_color, segment_style))
                         if height > line_height:
                             line_height = height
-                    processed_lines.append((line_info, line_height, processed_style))
-                    # הגדרת רווח בהתאם לסגנון
+                    processed_other.append((line_info, line_height, processed_style))
                     if processed_style['style_name'] in ['sentence', 'translation']:
                         spacing = LINE_SPACING_NORMAL  # רווח רגיל לכל הסגנונות
                     else:
                         spacing = LINE_SPACING_NORMAL
-                    total_height += line_height + spacing  # רווח בין השורות
+                    total_height_other += line_height + spacing
 
         # הסרת הרווח הנוסף בסוף
-        if processed_lines:
-            total_height -= spacing
+        if processed_intro:
+            total_height_intro -= LINE_SPACING_NORMAL
+        if processed_other:
+            total_height_other -= LINE_SPACING_NORMAL
 
-        # מיקום ההתחלה במרכז אנכי
-        current_y = (HEIGHT - total_height) / 2
+        # חישוב מיקום ההתחלה
+        # מיקום השורות האחרות במרכז
+        current_y_other = (HEIGHT - total_height_other) / 2
 
-        # ציור הטקסט
-        for line_info, line_height, processed_style in processed_lines:
+        # מיקום intro_subtitle מעל
+        current_y_intro = current_y_other - total_height_intro - LINE_SPACING_NORMAL
+
+        # ציור intro_subtitle
+        for line_info, line_height, processed_style in processed_intro:
+            # חישוב רוחב השורה הכולל
+            line_width = sum([segment[1] for segment in line_info])
+            x_text = (WIDTH - line_width) / 2
+            for segment_text, width, height, segment_font, segment_color, segment_style in line_info:
+                # ציור המסגרת אם קיים
+                if 'outline_color' in segment_style and 'outline_width' in segment_style:
+                    outline_color = tuple(segment_style['outline_color'])
+                    outline_width = segment_style['outline_width']
+                    # ציור מסגרת בטקסט על ידי ציור הטקסט עם הזזות
+                    for dx in range(-outline_width, outline_width + 1):
+                        for dy in range(-outline_width, outline_width + 1):
+                            if dx != 0 or dy != 0:
+                                draw.text((x_text + dx, current_y_intro + dy + (line_height - height) / 2), segment_text, font=segment_font, fill=outline_color)
+                draw.text((x_text, current_y_intro + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
+                x_text += width  # הזזת מיקום ה-X לחלק הבא
+
+            # קביעת רווח בין השורות
+            current_y_intro += line_height + LINE_SPACING_NORMAL  # רווח רגיל בין השורות
+
+        # ציור השורות האחרות במרכז
+        for line_info, line_height, processed_style in processed_other:
             # חישוב רוחב השורה הכולל
             line_width = sum([segment[1] for segment in line_info])
             x_text = (WIDTH - line_width) / 2
@@ -381,7 +481,7 @@ class ImageCreator:
                 if processed_style['style_name'] in ['topic', 'video_number', 'call_to_action']:
                     # הגדרת זוהר לבן עבה יותר
                     glow_color = (255, 255, 255)
-                    # הגדרת היסטות רבות יותר כדי ליצור זוהר עבה
+                    # הגדרת offset רבות יותר כדי ליצור זוהר עבה
                     offsets = [
                         (-3, -3), (-3, 0), (-3, 3),
                         (0, -3), (0, 3),
@@ -392,10 +492,10 @@ class ImageCreator:
                     # ציור הזוהר מסביב לטקסט
                     for offset in offsets:
                         draw.text(
-                            (x_text + offset[0], current_y + (line_height - height) / 2 + offset[1]), 
+                            (x_text + offset[0], current_y_other + (line_height - height) / 2 + offset[1]), 
                             segment_text, font=segment_font, fill=glow_color
                         )
-                # ציור הטקסט הרגיל במרכז הזוהר
+                # ציור המסגרת אם קיים
                 if 'outline_color' in segment_style and 'outline_width' in segment_style:
                     outline_color = tuple(segment_style['outline_color'])
                     outline_width = segment_style['outline_width']
@@ -403,12 +503,13 @@ class ImageCreator:
                     for dx in range(-outline_width, outline_width + 1):
                         for dy in range(-outline_width, outline_width + 1):
                             if dx != 0 or dy != 0:
-                                draw.text((x_text + dx, current_y + dy + (line_height - height) / 2), segment_text, font=segment_font, fill=outline_color)
-                draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
+                                draw.text((x_text + dx, current_y_other + dy + (line_height - height) / 2), segment_text, font=segment_font, fill=outline_color)
+                # ציור הטקסט הרגיל במרכז הזוהר
+                draw.text((x_text, current_y_other + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
                 x_text += width  # הזזת מיקום ה-X לחלק הבא
 
             # קביעת רווח בין השורות
-            current_y += line_height + spacing  # רווח בין השורות
+            current_y_other += line_height + LINE_SPACING_NORMAL  # רווח רגיל בין השורות
 
         # שמירת התמונה בזיכרון
         img = img.convert("RGB")  # המרת חזרה ל-RGB אם הוספנו אלפא
