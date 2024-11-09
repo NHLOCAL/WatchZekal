@@ -446,27 +446,26 @@ class VideoCreator:
 
     def create_intro_clip(self, title, language_level, story_type, background_image_path):
         try:
-            # סדר השורות: כותרת, רמת שפה, סוג הסיפור
-            text_lines_intro = [title, language_level, story_type]
-            line_styles_intro = ['title', 'level', 'topic']
+            # סדר השורות: כותרת, רמת שפה וסוג הסיפור בשורה אחת
+            intro_details = f"{language_level} | {story_type}"
+            text_lines_intro = [title, intro_details]
+            line_styles_intro = ['intro_title', 'intro_details']
 
             clip_intro = self.create_image_clip(text_lines_intro, 'intro', line_styles_intro, background_image_path, process_background=False)
 
             # יצירת אודיו לכותרת, רמת שפה וסוג הסיפור
             audio_tasks = [
                 (title, 'iw'),
-                (language_level, 'iw'),
-                (story_type, 'iw')
+                (intro_details, 'iw')
             ]
             audio_results = self.audio_creator.create_audios(audio_tasks)
             clip_intro = self.create_clip(
                 clip_intro,
                 [
                     audio_results.get((title, 'iw'), ""),
-                    audio_results.get((language_level, 'iw'), ""),
-                    audio_results.get((story_type, 'iw'), "")
+                    audio_results.get((intro_details, 'iw'), "")
                 ],
-                min_duration=3  # משך מינימלי
+                min_duration=5  # משך מינימלי
             )
             return clip_intro
         except Exception as e:
@@ -790,6 +789,8 @@ def main():
             "bold",
             "call_to_action",
             "title",
+            "intro_title",
+            "intro_details",
             "intro_subtitle",
             "video_number",
             "topic",
