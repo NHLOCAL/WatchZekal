@@ -151,8 +151,12 @@ class ImageCreator:
                 segments.append((part, False))
         return segments
 
-    def create_image(self, text_lines, style_definitions, line_styles=None, background_image_path=None, process_background=True):
-        cache_key = tuple(text_lines) + tuple(line_styles or []) + (background_image_path,) + (process_background,)
+    def create_image(self, text_lines, style_definitions, line_styles=None, background_image_path=None, process_background=True, highlight_option=None):
+        # Convert highlight_option dict to tuple if not None
+        if highlight_option is not None:
+            highlight_option = tuple(highlight_option)
+        
+        cache_key = tuple(text_lines) + tuple(line_styles or []) + (background_image_path,) + (process_background,) + (highlight_option,)
         if cache_key in self.cache:
             logging.info("שימוש בתמונה מקאש")
             return self.cache[cache_key]
@@ -243,10 +247,10 @@ class ImageCreator:
             total_height -= LINE_SPACING_NORMAL  # הסרת רווח נוסף בסוף
         current_y = (HEIGHT - total_height) / 2
 
-        for line_info, line_height in processed_lines:
+        for line_idx, (line_info, line_height) in enumerate(processed_lines):
             line_width = sum([segment[1] for segment in line_info])
             x_text = (WIDTH - line_width) / 2
-            for segment_text, width, height, segment_font, segment_color in line_info:
+            for segment_idx, (segment_text, width, height, segment_font, segment_color) in enumerate(line_info):
                 # ציור המסגרת אם קיים
                 if 'outline_color' in current_style and 'outline_width' in current_style:
                     outline_color = tuple(current_style['outline_color'])
@@ -257,6 +261,19 @@ class ImageCreator:
                             if dx != 0 or dy != 0:
                                 draw.text((x_text + dx, current_y + dy + (line_height - height) / 2), segment_text, font=segment_font, fill=outline_color)
                 # ציור הטקסט הרגיל
+                if highlight_option is not None:
+                    highlight_line, highlight_option_idx = highlight_option
+                    if line_idx == highlight_line and segment_idx == highlight_option_idx:
+                        # הוספת רקע מודגש לתשובה הנכונה
+                        text_bbox = draw.textbbox((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font)
+                        padding = 10
+                        draw.rectangle(
+                            [
+                                (text_bbox[0] - padding, text_bbox[1] - padding),
+                                (text_bbox[2] + padding, text_bbox[3] + padding)
+                            ],
+                            fill=(255, 255, 0, 128)  # צהוב עם שקיפות
+                        )
                 draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
                 x_text += width
             current_y += line_height + LINE_SPACING_NORMAL
@@ -316,12 +333,12 @@ class VideoCreator:
         self.audio_creator = audio_creator
         self.style_definitions = style_definitions
 
-    def create_image_clip(self, text_lines, style, line_styles=None, background_image_path=None, process_background=True):
-        img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles, background_image_path, process_background)
+    def create_image_clip(self, text_lines, style, line_styles=None, background_image_path=None, process_background=True, highlight_option=None):
+        img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles, background_image_path, process_background, highlight_option)
         filename = f"{'_'.join([sanitize_filename(line) for line in text_lines])}.png"
         temp_image_path = self.file_manager.get_temp_path(filename)
         img.save(temp_image_path)
-        image_clip = ImageClip(temp_image_path)
+        image_clip = ImageClip(temp_image_path).set_duration(5 if highlight_option is None else 1)
         return image_clip
 
     def create_audio_clips(self, audio_paths):
@@ -427,25 +444,27 @@ class VideoCreator:
             logging.error(f"שגיאה ביצירת קליפ הלוגו: {e}")
             return None
 
-    def create_intro_clip(self, intro_subtitle, title, video_number, background_image_path):
+    def create_intro_clip(self, title, language_level, story_type, background_image_path):
         try:
-            # סדר השורות: intro_subtitle מעל, אחריו title ומספר הסרטון
-            text_lines_intro = [intro_subtitle, title, f"#{video_number}"]
-            line_styles_intro = ['intro_subtitle', 'topic', 'video_number']
+            # סדר השורות: כותרת, רמת שפה, סוג הסיפור
+            text_lines_intro = [title, language_level, story_type]
+            line_styles_intro = ['title', 'level', 'topic']
 
-            clip_intro = self.create_image_clip(text_lines_intro, 'intro_subtitle', line_styles_intro, background_image_path, process_background=False)
+            clip_intro = self.create_image_clip(text_lines_intro, 'intro', line_styles_intro, background_image_path, process_background=False)
 
-            # יצירת אודיו רק לשם הנושא ומספר הסרטון, לא למשפט הנוסף
+            # יצירת אודיו לכותרת, רמת שפה וסוג הסיפור
             audio_tasks = [
                 (title, 'iw'),
-                (f"מספר {video_number}", 'iw')
+                (language_level, 'iw'),
+                (story_type, 'iw')
             ]
             audio_results = self.audio_creator.create_audios(audio_tasks)
             clip_intro = self.create_clip(
                 clip_intro,
                 [
                     audio_results.get((title, 'iw'), ""),
-                    audio_results.get((f"מספר {video_number}", 'iw'), "")
+                    audio_results.get((language_level, 'iw'), ""),
+                    audio_results.get((story_type, 'iw'), "")
                 ],
                 min_duration=3  # משך מינימלי
             )
@@ -510,7 +529,6 @@ class VideoAssembler:
             grammar_points = video_data.get('grammar_points', [])
             comprehension_questions = video_data.get('comprehension_questions', [])
             call_to_action = video_data.get('call_to_action', {}).get('text', '')
-            intro_subtitle_text = "למד מילים חדשות בשישים שניות"  # משפט הפתיחה הנוסף
 
             logging.info(f"מעבד סרטון: {video_title}")
 
@@ -524,7 +542,7 @@ class VideoAssembler:
 
             try:
                 # קליפ פתיחה
-                intro_clip = self.video_creator.create_intro_clip(intro_subtitle_text, video_title, 1, background_image_path)
+                intro_clip = self.video_creator.create_intro_clip(video_title, language_level, story_type, background_image_path)
                 if intro_clip:
                     clips.append(intro_clip)
 
@@ -532,29 +550,45 @@ class VideoAssembler:
                 for paragraph in story['text']:
                     english_text = paragraph['english']
                     hebrew_text = paragraph['hebrew']
-                    text_lines = [english_text, hebrew_text]
-                    line_styles = ['sentence', 'translation']
-                    clip_story = self.video_creator.create_image_clip(text_lines, 'sentence', line_styles, background_image_path, process_background=True)
 
-                    audio_tasks = [
-                        (english_text, 'en', True),  # אנגלית באיטיות
-                        (hebrew_text, 'iw')
+                    # קליפ באנגלית
+                    text_lines_en = [english_text]
+                    line_styles_en = ['sentence']
+                    clip_story_en = self.video_creator.create_image_clip(text_lines_en, 'sentence', line_styles_en, background_image_path, process_background=True)
+                    audio_tasks_en = [
+                        (english_text, 'en', True)  # אנגלית באיטיות
                     ]
-                    audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-                    audio_paths = [
-                        audio_results.get((english_text, 'en', True), ""),
-                        audio_results.get((hebrew_text, 'iw'), "")
-                    ]
-
-                    clip_story = self.video_creator.create_clip(
-                        clip_story,
-                        audio_paths,
+                    audio_results_en = self.video_creator.audio_creator.create_audios(audio_tasks_en)
+                    clip_story_en = self.video_creator.create_clip(
+                        clip_story_en,
+                        [
+                            audio_results_en.get((english_text, 'en', True), "")
+                        ],
                         min_duration=5
                     )
                     if clips:
-                        transition = self.video_creator.slide_transition(clips[-1], clip_story)
+                        transition = self.video_creator.slide_transition(clips[-1], clip_story_en)
                         clips.append(transition)
-                    clips.append(clip_story)
+                    clips.append(clip_story_en)
+
+                    # קליפ בעברית
+                    text_lines_he = [hebrew_text]
+                    line_styles_he = ['translation']
+                    clip_story_he = self.video_creator.create_image_clip(text_lines_he, 'translation', line_styles_he, background_image_path, process_background=True)
+                    audio_tasks_he = [
+                        (hebrew_text, 'iw')
+                    ]
+                    audio_results_he = self.video_creator.audio_creator.create_audios(audio_tasks_he)
+                    clip_story_he = self.video_creator.create_clip(
+                        clip_story_he,
+                        [
+                            audio_results_he.get((hebrew_text, 'iw'), "")
+                        ],
+                        min_duration=5
+                    )
+                    transition = self.video_creator.slide_transition(clips[-1], clip_story_he)
+                    clips.append(transition)
+                    clips.append(clip_story_he)
 
                 # אוצר מילים
                 if vocabulary:
@@ -658,6 +692,9 @@ class VideoAssembler:
                     for question_entry in comprehension_questions:
                         question = question_entry['question']
                         options = question_entry['options']
+                        correct_answer_index = question_entry['answer'] - 1  # assuming 1-based index
+
+                        # קליפ השאלה עם כל התשובות
                         text_lines = [question] + options
                         line_styles = ['sentence'] + ['translation'] * len(options)
                         clip_question = self.video_creator.create_image_clip(text_lines, 'sentence', line_styles, background_image_path, process_background=True)
@@ -667,11 +704,24 @@ class VideoAssembler:
                         clip_question = self.video_creator.create_clip(
                             clip_question,
                             audio_paths,
-                            min_duration=6
+                            min_duration=5
                         )
-                        transition = self.video_creator.slide_transition(clips[-1], clip_question)
-                        clips.append(transition)
+                        if clips:
+                            transition = self.video_creator.slide_transition(clips[-1], clip_question)
+                            clips.append(transition)
                         clips.append(clip_question)
+
+                        # קליפ עם התשובה הנכונה מודגשת
+                        highlight_option = (0, correct_answer_index)  # line=0 (השורה הראשונה אחרי השאלה), option=index
+                        clip_answer = self.video_creator.create_image_clip(text_lines, 'sentence', line_styles, background_image_path, process_background=True, highlight_option=highlight_option)
+                        clip_answer = self.video_creator.create_clip(
+                            clip_answer,
+                            [],
+                            min_duration=1
+                        )
+                        transition = self.video_creator.slide_transition(clips[-1], clip_answer)
+                        clips.append(transition)
+                        clips.append(clip_answer)
 
                 # קריאה לפעולה
                 if call_to_action:

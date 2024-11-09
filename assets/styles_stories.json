@@ -3,7 +3,7 @@
         "style_name": "normal",
         "bg_color": [255, 255, 255],
         "text_color": [0, 0, 0],
-        "font_size": 50,
+        "font_size": 60,
         "font_path": "Rubik-Regular.ttf"
     },
     "subtopic": {
@@ -31,21 +31,21 @@
         "style_name": "translation",
         "bg_color": [255, 255, 255],
         "text_color": [0, 0, 0],
-        "font_size": 50,
+        "font_size": 55,
         "font_path": "Rubik-Regular.ttf"
     },
     "sentence": {
         "style_name": "sentence",
         "bg_color": [255, 255, 255],
         "text_color": [0, 0, 0],
-        "font_size": 50,
+        "font_size": 60,
         "font_path": "Rubik-Regular.ttf"
     },
     "bold": {
         "style_name": "bold",
         "bg_color": [255, 255, 255],
         "text_color": [0, 0, 0],
-        "font_size": 50,
+        "font_size": 60,
         "font_path": "Rubik-Bold.ttf"
     },
     "call_to_action": {
