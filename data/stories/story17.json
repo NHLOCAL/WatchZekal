@@ -1,0 +1,80 @@
+{
+  "video_title": "מסע להרים הרחוקים",
+  "language_level": "בינוני",
+  "story_type": "הרפתקה אפית",
+  "story": {
+    "title": "מסע להרים הרחוקים",
+    "text": [
+      {
+        "english": "The village was suffering from a mysterious illness.",
+        "hebrew": "הכפר סבל ממחלה מסתורית."
+      },
+      {
+        "english": "A group of brave volunteers decided to find a rare herb in the distant mountains.",
+        "hebrew": "קבוצת מתנדבים אמיצים החליטה למצוא עשב נדיר בהרים הרחוקים."
+      },
+      {
+        "english": "They faced harsh weather and difficult terrain.",
+        "hebrew": "הם התמודדו עם מזג אוויר קשה ושטח מאתגר."
+      },
+      {
+        "english": "After days of traveling, they found the herb.",
+        "hebrew": "לאחר ימים של מסע, הם מצאו את העשב."
+      },
+      {
+        "english": "On their way back, they helped each other overcome obstacles.",
+        "hebrew": "בדרך חזרה, הם עזרו זה לזה להתגבר על מכשולים."
+      },
+      {
+        "english": "They returned to the village and cured the illness.",
+        "hebrew": "הם חזרו לכפר וריפאו את המחלה."
+      },
+      {
+        "english": "The villagers celebrated their heroism.",
+        "hebrew": "תושבי הכפר חגגו את גבורתם."
+      }
+    ]
+  },
+  "vocabulary": [
+    { "word": "mysterious", "translation": "מסתורי" },
+    { "word": "illness", "translation": "מחלה" },
+    { "word": "volunteers", "translation": "מתנדבים" },
+    { "word": "herb", "translation": "עשב" },
+    { "word": "terrain", "translation": "שטח" },
+    { "word": "overcome", "translation": "להתגבר על" },
+    { "word": "obstacles", "translation": "מכשולים" },
+    { "word": "heroism", "translation": "גבורה" }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מדוע יצאו המתנדבים להרים הרחוקים?",
+      "options": [
+        "למצוא אוצר",
+        "למצוא עשב לריפוי המחלה",
+        "לטייל ולהתרשם מהנוף"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "אילו אתגרים התמודדו המתנדבים במסעם?",
+      "options": [
+        "מזג אוויר קשה ושטח מאתגר",
+        "חיות פרא",
+        "שודדים"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מה קרה לאחר שחזרו לכפר?",
+      "options": [
+        "הם חלו במחלה",
+        "הכפר ננטש",
+        "הם ריפאו את המחלה והתושבים חגגו"
+      ],
+      "answer": 2
+    }
+  ],
+  "call_to_action": {
+    "text": "הסיפור הזה הראה את כוח השיתוף והאומץ! אם אהבתם, הירשמו לערוץ 'זה קל' לעוד סיפורים מעוררי השראה!"
+  }
+}

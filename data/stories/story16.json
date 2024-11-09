@@ -1,0 +1,78 @@
+{
+  "video_title": "ההבטחה הבלתי שבירה",
+  "language_level": "בינוני",
+  "story_type": "נרטיב רגשי",
+  "story": {
+    "title": "ההבטחה הבלתי שבירה",
+    "text": [
+      {
+        "english": "Two friends, David and Eli, grew up in the same village.",
+        "hebrew": "שני חברים, דוד ואלי, גדלו באותו כפר."
+      },
+      {
+        "english": "Before Eli moved away, they made a promise to help each other no matter what.",
+        "hebrew": "לפני שאלי עבר למקום אחר, הם הבטיחו לעזור זה לזה לא משנה מה."
+      },
+      {
+        "english": "Years later, David faced a difficult time with his farm.",
+        "hebrew": "שנים לאחר מכן, דוד התמודד עם תקופה קשה בחוותו."
+      },
+      {
+        "english": "Eli heard about it and returned to help.",
+        "hebrew": "אלי שמע על כך וחזר כדי לעזור."
+      },
+      {
+        "english": "Together, they worked hard and saved the farm.",
+        "hebrew": "ביחד, הם עבדו קשה והצילו את החווה."
+      },
+      {
+        "english": "Their friendship remained strong over the years.",
+        "hebrew": "חברותם נשארה חזקה לאורך השנים."
+      },
+      {
+        "english": "They showed that true friendship endures all challenges.",
+        "hebrew": "הם הראו שחברות אמיתית מתגברת על כל האתגרים."
+      }
+    ]
+  },
+  "vocabulary": [
+    { "word": "promise", "translation": "הבטחה" },
+    { "word": "no matter what", "translation": "לא משנה מה" },
+    { "word": "faced", "translation": "התמודד עם" },
+    { "word": "difficult time", "translation": "תקופה קשה" },
+    { "word": "endures", "translation": "מתגברת על" },
+    { "word": "challenges", "translation": "אתגרים" }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה הייתה ההבטחה בין דוד לאלי?",
+      "options": [
+        "לטייל יחד בעולם",
+        "לעזור זה לזה לא משנה מה",
+        "לפתוח עסק משותף"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מדוע אלי חזר לכפר?",
+      "options": [
+        "כדי לבקר את משפחתו",
+        "כי הוא התגעגע",
+        "כדי לעזור לדוד בחווה"
+      ],
+      "answer": 2
+    },
+    {
+      "question": "מה המסר של הסיפור?",
+      "options": [
+        "חברות אמיתית מתגברת על כל האתגרים",
+        "חיים בכפר קשים",
+        "עבודה קשה לא משתלמת"
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "התרגשתם מהחברות בסיפור? לחצו על 'אהבתי' ושתפו את מחשבותיכם בתגובות. הצטרפו לערוץ 'זה קל' לעוד סיפורים מרגשים!"
+  }
+}

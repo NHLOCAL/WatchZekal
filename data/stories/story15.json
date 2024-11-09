@@ -1,0 +1,79 @@
+{
+  "video_title": "קולות מן העבר",
+  "language_level": "בינוני",
+  "story_type": "נרטיב היסטורי",
+  "story": {
+    "title": "קולות מן העבר",
+    "text": [
+      {
+        "english": "Daniel inherited an old house from his grandfather.",
+        "hebrew": "דניאל ירש בית ישן מסבו."
+      },
+      {
+        "english": "While cleaning the attic, he found a box of letters.",
+        "hebrew": "בזמן שניקה את עליית הגג, הוא מצא קופסת מכתבים."
+      },
+      {
+        "english": "The letters told stories of his family's history.",
+        "hebrew": "המכתבים סיפרו סיפורים על היסטוריית משפחתו."
+      },
+      {
+        "english": "He learned about the challenges they faced.",
+        "hebrew": "הוא למד על האתגרים שהם התמודדו איתם."
+      },
+      {
+        "english": "Daniel felt connected to his ancestors.",
+        "hebrew": "דניאל חש מחובר לאבותיו."
+      },
+      {
+        "english": "He decided to preserve the letters for future generations.",
+        "hebrew": "הוא החליט לשמר את המכתבים לדורות הבאים."
+      },
+      {
+        "english": "The discovery gave him a sense of identity.",
+        "hebrew": "הגילוי נתן לו תחושת זהות."
+      }
+    ]
+  },
+  "vocabulary": [
+    { "word": "inherited", "translation": "ירש" },
+    { "word": "attic", "translation": "עליית גג" },
+    { "word": "letters", "translation": "מכתבים" },
+    { "word": "ancestors", "translation": "אבות" },
+    { "word": "preserve", "translation": "לשמר" },
+    { "word": "generations", "translation": "דורות" },
+    { "word": "identity", "translation": "זהות" }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה מצא דניאל בעליית הגג?",
+      "options": [
+        "מטמון זהב",
+        "קופסת מכתבים",
+        "תמונות ישנות"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה למד דניאל מהמכתבים?",
+      "options": [
+        "על האתגרים של משפחתו בעבר",
+        "על מתכונים משפחתיים",
+        "על מקומות נסתרים בבית"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מה החליט דניאל לעשות עם המכתבים?",
+      "options": [
+        "למכור אותם",
+        "לשמר אותם לדורות הבאים",
+        "לזרוק אותם"
+      ],
+      "answer": 1
+    }
+  ],
+  "call_to_action": {
+    "text": "גיליתם משהו מרגש בסיפור? שתפו אותנו בתגובות ואל תשכחו להצטרף לערוץ 'זה קל' לעוד סיפורים!"
+  }
+}

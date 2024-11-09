@@ -1,0 +1,84 @@
+{
+  "video_title": "החידה של המלך",
+  "language_level": "בינוני",
+  "story_type": "סיפורת היסטורית",
+  "story": {
+    "title": "החידה של המלך",
+    "text": [
+      {
+        "english": "Once, in a distant kingdom, there was a wise king who valued intelligence above all.",
+        "hebrew": "פעם, בממלכה רחוקה, היה מלך חכם שהעריך חוכמה מעל הכל."
+      },
+      {
+        "english": "He decided to find the wisest person in his kingdom.",
+        "hebrew": "הוא החליט למצוא את האדם החכם ביותר בממלכתו."
+      },
+      {
+        "english": "The king announced a challenge: solve his riddle, and the winner would become his advisor.",
+        "hebrew": "המלך הכריז על אתגר: פתרו את חידתו, והמנצח יהפוך ליועצו."
+      },
+      {
+        "english": "People from all over came to the palace to hear the riddle.",
+        "hebrew": "אנשים מכל רחבי הממלכה הגיעו לארמון לשמוע את החידה."
+      },
+      {
+        "english": "The riddle was: 'What gets wetter the more it dries?'",
+        "hebrew": "החידה הייתה: 'מה נעשה רטוב יותר ככל שהוא מייבש?'"
+      },
+      {
+        "english": "Many tried to answer but failed.",
+        "hebrew": "רבים ניסו לענות אך נכשלו."
+      },
+      {
+        "english": "A simple servant approached and said, 'A towel, Your Majesty.'",
+        "hebrew": "משרת פשוט ניגש ואמר, 'מגבת, הוד מעלתך.'"
+      },
+      {
+        "english": "The king smiled and appointed him as his advisor.",
+        "hebrew": "המלך חייך ומינה אותו כיועצו."
+      }
+    ]
+  },
+  "vocabulary": [
+    { "word": "kingdom", "translation": "ממלכה" },
+    { "word": "valued", "translation": "העריך" },
+    { "word": "intelligence", "translation": "חוכמה" },
+    { "word": "advisor", "translation": "יועץ" },
+    { "word": "announced", "translation": "הכריז" },
+    { "word": "challenge", "translation": "אתגר" },
+    { "word": "approached", "translation": "ניגש" },
+    { "word": "servant", "translation": "משרת" }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה הייתה מטרת החידה של המלך?",
+      "options": [
+        "למצוא את החזק ביותר",
+        "למצוא את החכם ביותר",
+        "לשעשע את העם"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה הייתה התשובה לחידה?",
+      "options": [
+        "אש",
+        "מים",
+        "מגבת"
+      ],
+      "answer": 2
+    },
+    {
+      "question": "מי פתר את החידה?",
+      "options": [
+        "משרת פשוט",
+        "אביר אמיץ",
+        "חכם זקן"
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "אם אהבתם את הסיפור, לחצו לייק והצטרפו לערוץ שלנו לסיפורים נוספים!"
+  }
+}

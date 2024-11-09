@@ -1,0 +1,89 @@
+{
+  "video_title": "השביל הנסתר",
+  "language_level": "בינוני",
+  "story_type": "הרפתקה",
+  "story": {
+    "title": "השביל הנסתר",
+    "text": [
+      {
+        "english": "Jacob was a traveler who loved exploring new places.",
+        "hebrew": "יעקב היה נוסע שאהב לחקור מקומות חדשים."
+      },
+      {
+        "english": "One day, he arrived at a small village surrounded by mountains.",
+        "hebrew": "יום אחד, הוא הגיע לכפר קטן המוקף בהרים."
+      },
+      {
+        "english": "The villagers spoke of a hidden path that led to a magnificent waterfall.",
+        "hebrew": "תושבי הכפר סיפרו על שביל נסתר שהוביל למפל מים מרהיב."
+      },
+      {
+        "english": "Determined to find it, Jacob set out early in the morning.",
+        "hebrew": "נחוש למצוא אותו, יעקב יצא מוקדם בבוקר."
+      },
+      {
+        "english": "He walked through dense forests and climbed steep hills.",
+        "hebrew": "הוא הלך דרך יערות צפופים וטיפס על גבעות תלולות."
+      },
+      {
+        "english": "After hours of searching, he noticed a narrow trail covered by vines.",
+        "hebrew": "לאחר שעות של חיפוש, הוא הבחין בשביל צר מכוסה גפנים."
+      },
+      {
+        "english": "Following it, he finally reached the breathtaking waterfall.",
+        "hebrew": "בעקבותיו, הוא הגיע סוף סוף למפל המרהיב."
+      },
+      {
+        "english": "The beauty of the place was beyond words.",
+        "hebrew": "יופיו של המקום היה מעבר למילים."
+      },
+      {
+        "english": "Jacob felt grateful for the journey and the discovery.",
+        "hebrew": "יעקב חש הכרת תודה על המסע והגילוי."
+      }
+    ]
+  },
+  "vocabulary": [
+    { "word": "exploring", "translation": "לחקור" },
+    { "word": "villagers", "translation": "תושבי הכפר" },
+    { "word": "magnificent", "translation": "מרהיב" },
+    { "word": "determined", "translation": "נחוש" },
+    { "word": "dense", "translation": "צפוף" },
+    { "word": "steep", "translation": "תלול" },
+    { "word": "vines", "translation": "גפנים" },
+    { "word": "breathtaking", "translation": "עוצר נשימה" },
+    { "word": "grateful", "translation": "הכרת תודה" }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה סיפרו תושבי הכפר ליעקב?",
+      "options": [
+        "על מערה מסתורית",
+        "על שביל נסתר למפל מים",
+        "על אוצר חבוי בהרים"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "כיצד יעקב מצא את השביל הנסתר?",
+      "options": [
+        "הוא עקב אחר מפה",
+        "הוא פגש מדריך",
+        "הוא הבחין בשביל מכוסה גפנים"
+      ],
+      "answer": 2
+    },
+    {
+      "question": "מה הרגיש יעקב כשהגיע למפל?",
+      "options": [
+        "עייפות",
+        "אכזבה",
+        "הכרת תודה"
+      ],
+      "answer": 2
+    }
+  ],
+  "call_to_action": {
+    "text": "נהניתם מהסיפור? אל תשכחו להשאיר תגובה ולהירשם לערוץ 'זה קל' לעוד סיפורים מרתקים!"
+  }
+}

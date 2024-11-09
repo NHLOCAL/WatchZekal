@@ -1,0 +1,90 @@
+{
+  "video_title": "המערה המסתורית",
+  "language_level": "בינוני",
+  "story_type": "מסתורין והרפתקה",
+  "story": {
+    "title": "המערה המסתורית",
+    "text": [
+      {
+        "english": "A group of friends heard about an ancient cave filled with mysterious writings.",
+        "hebrew": "קבוצת חברים שמעה על מערה עתיקה מלאה בכתובות מסתוריות."
+      },
+      {
+        "english": "Curious, they decided to explore it.",
+        "hebrew": "מסוקרנים, הם החליטו לחקור אותה."
+      },
+      {
+        "english": "They packed their gear and set out on the journey.",
+        "hebrew": "הם ארזו את הציוד שלהם ויצאו למסע."
+      },
+      {
+        "english": "After hours of hiking, they reached the cave's entrance.",
+        "hebrew": "לאחר שעות של הליכה, הם הגיעו לפתח המערה."
+      },
+      {
+        "english": "Inside, the walls were covered with ancient symbols.",
+        "hebrew": "בתוך המערה, הקירות היו מכוסים בסמלים עתיקים."
+      },
+      {
+        "english": "One of them noticed a pattern and began to decipher it.",
+        "hebrew": "אחד מהם הבחין בתבנית והחל לפענח אותה."
+      },
+      {
+        "english": "The symbols told a story of a lost civilization.",
+        "hebrew": "הסמלים סיפרו את סיפורה של ציוויליזציה אבודה."
+      },
+      {
+        "english": "They realized they had discovered something significant.",
+        "hebrew": "הם הבינו שגילו משהו משמעותי."
+      },
+      {
+        "english": "They decided to share their findings with historians.",
+        "hebrew": "הם החליטו לשתף את הממצאים שלהם עם היסטוריונים."
+      }
+    ]
+  },
+  "vocabulary": [
+    { "word": "ancient", "translation": "עתיק" },
+    { "word": "curious", "translation": "מסוקרנים" },
+    { "word": "explore", "translation": "לחקור" },
+    { "word": "gear", "translation": "ציוד" },
+    { "word": "hiking", "translation": "הליכה" },
+    { "word": "entrance", "translation": "כניסה" },
+    { "word": "symbols", "translation": "סמלים" },
+    { "word": "decipher", "translation": "לפענח" },
+    { "word": "civilization", "translation": "ציוויליזציה" },
+    { "word": "significant", "translation": "משמעותי" }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה מצאו החברים בתוך המערה?",
+      "options": [
+        "אוצר זהב",
+        "כתובות וסמלים עתיקים",
+        "בעלי חיים נדירים"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה סיפרו הסמלים על הקירות?",
+      "options": [
+        "סיפור על ציוויליזציה אבודה",
+        "מפת אוצר",
+        "שירים עתיקים"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מה החליטו החברים לעשות לאחר הגילוי?",
+      "options": [
+        "לשמור את הסוד לעצמם",
+        "לחזור הביתה",
+        "לשתף את הממצאים עם היסטוריונים"
+      ],
+      "answer": 2
+    }
+  ],
+  "call_to_action": {
+    "text": "רוצים לשמוע עוד סיפורים מסקרנים? הירשמו לערוץ 'זה קל' ושתפו את דעתכם בתגובות!"
+  }
+}

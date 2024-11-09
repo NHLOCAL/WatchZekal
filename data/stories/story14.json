@@ -1,0 +1,84 @@
+{
+  "video_title": "הסדנה של הממציא",
+  "language_level": "בינוני",
+  "story_type": "מדע בדיוני קל",
+  "story": {
+    "title": "הסדנה של הממציא",
+    "text": [
+      {
+        "english": "In a small town, there lived an inventor named Samuel.",
+        "hebrew": "בעיירה קטנה, חי ממציא בשם שמואל."
+      },
+      {
+        "english": "He spent his days creating devices to help his neighbors.",
+        "hebrew": "הוא בילה את ימיו ביצירת מכשירים כדי לעזור לשכניו."
+      },
+      {
+        "english": "One day, he built a machine that could purify water quickly.",
+        "hebrew": "יום אחד, הוא בנה מכונה שיכולה לטהר מים במהירות."
+      },
+      {
+        "english": "The town had suffered from a shortage of clean water.",
+        "hebrew": "העיירה סבלה ממחסור במים נקיים."
+      },
+      {
+        "english": "With Samuel's invention, everyone had access to fresh water.",
+        "hebrew": "עם המצאתו של שמואל, לכולם הייתה גישה למים טריים."
+      },
+      {
+        "english": "His device changed their lives.",
+        "hebrew": "המכשיר שלו שינה את חייהם."
+      },
+      {
+        "english": "The townspeople thanked him for his kindness and ingenuity.",
+        "hebrew": "תושבי העיירה הודו לו על טוב ליבו ותושייתו."
+      },
+      {
+        "english": "Samuel continued to invent, always thinking of others.",
+        "hebrew": "שמואל המשיך להמציא, תמיד חושב על אחרים."
+      }
+    ]
+  },
+  "vocabulary": [
+    { "word": "inventor", "translation": "ממציא" },
+    { "word": "devices", "translation": "מכשירים" },
+    { "word": "purify", "translation": "לטהר" },
+    { "word": "shortage", "translation": "מחסור" },
+    { "word": "access", "translation": "גישה" },
+    { "word": "fresh", "translation": "טרי" },
+    { "word": "kindness", "translation": "טוב לב" },
+    { "word": "ingenuity", "translation": "תושייה" }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה הייתה המצאתו של שמואל?",
+      "options": [
+        "מכונה לטיהור מים",
+        "רכב מעופף",
+        "מחשב חכם"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "איזו בעיה הייתה בעיירה?",
+      "options": [
+        "מחסור במזון",
+        "מחסור במים נקיים",
+        "בעיות חשמל"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "כיצד הגיבו התושבים להמצאה?",
+      "options": [
+        "התעלמו ממנה",
+        "הודו לו על טוב ליבו",
+        "כעסו עליו"
+      ],
+      "answer": 1
+    }
+  ],
+  "call_to_action": {
+    "text": "אם נהניתם מהסיפור, לחצו על 'אהבתי' והצטרפו אלינו לסיפורים נוספים בערוץ 'זה קל'!"
+  }
+}

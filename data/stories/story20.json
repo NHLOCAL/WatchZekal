@@ -1,0 +1,77 @@
+{
+  "video_title": "המוזיקאי השקט",
+  "language_level": "בינוני",
+  "story_type": "דרמה מעוררת השראה",
+  "story": {
+    "title": "המוזיקאי השקט",
+    "text": [
+      {
+        "english": "Aaron was a talented musician who lost his hearing.",
+        "hebrew": "אהרון היה מוזיקאי מוכשר שאיבד את שמיעתו."
+      },
+      {
+        "english": "Despite this, he continued to compose music.",
+        "hebrew": "למרות זאת, הוא המשיך להלחין מוזיקה."
+      },
+      {
+        "english": "He felt the vibrations and rhythms through his instruments.",
+        "hebrew": "הוא חש את הויברציות והקצב דרך הכלים שלו."
+      },
+      {
+        "english": "People were moved by his beautiful compositions.",
+        "hebrew": "אנשים התרגשו מהלחנים היפים שלו."
+      },
+      {
+        "english": "Aaron showed that obstacles can be overcome.",
+        "hebrew": "אהרון הראה שניתן להתגבר על מכשולים."
+      },
+      {
+        "english": "His story inspired many to pursue their dreams.",
+        "hebrew": "סיפורו עודד רבים לרדוף אחרי חלומותיהם."
+      }
+    ]
+  },
+  "vocabulary": [
+    { "word": "talented", "translation": "מוכשר" },
+    { "word": "hearing", "translation": "שמיעה" },
+    { "word": "compose", "translation": "להלחין" },
+    { "word": "vibrations", "translation": "ויברציות" },
+    { "word": "rhythms", "translation": "קצב" },
+    { "word": "instruments", "translation": "כלים" },
+    { "word": "obstacles", "translation": "מכשולים" },
+    { "word": "inspired", "translation": "עודד" },
+    { "word": "pursue", "translation": "לרדוף אחרי" }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה קרה לאהרון?",
+      "options": [
+        "הוא איבד את שמיעתו",
+        "הוא איבד את ידיו",
+        "הוא הפסיק לאהוב מוזיקה"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "כיצד המשיך אהרון ליצור מוזיקה?",
+      "options": [
+        "הוא נעזר במוזיקאים אחרים",
+        "הוא חש את הויברציות והקצב",
+        "הוא השתמש במחשב"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה המסר של הסיפור?",
+      "options": [
+        "להפסיק כשקשה",
+        "שאי אפשר להתגבר על מכשולים",
+        "להתמיד ולרדוף אחרי החלומות"
+      ],
+      "answer": 2
+    }
+  ],
+  "call_to_action": {
+    "text": "סיפורו של אהרון מעורר השראה! שתפו את הסיפור עם חברים והצטרפו לערוץ 'זה קל' לעוד סיפורים מעודדים!"
+  }
+}

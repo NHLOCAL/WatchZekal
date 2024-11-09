@@ -1,0 +1,84 @@
+{
+  "video_title": "שומר הספרייה",
+  "language_level": "בינוני",
+  "story_type": "פנטזיה",
+  "story": {
+    "title": "שומר הספרייה",
+    "text": [
+      {
+        "english": "In the heart of the city stood an ancient library.",
+        "hebrew": "בלב העיר עמדה ספרייה עתיקה."
+      },
+      {
+        "english": "Benjamin was the guardian of the library.",
+        "hebrew": "בנימין היה שומר הספרייה."
+      },
+      {
+        "english": "One night, he discovered that the books were alive.",
+        "hebrew": "לילה אחד, הוא גילה שהספרים חיים."
+      },
+      {
+        "english": "They whispered secrets and shared forgotten knowledge.",
+        "hebrew": "הם לחשו סודות ושיתפו ידע שנשכח."
+      },
+      {
+        "english": "An evil force wanted to steal the books.",
+        "hebrew": "כוח רע רצה לגנוב את הספרים."
+      },
+      {
+        "english": "Benjamin vowed to protect the library.",
+        "hebrew": "בנימין נשבע להגן על הספרייה."
+      },
+      {
+        "english": "With courage and wisdom, he defeated the evil force.",
+        "hebrew": "באומץ וחוכמה, הוא ניצח את הכוח הרע."
+      },
+      {
+        "english": "The library remained a place of knowledge and wonder.",
+        "hebrew": "הספרייה נשארה מקום של ידע ופלא."
+      }
+    ]
+  },
+  "vocabulary": [
+    { "word": "guardian", "translation": "שומר" },
+    { "word": "discovered", "translation": "גילה" },
+    { "word": "whispered", "translation": "לחשו" },
+    { "word": "secrets", "translation": "סודות" },
+    { "word": "evil force", "translation": "כוח רע" },
+    { "word": "vowed", "translation": "נשבע" },
+    { "word": "defeated", "translation": "ניצח" },
+    { "word": "wonder", "translation": "פלא" }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה גילה בנימין על הספרים?",
+      "options": [
+        "שהם נעלמים",
+        "שהם חיים ומדברים",
+        "שהם ריקים"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מי רצה לגנוב את הספרים?",
+      "options": [
+        "כוח רע",
+        "קוסם טוב",
+        "תושבי העיר"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "כיצד בנימין הגן על הספרייה?",
+      "options": [
+        "בעזרת אומץ וחוכמה",
+        "הוא נעל את הדלתות",
+        "הוא נתן להם את הספרים"
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "אהבתם את סיפור הפנטזיה הזה? שתפו אותו עם חברים ואל תשכחו להירשם לערוץ 'זה קל' לעוד סיפורים קסומים!"
+  }
+}

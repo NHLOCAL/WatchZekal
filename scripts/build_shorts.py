@@ -26,11 +26,11 @@ log_filename = datetime.now().strftime("video_creation_%Y%m%d_%H%M%S.log")
 log_filepath = os.path.join(LOGS_DIR, log_filename)
 
 # הגדרת רמת הלוגינג ותבנית הלוגים
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # יצירת FileHandler לכתיבת הלוגים לקובץ ייחודי בתיקיית הלוגים
 file_handler = logging.FileHandler(log_filepath, mode='w', encoding='utf-8')
-file_handler.setLevel(logging.INFO)
+file_handler.setLevel(logging.DEBUG)
 
 # הגדרת פורמט ל-FileHandler
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
@@ -43,41 +43,36 @@ logging.getLogger().addHandler(file_handler)
 RESAMPLING = Image.LANCZOS
 
 # הגדרות בסיסיות
-DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'shorts')  # שינוי לתיקיית "shorts"
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'videos')
 ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
 FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 LOGOS_DIR = os.path.join(ASSETS_DIR, 'logos')
-BACKGROUNDS_DIR = os.path.join(ASSETS_DIR, 'backgrounds')  # תיקיית רקעים
-OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'shorts')  # הוספת "shorts" לנתיב היציאה
+BACKGROUNDS_DIR = os.path.join(ASSETS_DIR, 'backgrounds')
+OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'videos')
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 
 # נתיבים לקבצים
 json_name = str(sys.argv[1])
 JSON_FILE = os.path.join(DATA_DIR, f'{json_name}.json')
-STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles_shorts.json')  # שינוי לקובץ העיצובים החדש
+STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles_videos.json')
 LOGO_PATH = os.path.join(LOGOS_DIR, 'logo_colored.png')
 
 # הגדרות רווח בין שורות
-LINE_SPACING_NORMAL = 60  # רווח רגיל בין השורות
-LINE_SPACING_WITHIN_SENTENCE = 40  # רווח קטן בין שורות בתוך אותו משפט
-LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION = 60  # רווח גדול בין משפט לתרגומו
-# הסרנו את LINE_SPACING_INTRO_SUBTITLE כדי להשתמש ברווח רגיל לכל השורות
+LINE_SPACING_NORMAL = 50
+LINE_SPACING_WITHIN_SENTENCE = 30
+LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION = 50
 
 # נתיב למוזיקת רקע (אם יש)
-BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')  # ודא שהקובץ קיים
+BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')
 
 # הגדרות MoviePy
-VIDEO_SIZE = (1080, 1920)  # שינוי לפורמט אנכי
+VIDEO_SIZE = (1920, 1080)  # פורמט HD רגיל
 WIDTH, HEIGHT = VIDEO_SIZE
 FPS = 24
 THREADS = 8
 
 # פונקציה לסניטיזציה של שמות קבצים
 def sanitize_filename(filename):
-    """
-    מסיר תווים בלתי חוקיים משם קובץ ומחליף אותם ב-underscore.
-    """
-    # הגדרת תווים בלתי חוקיים ב-Windows
     return re.sub(r'[<>:"/\\|?*]', '_', filename)
 
 # פונקציה לבדוק אם הטקסט בעברית
@@ -108,15 +103,13 @@ class FileManager:
     def cleanup(self):
         self.temp_dir.cleanup()
 
-
 class ImageCreator:
     def __init__(self, styles):
         self.styles = styles
         self.cache = {}
-        # הגדרת סגנונות שדורשים עיבוד רקע
-        self.styles_require_bright_blur = {'word', 'sentence', 'sentence_bold', 'translation'}
-        # הגדרת צבע ורמת שקיפות לשכבת ההדגשה
-        self.overlay_color = (173, 216, 230, 150)  # תכלת בהיר עם שקיפות של 50%
+        self.overlay_color = (173, 216, 230, 150)  # תכלת עם שקיפות
+        self.brightness_factor = 1.2  # הגברת בהירות
+        self.blur_radius = 5  # רדיוס טשטוש
 
     @lru_cache(maxsize=None)
     def get_font(self, font_path, font_size):
@@ -127,26 +120,7 @@ class ImageCreator:
             logging.error(f"לא ניתן למצוא את הגופן בנתיב: {font_path}")
             raise
 
-    def create_gradient_background(self, width, height, start_color, end_color, direction='vertical'):
-        base = Image.new('RGB', (width, height), start_color)
-        top = Image.new('RGB', (width, height), end_color)
-        mask = Image.new('L', (width, height))
-
-        if direction == 'vertical':
-            for y in range(height):
-                mask.putpixel((0, y), int(255 * (y / height)))
-        elif direction == 'horizontal':
-            for x in range(width):
-                mask.putpixel((x, 0), int(255 * (x / width)))
-        # ניתן להוסיף כיוונים נוספים אם רוצים
-
-        base.paste(top, (0, 0), mask)
-        return base
-
     def split_text_into_lines(self, text, font, max_width, draw):
-        """
-        מפצל טקסט לשורות כך שכל שורה לא תעבור את הרוחב המקסימלי.
-        """
         words = text.split()
         lines = []
         current_line = ""
@@ -168,21 +142,17 @@ class ImageCreator:
         return lines
 
     def parse_bold(self, text):
-        """
-        מפרק טקסט לחלקים מודגשים ולא מודגשים.
-        """
         parts = re.split(r'(\*\*[^*]+\*\*)', text)
         segments = []
         for part in parts:
             if part.startswith('**') and part.endswith('**'):
-                segments.append((part[2:-2], True))  # חלק מודגש
+                segments.append((part[2:-2], True))
             else:
-                segments.append((part, False))       # חלק רגיל
+                segments.append((part, False))
         return segments
 
-    def create_image(self, text_lines, style_definitions, line_styles=None, background_image_path=None):
-        # שימוש בקאשינג למניעת יצירת תמונות חוזרות
-        cache_key = tuple(text_lines) + tuple(line_styles or []) + (background_image_path,)
+    def create_image(self, text_lines, style_definitions, line_styles=None, background_image_path=None, process_background=True):
+        cache_key = tuple(text_lines) + tuple(line_styles or []) + (background_image_path,) + (process_background,)
         if cache_key in self.cache:
             logging.info("שימוש בתמונה מקאש")
             return self.cache[cache_key]
@@ -197,94 +167,32 @@ class ImageCreator:
                 logging.error(f"שגיאה בטעינת תמונת הרקע: {e}")
                 img = Image.new('RGB', (WIDTH, HEIGHT), color=(255, 255, 255))
         else:
-            if line_styles and 'intro_subtitle' in line_styles:
-                # אם אין תמונה מתאימה, להשתמש בצבע רקע ברירת מחדל
-                img = Image.new('RGB', (WIDTH, HEIGHT), color=(255, 255, 255))
-            elif line_styles:
-                # אם line_styles מוגדר, נשתמש בסגנון לכל שורה
-                try:
-                    first_style = style_definitions[line_styles[0]]
-                except KeyError:
-                    logging.error(f"סגנון '{line_styles[0]}' לא נמצא בקובץ העיצובים.")
-                    raise
+            img = Image.new('RGB', (WIDTH, HEIGHT), color=(255, 255, 255))
 
-                if first_style.get('background_image'):
-                    # כעת, לא נשתמש ב-background_image מהסגנון, אלא נקבע זאת על בסיס ה-title
-                    img = Image.new('RGB', (WIDTH, HEIGHT), color=tuple(first_style['bg_color']))
-                elif first_style.get('gradient'):
-                    img = self.create_gradient_background(
-                        WIDTH, HEIGHT, 
-                        first_style['gradient'][0], 
-                        first_style['gradient'][1], 
-                        first_style['gradient_direction']
-                    )
-                else:
-                    img = Image.new('RGB', (WIDTH, HEIGHT), color=tuple(first_style['bg_color']))
-            else:
-                # אחרת, נשתמש בסגנון הכללי
-                try:
-                    first_style = style_definitions['normal']
-                except KeyError:
-                    logging.error("סגנון 'normal' לא נמצא בקובץ העיצובים.")
-                    raise
+        if process_background:
+            # הגברת בהירות
+            enhancer = ImageEnhance.Brightness(img)
+            img = enhancer.enhance(self.brightness_factor)
 
-                img = Image.new('RGB', (WIDTH, HEIGHT), color=tuple(first_style['bg_color']))
+            # טשטוש
+            img = img.filter(ImageFilter.GaussianBlur(radius=self.blur_radius))
 
-        # אם הסגנון דורש עיבוד רקע (בהירות וטשטוש) והוספת שכבת הדגשה
-        if line_styles:
-            for style_name in line_styles:
-                if style_name in self.styles_require_bright_blur:
-                    # הגברת הבהירות
-                    enhancer = ImageEnhance.Brightness(img)
-                    img = enhancer.enhance(1.0)  # ערך 1.0 לפי בקשתך
-
-                    # טשטוש קל
-                    img = img.filter(ImageFilter.GaussianBlur(radius=5))  # רדיוס 5 לפי בקשתך
-
-                    # הוספת שכבת הדגשה
-                    overlay = Image.new('RGBA', img.size, self.overlay_color)
-                    img = img.convert('RGBA')
-                    img = Image.alpha_composite(img, overlay)
-
-                    # המרת חזרה ל-RGB
-                    img = img.convert('RGB')
-
-                    logging.info(f"עיבוד רקע והוספת שכבת הדגשה עבור הסגנון: {style_name}")
-                    break  # מספיק לעבד פעם אחת אם יש לפחות סגנון אחד שדורש עיבוד
+            # הוספת שכבת צבע מעל
+            overlay = Image.new('RGBA', img.size, self.overlay_color)
+            img = img.convert('RGBA')
+            img = Image.alpha_composite(img, overlay)
+            img = img.convert('RGB')
+            logging.info("עיבוד רקע: הגברת בהירות, טשטוש ושכבת צבע נוספו")
 
         draw = ImageDraw.Draw(img)
 
-        # הגדרת רוחב מקסימלי לטקסט (לדוגמה: רוחב התמונה פחות שוליים)
-        MAX_TEXT_WIDTH = WIDTH - 100
+        MAX_TEXT_WIDTH = WIDTH - 200
 
-        # חלוקת השורות ל-intro_subtitle ולשאר השורות
-        intro_subtitle_lines = []
-        intro_subtitle_styles = []
-        other_lines = []
-        other_styles = []
-
+        processed_lines = []
+        total_height = 0
         for i, line in enumerate(text_lines):
-            if line_styles and i < len(line_styles) and line_styles[i] == 'intro_subtitle':
-                intro_subtitle_lines.append(line)
-                intro_subtitle_styles.append('intro_subtitle')
-            else:
-                other_lines.append(line)
-                if line_styles and i < len(line_styles):
-                    other_styles.append(line_styles[i])
-                else:
-                    other_styles.append('normal')
-
-        # חישוב גובה כולל ל-intro_subtitle ולשאר השורות
-        processed_intro = []
-        total_height_intro = 0
-        for i, line in enumerate(intro_subtitle_lines):
-            style_name = intro_subtitle_styles[i] if i < len(intro_subtitle_styles) else 'normal'
-            try:
-                current_style = style_definitions[style_name]
-            except KeyError:
-                logging.error(f"סגנון '{style_name}' לא נמצא בקובץ העיצובים.")
-                raise
-
+            style_name = line_styles[i] if line_styles and i < len(line_styles) else 'normal'
+            current_style = style_definitions.get(style_name, style_definitions['normal'])
             font = self.get_font(current_style['font_path'], current_style['font_size'])
 
             if is_hebrew(line):
@@ -292,235 +200,72 @@ class ImageCreator:
                 for split_line in split_lines:
                     processed_line = process_hebrew_text(split_line)
                     segments = self.parse_bold(processed_line)
-                    processed_style = current_style.copy()
                     line_info = []
                     line_height = 0
                     for segment_text, is_bold in segments:
+                        segment_style = current_style.copy()
                         if is_bold:
-                            try:
-                                segment_style = style_definitions['intro_subtitle']
-                            except KeyError:
-                                logging.error(f"סגנון 'intro_subtitle' לא נמצא בקובץ העיצובים.")
-                                raise
+                            segment_style = style_definitions.get('bold', current_style)
                             segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
-                            segment_color = tuple(segment_style['text_color'])
                         else:
-                            segment_style = current_style
                             segment_font = font
-                            segment_color = tuple(segment_style['text_color'])
-
                         bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
                         width = bbox[2] - bbox[0]
                         height = bbox[3] - bbox[1]
-                        line_info.append((segment_text, width, height, segment_font, segment_color, segment_style))
+                        line_info.append((segment_text, width, height, segment_font, tuple(segment_style['text_color'])))
                         if height > line_height:
                             line_height = height
-                    processed_intro.append((line_info, line_height, processed_style))
-                    total_height_intro += line_height + LINE_SPACING_NORMAL
+                    processed_lines.append((line_info, line_height))
+                    total_height += line_height + LINE_SPACING_NORMAL
             else:
                 split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
                 for split_line in split_lines:
-                    processed_line = split_line
-                    processed_style = current_style.copy()
-                    line_info = []
-                    line_height = 0
-                    segments = self.parse_bold(processed_line)
-                    for segment_text, is_bold in segments:
-                        if is_bold:
-                            try:
-                                segment_style = style_definitions['intro_subtitle']
-                            except KeyError:
-                                logging.error(f"סגנון 'intro_subtitle' לא נמצא בקובץ העיצובים.")
-                                raise
-                            segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
-                            segment_color = tuple(segment_style['text_color'])
-                        else:
-                            segment_style = current_style
-                            segment_font = font
-                            segment_color = tuple(segment_style['text_color'])
-
-                        bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
-                        width = bbox[2] - bbox[0]
-                        height = bbox[3] - bbox[1]
-                        line_info.append((segment_text, width, height, segment_font, segment_color, segment_style))
-                        if height > line_height:
-                            line_height = height
-                    processed_intro.append((line_info, line_height, processed_style))
-                    total_height_intro += line_height + LINE_SPACING_NORMAL
-
-        processed_other = []
-        total_height_other = 0
-        for i, line in enumerate(other_lines):
-            style_name = other_styles[i] if i < len(other_styles) else 'normal'
-            try:
-                current_style = style_definitions[style_name]
-            except KeyError:
-                logging.error(f"סגנון '{style_name}' לא נמצא בקובץ העיצובים.")
-                raise
-
-            font = self.get_font(current_style['font_path'], current_style['font_size'])
-
-            if is_hebrew(line):
-                split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
-                for split_line in split_lines:
-                    processed_line = process_hebrew_text(split_line)
-                    segments = self.parse_bold(processed_line)
-                    processed_style = current_style.copy()
+                    segments = self.parse_bold(split_line)
                     line_info = []
                     line_height = 0
                     for segment_text, is_bold in segments:
+                        segment_style = current_style.copy()
                         if is_bold:
-                            try:
-                                if processed_style['style_name'] == 'sentence':
-                                    segment_style = style_definitions['sentence_bold']
-                                elif processed_style['style_name'] == 'call_to_action':
-                                    segment_style = style_definitions['call_to_action']
-                                else:
-                                    segment_style = style_definitions['word']
-                            except KeyError:
-                                logging.error(f"סגנון 'sentence_bold', 'word', 'call_to_action' לא נמצא בקובץ העיצובים.")
-                                raise
+                            segment_style = style_definitions.get('bold', current_style)
                             segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
-                            segment_color = tuple(segment_style['text_color'])
                         else:
-                            segment_style = current_style
                             segment_font = font
-                            segment_color = tuple(segment_style['text_color'])
-
                         bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
                         width = bbox[2] - bbox[0]
                         height = bbox[3] - bbox[1]
-                        line_info.append((segment_text, width, height, segment_font, segment_color, segment_style))
+                        line_info.append((segment_text, width, height, segment_font, tuple(segment_style['text_color'])))
                         if height > line_height:
                             line_height = height
-                    processed_other.append((line_info, line_height, processed_style))
-                    if processed_style['style_name'] in ['sentence', 'translation']:
-                        spacing = LINE_SPACING_NORMAL  # רווח רגיל לכל הסגנונות
-                    else:
-                        spacing = LINE_SPACING_NORMAL
-                    total_height_other += line_height + spacing
-            else:
-                split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
-                for split_line in split_lines:
-                    processed_line = split_line
-                    processed_style = current_style.copy()
-                    line_info = []
-                    line_height = 0
-                    segments = self.parse_bold(processed_line)
-                    for segment_text, is_bold in segments:
-                        if is_bold:
-                            try:
-                                if processed_style['style_name'] == 'sentence':
-                                    segment_style = style_definitions['sentence_bold']
-                                else:
-                                    segment_style = style_definitions['word']
-                            except KeyError:
-                                logging.error(f"סגנון 'sentence_bold' או 'word' לא נמצא בקובץ העיצובים.")
-                                raise
-                            segment_font = self.get_font(segment_style['font_path'], segment_style['font_size'])
-                            segment_color = tuple(segment_style['text_color'])
-                        else:
-                            segment_style = current_style
-                            segment_font = font
-                            segment_color = tuple(segment_style['text_color'])
+                    processed_lines.append((line_info, line_height))
+                    total_height += line_height + LINE_SPACING_NORMAL
 
-                        bbox = draw.textbbox((0, 0), segment_text, font=segment_font)
-                        width = bbox[2] - bbox[0]
-                        height = bbox[3] - bbox[1]
-                        line_info.append((segment_text, width, height, segment_font, segment_color, segment_style))
-                        if height > line_height:
-                            line_height = height
-                    processed_other.append((line_info, line_height, processed_style))
-                    if processed_style['style_name'] in ['sentence', 'translation']:
-                        spacing = LINE_SPACING_NORMAL  # רווח רגיל לכל הסגנונות
-                    else:
-                        spacing = LINE_SPACING_NORMAL
-                    total_height_other += line_height + spacing
+        if processed_lines:
+            total_height -= LINE_SPACING_NORMAL  # הסרת רווח נוסף בסוף
+        current_y = (HEIGHT - total_height) / 2
 
-        # הסרת הרווח הנוסף בסוף
-        if processed_intro:
-            total_height_intro -= LINE_SPACING_NORMAL
-        if processed_other:
-            total_height_other -= LINE_SPACING_NORMAL
-
-        # חישוב מיקום ההתחלה
-        # מיקום השורות האחרות במרכז
-        current_y_other = (HEIGHT - total_height_other) / 2
-
-        # מיקום intro_subtitle מעל
-        current_y_intro = current_y_other - total_height_intro - LINE_SPACING_NORMAL
-
-        # ציור intro_subtitle
-        for line_info, line_height, processed_style in processed_intro:
-            # חישוב רוחב השורה הכולל
+        for line_info, line_height in processed_lines:
             line_width = sum([segment[1] for segment in line_info])
             x_text = (WIDTH - line_width) / 2
-            for segment_text, width, height, segment_font, segment_color, segment_style in line_info:
+            for segment_text, width, height, segment_font, segment_color in line_info:
                 # ציור המסגרת אם קיים
-                if 'outline_color' in segment_style and 'outline_width' in segment_style:
-                    outline_color = tuple(segment_style['outline_color'])
-                    outline_width = segment_style['outline_width']
+                if 'outline_color' in current_style and 'outline_width' in current_style:
+                    outline_color = tuple(current_style['outline_color'])
+                    outline_width = current_style['outline_width']
                     # ציור מסגרת בטקסט על ידי ציור הטקסט עם הזזות
                     for dx in range(-outline_width, outline_width + 1):
                         for dy in range(-outline_width, outline_width + 1):
                             if dx != 0 or dy != 0:
-                                draw.text((x_text + dx, current_y_intro + dy + (line_height - height) / 2), segment_text, font=segment_font, fill=outline_color)
-                draw.text((x_text, current_y_intro + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
-                x_text += width  # הזזת מיקום ה-X לחלק הבא
+                                draw.text((x_text + dx, current_y + dy + (line_height - height) / 2), segment_text, font=segment_font, fill=outline_color)
+                # ציור הטקסט הרגיל
+                draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
+                x_text += width
+            current_y += line_height + LINE_SPACING_NORMAL
 
-            # קביעת רווח בין השורות
-            current_y_intro += line_height + LINE_SPACING_NORMAL  # רווח רגיל בין השורות
-
-        # ציור השורות האחרות במרכז
-        for line_info, line_height, processed_style in processed_other:
-            # חישוב רוחב השורה הכולל
-            line_width = sum([segment[1] for segment in line_info])
-            x_text = (WIDTH - line_width) / 2
-            for segment_text, width, height, segment_font, segment_color, segment_style in line_info:
-                # בדיקת סגנון לטקסט עם זוהר (לדוגמה: 'topic', 'video_number', 'call_to_action')
-                if processed_style['style_name'] in ['topic', 'video_number', 'call_to_action']:
-                    # הגדרת זוהר לבן עבה יותר
-                    glow_color = (255, 255, 255)
-                    # הגדרת offset רבות יותר כדי ליצור זוהר עבה
-                    offsets = [
-                        (-3, -3), (-3, 0), (-3, 3),
-                        (0, -3), (0, 3),
-                        (3, -3), (3, 0), (3, 3),
-                        (-2, -2), (-2, 2), (2, -2), (2, 2),
-                        (-4, 0), (4, 0), (0, -4), (0, 4)
-                    ]
-                    # ציור הזוהר מסביב לטקסט
-                    for offset in offsets:
-                        draw.text(
-                            (x_text + offset[0], current_y_other + (line_height - height) / 2 + offset[1]), 
-                            segment_text, font=segment_font, fill=glow_color
-                        )
-                # ציור המסגרת אם קיים
-                if 'outline_color' in segment_style and 'outline_width' in segment_style:
-                    outline_color = tuple(segment_style['outline_color'])
-                    outline_width = segment_style['outline_width']
-                    # ציור מסגרת בטקסט על ידי ציור הטקסט עם הזזות
-                    for dx in range(-outline_width, outline_width + 1):
-                        for dy in range(-outline_width, outline_width + 1):
-                            if dx != 0 or dy != 0:
-                                draw.text((x_text + dx, current_y_other + dy + (line_height - height) / 2), segment_text, font=segment_font, fill=outline_color)
-                # ציור הטקסט הרגיל במרכז הזוהר
-                draw.text((x_text, current_y_other + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
-                x_text += width  # הזזת מיקום ה-X לחלק הבא
-
-            # קביעת רווח בין השורות
-            current_y_other += line_height + LINE_SPACING_NORMAL  # רווח רגיל בין השורות
-
-        # שמירת התמונה בזיכרון
-        img = img.convert("RGB")  # המרת חזרה ל-RGB אם הוספנו אלפא
+        img = img.convert("RGB")
         self.cache[cache_key] = img
         return img
 
-
 def remove_asterisks(text):
-    """
-    מסירה את הכוכביות מטקסט המשמש להדגשה, כך שהמערכת לא תקריא אותן.
-    """
     return text.replace("**", "")
 
 class AudioCreator:
@@ -530,7 +275,6 @@ class AudioCreator:
 
     def create_audio_task(self, text, lang, slow=False):
         try:
-            # הסרת הכוכביות מהטקסט לפני ההקראה
             clean_text = remove_asterisks(text)
             tts = gTTS(text=clean_text, lang=lang, slow=slow)
             with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3', dir=self.temp_dir.name) as tmp_file:
@@ -541,9 +285,6 @@ class AudioCreator:
             raise
 
     def create_audios(self, tasks):
-        """
-        tasks: list of tuples, each tuple can be (text, lang) or (text, lang, slow)
-        """
         futures = {}
         for task in tasks:
             if len(task) == 3:
@@ -575,13 +316,11 @@ class VideoCreator:
         self.audio_creator = audio_creator
         self.style_definitions = style_definitions
 
-    def create_image_clip(self, text_lines, style, line_styles=None, background_image_path=None):
-        img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles, background_image_path)
-        # יצירת שם קובץ בטוח
+    def create_image_clip(self, text_lines, style, line_styles=None, background_image_path=None, process_background=True):
+        img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles, background_image_path, process_background)
         filename = f"{'_'.join([sanitize_filename(line) for line in text_lines])}.png"
         temp_image_path = self.file_manager.get_temp_path(filename)
         img.save(temp_image_path)
-        # יצירת קליפ ללא הגדרת משך, יוגדר לפי האודיו או min_duration
         image_clip = ImageClip(temp_image_path)
         return image_clip
 
@@ -633,11 +372,7 @@ class VideoCreator:
         return transition
 
     def add_logo_clip(self, duration=5, background_image_path=None):
-        """
-        יוצר קליפ לוגו עם מסגרת לבנה עגולה סביב הלוגו במרכז המסך.
-        """
         try:
-            # יצירת התמונה הבסיסית
             if background_image_path and os.path.exists(background_image_path):
                 try:
                     background = Image.open(background_image_path).convert("RGB")
@@ -647,63 +382,45 @@ class VideoCreator:
                     logging.error(f"שגיאה בטעינת תמונת הרקע עבור הלוגו: {e}")
                     background = Image.new('RGB', (WIDTH, HEIGHT), color=(173, 216, 230))
             else:
-                # אם אין תמונת רקע, השתמש ברקע צבעי
                 logo_style = self.style_definitions.get('logo', None)
                 if logo_style and 'bg_color' in logo_style:
                     bg_color = tuple(logo_style['bg_color'])
                 else:
-                    bg_color = (173, 216, 230)  # צבע ברירת מחדל
+                    bg_color = (173, 216, 230)
                 background = Image.new('RGB', (WIDTH, HEIGHT), color=bg_color)
 
-            # טעינת הלוגו
             logo_image = Image.open(LOGO_PATH).convert("RGBA")
 
-            # יצירת מסכה מעגלית
             size = min(logo_image.size)
             mask = Image.new('L', (size, size), 0)
             draw = ImageDraw.Draw(mask)
             draw.ellipse((0, 0, size, size), fill=255)
 
-            # חיתוך הלוגו לצורה מעגלית
             logo_image = logo_image.crop((0, 0, size, size))
             logo_image.putalpha(mask)
 
-            # קריאת הגדרות המסגרת מקובץ ה-JSON
             logo_style = self.style_definitions.get('logo', {})
-            border_color = tuple(logo_style.get('border_color', [255, 255, 255]))  # ברירת מחדל לבן
-            border_width = logo_style.get('border_width', 10)  # ברירת מחדל לעובי 10
+            border_color = tuple(logo_style.get('border_color', [255, 255, 255]))
+            border_width = logo_style.get('border_width', 10)
 
-            # יצירת תמונה חדשה עם מסגרת עגולה
             bordered_size = (size + 2 * border_width, size + 2 * border_width)
             bordered_logo = Image.new('RGBA', bordered_size, (0, 0, 0, 0))
             bordered_logo_draw = ImageDraw.Draw(bordered_logo)
 
-            # ציור מסגרת עגולה בצבע המסגרת
             bordered_logo_draw.ellipse((0, 0, bordered_size[0], bordered_size[1]), fill=border_color)
 
-            # יצירת מסכה פנימית לשקיפות
-            inner_mask = Image.new('L', (size, size), 0)
-            inner_draw = ImageDraw.Draw(inner_mask)
-            inner_draw.ellipse((0, 0, size, size), fill=255)
-
-            # הדבקת הלוגו המעוגל על המסגרת
             bordered_logo.paste(logo_image, (border_width, border_width), logo_image)
 
-            # שינוי גודל הלוגו עם המסגרת
-            new_size = int(WIDTH * 0.7)  # 70% מרוחב המסך
+            new_size = int(HEIGHT * 0.3)  # 30% מגובה המסך
             bordered_logo = bordered_logo.resize((new_size, new_size), RESAMPLING)
 
-            # מיקום הלוגו במרכז
             logo_position = ((WIDTH - new_size) // 2, (HEIGHT - new_size) // 2)
 
-            # הדבקת הלוגו עם המסגרת על הרקע
             background.paste(bordered_logo, logo_position, bordered_logo)
 
-            # שמירת התמונה הזמנית
             temp_image_path = self.file_manager.get_temp_path("logo_outro.png")
             background.convert("RGB").save(temp_image_path)
 
-            # יצירת קליפ הווידאו
             clip = ImageClip(temp_image_path).set_duration(duration)
             return clip
         except Exception as e:
@@ -716,13 +433,12 @@ class VideoCreator:
             text_lines_intro = [intro_subtitle, title, f"#{video_number}"]
             line_styles_intro = ['intro_subtitle', 'topic', 'video_number']
 
-            clip_intro = self.create_image_clip(text_lines_intro, 'intro_subtitle', line_styles_intro, background_image_path)
+            clip_intro = self.create_image_clip(text_lines_intro, 'intro_subtitle', line_styles_intro, background_image_path, process_background=False)
 
             # יצירת אודיו רק לשם הנושא ומספר הסרטון, לא למשפט הנוסף
             audio_tasks = [
                 (title, 'iw'),
                 (f"מספר {video_number}", 'iw')
-                # לא מוסיפים את המשפט "למד מילים חדשות בשישים שניות"
             ]
             audio_results = self.audio_creator.create_audios(audio_tasks)
             clip_intro = self.create_clip(
@@ -730,7 +446,6 @@ class VideoCreator:
                 [
                     audio_results.get((title, 'iw'), ""),
                     audio_results.get((f"מספר {video_number}", 'iw'), "")
-                    # לא מוסיפים את הנתיב לאודיו של המשפט הנוסף
                 ],
                 min_duration=3  # משך מינימלי
             )
@@ -746,7 +461,7 @@ class VideoCreator:
             ]
             line_styles_outro = ['call_to_action']
 
-            clip_outro = self.create_image_clip(text_lines_outro, 'outro', line_styles_outro, background_image_path)
+            clip_outro = self.create_image_clip(text_lines_outro, 'call_to_action', line_styles_outro, background_image_path, process_background=False)
 
             # יצירת אודיו לקריאה לפעולה
             audio_tasks = [
@@ -765,129 +480,198 @@ class VideoCreator:
             logging.error(f"שגיאה ביצירת קליפ הסיום: {e}")
             return None
 
-class VideoAssemblerShorts:
+class VideoAssembler:
     def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
         self.video_creator = VideoCreator(file_manager, image_creator, audio_creator, style_definitions)
 
     def determine_background_image_path(self, title):
-        """
-        קובע את נתיב תמונת הרקע על בסיס ה-title.
-        מחפש תמונה בפורמט PNG בתיקיית הרקעים עם שם תואם ל-title.
-        """
-        background_image_filename = f"{sanitize_filename(title)}.png"  # שימוש ב-PNG
+        background_image_filename = f"{sanitize_filename(title)}.png"
         background_image_path = os.path.join(BACKGROUNDS_DIR, background_image_filename)
         if not os.path.exists(background_image_path):
             logging.warning(f"תמונת הרקע '{background_image_filename}' לא נמצאה בתיקיית הרקעים. ישתמש ברקע לבן.")
-            background_image_path = None  # ייעשה שימוש ברקע ברירת מחדל
+            background_image_path = None
         return background_image_path
 
-    def assemble_shorts_videos(self, data, output_dir, thumbnails_dir):
-        videos = data  # הפורמט העדכני הוא רשימה
+    def assemble_videos(self, data, output_dir, thumbnails_dir):
+        if isinstance(data, dict):
+            videos = [data]  # עטיפת המילון ברשימה
+        elif isinstance(data, list):
+            videos = data
+        else:
+            logging.error("מבנה הנתונים אינו תואם. צפה למילון או רשימה של מילונים.")
+            return
 
         for video_data in videos:
-            video_number = video_data['video_number']
-            title = video_data['title']
-            word = video_data['word']
-            translation = video_data['translation']
-            examples = video_data['examples']
-            call_to_action = video_data.get('call_to_action', '')
-            intro_subtitle_text = "למד מילים חדשות בשישים שניות"  # המשפט הנוסף
+            video_title = video_data['video_title']
+            language_level = video_data['language_level']
+            story_type = video_data['story_type']
+            story = video_data['story']
+            vocabulary = video_data.get('vocabulary', [])
+            grammar_points = video_data.get('grammar_points', [])
+            comprehension_questions = video_data.get('comprehension_questions', [])
+            call_to_action = video_data.get('call_to_action', {}).get('text', '')
+            intro_subtitle_text = "למד מילים חדשות בשישים שניות"  # משפט הפתיחה הנוסף
 
-            logging.info(f"מעבד סרטון מספר {video_number}: {title}")
+            logging.info(f"מעבד סרטון: {video_title}")
 
-            # יצירת שם קובץ וידאו בטוח
-            safe_title = sanitize_filename("".join([c for c in title if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
-            video_filename = f"Short_{video_number}_{safe_title}.mp4"
+            safe_title = sanitize_filename(video_title.replace(" ", "_"))
+            video_filename = f"{safe_title}.mp4"
             video_path = os.path.join(output_dir, video_filename)
 
-            # קביעת נתיב תמונת הרקע על בסיס ה-title
-            background_image_path = self.determine_background_image_path(title)
+            background_image_path = self.determine_background_image_path(video_title)
 
-            # רשימה לאחסון הקליפים
             clips = []
 
             try:
-                # יצירת קליפ פתיחה עם intro_subtitle, שם הנושא ומספר הסרטון
-                intro_clip = self.video_creator.create_intro_clip(intro_subtitle_text, title, video_number, background_image_path)
+                # קליפ פתיחה
+                intro_clip = self.video_creator.create_intro_clip(intro_subtitle_text, video_title, 1, background_image_path)
                 if intro_clip:
                     clips.append(intro_clip)
 
-                # הצגת המילה והתרגום
-                text_lines_word = [word, translation]
-                line_styles_word = ['word', 'translation']
-                clip_word = self.video_creator.create_image_clip(text_lines_word, 'word', line_styles_word, background_image_path)
+                # הצגת הסיפור
+                for paragraph in story['text']:
+                    english_text = paragraph['english']
+                    hebrew_text = paragraph['hebrew']
+                    text_lines = [english_text, hebrew_text]
+                    line_styles = ['sentence', 'translation']
+                    clip_story = self.video_creator.create_image_clip(text_lines, 'sentence', line_styles, background_image_path, process_background=True)
 
-                # יצירת אודיו למילה ולתרגום
-                audio_tasks = [
-                    (word, 'en', True),  # אנגלית באיטיות
-                    (translation, 'iw'),
-                ]
-                audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-
-                # יצירת רשימת נתיבי האודיו
-                audio_paths_word = []
-                # עבור 'word' - קריאה באנגלית
-                english_audio = audio_results.get((word, 'en', True), "")
-                if english_audio:
-                    audio_paths_word.append(english_audio)  # קריאה אחת באנגלית
-                # עבור 'translation' - קריאה בעברית
-                hebrew_audio_translation = audio_results.get((translation, 'iw'), "")
-                if hebrew_audio_translation:
-                    audio_paths_word.append(hebrew_audio_translation)  # קריאה אחת בעברית
-                # עבור 'word' - קריאה שוב באנגלית
-                if english_audio:
-                    audio_paths_word.append(english_audio)  # קריאה שנייה באנגלית
-
-                clip_word = self.video_creator.create_clip(
-                    clip_word,
-                    audio_paths_word,
-                    min_duration=3  # משך מינימלי
-                )
-                clips.append(clip_word)
-
-                # משפטים לדוגמה
-                for example in examples:
-                    sentence = example['sentence']
-                    ex_translation = example['translation']
-
-                    text_lines_example = [sentence, ex_translation]
-                    line_styles_example = ['sentence', 'translation']
-                    clip_example = self.video_creator.create_image_clip(text_lines_example, 'sentence', line_styles_example, background_image_path)
-
-                    # יצירת אודיו למשפט ולתרגום
                     audio_tasks = [
-                        (sentence, 'en', True),
-                        (ex_translation, 'iw'),
+                        (english_text, 'en', True),  # אנגלית באיטיות
+                        (hebrew_text, 'iw')
                     ]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                    audio_paths = [
+                        audio_results.get((english_text, 'en', True), ""),
+                        audio_results.get((hebrew_text, 'iw'), "")
+                    ]
 
-                    # יצירת רשימת נתיבי האודיו
-                    audio_paths_example = []
-                    # עבור 'sentence' - קריאה באנגלית
-                    english_audio_sentence = audio_results.get((sentence, 'en', True), "")
-                    if english_audio_sentence:
-                        audio_paths_example.append(english_audio_sentence)  # קריאה אחת באנגלית
-                    # עבור 'translation' - קריאה בעברית
-                    hebrew_audio_ex_translation = audio_results.get((ex_translation, 'iw'), "")
-                    if hebrew_audio_ex_translation:
-                        audio_paths_example.append(hebrew_audio_ex_translation)  # קריאה אחת בעברית
-                    # עבור 'sentence' - קריאה שוב באנגלית
-                    if english_audio_sentence:
-                        audio_paths_example.append(english_audio_sentence)  # קריאה שנייה באנגלית
-
-                    clip_example = self.video_creator.create_clip(
-                        clip_example,
-                        audio_paths_example,
-                        min_duration=4  # משך מינימלי
+                    clip_story = self.video_creator.create_clip(
+                        clip_story,
+                        audio_paths,
+                        min_duration=5
                     )
-
-                    # יצירת מעבר
                     if clips:
-                        previous_clip = clips[-1]
-                        transition = self.video_creator.slide_transition(previous_clip, clip_example)
+                        transition = self.video_creator.slide_transition(clips[-1], clip_story)
                         clips.append(transition)
+                    clips.append(clip_story)
 
-                    clips.append(clip_example)
+                # אוצר מילים
+                if vocabulary:
+                    vocab_title = "אוצר מילים"
+                    text_lines = [vocab_title]
+                    line_styles = ['subtopic']
+                    clip_vocab_title = self.video_creator.create_image_clip(text_lines, 'subtopic', line_styles, background_image_path, process_background=True)
+                    audio_tasks = [(vocab_title, 'iw')]
+                    audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                    clip_vocab_title = self.video_creator.create_clip(
+                        clip_vocab_title,
+                        [audio_results.get((vocab_title, 'iw'), "")],
+                        min_duration=3
+                    )
+                    transition = self.video_creator.slide_transition(clips[-1], clip_vocab_title)
+                    clips.append(transition)
+                    clips.append(clip_vocab_title)
+
+                    for word_entry in vocabulary:
+                        word = word_entry['word']
+                        translation = word_entry['translation']
+                        text_lines = [word, translation]
+                        line_styles = ['word', 'translation']
+                        clip_word = self.video_creator.create_image_clip(text_lines, 'word', line_styles, background_image_path, process_background=True)
+                        audio_tasks = [
+                            (word, 'en', True),  # קריאה באנגלית באיטיות
+                            (translation, 'iw')
+                        ]
+                        audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                        audio_paths = [
+                            audio_results.get((word, 'en', True), ""),
+                            audio_results.get((translation, 'iw'), "")
+                        ]
+                        clip_word = self.video_creator.create_clip(
+                            clip_word,
+                            audio_paths,
+                            min_duration=4
+                        )
+                        transition = self.video_creator.slide_transition(clips[-1], clip_word)
+                        clips.append(transition)
+                        clips.append(clip_word)
+
+                # נקודות דקדוק
+                if grammar_points:
+                    grammar_title = "נקודות דקדוק"
+                    text_lines = [grammar_title]
+                    line_styles = ['subtopic']
+                    clip_grammar_title = self.video_creator.create_image_clip(text_lines, 'subtopic', line_styles, background_image_path, process_background=True)
+                    audio_tasks = [(grammar_title, 'iw')]
+                    audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                    clip_grammar_title = self.video_creator.create_clip(
+                        clip_grammar_title,
+                        [audio_results.get((grammar_title, 'iw'), "")],
+                        min_duration=3
+                    )
+                    transition = self.video_creator.slide_transition(clips[-1], clip_grammar_title)
+                    clips.append(transition)
+                    clips.append(clip_grammar_title)
+
+                    for point in grammar_points:
+                        title = point['title']
+                        explanation = point['explanation']
+                        text_lines = [title, explanation]
+                        line_styles = ['word', 'translation']
+                        clip_point = self.video_creator.create_image_clip(text_lines, 'word', line_styles, background_image_path, process_background=True)
+                        audio_tasks = [
+                            (title, 'iw'),
+                            (explanation, 'iw')
+                        ]
+                        audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                        audio_paths = [
+                            audio_results.get((title, 'iw'), ""),
+                            audio_results.get((explanation, 'iw'), "")
+                        ]
+                        clip_point = self.video_creator.create_clip(
+                            clip_point,
+                            audio_paths,
+                            min_duration=5
+                        )
+                        transition = self.video_creator.slide_transition(clips[-1], clip_point)
+                        clips.append(transition)
+                        clips.append(clip_point)
+
+                # שאלות הבנה
+                if comprehension_questions:
+                    questions_title = "שאלות הבנה"
+                    text_lines = [questions_title]
+                    line_styles = ['subtopic']
+                    clip_questions_title = self.video_creator.create_image_clip(text_lines, 'subtopic', line_styles, background_image_path, process_background=True)
+                    audio_tasks = [(questions_title, 'iw')]
+                    audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                    clip_questions_title = self.video_creator.create_clip(
+                        clip_questions_title,
+                        [audio_results.get((questions_title, 'iw'), "")],
+                        min_duration=3
+                    )
+                    transition = self.video_creator.slide_transition(clips[-1], clip_questions_title)
+                    clips.append(transition)
+                    clips.append(clip_questions_title)
+
+                    for question_entry in comprehension_questions:
+                        question = question_entry['question']
+                        options = question_entry['options']
+                        text_lines = [question] + options
+                        line_styles = ['sentence'] + ['translation'] * len(options)
+                        clip_question = self.video_creator.create_image_clip(text_lines, 'sentence', line_styles, background_image_path, process_background=True)
+                        audio_tasks = [(question, 'iw')] + [(opt, 'iw') for opt in options]
+                        audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                        audio_paths = [audio_results.get((text, 'iw'), "") for text in [question] + options]
+                        clip_question = self.video_creator.create_clip(
+                            clip_question,
+                            audio_paths,
+                            min_duration=6
+                        )
+                        transition = self.video_creator.slide_transition(clips[-1], clip_question)
+                        clips.append(transition)
+                        clips.append(clip_question)
 
                 # קריאה לפעולה
                 if call_to_action:
@@ -905,7 +689,7 @@ class VideoAssemblerShorts:
                     clips.append(logo_clip)
 
                 # איחוד הקליפים לסרטון אחד
-                logging.info(f"איחוד הקליפים לסרטון מספר {video_number}: {title}")
+                logging.info(f"איחוד הקליפים לסרטון: {video_title}")
                 final_clip = concatenate_videoclips(clips, method="compose")
 
                 # הוספת מוזיקת רקע אם קיימת
@@ -914,7 +698,6 @@ class VideoAssemblerShorts:
                     background_music = audio_loop(background_music, duration=final_clip.duration)
                     final_audio = CompositeAudioClip([final_clip.audio, background_music])
                     final_clip = final_clip.set_audio(final_audio)
-                    # סגירת background_music ו-final_audio לאחר השימוש
                     background_music.close()
                     final_audio.close()
 
@@ -923,67 +706,56 @@ class VideoAssemblerShorts:
                 final_clip.write_videofile(video_path, fps=FPS, codec='libx264', audio_codec='aac', threads=THREADS)
 
                 # שמירת תמונת תצוגה מקדימה
-                thumbnail_path = os.path.join(thumbnails_dir, f"Short_{video_number}_thumbnail.png")
+                thumbnail_path = os.path.join(thumbnails_dir, f"{safe_title}_thumbnail.png")
                 final_clip.save_frame(thumbnail_path, t=0)
                 logging.info(f"שומר תמונת תצוגה מקדימה בנתיב: {thumbnail_path}")
 
             except Exception as e:
-                logging.error(f"שגיאה בתהליך הרכבת הוידאו לסרטון מספר {video_number}: {e}")
+                logging.error(f"שגיאה בתהליך הרכבת הוידאו לסרטון: {e}")
             finally:
-                # סגירת כל הקליפים
                 for clip in clips:
                     clip.close()
-                # סגירת final_clip אם לא כבר סגור
                 if 'final_clip' in locals():
                     final_clip.close()
 
 def main():
-    # ניהול קבצים
     file_manager = FileManager(OUTPUT_DIR, THUMBNAILS_DIR)
 
-    video_assembler = None  # אתחול מראש
+    video_assembler = None
 
     try:
-        # קריאת קובץ JSON
         with open(JSON_FILE, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        # קריאת קובץ העיצובים
         with open(STYLES_JSON_FILE, 'r', encoding='utf-8') as f:
             style_definitions = json.load(f)
 
-        # בדיקה שכל הסגנונות הנדרשים קיימים בקובץ העיצובים
         required_styles = {
             "normal",
             "subtopic",
             "level",
             "word",
-            "gradient_background",
-            "outro",
-            "outro_title",
-            "outro_subtitle",
-            "sentence",
-            "sentence_bold",
             "translation",
+            "sentence",
+            "bold",
             "call_to_action",
-            "topic",
+            "title",
+            "intro_subtitle",
             "video_number",
-            "logo",
-            "intro_subtitle"  # סגנון חדש עבור משפט הפתיחה הנוסף
+            "topic",
+            "logo"
         }
 
         missing_styles = required_styles - set(style_definitions.keys())
         if missing_styles:
             logging.error(f"סגנונות חסרים בקובץ העיצובים: {', '.join(missing_styles)}. ודא שכל הסגנונות הדרושים מוגדרים.")
-            sys.exit(1)  # יציאה מהסקריפט עם קוד שגיאה
+            sys.exit(1)
 
-        # יצירת אובייקטים
         image_creator = ImageCreator(styles=style_definitions)
         audio_creator = AudioCreator(file_manager.temp_dir)
-        video_assembler = VideoAssemblerShorts(file_manager, image_creator, audio_creator, style_definitions)
+        video_assembler = VideoAssembler(file_manager, image_creator, audio_creator, style_definitions)
 
-        # הרכבת סרטוני ה-Shorts
-        video_assembler.assemble_shorts_videos(data, OUTPUT_DIR, THUMBNAILS_DIR)
+        video_assembler.assemble_videos(data, OUTPUT_DIR, THUMBNAILS_DIR)
 
         logging.info("יצירת כל הסרטונים הסתיימה!")
 
@@ -995,10 +767,8 @@ def main():
         logging.error(f"שגיאה כללית בתהליך יצירת הסרטונים: {e}")
 
     finally:
-        # ניקוי קבצים זמניים וסגירת ThreadPoolExecutor
         if file_manager:
             file_manager.cleanup()
-        # סגירת אובייקט האודיו בלבד
         if audio_creator:
             audio_creator.shutdown()
 

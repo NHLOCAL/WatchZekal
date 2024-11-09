@@ -1,0 +1,84 @@
+{
+  "video_title": "הסוד של שען הזמן",
+  "language_level": "בינוני",
+  "story_type": "מסתורין",
+  "story": {
+    "title": "הסוד של שען הזמן",
+    "text": [
+      {
+        "english": "Levi was a watchmaker known for his intricate clocks.",
+        "hebrew": "לוי היה שען ידוע בשעוניו המורכבים."
+      },
+      {
+        "english": "He built a special clock that could manipulate time.",
+        "hebrew": "הוא בנה שעון מיוחד שיכול להשפיע על הזמן."
+      },
+      {
+        "english": "One day, the clock stopped working properly.",
+        "hebrew": "יום אחד, השעון הפסיק לעבוד כראוי."
+      },
+      {
+        "english": "Time in the town became unstable.",
+        "hebrew": "הזמן בעיירה הפך לבלתי יציב."
+      },
+      {
+        "english": "Levi realized he needed to fix the clock.",
+        "hebrew": "לוי הבין שעליו לתקן את השעון."
+      },
+      {
+        "english": "He worked tirelessly to restore balance.",
+        "hebrew": "הוא עבד ללא לאות כדי להשיב את האיזון."
+      },
+      {
+        "english": "Finally, he succeeded, and time flowed normally again.",
+        "hebrew": "לבסוף, הוא הצליח, והזמן חזר לזרום כרגיל."
+      },
+      {
+        "english": "Levi learned the importance of responsibility.",
+        "hebrew": "לוי למד את חשיבות האחריות."
+      }
+    ]
+  },
+  "vocabulary": [
+    { "word": "watchmaker", "translation": "שען" },
+    { "word": "intricate", "translation": "מורכב" },
+    { "word": "manipulate", "translation": "להשפיע על" },
+    { "word": "unstable", "translation": "בלתי יציב" },
+    { "word": "restore", "translation": "להשיב" },
+    { "word": "balance", "translation": "איזון" },
+    { "word": "tirelessly", "translation": "ללא לאות" },
+    { "word": "responsibility", "translation": "אחריות" }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה הייתה היכולת המיוחדת של השעון של לוי?",
+      "options": [
+        "הוא ניגן מוזיקה",
+        "הוא יכול היה להשפיע על הזמן",
+        "הוא הראה את מזג האוויר"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה קרה כשהשעון הפסיק לעבוד כראוי?",
+      "options": [
+        "לוי איבד את עבודתו",
+        "הזמן בעיירה הפך לבלתי יציב",
+        "כל השעונים האחרים נעצרו"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה למד לוי מהחוויה?",
+      "options": [
+        "את חשיבות האחריות",
+        "איך לבנות שעונים חדשים",
+        "שהוא צריך לעזוב את העיירה"
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "הסיפור הזה הזכיר לנו כמה האחריות חשובה. אם נהניתם, לחצו 'אהבתי' והירשמו לערוץ 'זה קל' לסיפורים נוספים!"
+  }
+}
