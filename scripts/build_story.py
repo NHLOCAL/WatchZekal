@@ -152,7 +152,7 @@ class ImageCreator:
         return segments
 
     def create_image(self, text_lines, style_definitions, line_styles=None, background_image_path=None, process_background=True, highlight_option=None):
-        # Convert highlight_option dict to tuple if not None
+        # Convert highlight_option tuple if not None
         if highlight_option is not None:
             highlight_option = tuple(highlight_option)
         
@@ -451,9 +451,9 @@ class VideoCreator:
             text_lines_intro = [title, intro_details]
             line_styles_intro = ['intro_title', 'intro_details']
 
-            clip_intro = self.create_image_clip(text_lines_intro, 'intro', line_styles_intro, background_image_path, process_background=False)
+            clip_intro = self.create_image_clip(text_lines_intro, 'intro_title', line_styles_intro, background_image_path, process_background=False)
 
-            # יצירת אודיו לכותרת, רמת שפה וסוג הסיפור
+            # יצירת אודיו לכותרת ורמת שפה וסוג הסיפור
             audio_tasks = [
                 (title, 'iw'),
                 (intro_details, 'iw')
@@ -691,7 +691,7 @@ class VideoAssembler:
                     for question_entry in comprehension_questions:
                         question = question_entry['question']
                         options = question_entry['options']
-                        correct_answer_index = question_entry['answer'] - 1  # assuming 1-based index
+                        correct_answer = question_entry['answer']  # 0-based index between 0-2
 
                         # קליפ השאלה עם כל התשובות
                         text_lines = [question] + options
@@ -711,12 +711,25 @@ class VideoAssembler:
                         clips.append(clip_question)
 
                         # קליפ עם התשובה הנכונה מודגשת
-                        highlight_option = (0, correct_answer_index)  # line=0 (השורה הראשונה אחרי השאלה), option=index
+                        correct_answer_text = options[correct_answer]
+                        highlight_option = (1 + correct_answer, 0)  # line_idx = 1 + correct_answer, segment_idx = 0
                         clip_answer = self.video_creator.create_image_clip(text_lines, 'sentence', line_styles, background_image_path, process_background=True, highlight_option=highlight_option)
+
+                        # יצירת אודיו עבור "התשובה הנכונה היא..." והאופציה הנכונה
+                        narration_text = "התשובה הנכונה היא"
+                        audio_tasks = [
+                            (narration_text, 'iw'),
+                            (correct_answer_text, 'iw')
+                        ]
+                        audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                        audio_paths = [
+                            audio_results.get((narration_text, 'iw'), ""),
+                            audio_results.get((correct_answer_text, 'iw'), "")
+                        ]
                         clip_answer = self.video_creator.create_clip(
                             clip_answer,
-                            [],
-                            min_duration=1
+                            audio_paths,
+                            min_duration=3
                         )
                         transition = self.video_creator.slide_transition(clips[-1], clip_answer)
                         clips.append(transition)

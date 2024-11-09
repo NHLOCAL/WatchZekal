@@ -3,7 +3,7 @@
         "style_name": "normal",
         "bg_color": [255, 255, 255],
         "text_color": [0, 0, 0],
-        "font_size": 70, 
+        "font_size": 70,
         "font_path": "Rubik-Regular.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 2
@@ -38,7 +38,7 @@
     "translation": {
         "style_name": "translation",
         "bg_color": [255, 255, 255],
-        "text_color": [70, 70, 70], 
+        "text_color": [70, 70, 70],
         "font_size": 65,
         "font_path": "Rubik-Regular.ttf",
         "outline_color": [255, 255, 255],
@@ -75,7 +75,7 @@
         "style_name": "title",
         "bg_color": [240, 240, 240],
         "text_color": [0, 102, 204],
-        "font_size": 90,  
+        "font_size": 90,
         "font_path": "Rubik-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 3
