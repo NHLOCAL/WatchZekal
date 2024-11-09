@@ -43,18 +43,18 @@ logging.getLogger().addHandler(file_handler)
 RESAMPLING = Image.LANCZOS
 
 # הגדרות בסיסיות
-DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'videos')
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'stories')
 ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
 FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 LOGOS_DIR = os.path.join(ASSETS_DIR, 'logos')
 BACKGROUNDS_DIR = os.path.join(ASSETS_DIR, 'backgrounds')
-OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'videos')
+OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'stories')
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 
 # נתיבים לקבצים
 json_name = str(sys.argv[1])
 JSON_FILE = os.path.join(DATA_DIR, f'{json_name}.json')
-STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles_videos.json')
+STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles_stories.json')
 LOGO_PATH = os.path.join(LOGOS_DIR, 'logo_colored.png')
 
 # הגדרות רווח בין שורות
