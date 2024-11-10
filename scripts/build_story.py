@@ -696,7 +696,7 @@ class VideoAssembler:
                     for question_entry in comprehension_questions:
                         question = question_entry['question']
                         options = question_entry['options']
-                        correct_answer = question_entry['answer']  # 0-based index between 0-2
+                        correct_answer = question_entry['answer']  # 0-based index בין 0-2
 
                         # קליפ השאלה עם כל התשובות
                         text_lines = [question] + options
@@ -711,6 +711,10 @@ class VideoAssembler:
                             min_duration=5
                         )
                         clips.append(clip_question)
+
+                        # הרחבת משך הקליפ ב-2 שניות
+                        clip_question = clip_question.set_duration(clip_question.duration + 3)
+                        clips[-1] = clip_question  # עדכון הקליפ ברשימה
 
                         # קליפ עם התשובה הנכונה מודגשת
                         correct_answer_text = options[correct_answer]
