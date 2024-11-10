@@ -13,7 +13,7 @@
         "bg_color": [240, 240, 255],
         "text_color": [0, 102, 153],
         "font_size": 130,
-        "font_path": "BonaNova-Bold.ttf", 
+        "font_path": "BonaNova-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 3
     },
@@ -22,7 +22,7 @@
         "bg_color": [255, 223, 186],
         "text_color": [255, 99, 71],
         "font_size": 55,
-        "font_path": "BonaNova-Bold.ttf",  
+        "font_path": "BonaNova-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 2
     },
@@ -67,15 +67,6 @@
         "bg_color": [255, 223, 186],
         "text_color": [255, 99, 71],
         "font_size": 70,
-        "font_path": "BonaNova-Bold.ttf",  
-        "outline_color": [255, 255, 255],
-        "outline_width": 3
-    },
-    "title": {
-        "style_name": "title",
-        "bg_color": [240, 240, 240],
-        "text_color": [0, 153, 204],
-        "font_size": 120,
         "font_path": "BonaNova-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 3
@@ -85,7 +76,7 @@
         "bg_color": [0, 0, 0, 0],
         "text_color": [0, 51, 153],
         "font_size": 140,
-        "font_path": "BonaNova-Bold.ttf", 
+        "font_path": "BonaNova-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 4
     },
@@ -94,7 +85,7 @@
         "bg_color": [0, 0, 0, 0],
         "text_color": [70, 70, 70],
         "font_size": 60,
-        "font_path": "BonaNova-Regular.ttf", 
+        "font_path": "BonaNova-Regular.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 3
     },
@@ -103,7 +94,7 @@
         "bg_color": [200, 220, 255],
         "text_color": [0, 51, 153],
         "font_size": 65,
-        "font_path": "BonaNova-Regular.ttf", 
+        "font_path": "BonaNova-Regular.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 3
     },
