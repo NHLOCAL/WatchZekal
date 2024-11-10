@@ -3,16 +3,16 @@
         "style_name": "normal",
         "bg_color": [255, 255, 255],
         "text_color": [0, 0, 0],
-        "font_size": 70,
+        "font_size": 80,
         "font_path": "Rubik-Regular.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 2
     },
     "subtopic": {
         "style_name": "subtopic",
-        "bg_color": [240, 240, 240],
+        "bg_color": [245, 245, 245],
         "text_color": [0, 102, 204],
-        "font_size": 80,
+        "font_size": 85,
         "font_path": "Rubik-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 3
@@ -21,7 +21,7 @@
         "style_name": "level",
         "bg_color": [255, 223, 186],
         "text_color": [255, 69, 0],
-        "font_size": 50,
+        "font_size": 55,
         "font_path": "Rubik-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 2
@@ -30,7 +30,7 @@
         "style_name": "word",
         "bg_color": [255, 255, 255],
         "text_color": [34, 139, 34],
-        "font_size": 70,
+        "font_size": 80,
         "font_path": "Rubik-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 2
@@ -38,8 +38,8 @@
     "translation": {
         "style_name": "translation",
         "bg_color": [255, 255, 255],
-        "text_color": [70, 70, 70],
-        "font_size": 65,
+        "text_color": [50, 50, 50],
+        "font_size": 75,
         "font_path": "Rubik-Regular.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 2
@@ -48,7 +48,7 @@
         "style_name": "sentence",
         "bg_color": [255, 255, 255],
         "text_color": [0, 0, 0],
-        "font_size": 75,
+        "font_size": 85,
         "font_path": "Rubik-Regular.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 2
@@ -57,7 +57,7 @@
         "style_name": "bold",
         "bg_color": [255, 255, 255],
         "text_color": [0, 0, 0],
-        "font_size": 75,
+        "font_size": 85,
         "font_path": "Rubik-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 2
@@ -66,7 +66,7 @@
         "style_name": "call_to_action",
         "bg_color": [255, 223, 186],
         "text_color": [255, 69, 0],
-        "font_size": 60,
+        "font_size": 70,
         "font_path": "Rubik-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 3
@@ -75,7 +75,7 @@
         "style_name": "title",
         "bg_color": [240, 240, 240],
         "text_color": [0, 102, 204],
-        "font_size": 90,
+        "font_size": 100,
         "font_path": "Rubik-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 3
@@ -84,7 +84,7 @@
         "style_name": "intro_title",
         "bg_color": [0, 0, 0, 0],
         "text_color": [0, 51, 153],
-        "font_size": 110,
+        "font_size": 120,
         "font_path": "Rubik-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 4
@@ -92,8 +92,8 @@
     "intro_details": {
         "style_name": "intro_details",
         "bg_color": [0, 0, 0, 0],
-        "text_color": [70, 70, 70],
-        "font_size": 55,
+        "text_color": [60, 60, 60],
+        "font_size": 60,
         "font_path": "Rubik-Regular.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 3
@@ -102,7 +102,7 @@
         "style_name": "intro_subtitle",
         "bg_color": [200, 220, 255],
         "text_color": [0, 51, 153],
-        "font_size": 60,
+        "font_size": 65,
         "font_path": "Rubik-Regular.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 3
@@ -111,7 +111,7 @@
         "style_name": "video_number",
         "bg_color": [200, 220, 255],
         "text_color": [0, 102, 204],
-        "font_size": 120,
+        "font_size": 130,
         "font_path": "Rubik-Regular.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 3
@@ -120,7 +120,7 @@
         "style_name": "topic",
         "bg_color": [200, 220, 255],
         "text_color": [0, 102, 204],
-        "font_size": 140,
+        "font_size": 150,
         "font_path": "Rubik-Bold.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 4
@@ -129,7 +129,7 @@
         "style_name": "logo",
         "bg_color": [173, 216, 230],
         "text_color": [0, 0, 0],
-        "font_size": 100,
+        "font_size": 110,
         "font_path": "Rubik-Bold.ttf",
         "border_color": [255, 255, 255],
         "border_width": 10
