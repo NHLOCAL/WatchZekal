@@ -649,7 +649,7 @@ class VideoAssembler:
 
                 # מעבר לקטע אוצר מילים
                 if vocabulary:
-                    vocab_intro = "אוצר מילים"
+                    vocab_intro = "מילים חדשות שלמדנו"
                     text_lines_vocab_intro = [vocab_intro]
                     line_styles_vocab_intro = ['subtopic']
                     clip_vocab_intro = self.video_creator.create_image_clip(text_lines_vocab_intro, 'subtopic', line_styles_vocab_intro, background_image_path, process_background=True)
