@@ -38,11 +38,11 @@
     "translation": {
         "style_name": "translation",
         "bg_color": [255, 255, 255],
-        "text_color": [60, 60, 60],
+        "text_color": [40, 40, 40],
         "font_size": 75,
         "font_path": "Rubik-Regular.ttf",
         "outline_color": [255, 255, 255],
-        "outline_width": 2
+        "outline_width": 1
     },
     "sentence": {
         "style_name": "sentence",
@@ -51,7 +51,7 @@
         "font_size": 85,
         "font_path": "Rubik-Regular.ttf",
         "outline_color": [255, 255, 255],
-        "outline_width": 2
+        "outline_width": 1
     },
     "bold": {
         "style_name": "bold",

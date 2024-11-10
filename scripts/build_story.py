@@ -624,7 +624,7 @@ class VideoAssembler:
                 if story['text']:
                     story_intro = "כדי להפיק את המיטב מהסרטון: האזינו להקראת המשפט באנגלית, נסו לקרוא אותו בעצמכם ולהבין את המשמעות, ולאחר מכן צפו בתרגום לעברית כדי להשוות את ההבנה שלכם!"
                     text_lines_intro_story = [story_intro]
-                    line_styles_intro_story = ['subtopic']
+                    line_styles_intro_story = ['normal']
                     clip_story_intro = self.video_creator.create_image_clip(text_lines_intro_story, 'subtopic', line_styles_intro_story, background_image_path, process_background=True)
                     audio_tasks = [(story_intro, 'iw')]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
