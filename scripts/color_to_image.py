@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import (
-    QApplication, QLabel, QWidget, QVBoxLayout, QHBoxLayout, QFrame, QSizePolicy
+    QApplication, QLabel, QWidget, QVBoxLayout, QHBoxLayout, QFrame, QSizePolicy, QPushButton, QSpacerItem
 )
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QPixmap, QImage
@@ -26,42 +26,64 @@ class ImageLabel(QLabel):
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
             event.accept()
+            print("Drag Enter Event: Accepted")
         else:
             event.ignore()
+            print("Drag Enter Event: Ignored")
 
     def dropEvent(self, event):
         if event.mimeData().hasUrls():
             urls = event.mimeData().urls()
             if urls:
                 file_path = urls[0].toLocalFile()
-                print(f"Image dropped: {file_path}")  # לוג להורדת תמונה
+                print(f"Image dropped: {file_path}")
                 self.parent().process_image(file_path)
         else:
             event.ignore()
+            print("Drop Event: Ignored")
 
 class ColorDisplay(QFrame):
     def __init__(self, color, rgb_code, parent=None):
         super().__init__(parent)
-        self.setFixedSize(50, 50)
+        self.setFixedSize(120, 140)  # Increased size for better visibility
         self.setStyleSheet(f"background-color: rgb{color}; border: 1px solid #000;")
-        self.rgb_code = rgb_code
 
-        # יצירת לייבל לקוד RGB
-        self.label = QLabel(self.rgb_code, self)
-        self.label.setStyleSheet("color: #000; font-size: 10px; background-color: rgba(255, 255, 255, 0.7);")
-        self.label.setAlignment(Qt.AlignCenter)
-        self.label.setGeometry(0, 50, 50, 20)  # מיקום מתחת לצבע
+        # Layout inside the frame
+        layout = QVBoxLayout()
+        layout.setContentsMargins(5, 5, 5, 5)
+        layout.setSpacing(5)
 
-        # התחברות לאירוע לחיצה להעתקה ללוח
-        self.label.mousePressEvent = self.copy_to_clipboard
+        # Spacer to push the button to the bottom
+        spacer = QSpacerItem(20, 100, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        layout.addItem(spacer)
 
-    def copy_to_clipboard(self, event):
-        print(f"Attempting to copy: {self.rgb_code}")  # לוג לנסיון העתקה
+        # Create the copy button
+        self.button = QPushButton(rgb_code)
+        self.button.setStyleSheet("""
+            QPushButton {
+                background-color: rgba(255, 255, 255, 0.8);
+                border: none;
+                font-size: 10px;
+                padding: 2px;
+            }
+            QPushButton:hover {
+                background-color: rgba(200, 200, 200, 0.8);
+            }
+        """)
+        self.button.setFixedSize(110, 25)
+        self.button.clicked.connect(self.copy_to_clipboard)
+
+        layout.addWidget(self.button, alignment=Qt.AlignCenter)
+
+        self.setLayout(layout)
+
+    def copy_to_clipboard(self):
         clipboard = QApplication.clipboard()
-        clipboard.setText(self.rgb_code)
-        print("Copied to clipboard!")  # לוג להצלחה בהעתקה
-        self.label.setText("Copied!")  # עדכון טקסט זמני
-        QTimer.singleShot(1000, lambda: self.label.setText(self.rgb_code))  # חזרה לטקסט המקורי אחרי 1 שנייה
+        clipboard.setText(self.button.text())
+        print(f"Copied to clipboard: {self.button.text()}")
+        original_text = self.button.text()
+        self.button.setText("Copied!")
+        QTimer.singleShot(1000, lambda: self.button.setText(original_text))
 
 class AppDemo(QWidget):
     def __init__(self):
@@ -77,19 +99,21 @@ class AppDemo(QWidget):
 
         # Dominant colors and complementary color display
         self.colors_layout = QHBoxLayout()
-        self.colors_label = QLabel("Dominant Colors:")
-        self.colors_label.setStyleSheet("font-size: 16px;")
-        self.colors_layout.addWidget(self.colors_label)
+
+        # Dominant Colors
+        self.dominant_label = QLabel("Dominant Colors:")
+        self.dominant_label.setStyleSheet("font-size: 16px;")
+        self.colors_layout.addWidget(self.dominant_label)
 
         self.colors_container = QHBoxLayout()
         self.colors_layout.addLayout(self.colors_container)
 
-        # Display for the complementary text color
+        # Complementary Color
         self.complementary_label = QLabel("Text Color:")
         self.complementary_label.setStyleSheet("font-size: 16px; margin-left: 20px;")
         self.colors_layout.addWidget(self.complementary_label)
 
-        self.complementary_color_display = QLabel()
+        self.complementary_color_display = ColorDisplay((255, 255, 255), "RGB(255, 255, 255)")
         self.colors_layout.addWidget(self.complementary_color_display)
 
         main_layout.addLayout(self.colors_layout)
@@ -116,7 +140,7 @@ class AppDemo(QWidget):
             # Load the image
             image = Image.open(file_path)
             image = image.convert("RGB")
-            print("Image loaded successfully!")  # לוג להצלחה בטעינת תמונה
+            print("Image loaded successfully!")
 
             # Convert the image to an array
             image_array = np.array(image)
@@ -126,7 +150,7 @@ class AppDemo(QWidget):
             kmeans = KMeans(n_clusters=3, random_state=0)
             kmeans.fit(pixels)
             colors = kmeans.cluster_centers_.astype(int)
-            print(f"Dominant colors: {colors}")  # לוג לצבעים דומיננטיים
+            print(f"Dominant colors: {colors}")
 
             # Clear previous colors
             while self.colors_container.count():
@@ -140,18 +164,24 @@ class AppDemo(QWidget):
                 rgb_code = f"RGB({color[0]}, {color[1]}, {color[2]})"
                 color_display = ColorDisplay(color_tuple, rgb_code)
                 self.colors_container.addWidget(color_display)
+                print(f"Displayed color: {rgb_code}")
 
             # Choose the first dominant color
             dominant_color = tuple(colors[0])
-            print(f"Chosen dominant color: {dominant_color}")  # לוג לבחירת צבע דומיננטי
+            print(f"Chosen dominant color: {dominant_color}")
 
             # Compute the complementary color for the text
             complementary_color = self.get_complementary_color(dominant_color)
-            self.complementary_color_display.setText(f"RGB: {complementary_color}")
+            print(f"Complementary color: {complementary_color}")
+
+            # Update the complementary color display
+            complementary_rgb_code = f"RGB({complementary_color[0]}, {complementary_color[1]}, {complementary_color[2]})"
+            self.complementary_color_display.rgb_code = complementary_rgb_code
+            self.complementary_color_display.button.setText(complementary_rgb_code)
             self.complementary_color_display.setStyleSheet(
                 f"background-color: rgb{complementary_color}; border: 1px solid #000;"
             )
-            print(f"Complementary color: {complementary_color}")  # לוג לצבע משלים
+            print(f"Complementary color updated to: {complementary_rgb_code}")
 
             # Add text to the image using the complementary color
             image_with_text = image.copy()
@@ -159,13 +189,15 @@ class AppDemo(QWidget):
 
             # Calculate font size dynamically based on image size
             image_width, image_height = image.size
-            font_size = int(min(image_width, image_height) * 0.1)  # 10% of the smaller dimension
-            print(f"Calculated font size: {font_size}")  # לוג לגודל הגופן
+            font_size = max(int(min(image_width, image_height) * 0.05), 20)  # At least 20px
+            print(f"Calculated font size: {font_size}")
 
             try:
                 font = ImageFont.truetype("arial.ttf", size=font_size)
+                print("Custom font loaded.")
             except IOError:
                 font = ImageFont.load_default()
+                print("Custom font not found, using default font.")
 
             text = "HELLO WORLD"
 
@@ -179,16 +211,16 @@ class AppDemo(QWidget):
             text_y = (image_height - text_height) // 2
 
             draw.text((text_x, text_y), text, fill=complementary_color, font=font)
-            print("Text added to image!")  # לוג להוספת טקסט לתמונה
+            print("Text added to image!")
 
             # Convert the processed image to a format PyQt can display
             qt_image = self.pil_to_qt(image_with_text)
             self.processed_image_label.setPixmap(qt_image)
             self.processed_image_label.setText("")
-            print("Image displayed successfully!")  # לוג להצלחה בהצגת תמונה
+            print("Image displayed successfully!")
 
         except Exception as e:
-            print(f"Error processing image: {e}")  # לוג לשגיאה
+            print(f"Error processing image: {e}")
             self.image_label.setText(f"Error processing image:\n{e}")
 
     def pil_to_qt(self, pil_image):
