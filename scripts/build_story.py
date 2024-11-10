@@ -649,15 +649,16 @@ class VideoAssembler:
             secondary_color = main_colors[1]
             complementary_color2 = get_complementary_color(secondary_color)
             if 'call_to_action' in self.style_definitions:
-                self.style_definitions['call_to_action']['text_color'] = list(complementary_color2)
-                self.style_definitions['call_to_action']['outline_color'] = list(get_complementary_color(complementary_color2))
-                logging.debug(f"עדכון סגנון 'call_to_action' עם צבע טקסט שני: {complementary_color2} וצבע מסגרת: {get_complementary_color(complementary_color2)}")
+                # הגדרת צבע טקסט וצבע מסגרת להפוכים
+                self.style_definitions['call_to_action']['outline_color'] = list(complementary_color2)
+                self.style_definitions['call_to_action']['text_color'] = list(get_complementary_color(complementary_color2))
+                logging.debug(f"עדכון סגנון 'call_to_action' עם צבע מסגרת: {complementary_color2} וצבע טקסט: {get_complementary_color(complementary_color2)}")
         else:
             # אם אין צבע שני, נשתמש בצבע הראשון
             if 'call_to_action' in self.style_definitions:
-                self.style_definitions['call_to_action']['text_color'] = list(complementary_color)
-                self.style_definitions['call_to_action']['outline_color'] = list(get_complementary_color(complementary_color))
-                logging.debug(f"עדכון סגנון 'call_to_action' עם צבע טקסט ראשי: {complementary_color} וצבע מסגרת: {get_complementary_color(complementary_color)}")
+                self.style_definitions['call_to_action']['outline_color'] = list(complementary_color)
+                self.style_definitions['call_to_action']['text_color'] = list(get_complementary_color(complementary_color))
+                logging.debug(f"עדכון סגנון 'call_to_action' עם צבע מסגרת: {complementary_color} וצבע טקסט: {get_complementary_color(complementary_color)}")
 
     def assemble_videos(self, data, output_dir, thumbnails_dir):
         if isinstance(data, dict):
