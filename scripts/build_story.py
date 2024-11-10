@@ -622,7 +622,7 @@ class VideoAssembler:
 
                 # מעבר לקטע הסיפור
                 if story['text']:
-                    story_intro = "הסיפור"
+                    story_intro = "כדי להפיק את המיטב מהסרטון: האזינו להקראת המשפט באנגלית, נסו לקרוא אותו בעצמכם ולהבין את המשמעות, ולאחר מכן צפו בתרגום לעברית כדי להשוות את ההבנה שלכם!"
                     text_lines_intro_story = [story_intro]
                     line_styles_intro_story = ['subtopic']
                     clip_story_intro = self.video_creator.create_image_clip(text_lines_intro_story, 'subtopic', line_styles_intro_story, background_image_path, process_background=True)
