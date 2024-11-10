@@ -71,6 +71,10 @@ WIDTH, HEIGHT = VIDEO_SIZE
 FPS = 24
 THREADS = 8
 
+# צבע חדש להדגשת תשובה נכונה
+HIGHLIGHT_COLOR_CORRECT = (144, 238, 144, 180)  # ירוק בהיר עם שקיפות
+GLOW_COLOR = (144, 238, 144)  # ירוק בהיר
+
 # פונקציה לסניטיזציה של שמות קבצים
 def sanitize_filename(filename):
     return re.sub(r'[<>:"/\\|?*]', '_', filename)
@@ -264,7 +268,15 @@ class ImageCreator:
                 if highlight_option is not None:
                     highlight_line, highlight_option_idx = highlight_option
                     if line_idx == highlight_line and segment_idx == highlight_option_idx:
-                        # הוספת רקע מודגש לתשובה הנכונה
+                        # הוספת זוהר לטקסט
+                        glow = Image.new('RGBA', img.size, (0,0,0,0))
+                        glow_draw = ImageDraw.Draw(glow)
+                        glow_draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=GLOW_COLOR)
+                        glow = glow.filter(ImageFilter.GaussianBlur(radius=10))
+                        img = Image.alpha_composite(img.convert('RGBA'), glow)
+                        draw = ImageDraw.Draw(img)
+                        
+                        # החלפת רקע הצהוב בירוק בהיר
                         text_bbox = draw.textbbox((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font)
                         padding = 10
                         draw.rectangle(
@@ -272,7 +284,7 @@ class ImageCreator:
                                 (text_bbox[0] - padding, text_bbox[1] - padding),
                                 (text_bbox[2] + padding, text_bbox[3] + padding)
                             ],
-                            fill=(255, 255, 0, 128)  # צהוב עם שקיפות
+                            fill=HIGHLIGHT_COLOR_CORRECT
                         )
                 draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
                 x_text += width
