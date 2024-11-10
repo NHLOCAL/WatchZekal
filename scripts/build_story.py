@@ -16,6 +16,7 @@ import logging
 from functools import lru_cache
 from datetime import datetime
 from collections import Counter
+import colorsys  # חדש
 
 # הגדרת נתיב לתיקיית הלוגים
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -93,7 +94,7 @@ def process_hebrew_text(text):
     bidi_text = get_display(reshaped_text)
     return bidi_text
 
-# פונקציות חדשות להחלת צבעים משלימים
+# פונקציות חדשות לבחירת צבעים מנוגדים ומגוונים
 def extract_main_colors(image_path, num_colors=2):
     """
     מחלץ את הצבעים העיקריים מתמונת הרקע.
@@ -115,13 +116,50 @@ def extract_main_colors(image_path, num_colors=2):
         main_colors = [color for count, color in pixels]
         return main_colors
 
-def get_complementary_color(rgb):
+def get_contrasting_color(rgb):
     """
-    מחשב את הצבע המשלים לצבע נתון.
+    מחשב צבע מנוגד לצבע נתון על בסיס לומיננסיה.
     :param rgb: tuple של (R, G, B)
-    :return: tuple של הצבע המשלים (R, G, B)
+    :return: tuple של הצבע המנוגד (R, G, B)
     """
-    return tuple(255 - c for c in rgb)
+    # חשב את לומיננסיית הצבע
+    r, g, b = rgb
+    luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+
+    # אם הלומיננסיה גבוהה, בחר צבע כהה, אחרת בחר צבע בהיר
+    if luminance > 0.5:
+        return (0, 0, 0)  # שחור
+    else:
+        return (255, 255, 255)  # לבן
+
+def get_diverse_contrasting_color(rgb):
+    """
+    מחשב צבע מנוגד מגוון לצבע נתון על בסיס לומיננסיה וחילוף גוונים.
+    :param rgb: tuple של (R, G, B)
+    :return: tuple של הצבע המנוגד והמעודן (R, G, B)
+    """
+    # חשב את לומיננסיית הצבע
+    r, g, b = rgb
+    luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+
+    # המרה מ-RGB ל-HSL
+    h, l, s = colorsys.rgb_to_hls(r/255, g/255, b/255)
+
+    # הוספת שינוי לגוון כדי ליצור גיוון בצבעים המנוגדים
+    h_new = (h + 0.5) % 1.0  # הוספת 180 מעלות בגוון
+
+    # הגברת הסאטורציה כדי לשמור על צבעוניות
+    s_new = min(s * 1.2, 1.0)
+
+    # התאמת הלומיננסיה
+    if luminance > 0.5:
+        l_new = 0.2  # צבע כהה
+    else:
+        l_new = 0.8  # צבע בהיר
+
+    # המרה חזרה ל-RGB
+    r_new, g_new, b_new = colorsys.hls_to_rgb(h_new, l_new, s_new)
+    return (int(r_new * 255), int(g_new * 255), int(b_new * 255))
 
 class FileManager:
     def __init__(self, output_dir, thumbnails_dir):
@@ -619,46 +657,47 @@ class VideoAssembler:
             background_image_path = None
         return background_image_path
 
-    def update_style_definitions_with_complementary_colors(self, background_image_path):
+    def update_style_definitions_with_contrasting_colors(self, background_image_path):
         """
-        מעדכן את style_definitions עם הצבעים המשלים שנמצאו מתמונת הרקע.
+        מעדכן את style_definitions עם הצבעים המנוגדים שנמצאו מתמונת הרקע.
         :param background_image_path: נתיב לתמונת הרקע
         """
         if not background_image_path or not os.path.exists(background_image_path):
-            logging.info("לא נמצאה תמונת רקע. לא מעדכנים צבעים משלימים.")
+            logging.info("לא נמצאה תמונת רקע. לא מעדכנים צבעים מנוגדים.")
             return
 
         main_colors = extract_main_colors(background_image_path, num_colors=2)
         if not main_colors:
-            logging.warning("לא נמצאו צבעים בתמונת הרקע. לא מעדכנים צבעים משלימים.")
+            logging.warning("לא נמצאו צבעים בתמונת הרקע. לא מעדכנים צבעים מנוגדים.")
             return
 
-        # בחירת הצבע העיקרי והמשלים שלו
+        # בחירת הצבע העיקרי והצבע המנוגד שלו
         dominant_color = main_colors[0]
-        complementary_color = get_complementary_color(dominant_color)
-        logging.info(f"צבע עיקרי: {dominant_color}, צבע משלים: {complementary_color}")
+        contrasting_color = get_diverse_contrasting_color(dominant_color)
+        logging.info(f"צבע עיקרי: {dominant_color}, צבע מנוגד מגוון: {contrasting_color}")
 
-        # עדכון סגנונות טקסט רק עבור 'intro_title'
+        # עדכון סגנון 'intro_title' עם צבע מנוגד מגוון
         if 'intro_title' in self.style_definitions:
-            self.style_definitions['intro_title']['text_color'] = list(complementary_color)
-            self.style_definitions['intro_title']['outline_color'] = list(get_complementary_color(complementary_color))
-            logging.debug(f"עדכון סגנון 'intro_title' עם צבע טקסט: {complementary_color} וצבע מסגרת: {get_complementary_color(complementary_color)}")
+            self.style_definitions['intro_title']['text_color'] = list(contrasting_color)
+            # נבחר צבע מסגרת מנוגד גם כן
+            outline_color_intro = get_contrasting_color(contrasting_color)
+            self.style_definitions['intro_title']['outline_color'] = list(outline_color_intro)
+            logging.debug(f"עדכון סגנון 'intro_title' עם צבע טקסט: {contrasting_color} וצבע מסגרת: {outline_color_intro}")
 
-        # אם יש צבע שני, נשתמש בו עבור 'call_to_action', אחרת נשתמש בצבע הראשון
+        # בחירת צבע מנוגד נוסף עבור 'call_to_action'
         if len(main_colors) > 1:
             secondary_color = main_colors[1]
-            complementary_color2 = get_complementary_color(secondary_color)
-            if 'call_to_action' in self.style_definitions:
-                # הגדרת צבע טקסט וצבע מסגרת להפוכים
-                self.style_definitions['call_to_action']['outline_color'] = list(complementary_color2)
-                self.style_definitions['call_to_action']['text_color'] = list(get_complementary_color(complementary_color2))
-                logging.debug(f"עדכון סגנון 'call_to_action' עם צבע מסגרת: {complementary_color2} וצבע טקסט: {get_complementary_color(complementary_color2)}")
+            contrasting_color2 = get_diverse_contrasting_color(secondary_color)
+            logging.info(f"צבע שני: {secondary_color}, צבע מנוגד מגוון שני: {contrasting_color2}")
         else:
-            # אם אין צבע שני, נשתמש בצבע הראשון
-            if 'call_to_action' in self.style_definitions:
-                self.style_definitions['call_to_action']['outline_color'] = list(complementary_color)
-                self.style_definitions['call_to_action']['text_color'] = list(get_complementary_color(complementary_color))
-                logging.debug(f"עדכון סגנון 'call_to_action' עם צבע מסגרת: {complementary_color} וצבע טקסט: {get_complementary_color(complementary_color)}")
+            # אם אין צבע שני, נשתמש בצבע מנוגד העיקרי
+            contrasting_color2 = contrasting_color
+
+        if 'call_to_action' in self.style_definitions:
+            # הגדרת צבע טקסט וצבע מסגרת להפוכים
+            self.style_definitions['call_to_action']['text_color'] = list(get_contrasting_color(contrasting_color2))
+            self.style_definitions['call_to_action']['outline_color'] = list(contrasting_color2)
+            logging.debug(f"עדכון סגנון 'call_to_action' עם צבע טקסט: {get_contrasting_color(contrasting_color2)} וצבע מסגרת: {contrasting_color2}")
 
     def assemble_videos(self, data, output_dir, thumbnails_dir):
         if isinstance(data, dict):
@@ -686,8 +725,8 @@ class VideoAssembler:
 
             background_image_path = self.determine_background_image_path(video_title)
 
-            # עדכון צבעים משלימים רק עבור 'intro_title' ו-'call_to_action'
-            self.update_style_definitions_with_complementary_colors(background_image_path)
+            # עדכון צבעים מנוגדים עבור 'intro_title' ו-'call_to_action'
+            self.update_style_definitions_with_contrasting_colors(background_image_path)
 
             clips = []
 
@@ -701,7 +740,7 @@ class VideoAssembler:
                 if story['text']:
                     story_intro = "כדי להפיק את המיטב מהסרטון: האזינו להקראת המשפט באנגלית, נסו לקרוא אותו בעצמכם ולהבין את המשמעות, ולאחר מכן צפו בתרגום לעברית כדי להשוות את ההבנה שלכם!"
                     text_lines_intro_story = [story_intro]
-                    line_styles_intro_story = ['normal']
+                    line_styles_intro_story = ['sentence']
                     clip_story_intro = self.video_creator.create_image_clip(text_lines_intro_story, 'sentence', line_styles_intro_story, background_image_path, process_background=True)
                     audio_tasks = [(story_intro, 'iw')]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
@@ -801,7 +840,7 @@ class VideoAssembler:
                         )
                         clips.append(clip_question)
 
-                        # הרחבת משך הקליפ ב-2 שניות
+                        # הרחבת משך הקליפ ב-3 שניות
                         clip_question = clip_question.set_duration(clip_question.duration + 3)
                         clips[-1] = clip_question  # עדכון הקליפ ברשימה
 
