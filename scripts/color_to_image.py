@@ -13,7 +13,7 @@ class ImageLabel(QLabel):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setAlignment(Qt.AlignCenter)
-        self.setText("\n\n Drag and Drop an Image Here \n\n")
+        self.setText("\n\n גרור והפיל תמונה כאן \n\n")
         self.setStyleSheet("""
             QLabel{
                 border: 4px dashed #aaa;
@@ -21,43 +21,43 @@ class ImageLabel(QLabel):
                 color: #555;
             }
         """)
-        self.setAcceptDrops(True)  # Enable drag and drop
+        self.setAcceptDrops(True)  # הפעלת קבלת גרירה
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
             event.accept()
-            print("Drag Enter Event: Accepted")
+            print("אירוע גרירה התקבל")
         else:
             event.ignore()
-            print("Drag Enter Event: Ignored")
+            print("אירוע גרירה נדחה")
 
     def dropEvent(self, event):
         if event.mimeData().hasUrls():
             urls = event.mimeData().urls()
             if urls:
                 file_path = urls[0].toLocalFile()
-                print(f"Image dropped: {file_path}")
+                print(f"ניסיון לפתוח את הקובץ: {file_path}")
                 self.parent().process_image(file_path)
         else:
             event.ignore()
-            print("Drop Event: Ignored")
+            print("אירוע הפלה נדחה")
 
 class ColorDisplay(QFrame):
     def __init__(self, color, rgb_code, parent=None):
         super().__init__(parent)
-        self.setFixedSize(120, 140)  # Increased size for better visibility
+        self.setFixedSize(120, 140)  # הגדלת הגודל לנראות טובה יותר
         self.setStyleSheet(f"background-color: rgb{color}; border: 1px solid #000;")
 
-        # Layout inside the frame
+        # עימוד פנימי בתוך ה-QFrame
         layout = QVBoxLayout()
         layout.setContentsMargins(5, 5, 5, 5)
         layout.setSpacing(5)
 
-        # Spacer to push the button to the bottom
+        # Spacer לדחיפת הכפתור לתחתית
         spacer = QSpacerItem(20, 100, QSizePolicy.Minimum, QSizePolicy.Expanding)
         layout.addItem(spacer)
 
-        # Create the copy button
+        # יצירת כפתור ההעתקה
         self.button = QPushButton(rgb_code)
         self.button.setStyleSheet("""
             QPushButton {
@@ -80,36 +80,36 @@ class ColorDisplay(QFrame):
     def copy_to_clipboard(self):
         clipboard = QApplication.clipboard()
         clipboard.setText(self.button.text())
-        print(f"Copied to clipboard: {self.button.text()}")
+        print(f"הועתק ללוח: {self.button.text()}")
         original_text = self.button.text()
-        self.button.setText("Copied!")
+        self.button.setText("הועתק!")
         QTimer.singleShot(1000, lambda: self.button.setText(original_text))
 
 class AppDemo(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('Image Processing with Text and Dominant Colors')
+        self.setWindowTitle('עיבוד תמונה עם טקסט וצבעים דומיננטיים')
         self.resize(1000, 800)
 
         main_layout = QVBoxLayout()
 
-        # Image drag and drop area
+        # אזור לגרירת תמונה
         self.image_label = ImageLabel(self)
         main_layout.addWidget(self.image_label)
 
-        # Dominant colors and complementary color display
+        # אזור להצגת הצבעים הדומיננטיים והצבע המשלים
         self.colors_layout = QHBoxLayout()
 
-        # Dominant Colors
-        self.dominant_label = QLabel("Dominant Colors:")
+        # הצבעים הדומיננטיים
+        self.dominant_label = QLabel("צבעים דומיננטיים:")
         self.dominant_label.setStyleSheet("font-size: 16px;")
         self.colors_layout.addWidget(self.dominant_label)
 
         self.colors_container = QHBoxLayout()
         self.colors_layout.addLayout(self.colors_container)
 
-        # Complementary Color
-        self.complementary_label = QLabel("Text Color:")
+        # הצבע המשלים
+        self.complementary_label = QLabel("צבע הטקסט המשלים:")
         self.complementary_label.setStyleSheet("font-size: 16px; margin-left: 20px;")
         self.colors_layout.addWidget(self.complementary_label)
 
@@ -118,8 +118,8 @@ class AppDemo(QWidget):
 
         main_layout.addLayout(self.colors_layout)
 
-        # Processed image preview with text
-        self.preview_label = QLabel("Preview with Text:")
+        # תצוגת התמונה המעובדת עם הטקסט
+        self.preview_label = QLabel("תצוגה מקדימה עם טקסט:")
         self.preview_label.setStyleSheet("font-size: 16px; margin-top: 20px;")
         main_layout.addWidget(self.preview_label)
 
@@ -137,90 +137,90 @@ class AppDemo(QWidget):
 
     def process_image(self, file_path):
         try:
-            # Load the image
+            # טען את התמונה
             image = Image.open(file_path)
             image = image.convert("RGB")
-            print("Image loaded successfully!")
+            print("תמונה נטענת בהצלחה!")
 
-            # Convert the image to an array
+            # המר את התמונה למערך
             image_array = np.array(image)
             pixels = image_array.reshape((-1, 3))
 
-            # Use KMeans to find dominant colors
+            # השתמש ב-KMeans כדי למצוא צבעים דומיננטיים
             kmeans = KMeans(n_clusters=3, random_state=0)
             kmeans.fit(pixels)
             colors = kmeans.cluster_centers_.astype(int)
-            print(f"Dominant colors: {colors}")
+            print(f"צבעים דומיננטיים: {colors}")
 
-            # Clear previous colors
+            # נקה את הצבעים הקודמים
             while self.colors_container.count():
                 child = self.colors_container.takeAt(0)
                 if child.widget():
                     child.widget().deleteLater()
 
-            # Display dominant colors
+            # הצג את הצבעים הדומיננטיים
             for color in colors:
                 color_tuple = tuple(color)
                 rgb_code = f"RGB({color[0]}, {color[1]}, {color[2]})"
                 color_display = ColorDisplay(color_tuple, rgb_code)
                 self.colors_container.addWidget(color_display)
-                print(f"Displayed color: {rgb_code}")
+                print(f"צבע מוצג: {rgb_code}")
 
-            # Choose the first dominant color
+            # בחר את הצבע הדומיננטי הראשון
             dominant_color = tuple(colors[0])
-            print(f"Chosen dominant color: {dominant_color}")
+            print(f"צבע דומיננטי נבחר: {dominant_color}")
 
-            # Compute the complementary color for the text
+            # חשב את הצבע המשלים לטקסט
             complementary_color = self.get_complementary_color(dominant_color)
-            print(f"Complementary color: {complementary_color}")
+            print(f"צבע משלים לטקסט: {complementary_color}")
 
-            # Update the complementary color display
+            # עדכן את הצבע המשלים בממשק
             complementary_rgb_code = f"RGB({complementary_color[0]}, {complementary_color[1]}, {complementary_color[2]})"
             self.complementary_color_display.rgb_code = complementary_rgb_code
             self.complementary_color_display.button.setText(complementary_rgb_code)
             self.complementary_color_display.setStyleSheet(
                 f"background-color: rgb{complementary_color}; border: 1px solid #000;"
             )
-            print(f"Complementary color updated to: {complementary_rgb_code}")
+            print(f"צבע משלים עודכן ל: {complementary_rgb_code}")
 
-            # Add text to the image using the complementary color
+            # הוסף טקסט לתמונה עם הצבע המשלים
             image_with_text = image.copy()
             draw = ImageDraw.Draw(image_with_text)
 
-            # Calculate font size dynamically based on image size
+            # חשב את גודל הגופן באופן דינמי לפי גודל התמונה
             image_width, image_height = image.size
-            font_size = max(int(min(image_width, image_height) * 0.05), 20)  # At least 20px
-            print(f"Calculated font size: {font_size}")
+            font_size = max(int(min(image_width, image_height) * 0.1), 30)  # 10% מהמדד הקטן יותר, לפחות 30
+            print(f"גודל גופן מחושב: {font_size}")
 
             try:
                 font = ImageFont.truetype("arial.ttf", size=font_size)
-                print("Custom font loaded.")
+                print("גופן מותאם אישית נטען.")
             except IOError:
                 font = ImageFont.load_default()
-                print("Custom font not found, using default font.")
+                print("גופן מותאם אישית לא נמצא, שימוש בגופן ברירת מחדל.")
 
             text = "HELLO WORLD"
 
-            # Use font.getbbox to calculate text size
+            # השתמש ב-font.getbbox כדי לחשב את גודל הטקסט
             bbox = font.getbbox(text)
             text_width = bbox[2] - bbox[0]
             text_height = bbox[3] - bbox[1]
 
-            # Calculate the position to center the text
+            # חשב את המיקום למרכז הטקסט
             text_x = (image_width - text_width) // 2
             text_y = (image_height - text_height) // 2
 
             draw.text((text_x, text_y), text, fill=complementary_color, font=font)
-            print("Text added to image!")
+            print("טקסט נוסף לתמונה!")
 
-            # Convert the processed image to a format PyQt can display
+            # המר את התמונה המעובדת לפורמט PyQt להצגה
             qt_image = self.pil_to_qt(image_with_text)
             self.processed_image_label.setPixmap(qt_image)
             self.processed_image_label.setText("")
-            print("Image displayed successfully!")
+            print("תמונה מוצגת בהצלחה!")
 
         except Exception as e:
-            print(f"Error processing image: {e}")
+            print(f"שגיאה בעיבוד התמונה: {e}")
             self.image_label.setText(f"Error processing image:\n{e}")
 
     def pil_to_qt(self, pil_image):
