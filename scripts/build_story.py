@@ -498,6 +498,70 @@ class VideoCreator:
             logging.error(f"שגיאה ביצירת קליפ הסיום: {e}")
             return None
 
+    def calculate_pause_duration(self, text, seconds_per_word=0.6):
+        """
+        מחשבת את משך ההשהייה על פי מספר המילים בטקסט.
+        :param text: הטקסט באנגלית
+        :param seconds_per_word: מספר שניות להשהייה לכל מילה
+        :return: משך ההשהייה בשניות
+        """
+        word_count = len(text.split())
+        duration = word_count * seconds_per_word
+        return duration
+
+    def assemble_video_with_pause(self, text, hebrew_text, background_image_path):
+        """
+        יוצר את הקליפ באנגלית, מרחיב את משך ההשהייה בהתאם לטקסט, ומוסיף את הקליפ בעברית.
+        :param text: הטקסט באנגלית
+        :param hebrew_text: הטקסט בעברית
+        :param background_image_path: נתיב לתמונת הרקע
+        :return: רשימת הקליפים
+        """
+        clips = []
+
+        # קליפ באנגלית
+        text_lines_en = [text]
+        line_styles_en = ['sentence']
+        clip_story_en = self.create_image_clip(text_lines_en, 'sentence', line_styles_en, background_image_path, process_background=True)
+        audio_tasks_en = [
+            (text, 'en', True)  # אנגלית באיטיות
+        ]
+        audio_results_en = self.audio_creator.create_audios(audio_tasks_en)
+        clip_story_en = self.create_clip(
+            clip_story_en,
+            [
+                audio_results_en.get((text, 'en', True), "")
+            ],
+            min_duration=5
+        )
+        clips.append(clip_story_en)
+
+        # חישוב משך ההשהייה
+        pause_duration = self.calculate_pause_duration(text)
+        # הרחבת משך הקליפ הנוכחי על ידי הגדרת משך זמן נוסף
+        extended_duration = clip_story_en.duration + pause_duration
+        clip_story_en = clip_story_en.set_duration(extended_duration)
+        clips[-1] = clip_story_en  # עדכון הקליפ ברשימה
+
+        # קליפ בעברית
+        text_lines_he = [hebrew_text]
+        line_styles_he = ['translation']
+        clip_story_he = self.create_image_clip(text_lines_he, 'translation', line_styles_he, background_image_path, process_background=True)
+        audio_tasks_he = [
+            (hebrew_text, 'iw')
+        ]
+        audio_results_he = self.audio_creator.create_audios(audio_tasks_he)
+        clip_story_he = self.create_clip(
+            clip_story_he,
+            [
+                audio_results_he.get((hebrew_text, 'iw'), "")
+            ],
+            min_duration=5
+        )
+        clips.append(clip_story_he)
+
+        return clips
+
 class VideoAssembler:
     def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
         self.video_creator = VideoCreator(file_manager, image_creator, audio_creator, style_definitions)
@@ -567,39 +631,9 @@ class VideoAssembler:
                         english_text = paragraph['english']
                         hebrew_text = paragraph['hebrew']
 
-                        # קליפ באנגלית
-                        text_lines_en = [english_text]
-                        line_styles_en = ['sentence']
-                        clip_story_en = self.video_creator.create_image_clip(text_lines_en, 'sentence', line_styles_en, background_image_path, process_background=True)
-                        audio_tasks_en = [
-                            (english_text, 'en', True)  # אנגלית באיטיות
-                        ]
-                        audio_results_en = self.video_creator.audio_creator.create_audios(audio_tasks_en)
-                        clip_story_en = self.video_creator.create_clip(
-                            clip_story_en,
-                            [
-                                audio_results_en.get((english_text, 'en', True), "")
-                            ],
-                            min_duration=5
-                        )
-                        clips.append(clip_story_en)
-
-                        # קליפ בעברית
-                        text_lines_he = [hebrew_text]
-                        line_styles_he = ['translation']
-                        clip_story_he = self.video_creator.create_image_clip(text_lines_he, 'translation', line_styles_he, background_image_path, process_background=True)
-                        audio_tasks_he = [
-                            (hebrew_text, 'iw')
-                        ]
-                        audio_results_he = self.video_creator.audio_creator.create_audios(audio_tasks_he)
-                        clip_story_he = self.video_creator.create_clip(
-                            clip_story_he,
-                            [
-                                audio_results_he.get((hebrew_text, 'iw'), "")
-                            ],
-                            min_duration=5
-                        )
-                        clips.append(clip_story_he)
+                        # יצירת קליפ עם השהייה לאחר הקטע באנגלית
+                        story_clips = self.video_creator.assemble_video_with_pause(english_text, hebrew_text, background_image_path)
+                        clips.extend(story_clips)
 
                 # מעבר לקטע אוצר מילים
                 if vocabulary:
