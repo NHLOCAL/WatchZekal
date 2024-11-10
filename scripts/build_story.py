@@ -365,16 +365,16 @@ class VideoCreator:
         return image_clip
 
     def slide_transition(self, clip1, clip2, duration=1):
-        # בחר כיוון משמאל לימין או מימין לשמאל בלבד
-        direction = random.choice(['left', 'right'])
+        # בחר כיוון מלמעלה למטה או מתחת למעלה בלבד
+        direction = random.choice(['down', 'up'])
 
         # הגדר את תנועת הקליפים בהתאם לכיוון
-        if direction == 'left':
-            move_out = lambda t: (-VIDEO_SIZE[0] * t / duration, 'center')
-            move_in = lambda t: (VIDEO_SIZE[0] - VIDEO_SIZE[0] * t / duration, 'center')
-        elif direction == 'right':
-            move_out = lambda t: (VIDEO_SIZE[0] * t / duration, 'center')
-            move_in = lambda t: (-VIDEO_SIZE[0] + VIDEO_SIZE[0] * t / duration, 'center')
+        if direction == 'down':
+            move_out = lambda t: ('center', -VIDEO_SIZE[1] * t / duration)
+            move_in = lambda t: ('center', VIDEO_SIZE[1] - VIDEO_SIZE[1] * t / duration)
+        elif direction == 'up':
+            move_out = lambda t: ('center', VIDEO_SIZE[1] * t / duration)
+            move_in = lambda t: ('center', -VIDEO_SIZE[1] + VIDEO_SIZE[1] * t / duration)
 
         # קטעים עם אנימציית מיקום
         clip1_moving = clip1.set_position(move_out).set_duration(duration)
@@ -525,7 +525,6 @@ class VideoAssembler:
             story_type = video_data['story_type']
             story = video_data['story']
             vocabulary = video_data.get('vocabulary', [])
-            grammar_points = video_data.get('grammar_points', [])
             comprehension_questions = video_data.get('comprehension_questions', [])
             call_to_action = video_data.get('call_to_action', {}).get('text', '')
 
@@ -545,66 +544,80 @@ class VideoAssembler:
                 if intro_clip:
                     clips.append(intro_clip)
 
-                # הצגת הסיפור
-                for paragraph in story['text']:
-                    english_text = paragraph['english']
-                    hebrew_text = paragraph['hebrew']
-
-                    # קליפ באנגלית
-                    text_lines_en = [english_text]
-                    line_styles_en = ['sentence']
-                    clip_story_en = self.video_creator.create_image_clip(text_lines_en, 'sentence', line_styles_en, background_image_path, process_background=True)
-                    audio_tasks_en = [
-                        (english_text, 'en', True)  # אנגלית באיטיות
-                    ]
-                    audio_results_en = self.video_creator.audio_creator.create_audios(audio_tasks_en)
-                    clip_story_en = self.video_creator.create_clip(
-                        clip_story_en,
-                        [
-                            audio_results_en.get((english_text, 'en', True), "")
-                        ],
-                        min_duration=5
-                    )
-                    if clips:
-                        transition = self.video_creator.slide_transition(clips[-1], clip_story_en)
-                        clips.append(transition)
-                    clips.append(clip_story_en)
-
-                    # קליפ בעברית
-                    text_lines_he = [hebrew_text]
-                    line_styles_he = ['translation']
-                    clip_story_he = self.video_creator.create_image_clip(text_lines_he, 'translation', line_styles_he, background_image_path, process_background=True)
-                    audio_tasks_he = [
-                        (hebrew_text, 'iw')
-                    ]
-                    audio_results_he = self.video_creator.audio_creator.create_audios(audio_tasks_he)
-                    clip_story_he = self.video_creator.create_clip(
-                        clip_story_he,
-                        [
-                            audio_results_he.get((hebrew_text, 'iw'), "")
-                        ],
-                        min_duration=5
-                    )
-                    transition = self.video_creator.slide_transition(clips[-1], clip_story_he)
-                    clips.append(transition)
-                    clips.append(clip_story_he)
-
-                # אוצר מילים
-                if vocabulary:
-                    vocab_title = "אוצר מילים"
-                    text_lines = [vocab_title]
-                    line_styles = ['subtopic']
-                    clip_vocab_title = self.video_creator.create_image_clip(text_lines, 'subtopic', line_styles, background_image_path, process_background=True)
-                    audio_tasks = [(vocab_title, 'iw')]
+                # מעבר לקטע הסיפור
+                if story['text']:
+                    story_intro = "הסיפור"
+                    text_lines_intro_story = [story_intro]
+                    line_styles_intro_story = ['subtopic']
+                    clip_story_intro = self.video_creator.create_image_clip(text_lines_intro_story, 'subtopic', line_styles_intro_story, background_image_path, process_background=True)
+                    audio_tasks = [(story_intro, 'iw')]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-                    clip_vocab_title = self.video_creator.create_clip(
-                        clip_vocab_title,
-                        [audio_results.get((vocab_title, 'iw'), "")],
+                    clip_story_intro = self.video_creator.create_clip(
+                        clip_story_intro,
+                        [audio_results.get((story_intro, 'iw'), "")],
                         min_duration=3
                     )
-                    transition = self.video_creator.slide_transition(clips[-1], clip_vocab_title)
+                    # מעבר לקטע הסיפור
+                    transition = self.video_creator.slide_transition(clips[-1], clip_story_intro)
                     clips.append(transition)
-                    clips.append(clip_vocab_title)
+                    clips.append(clip_story_intro)
+
+                    # הצגת הסיפור
+                    for paragraph in story['text']:
+                        english_text = paragraph['english']
+                        hebrew_text = paragraph['hebrew']
+
+                        # קליפ באנגלית
+                        text_lines_en = [english_text]
+                        line_styles_en = ['sentence']
+                        clip_story_en = self.video_creator.create_image_clip(text_lines_en, 'sentence', line_styles_en, background_image_path, process_background=True)
+                        audio_tasks_en = [
+                            (english_text, 'en', True)  # אנגלית באיטיות
+                        ]
+                        audio_results_en = self.video_creator.audio_creator.create_audios(audio_tasks_en)
+                        clip_story_en = self.video_creator.create_clip(
+                            clip_story_en,
+                            [
+                                audio_results_en.get((english_text, 'en', True), "")
+                            ],
+                            min_duration=5
+                        )
+                        clips.append(clip_story_en)
+
+                        # קליפ בעברית
+                        text_lines_he = [hebrew_text]
+                        line_styles_he = ['translation']
+                        clip_story_he = self.video_creator.create_image_clip(text_lines_he, 'translation', line_styles_he, background_image_path, process_background=True)
+                        audio_tasks_he = [
+                            (hebrew_text, 'iw')
+                        ]
+                        audio_results_he = self.video_creator.audio_creator.create_audios(audio_tasks_he)
+                        clip_story_he = self.video_creator.create_clip(
+                            clip_story_he,
+                            [
+                                audio_results_he.get((hebrew_text, 'iw'), "")
+                            ],
+                            min_duration=5
+                        )
+                        clips.append(clip_story_he)
+
+                # מעבר לקטע אוצר מילים
+                if vocabulary:
+                    vocab_intro = "אוצר מילים"
+                    text_lines_vocab_intro = [vocab_intro]
+                    line_styles_vocab_intro = ['subtopic']
+                    clip_vocab_intro = self.video_creator.create_image_clip(text_lines_vocab_intro, 'subtopic', line_styles_vocab_intro, background_image_path, process_background=True)
+                    audio_tasks = [(vocab_intro, 'iw')]
+                    audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                    clip_vocab_intro = self.video_creator.create_clip(
+                        clip_vocab_intro,
+                        [audio_results.get((vocab_intro, 'iw'), "")],
+                        min_duration=3
+                    )
+                    # מעבר לקטע אוצר מילים
+                    transition = self.video_creator.slide_transition(clips[-1], clip_vocab_intro)
+                    clips.append(transition)
+                    clips.append(clip_vocab_intro)
 
                     for word_entry in vocabulary:
                         word = word_entry['word']
@@ -626,67 +639,25 @@ class VideoAssembler:
                             audio_paths,
                             min_duration=4
                         )
-                        transition = self.video_creator.slide_transition(clips[-1], clip_word)
-                        clips.append(transition)
                         clips.append(clip_word)
 
-                # נקודות דקדוק
-                if grammar_points:
-                    grammar_title = "נקודות דקדוק"
-                    text_lines = [grammar_title]
-                    line_styles = ['subtopic']
-                    clip_grammar_title = self.video_creator.create_image_clip(text_lines, 'subtopic', line_styles, background_image_path, process_background=True)
-                    audio_tasks = [(grammar_title, 'iw')]
-                    audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-                    clip_grammar_title = self.video_creator.create_clip(
-                        clip_grammar_title,
-                        [audio_results.get((grammar_title, 'iw'), "")],
-                        min_duration=3
-                    )
-                    transition = self.video_creator.slide_transition(clips[-1], clip_grammar_title)
-                    clips.append(transition)
-                    clips.append(clip_grammar_title)
-
-                    for point in grammar_points:
-                        title = point['title']
-                        explanation = point['explanation']
-                        text_lines = [title, explanation]
-                        line_styles = ['word', 'translation']
-                        clip_point = self.video_creator.create_image_clip(text_lines, 'word', line_styles, background_image_path, process_background=True)
-                        audio_tasks = [
-                            (title, 'iw'),
-                            (explanation, 'iw')
-                        ]
-                        audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-                        audio_paths = [
-                            audio_results.get((title, 'iw'), ""),
-                            audio_results.get((explanation, 'iw'), "")
-                        ]
-                        clip_point = self.video_creator.create_clip(
-                            clip_point,
-                            audio_paths,
-                            min_duration=5
-                        )
-                        transition = self.video_creator.slide_transition(clips[-1], clip_point)
-                        clips.append(transition)
-                        clips.append(clip_point)
-
-                # שאלות הבנה
+                # מעבר לקטע שאלות הבנה
                 if comprehension_questions:
-                    questions_title = "שאלות הבנה"
-                    text_lines = [questions_title]
-                    line_styles = ['subtopic']
-                    clip_questions_title = self.video_creator.create_image_clip(text_lines, 'subtopic', line_styles, background_image_path, process_background=True)
-                    audio_tasks = [(questions_title, 'iw')]
+                    questions_intro = "שאלות הבנה"
+                    text_lines_questions_intro = [questions_intro]
+                    line_styles_questions_intro = ['subtopic']
+                    clip_questions_intro = self.video_creator.create_image_clip(text_lines_questions_intro, 'subtopic', line_styles_questions_intro, background_image_path, process_background=True)
+                    audio_tasks = [(questions_intro, 'iw')]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
-                    clip_questions_title = self.video_creator.create_clip(
-                        clip_questions_title,
-                        [audio_results.get((questions_title, 'iw'), "")],
+                    clip_questions_intro = self.video_creator.create_clip(
+                        clip_questions_intro,
+                        [audio_results.get((questions_intro, 'iw'), "")],
                         min_duration=3
                     )
-                    transition = self.video_creator.slide_transition(clips[-1], clip_questions_title)
+                    # מעבר לקטע שאלות הבנה
+                    transition = self.video_creator.slide_transition(clips[-1], clip_questions_intro)
                     clips.append(transition)
-                    clips.append(clip_questions_title)
+                    clips.append(clip_questions_intro)
 
                     for question_entry in comprehension_questions:
                         question = question_entry['question']
@@ -705,9 +676,6 @@ class VideoAssembler:
                             audio_paths,
                             min_duration=5
                         )
-                        if clips:
-                            transition = self.video_creator.slide_transition(clips[-1], clip_question)
-                            clips.append(transition)
                         clips.append(clip_question)
 
                         # קליפ עם התשובה הנכונה מודגשת
@@ -731,17 +699,32 @@ class VideoAssembler:
                             audio_paths,
                             min_duration=3
                         )
-                        transition = self.video_creator.slide_transition(clips[-1], clip_answer)
-                        clips.append(transition)
                         clips.append(clip_answer)
 
-                # קריאה לפעולה
+                # מעבר לקטע קריאה לפעולה
                 if call_to_action:
                     clip_outro = self.video_creator.create_outro(call_to_action, background_image_path)
                     if clip_outro:
                         transition = self.video_creator.slide_transition(clips[-1], clip_outro)
                         clips.append(transition)
                         clips.append(clip_outro)
+
+                # מעבר לקטע הלוגו
+                logo_intro = "תודה שצפיתם!"
+                text_lines_logo_intro = [logo_intro]
+                line_styles_logo_intro = ['subtopic']
+                clip_logo_intro = self.video_creator.create_image_clip(text_lines_logo_intro, 'subtopic', line_styles_logo_intro, background_image_path, process_background=True)
+                audio_tasks = [(logo_intro, 'iw')]
+                audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
+                clip_logo_intro = self.video_creator.create_clip(
+                    clip_logo_intro,
+                    [audio_results.get((logo_intro, 'iw'), "")],
+                    min_duration=3
+                )
+                # מעבר לקטע הלוגו
+                transition = self.video_creator.slide_transition(clips[-1], clip_logo_intro)
+                clips.append(transition)
+                clips.append(clip_logo_intro)
 
                 # הוספת קליפ הלוגו בסוף
                 logo_clip = self.video_creator.add_logo_clip(duration=5, background_image_path=background_image_path)
