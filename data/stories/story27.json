@@ -1,1 +1,192 @@
-
+{
+  "video_title": "הנוצה המכושפת",
+  "language_level": "מתקדם",
+  "story_type": "פנטזיה עם אלמנטים מטאפוריים",
+  "story": {
+    "title": "הנוצה המכושפת",
+    "text": [
+      {
+        "english": "Yoel was a writer who found a magical feather.",
+        "hebrew": "יואל היה סופר שמצא נוצה מכושפת."
+      },
+      {
+        "english": "Whatever he wrote with it came to life.",
+        "hebrew": "כל מה שכתב איתה קם לתחייה."
+      },
+      {
+        "english": "At first, he created beautiful landscapes and creatures.",
+        "hebrew": "בהתחלה, הוא יצר נופים ויצורים יפים."
+      },
+      {
+        "english": "His stories leapt off the pages into reality.",
+        "hebrew": "סיפוריו קפצו מהדפים למציאות."
+      },
+      {
+        "english": "People were amazed by the wonders he produced.",
+        "hebrew": "אנשים התפלאו מהנפלאות שיצר."
+      },
+      {
+        "english": "However, chaos soon followed as characters acted freely.",
+        "hebrew": "עם זאת, כאוס התפתח כשדמויות פעלו בחופשיות."
+      },
+      {
+        "english": "Yoel lost control over his own creations.",
+        "hebrew": "יואל איבד שליטה על יצירותיו."
+      },
+      {
+        "english": "They interacted with the world unpredictably.",
+        "hebrew": "הם יצרו אינטראקציות עם העולם באופן בלתי צפוי."
+      },
+      {
+        "english": "He realized the responsibility of bringing stories to life.",
+        "hebrew": "הוא הבין את האחריות שביצירת סיפורים חיים."
+      },
+      {
+        "english": "Yoel sought a way to reverse the effects.",
+        "hebrew": "יואל חיפש דרך להפוך את ההשפעות."
+      },
+      {
+        "english": "He returned to the place where he found the feather.",
+        "hebrew": "הוא חזר למקום שבו מצא את הנוצה."
+      },
+      {
+        "english": "An old man appeared, offering guidance.",
+        "hebrew": "איש זקן הופיע, מציע הדרכה."
+      },
+      {
+        "english": "\"You must write an ending,\" the man advised.",
+        "hebrew": "\"עליך לכתוב סיום,\" יעץ האיש."
+      },
+      {
+        "english": "Yoel began crafting a story to conclude all others.",
+        "hebrew": "יואל החל ליצור סיפור שיסיים את כל האחרים."
+      },
+      {
+        "english": "He poured his heart into every word.",
+        "hebrew": "הוא שפך את ליבו לכל מילה."
+      },
+      {
+        "english": "As he finished, the creations returned to the pages.",
+        "hebrew": "כשסיים, היצירות חזרו לדפים."
+      },
+      {
+        "english": "Peace was restored, and the world returned to normal.",
+        "hebrew": "השלום הוחזר, והעולם חזר לקדמותו."
+      },
+      {
+        "english": "Yoel learned the power and limits of creativity.",
+        "hebrew": "יואל למד את הכוח והמגבלות של היצירתיות."
+      },
+      {
+        "english": "He decided to use his talent more thoughtfully.",
+        "hebrew": "הוא החליט להשתמש בכישרונו בצורה מושכלת יותר."
+      },
+      {
+        "english": "He continued writing, but without the magical feather.",
+        "hebrew": "הוא המשיך לכתוב, אך ללא הנוצה המכושפת."
+      },
+      {
+        "english": "His stories still touched hearts and minds.",
+        "hebrew": "סיפוריו עדיין נגעו בלבבות ובמוחות."
+      },
+      {
+        "english": "Yoel understood that words have power even without magic.",
+        "hebrew": "יואל הבין שלמילים יש כוח גם בלי קסם."
+      },
+      {
+        "english": "He became a celebrated author in his community.",
+        "hebrew": "הוא הפך לסופר מוערך בקהילתו."
+      },
+      {
+        "english": "People appreciated his wisdom and imagination.",
+        "hebrew": "אנשים העריכו את חוכמתו ודמיונו."
+      },
+      {
+        "english": "Yoel's journey taught him about balance and humility.",
+        "hebrew": "מסעו של יואל לימד אותו על איזון וצניעות."
+      },
+      {
+        "english": "He shared his experiences to inspire other writers.",
+        "hebrew": "הוא שיתף את חוויותיו כדי להשראה סופרים אחרים."
+      },
+      {
+        "english": "Yoel's legacy lived on through his meaningful stories.",
+        "hebrew": "מורשתו של יואל המשיכה דרך סיפוריו המשמעותיים."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "feather",
+      "translation": "נוצה"
+    },
+    {
+      "word": "creations",
+      "translation": "יצירות"
+    },
+    {
+      "word": "chaos",
+      "translation": "כאוס"
+    },
+    {
+      "word": "unpredictably",
+      "translation": "באופן בלתי צפוי"
+    },
+    {
+      "word": "reverse",
+      "translation": "להפוך"
+    },
+    {
+      "word": "guidance",
+      "translation": "הדרכה"
+    },
+    {
+      "word": "crafted",
+        "translation": "יצר"
+    },
+    {
+      "word": "restored",
+      "translation": "הוחזר"
+    },
+    {
+      "word": "thoughtfully",
+      "translation": "בצורה מושכלת"
+    },
+    {
+      "word": "humility",
+      "translation": "צניעות"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה קרה כאשר יואל כתב עם הנוצה המכושפת?",
+      "options": [
+        "המילים נעלמו מהדף.",
+        "מה שכתב קם לתחייה.",
+        "הנוצה התעופפה."
+      ],
+      "answer": 1
+    },
+    {
+      "question": "כיצד פתר יואל את הבעיה שיצר?",
+      "options": [
+        "הוא שרף את הנוצה.",
+        "הוא כתב סיפור סיום לכל היצירות.",
+        "הוא ביקש מהזקן לקחת את הנוצה."
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה למד יואל ממסעו?",
+      "options": [
+        "שיצירתיות דורשת איזון וצניעות.",
+        "שצריך להשתמש בקסם בזהירות.",
+        "שכתיבה אינה משפיעה על אנשים."
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "לסיפורים נוספים שמפעילים את הדמיון, עקבו אחר הערוץ שלנו!"
+  }
+}

@@ -1,1 +1,188 @@
-
+{
+  "video_title": "המסע של האלכימאי",
+  "language_level": "מתקדם",
+  "story_type": "הרפתקה פילוסופית עם מסר רוחני",
+  "story": {
+    "title": "המסע של האלכימאי",
+    "text": [
+      {
+        "english": "Daniel was an alchemist searching for the elixir of life.",
+        "hebrew": "דניאל היה אלכימאי שחיפש את סם החיים."
+      },
+      {
+        "english": "He believed it would grant him eternal wisdom.",
+        "hebrew": "הוא האמין שזה יעניק לו חוכמה נצחית."
+      },
+      {
+        "english": "His journey took him across deserts and mountains.",
+        "hebrew": "מסעו לקח אותו דרך מדבריות והרים."
+      },
+      {
+        "english": "Daniel met various sages and learned men.",
+        "hebrew": "דניאל פגש חכמים ואנשים מלומדים שונים."
+      },
+      {
+        "english": "They shared knowledge but kept the secret hidden.",
+        "hebrew": "הם חלקו ידע אך שמרו את הסוד נסתר."
+      },
+      {
+        "english": "One day, he found an ancient manuscript.",
+        "hebrew": "יום אחד, הוא מצא כתב יד עתיק."
+      },
+      {
+        "english": "It hinted at the location of the elixir.",
+        "hebrew": "הוא רמז על מיקום סם החיים."
+      },
+      {
+        "english": "Daniel followed the clues to a remote cave.",
+        "hebrew": "דניאל עקב אחר הרמזים למערה מרוחקת."
+      },
+      {
+        "english": "Inside, he encountered challenges testing his resolve.",
+        "hebrew": "בתוכה, הוא נתקל באתגרים שבחנו את נחישותו."
+      },
+      {
+        "english": "He faced illusions and overcame his fears.",
+        "hebrew": "הוא התמודד עם אשליות והתגבר על פחדיו."
+      },
+      {
+        "english": "At the cave's end, he found a mirror.",
+        "hebrew": "בסוף המערה, הוא מצא מראה."
+      },
+      {
+        "english": "Looking into it, he saw himself transformed.",
+        "hebrew": "במבט לתוכה, הוא ראה את עצמו משתנה."
+      },
+      {
+        "english": "Daniel realized the elixir was self-understanding.",
+        "hebrew": "דניאל הבין שסם החיים הוא הבנת העצמי."
+      },
+      {
+        "english": "He emerged from the cave enlightened and content.",
+        "hebrew": "הוא יצא מהמערה מואר ומסופק."
+      },
+      {
+        "english": "Returning home, he shared his experiences with others.",
+        "hebrew": "בחזרתו הביתה, הוא שיתף את חוויותיו עם אחרים."
+      },
+      {
+        "english": "People noticed a change in his demeanor.",
+        "hebrew": "אנשים הבחינו בשינוי בהתנהגותו."
+      },
+      {
+        "english": "He became a mentor to those seeking knowledge.",
+        "hebrew": "הוא הפך למדריך לאלה המחפשים ידע."
+      },
+      {
+        "english": "Daniel wrote a book about his journey.",
+        "hebrew": "דניאל כתב ספר על מסעו."
+      },
+      {
+        "english": "The book inspired many to look within themselves.",
+        "hebrew": "הספר השראה רבים להסתכל בתוך עצמם."
+      },
+      {
+        "english": "He understood that true wealth is inner peace.",
+        "hebrew": "הוא הבין שעושר אמיתי הוא שלווה פנימית."
+      },
+      {
+        "english": "Daniel continued to study and teach throughout his life.",
+        "hebrew": "דניאל המשיך ללמוד וללמד לאורך חייו."
+      },
+      {
+        "english": "He never sought fame or fortune thereafter.",
+        "hebrew": "הוא מעולם לא חיפש תהילה או עושר מאז."
+      },
+      {
+        "english": "His legacy lived on through his students.",
+        "hebrew": "מורשתו המשיכה דרך תלמידיו."
+      },
+      {
+        "english": "Daniel's story became a legend in his village.",
+        "hebrew": "סיפורו של דניאל הפך לאגדה בכפרו."
+      },
+      {
+        "english": "People remembered him as a wise traveler.",
+        "hebrew": "אנשים זכרו אותו כנווד חכם."
+      },
+      {
+        "english": "His journey taught that the greatest quest is within.",
+        "hebrew": "מסעו לימד שהחיפוש הגדול ביותר הוא בתוכנו."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "alchemist",
+      "translation": "אלכימאי"
+    },
+    {
+      "word": "elixir",
+      "translation": "סם החיים"
+    },
+    {
+      "word": "manuscript",
+      "translation": "כתב יד"
+    },
+    {
+      "word": "clues",
+      "translation": "רמזים"
+    },
+    {
+      "word": "resolve",
+      "translation": "נחישות"
+    },
+    {
+      "word": "illusions",
+      "translation": "אשליות"
+    },
+    {
+      "word": "enlightened",
+      "translation": "מואר"
+    },
+    {
+      "word": "demeanor",
+      "translation": "התנהגות"
+    },
+    {
+      "word": "mentor",
+      "translation": "מדריך"
+    },
+    {
+      "word": "legacy",
+      "translation": "מורשת"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה חיפש דניאל במסעו?",
+      "options": [
+        "אוצר חבוי במדבר.",
+        "סם החיים שייתן לו חוכמה נצחית.",
+        "ספר עתיק על אלכימיה."
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה גילה דניאל בסוף המערה?",
+      "options": [
+        "מראה שהראתה לו את עצמו.",
+        "אבן יקרה.",
+        "מגילה עם סודות האלכימיה."
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מה למד דניאל ממסעו?",
+      "options": [
+        "שהסם האמיתי הוא הבנת העצמי.",
+        "שאין טעם במסעות.",
+        "שהוא צריך לחפש עושר חומרי."
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "הצטרפו אלינו לעוד מסעות מרתקים של למידה והשראה!"
+  }
+}

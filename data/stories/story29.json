@@ -1,1 +1,176 @@
-
+{
+  "video_title": "המהפכה השקטה",
+  "language_level": "מתקדם",
+  "story_type": "דיסטופיה עם מסר חברתי",
+  "story": {
+    "title": "המהפכה השקטה",
+    "text": [
+      {
+        "english": "In a society where speech was forbidden, Gabriel was an artist.",
+        "hebrew": "בחברה שבה הדיבור נאסר, גבריאל היה אומן."
+      },
+      {
+        "english": "He communicated through paintings and silent performances.",
+        "hebrew": "הוא תקשר באמצעות ציורים והופעות שקטות."
+      },
+      {
+        "english": "The government controlled all forms of expression.",
+        "hebrew": "הממשלה שלטה בכל צורות הביטוי."
+      },
+      {
+        "english": "Gabriel decided to inspire change through creativity.",
+        "hebrew": "גבריאל החליט לעורר שינוי דרך יצירתיות."
+      },
+      {
+        "english": "He organized secret gatherings in hidden places.",
+        "hebrew": "הוא ארגן מפגשים סודיים במקומות נסתרים."
+      },
+      {
+        "english": "People shared ideas using art and gestures.",
+        "hebrew": "אנשים שיתפו רעיונות באמצעות אמנות ותנועות."
+      },
+      {
+        "english": "The movement grew quietly but steadily.",
+        "hebrew": "התנועה גדלה בשקט אך בהתמדה."
+      },
+      {
+        "english": "The authorities began to notice unusual activities.",
+        "hebrew": "הרשויות החלו להבחין בפעילויות בלתי רגילות."
+      },
+      {
+        "english": "Gabriel created murals that appeared overnight.",
+        "hebrew": "גבריאל יצר ציורי קיר שהופיעו בן לילה."
+      },
+      {
+        "english": "They depicted hope, unity, and freedom.",
+        "hebrew": "הם תיארו תקווה, אחדות וחופש."
+      },
+      {
+        "english": "People felt empowered by his messages.",
+        "hebrew": "אנשים חשו מועצמים מהמסרים שלו."
+      },
+      {
+        "english": "The government tried to erase his work.",
+        "hebrew": "הממשלה ניסתה למחוק את עבודתו."
+      },
+      {
+        "english": "But new art kept emerging, inspiring many.",
+        "hebrew": "אך אמנות חדשה המשיכה להופיע, מעוררת השראה ברבים."
+      },
+      {
+        "english": "Gabriel taught others to express themselves silently.",
+        "hebrew": "גבריאל לימד אחרים לבטא את עצמם בשקט."
+      },
+      {
+        "english": "The movement became too widespread to suppress.",
+        "hebrew": "התנועה הפכה לנרחבת מכדי לדכא."
+      },
+      {
+        "english": "Eventually, the leaders had to acknowledge the people's voice.",
+        "hebrew": "בסופו של דבר, המנהיגים נאלצו להכיר בקול העם."
+      },
+      {
+        "english": "Laws began to change, allowing limited speech.",
+        "hebrew": "חוקים החלו להשתנות, מאפשרים דיבור מוגבל."
+      },
+      {
+        "english": "Gabriel continued to advocate for full freedom.",
+        "hebrew": "גבריאל המשיך לתמוך בחופש מלא."
+      },
+      {
+        "english": "His persistence inspired others to join openly.",
+        "hebrew": "התמדתו השראה אחרים להצטרף בגלוי."
+      },
+      {
+        "english": "Over time, society transformed into a freer place.",
+        "hebrew": "עם הזמן, החברה השתנתה למקום חופשי יותר."
+      },
+      {
+        "english": "Gabriel understood the power of creative resistance.",
+        "hebrew": "גבריאל הבין את הכוח של התנגדות יצירתית."
+      },
+      {
+        "english": "He showed that silence can be a loud statement.",
+        "hebrew": "הוא הראה ששתיקה יכולה להיות הצהרה רועשת."
+      },
+      {
+        "english": "His legacy lived on, encouraging expression and unity.",
+        "hebrew": "מורשתו המשיכה, מעודדת ביטוי ואחדות."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "forbidden",
+      "translation": "נאסר"
+    },
+    {
+      "word": "authorities",
+      "translation": "רשויות"
+    },
+    {
+      "word": "murals",
+      "translation": "ציורי קיר"
+    },
+    {
+      "word": "depicted",
+      "translation": "תיאר"
+    },
+    {
+      "word": "empowered",
+      "translation": "מועצם"
+    },
+    {
+      "word": "erase",
+      "translation": "למחוק"
+    },
+    {
+      "word": "suppress",
+      "translation": "לדכא"
+    },
+    {
+      "word": "acknowledge",
+      "translation": "להכיר"
+    },
+    {
+      "word": "advocate",
+      "translation": "לתמוך"
+    },
+    {
+      "word": "resistance",
+      "translation": "התנגדות"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "כיצד תקשר גבריאל בחברה שבה הדיבור נאסר?",
+      "options": [
+        "באמצעות ציורים והופעות שקטות.",
+        "על ידי כתיבת מכתבים.",
+        "הוא לא תקשר כלל."
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מה הייתה התגובה של הממשלה לפעולותיו?",
+      "options": [
+        "הם תמכו בו.",
+        "הם ניסו למחוק את עבודתו.",
+        "הם התעלמו ממנו."
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה המסר המרכזי של הסיפור?",
+      "options": [
+        "שתקשרות חשובה לחברה חופשית.",
+        "שאמנות אינה משפיעה על אנשים.",
+        "שדיבור אינו נחוץ."
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "אם הסיפור הותיר בכם מחשבות, הצטרפו אלינו לדיון נוסף!"
+  }
+}

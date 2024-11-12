@@ -1,1 +1,184 @@
-
+{
+  "video_title": "סיפורו של הצל",
+  "language_level": "מתקדם",
+  "story_type": "סיפורת פסיכולוגית עם אלמנטים סוריאליסטיים",
+  "story": {
+    "title": "סיפורו של הצל",
+    "text": [
+      {
+        "english": "Amir was a man who discovered his shadow was alive.",
+        "hebrew": "אמיר היה אדם שגילה שהצל שלו חי."
+      },
+      {
+        "english": "The shadow moved independently and reflected his true feelings.",
+        "hebrew": "הצל נע באופן עצמאי ושיקף את רגשותיו האמיתיים."
+      },
+      {
+        "english": "At first, Amir was frightened by this phenomenon.",
+        "hebrew": "בהתחלה, אמיר נבהל מהתופעה."
+      },
+      {
+        "english": "He tried to ignore the shadow's actions.",
+        "hebrew": "הוא ניסה להתעלם מפעולות הצל."
+      },
+      {
+        "english": "However, the shadow began communicating with him.",
+        "hebrew": "עם זאת, הצל החל לתקשר איתו."
+      },
+      {
+        "english": "It revealed Amir's hidden thoughts and desires.",
+        "hebrew": "הוא חשף את מחשבותיו ורצונותיו הנסתרים של אמיר."
+      },
+      {
+        "english": "Amir realized he had to confront himself.",
+        "hebrew": "אמיר הבין שהוא חייב להתמודד עם עצמו."
+      },
+      {
+        "english": "He started a dialogue with his shadow.",
+        "hebrew": "הוא החל בדיאלוג עם הצל שלו."
+      },
+      {
+        "english": "They explored his fears, hopes, and regrets.",
+        "hebrew": "הם חקרו את פחדיו, תקוותיו וחרטותיו."
+      },
+      {
+        "english": "Through this process, Amir gained self-awareness.",
+        "hebrew": "דרך התהליך הזה, אמיר השיג מודעות עצמית."
+      },
+      {
+        "english": "He began accepting all parts of himself.",
+        "hebrew": "הוא החל לקבל את כל חלקי עצמו."
+      },
+      {
+        "english": "The shadow became less erratic and more harmonious.",
+        "hebrew": "הצל הפך לפחות בלתי צפוי ויותר הרמוני."
+      },
+      {
+        "english": "People noticed a positive change in Amir.",
+        "hebrew": "אנשים הבחינו בשינוי חיובי באמיר."
+      },
+      {
+        "english": "He was calmer and more confident.",
+        "hebrew": "הוא היה רגוע ובטוח יותר."
+      },
+      {
+        "english": "Amir decided to help others facing inner struggles.",
+        "hebrew": "אמיר החליט לעזור לאחרים המתמודדים עם מאבקים פנימיים."
+      },
+      {
+        "english": "He shared his experiences openly.",
+        "hebrew": "הוא שיתף את חוויותיו באופן פתוח."
+      },
+      {
+        "english": "People were inspired by his honesty.",
+        "hebrew": "אנשים הושפעו מכנותו."
+      },
+      {
+        "english": "Amir realized that vulnerability is a strength.",
+        "hebrew": "אמיר הבין שפגיעות היא כוח."
+      },
+      {
+        "english": "His shadow no longer acted separately.",
+        "hebrew": "הצל שלו לא פעל עוד בנפרד."
+      },
+      {
+        "english": "They were unified, reflecting a balanced self.",
+        "hebrew": "הם היו מאוחדים, משקפים עצמי מאוזן."
+      },
+      {
+        "english": "Amir's journey taught him about acceptance.",
+        "hebrew": "מסעו של אמיר לימד אותו על קבלה."
+      },
+      {
+        "english": "He found peace in embracing his whole being.",
+        "hebrew": "הוא מצא שלווה באימוץ כל הווייתו."
+      },
+      {
+        "english": "His story encouraged others to face themselves.",
+        "hebrew": "סיפורו עודד אחרים להתמודד עם עצמם."
+      },
+      {
+        "english": "Amir continued to grow and help his community.",
+        "hebrew": "אמיר המשיך לצמוח ולעזור לקהילתו."
+      },
+      {
+        "english": "He understood that self-knowledge leads to harmony.",
+        "hebrew": "הוא הבין שידע עצמי מוביל להרמוניה."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "shadow",
+      "translation": "צל"
+    },
+    {
+      "word": "independently",
+      "translation": "באופן עצמאי"
+    },
+    {
+      "word": "phenomenon",
+      "translation": "תופעה"
+    },
+    {
+        "word": "confront",
+        "translation": "להתמודד"
+    },
+    {
+      "word": "dialogue",
+      "translation": "דיאלוג"
+    },
+    {
+      "word": "self-awareness",
+      "translation": "מודעות עצמית"
+    },
+    {
+      "word": "erratic",
+      "translation": "בלתי צפוי"
+    },
+    {
+      "word": "vulnerability",
+      "translation": "פגיעות"
+    },
+    {
+      "word": "unified",
+      "translation": "מאוחד"
+    },
+    {
+      "word": "harmony",
+      "translation": "הרמוניה"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה גילה אמיר על הצל שלו?",
+      "options": [
+        "שהוא נעלם בשמש.",
+        "שהוא חי ומשקף את רגשותיו.",
+        "שהוא משנה צורה."
+      ],
+      "answer": 1
+    },
+    {
+      "question": "כיצד אמיר התמודד עם התופעה?",
+      "options": [
+        "הוא התעלם ממנה.",
+        "הוא התחיל דיאלוג עם הצל.",
+        "הוא ניסה לברוח."
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה למד אמיר ממסעו?",
+      "options": [
+        "שקבלה עצמית מובילה להרמוניה.",
+        "שפחד הוא בלתי מנוצח.",
+        "שאין טעם להתמודד עם בעיות."
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "התוכן שלנו נוגע בנפש? שתפו את הסיפור והצטרפו למסע שלנו!"
+  }
+}
