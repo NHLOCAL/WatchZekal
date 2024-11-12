@@ -1,1 +1,128 @@
-
+{
+  "video_title": "העץ הקטן",
+  "language_level": "קל",
+  "story_type": "אלגוריה על הטבע",
+  "story": {
+    "title": "העץ הקטן",
+    "text": [
+      {
+        "english": "A small sapling was impatient.",
+        "hebrew": "שתיל קטן היה חסר סבלנות."
+      },
+      {
+        "english": "It wanted to be big.",
+        "hebrew": "הוא רצה להיות גדול."
+      },
+      {
+        "english": "It envied the tall trees.",
+        "hebrew": "הוא קנא בעצים הגבוהים."
+      },
+      {
+        "english": "The wind whispered softly.",
+        "hebrew": "הרוח לחשה ברכות."
+      },
+      {
+        "english": "\"Grow slowly,\" the wind said.",
+        "hebrew": "\"גדל לאט,\" אמרה הרוח."
+      },
+      {
+        "english": "The rain gently fell.",
+        "hebrew": "הגשם ירד בעדינות."
+      },
+      {
+        "english": "The sapling drank the water.",
+        "hebrew": "השתיל שתה את המים."
+      },
+      {
+        "english": "Seasons passed over time.",
+        "hebrew": "עונות חלפו עם הזמן."
+      },
+      {
+        "english": "The sapling became a tree.",
+        "hebrew": "השתיל הפך לעץ."
+      },
+      {
+        "english": "It provided shade and shelter.",
+        "hebrew": "הוא סיפק צל ומחסה."
+      },
+      {
+        "english": "Animals rested under it.",
+        "hebrew": "חיות נחו תחתיו."
+      },
+      {
+        "english": "The tree understood patience.",
+        "hebrew": "העץ הבין מהי סבלנות."
+      },
+      {
+        "english": "Growth takes time and care.",
+        "hebrew": "צמיחה דורשת זמן וטיפוח."
+      },
+      {
+        "english": "It was grateful to nature.",
+        "hebrew": "הוא היה אסיר תודה לטבע."
+      },
+      {
+        "english": "The tree stood strong and proud.",
+        "hebrew": "העץ עמד חזק וגאה."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "sapling",
+      "translation": "שתיל"
+    },
+    {
+      "word": "impatient",
+      "translation": "חסר סבלנות"
+    },
+    {
+      "word": "envy",
+      "translation": "לקנא"
+    },
+    {
+      "word": "whisper",
+      "translation": "ללחוש"
+    },
+    {
+      "word": "shelter",
+      "translation": "מחסה"
+    },
+    {
+      "word": "grateful",
+      "translation": "אסיר תודה"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה רצה השתיל בתחילת הסיפור?",
+      "options": [
+        "להישאר קטן",
+        "להיות גדול כמו העצים",
+        "לעזוב את היער"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה למד העץ בסוף?",
+      "options": [
+        "שסבלנות חשובה לצמיחה",
+        "שמהירות היא המפתח",
+        "שגשם אינו טוב"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מה סיפק העץ כשהוא גדל?",
+      "options": [
+        "פירות",
+        "מחסה וצל",
+        "פרחים יפים"
+      ],
+      "answer": 1
+    }
+  ],
+  "call_to_action": {
+    "text": "התחברו לטבע ולמדו עוד איתנו! הירשמו עכשיו."
+  }
+}

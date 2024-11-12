@@ -1,1 +1,132 @@
-
+{
+  "video_title": "חוטב העצים הישר",
+  "language_level": "קל",
+  "story_type": "סיפור מוסר פלאי",
+  "story": {
+    "title": "חוטב העצים הישר",
+    "text": [
+      {
+        "english": "Moshe was a woodcutter.",
+        "hebrew": "משה היה חוטב עצים."
+      },
+      {
+        "english": "He worked near a river.",
+        "hebrew": "הוא עבד ליד נהר."
+      },
+      {
+        "english": "One day, his axe fell in.",
+        "hebrew": "יום אחד, גרזנו נפל פנימה."
+      },
+      {
+        "english": "He was sad and worried.",
+        "hebrew": "הוא היה עצוב ודואג."
+      },
+      {
+        "english": "An angel appeared suddenly.",
+        "hebrew": "מלאך הופיע פתאום."
+      },
+      {
+        "english": "The angel offered a gold axe.",
+        "hebrew": "המלאך הציע גרזן זהב."
+      },
+      {
+        "english": "\"Is this yours?\" asked the angel.",
+        "hebrew": "\"האם זה שלך?\" שאל המלאך."
+      },
+      {
+        "english": "\"No, it's not mine,\" said Moshe.",
+        "hebrew": "\"לא, זה לא שלי,\" אמר משה."
+      },
+      {
+        "english": "The angel offered a silver axe.",
+        "hebrew": "המלאך הציע גרזן כסף."
+      },
+      {
+        "english": "\"Is this yours?\" he asked again.",
+        "hebrew": "\"האם זה שלך?\" הוא שאל שוב."
+      },
+      {
+        "english": "\"No, it's not mine,\" Moshe replied.",
+        "hebrew": "\"לא, זה לא שלי,\" השיב משה."
+      },
+      {
+        "english": "Finally, the angel gave his axe.",
+        "hebrew": "לבסוף, המלאך נתן לו את גרזנו."
+      },
+      {
+        "english": "Moshe was honest and truthful.",
+        "hebrew": "משה היה ישר ואמיתי."
+      },
+      {
+        "english": "The angel rewarded him.",
+        "hebrew": "המלאך גמל לו."
+      },
+      {
+        "english": "He gave all three axes to Moshe.",
+        "hebrew": "הוא נתן את שלושת הגרזנים למשה."
+      },
+      {
+        "english": "Moshe thanked the angel happily.",
+        "hebrew": "משה הודה למלאך בשמחה."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "woodcutter",
+      "translation": "חוטב עצים"
+    },
+    {
+      "word": "axe",
+      "translation": "גרזן"
+    },
+    {
+      "word": "angel",
+      "translation": "מלאך"
+    },
+    {
+      "word": "honest",
+      "translation": "ישר"
+    },
+    {
+      "word": "reward",
+      "translation": "תגמול"
+    },
+    {
+      "word": "truthful",
+      "translation": "אמיתי"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה קרה לגרזן של משה?",
+      "options": [
+        "נשבר",
+        "נפל לנהר",
+        "נגנב"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "איך משה הגיב להצעות המלאך?",
+      "options": [
+        "שיקר למלאך",
+        "אמר את האמת",
+        "לקח את גרזן הזהב"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה נתן המלאך למשה בסוף?",
+      "options": [
+        "רק את גרזנו",
+        "שום דבר",
+        "את כל שלושת הגרזנים"
+      ],
+      "answer": 2
+    }
+  ],
+  "call_to_action": {
+    "text": "הצטרפו אלינו לסיפורים נוספים עם מסרים חשובים!"
+  }
+}

@@ -1,1 +1,120 @@
-
+{
+  "video_title": "העורב החכם",
+  "language_level": "קל",
+  "story_type": "משל קצר",
+  "story": {
+    "title": "העורב החכם",
+    "text": [
+      {
+        "english": "On a hot day, a crow was thirsty.",
+        "hebrew": "ביום חם, עורב היה צמא."
+      },
+      {
+        "english": "He found a pitcher with water.",
+        "hebrew": "הוא מצא כד עם מים."
+      },
+      {
+        "english": "The water was low inside.",
+        "hebrew": "המים היו נמוכים בפנים."
+      },
+      {
+        "english": "He could not reach it.",
+        "hebrew": "הוא לא יכול היה להגיע אליהם."
+      },
+      {
+        "english": "He had an idea.",
+        "hebrew": "הייתה לו רעיון."
+      },
+      {
+        "english": "He picked up small stones.",
+        "hebrew": "הוא הרים אבנים קטנות."
+      },
+      {
+        "english": "He dropped them into the pitcher.",
+        "hebrew": "הוא זרק אותם לתוך הכד."
+      },
+      {
+        "english": "The water level rose.",
+        "hebrew": "מפלס המים עלה."
+      },
+      {
+        "english": "He could drink now.",
+        "hebrew": "הוא יכול היה לשתות עכשיו."
+      },
+      {
+        "english": "The crow was happy.",
+        "hebrew": "העורב היה שמח."
+      },
+      {
+        "english": "He used his cleverness.",
+        "hebrew": "הוא השתמש בחוכמתו."
+      },
+      {
+        "english": "He solved the problem.",
+        "hebrew": "הוא פתר את הבעיה."
+      },
+      {
+        "english": "He flew away satisfied.",
+        "hebrew": "הוא עף משם מסופק."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "crow",
+      "translation": "עורב"
+    },
+    {
+      "word": "thirsty",
+      "translation": "צמא"
+    },
+    {
+      "word": "pitcher",
+      "translation": "כד"
+    },
+    {
+      "word": "stone",
+      "translation": "אבן"
+    },
+    {
+      "word": "level",
+      "translation": "מפלס"
+    },
+    {
+      "word": "cleverness",
+      "translation": "חוכמה"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה מצא העורב?",
+      "options": [
+        "כד עם מים",
+        "חתיכת לחם",
+        "עץ גבוה"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "איך העורב העלה את המים?",
+      "options": [
+        "השתמש בקש",
+        "זרק אבנים לתוך הכד",
+        "קרא לעזרה"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה מלמד הסיפור?",
+      "options": [
+        "חוכמה ופתרון בעיות",
+        "חיפוש אחר מזון",
+        "שיתוף פעולה"
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "אם נהניתם, שתפו את הסיפור ותהנו יחד עם חברים!"
+  }
+}

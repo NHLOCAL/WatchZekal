@@ -1,1 +1,128 @@
-
+{
+  "video_title": "הרועה והכבשה האובדת",
+  "language_level": "קל",
+  "story_type": "אלגוריה פשוטה",
+  "story": {
+    "title": "הרועה והכבשה האובדת",
+    "text": [
+      {
+        "english": "Young Elhanan was a shepherd.",
+        "hebrew": "אלחנן הצעיר היה רועה צאן."
+      },
+      {
+        "english": "He cared for many sheep.",
+        "hebrew": "הוא טיפל בהרבה כבשים."
+      },
+      {
+        "english": "One day, a sheep was missing.",
+        "hebrew": "יום אחד, כבשה נעלמה."
+      },
+      {
+        "english": "Elhanan left the flock.",
+        "hebrew": "אלחנן עזב את העדר."
+      },
+      {
+        "english": "He searched in the mountains.",
+        "hebrew": "הוא חיפש בהרים."
+      },
+      {
+        "english": "He called out loudly.",
+        "hebrew": "הוא קרא בקול רם."
+      },
+      {
+        "english": "He found the sheep trapped.",
+        "hebrew": "הוא מצא את הכבשה לכודה."
+      },
+      {
+        "english": "It was stuck between rocks.",
+        "hebrew": "היא הייתה תקועה בין סלעים."
+      },
+      {
+        "english": "He freed the sheep carefully.",
+        "hebrew": "הוא שחרר את הכבשה בזהירות."
+      },
+      {
+        "english": "He returned to the flock.",
+        "hebrew": "הוא חזר לעדר."
+      },
+      {
+        "english": "Elhanan felt responsible and happy.",
+        "hebrew": "אלחנן הרגיש אחראי ושמח."
+      },
+      {
+        "english": "He cared for every sheep.",
+        "hebrew": "הוא דאג לכל כבשה."
+      },
+      {
+        "english": "He learned the value of care.",
+        "hebrew": "הוא למד את ערך הדאגה."
+      },
+      {
+        "english": "Others respected his dedication.",
+        "hebrew": "אחרים כיבדו את מסירותו."
+      },
+      {
+        "english": "He became a wise shepherd.",
+        "hebrew": "הוא הפך לרועה חכם."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "shepherd",
+      "translation": "רועה צאן"
+    },
+    {
+      "word": "flock",
+      "translation": "עדר"
+    },
+    {
+      "word": "missing",
+      "translation": "נעדר"
+    },
+    {
+      "word": "search",
+      "translation": "לחפש"
+    },
+    {
+      "word": "trap",
+      "translation": "ללכוד"
+    },
+    {
+      "word": "responsible",
+      "translation": "אחראי"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה עשה אלחנן כשהכבשה נעלמה?",
+      "options": [
+        "התעלם ממנה",
+        "חיפש אותה בהרים",
+        "חזר הביתה"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "איפה מצא אלחנן את הכבשה?",
+      "options": [
+        "בין הסלעים",
+        "בכפר",
+        "ביער"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מה למד אלחנן בסיפור?",
+      "options": [
+        "שכבשים אינן חשובות",
+        "את ערך הדאגה והאחריות",
+        "שחיפוש הוא בזבוז זמן"
+      ],
+      "answer": 1
+    }
+  ],
+  "call_to_action": {
+    "text": "למדתם משהו חדש? הירשמו לסיפורים נוספים!"
+  }
+}

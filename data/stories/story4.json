@@ -1,1 +1,128 @@
-
+{
+  "video_title": "השכן העוזר",
+  "language_level": "קל",
+  "story_type": "סיפור מרגש",
+  "story": {
+    "title": "השכן העוזר",
+    "text": [
+      {
+        "english": "Yaakov had a busy life.",
+        "hebrew": "ליעקב הייתה חיים עמוסים."
+      },
+      {
+        "english": "His elderly neighbor was Chaim.",
+        "hebrew": "שכנו המבוגר היה חיים."
+      },
+      {
+        "english": "Chaim needed help at home.",
+        "hebrew": "חיים היה זקוק לעזרה בבית."
+      },
+      {
+        "english": "Yaakov decided to assist him.",
+        "hebrew": "יעקב החליט לעזור לו."
+      },
+      {
+        "english": "He cleaned Chaim's garden.",
+        "hebrew": "הוא ניקה את הגינה של חיים."
+      },
+      {
+        "english": "He fixed broken things.",
+        "hebrew": "הוא תיקן דברים שבורים."
+      },
+      {
+        "english": "They talked and shared stories.",
+        "hebrew": "הם דיברו ושיתפו סיפורים."
+      },
+      {
+        "english": "A deep friendship grew.",
+        "hebrew": "חברות עמוקה התפתחה."
+      },
+      {
+        "english": "Yaakov felt happy inside.",
+        "hebrew": "יעקב הרגיש שמח מבפנים."
+      },
+      {
+        "english": "He learned the power of kindness.",
+        "hebrew": "הוא למד את כוח החסד."
+      },
+      {
+        "english": "The community noticed his actions.",
+        "hebrew": "הקהילה שמה לב למעשיו."
+      },
+      {
+        "english": "Others began to help too.",
+        "hebrew": "אחרים התחילו לעזור גם כן."
+      },
+      {
+        "english": "Together, they supported each other.",
+        "hebrew": "ביחד, הם תמכו זה בזה."
+      },
+      {
+        "english": "Yaakov understood community is important.",
+        "hebrew": "יעקב הבין שהקהילה חשובה."
+      },
+      {
+        "english": "He continued to help always.",
+        "hebrew": "הוא המשיך לעזור תמיד."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "neighbor",
+      "translation": "שכן"
+    },
+    {
+      "word": "assist",
+      "translation": "לעזור"
+    },
+    {
+      "word": "friendship",
+      "translation": "חברות"
+    },
+    {
+      "word": "kindness",
+      "translation": "חסד"
+    },
+    {
+      "word": "community",
+      "translation": "קהילה"
+    },
+    {
+      "word": "support",
+      "translation": "לתמוך"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מי היה חיים?",
+      "options": [
+        "אביו של יעקב",
+        "שכנו המבוגר של יעקב",
+        "אחיו של יעקב"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה עשה יעקב למען חיים?",
+      "options": [
+        "התעלם ממנו",
+        "עזר לו בבית",
+        "עבר דירה"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה למד יעקב מהחוויה?",
+      "options": [
+        "שחסד מחזק קהילה",
+        "שאין זמן לעזור",
+        "שחיים אינו נחמד"
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "שתפו את הסיפור כדי להפיץ את המסר הטוב!"
+  }
+}

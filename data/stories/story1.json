@@ -1,2 +1,140 @@
-echo . 
-
+{
+  "video_title": "המטבע האבוד",
+  "language_level": "קל",
+  "story_type": "משל פשוט",
+  "story": {
+    "title": "המטבע האבוד",
+    "text": [
+      {
+        "english": "David lost a gold coin.",
+        "hebrew": "דוד איבד מטבע זהב."
+      },
+      {
+        "english": "He searched his small house.",
+        "hebrew": "הוא חיפש בביתו הקטן."
+      },
+      {
+        "english": "He looked under the bed.",
+        "hebrew": "הוא הסתכל מתחת למיטה."
+      },
+      {
+        "english": "He checked behind the sofa.",
+        "hebrew": "הוא בדק מאחורי הספה."
+      },
+      {
+        "english": "He opened every drawer.",
+        "hebrew": "הוא פתח כל מגירה."
+      },
+      {
+        "english": "He searched between the books.",
+        "hebrew": "הוא חיפש בין הספרים."
+      },
+      {
+        "english": "David went to the garden.",
+        "hebrew": "דוד הלך לגינה."
+      },
+      {
+        "english": "He looked under the flowers.",
+        "hebrew": "הוא הסתכל מתחת לפרחים."
+      },
+      {
+        "english": "He could not find it.",
+        "hebrew": "הוא לא הצליח למצוא אותה."
+      },
+      {
+        "english": "He felt sad and tired.",
+        "hebrew": "הוא הרגיש עצוב ועייף."
+      },
+      {
+        "english": "His wife Rachel smiled.",
+        "hebrew": "אשתו רחל חייכה."
+      },
+      {
+        "english": "She said, \"We are here.\"",
+        "hebrew": "היא אמרה, \"אנחנו כאן.\""
+      },
+      {
+        "english": "His children hugged him.",
+        "hebrew": "ילדיו חיבקו אותו."
+      },
+      {
+        "english": "Neighbors came to help.",
+        "hebrew": "השכנים באו לעזור."
+      },
+      {
+        "english": "They brought food and tea.",
+        "hebrew": "הם הביאו אוכל ותה."
+      },
+      {
+        "english": "David felt rich in love.",
+        "hebrew": "דוד הרגיש עשיר באהבה."
+      },
+      {
+        "english": "He realized true wealth.",
+        "hebrew": "הוא הבין מהו עושר אמיתי."
+      },
+      {
+        "english": "Family and friends matter most.",
+        "hebrew": "משפחה וחברים הם החשובים ביותר."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "coin",
+      "translation": "מטבע"
+    },
+    {
+      "word": "search",
+      "translation": "לחפש"
+    },
+    {
+      "word": "drawer",
+      "translation": "מגירה"
+    },
+    {
+      "word": "garden",
+      "translation": "גינה"
+    },
+    {
+      "word": "realize",
+      "translation": "להבין"
+    },
+    {
+      "word": "wealth",
+      "translation": "עושר"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "איפה חיפש דוד את המטבע?",
+      "options": [
+        "רק בגינה",
+        "בבית ובגינה",
+        "רק במטבח"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מי באו לעזור לדוד?",
+      "options": [
+        "השכנים",
+        "אנשים זרים",
+        "אף אחד"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מה הבין דוד בסוף הסיפור?",
+      "options": [
+        "שהמטבע בגינה",
+        "שעושר אמיתי הוא כסף",
+        "שמשפחה וחברים הם החשובים"
+      ],
+      "answer": 2
+    }
+  ],
+  "call_to_action": {
+    "text": "אהבתם את הסיפור? לחצו לייק והצטרפו אלינו לעוד!"
+  }
+}

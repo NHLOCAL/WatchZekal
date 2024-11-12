@@ -1,1 +1,128 @@
-
+{
+  "video_title": "יום על הנהר",
+  "language_level": "קל",
+  "story_type": "סיפור הרפתקה",
+  "story": {
+    "title": "יום על הנהר",
+    "text": [
+      {
+        "english": "Ariel, Yoav, and Matan were friends.",
+        "hebrew": "אריאל, יואב ומתן היו חברים."
+      },
+      {
+        "english": "They decided to go fishing.",
+        "hebrew": "הם החליטו ללכת לדוג."
+      },
+      {
+        "english": "They went to the river.",
+        "hebrew": "הם הלכו לנהר."
+      },
+      {
+        "english": "The sun was shining brightly.",
+        "hebrew": "השמש זרחה במלואה."
+      },
+      {
+        "english": "They set up their rods.",
+        "hebrew": "הם הכינו את החכות שלהם."
+      },
+      {
+        "english": "They waited patiently.",
+        "hebrew": "הם חיכו בסבלנות."
+      },
+      {
+        "english": "Yoav caught the first fish.",
+        "hebrew": "יואב תפס את הדג הראשון."
+      },
+      {
+        "english": "\"Good job!\" said Ariel.",
+        "hebrew": "\"כל הכבוד!\" אמר אריאל."
+      },
+      {
+        "english": "They shared stories and jokes.",
+        "hebrew": "הם שיתפו סיפורים ובדיחות."
+      },
+      {
+        "english": "Matan told a funny tale.",
+        "hebrew": "מתן סיפר סיפור מצחיק."
+      },
+      {
+        "english": "They all laughed together.",
+        "hebrew": "הם צחקו יחד."
+      },
+      {
+        "english": "They enjoyed the peaceful day.",
+        "hebrew": "הם נהנו מהיום השקט."
+      },
+      {
+        "english": "They caught many fish.",
+        "hebrew": "הם תפסו הרבה דגים."
+      },
+      {
+        "english": "As the sun set, they packed up.",
+        "hebrew": "כששקעה השמש, הם ארזו."
+      },
+      {
+        "english": "They went home happily.",
+        "hebrew": "הם חזרו הביתה בשמחה."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "fishing",
+      "translation": "דיג"
+    },
+    {
+      "word": "river",
+      "translation": "נהר"
+    },
+    {
+      "word": "rod",
+      "translation": "חכה"
+    },
+    {
+      "word": "patiently",
+      "translation": "בסבלנות"
+    },
+    {
+      "word": "joke",
+      "translation": "בדיחה"
+    },
+    {
+      "word": "peaceful",
+      "translation": "שקט"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "לאן הלכו החברים?",
+      "options": [
+        "ליער",
+        "לנהר לדוג",
+        "לשוק"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מי תפס את הדג הראשון?",
+      "options": [
+        "אריאל",
+        "יואב",
+        "מתן"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה עשו החברים במהלך היום?",
+      "options": [
+        "רבו ביניהם",
+        "שיתפו סיפורים וצחקו",
+        "ישנו"
+      ],
+      "answer": 1
+    }
+  ],
+  "call_to_action": {
+    "text": "הירשמו עכשיו כדי לא לפספס את הסיפור הבא!"
+  }
+}

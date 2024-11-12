@@ -1,1 +1,128 @@
-
+{
+  "video_title": "האיכר החכם",
+  "language_level": "קל",
+  "story_type": "סיפור מוסר",
+  "story": {
+    "title": "האיכר החכם",
+    "text": [
+      {
+        "english": "Old Yosef was a farmer.",
+        "hebrew": "יוסף הזקן היה איכר."
+      },
+      {
+        "english": "He had two sons.",
+        "hebrew": "היו לו שני בנים."
+      },
+      {
+        "english": "Their names were Shmuel and Yonatan.",
+        "hebrew": "שמותיהם היו שמואל ויונתן."
+      },
+      {
+        "english": "They disliked hard work.",
+        "hebrew": "הם לא אהבו עבודה קשה."
+      },
+      {
+        "english": "Yosef was worried about them.",
+        "hebrew": "יוסף דאג להם."
+      },
+      {
+        "english": "He told them about hidden treasure.",
+        "hebrew": "הוא סיפר להם על אוצר נסתר."
+      },
+      {
+        "english": "\"It's buried in our field,\" he said.",
+        "hebrew": "\"הוא קבור בשדה שלנו,\" הוא אמר."
+      },
+      {
+        "english": "They dug the entire field.",
+        "hebrew": "הם חפרו את כל השדה."
+      },
+      {
+        "english": "They found no treasure.",
+        "hebrew": "הם לא מצאו אוצר."
+      },
+      {
+        "english": "The field was ready for planting.",
+        "hebrew": "השדה היה מוכן לזריעה."
+      },
+      {
+        "english": "Yosef smiled at his sons.",
+        "hebrew": "יוסף חייך לבניו."
+      },
+      {
+        "english": "\"Hard work is the treasure,\" he said.",
+        "hebrew": "\"העבודה הקשה היא האוצר,\" הוא אמר."
+      },
+      {
+        "english": "They understood his lesson.",
+        "hebrew": "הם הבינו את השיעור שלו."
+      },
+      {
+        "english": "They began to value work.",
+        "hebrew": "הם התחילו להעריך את העבודה."
+      },
+      {
+        "english": "The family prospered together.",
+        "hebrew": "המשפחה שגשגה יחד."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "farmer",
+      "translation": "איכר"
+    },
+    {
+      "word": "treasure",
+      "translation": "אוצר"
+    },
+    {
+      "word": "field",
+      "translation": "שדה"
+    },
+    {
+      "word": "dig",
+      "translation": "לחפור"
+    },
+    {
+      "word": "planting",
+      "translation": "זריעה"
+    },
+    {
+      "word": "value",
+      "translation": "להעריך"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה סיפר יוסף לבניו?",
+      "options": [
+        "על אוצר נסתר בשדה",
+        "על חיה מסוכנת",
+        "על נסיעה רחוקה"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מה מצאו הבנים בשדה?",
+      "options": [
+        "זהב",
+        "כלום",
+        "מטבעות כסף"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה היה האוצר האמיתי?",
+      "options": [
+        "עבודה קשה",
+        "מטמון נסתר",
+        "בית חדש"
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "רוצים לשמוע עוד סיפורים? הירשמו עכשיו לערוץ!"
+  }
+}

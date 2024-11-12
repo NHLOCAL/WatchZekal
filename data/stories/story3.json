@@ -1,1 +1,128 @@
-
+{
+  "video_title": "ביקור בשוק",
+  "language_level": "קל",
+  "story_type": "סיפור יומיומי",
+  "story": {
+    "title": "ביקור בשוק",
+    "text": [
+      {
+        "english": "Avraham went to the market.",
+        "hebrew": "אברהם הלך לשוק."
+      },
+      {
+        "english": "He needed food for his family.",
+        "hebrew": "הוא היה צריך אוכל למשפחתו."
+      },
+      {
+        "english": "He met a trader named Eliyahu.",
+        "hebrew": "הוא פגש סוחר בשם אליהו."
+      },
+      {
+        "english": "Eliyahu offered a cheap deal.",
+        "hebrew": "אליהו הציע עסקה זולה."
+      },
+      {
+        "english": "It seemed too good to be true.",
+        "hebrew": "זה נראה טוב מכדי להיות אמיתי."
+      },
+      {
+        "english": "Avraham thought carefully.",
+        "hebrew": "אברהם חשב היטב."
+      },
+      {
+        "english": "He decided to be honest.",
+        "hebrew": "הוא החליט להיות ישר."
+      },
+      {
+        "english": "\"No, thank you,\" he said.",
+        "hebrew": "\"לא, תודה,\" הוא אמר."
+      },
+      {
+        "english": "Eliyahu smiled at him.",
+        "hebrew": "אליהו חייך אליו."
+      },
+      {
+        "english": "\"You are an honest man,\" Eliyahu said.",
+        "hebrew": "\"אתה איש ישר,\" אמר אליהו."
+      },
+      {
+        "english": "He offered a fair price.",
+        "hebrew": "הוא הציע מחיר הוגן."
+      },
+      {
+        "english": "Avraham bought the goods.",
+        "hebrew": "אברהם קנה את המוצרים."
+      },
+      {
+        "english": "He learned honesty is important.",
+        "hebrew": "הוא למד שיושר הוא חשוב."
+      },
+      {
+        "english": "He returned home happily.",
+        "hebrew": "הוא חזר הביתה בשמחה."
+      },
+      {
+        "english": "His family was proud of him.",
+        "hebrew": "משפחתו הייתה גאה בו."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "market",
+      "translation": "שוק"
+    },
+    {
+      "word": "trader",
+      "translation": "סוחר"
+    },
+    {
+      "word": "deal",
+      "translation": "עסקה"
+    },
+    {
+      "word": "honest",
+      "translation": "ישר"
+    },
+    {
+      "word": "goods",
+      "translation": "מוצרים"
+    },
+    {
+      "word": "fair",
+      "translation": "הוגן"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "למה הלך אברהם לשוק?",
+      "options": [
+        "לקנות בגדים",
+        "לקנות אוכל למשפחתו",
+        "לפגוש חברים"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה הציע אליהו לאברהם?",
+      "options": [
+        "עסקה זולה",
+        "עבודה חדשה",
+        "טיול"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מה למד אברהם בסיפור?",
+      "options": [
+        "שכסף חשוב",
+        "שיושר חשוב",
+        "ששוק הוא מקום מסוכן"
+      ],
+      "answer": 1
+    }
+  ],
+  "call_to_action": {
+    "text": "אל תשכחו לשתף את הסיפור עם חברים!"
+  }
+}

@@ -1,1 +1,128 @@
-
+{
+  "video_title": "הסוד של האופה",
+  "language_level": "קל",
+  "story_type": "סיפור מעורר השראה",
+  "story": {
+    "title": "הסוד של האופה",
+    "text": [
+      {
+        "english": "Nahum was a famous baker.",
+        "hebrew": "נחום היה אופה מפורסם."
+      },
+      {
+        "english": "His bread was delicious.",
+        "hebrew": "הלחם שלו היה טעים."
+      },
+      {
+        "english": "People asked for his secret.",
+        "hebrew": "אנשים שאלו על סודו."
+      },
+      {
+        "english": "\"Is it a special ingredient?\" they asked.",
+        "hebrew": "\"האם זה מרכיב מיוחד?\" הם שאלו."
+      },
+      {
+        "english": "Nahum smiled kindly.",
+        "hebrew": "נחום חייך בנחמדות."
+      },
+      {
+        "english": "\"I use simple ingredients,\" he said.",
+        "hebrew": "\"אני משתמש במרכיבים פשוטים,\" הוא אמר."
+      },
+      {
+        "english": "\"The secret is love and care.\"",
+        "hebrew": "\"הסוד הוא אהבה ותשומת לב.\""
+      },
+      {
+        "english": "He kneaded the dough gently.",
+        "hebrew": "הוא לש את הבצק בעדינות."
+      },
+      {
+        "english": "He baked with patience.",
+        "hebrew": "הוא אפה בסבלנות."
+      },
+      {
+        "english": "His passion made the bread special.",
+        "hebrew": "התשוקה שלו הפכה את הלחם למיוחד."
+      },
+      {
+        "english": "People tasted the difference.",
+        "hebrew": "אנשים טעמו את ההבדל."
+      },
+      {
+        "english": "They appreciated his work.",
+        "hebrew": "הם העריכו את עבודתו."
+      },
+      {
+        "english": "Nahum taught others to bake.",
+        "hebrew": "נחום לימד אחרים לאפות."
+      },
+      {
+        "english": "He shared his love for baking.",
+        "hebrew": "הוא שיתף את אהבתו לאפייה."
+      },
+      {
+        "english": "The town was grateful to him.",
+        "hebrew": "העיר הייתה אסירת תודה לו."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "baker",
+      "translation": "אופה"
+    },
+    {
+      "word": "delicious",
+      "translation": "טעים"
+    },
+    {
+      "word": "ingredient",
+      "translation": "מרכיב"
+    },
+    {
+      "word": "knead",
+      "translation": "ללוש"
+    },
+    {
+      "word": "passion",
+      "translation": "תשוקה"
+    },
+    {
+      "word": "appreciate",
+      "translation": "להעריך"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה היה הסוד של נחום?",
+      "options": [
+        "מרכיב סודי",
+        "אהבה ותשומת לב",
+        "תנור מיוחד"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה עשה נחום עם אחרים?",
+      "options": [
+        "לימד אותם לאפות",
+        "שמר את הסוד לעצמו",
+        "התעלם מהם"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "איך הרגישו האנשים כלפי נחום?",
+      "options": [
+        "כעסו עליו",
+        "היו אדישים",
+        "העריכו והודו לו"
+      ],
+      "answer": 2
+    }
+  ],
+  "call_to_action": {
+    "text": "להשראה יומית, עקבו אחר הערוץ שלנו!"
+  }
+}
