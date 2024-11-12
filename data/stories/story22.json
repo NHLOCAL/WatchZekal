@@ -1,1 +1,212 @@
-
+{
+  "video_title": "העיר האחרונה של החוכמה",
+  "language_level": "מתקדם",
+  "story_type": "הרפתקה אפית עם משמעויות עמוקות",
+  "story": {
+    "title": "העיר האחרונה של החוכמה",
+    "text": [
+      {
+        "english": "A legend spoke of a hidden city filled with all knowledge.",
+        "hebrew": "אגדה סיפרה על עיר נסתרת המכילה את כל הידע."
+      },
+      {
+        "english": "Chaggai, a determined scientist, gathered a team of explorers.",
+        "hebrew": "חגי, מדען נחוש, אסף צוות של חוקרים."
+      },
+      {
+        "english": "They embarked on a long and arduous journey.",
+        "hebrew": "הם יצאו למסע ארוך ומפרך."
+      },
+      {
+        "english": "The team included scholars, adventurers, and guides.",
+        "hebrew": "הצוות כלל מלומדים, הרפתקנים ומדריכים."
+      },
+      {
+        "english": "They crossed treacherous mountains and dense forests.",
+        "hebrew": "הם חצו הרים מסוכנים ויערות צפופים."
+      },
+      {
+        "english": "Along the way, they faced many physical challenges.",
+        "hebrew": "בדרך, הם התמודדו עם אתגרים פיזיים רבים."
+      },
+      {
+        "english": "Food became scarce, and the weather was harsh.",
+        "hebrew": "המזון הפך נדיר, ומזג האוויר היה קשה."
+      },
+      {
+        "english": "Moral dilemmas arose among the team members.",
+        "hebrew": "דילמות מוסריות עלו בין חברי הצוות."
+      },
+      {
+        "english": "Some questioned the purpose of their quest.",
+        "hebrew": "חלקם תהו על מטרת החיפוש שלהם."
+      },
+      {
+        "english": "Chaggai encouraged them to persevere and stay united.",
+        "hebrew": "חגי עודד אותם להתמיד ולהישאר מאוחדים."
+      },
+      {
+        "english": "They encountered a wise hermit in a cave.",
+        "hebrew": "הם פגשו נזיר חכם במערה."
+      },
+      {
+        "english": "He told them, \"The journey is more important than the destination.\"",
+        "hebrew": "הוא אמר להם, \"המסע חשוב יותר מהיעד.\""
+      },
+      {
+        "english": "The team began to reflect on his words.",
+        "hebrew": "הצוות החל להרהר בדבריו."
+      },
+      {
+        "english": "They realized they were learning valuable lessons.",
+        "hebrew": "הם הבינו שהם לומדים לקחים יקרים."
+      },
+      {
+        "english": "Trust, cooperation, and resilience grew among them.",
+        "hebrew": "אמון, שיתוף פעולה וחוסן גדלו ביניהם."
+      },
+      {
+        "english": "After months, they reached the supposed location.",
+        "hebrew": "לאחר חודשים, הם הגיעו למיקום המשוער."
+      },
+      {
+        "english": "To their surprise, there was no city to be found.",
+        "hebrew": "להפתעתם, לא נמצאה עיר."
+      },
+      {
+        "english": "Disappointment settled in, but Chaggai remained hopeful.",
+        "hebrew": "אכזבה התפשטה, אך חגי נשאר מלא תקווה."
+      },
+      {
+        "english": "\"Perhaps the knowledge we seek is within us,\" he said.",
+        "hebrew": "\"אולי הידע שאנו מחפשים נמצא בתוכנו,\" הוא אמר."
+      },
+      {
+        "english": "They reflected on their experiences and growth.",
+        "hebrew": "הם הרהרו בחוויותיהם ובצמיחתם."
+      },
+      {
+        "english": "Each member had changed profoundly during the journey.",
+        "hebrew": "כל חבר השתנה עמוקות במהלך המסע."
+      },
+      {
+        "english": "They decided to return home and share their insights.",
+        "hebrew": "הם החליטו לחזור הביתה ולשתף בתובנותיהם."
+      },
+      {
+        "english": "Back in their homeland, they became teachers and mentors.",
+        "hebrew": "בחזרתם, הם הפכו למורים ומדריכים."
+      },
+      {
+        "english": "Their stories inspired others to embark on personal quests.",
+        "hebrew": "סיפוריהם השראה אחרים לצאת למסעות אישיים."
+      },
+      {
+        "english": "Chaggai wrote a chronicle of their journey.",
+        "hebrew": "חגי כתב כרוניקה של מסעם."
+      },
+      {
+        "english": "He emphasized the importance of the journey itself.",
+        "hebrew": "הוא הדגיש את חשיבות המסע עצמו."
+      },
+      {
+        "english": "The legend of the hidden city became a metaphor.",
+        "hebrew": "האגדה על העיר הנסתרת הפכה למטאפורה."
+      },
+      {
+        "english": "It symbolized the endless pursuit of knowledge and self-improvement.",
+        "hebrew": "היא סימלה את המרדף האינסופי אחר ידע ושיפור עצמי."
+      },
+      {
+        "english": "People understood that growth comes from challenges faced.",
+        "hebrew": "אנשים הבינו שצמיחה מגיעה מאתגרים שניצבים."
+      },
+      {
+        "english": "Chaggai and his team found wisdom in their journey.",
+        "hebrew": "חגי וצוותו מצאו חוכמה במסעם."
+      },
+      {
+        "english": "Their legacy encouraged others to value the process.",
+        "hebrew": "מורשתם עודדה אחרים להעריך את התהליך."
+      },
+      {
+        "english": "They learned that the search itself is the true reward.",
+        "hebrew": "הם למדו שהחיפוש עצמו הוא הגמול האמיתי."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "legend",
+      "translation": "אגדה"
+    },
+    {
+      "word": "determined",
+      "translation": "נחוש"
+    },
+    {
+      "word": "arduous",
+      "translation": "מפרך"
+    },
+    {
+      "word": "treacherous",
+      "translation": "מסוכן"
+    },
+    {
+      "word": "scarce",
+      "translation": "נדיר"
+    },
+    {
+      "word": "persevere",
+      "translation": "להתמיד"
+    },
+    {
+      "word": "hermit",
+      "translation": "נזיר"
+    },
+    {
+      "word": "resilience",
+      "translation": "חוסן"
+    },
+    {
+      "word": "chronicle",
+      "translation": "כרוניקה"
+    },
+    {
+      "word": "metaphor",
+      "translation": "מטאפורה"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה הייתה מטרת המסע של חגי וצוותו?",
+      "options": [
+        "למצוא אוצר חבוי.",
+        "לגלות עיר נסתרת של חוכמה.",
+        "להפוך למפורסמים."
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה הבינו חברי הצוות בסוף המסע?",
+      "options": [
+        "שהם בזבזו את זמנם.",
+        "שהידע שהם חיפשו נמצא בתוכם.",
+        "שהם צריכים לנסות שוב."
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה המסר המרכזי של הסיפור?",
+      "options": [
+        "המסע חשוב יותר מהיעד.",
+        "תמיד להאמין באגדות.",
+        "לא לסמוך על אחרים."
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "אהבתם את הסיפור? לחצו לייק ושתפו עם חברים המחפשים השראה!"
+  }
+}

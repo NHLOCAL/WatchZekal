@@ -6,74 +6,143 @@
     "title": "קולות מן העבר",
     "text": [
       {
-        "english": "Daniel inherited an old house from his grandfather.",
-        "hebrew": "דניאל ירש בית ישן מסבו."
+        "english": "Eitan found an old box in the attic.",
+        "hebrew": "איתן מצא תיבה ישנה בעליית הגג."
       },
       {
-        "english": "While cleaning the attic, he found a box of letters.",
-        "hebrew": "בזמן שניקה את עליית הגג, הוא מצא קופסת מכתבים."
+        "english": "Inside were letters and photographs.",
+        "hebrew": "בתוכה היו מכתבים ותמונות."
       },
       {
-        "english": "The letters told stories of his family's history.",
-        "hebrew": "המכתבים סיפרו סיפורים על היסטוריית משפחתו."
+        "english": "They belonged to his ancestors.",
+        "hebrew": "הם היו שייכים לאבותיו."
       },
       {
-        "english": "He learned about the challenges they faced.",
-        "hebrew": "הוא למד על האתגרים שהם התמודדו איתם."
+        "english": "He began reading the letters carefully.",
+        "hebrew": "הוא התחיל לקרוא את המכתבים בקפידה."
       },
       {
-        "english": "Daniel felt connected to his ancestors.",
-        "hebrew": "דניאל חש מחובר לאבותיו."
+        "english": "They told stories of struggles and hope.",
+        "hebrew": "הם סיפרו סיפורים על מאבקים ותקווה."
       },
       {
-        "english": "He decided to preserve the letters for future generations.",
-        "hebrew": "הוא החליט לשמר את המכתבים לדורות הבאים."
+        "english": "He learned about their challenges.",
+        "hebrew": "הוא למד על האתגרים שלהם."
       },
       {
-        "english": "The discovery gave him a sense of identity.",
-        "hebrew": "הגילוי נתן לו תחושת זהות."
+        "english": "They faced wars and hardships.",
+        "hebrew": "הם התמודדו עם מלחמות וקושי."
+      },
+      {
+        "english": "Yet, they remained strong and united.",
+        "hebrew": "עם זאת, הם נשארו חזקים ומאוחדים."
+      },
+      {
+        "english": "Eitan felt a deep connection to them.",
+        "hebrew": "איתן הרגיש חיבור עמוק אליהם."
+      },
+      {
+        "english": "He appreciated their sacrifices.",
+        "hebrew": "הוא העריך את הקרבתם."
+      },
+      {
+        "english": "He understood his identity better.",
+        "hebrew": "הוא הבין את זהותו טוב יותר."
+      },
+      {
+        "english": "He shared the stories with his family.",
+        "hebrew": "הוא שיתף את הסיפורים עם משפחתו."
+      },
+      {
+        "english": "They decided to preserve the memories.",
+        "hebrew": "הם החליטו לשמר את הזיכרונות."
+      },
+      {
+        "english": "They created a family history book.",
+        "hebrew": "הם יצרו ספר היסטוריה משפחתי."
+      },
+      {
+        "english": "Eitan felt proud of his heritage.",
+        "hebrew": "איתן הרגיש גאה במורשתו."
+      },
+      {
+        "english": "He encouraged others to explore their past.",
+        "hebrew": "הוא עודד אחרים לחקור את עברם."
+      },
+      {
+        "english": "He believed knowing the past guides the future.",
+        "hebrew": "הוא האמין שידיעת העבר מנחה את העתיד."
+      },
+      {
+        "english": "His family grew closer through this journey.",
+        "hebrew": "משפחתו התקרבה דרך המסע הזה."
+      },
+      {
+        "english": "They honored the memories of their ancestors.",
+        "hebrew": "הם כיבדו את זכר אבותיהם."
+      },
+      {
+        "english": "Eitan's discovery changed their lives positively.",
+        "hebrew": "התגלית של איתן שינתה את חייהם לטובה."
       }
     ]
   },
   "vocabulary": [
-    { "word": "inherited", "translation": "ירש" },
-    { "word": "attic", "translation": "עליית גג" },
-    { "word": "letters", "translation": "מכתבים" },
-    { "word": "ancestors", "translation": "אבות" },
-    { "word": "preserve", "translation": "לשמר" },
-    { "word": "generations", "translation": "דורות" },
-    { "word": "identity", "translation": "זהות" }
+    {
+      "word": "attic",
+      "translation": "עליית גג"
+    },
+    {
+      "word": "ancestor",
+      "translation": "אב קדמון"
+    },
+    {
+      "word": "sacrifice",
+      "translation": "הקרבה"
+    },
+    {
+      "word": "heritage",
+      "translation": "מורשת"
+    },
+    {
+      "word": "preserve",
+      "translation": "לשמר"
+    },
+    {
+      "word": "identity",
+      "translation": "זהות"
+    }
   ],
   "comprehension_questions": [
     {
-      "question": "מה מצא דניאל בעליית הגג?",
+      "question": "מה מצא איתן בעליית הגג?",
       "options": [
-        "מטמון זהב",
-        "קופסת מכתבים",
-        "תמונות ישנות"
+        "אוצר כסף",
+        "תיבה עם מכתבים ותמונות",
+        "ספר ישן"
       ],
       "answer": 1
     },
     {
-      "question": "מה למד דניאל מהמכתבים?",
+      "question": "על מה סיפרו המכתבים?",
       "options": [
-        "על האתגרים של משפחתו בעבר",
-        "על מתכונים משפחתיים",
-        "על מקומות נסתרים בבית"
+        "סיפורים על מאבקים ותקווה של אבותיו",
+        "מתכונים למשפחה",
+        "רשימות קניות"
       ],
       "answer": 0
     },
     {
-      "question": "מה החליט דניאל לעשות עם המכתבים?",
+      "question": "מה החליטו לעשות איתן ומשפחתו?",
       "options": [
-        "למכור אותם",
-        "לשמר אותם לדורות הבאים",
-        "לזרוק אותם"
+        "למכור את התיבה",
+        "לשמר את הזיכרונות וליצור ספר",
+        "לשכוח מהעבר"
       ],
       "answer": 1
     }
   ],
   "call_to_action": {
-    "text": "גיליתם משהו מרגש בסיפור? שתפו אותנו בתגובות ואל תשכחו להצטרף לערוץ 'זה קל' לעוד סיפורים!"
+    "text": "הסיפור נגע ללבכם? שתפו אותו והצטרפו אלינו לעוד סיפורים מרגשים!"
   }
 }

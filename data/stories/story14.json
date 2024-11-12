@@ -6,79 +6,143 @@
     "title": "הסדנה של הממציא",
     "text": [
       {
-        "english": "In a small town, there lived an inventor named Samuel.",
-        "hebrew": "בעיירה קטנה, חי ממציא בשם שמואל."
+        "english": "Chanokh was an inventor in a village.",
+        "hebrew": "חנוך היה ממציא בכפר."
       },
       {
-        "english": "He spent his days creating devices to help his neighbors.",
-        "hebrew": "הוא בילה את ימיו ביצירת מכשירים כדי לעזור לשכניו."
+        "english": "He worked tirelessly in his workshop.",
+        "hebrew": "הוא עבד ללא לאות בסדנתו."
       },
       {
-        "english": "One day, he built a machine that could purify water quickly.",
-        "hebrew": "יום אחד, הוא בנה מכונה שיכולה לטהר מים במהירות."
+        "english": "He created a device to help farmers.",
+        "hebrew": "הוא יצר מכשיר שיעזור לחקלאים."
       },
       {
-        "english": "The town had suffered from a shortage of clean water.",
-        "hebrew": "העיירה סבלה ממחסור במים נקיים."
+        "english": "The device improved crop production significantly.",
+        "hebrew": "המכשיר שיפר באופן משמעותי את היבול."
       },
       {
-        "english": "With Samuel's invention, everyone had access to fresh water.",
-        "hebrew": "עם המצאתו של שמואל, לכולם הייתה גישה למים טריים."
+        "english": "The community's life changed for the better.",
+        "hebrew": "חיי הקהילה השתנו לטובה."
       },
       {
-        "english": "His device changed their lives.",
-        "hebrew": "המכשיר שלו שינה את חייהם."
+        "english": "People had more food and resources.",
+        "hebrew": "לאנשים היה יותר אוכל ומשאבים."
       },
       {
-        "english": "The townspeople thanked him for his kindness and ingenuity.",
-        "hebrew": "תושבי העיירה הודו לו על טוב ליבו ותושייתו."
+        "english": "However, some villagers became jealous.",
+        "hebrew": "עם זאת, חלק מהתושבים קנאו."
       },
       {
-        "english": "Samuel continued to invent, always thinking of others.",
-        "hebrew": "שמואל המשיך להמציא, תמיד חושב על אחרים."
+        "english": "They feared losing their traditional ways.",
+        "hebrew": "הם חששו לאבד את דרכיהם המסורתיות."
+      },
+      {
+        "english": "Chanokh faced criticism and doubts.",
+        "hebrew": "חנוך התמודד עם ביקורת וספקות."
+      },
+      {
+        "english": "He realized innovation brings responsibility.",
+        "hebrew": "הוא הבין שחדשנות מביאה אחריות."
+      },
+      {
+        "english": "He organized meetings to explain benefits.",
+        "hebrew": "הוא ארגן פגישות להסביר את היתרונות."
+      },
+      {
+        "english": "He listened to their concerns respectfully.",
+        "hebrew": "הוא הקשיב לדאגותיהם בכבוד."
+      },
+      {
+        "english": "Together, they found a balanced approach.",
+        "hebrew": "ביחד, הם מצאו גישה מאוזנת."
+      },
+      {
+        "english": "The device was used wisely and carefully.",
+        "hebrew": "המכשיר שימש בחוכמה ובזהירות."
+      },
+      {
+        "english": "Chanokh learned about social responsibility.",
+        "hebrew": "חנוך למד על אחריות חברתית."
+      },
+      {
+        "english": "The village prospered and remained united.",
+        "hebrew": "הכפר שגשג ונשאר מאוחד."
+      },
+      {
+        "english": "Other communities heard about the success.",
+        "hebrew": "קהילות אחרות שמעו על ההצלחה."
+      },
+      {
+        "english": "They sought Chanokh's guidance and help.",
+        "hebrew": "הם ביקשו את הדרכתו ועזרתו של חנוך."
+      },
+      {
+        "english": "He shared his knowledge generously.",
+        "hebrew": "הוא שיתף את הידע שלו בנדיבות."
+      },
+      {
+        "english": "Innovation improved many lives responsibly.",
+        "hebrew": "החדשנות שיפרה חייהם של רבים באחריות."
       }
     ]
   },
   "vocabulary": [
-    { "word": "inventor", "translation": "ממציא" },
-    { "word": "devices", "translation": "מכשירים" },
-    { "word": "purify", "translation": "לטהר" },
-    { "word": "shortage", "translation": "מחסור" },
-    { "word": "access", "translation": "גישה" },
-    { "word": "fresh", "translation": "טרי" },
-    { "word": "kindness", "translation": "טוב לב" },
-    { "word": "ingenuity", "translation": "תושייה" }
+    {
+      "word": "inventor",
+      "translation": "ממציא"
+    },
+    {
+      "word": "device",
+      "translation": "מכשיר"
+    },
+    {
+      "word": "crop",
+      "translation": "יבול"
+    },
+    {
+      "word": "jealous",
+      "translation": "קנאי"
+    },
+    {
+      "word": "innovation",
+      "translation": "חדשנות"
+    },
+    {
+      "word": "responsibility",
+      "translation": "אחריות"
+    }
   ],
   "comprehension_questions": [
     {
-      "question": "מה הייתה המצאתו של שמואל?",
+      "question": "מה המציא חנוך?",
       "options": [
-        "מכונה לטיהור מים",
-        "רכב מעופף",
-        "מחשב חכם"
+        "מכשיר שעוזר לחקלאים",
+        "ספר על חקלאות",
+        "כלי נגינה חדש"
       ],
       "answer": 0
     },
     {
-      "question": "איזו בעיה הייתה בעיירה?",
+      "question": "איך הגיבו חלק מהתושבים למכשיר?",
       "options": [
-        "מחסור במזון",
-        "מחסור במים נקיים",
-        "בעיות חשמל"
+        "שמחו מאוד",
+        "קנאו וחששו",
+        "לא התייחסו"
       ],
       "answer": 1
     },
     {
-      "question": "כיצד הגיבו התושבים להמצאה?",
+      "question": "מה למד חנוך מהחוויה?",
       "options": [
-        "התעלמו ממנה",
-        "הודו לו על טוב ליבו",
-        "כעסו עליו"
+        "שאסור להמציא",
+        "שאחריות חברתית חשובה בחדשנות",
+        "שכדאי לעבוד לבד"
       ],
       "answer": 1
     }
   ],
   "call_to_action": {
-    "text": "אם נהניתם מהסיפור, לחצו על 'אהבתי' והצטרפו אלינו לסיפורים נוספים בערוץ 'זה קל'!"
+    "text": "למדתם משהו חדש? עקבו אחרינו לסיפורים מרתקים נוספים!"
   }
 }

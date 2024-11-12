@@ -6,72 +6,143 @@
     "title": "המוזיקאי השקט",
     "text": [
       {
-        "english": "Aaron was a talented musician who lost his hearing.",
-        "hebrew": "אהרון היה מוזיקאי מוכשר שאיבד את שמיעתו."
+        "english": "Mordechai was a talented violinist.",
+        "hebrew": "מרדכי היה כנר מוכשר."
       },
       {
-        "english": "Despite this, he continued to compose music.",
-        "hebrew": "למרות זאת, הוא המשיך להלחין מוזיקה."
+        "english": "He played music that touched hearts.",
+        "hebrew": "הוא ניגן מוזיקה שנגעה ללבבות."
       },
       {
-        "english": "He felt the vibrations and rhythms through his instruments.",
-        "hebrew": "הוא חש את הויברציות והקצב דרך הכלים שלו."
+        "english": "One day, he lost his hearing in an accident.",
+        "hebrew": "יום אחד, הוא איבד את שמיעתו בתאונה."
       },
       {
-        "english": "People were moved by his beautiful compositions.",
-        "hebrew": "אנשים התרגשו מהלחנים היפים שלו."
+        "english": "He felt devastated and hopeless.",
+        "hebrew": "הוא הרגיש הרוס וחסר תקווה."
       },
       {
-        "english": "Aaron showed that obstacles can be overcome.",
-        "hebrew": "אהרון הראה שניתן להתגבר על מכשולים."
+        "english": "He considered giving up music entirely.",
+        "hebrew": "הוא שקל לוותר על המוזיקה לחלוטין."
       },
       {
-        "english": "His story inspired many to pursue their dreams.",
-        "hebrew": "סיפורו עודד רבים לרדוף אחרי חלומותיהם."
+        "english": "But he couldn't abandon his passion.",
+        "hebrew": "אבל הוא לא יכול היה לנטוש את תשוקתו."
+      },
+      {
+        "english": "He began to feel the vibrations of the strings.",
+        "hebrew": "הוא החל להרגיש את הרטט של המיתרים."
+      },
+      {
+        "english": "He practiced diligently despite his loss.",
+        "hebrew": "הוא התאמן בחריצות למרות אובדנו."
+      },
+      {
+        "english": "He developed a new way to experience music.",
+        "hebrew": "הוא פיתח דרך חדשה לחוות מוזיקה."
+      },
+      {
+        "english": "He performed in public once again.",
+        "hebrew": "הוא הופיע בציבור שוב."
+      },
+      {
+        "english": "The audience was moved by his performance.",
+        "hebrew": "הקהל התרגש מהופעתו."
+      },
+      {
+        "english": "They felt the emotion in his music.",
+        "hebrew": "הם הרגישו את הרגש במוזיקה שלו."
+      },
+      {
+        "english": "Mordechai inspired others facing challenges.",
+        "hebrew": "מרדכי השראה לאחרים המתמודדים עם אתגרים."
+      },
+      {
+        "english": "He showed perseverance and resilience.",
+        "hebrew": "הוא הראה התמדה וחוסן נפשי."
+      },
+      {
+        "english": "He taught that obstacles can be overcome.",
+        "hebrew": "הוא לימד שמכשולים ניתנים להתגברות."
+      },
+      {
+        "english": "His story spread throughout the community.",
+        "hebrew": "סיפורו התפשט ברחבי הקהילה."
+      },
+      {
+        "english": "He began teaching music to children.",
+        "hebrew": "הוא החל ללמד מוזיקה לילדים."
+      },
+      {
+        "english": "He encouraged them to follow their dreams.",
+        "hebrew": "הוא עודד אותם לעקוב אחר חלומותיהם."
+      },
+      {
+        "english": "Mordechai found joy in helping others.",
+        "hebrew": "מרדכי מצא שמחה בעזרה לאחרים."
+      },
+      {
+        "english": "He lived a fulfilling and meaningful life.",
+        "hebrew": "הוא חי חיים מלאים ומשמעותיים."
       }
     ]
   },
   "vocabulary": [
-    { "word": "talented", "translation": "מוכשר" },
-    { "word": "hearing", "translation": "שמיעה" },
-    { "word": "compose", "translation": "להלחין" },
-    { "word": "vibrations", "translation": "ויברציות" },
-    { "word": "rhythms", "translation": "קצב" },
-    { "word": "instruments", "translation": "כלים" },
-    { "word": "obstacles", "translation": "מכשולים" },
-    { "word": "inspired", "translation": "עודד" },
-    { "word": "pursue", "translation": "לרדוף אחרי" }
+    {
+      "word": "violinist",
+      "translation": "כנר"
+    },
+    {
+      "word": "hearing",
+      "translation": "שמיעה"
+    },
+    {
+      "word": "vibration",
+      "translation": "רטט"
+    },
+    {
+      "word": "resilience",
+      "translation": "חוסן נפשי"
+    },
+    {
+      "word": "overcome",
+      "translation": "להתגבר"
+    },
+    {
+      "word": "fulfilling",
+      "translation": "ממלא (משמעותית)"
+    }
   ],
   "comprehension_questions": [
     {
-      "question": "מה קרה לאהרון?",
+      "question": "מה קרה למרדכי?",
       "options": [
-        "הוא איבד את שמיעתו",
-        "הוא איבד את ידיו",
-        "הוא הפסיק לאהוב מוזיקה"
+        "איבד את שמיעתו בתאונה",
+        "איבד את הכינור שלו",
+        "עבר לעיר אחרת"
       ],
       "answer": 0
     },
     {
-      "question": "כיצד המשיך אהרון ליצור מוזיקה?",
+      "question": "איך המשיך מרדכי לנגן?",
       "options": [
-        "הוא נעזר במוזיקאים אחרים",
-        "הוא חש את הויברציות והקצב",
-        "הוא השתמש במחשב"
+        "ויתר על המוזיקה",
+        "הרגיש את רטט המיתרים",
+        "השתמש בכלי אחר"
       ],
       "answer": 1
     },
     {
-      "question": "מה המסר של הסיפור?",
+      "question": "מה המסר המרכזי של הסיפור?",
       "options": [
-        "להפסיק כשקשה",
-        "שאי אפשר להתגבר על מכשולים",
-        "להתמיד ולרדוף אחרי החלומות"
+        "להתייאש מול קשיים",
+        "התגברות על מכשולים והשראה לאחרים",
+        "שמוזיקה אינה חשובה"
       ],
-      "answer": 2
+      "answer": 1
     }
   ],
   "call_to_action": {
-    "text": "סיפורו של אהרון מעורר השראה! שתפו את הסיפור עם חברים והצטרפו לערוץ 'זה קל' לעוד סיפורים מעודדים!"
+    "text": "האם הסיפור ריגש אתכם? הירשמו לערוץ לעוד סיפורים מעצימים!"
   }
 }

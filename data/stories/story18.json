@@ -1,84 +1,152 @@
 {
   "video_title": "שומר הספרייה",
   "language_level": "בינוני",
-  "story_type": "פנטזיה",
+  "story_type": "פנטזיה הרואית",
   "story": {
     "title": "שומר הספרייה",
     "text": [
       {
-        "english": "In the heart of the city stood an ancient library.",
-        "hebrew": "בלב העיר עמדה ספרייה עתיקה."
+        "english": "In an ancient library stood Tsvi, the guardian.",
+        "hebrew": "בספרייה עתיקה עמד צבי, השומר."
       },
       {
-        "english": "Benjamin was the guardian of the library.",
-        "hebrew": "בנימין היה שומר הספרייה."
+        "english": "He protected books containing eternal wisdom.",
+        "hebrew": "הוא הגן על ספרים המכילים חוכמה נצחית."
       },
       {
-        "english": "One night, he discovered that the books were alive.",
-        "hebrew": "לילה אחד, הוא גילה שהספרים חיים."
+        "english": "Few knew of the library's existence.",
+        "hebrew": "מעטים ידעו על קיומה של הספרייה."
       },
       {
-        "english": "They whispered secrets and shared forgotten knowledge.",
-        "hebrew": "הם לחשו סודות ושיתפו ידע שנשכח."
+        "english": "One day, a dark force threatened it.",
+        "hebrew": "יום אחד, כוח אפל איים עליה."
       },
       {
-        "english": "An evil force wanted to steal the books.",
-        "hebrew": "כוח רע רצה לגנוב את הספרים."
+        "english": "A mysterious fire began to spread.",
+        "hebrew": "אש מסתורית החלה להתפשט."
       },
       {
-        "english": "Benjamin vowed to protect the library.",
-        "hebrew": "בנימין נשבע להגן על הספרייה."
+        "english": "Tsvi knew he had to act swiftly.",
+        "hebrew": "צבי ידע שעליו לפעול במהירות."
       },
       {
-        "english": "With courage and wisdom, he defeated the evil force.",
-        "hebrew": "באומץ וחוכמה, הוא ניצח את הכוח הרע."
+        "english": "He gathered the most precious scrolls.",
+        "hebrew": "הוא אסף את המגילות היקרות ביותר."
       },
       {
-        "english": "The library remained a place of knowledge and wonder.",
-        "hebrew": "הספרייה נשארה מקום של ידע ופלא."
+        "english": "He searched for a way to stop the fire.",
+        "hebrew": "הוא חיפש דרך לעצור את האש."
+      },
+      {
+        "english": "He found an old spell in a book.",
+        "hebrew": "הוא מצא לחש ישן בספר."
+      },
+      {
+        "english": "It required courage and inner strength.",
+        "hebrew": "הוא דרש אומץ וכוח פנימי."
+      },
+      {
+        "english": "Tsvi began to recite the spell aloud.",
+        "hebrew": "צבי החל לשנן את הלחש בקול."
+      },
+      {
+        "english": "The flames started to diminish slowly.",
+        "hebrew": "הלהבות החלו להיחלש לאט."
+      },
+      {
+        "english": "But the effort drained his energy.",
+        "hebrew": "אך המאמץ רוקן את האנרגיה שלו."
+      },
+      {
+        "english": "He persevered despite the difficulty.",
+        "hebrew": "הוא התמיד למרות הקושי."
+      },
+      {
+        "english": "Finally, the fire was extinguished completely.",
+        "hebrew": "לבסוף, האש כובתה לחלוטין."
+      },
+      {
+        "english": "The library was saved from destruction.",
+        "hebrew": "הספרייה ניצלה מהרס."
+      },
+      {
+        "english": "Tsvi realized his true potential and bravery.",
+        "hebrew": "צבי הבין את הפוטנציאל והאומץ האמיתיים שלו."
+      },
+      {
+        "english": "He continued to guard the knowledge diligently.",
+        "hebrew": "הוא המשיך לשמור על הידע בחריצות."
+      },
+      {
+        "english": "Others came to learn from the library.",
+        "hebrew": "אחרים באו ללמוד מהספרייה."
+      },
+      {
+        "english": "Tsvi shared wisdom with those who sought it.",
+        "hebrew": "צבי חלק חוכמה עם מי שחיפש אותה."
+      },
+      {
+        "english": "He became a symbol of courage and dedication.",
+        "hebrew": "הוא הפך לסמל של אומץ ומסירות."
       }
     ]
   },
   "vocabulary": [
-    { "word": "guardian", "translation": "שומר" },
-    { "word": "discovered", "translation": "גילה" },
-    { "word": "whispered", "translation": "לחשו" },
-    { "word": "secrets", "translation": "סודות" },
-    { "word": "evil force", "translation": "כוח רע" },
-    { "word": "vowed", "translation": "נשבע" },
-    { "word": "defeated", "translation": "ניצח" },
-    { "word": "wonder", "translation": "פלא" }
+    {
+      "word": "guardian",
+      "translation": "שומר"
+    },
+    {
+      "word": "eternal",
+      "translation": "נצחי"
+    },
+    {
+      "word": "threaten",
+      "translation": "לאיים"
+    },
+    {
+      "word": "spell",
+      "translation": "לחש"
+    },
+    {
+      "word": "courage",
+      "translation": "אומץ"
+    },
+    {
+      "word": "extinguish",
+      "translation": "לכבות"
+    }
   ],
   "comprehension_questions": [
     {
-      "question": "מה גילה בנימין על הספרים?",
+      "question": "מה איים על הספרייה?",
       "options": [
-        "שהם נעלמים",
-        "שהם חיים ומדברים",
-        "שהם ריקים"
+        "גנבים",
+        "אש מסתורית",
+        "רעידת אדמה"
       ],
       "answer": 1
     },
     {
-      "question": "מי רצה לגנוב את הספרים?",
+      "question": "איך הצליח צבי לעצור את האש?",
       "options": [
-        "כוח רע",
-        "קוסם טוב",
-        "תושבי העיר"
+        "השתמש בלחש מתוך ספר",
+        "קרא לכבאים",
+        "שפך מים"
       ],
       "answer": 0
     },
     {
-      "question": "כיצד בנימין הגן על הספרייה?",
+      "question": "מה מסמל צבי בסיפור?",
       "options": [
-        "בעזרת אומץ וחוכמה",
-        "הוא נעל את הדלתות",
-        "הוא נתן להם את הספרים"
+        "פחד וחוסר אונים",
+        "אומץ ומסירות לשימור הידע",
+        "רצון לעזוב"
       ],
-      "answer": 0
+      "answer": 1
     }
   ],
   "call_to_action": {
-    "text": "אהבתם את סיפור הפנטזיה הזה? שתפו אותו עם חברים ואל תשכחו להירשם לערוץ 'זה קל' לעוד סיפורים קסומים!"
+    "text": "מעוניינים בעוד סיפורי גבורה? הירשמו לערוץ ותהיו הראשונים לצפות!"
   }
 }

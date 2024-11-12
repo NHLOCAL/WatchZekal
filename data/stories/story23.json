@@ -1,1 +1,208 @@
-
+{
+  "video_title": "חוטי הגורל",
+  "language_level": "מתקדם",
+  "story_type": "ריאליזם קסום עם דגש על מוסר",
+  "story": {
+    "title": "חוטי הגורל",
+    "text": [
+      {
+        "english": "Ezra was a talented weaver in a small village.",
+        "hebrew": "עזרא היה אורג מוכשר בכפר קטן."
+      },
+      {
+        "english": "He created beautiful carpets admired by all.",
+        "hebrew": "הוא יצר שטיחים יפים שהוערכו על ידי כולם."
+      },
+      {
+        "english": "One day, he discovered a mysterious golden thread.",
+        "hebrew": "יום אחד, הוא גילה חוט זהב מסתורי."
+      },
+      {
+        "english": "When woven into a carpet, it affected people's destinies.",
+        "hebrew": "כאשר שזר אותו בשטיח, הוא השפיע על גורלות האנשים."
+      },
+      {
+        "english": "A carpet brought prosperity to a struggling family.",
+        "hebrew": "שטיח הביא שגשוג למשפחה נאבקת."
+      },
+      {
+        "english": "Another healed a man from a lingering illness.",
+        "hebrew": "אחר ריפא איש ממחלה ממושכת."
+      },
+      {
+        "english": "Ezra realized the power he held in his hands.",
+        "hebrew": "עזרא הבין את הכוח שבידיו."
+      },
+      {
+        "english": "He faced a moral dilemma: should he interfere with fate?",
+        "hebrew": "הוא עמד בדילמה מוסרית: האם להתערב בגורל?"
+      },
+      {
+        "english": "Some villagers begged for carpets to change their lives.",
+        "hebrew": "חלק מהכפריים התחננו לשטיחים לשנות את חייהם."
+      },
+      {
+        "english": "Others warned him about meddling with destiny.",
+        "hebrew": "אחרים הזהירו אותו מהתערבות בגורל."
+      },
+      {
+        "english": "Ezra sought counsel from the wise elder, Nathan.",
+        "hebrew": "עזרא ביקש עצה מהזקן החכם, נתן."
+      },
+      {
+        "english": "Nathan advised, \"Use your gift with great caution.\"",
+        "hebrew": "נתן יעץ, \"השתמש במתנתך בזהירות רבה.\""
+      },
+      {
+        "english": "Ezra decided to weave only when truly necessary.",
+        "hebrew": "עזרא החליט לארוג רק כשבאמת נחוץ."
+      },
+      {
+        "english": "He helped the sick and the poor discreetly.",
+        "hebrew": "הוא עזר לחולים ולעניים באופן דיסקרטי."
+      },
+      {
+        "english": "One day, a wealthy man demanded a carpet for power.",
+        "hebrew": "יום אחד, איש עשיר דרש שטיח לכוח."
+      },
+      {
+        "english": "Ezra refused, sensing the man's ill intentions.",
+        "hebrew": "עזרא סירב, חש בכוונות הרעות של האיש."
+      },
+      {
+        "english": "Angered, the man plotted against Ezra.",
+        "hebrew": "בכעס, האיש זמם נגד עזרא."
+      },
+      {
+        "english": "He accused Ezra of sorcery before the village council.",
+        "hebrew": "הוא האשים את עזרא בכישוף בפני מועצת הכפר."
+      },
+      {
+        "english": "The villagers were torn between trust and fear.",
+        "hebrew": "הכפריים נקרעו בין אמון לפחד."
+      },
+      {
+        "english": "Ezra chose to reveal the truth about the thread.",
+        "hebrew": "עזרא בחר לחשוף את האמת על החוט."
+      },
+      {
+        "english": "He explained his intentions and the risks involved.",
+        "hebrew": "הוא הסביר את כוונותיו והסיכונים המעורבים."
+      },
+      {
+        "english": "The council deliberated and ultimately forgave him.",
+        "hebrew": "המועצה דנה ולבסוף סלחו לו."
+      },
+      {
+        "english": "They agreed the gift should benefit the community.",
+        "hebrew": "הם הסכימו שהמתנה תועיל לקהילה."
+      },
+      {
+        "english": "Ezra wove a final carpet to bring unity and peace.",
+        "hebrew": "עזרא ארג שטיח אחרון להביא אחדות ושלום."
+      },
+      {
+        "english": "The village prospered, and conflicts diminished.",
+        "hebrew": "הכפר שגשג, והסכסוכים פחתו."
+      },
+      {
+        "english": "Ezra decided to hide the golden thread thereafter.",
+        "hebrew": "עזרא החליט להחביא את חוט הזהב מכאן ואילך."
+      },
+      {
+        "english": "He returned to weaving ordinary but beautiful carpets.",
+        "hebrew": "הוא חזר לארוג שטיחים רגילים אך יפים."
+      },
+      {
+        "english": "The villagers respected his choice and thanked him.",
+        "hebrew": "הכפריים כיבדו את בחירתו והודו לו."
+      },
+      {
+        "english": "Ezra learned about responsibility and ethical choices.",
+        "hebrew": "עזרא למד על אחריות ובחירות אתיות."
+      },
+      {
+        "english": "He understood that great power requires wisdom.",
+        "hebrew": "הוא הבין שכוח גדול דורש חוכמה."
+      },
+      {
+        "english": "His story became a lesson for future generations.",
+        "hebrew": "סיפורו הפך ללקח לדורות הבאים."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "weaver",
+      "translation": "אורג"
+    },
+    {
+      "word": "admired",
+      "translation": "הוערך"
+    },
+    {
+      "word": "mysterious",
+      "translation": "מסתורי"
+    },
+    {
+      "word": "destinies",
+      "translation": "גורלות"
+    },
+    {
+      "word": "prosperity",
+      "translation": "שגשוג"
+    },
+    {
+      "word": "dilemma",
+      "translation": "דילמה"
+    },
+    {
+      "word": "meddling",
+      "translation": "התערבות"
+    },
+    {
+      "word": "caution",
+      "translation": "זהירות"
+    },
+    {
+      "word": "intentions",
+      "translation": "כוונות"
+    },
+    {
+      "word": "ethical",
+      "translation": "אתי"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה היה הכוח המיוחד של עזרא?",
+      "options": [
+        "הוא יכול היה לעוף.",
+        "שטיחיו השפיעו על גורלות אנשים.",
+        "הוא ידע לדבר עם חיות."
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מדוע עזרא סירב לאיש העשיר?",
+      "options": [
+        "הוא לא אהב עשירים.",
+        "הוא חשש מכוונותיו הרעות.",
+        "הוא היה עסוק מדי."
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה למד עזרא בסוף הסיפור?",
+      "options": [
+        "שכוח גדול דורש חוכמה ואחריות.",
+        "שעליו להשתמש בחוט בכל הזדמנות.",
+        "שכדאי להתרחק מאנשים."
+      ],
+      "answer": 0
+    }
+  ],
+  "call_to_action": {
+    "text": "רוצים לשמוע עוד סיפורים מרתקים? הירשמו עכשיו לערוץ שלנו!"
+  }
+}

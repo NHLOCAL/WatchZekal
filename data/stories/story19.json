@@ -1,84 +1,152 @@
 {
   "video_title": "הסוד של שען הזמן",
   "language_level": "בינוני",
-  "story_type": "מסתורין",
+  "story_type": "מסתורין ומדע בדיוני",
   "story": {
     "title": "הסוד של שען הזמן",
     "text": [
       {
-        "english": "Levi was a watchmaker known for his intricate clocks.",
-        "hebrew": "לוי היה שען ידוע בשעוניו המורכבים."
+        "english": "Yeshayahu was a mysterious watchmaker.",
+        "hebrew": "ישעיהו היה שען מסתורי."
       },
       {
-        "english": "He built a special clock that could manipulate time.",
-        "hebrew": "הוא בנה שעון מיוחד שיכול להשפיע על הזמן."
+        "english": "He built a special clock in his workshop.",
+        "hebrew": "הוא בנה שעון מיוחד בסדנתו."
       },
       {
-        "english": "One day, the clock stopped working properly.",
-        "hebrew": "יום אחד, השעון הפסיק לעבוד כראוי."
+        "english": "The clock could influence time itself.",
+        "hebrew": "השעון יכול היה להשפיע על הזמן עצמו."
       },
       {
-        "english": "Time in the town became unstable.",
-        "hebrew": "הזמן בעיירה הפך לבלתי יציב."
+        "english": "At first, he tested it cautiously.",
+        "hebrew": "בהתחלה, הוא בדק אותו בזהירות."
       },
       {
-        "english": "Levi realized he needed to fix the clock.",
-        "hebrew": "לוי הבין שעליו לתקן את השעון."
+        "english": "He noticed small changes around him.",
+        "hebrew": "הוא שם לב לשינויים קטנים סביבו."
       },
       {
-        "english": "He worked tirelessly to restore balance.",
-        "hebrew": "הוא עבד ללא לאות כדי להשיב את האיזון."
+        "english": "People began experiencing strange events.",
+        "hebrew": "אנשים החלו לחוות אירועים מוזרים."
       },
       {
-        "english": "Finally, he succeeded, and time flowed normally again.",
-        "hebrew": "לבסוף, הוא הצליח, והזמן חזר לזרום כרגיל."
+        "english": "Time seemed to speed up and slow down.",
+        "hebrew": "הזמן נראה שהוא מואץ ומואט."
       },
       {
-        "english": "Levi learned the importance of responsibility.",
-        "hebrew": "לוי למד את חשיבות האחריות."
+        "english": "Yeshayahu realized the consequences were serious.",
+        "hebrew": "ישעיהו הבין שההשלכות היו רציניות."
+      },
+      {
+        "english": "He felt responsible for the disruptions.",
+        "hebrew": "הוא הרגיש אחראי להפרעות."
+      },
+      {
+        "english": "He tried to reverse the effects.",
+        "hebrew": "הוא ניסה להפוך את ההשפעות."
+      },
+      {
+        "english": "He studied his invention intensely.",
+        "hebrew": "הוא למד את המצאתו ביסודיות."
+      },
+      {
+        "english": "He sought a solution to fix time.",
+        "hebrew": "הוא חיפש פתרון לתקן את הזמן."
+      },
+      {
+        "english": "Finally, he discovered a way to stabilize it.",
+        "hebrew": "לבסוף, הוא גילה דרך לייצב אותו."
+      },
+      {
+        "english": "He adjusted the clock's mechanism carefully.",
+        "hebrew": "הוא כיוון את מנגנון השעון בזהירות."
+      },
+      {
+        "english": "Normalcy returned to the town gradually.",
+        "hebrew": "הנורמליות חזרה לעיירה בהדרגה."
+      },
+      {
+        "english": "People were unaware of his actions.",
+        "hebrew": "אנשים לא היו מודעים למעשיו."
+      },
+      {
+        "english": "Yeshayahu learned about responsibility for his creations.",
+        "hebrew": "ישעיהו למד על אחריות למעשיו."
+      },
+      {
+        "english": "He decided to dismantle the clock.",
+        "hebrew": "הוא החליט לפרק את השעון."
+      },
+      {
+        "english": "He focused on making ordinary watches instead.",
+        "hebrew": "הוא התמקד בעשיית שעונים רגילים במקום."
+      },
+      {
+        "english": "He shared his knowledge with apprentices.",
+        "hebrew": "הוא שיתף את הידע שלו עם שוליות."
+      },
+      {
+        "english": "He emphasized ethics and responsibility.",
+        "hebrew": "הוא הדגיש אתיקה ואחריות."
       }
     ]
   },
   "vocabulary": [
-    { "word": "watchmaker", "translation": "שען" },
-    { "word": "intricate", "translation": "מורכב" },
-    { "word": "manipulate", "translation": "להשפיע על" },
-    { "word": "unstable", "translation": "בלתי יציב" },
-    { "word": "restore", "translation": "להשיב" },
-    { "word": "balance", "translation": "איזון" },
-    { "word": "tirelessly", "translation": "ללא לאות" },
-    { "word": "responsibility", "translation": "אחריות" }
+    {
+      "word": "watchmaker",
+      "translation": "שען"
+    },
+    {
+      "word": "influence",
+      "translation": "להשפיע"
+    },
+    {
+      "word": "consequence",
+      "translation": "השלכה"
+    },
+    {
+      "word": "disruption",
+      "translation": "הפרעה"
+    },
+    {
+      "word": "stabilize",
+      "translation": "לייצב"
+    },
+    {
+      "word": "dismantle",
+      "translation": "לפרק"
+    }
   ],
   "comprehension_questions": [
     {
-      "question": "מה הייתה היכולת המיוחדת של השעון של לוי?",
+      "question": "מה הייתה היכולת של השעון המיוחד?",
       "options": [
-        "הוא ניגן מוזיקה",
-        "הוא יכול היה להשפיע על הזמן",
-        "הוא הראה את מזג האוויר"
+        "לנבא את העתיד",
+        "להשפיע על הזמן",
+        "לשנות את מזג האוויר"
       ],
       "answer": 1
     },
     {
-      "question": "מה קרה כשהשעון הפסיק לעבוד כראוי?",
+      "question": "מה הבין ישעיהו לאחר שאנשים חוו אירועים מוזרים?",
       "options": [
-        "לוי איבד את עבודתו",
-        "הזמן בעיירה הפך לבלתי יציב",
-        "כל השעונים האחרים נעצרו"
-      ],
-      "answer": 1
-    },
-    {
-      "question": "מה למד לוי מהחוויה?",
-      "options": [
-        "את חשיבות האחריות",
-        "איך לבנות שעונים חדשים",
-        "שהוא צריך לעזוב את העיירה"
+        "שהשעון מסוכן ויש לו השלכות",
+        "שהשעון אינו פועל",
+        "שכולם שמחים מהשעון"
       ],
       "answer": 0
+    },
+    {
+      "question": "מה עשה ישעיהו בסופו של דבר?",
+      "options": [
+        "מכר את השעון",
+        "פרק את השעון והתמקד בשעונים רגילים",
+        "השאיר את השעון ופיתח אותו"
+      ],
+      "answer": 1
     }
   ],
   "call_to_action": {
-    "text": "הסיפור הזה הזכיר לנו כמה האחריות חשובה. אם נהניתם, לחצו 'אהבתי' והירשמו לערוץ 'זה קל' לסיפורים נוספים!"
+    "text": "אהבתם את הסיפור? לחצו על 'אהבתי' והצטרפו למסע נוסף של תגליות!"
   }
 }

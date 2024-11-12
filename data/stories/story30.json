@@ -1,1 +1,208 @@
-
+{
+  "video_title": "מעבר לכוכבים",
+  "language_level": "מתקדם",
+  "story_type": "מדע בדיוני קשיח עם דגש על פילוסופיה",
+  "story": {
+    "title": "מעבר לכוכבים",
+    "text": [
+      {
+        "english": "A team of astronauts led by Captain Amit embarked on a deep-space mission.",
+        "hebrew": "צוות אסטרונאוטים בהובלת הקפטן עמית יצא למשימה לחלל העמוק."
+      },
+      {
+        "english": "Their goal was to explore a newly discovered exoplanet.",
+        "hebrew": "מטרתם הייתה לחקור כוכב לכת חוץ-שמשי חדש."
+      },
+      {
+        "english": "The journey would take several years in cryogenic sleep.",
+        "hebrew": "המסע ייקח מספר שנים בשינה קריוגנית."
+      },
+      {
+        "english": "Upon arrival, they awoke to a strange phenomenon.",
+        "hebrew": "בהגיעם, הם התעוררו לתופעה מוזרה."
+      },
+      {
+        "english": "The planet had a unique energy field affecting reality.",
+        "hebrew": "לכוכב הייתה שדה אנרגיה ייחודי המשפיע על המציאות."
+      },
+      {
+        "english": "Objects changed form, and time seemed fluid.",
+        "hebrew": "עצמים שינו צורה, והזמן נראה נוזלי."
+      },
+      {
+        "english": "The crew began experiencing visions and memories.",
+        "hebrew": "הצוות החל לחוות חזיונות וזיכרונות."
+      },
+      {
+        "english": "Captain Amit gathered everyone to assess the situation.",
+        "hebrew": "הקפטן עמית אסף את כולם להערכת המצב."
+      },
+      {
+        "english": "They debated whether to continue or return home.",
+        "hebrew": "הם דנו אם להמשיך או לחזור הביתה."
+      },
+      {
+        "english": "Some believed the phenomenon held valuable knowledge.",
+        "hebrew": "חלקם האמינו שהתופעה מכילה ידע יקר ערך."
+      },
+      {
+        "english": "Others feared the potential dangers involved.",
+        "hebrew": "אחרים חששו מהסכנות הפוטנציאליות."
+      },
+      {
+        "english": "Amit contemplated the ethical implications.",
+        "hebrew": "עמית הרהר בהשלכות האתיות."
+      },
+      {
+        "english": "He decided to proceed with caution and study the field.",
+        "hebrew": "הוא החליט להמשיך בזהירות וללמוד את השדה."
+      },
+      {
+        "english": "They set up experiments to understand the anomalies.",
+        "hebrew": "הם הקימו ניסויים כדי להבין את האנומליות."
+      },
+      {
+        "english": "The crew discovered that consciousness influenced reality here.",
+        "hebrew": "הצוות גילה שהתודעה משפיעה על המציאות כאן."
+      },
+      {
+        "english": "Their thoughts could alter physical surroundings.",
+        "hebrew": "מחשבותיהם יכלו לשנות את הסביבה הפיזית."
+      },
+      {
+        "english": "This raised profound philosophical questions.",
+        "hebrew": "זה העלה שאלות פילוסופיות עמוקות."
+      },
+      {
+        "english": "Were they creators of their own reality?",
+        "hebrew": "האם הם יוצרים את המציאות שלהם?"
+      },
+      {
+        "english": "Amit feared the crew might lose grasp of objective truth.",
+        "hebrew": "עמית חשש שהצוות יאבד אחיזה באמת האובייקטיבית."
+      },
+      {
+        "english": "He ordered a retreat to the spaceship for safety.",
+        "hebrew": "הוא הורה על נסיגה לחללית לביטחון."
+      },
+      {
+        "english": "Back on board, they analyzed the data collected.",
+        "hebrew": "בחזרה על הסיפון, הם ניתחו את הנתונים שנאספו."
+      },
+      {
+        "english": "They debated the ethics of sharing this discovery with Earth.",
+        "hebrew": "הם דנו באתיקה של שיתוף הגילוי הזה עם כדור הארץ."
+      },
+      {
+        "english": "Could humanity handle such knowledge responsibly?",
+        "hebrew": "האם האנושות יכולה להתמודד עם ידע כזה באחריות?"
+      },
+      {
+        "english": "Amit decided to transmit a cautious report.",
+        "hebrew": "עמית החליט לשדר דו\"ח זהיר."
+      },
+      {
+        "english": "They began the long journey back home.",
+        "hebrew": "הם החלו במסע הארוך חזרה הביתה."
+      },
+      {
+        "english": "During the return trip, the crew reflected on their experience.",
+        "hebrew": "במהלך המסע חזרה, הצוות הרהר בחווייתם."
+      },
+      {
+        "english": "They pondered the nature of reality and perception.",
+        "hebrew": "הם הרהרו בטבע המציאות והתפיסה."
+      },
+      {
+        "english": "Upon arrival, they were welcomed as pioneers.",
+        "hebrew": "בהגיעם, הם התקבלו כחלוצים."
+      },
+      {
+        "english": "Their findings sparked global discussions and debates.",
+        "hebrew": "ממצאיהם הציתו דיונים עולמיים."
+      },
+      {
+        "english": "Amit continued to advocate for responsible exploration.",
+        "hebrew": "עמית המשיך לקדם חקר אחראי."
+      },
+      {
+        "english": "The mission changed humanity's understanding of existence.",
+        "hebrew": "המשימה שינתה את הבנת האנושות על הקיום."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "astronauts",
+      "translation": "אסטרונאוטים"
+    },
+    {
+      "word": "exoplanet",
+      "translation": "כוכב לכת חוץ-שמשי"
+    },
+    {
+      "word": "cryogenic",
+      "translation": "קריוגני"
+    },
+    {
+      "word": "phenomenon",
+      "translation": "תופעה"
+    },
+    {
+      "word": "anomalies",
+      "translation": "אנומליות"
+    },
+    {
+      "word": "consciousness",
+      "translation": "תודעה"
+    },
+    {
+      "word": "alter",
+      "translation": "לשנות"
+    },
+    {
+      "word": "objective",
+      "translation": "אובייקטיבי"
+    },
+    {
+      "word": "retreat",
+      "translation": "נסיגה"
+    },
+    {
+      "word": "advocate",
+      "translation": "לקדם"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה גילו הצוות על כוכב הלכת?",
+      "options": [
+        "שהוא ריק מחיים.",
+        "ששדה האנרגיה משפיע על המציאות.",
+        "שהוא דומה לכדור הארץ."
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מה הייתה דילמתו של הקפטן עמית?",
+      "options": [
+        "האם להישאר או לחזור לכדור הארץ.",
+        "האם לסכן את הצוות בחקר נוסף.",
+        "האם לשתף את הגילוי עם האנושות."
+      ],
+      "answer": 2
+    },
+    {
+      "question": "כיצד השפיעה המשימה על האנושות?",
+      "options": [
+        "היא לא השפיעה כלל.",
+        "היא שינתה את הבנת הקיום והמציאות.",
+        "היא גרמה לפחד עולמי."
+      ],
+      "answer": 1
+    }
+  ],
+  "call_to_action": {
+    "text": "התעניינתם במסע מעבר לכוכבים? הצטרפו אלינו להרפתקאות נוספות!"
+  }
+}

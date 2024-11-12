@@ -6,85 +6,143 @@
     "title": "המערה המסתורית",
     "text": [
       {
-        "english": "A group of friends heard about an ancient cave filled with mysterious writings.",
-        "hebrew": "קבוצת חברים שמעה על מערה עתיקה מלאה בכתובות מסתוריות."
+        "english": "Reuven, Levi, and Yehuda were researchers.",
+        "hebrew": "ראובן, לוי ויהודה היו חוקרים."
       },
       {
-        "english": "Curious, they decided to explore it.",
-        "hebrew": "מסוקרנים, הם החליטו לחקור אותה."
+        "english": "They discovered a cave with ancient symbols.",
+        "hebrew": "הם גילו מערה עם סמלים עתיקים."
       },
       {
-        "english": "They packed their gear and set out on the journey.",
-        "hebrew": "הם ארזו את הציוד שלהם ויצאו למסע."
+        "english": "The walls were covered in inscriptions.",
+        "hebrew": "הקירות היו מכוסים בכתובות."
       },
       {
-        "english": "After hours of hiking, they reached the cave's entrance.",
-        "hebrew": "לאחר שעות של הליכה, הם הגיעו לפתח המערה."
+        "english": "They tried to decipher the meanings.",
+        "hebrew": "הם ניסו לפענח את המשמעויות."
       },
       {
-        "english": "Inside, the walls were covered with ancient symbols.",
-        "hebrew": "בתוך המערה, הקירות היו מכוסים בסמלים עתיקים."
+        "english": "Reuven studied the language carefully.",
+        "hebrew": "ראובן למד את השפה בקפידה."
       },
       {
-        "english": "One of them noticed a pattern and began to decipher it.",
-        "hebrew": "אחד מהם הבחין בתבנית והחל לפענח אותה."
+        "english": "Levi analyzed the symbols' patterns.",
+        "hebrew": "לוי ניתח את תבניות הסמלים."
       },
       {
-        "english": "The symbols told a story of a lost civilization.",
-        "hebrew": "הסמלים סיפרו את סיפורה של ציוויליזציה אבודה."
+        "english": "Yehuda focused on the historical context.",
+        "hebrew": "יהודה התמקד בהקשר ההיסטורי."
       },
       {
-        "english": "They realized they had discovered something significant.",
-        "hebrew": "הם הבינו שגילו משהו משמעותי."
+        "english": "They worked together day and night.",
+        "hebrew": "הם עבדו יחד יומם ולילה."
       },
       {
-        "english": "They decided to share their findings with historians.",
-        "hebrew": "הם החליטו לשתף את הממצאים שלהם עם היסטוריונים."
+        "english": "They began to uncover deep messages.",
+        "hebrew": "הם החלו לגלות מסרים עמוקים."
+      },
+      {
+        "english": "The cave told stories of ancient times.",
+        "hebrew": "המערה סיפרה סיפורים מזמנים עתיקים."
+      },
+      {
+        "english": "They learned about human history and life.",
+        "hebrew": "הם למדו על ההיסטוריה והחיים האנושיים."
+      },
+      {
+        "english": "They felt connected to past generations.",
+        "hebrew": "הם הרגישו מחוברים לדורות עברו."
+      },
+      {
+        "english": "Their discovery was significant and profound.",
+        "hebrew": "תגליתם הייתה משמעותית ועמוקה."
+      },
+      {
+        "english": "They shared their findings with the world.",
+        "hebrew": "הם שיתפו את ממצאיהם עם העולם."
+      },
+      {
+        "english": "People were amazed by their work.",
+        "hebrew": "אנשים התפלאו מעבודתם."
+      },
+      {
+        "english": "The researchers became renowned scholars.",
+        "hebrew": "החוקרים הפכו למלומדים ידועים."
+      },
+      {
+        "english": "They continued to study human heritage.",
+        "hebrew": "הם המשיכו ללמוד את המורשת האנושית."
+      },
+      {
+        "english": "Their passion inspired many others.",
+        "hebrew": "התשוקה שלהם השרתה רבים אחרים."
+      },
+      {
+        "english": "They believed knowledge connects generations.",
+        "hebrew": "הם האמינו שידע מחבר בין דורות."
+      },
+      {
+        "english": "The cave remained a symbol of unity.",
+        "hebrew": "המערה נותרה כסמל לאחדות."
       }
     ]
   },
   "vocabulary": [
-    { "word": "ancient", "translation": "עתיק" },
-    { "word": "curious", "translation": "מסוקרנים" },
-    { "word": "explore", "translation": "לחקור" },
-    { "word": "gear", "translation": "ציוד" },
-    { "word": "hiking", "translation": "הליכה" },
-    { "word": "entrance", "translation": "כניסה" },
-    { "word": "symbols", "translation": "סמלים" },
-    { "word": "decipher", "translation": "לפענח" },
-    { "word": "civilization", "translation": "ציוויליזציה" },
-    { "word": "significant", "translation": "משמעותי" }
+    {
+      "word": "researcher",
+      "translation": "חוקר"
+    },
+    {
+      "word": "cave",
+      "translation": "מערה"
+    },
+    {
+      "word": "symbol",
+      "translation": "סמל"
+    },
+    {
+      "word": "decipher",
+      "translation": "לפענח"
+    },
+    {
+      "word": "heritage",
+      "translation": "מורשת"
+    },
+    {
+      "word": "generation",
+      "translation": "דור"
+    }
   ],
   "comprehension_questions": [
     {
-      "question": "מה מצאו החברים בתוך המערה?",
+      "question": "מה מצאו ראובן, לוי ויהודה?",
       "options": [
-        "אוצר זהב",
-        "כתובות וסמלים עתיקים",
-        "בעלי חיים נדירים"
+        "ספר עתיק",
+        "מערה עם סמלים עתיקים",
+        "אוצר זהב"
       ],
       "answer": 1
     },
     {
-      "question": "מה סיפרו הסמלים על הקירות?",
+      "question": "מה עשו החוקרים במערה?",
       "options": [
-        "סיפור על ציוויליזציה אבודה",
-        "מפת אוצר",
-        "שירים עתיקים"
-      ],
-      "answer": 0
-    },
-    {
-      "question": "מה החליטו החברים לעשות לאחר הגילוי?",
-      "options": [
-        "לשמור את הסוד לעצמם",
-        "לחזור הביתה",
-        "לשתף את הממצאים עם היסטוריונים"
+        "חיפשו חיות",
+        "נחו מהמסע",
+        "ניסו לפענח את הכתובות"
       ],
       "answer": 2
+    },
+    {
+      "question": "מה היה המסר המרכזי של הסיפור?",
+      "options": [
+        "חשיבות הידע והמורשת האנושית",
+        "סכנות החקירה",
+        "כוחו של כסף"
+      ],
+      "answer": 0
     }
   ],
   "call_to_action": {
-    "text": "רוצים לשמוע עוד סיפורים מסקרנים? הירשמו לערוץ 'זה קל' ושתפו את דעתכם בתגובות!"
+    "text": "רוצים לגלות עוד מסתורין? הצטרפו לערוץ שלנו ותישארו מעודכנים!"
   }
 }

@@ -6,75 +6,163 @@
     "title": "מסע להרים הרחוקים",
     "text": [
       {
-        "english": "The village was suffering from a mysterious illness.",
-        "hebrew": "הכפר סבל ממחלה מסתורית."
+        "english": "A mysterious illness struck a small village.",
+        "hebrew": "מחלה מסתורית פקדה כפר קטן."
       },
       {
-        "english": "A group of brave volunteers decided to find a rare herb in the distant mountains.",
-        "hebrew": "קבוצת מתנדבים אמיצים החליטה למצוא עשב נדיר בהרים הרחוקים."
+        "english": "People were becoming weak and ill.",
+        "hebrew": "אנשים נעשו חלשים וחולים."
       },
       {
-        "english": "They faced harsh weather and difficult terrain.",
-        "hebrew": "הם התמודדו עם מזג אוויר קשה ושטח מאתגר."
+        "english": "The elders spoke of a healing herb.",
+        "hebrew": "זקני הכפר דיברו על צמח מרפא."
       },
       {
-        "english": "After days of traveling, they found the herb.",
-        "hebrew": "לאחר ימים של מסע, הם מצאו את העשב."
+        "english": "It grew only in the distant mountains.",
+        "hebrew": "הוא גדל רק בהרים הרחוקים."
       },
       {
-        "english": "On their way back, they helped each other overcome obstacles.",
-        "hebrew": "בדרך חזרה, הם עזרו זה לזה להתגבר על מכשולים."
+        "english": "Uriyah, Gad, and Nadav volunteered to go.",
+        "hebrew": "אוריה, גד ונדב התנדבו ללכת."
       },
       {
-        "english": "They returned to the village and cured the illness.",
-        "hebrew": "הם חזרו לכפר וריפאו את המחלה."
+        "english": "They prepared for a challenging journey.",
+        "hebrew": "הם התכוננו למסע מאתגר."
       },
       {
-        "english": "The villagers celebrated their heroism.",
-        "hebrew": "תושבי הכפר חגגו את גבורתם."
+        "english": "They said goodbye to their families.",
+        "hebrew": "הם נפרדו ממשפחותיהם."
+      },
+      {
+        "english": "They carried supplies and hope.",
+        "hebrew": "הם נשאו אספקה ותקווה."
+      },
+      {
+        "english": "The path was steep and treacherous.",
+        "hebrew": "השביל היה תלול ומסוכן."
+      },
+      {
+        "english": "They faced harsh weather conditions.",
+        "hebrew": "הם התמודדו עם תנאי מזג אוויר קשים."
+      },
+      {
+        "english": "They encouraged each other constantly.",
+        "hebrew": "הם עודדו זה את זה ללא הרף."
+      },
+      {
+        "english": "Their determination kept them moving.",
+        "hebrew": "נחישותם שמרה עליהם מתקדמים."
+      },
+      {
+        "english": "They overcame physical and mental challenges.",
+        "hebrew": "הם התגברו על קשיים פיזיים ונפשיים."
+      },
+      {
+        "english": "After many days, they reached the peak.",
+        "hebrew": "לאחר ימים רבים, הם הגיעו לפסגה."
+      },
+      {
+        "english": "They found the rare healing herb.",
+        "hebrew": "הם מצאו את צמח המרפא הנדיר."
+      },
+      {
+        "english": "Carefully, they collected enough for all.",
+        "hebrew": "בזהירות, הם אספו מספיק לכולם."
+      },
+      {
+        "english": "They began the journey back home.",
+        "hebrew": "הם החלו את המסע הביתה."
+      },
+      {
+        "english": "The return was equally challenging.",
+        "hebrew": "החזרה הייתה מאתגרת באותה מידה."
+      },
+      {
+        "english": "Finally, they arrived at the village.",
+        "hebrew": "לבסוף, הם הגיעו לכפר."
+      },
+      {
+        "english": "They prepared the herb into medicine.",
+        "hebrew": "הם הכינו את הצמח לתרופה."
+      },
+      {
+        "english": "They administered it to the sick.",
+        "hebrew": "הם נתנו אותה לחולים."
+      },
+      {
+        "english": "Gradually, people began to recover.",
+        "hebrew": "בהדרגה, אנשים החלו להחלים."
+      },
+      {
+        "english": "The village celebrated their heroes.",
+        "hebrew": "הכפר חגג את גיבוריו."
+      },
+      {
+        "english": "They learned the power of perseverance.",
+        "hebrew": "הם למדו את כוח ההתמדה."
+      },
+      {
+        "english": "The trio became symbols of sacrifice.",
+        "hebrew": "השלושה הפכו לסמלים של הקרבה."
       }
     ]
   },
   "vocabulary": [
-    { "word": "mysterious", "translation": "מסתורי" },
-    { "word": "illness", "translation": "מחלה" },
-    { "word": "volunteers", "translation": "מתנדבים" },
-    { "word": "herb", "translation": "עשב" },
-    { "word": "terrain", "translation": "שטח" },
-    { "word": "overcome", "translation": "להתגבר על" },
-    { "word": "obstacles", "translation": "מכשולים" },
-    { "word": "heroism", "translation": "גבורה" }
+    {
+      "word": "illness",
+      "translation": "מחלה"
+    },
+    {
+      "word": "volunteer",
+      "translation": "להתנדב"
+    },
+    {
+      "word": "treacherous",
+      "translation": "מסוכן"
+    },
+    {
+      "word": "determination",
+      "translation": "נחישות"
+    },
+    {
+      "word": "administer",
+      "translation": "לתת (תרופה)"
+    },
+    {
+      "word": "perseverance",
+      "translation": "התמדה"
+    }
   ],
   "comprehension_questions": [
     {
-      "question": "מדוע יצאו המתנדבים להרים הרחוקים?",
+      "question": "מדוע יצאו אוריה, גד ונדב למסע?",
       "options": [
-        "למצוא אוצר",
-        "למצוא עשב לריפוי המחלה",
-        "לטייל ולהתרשם מהנוף"
+        "לחפש אוצר",
+        "למצוא צמח מרפא למחלת הכפר",
+        "לטייל בהרים"
       ],
       "answer": 1
     },
     {
-      "question": "אילו אתגרים התמודדו המתנדבים במסעם?",
+      "question": "מה היו הקשיים שהם התמודדו איתם?",
       "options": [
-        "מזג אוויר קשה ושטח מאתגר",
-        "חיות פרא",
-        "שודדים"
+        "מזג אוויר קשה ושביל מסוכן",
+        "בעיות כלכליות",
+        "ויכוחים ביניהם"
       ],
       "answer": 0
     },
     {
-      "question": "מה קרה לאחר שחזרו לכפר?",
+      "question": "מה המסר המרכזי של הסיפור?",
       "options": [
-        "הם חלו במחלה",
-        "הכפר ננטש",
-        "הם ריפאו את המחלה והתושבים חגגו"
+        "כוחה של התמדה והקרבה למען הקהילה",
+        "הנאה מהרפתקאות",
+        "החשיבות של שמירה על סודות"
       ],
-      "answer": 2
+      "answer": 0
     }
   ],
   "call_to_action": {
-    "text": "הסיפור הזה הראה את כוח השיתוף והאומץ! אם אהבתם, הירשמו לערוץ 'זה קל' לעוד סיפורים מעוררי השראה!"
+    "text": "התרשמתם מהמסע האמיץ? עקבו אחרינו לסיפורים מעוררי השראה נוספים!"
   }
 }

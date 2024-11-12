@@ -6,84 +6,171 @@
     "title": "השביל הנסתר",
     "text": [
       {
-        "english": "Jacob was a traveler who loved exploring new places.",
-        "hebrew": "יעקב היה נוסע שאהב לחקור מקומות חדשים."
+        "english": "Netanel found an old map in a bookshop.",
+        "hebrew": "נתנאל מצא מפה ישנה בחנות ספרים."
       },
       {
-        "english": "One day, he arrived at a small village surrounded by mountains.",
-        "hebrew": "יום אחד, הוא הגיע לכפר קטן המוקף בהרים."
+        "english": "He saw a hidden path marked in the forest.",
+        "hebrew": "הוא ראה שביל נסתר מסומן ביער."
       },
       {
-        "english": "The villagers spoke of a hidden path that led to a magnificent waterfall.",
-        "hebrew": "תושבי הכפר סיפרו על שביל נסתר שהוביל למפל מים מרהיב."
+        "english": "Curious, he decided to explore it.",
+        "hebrew": "סקרן, הוא החליט לחקור אותו."
       },
       {
-        "english": "Determined to find it, Jacob set out early in the morning.",
-        "hebrew": "נחוש למצוא אותו, יעקב יצא מוקדם בבוקר."
+        "english": "He packed his bag with essentials.",
+        "hebrew": "הוא ארז את תיקו עם הדברים החיוניים."
       },
       {
-        "english": "He walked through dense forests and climbed steep hills.",
-        "hebrew": "הוא הלך דרך יערות צפופים וטיפס על גבעות תלולות."
+        "english": "The next morning, he entered the forest.",
+        "hebrew": "למחרת בבוקר, הוא נכנס ליער."
       },
       {
-        "english": "After hours of searching, he noticed a narrow trail covered by vines.",
-        "hebrew": "לאחר שעות של חיפוש, הוא הבחין בשביל צר מכוסה גפנים."
+        "english": "The towering trees were tall and ancient.",
+        "hebrew": "העצים הגבוהים היו עצומים ועתיקים."
       },
       {
-        "english": "Following it, he finally reached the breathtaking waterfall.",
-        "hebrew": "בעקבותיו, הוא הגיע סוף סוף למפל המרהיב."
+        "english": "He followed the map's directions carefully.",
+        "hebrew": "הוא עקב בזהירות אחר הוראות המפה."
       },
       {
-        "english": "The beauty of the place was beyond words.",
-        "hebrew": "יופיו של המקום היה מעבר למילים."
+        "english": "Along the way, he saw rare plants.",
+        "hebrew": "בדרך, הוא ראה צמחים נדירים."
       },
       {
-        "english": "Jacob felt grateful for the journey and the discovery.",
-        "hebrew": "יעקב חש הכרת תודה על המסע והגילוי."
+        "english": "He heard unfamiliar songs from exotic birds.",
+        "hebrew": "הוא שמע שירים לא מוכרים מציפורים אקזוטיות."
+      },
+      {
+        "english": "After hours, he reached a clearing.",
+        "hebrew": "לאחר שעות, הוא הגיע לקרחת יער."
+      },
+      {
+        "english": "A small village appeared before him.",
+        "hebrew": "כפר קטן הופיע לפניו."
+      },
+      {
+        "english": "The villagers greeted him warmly.",
+        "hebrew": "התושבים קיבלו את פניו בחום."
+      },
+      {
+        "english": "They wore colorful, traditional clothes and garments.",
+        "hebrew": "הם לבשו בגדים מסורתיים וצבעוניים."
+      },
+      {
+        "english": "Netanel learned about their unique customs.",
+        "hebrew": "נתנאל למד על המנהגים הייחודיים שלהם."
+      },
+      {
+        "english": "They shared stories and wisdom with him.",
+        "hebrew": "הם חלקו איתו סיפורים וחוכמה."
+      },
+      {
+        "english": "He tasted new and delicious traditional foods.",
+        "hebrew": "הוא טעם מאכלים מסורתיים חדשים וטעימים."
+      },
+      {
+        "english": "He participated in their unique cultural rituals.",
+        "hebrew": "הוא השתתף בטקסים התרבותיים הייחודיים שלהם."
+      },
+      {
+        "english": "Several days passed quickly in the village.",
+        "hebrew": "מספר ימים חלפו במהירות בכפר."
+      },
+      {
+        "english": "Netanel felt deeply connected to them.",
+        "hebrew": "נתנאל הרגיש מחובר אליהם עמוקות."
+      },
+      {
+        "english": "He realized the importance of openness and exploration.",
+        "hebrew": "הוא הבין את חשיבות הפתיחות והחקר."
+      },
+      {
+        "english": "Exploring new cultures greatly enriched his life.",
+        "hebrew": "חקר תרבויות חדשות העשיר מאוד את חייו."
+      },
+      {
+        "english": "He promised to share their stories with others.",
+        "hebrew": "הוא הבטיח לשתף את סיפוריהם עם אחרים."
+      },
+      {
+        "english": "He bid a heartfelt farewell to his new friends.",
+        "hebrew": "הוא נפרד מהחברים החדשים שלו בלב שלם."
+      },
+      {
+        "english": "He returned home with a new perspective on life.",
+        "hebrew": "הוא חזר הביתה עם פרספקטיבה חדשה על החיים."
+      },
+      {
+        "english": "Netanel wrote extensively about his journey.",
+        "hebrew": "נתנאל כתב בהרחבה על מסעו."
+      },
+      {
+        "english": "He encouraged others to explore new places.",
+        "hebrew": "הוא עודד אחרים לחקור מקומות חדשים."
+      },
+      {
+        "english": "He truly believed in the power of discovery.",
+        "hebrew": "הוא האמין באמת בכוח הגילוי."
       }
     ]
   },
   "vocabulary": [
-    { "word": "exploring", "translation": "לחקור" },
-    { "word": "villagers", "translation": "תושבי הכפר" },
-    { "word": "magnificent", "translation": "מרהיב" },
-    { "word": "determined", "translation": "נחוש" },
-    { "word": "dense", "translation": "צפוף" },
-    { "word": "steep", "translation": "תלול" },
-    { "word": "vines", "translation": "גפנים" },
-    { "word": "breathtaking", "translation": "עוצר נשימה" },
-    { "word": "grateful", "translation": "הכרת תודה" }
+    {
+      "word": "explore",
+      "translation": "לחקור"
+    },
+    {
+      "word": "directions",
+      "translation": "הוראות"
+    },
+    {
+      "word": "clearing",
+      "translation": "קרחת יער"
+    },
+    {
+      "word": "villagers",
+      "translation": "תושבים"
+    },
+    {
+      "word": "customs",
+      "translation": "מנהגים"
+    },
+    {
+      "word": "perspective",
+      "translation": "פרספקטיבה"
+    }
   ],
   "comprehension_questions": [
     {
-      "question": "מה סיפרו תושבי הכפר ליעקב?",
+      "question": "מה מצא נתנאל בחנות הספרים?",
       "options": [
-        "על מערה מסתורית",
-        "על שביל נסתר למפל מים",
-        "על אוצר חבוי בהרים"
+        "ספר ישן",
+        "מפה עם שביל נסתר",
+        "מכתב מסתורי"
       ],
       "answer": 1
     },
     {
-      "question": "כיצד יעקב מצא את השביל הנסתר?",
+      "question": "מה עשה נתנאל בכפר?",
       "options": [
-        "הוא עקב אחר מפה",
-        "הוא פגש מדריך",
-        "הוא הבחין בשביל מכוסה גפנים"
+        "התעלם מהתושבים",
+        "למד על המנהגים שלהם והשתתף בטקסים",
+        "קנה מתנות ויצא מיד"
       ],
-      "answer": 2
+      "answer": 1
     },
     {
-      "question": "מה הרגיש יעקב כשהגיע למפל?",
+      "question": "מה הבין נתנאל בסוף הסיפור?",
       "options": [
-        "עייפות",
-        "אכזבה",
-        "הכרת תודה"
+        "שחקר תרבויות חדשות מעשיר את החיים",
+        "שאין טעם לחקור מקומות חדשים",
+        "שהכפר היה מסוכן"
       ],
-      "answer": 2
+      "answer": 0
     }
   ],
   "call_to_action": {
-    "text": "נהניתם מהסיפור? אל תשכחו להשאיר תגובה ולהירשם לערוץ 'זה קל' לעוד סיפורים מרתקים!"
+    "text": "אהבתם את המסע של נתנאל? שתפו את הסיפור והירשמו לערוץ לעוד הרפתקאות!"
   }
 }

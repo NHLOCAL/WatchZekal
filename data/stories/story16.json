@@ -6,73 +6,155 @@
     "title": "ההבטחה הבלתי שבירה",
     "text": [
       {
-        "english": "Two friends, David and Eli, grew up in the same village.",
-        "hebrew": "שני חברים, דוד ואלי, גדלו באותו כפר."
+        "english": "Binyamin and Aharon were best friends since childhood.",
+        "hebrew": "בנימין ואהרן היו חברים טובים מאז ילדותם."
       },
       {
-        "english": "Before Eli moved away, they made a promise to help each other no matter what.",
-        "hebrew": "לפני שאלי עבר למקום אחר, הם הבטיחו לעזור זה לזה לא משנה מה."
+        "english": "They made a promise to always support each other.",
+        "hebrew": "הם הבטיחו תמיד לתמוך זה בזה."
       },
       {
-        "english": "Years later, David faced a difficult time with his farm.",
-        "hebrew": "שנים לאחר מכן, דוד התמודד עם תקופה קשה בחוותו."
+        "english": "As they grew older, life became more complicated.",
+        "hebrew": "כשגדלו, החיים הפכו למורכבים יותר."
       },
       {
-        "english": "Eli heard about it and returned to help.",
-        "hebrew": "אלי שמע על כך וחזר כדי לעזור."
+        "english": "Binyamin became a craftsman in the village.",
+        "hebrew": "בנימין הפך לבעל מלאכה בכפר."
       },
       {
-        "english": "Together, they worked hard and saved the farm.",
-        "hebrew": "ביחד, הם עבדו קשה והצילו את החווה."
+        "english": "Aharon decided to study in a distant city.",
+        "hebrew": "אהרן החליט ללמוד בעיר רחוקה."
       },
       {
-        "english": "Their friendship remained strong over the years.",
-        "hebrew": "חברותם נשארה חזקה לאורך השנים."
+        "english": "They communicated through letters regularly.",
+        "hebrew": "הם התכתבו במכתבים בקביעות."
       },
       {
-        "english": "They showed that true friendship endures all challenges.",
-        "hebrew": "הם הראו שחברות אמיתית מתגברת על כל האתגרים."
+        "english": "One day, Binyamin faced a serious problem.",
+        "hebrew": "יום אחד, בנימין עמד בפני בעיה רצינית."
+      },
+      {
+        "english": "His workshop was damaged by a fire.",
+        "hebrew": "הסדנה שלו נפגעה משריפה."
+      },
+      {
+        "english": "He lost his tools and materials.",
+        "hebrew": "הוא איבד את הכלים והחומרים שלו."
+      },
+      {
+        "english": "He felt hopeless and discouraged.",
+        "hebrew": "הוא הרגיש חסר תקווה ומיואש."
+      },
+      {
+        "english": "Aharon heard about the incident.",
+        "hebrew": "אהרן שמע על האירוע."
+      },
+      {
+        "english": "Without hesitation, he returned to the village.",
+        "hebrew": "בלי היסוס, הוא חזר לכפר."
+      },
+      {
+        "english": "He brought financial support and encouragement.",
+        "hebrew": "הוא הביא תמיכה כספית ועידוד."
+      },
+      {
+        "english": "Together, they rebuilt the workshop.",
+        "hebrew": "ביחד, הם בנו מחדש את הסדנה."
+      },
+      {
+        "english": "They worked tirelessly day and night.",
+        "hebrew": "הם עבדו ללא לאות יומם ולילה."
+      },
+      {
+        "english": "The villagers admired their dedication.",
+        "hebrew": "תושבי הכפר העריכו את מסירותם."
+      },
+      {
+        "english": "Their friendship grew even stronger.",
+        "hebrew": "חברותם התחזקה עוד יותר."
+      },
+      {
+        "english": "Later, Aharon faced challenges in his studies.",
+        "hebrew": "מאוחר יותר, אהרן התמודד עם אתגרים בלימודיו."
+      },
+      {
+        "english": "Binyamin supported him with wise advice.",
+        "hebrew": "בנימין תמך בו עם עצות חכמות."
+      },
+      {
+        "english": "They realized true friendship overcomes obstacles.",
+        "hebrew": "הם הבינו שחברות אמיתית מתגברת על מכשולים."
+      },
+      {
+        "english": "Their unbreakable promise held them together.",
+        "hebrew": "ההבטחה הבלתי שבירה שלהם החזיקה אותם יחד."
+      },
+      {
+        "english": "They continued to inspire others in the village.",
+        "hebrew": "הם המשיכו להשראה אחרים בכפר."
+      },
+      {
+        "english": "Their story became a legend of loyalty.",
+        "hebrew": "סיפורם הפך לאגדה של נאמנות."
       }
     ]
   },
   "vocabulary": [
-    { "word": "promise", "translation": "הבטחה" },
-    { "word": "no matter what", "translation": "לא משנה מה" },
-    { "word": "faced", "translation": "התמודד עם" },
-    { "word": "difficult time", "translation": "תקופה קשה" },
-    { "word": "endures", "translation": "מתגברת על" },
-    { "word": "challenges", "translation": "אתגרים" }
+    {
+      "word": "promise",
+      "translation": "הבטחה"
+    },
+    {
+      "word": "support",
+      "translation": "לתמוך"
+    },
+    {
+      "word": "discouraged",
+      "translation": "מיואש"
+    },
+    {
+      "word": "hesitation",
+      "translation": "היסוס"
+    },
+    {
+      "word": "dedication",
+      "translation": "מסירות"
+    },
+    {
+      "word": "loyalty",
+      "translation": "נאמנות"
+    }
   ],
   "comprehension_questions": [
     {
-      "question": "מה הייתה ההבטחה בין דוד לאלי?",
+      "question": "מה קרה לסדנה של בנימין?",
       "options": [
-        "לטייל יחד בעולם",
-        "לעזור זה לזה לא משנה מה",
-        "לפתוח עסק משותף"
+        "היא נגנבה",
+        "היא נפגעה משריפה",
+        "היא נסגרה"
       ],
       "answer": 1
     },
     {
-      "question": "מדוע אלי חזר לכפר?",
+      "question": "איך הגיב אהרן כששמע על הבעיה של בנימין?",
       "options": [
-        "כדי לבקר את משפחתו",
-        "כי הוא התגעגע",
-        "כדי לעזור לדוד בחווה"
+        "שלח לו מכתב",
+        "התעלם מהחדשות",
+        "חזר לכפר לעזור לו"
       ],
       "answer": 2
     },
     {
-      "question": "מה המסר של הסיפור?",
+      "question": "מה המסר המרכזי של הסיפור?",
       "options": [
-        "חברות אמיתית מתגברת על כל האתגרים",
-        "חיים בכפר קשים",
-        "עבודה קשה לא משתלמת"
+        "חשיבות הנאמנות והחברות",
+        "כוחה של עבודה קשה",
+        "צורך בתקשורת טובה"
       ],
       "answer": 0
     }
   ],
   "call_to_action": {
-    "text": "התרגשתם מהחברות בסיפור? לחצו על 'אהבתי' ושתפו את מחשבותיכם בתגובות. הצטרפו לערוץ 'זה קל' לעוד סיפורים מרגשים!"
+    "text": "אם הסיפור נגע ללבכם, הצטרפו אלינו לעוד סיפורים מעוררי השראה!"
   }
 }

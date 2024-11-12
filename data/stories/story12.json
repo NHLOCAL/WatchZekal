@@ -6,79 +6,171 @@
     "title": "החידה של המלך",
     "text": [
       {
-        "english": "Once, in a distant kingdom, there was a wise king who valued intelligence above all.",
-        "hebrew": "פעם, בממלכה רחוקה, היה מלך חכם שהעריך חוכמה מעל הכל."
+        "english": "King Shlomo was known for his wisdom.",
+        "hebrew": "המלך שלמה היה ידוע בחוכמתו."
       },
       {
-        "english": "He decided to find the wisest person in his kingdom.",
-        "hebrew": "הוא החליט למצוא את האדם החכם ביותר בממלכתו."
+        "english": "He wanted to find the wisest subject.",
+        "hebrew": "הוא רצה למצוא את הנתין החכם ביותר."
       },
       {
-        "english": "The king announced a challenge: solve his riddle, and the winner would become his advisor.",
-        "hebrew": "המלך הכריז על אתגר: פתרו את חידתו, והמנצח יהפוך ליועצו."
+        "english": "He devised a difficult riddle for all.",
+        "hebrew": "הוא חיבר חידה קשה לכולם."
       },
       {
-        "english": "People from all over came to the palace to hear the riddle.",
-        "hebrew": "אנשים מכל רחבי הממלכה הגיעו לארמון לשמוע את החידה."
+        "english": "The riddle puzzled many people in the kingdom.",
+        "hebrew": "החידה בלבלה רבים בממלכה."
       },
       {
-        "english": "The riddle was: 'What gets wetter the more it dries?'",
-        "hebrew": "החידה הייתה: 'מה נעשה רטוב יותר ככל שהוא מייבש?'"
+        "english": "It was written on the palace gates.",
+        "hebrew": "היא נכתבה על שערי הארמון."
       },
       {
-        "english": "Many tried to answer but failed.",
-        "hebrew": "רבים ניסו לענות אך נכשלו."
+        "english": "A young boy named Elad lived in the village.",
+        "hebrew": "נער צעיר בשם אלעד גר בכפר."
       },
       {
-        "english": "A simple servant approached and said, 'A towel, Your Majesty.'",
-        "hebrew": "משרת פשוט ניגש ואמר, 'מגבת, הוד מעלתך.'"
+        "english": "Elad loved to solve puzzles and riddles.",
+        "hebrew": "אלעד אהב לפתור פאזלים וחידות."
       },
       {
-        "english": "The king smiled and appointed him as his advisor.",
-        "hebrew": "המלך חייך ומינה אותו כיועצו."
+        "english": "He heard about the king's challenge.",
+        "hebrew": "הוא שמע על האתגר של המלך."
+      },
+      {
+        "english": "He decided to attempt solving the riddle.",
+        "hebrew": "הוא החליט לנסות לפתור את החידה."
+      },
+      {
+        "english": "Elad studied the riddle very carefully.",
+        "hebrew": "אלעד למד את החידה בקפידה רבה."
+      },
+      {
+        "english": "He thought creatively and from different angles.",
+        "hebrew": "הוא חשב בצורה יצירתית ומזוויות שונות."
+      },
+      {
+        "english": "While others thought literally, he did not.",
+        "hebrew": "בעוד אחרים חשבו באופן מילולי, הוא לא."
+      },
+      {
+        "english": "Elad found a unique and clever solution.",
+        "hebrew": "אלעד מצא פתרון ייחודי וחכם."
+      },
+      {
+        "english": "He went to the palace confidently.",
+        "hebrew": "הוא הלך לארמון בביטחון."
+      },
+      {
+        "english": "Guards allowed him to meet the king.",
+        "hebrew": "השומרים אפשרו לו לפגוש את המלך."
+      },
+      {
+        "english": "King Shlomo asked for his answer.",
+        "hebrew": "המלך שלמה ביקש את תשובתו."
+      },
+      {
+        "english": "Elad explained his reasoning clearly.",
+        "hebrew": "אלעד הסביר את חשיבתו בבירור."
+      },
+      {
+        "english": "The king was impressed by Elad's wisdom.",
+        "hebrew": "המלך התרשם מחוכמתו של אלעד."
+      },
+      {
+        "english": "\"You have solved the riddle,\" he said.",
+        "hebrew": "\"פתרת את החידה,\" הוא אמר."
+      },
+      {
+        "english": "King Shlomo appointed Elad as an advisor.",
+        "hebrew": "המלך שלמה מינה את אלעד ליועץ."
+      },
+      {
+        "english": "Elad helped the king make wise decisions.",
+        "hebrew": "אלעד עזר למלך לקבל החלטות חכמות."
+      },
+      {
+        "english": "The kingdom prospered under their guidance.",
+        "hebrew": "הממלכה שגשגה תחת הדרכתם."
+      },
+      {
+        "english": "People admired Elad's intelligence and humility.",
+        "hebrew": "אנשים העריכו את חוכמתו וצניעותו של אלעד."
+      },
+      {
+        "english": "He encouraged others to think creatively.",
+        "hebrew": "הוא עודד אחרים לחשוב בצורה יצירתית."
+      },
+      {
+        "english": "Elad remained humble despite his success.",
+        "hebrew": "אלעד נשאר צנוע למרות הצלחתו."
+      },
+      {
+        "english": "The king and Elad became close friends.",
+        "hebrew": "המלך ואלעד הפכו לחברים קרובים."
+      },
+      {
+        "english": "Together, they brought peace to the land.",
+        "hebrew": "יחד, הם הביאו שלום לארץ."
       }
     ]
   },
   "vocabulary": [
-    { "word": "kingdom", "translation": "ממלכה" },
-    { "word": "valued", "translation": "העריך" },
-    { "word": "intelligence", "translation": "חוכמה" },
-    { "word": "advisor", "translation": "יועץ" },
-    { "word": "announced", "translation": "הכריז" },
-    { "word": "challenge", "translation": "אתגר" },
-    { "word": "approached", "translation": "ניגש" },
-    { "word": "servant", "translation": "משרת" }
+    {
+      "word": "riddle",
+      "translation": "חידה"
+    },
+    {
+      "word": "wisdom",
+      "translation": "חוכמה"
+    },
+    {
+      "word": "advisor",
+      "translation": "יועץ"
+    },
+    {
+      "word": "kingdom",
+      "translation": "ממלכה"
+    },
+    {
+      "word": "impressed",
+      "translation": "התרשם"
+    },
+    {
+      "word": "creative",
+      "translation": "יצירתי"
+    }
   ],
   "comprehension_questions": [
     {
-      "question": "מה הייתה מטרת החידה של המלך?",
+      "question": "מה רצה המלך שלמה לעשות?",
       "options": [
-        "למצוא את החזק ביותר",
+        "למצוא את החזק ביותר בממלכה",
         "למצוא את החכם ביותר",
-        "לשעשע את העם"
+        "לערוך מסיבה גדולה"
       ],
       "answer": 1
     },
     {
-      "question": "מה הייתה התשובה לחידה?",
+      "question": "איך הצליח אלעד לפתור את החידה?",
       "options": [
-        "אש",
-        "מים",
-        "מגבת"
+        "בעזרת כוח פיזי",
+        "באמצעות חשיבה יצירתית",
+        "הוא ניחש את התשובה"
       ],
-      "answer": 2
+      "answer": 1
     },
     {
-      "question": "מי פתר את החידה?",
+      "question": "מה קרה לאחר שאלעד פתר את החידה?",
       "options": [
-        "משרת פשוט",
-        "אביר אמיץ",
-        "חכם זקן"
+        "הוא מונה ליועץ של המלך",
+        "הוא חזר לכפר שלו",
+        "הוא קיבל פרס כספי"
       ],
       "answer": 0
     }
   ],
   "call_to_action": {
-    "text": "אם אהבתם את הסיפור, לחצו לייק והצטרפו לערוץ שלנו לסיפורים נוספים!"
+    "text": "אם הסיפור נתן לכם השראה, אל תשכחו להירשם לערוץ שלנו לעוד תוכן מעורר מחשבה!"
   }
 }

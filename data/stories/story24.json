@@ -1,1 +1,200 @@
-
+{
+  "video_title": "הדילמה של נוסע הזמן",
+  "language_level": "מתקדם",
+  "story_type": "מדע בדיוני מתקדם עם דילמות פילוסופיות",
+  "story": {
+    "title": "הדילמה של נוסע הזמן",
+    "text": [
+      {
+        "english": "Eldad was a brilliant scientist who invented a time machine.",
+        "hebrew": "אלדד היה מדען מבריק שהמציא מכונת זמן."
+      },
+      {
+        "english": "Excited, he decided to test it himself.",
+        "hebrew": "בהתרגשות, הוא החליט לבחון אותה בעצמו."
+      },
+      {
+        "english": "By accident, he was sent back fifty years.",
+        "hebrew": "בטעות, הוא נשלח חמישים שנה אחורה."
+      },
+      {
+        "english": "In the past, he met a young boy named David.",
+        "hebrew": "בעבר, הוא פגש ילד צעיר בשם דוד."
+      },
+      {
+        "english": "He helped David fix a broken bicycle.",
+        "hebrew": "הוא עזר לדוד לתקן אופניים שבורות."
+      },
+      {
+        "english": "Unknowingly, this small act changed history.",
+        "hebrew": "בלי לדעת, מעשה קטן זה שינה את ההיסטוריה."
+      },
+      {
+        "english": "Returning to the present, Eldad noticed differences.",
+        "hebrew": "בחזרתו להווה, אלדד הבחין בשינויים."
+      },
+      {
+        "english": "His laboratory was gone, and nobody knew him.",
+        "hebrew": "מעבדתו נעלמה, ואף אחד לא הכיר אותו."
+      },
+      {
+        "english": "Confused, he realized his interference altered events.",
+        "hebrew": "מבולבל, הוא הבין שהתערבותו שינתה אירועים."
+      },
+      {
+        "english": "Eldad faced an ethical dilemma: how to fix this?",
+        "hebrew": "אלדד עמד בדילמה אתית: כיצד לתקן זאת?"
+      },
+      {
+        "english": "He decided to return to the past again.",
+        "hebrew": "הוא החליט לחזור שוב לעבר."
+      },
+      {
+        "english": "This time, he avoided any interaction with people.",
+        "hebrew": "הפעם, הוא נמנע מכל אינטראקציה עם אנשים."
+      },
+      {
+        "english": "He watched from a distance to ensure events unfolded naturally.",
+        "hebrew": "הוא צפה מרחוק כדי לוודא שהאירועים מתפתחים באופן טבעי."
+      },
+      {
+        "english": "Eldad returned to the present once more.",
+        "hebrew": "אלדד חזר שוב להווה."
+      },
+      {
+        "english": "His lab was restored, but he felt uneasy.",
+        "hebrew": "מעבדתו הוחזרה, אך הוא חש אי נוחות."
+      },
+      {
+        "english": "He pondered the morality of time travel.",
+        "hebrew": "הוא הרהר במוסריות של מסע בזמן."
+      },
+      {
+        "english": "Should one have the power to alter history?",
+        "hebrew": "האם מותר לאדם לשנות את ההיסטוריה?"
+      },
+      {
+        "english": "Eldad decided to dismantle the time machine.",
+        "hebrew": "אלדד החליט לפרק את מכונת הזמן."
+      },
+      {
+        "english": "He documented his experiences in a sealed journal.",
+        "hebrew": "הוא תיעד את חוויותיו ביומן סודי."
+      },
+      {
+        "english": "The journal was hidden for future generations.",
+        "hebrew": "היומן הוחבא לדורות הבאים."
+      },
+      {
+        "english": "Eldad focused on contributing positively to society.",
+        "hebrew": "אלדד התמקד בתרומה חיובית לחברה."
+      },
+      {
+        "english": "He taught young scientists about ethics and responsibility.",
+        "hebrew": "הוא לימד מדענים צעירים על אתיקה ואחריות."
+      },
+      {
+        "english": "His story became a cautionary tale.",
+        "hebrew": "סיפורו הפך לסיפור אזהרה."
+      },
+      {
+        "english": "People learned the importance of considering consequences.",
+        "hebrew": "אנשים למדו את חשיבות ההתחשבות בתוצאות."
+      },
+      {
+        "english": "Eldad's dilemma highlighted moral complexities in science.",
+        "hebrew": "הדילמה של אלדד הדגישה מורכבויות מוסריות במדע."
+      },
+      {
+        "english": "He continued his work in other scientific fields.",
+        "hebrew": "הוא המשיך בעבודתו בתחומים מדעיים אחרים."
+      },
+      {
+        "english": "Eldad found peace in teaching and mentoring.",
+        "hebrew": "אלדד מצא שלווה בהוראה והדרכה."
+      },
+      {
+        "english": "He understood that not all knowledge should be used.",
+        "hebrew": "הוא הבין שלא כל ידע צריך להשתמש בו."
+      },
+      {
+        "english": "His legacy influenced ethical standards in research.",
+        "hebrew": "מורשתו השפיעה על תקנים אתיים במחקר."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "invented",
+      "translation": "המציא"
+    },
+    {
+      "word": "altered",
+      "translation": "שינה"
+    },
+    {
+      "word": "ethical",
+      "translation": "מוסרי"
+    },
+    {
+      "word": "dilemma",
+      "translation": "דילמה"
+    },
+    {
+      "word": "interaction",
+      "translation": "אינטראקציה"
+    },
+    {
+      "word": "dismantle",
+      "translation": "לפרק"
+    },
+    {
+      "word": "documented",
+      "translation": "תיעד"
+    },
+    {
+      "word": "cautionary",
+      "translation": "אזהרה"
+    },
+    {
+      "word": "consequences",
+      "translation": "תוצאות"
+    },
+    {
+      "word": "mentor",
+      "translation": "מדריך"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "מה גרם לשינוי ההיסטוריה על ידי אלדד?",
+      "options": [
+        "הוא עזר לילד עם אופניים שבורות.",
+        "הוא פגש את סבו.",
+        "הוא כתב ספר בעבר."
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מה החליט אלדד לעשות עם מכונת הזמן?",
+      "options": [
+        "למכור אותה לממשלה.",
+        "להשתמש בה לטיולים.",
+        "לפרק אותה."
+      ],
+      "answer": 2
+    },
+    {
+      "question": "מה המסר המרכזי של הסיפור?",
+      "options": [
+        "כדאי לשנות את העבר לטובה.",
+        "יש לשקול את ההשלכות המוסריות של המעשים.",
+        "המסע בזמן הוא בלתי אפשרי."
+      ],
+      "answer": 1
+    }
+  ],
+  "call_to_action": {
+    "text": "לתכנים נוספים מעוררי מחשבה, אל תשכחו לעקוב אחרינו!"
+  }
+}
