@@ -1,22 +1,22 @@
-import json
-import sys
 import os
-import random
+import sys
+import json
 import re
+import random
+import tempfile
+import logging
+import colorsys
 import numpy as np
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
+from datetime import datetime
+from collections import Counter
+from functools import lru_cache
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from gtts import gTTS
 from moviepy.editor import *
 from moviepy.audio.fx.audio_loop import audio_loop
-from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 import arabic_reshaper
 from bidi.algorithm import get_display
-from concurrent.futures import ThreadPoolExecutor, as_completed
-import tempfile
-import logging
-from functools import lru_cache
-from datetime import datetime
-from collections import Counter
-import colorsys  # חדש
 
 # הגדרת נתיב לתיקיית הלוגים
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -44,7 +44,7 @@ logging.getLogger().addHandler(file_handler)
 # עדכון שימוש ב-LANCZOS
 RESAMPLING = Image.LANCZOS
 
-# הגדרות בסיסיות
+# הגדרות נתיבים
 DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'stories')
 ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
 FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
@@ -59,23 +59,11 @@ JSON_FILE = os.path.join(DATA_DIR, f'{json_name}.json')
 STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles_stories.json')
 LOGO_PATH = os.path.join(LOGOS_DIR, 'logo_colored.png')
 
-# הגדרות רווח בין שורות
-LINE_SPACING_NORMAL = 50
-LINE_SPACING_WITHIN_SENTENCE = 30
-LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION = 50
-
-# נתיב למוזיקת רקע (אם יש)
-BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')
-
 # הגדרות MoviePy
 VIDEO_SIZE = (1920, 1080)  # פורמט HD רגיל
 WIDTH, HEIGHT = VIDEO_SIZE
 FPS = 24
 THREADS = 8
-
-# צבע חדש להדגשת תשובה נכונה
-HIGHLIGHT_COLOR_CORRECT = (144, 238, 144, 180)  # ירוק בהיר עם שקיפות
-GLOW_COLOR = (144, 238, 144)  # ירוק בהיר
 
 # פונקציה לסניטיזציה של שמות קבצים
 def sanitize_filename(filename):
@@ -94,7 +82,7 @@ def process_hebrew_text(text):
     bidi_text = get_display(reshaped_text)
     return bidi_text
 
-# פונקציות חדשות לבחירת צבעים מנוגדים ומגוונים
+# פונקציות לבחירת צבעים מנוגדים ומגוונים
 def extract_main_colors(image_path, num_colors=2):
     """
     מחלץ את הצבעים העיקריים מתמונת הרקע.
@@ -161,6 +149,11 @@ def get_diverse_contrasting_color(rgb):
     r_new, g_new, b_new = colorsys.hls_to_rgb(h_new, l_new, s_new)
     return (int(r_new * 255), int(g_new * 255), int(b_new * 255))
 
+# פונקציה להסרת כוכביות מטקסט
+def remove_asterisks(text):
+    return text.replace("**", "")
+
+# מחלקת ניהול קבצים
 class FileManager:
     def __init__(self, output_dir, thumbnails_dir):
         self.output_dir = output_dir
@@ -176,13 +169,19 @@ class FileManager:
     def cleanup(self):
         self.temp_dir.cleanup()
 
+# מחלקת יצירת תמונות
 class ImageCreator:
     def __init__(self, styles):
         self.styles = styles
         self.cache = {}
-        self.overlay_color = (173, 216, 230, 150)  # תכלת עם שקיפות
-        self.brightness_factor = 1.2  # הגברת בהירות
-        self.blur_radius = 5  # רדיוס טשטוש
+        # הגדרות עיצוב כלליות
+        self.overlay_color = tuple(self.styles.get('global', {}).get('overlay_color', [173, 216, 230, 150]))
+        self.brightness_factor = self.styles.get('global', {}).get('brightness_factor', 1.2)
+        self.blur_radius = self.styles.get('global', {}).get('blur_radius', 5)
+        # הגדרות רווח בין שורות
+        self.line_spacing_normal = self.styles.get('global', {}).get('line_spacing_normal', 50)
+        self.line_spacing_within_sentence = self.styles.get('global', {}).get('line_spacing_within_sentence', 30)
+        self.line_spacing_between_sentence_and_translation = self.styles.get('global', {}).get('line_spacing_between_sentence_and_translation', 50)
 
     @lru_cache(maxsize=None)
     def get_font(self, font_path, font_size):
@@ -293,7 +292,7 @@ class ImageCreator:
                         if height > line_height:
                             line_height = height
                     processed_lines.append((line_info, line_height))
-                    total_height += line_height + LINE_SPACING_NORMAL
+                    total_height += line_height + self.line_spacing_normal
             else:
                 split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
                 for split_line in split_lines:
@@ -314,10 +313,10 @@ class ImageCreator:
                         if height > line_height:
                             line_height = height
                     processed_lines.append((line_info, line_height))
-                    total_height += line_height + LINE_SPACING_NORMAL
+                    total_height += line_height + self.line_spacing_normal
 
         if processed_lines:
-            total_height -= LINE_SPACING_NORMAL  # הסרת רווח נוסף בסוף
+            total_height -= self.line_spacing_normal  # הסרת רווח נוסף בסוף
         current_y = (HEIGHT - total_height) / 2
 
         for line_idx, (line_info, line_height) in enumerate(processed_lines):
@@ -338,14 +337,16 @@ class ImageCreator:
                     highlight_line, highlight_option_idx = highlight_option
                     if line_idx == highlight_line and segment_idx == highlight_option_idx:
                         # הוספת זוהר לטקסט
-                        glow = Image.new('RGBA', img.size, (0,0,0,0))
+                        glow = Image.new('RGBA', img.size, (0, 0, 0, 0))
                         glow_draw = ImageDraw.Draw(glow)
-                        glow_draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=GLOW_COLOR)
+                        glow_color = tuple(self.styles.get('global', {}).get('glow_color', [144, 238, 144]))
+                        glow_draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=glow_color)
                         glow = glow.filter(ImageFilter.GaussianBlur(radius=10))
                         img = Image.alpha_composite(img.convert('RGBA'), glow)
                         draw = ImageDraw.Draw(img)
                         
-                        # החלפת רקע הצהוב בירוק בהיר
+                        # חלופה: הוספת רקע להדגשה
+                        highlight_color_correct = tuple(self.styles.get('global', {}).get('highlight_color_correct', [144, 238, 144, 180]))
                         text_bbox = draw.textbbox((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font)
                         padding = 10
                         draw.rectangle(
@@ -353,19 +354,17 @@ class ImageCreator:
                                 (text_bbox[0] - padding, text_bbox[1] - padding),
                                 (text_bbox[2] + padding, text_bbox[3] + padding)
                             ],
-                            fill=HIGHLIGHT_COLOR_CORRECT
+                            fill=highlight_color_correct
                         )
                 draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
                 x_text += width
-            current_y += line_height + LINE_SPACING_NORMAL
+            current_y += line_height + self.line_spacing_normal
 
         img = img.convert("RGB")
         self.cache[cache_key] = img
         return img
 
-def remove_asterisks(text):
-    return text.replace("**", "")
-
+# מחלקת יצירת אודיו
 class AudioCreator:
     def __init__(self, temp_dir):
         self.temp_dir = temp_dir
@@ -407,12 +406,15 @@ class AudioCreator:
     def shutdown(self):
         self.executor.shutdown(wait=True)
 
+# מחלקת יצירת וידאו
 class VideoCreator:
     def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
         self.file_manager = file_manager
         self.image_creator = image_creator
         self.audio_creator = audio_creator
         self.style_definitions = style_definitions
+        # הגדרות עיצוב כלליות
+        self.line_spacing_normal = self.style_definitions.get('global', {}).get('line_spacing_normal', 50)
 
     def create_image_clip(self, text_lines, style, line_styles=None, background_image_path=None, process_background=True, highlight_option=None):
         img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles, background_image_path, process_background, highlight_option)
@@ -478,13 +480,10 @@ class VideoCreator:
                     logging.info(f"שימש רקע מהתמונה: {background_image_path} עבור הלוגו")
                 except Exception as e:
                     logging.error(f"שגיאה בטעינת תמונת הרקע עבור הלוגו: {e}")
-                    background = Image.new('RGB', (WIDTH, HEIGHT), color=(173, 216, 230))
+                    bg_color = tuple(self.style_definitions.get('logo', {}).get('bg_color', [173, 216, 230]))
+                    background = Image.new('RGB', (WIDTH, HEIGHT), color=bg_color)
             else:
-                logo_style = self.style_definitions.get('logo', None)
-                if logo_style and 'bg_color' in logo_style:
-                    bg_color = tuple(logo_style['bg_color'])
-                else:
-                    bg_color = (173, 216, 230)
+                bg_color = tuple(self.style_definitions.get('logo', {}).get('bg_color', [173, 216, 230]))
                 background = Image.new('RGB', (WIDTH, HEIGHT), color=bg_color)
 
             logo_image = Image.open(LOGO_PATH).convert("RGBA")
@@ -644,6 +643,7 @@ class VideoCreator:
 
         return clips
 
+# מחלקת הרכבת וידאו
 class VideoAssembler:
     def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
         self.video_creator = VideoCreator(file_manager, image_creator, audio_creator, style_definitions)
@@ -933,6 +933,7 @@ def main():
     file_manager = FileManager(OUTPUT_DIR, THUMBNAILS_DIR)
 
     video_assembler = None
+    audio_creator = None
 
     try:
         with open(JSON_FILE, 'r', encoding='utf-8') as f:
@@ -955,7 +956,8 @@ def main():
             "intro_subtitle",
             "video_number",
             "topic",
-            "logo"
+            "logo",
+            "global"
         }
 
         missing_styles = required_styles - set(style_definitions.keys())

@@ -1,4 +1,14 @@
 {
+    "global": {
+        "line_spacing_normal": 50,
+        "line_spacing_within_sentence": 30,
+        "line_spacing_between_sentence_and_translation": 50,
+        "highlight_color_correct": [144, 238, 144, 180],
+        "glow_color": [144, 238, 144],
+        "overlay_color": [173, 216, 230, 150],
+        "brightness_factor": 1.2,
+        "blur_radius": 5
+    },
     "normal": {
         "style_name": "normal",
         "bg_color": [255, 255, 255],
