@@ -15,15 +15,15 @@
       },
       {
         "english": "They went to the river.",
-        "hebrew": "הם הלכו לנהר."
+        "hebrew": "הם הלכו אל הנהר."
       },
       {
         "english": "The sun was shining brightly.",
-        "hebrew": "השמש זרחה במלואה."
+        "hebrew": "השמש זרחה בעוצמה."
       },
       {
         "english": "They set up their rods.",
-        "hebrew": "הם הכינו את החכות שלהם."
+        "hebrew": "הם הציבו את החכות שלהם."
       },
       {
         "english": "They waited patiently.",
@@ -123,6 +123,6 @@
     }
   ],
   "call_to_action": {
-    "text": "הירשמו עכשיו כדי לא לפספס את הסיפור הבא!"
+    "text": "הירשמו עכשיו כדי לא לפספס את סיפור ההרפתקה הבא שלנו!"
   }
 }

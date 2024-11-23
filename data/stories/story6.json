@@ -19,7 +19,7 @@
       },
       {
         "english": "The wind whispered softly.",
-        "hebrew": "הרוח לחשה ברכות."
+        "hebrew": "הרוח לחשה חרש."
       },
       {
         "english": "\"Grow slowly,\" the wind said.",
@@ -91,7 +91,11 @@
     {
       "word": "grateful",
       "translation": "אסיר תודה"
-    }
+    },
+	{
+	  "word": "growth",
+	  "translation": "צמיחה"
+	}
   ],
   "comprehension_questions": [
     {

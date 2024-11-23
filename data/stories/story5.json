@@ -1,9 +1,9 @@
 {
-  "video_title": "הרועה והכבשה האובדת",
+  "video_title": "הרועה והכבשה האבודה",
   "language_level": "קל",
   "story_type": "אלגוריה פשוטה",
   "story": {
-    "title": "הרועה והכבשה האובדת",
+    "title": "הרועה והכבשה האבודה",
     "text": [
       {
         "english": "Young Elhanan was a shepherd.",
@@ -11,7 +11,7 @@
       },
       {
         "english": "He cared for many sheep.",
-        "hebrew": "הוא טיפל בהרבה כבשים."
+        "hebrew": "הוא טיפל בכבשים רבות."
       },
       {
         "english": "One day, a sheep was missing.",
