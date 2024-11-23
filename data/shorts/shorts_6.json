@@ -27,16 +27,16 @@
       "translation": "עצבני",
       "examples": [
           {
-              "sentence": "He feels **nervous** before exams",
-              "translation": "הוא מרגיש עצבני לפני מבחנים"
+              "sentence": "He always feels **nervous** before exams",
+              "translation": "הוא תמיד מרגיש עצבני לפני מבחנים"
           },
           {
               "sentence": "She was **nervous** about the interview",
               "translation": "היא הייתה עצבנית לגבי הראיון"
           },
           {
-              "sentence": "They are **nervous** to speak in public",
-              "translation": "הם עצבניים לדבר בציבור"
+              "sentence": "They are **nervous** when speaking in public",
+              "translation": "הם עצבניים כשהם מדברים לפני ציבור"
           }
       ],
       "call_to_action": "איך אתם מתמודדים עם עצבנות? שתפו באנגלית!"
