@@ -26,7 +26,7 @@
         "hebrew": "יוסף דאג להם."
       },
       {
-        "english": "He told them about hidden treasure.",
+        "english": "He told them about a hidden treasure.",
         "hebrew": "הוא סיפר להם על אוצר נסתר."
       },
       {
@@ -91,7 +91,11 @@
     {
       "word": "value",
       "translation": "להעריך"
-    }
+    },
+    {
+      "word": "prosper",
+      "translation": "לשגשג"
+  }
   ],
   "comprehension_questions": [
     {

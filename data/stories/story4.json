@@ -1,13 +1,13 @@
 {
-  "video_title": "השכן העוזר",
+  "video_title": "טוב שכן טוב",
   "language_level": "קל",
   "story_type": "סיפור מרגש",
   "story": {
-    "title": "השכן העוזר",
+    "title": "טוב שכן טוב",
     "text": [
       {
         "english": "Yaakov had a busy life.",
-        "hebrew": "ליעקב הייתה חיים עמוסים."
+        "hebrew": "ליעקב היו חיים עמוסים."
       },
       {
         "english": "His elderly neighbor was Chaim.",
@@ -15,7 +15,7 @@
       },
       {
         "english": "Chaim needed help at home.",
-        "hebrew": "חיים היה זקוק לעזרה בבית."
+        "hebrew": "חיים נזקק לעזרה בבית."
       },
       {
         "english": "Yaakov decided to assist him.",
@@ -74,7 +74,7 @@
     },
     {
       "word": "assist",
-      "translation": "לעזור"
+      "translation": "לסייע"
     },
     {
       "word": "friendship",

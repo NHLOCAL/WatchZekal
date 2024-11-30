@@ -71,7 +71,7 @@
       },
       {
         "english": "He realized what true wealth is.",
-        "hebrew": "הוא הבין מהו ההעושר ההאמיתי."
+        "hebrew": "הוא הבין מהו העושר האמיתי."
       },
       {
         "english": "Family and friends matter most.",
@@ -103,6 +103,10 @@
     {
       "word": "wealth",
       "translation": "עושר"
+    },
+    {
+      "word": "matter",
+      "translation": "חשוב"
     }
   ],
   "comprehension_questions": [
