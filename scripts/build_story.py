@@ -435,14 +435,44 @@ class VideoCreator:
         else:
             return None
 
-    def create_clip(self, image_clip, audio_paths, min_duration=0):
-        audio_total = self.create_audio_clips(audio_paths)
-        if audio_total:
+    def create_clip(self, image_clip, audio_paths, min_duration=0, repeat_english=False):
+        audio_clips = []
+        if repeat_english:
+            # אם צריך לחזור על האנגלית, נוסיף אותה קודם, אחר כך עברית, ואז אנגלית שוב
+            english_path = audio_paths[0]  # נתיב לקובץ האודיו באנגלית
+            hebrew_path = audio_paths[1]  # נתיב לקובץ האודיו בעברית
+
+            if os.path.exists(english_path):
+                audio_clips.append(AudioFileClip(english_path))
+            else:
+                logging.warning(f"אודיו באנגלית לא נמצא בנתיב: {english_path}")
+
+            if os.path.exists(hebrew_path):
+                audio_clips.append(AudioFileClip(hebrew_path))
+            else:
+                logging.warning(f"אודיו בעברית לא נמצא בנתיב: {hebrew_path}")
+
+            if os.path.exists(english_path): # מוסיף שוב את המילה באנגלית
+                audio_clips.append(AudioFileClip(english_path))
+            else:
+                logging.warning(f"אודיו באנגלית לא נמצא בנתיב: {english_path}")
+
+        else:
+            # אם לא צריך לחזור על האנגלית, נוסיף את הקליפים כרגיל
+            for path in audio_paths:
+                if os.path.exists(path):
+                    audio_clips.append(AudioFileClip(path))
+                else:
+                    logging.warning(f"אודיו לא נמצא בנתיב: {path}")
+
+        if audio_clips:
+            audio_total = concatenate_audioclips(audio_clips)
             duration = max(audio_total.duration, min_duration)
             image_clip = image_clip.set_duration(duration)
             image_clip = image_clip.set_audio(audio_total)
         else:
             image_clip = image_clip.set_duration(min_duration)
+
         return image_clip
 
     def slide_transition(self, clip1, clip2, duration=1):
@@ -788,18 +818,21 @@ class VideoAssembler:
                         line_styles = ['word', 'translation']
                         clip_word = self.video_creator.create_image_clip(text_lines, 'word', line_styles, background_image_path, process_background=True)
                         audio_tasks = [
-                            (word, 'en', True),  # קריאה באנגלית באיטיות
+                            (word, 'en', True),
                             (translation, 'iw')
                         ]
                         audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
                         audio_paths = [
                             audio_results.get((word, 'en', True), ""),
                             audio_results.get((translation, 'iw'), "")
+
                         ]
+
                         clip_word = self.video_creator.create_clip(
                             clip_word,
                             audio_paths,
-                            min_duration=4
+                            min_duration=4,
+                            repeat_english=True # מוסיף את המילה באנגלית שוב
                         )
                         clips.append(clip_word)
 
