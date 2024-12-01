@@ -42,7 +42,7 @@
         "bg_color": [255, 255, 240],
         "text_color": [34, 139, 230],
         "font_size": 85,
-        "font_path": "Rubik-Bold.ttf",
+        "font_path": "Rubik-Regular.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 2
     },
