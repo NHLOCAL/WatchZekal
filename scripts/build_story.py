@@ -753,6 +753,9 @@ class VideoAssembler:
 
         for video_data in videos:
             video_title = video_data['video_title']
+            # הסרת ניקוד מכותרת הסרטון
+            video_title = remove_niqqud(video_title)
+
             language_level = video_data['language_level']
             story_type = video_data['story_type']
             story = video_data['story']
