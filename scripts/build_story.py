@@ -834,11 +834,15 @@ class VideoAssembler:
                             min_duration=4,
                             repeat_english=True # מוסיף את המילה באנגלית שוב
                         )
+
+                        # הרחבת משך התצוגה בשנייה
+                        clip_word = clip_word.set_duration(clip_word.duration + 1)                        
+
                         clips.append(clip_word)
 
                 # מעבר לקטע שאלות הבנה
                 if comprehension_questions:
-                    questions_intro = "שאלות הבנה"
+                    questions_intro = "בחנו את עצמכם"
                     text_lines_questions_intro = [questions_intro]
                     line_styles_questions_intro = ['subtopic']
                     clip_questions_intro = self.video_creator.create_image_clip(text_lines_questions_intro, 'subtopic', line_styles_questions_intro, background_image_path, process_background=True)
