@@ -782,6 +782,10 @@ class VideoAssembler:
                     # מעבר לקטע הסיפור
                     transition = self.video_creator.slide_transition(clips[-1], clip_story_intro)
                     clips.append(transition)
+                    
+                    # הוספת השהייה של 2 שניות על ידי הארכת משך התצוגה
+                    clip_story_intro = clip_story_intro.set_duration(clip_story_intro.duration + 2)
+                    
                     clips.append(clip_story_intro)
 
                     # הצגת הסיפור
