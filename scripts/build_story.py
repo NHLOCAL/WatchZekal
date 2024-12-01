@@ -16,7 +16,8 @@ import logging
 from functools import lru_cache
 from datetime import datetime
 from collections import Counter
-import colorsys  # חדש
+import colorsys
+import unicodedata
 
 # הגדרת נתיב לתיקיית הלוגים
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -76,6 +77,15 @@ THREADS = 8
 # צבע חדש להדגשת תשובה נכונה
 HIGHLIGHT_COLOR_CORRECT = (144, 238, 144, 180)  # ירוק בהיר עם שקיפות
 GLOW_COLOR = (144, 238, 144)  # ירוק בהיר
+
+
+def remove_niqqud(text):
+    """
+    מסיר ניקוד מטקסט עברי.
+    """
+    normalized_text = unicodedata.normalize('NFKD', text)
+    without_niqqud = ''.join([c for c in normalized_text if not unicodedata.combining(c)])
+    return without_niqqud
 
 # פונקציה לסניטיזציה של שמות קבצים
 def sanitize_filename(filename):
@@ -273,6 +283,9 @@ class ImageCreator:
             font = self.get_font(current_style['font_path'], current_style['font_size'])
 
             if is_hebrew(line):
+                # כאן מוסיפים את הפונקציה להסרת ניקוד
+                line = remove_niqqud(line)
+
                 split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
                 for split_line in split_lines:
                     processed_line = process_hebrew_text(split_line)
@@ -768,7 +781,7 @@ class VideoAssembler:
 
                 # מעבר לקטע הסיפור
                 if story['text']:
-                    story_intro = "כדי להפיק את המיטב מהסרטון: האזינו להקראת המשפט באנגלית, נסו לקרוא אותו בעצמכם ולהבין את המשמעות, ולאחר מכן צפו בתרגום לעברית כדי לבדוק את עצמכם!"
+                    story_intro = "כְּדֵי לְהָפִיק אֶת הַמֵּיטָב מֵהַסִּרְטוֹן: הַאֲזִינוּ לְהַקְרָאַת הַמִּשְׁפָּט בְּאַנְגְּלִית, נַסּוּ לִקְרֹא אוֹתוֹ בְּעַצְמְכֶם וּלְהָבִין אֶת הַמַּשְׁמָעוּת, וּלְאַחַר מִכֵּן צְפוּ בְּתַרְגּוּם לְעִבְרִית כְּדֵי לִבְדֹּק אֶת עַצְמְכֶם!"
                     text_lines_intro_story = [story_intro]
                     line_styles_intro_story = ['sentence']
                     clip_story_intro = self.video_creator.create_image_clip(text_lines_intro_story, 'sentence', line_styles_intro_story, background_image_path, process_background=True)
