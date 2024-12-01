@@ -784,7 +784,7 @@ class VideoAssembler:
 
                 # מעבר לקטע הסיפור
                 if story['text']:
-                    story_intro = "כְּדֵי לְהָפִיק אֶת הַמֵּיטָב מֵהַסִּרְטוֹן: הַאֲזִינוּ לְהַקְרָאַת הַמִּשְׁפָּט בְּאַנְגְּלִית, נַסּוּ לִקְרֹא אוֹתוֹ בְּעַצְמְכֶם וּלְהָבִין אֶת הַמַּשְׁמָעוּת, וּלְאַחַר מִכֵּן צְפוּ בְּתַרְגּוּם לְעִבְרִית כְּדֵי לִבְדֹּק אֶת עַצְמְכֶם!"
+                    story_intro = "כְּדֵי לְהָפִיק אֶת הַמֵּיטָב מֵהַסִּרְטוֹן: הַאֲזִינוּ לְהַקְרָאַת הַמִּשְׁפָּט בְּאַנְגְּלִית, נַסּוּ לִקְרֹא אוֹתוֹ בְּעַצְמְכֶם וּלְהָבִין אֶת הַמַּשְׁמָעוּת, וּלְאַחַר מִכֵּן צְפוּ בַּתַרְגּוּם לְעִבְרִית כְּדֵי לִבְדֹּק אֶת עַצְמְכֶם!"
                     text_lines_intro_story = [story_intro]
                     line_styles_intro_story = ['sentence']
                     clip_story_intro = self.video_creator.create_image_clip(text_lines_intro_story, 'sentence', line_styles_intro_story, background_image_path, process_background=True)
