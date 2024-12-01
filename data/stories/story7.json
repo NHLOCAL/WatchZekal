@@ -1,120 +1,120 @@
 {
   "video_title": "העורב הפיקח",
-  "language_level": "קל",
-  "story_type": "משל קצר",
+  "language_level": "קַל",
+  "story_type": "מָשָׁל קָצָר",
   "story": {
-    "title": "העורב הפיקח",
+    "title": "הָעוֹרֵב הַפִּקֵּחַ",
     "text": [
       {
         "english": "On a hot day, a crow was thirsty.",
-        "hebrew": "ביום חם, עורב היה צמא."
+        "hebrew": "בְּיוֹם חַם, עוֹרֵב הָיָה צָמֵא."
       },
       {
         "english": "He found a pitcher with water.",
-        "hebrew": "הוא מצא כד עם מים."
+        "hebrew": "הוּא מָצָא כַּד עִם מַיִם."
       },
       {
         "english": "The water was low inside.",
-        "hebrew": "המים היו נמוכים בפנים."
+        "hebrew": "הַמַּיִם הָיוּ נְמוּכִים בִּפְנִים."
       },
       {
         "english": "He could not reach it.",
-        "hebrew": "הוא לא יכול היה להגיע אליהם."
+        "hebrew": "הוּא לֹא יָכוֹל הָיָה לְהַגִּיעַ אֲלֵיהֶם."
       },
       {
         "english": "He had an idea.",
-        "hebrew": "היה לו רעיון."
+        "hebrew": "הָיָה לוֹ רַעֲיוֹן."
       },
       {
         "english": "He picked up small stones.",
-        "hebrew": "הוא הרים אבנים קטנות."
+        "hebrew": "הוּא הֵרִים אֲבָנִים קְטַנּוֹת."
       },
       {
         "english": "He dropped them into the pitcher.",
-        "hebrew": "הוא זרק אותם לתוך הכד."
+        "hebrew": "הוּא זָרַק אוֹתָם לְתוֹךְ הַכַּד."
       },
       {
         "english": "The water level rose.",
-        "hebrew": "מפלס המים עלה."
+        "hebrew": "מַפְלַס הַמַּיִם עָלָה."
       },
       {
         "english": "He could drink now.",
-        "hebrew": "הוא יכול היה לשתות עכשיו."
+        "hebrew": "הוּא יָכוֹל הָיָה לִשְׁתּוֹת עַכְשָׁיו."
       },
       {
         "english": "The crow was happy.",
-        "hebrew": "העורב היה שמח."
+        "hebrew": "הָעוֹרֵב הָיָה שָׂמֵחַ."
       },
       {
         "english": "He used his cleverness.",
-        "hebrew": "הוא השתמש בחוכמתו."
+        "hebrew": "הוּא הִשְׁתַּמֵּשׁ בְּחָכְמָתוֹ."
       },
       {
         "english": "He solved the problem.",
-        "hebrew": "הוא פתר את הבעיה."
+        "hebrew": "הוּא פָּתַר אֶת הַבְּעָיָה."
       },
       {
         "english": "He flew away satisfied.",
-        "hebrew": "הוא עף משם שבע רצון."
+        "hebrew": "הוּא עָף מִשָּׁם שְׂבַע רָצוֹן."
       }
     ]
   },
   "vocabulary": [
     {
       "word": "crow",
-      "translation": "עורב"
+      "translation": "עוֹרֵב"
     },
     {
       "word": "thirsty",
-      "translation": "צמא"
+      "translation": "צָמֵא"
     },
     {
       "word": "pitcher",
-      "translation": "כד"
+      "translation": "כַּד"
     },
     {
       "word": "stone",
-      "translation": "אבן"
+      "translation": "אֶבֶן"
     },
     {
       "word": "level",
-      "translation": "מפלס"
+      "translation": "מִפְלָס"
     },
     {
       "word": "cleverness",
-      "translation": "חוכמה"
+      "translation": "חוֹכְמָה"
     }
   ],
   "comprehension_questions": [
     {
-      "question": "מה מצא העורב?",
+      "question": "מָה מָצָא הָעוֹרֵב?",
       "options": [
-        "כד עם מים",
-        "חתיכת לחם",
-        "עץ גבוה"
+        "כַּד עִם מַיִם",
+        "חֲתִיכַת לֶחֶם",
+        "עֵץ גָּבוֹהַּ"
       ],
       "answer": 0
     },
     {
-      "question": "איך העורב העלה את המים?",
+      "question": "אֵיךְ הָעוֹרֵב הֶעֱלָה אֶת הַמַּיִם?",
       "options": [
-        "השתמש בקש",
-        "זרק אבנים לתוך הכד",
-        "קרא לעזרה"
+        "הִשְׁתַּמֵּשׁ בְּקַשׁ",
+        "זָרַק אֲבָנִים לְתוֹךְ הַכַּד",
+        "קָרָא לְעֶזְרָה"
       ],
       "answer": 1
     },
     {
-      "question": "מה מלמד הסיפור?",
+      "question": "מָה מְלַמֵּד הַסִּפּוּר?",
       "options": [
-        "חוכמה ופתרון בעיות",
-        "חיפוש אחר מזון",
-        "שיתוף פעולה"
+        "חוֹכְמָה וּפִתְרוֹן בְּעָיוֹת",
+        "חִפּוּשׂ אַחַר מָזוֹן",
+        "שִׁתּוּף פְּעֻלָּה"
       ],
       "answer": 0
     }
   ],
   "call_to_action": {
-    "text": "אם נהניתם, שתפו את הסיפור ותהנו יחד עם חברים!"
+    "text": "אִם נֶהֱנֵיתֶם, שַׁתְּפוּ אֶת הַסִּפּוּר וְתֵהָנוּ יַחַד עִם חֲבֵרִים!"
   }
 }
