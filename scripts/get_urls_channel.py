@@ -48,19 +48,29 @@ while True:
         # שלב 2: קבלת רשימת הסרטונים עבור כל פלייליסט
         playlist_videos = []
         next_page_token_playlist = None
+        first_video_id = None  # לשמור את ה-ID של הסרטון הראשון
+
         while True:
             playlist_items_url = f"{BASE_URL}/playlistItems?part=snippet&playlistId={playlist_id}&maxResults=50&pageToken={next_page_token_playlist or ''}&key={API_KEY}"
             response = fetch_data(playlist_items_url)
 
-            for video_item in response.get('items', []):
+            for idx, video_item in enumerate(response.get('items', [])):
                 video_title = video_item['snippet']['title']
                 video_id = video_item['snippet']['resourceId']['videoId']
                 video_description = video_item['snippet'].get('description', 'No description available')
                 video_thumbnail = get_best_thumbnail(video_item['snippet']['thumbnails'])
 
+                # אם זה הסרטון הראשון, נשמור את ה-ID
+                if idx == 0:
+                    first_video_id = video_id
+
+                # בדיקה אם הסרטון הוא שורטס
+                if 'shorts' in video_description.lower():  # אם המילה "shorts" נמצאת בתיאור הסרטון
+                    video_description = None  # לא להוסיף תיאור לסרטוני שורטס
+
                 playlist_videos.append({
                     "title": video_title,
-                    "url": f"https://www.youtube.com/watch?v={video_id}",
+                    "url": f"https://www.youtube.com/watch?v={video_id}&list={playlist_id}",  # הוספת פרמטר list
                     "description": video_description,
                     "thumbnail": video_thumbnail
                 })
@@ -69,10 +79,13 @@ while True:
             if not next_page_token_playlist:
                 break
 
+        # יצירת הקישור של הפלייליסט, כולל הסרטון הראשון
+        playlist_url = f"https://www.youtube.com/watch?v={first_video_id}&list={playlist_id}"
+
         # הוספת כל הפלייליסט עם הסרטונים שלו
         playlists.append({
             "title": playlist_title,
-            "url": f"https://www.youtube.com/playlist?list={playlist_id}",
+            "url": playlist_url,  # הקישור החדש לפלייליסט
             "description": playlist_description,
             "thumbnail": playlist_thumbnail,
             "videos": playlist_videos
