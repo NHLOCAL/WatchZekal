@@ -64,6 +64,10 @@ while True:
                 if idx == 0:
                     first_video_id = video_id
 
+                # אם הסרטון הוא "Private video", לא נוסיף אותו לרשימה
+                if video_title == "Private video":
+                    continue
+
                 # בדיקה אם הסרטון הוא שורטס
                 if 'shorts' in video_description.lower():  # אם המילה "shorts" נמצאת בתיאור הסרטון
                     video_description = None  # לא להוסיף תיאור לסרטוני שורטס
@@ -85,7 +89,7 @@ while True:
         # הוספת כל הפלייליסט עם הסרטונים שלו
         playlists.append({
             "title": playlist_title,
-            "url": playlist_url,  # הקישור החדש לפלייליסט
+            "url": playlist_url,  # קישור חדש עם ה-Video הראשון
             "description": playlist_description,
             "thumbnail": playlist_thumbnail,
             "videos": playlist_videos
