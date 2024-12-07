@@ -1,132 +1,132 @@
 {
-  "video_title": "האיכר החכם",
-  "language_level": "קל",
-  "story_type": "סיפור מוסר",
+  "video_title": "הָאִיכָּר הֶחָכָם",
+  "language_level": "קַל",
+  "story_type": "סִיפּוּר מוּסָר",
   "story": {
-    "title": "האיכר החכם",
+    "title": "הָאִיכָּר הֶחָכָם",
     "text": [
       {
         "english": "Old Yosef was a farmer.",
-        "hebrew": "יוסף הזקן היה איכר."
+        "hebrew": "יוֹסֵף הַזָּקֵן הָיָה אִיכָּר."
       },
       {
         "english": "He had two sons.",
-        "hebrew": "היו לו שני בנים."
+        "hebrew": "הָיוּ לוֹ שְׁנֵי בָּנִים."
       },
       {
         "english": "Their names were Shmuel and Yonatan.",
-        "hebrew": "שמותיהם היו שמואל ויונתן."
+        "hebrew": "שְׁמוֹתֵיהֶם הָיוּ שְׁמוּאֵל וְיוֹנָתָן."
       },
       {
         "english": "They disliked hard work.",
-        "hebrew": "הם לא אהבו עבודה קשה."
+        "hebrew": "הֵם לֹא אָהֲבוּ עֲבוֹדָה קָשָׁה."
       },
       {
         "english": "Yosef was worried about them.",
-        "hebrew": "יוסף דאג להם."
+        "hebrew": "יוֹסֵף דָּאַג לָהֶם."
       },
       {
         "english": "He told them about a hidden treasure.",
-        "hebrew": "הוא סיפר להם על אוצר נסתר."
+        "hebrew": "הוּא סִיפֵּר לָהֶם עַל אוֹצָר נִסְתָּר."
       },
       {
         "english": "\"It's buried in our field,\" he said.",
-        "hebrew": "\"הוא קבור בשדה שלנו,\" הוא אמר."
+        "hebrew": "\"הוּא קָבוּר בַּשָּׂדֶה שֶׁלָּנוּ,\" הוּא אָמַר."
       },
       {
         "english": "They dug the entire field.",
-        "hebrew": "הם חפרו את כל השדה."
+        "hebrew": "הֵם חָפְרוּ אֶת כָּל הַשָּׂדֶה."
       },
       {
         "english": "They found no treasure.",
-        "hebrew": "הם לא מצאו אוצר."
+        "hebrew": "הֵם לֹא מָצְאוּ אוֹצָר."
       },
       {
         "english": "The field was ready for planting.",
-        "hebrew": "השדה היה מוכן לזריעה."
+        "hebrew": "הַשָּׂדֶה הָיָה מוּכָן לִזְרִיעָה."
       },
       {
         "english": "Yosef smiled at his sons.",
-        "hebrew": "יוסף חייך לבניו."
+        "hebrew": "יוֹסֵף חִיֵּיךְ לְבָנָיו."
       },
       {
         "english": "\"Hard work is the treasure,\" he said.",
-        "hebrew": "\"העבודה הקשה היא האוצר,\" הוא אמר."
+        "hebrew": "\"הָעֲבוֹדָה הַקָּשָׁה הִיא הָאוֹצָר,\" הוּא אָמַר."
       },
       {
         "english": "They understood his lesson.",
-        "hebrew": "הם הבינו את השיעור שלו."
+        "hebrew": "הֵם הֵבִינוּ אֶת הַשִּׁיעוּר שֶׁלּוֹ."
       },
       {
         "english": "They began to value work.",
-        "hebrew": "הם התחילו להעריך את העבודה."
+        "hebrew": "הֵם הִתְחִילוּ לְהַעֲרִיךְ אֶת הָעֲבוֹדָה."
       },
       {
         "english": "The family prospered together.",
-        "hebrew": "המשפחה שגשגה יחד."
+        "hebrew": "הַמִּשְׁפָּחָה שִׂגְשְׂגָה יַחַד."
       }
     ]
   },
   "vocabulary": [
     {
       "word": "farmer",
-      "translation": "איכר"
+      "translation": "אִיכָּר"
     },
     {
       "word": "treasure",
-      "translation": "אוצר"
+      "translation": "אוֹצָר"
     },
     {
       "word": "field",
-      "translation": "שדה"
+      "translation": "שָׂדֶה"
     },
     {
       "word": "dig",
-      "translation": "לחפור"
+      "translation": "לַחְפּוֹר"
     },
     {
       "word": "planting",
-      "translation": "זריעה"
+      "translation": "זְרִיעָה"
     },
     {
       "word": "value",
-      "translation": "להעריך"
+      "translation": "לְהַעֲרִיךְ"
     },
     {
       "word": "prosper",
-      "translation": "לשגשג"
+      "translation": "לְשַׂגְשֵׂג"
   }
   ],
   "comprehension_questions": [
     {
-      "question": "מה סיפר יוסף לבניו?",
+      "question": "מָה סִיפֵּר יוֹסֵף לְבָנָיו?",
       "options": [
-        "על אוצר נסתר בשדה",
-        "על חיה מסוכנת",
-        "על נסיעה רחוקה"
+        "עַל אוֹצָר נִסְתָּר בַּשָּׂדֶה",
+        "עַל חַיָּה מְסוּכֶּנֶת",
+        "עַל נְסִיעָה רְחוֹקָה"
       ],
       "answer": 0
     },
     {
-      "question": "מה מצאו הבנים בשדה?",
+      "question": "מָה מָצְאוּ הַבָּנִים בַּשָּׂדֶה?",
       "options": [
-        "זהב",
-        "כלום",
-        "מטבעות כסף"
+        "זָהָב",
+        "כְּלוּם",
+        "מַטְבְּעוֹת כֶּסֶף"
       ],
       "answer": 1
     },
     {
-      "question": "מה היה האוצר האמיתי?",
+      "question": "מָה הָיָה הָאוֹצָר הָאֲמִיתִּי?",
       "options": [
-        "עבודה קשה",
-        "מטמון נסתר",
-        "בית חדש"
+        "עֲבוֹדָה קָשָׁה",
+        "מַטְמוֹן נִסְתָּר",
+        "בַּיִת חָדָשׁ"
       ],
       "answer": 0
     }
   ],
   "call_to_action": {
-    "text": "רוצים לשמוע עוד סיפורים? הירשמו עכשיו לערוץ!"
+    "text": "רוֹצִים לִשְׁמוֹעַ עוֹד סִיפּוּרִים? הֵירָשְׁמוּ עַכְשָׁיו לָעָרוּץ!"
   }
 }
