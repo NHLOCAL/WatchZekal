@@ -77,8 +77,8 @@ FPS = 24
 THREADS = 8
 
 # צבע חדש להדגשת תשובה נכונה
-HIGHLIGHT_COLOR_CORRECT = (144, 238, 144, 180)  # ירוק בהיר עם שקיפות
-GLOW_COLOR = (144, 238, 144)  # ירוק בהיר
+HIGHLIGHT_COLOR_CORRECT = (173, 216, 230, 180)
+GLOW_COLOR = (135, 206, 235)
 
 
 def remove_niqqud(text):
