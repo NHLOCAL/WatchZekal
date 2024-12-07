@@ -1,144 +1,144 @@
 {
-  "video_title": "המטבע האבוד",
-  "language_level": "קל",
-  "story_type": "מָשָׁל פשוט",
+  "video_title": "הַמַּטְבֵּעַ הָאָבוּד",
+  "language_level": "קַל",
+  "story_type": "מָשָׁל פָּשׁוּט",
   "story": {
-    "title": "המטבע האבוד",
+    "title": "הַמַּטְבֵּעַ הָאָבוּד",
     "text": [
       {
         "english": "David lost a gold coin.",
-        "hebrew": "דוד איבד מטבע זהב."
+        "hebrew": "דָּוִד אִיבֵּד מַטְבֵּעַ זָהָב."
       },
       {
         "english": "He searched his small house.",
-        "hebrew": "הוא חיפש בביתו הקטן."
+        "hebrew": "הוּא חִיפֵּשׂ בְּבֵיתוֹ הַקָּטָן."
       },
       {
         "english": "He looked under the bed.",
-        "hebrew": "הוא הסתכל מתחת למיטה."
+        "hebrew": "הוּא הִסְתַּכֵּל מִתַּחַת לַמִּיטָּה."
       },
       {
         "english": "He checked behind the sofa.",
-        "hebrew": "הוא בדק מאחורי הספה."
+        "hebrew": "הוּא בָּדַק מֵאֲחוֹרֵי הַסַּפָּה."
       },
       {
         "english": "He opened every drawer.",
-        "hebrew": "הוא פתח כל מגירה."
+        "hebrew": "הוּא פָּתַח כָּל מְגֵירָה."
       },
       {
         "english": "He searched between the books.",
-        "hebrew": "הוא חיפש בין הספרים."
+        "hebrew": "הוּא חִיפֵּשׂ בֵּין הַסְּפָרִים."
       },
       {
         "english": "David went to the garden.",
-        "hebrew": "דוד הלך לגינה."
+        "hebrew": "דָּוִד הָלַךְ לַגִּינָּה."
       },
       {
         "english": "He looked under the flowers.",
-        "hebrew": "הוא הסתכל מתחת לפרחים."
+        "hebrew": "הוּא הִסְתַּכֵּל מִתַּחַת לַפְּרָחִים."
       },
       {
         "english": "He could not find it.",
-        "hebrew": "הוא לא הצליח למצוא אותו."
+        "hebrew": "הוּא לֹא הִצְלִיחַ לִמְצוֹא אוֹתוֹ."
       },
       {
         "english": "He felt sad and tired.",
-        "hebrew": "הוא הרגיש עצוב ועייף."
+        "hebrew": "הוּא הִרְגִּישׁ עָצוּב וְעָיֵיף."
       },
       {
         "english": "His wife Rachel smiled.",
-        "hebrew": "אשתו רחל חייכה."
+        "hebrew": "אִשְׁתּוֹ רָחֵל חִיְּיכָה."
       },
       {
         "english": "She said, \"We are here.\"",
-        "hebrew": "היא אמרה, \"אנחנו כאן.\""
+        "hebrew": "הִיא אָמְרָה, \"אֲנַחְנוּ כָּאן.\""
       },
       {
         "english": "His children hugged him.",
-        "hebrew": "ילדיו חיבקו אותו."
+        "hebrew": "יְלָדָיו חִיבְּקוּ אוֹתוֹ."
       },
       {
         "english": "Neighbors came to help.",
-        "hebrew": "השכנים באו לעזור."
+        "hebrew": "הַשְּׁכֵנִים בָּאוּ לַעֲזוֹר."
       },
       {
         "english": "They brought food and tea.",
-        "hebrew": "הם הביאו אוכל ותה."
+        "hebrew": "הֵם הֵבִיאוּ אוֹכֶל וְתֵה."
       },
       {
         "english": "David felt rich in love.",
-        "hebrew": "דוד הרגיש עשיר באהבה."
+        "hebrew": "דָּוִד הִרְגִּישׁ עָשִׁיר בְּאַהֲבָה."
       },
       {
         "english": "He realized what true wealth is.",
-        "hebrew": "הוא הבין מהו העושר האמיתי."
+        "hebrew": "הוּא הֵבִין מָהוּ הָעֹשֶׁר הָאֲמִיתִּי."
       },
       {
         "english": "Family and friends matter most.",
-        "hebrew": "משפחה וחברים הם החשובים ביותר."
+        "hebrew": "מִשְׁפָּחָה וַחֲבֵרִים הֵם הַחֲשׁוּבִים בְּיוֹתֵר."
       }
     ]
   },
   "vocabulary": [
     {
       "word": "coin",
-      "translation": "מטבע"
+      "translation": "מַטְבֵּעַ"
     },
     {
       "word": "search",
-      "translation": "לחפש"
+      "translation": "לְחַפֵּשׂ"
     },
     {
       "word": "drawer",
-      "translation": "מגירה"
+      "translation": "מְגֵירָה"
     },
     {
       "word": "garden",
-      "translation": "גינה"
+      "translation": "גִּינָּה"
     },
     {
       "word": "realize",
-      "translation": "להבין"
+      "translation": "לְהָבִין"
     },
     {
       "word": "wealth",
-      "translation": "עושר"
+      "translation": "עוֹשֶׁר"
     },
     {
       "word": "matter",
-      "translation": "חשוב"
+      "translation": "חָשׁוּב"
     }
   ],
   "comprehension_questions": [
     {
-      "question": "איפה חיפש דוד את המטבע?",
+      "question": "אֵיפֹה חִיפֵּשׂ דָּוִד אֶת הַמַּטְבֵּעַ?",
       "options": [
-        "רק בגינה",
-        "בבית ובגינה",
-        "רק במטבח"
+        "רַק בַּגִּינָּה",
+        "בַּבַּיִת וּבַגִּינָּה",
+        "רַק בַּמִּטְבָּח"
       ],
       "answer": 1
     },
     {
-      "question": "מי באו לעזור לדוד?",
+      "question": "מִי בָּאוּ לַעֲזוֹר לְדָוִד?",
       "options": [
-        "השכנים",
-        "אנשים זרים",
-        "אף אחד"
+        "הַשְּׁכֵנִים",
+        "אֲנָשִׁים זָרִים",
+        "אַף אֶחָד"
       ],
       "answer": 0
     },
     {
-      "question": "מה הבין דוד בסוף הסיפור?",
+      "question": "מָה הֵבִין דָּוִד בְּסוֹף הַסִּיפּוּר?",
       "options": [
-        "שהמטבע בגינה",
-        "שעושר אמיתי הוא כסף",
-        "שמשפחה וחברים הם החשובים"
+        "שֶׁהַמַּטְבֵּעַ בַּגִּינָּה",
+        "שֶׁעֹשֶׁר אֲמִיתִּי הוּא כֶּסֶף",
+        "שֶׁמִּשְׁפָּחָה וַחֲבֵרִים הֵם הַחֲשׁוּבִים"
       ],
       "answer": 2
     }
   ],
   "call_to_action": {
-    "text": "אהבתם את הסיפור? לחצו like והצטרפו אלינו לעוד!"
+    "text": "אָהַבְתֶּם אֶת הַסִּיפּוּר? לַחֲצוּ לַיְיק וְהִצְטָרְפוּ אֵלֵינוּ לְעוֹד!"
   }
 }
