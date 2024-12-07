@@ -360,15 +360,7 @@ class ImageCreator:
                 if highlight_option is not None:
                     highlight_line, highlight_option_idx = highlight_option
                     if line_idx == highlight_line and segment_idx == highlight_option_idx:
-                        # הוספת זוהר לטקסט
-                        glow = Image.new('RGBA', img.size, (0,0,0,0))
-                        glow_draw = ImageDraw.Draw(glow)
-                        glow_draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=GLOW_COLOR)
-                        glow = glow.filter(ImageFilter.GaussianBlur(radius=10))
-                        img = Image.alpha_composite(img.convert('RGBA'), glow)
-                        draw = ImageDraw.Draw(img)
-                        
-                        # החלפת רקע הצהוב בירוק בהיר
+                        # קודם מציירים את המלבן עם הצבע הבסיסי
                         text_bbox = draw.textbbox((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font)
                         padding = 10
                         draw.rectangle(
@@ -378,6 +370,14 @@ class ImageCreator:
                             ],
                             fill=HIGHLIGHT_COLOR_CORRECT
                         )
+                        
+                        # אחר כך מוסיפים את אפקט הזוהר
+                        glow = Image.new('RGBA', img.size, (0,0,0,0))
+                        glow_draw = ImageDraw.Draw(glow)
+                        glow_draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=GLOW_COLOR)
+                        glow = glow.filter(ImageFilter.GaussianBlur(radius=10))
+                        img = Image.alpha_composite(img.convert('RGBA'), glow)
+                        draw = ImageDraw.Draw(img)
                 draw.text((x_text, current_y + (line_height - height) / 2), segment_text, font=segment_font, fill=segment_color)
                 x_text += width
             current_y += line_height + LINE_SPACING_NORMAL
@@ -937,8 +937,8 @@ class VideoAssembler:
 
                         # קליפ השאלה עם כל התשובות
                         text_lines = [question] + options
-                        line_styles = ['sentence'] + ['translation'] * len(options)
-                        clip_question = self.video_creator.create_image_clip(text_lines, 'sentence', line_styles, background_image_path, process_background=True)
+                        line_styles = ['question'] + ['translation'] * len(options)
+                        clip_question = self.video_creator.create_image_clip(text_lines, 'question', line_styles, background_image_path, process_background=True)
                         audio_tasks = [(question, 'iw')] + [(opt, 'iw') for opt in options]
                         audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
                         audio_paths = [audio_results.get((text, 'iw'), "") for text in [question] + options]
@@ -956,7 +956,7 @@ class VideoAssembler:
                         # קליפ עם התשובה הנכונה מודגשת
                         correct_answer_text = options[correct_answer]
                         highlight_option = (1 + correct_answer, 0)  # line_idx = 1 + correct_answer, segment_idx = 0
-                        clip_answer = self.video_creator.create_image_clip(text_lines, 'sentence', line_styles, background_image_path, process_background=True, highlight_option=highlight_option)
+                        clip_answer = self.video_creator.create_image_clip(text_lines, 'question', line_styles, background_image_path, process_background=True, highlight_option=highlight_option)
 
                         # יצירת אודיו עבור "התשובה הנכונה היא..." והאופציה הנכונה
                         narration_text = "התשובה הנכונה היא"
@@ -974,6 +974,10 @@ class VideoAssembler:
                             audio_paths,
                             min_duration=3
                         )
+
+                        # הוספת השהייה של 2 שניות לאחר התשובה הנכונה
+                        clip_answer = clip_answer.set_duration(clip_answer.duration + 3)
+
                         clips.append(clip_answer)
 
                 # מעבר לקטע קריאה לפעולה
@@ -1068,7 +1072,8 @@ def main():
             "logo",
             "story_start",
             "story_end",
-            "story_intro"  # הוספת הסגנון החדש
+            "story_intro",
+            "question"
         }
 
         missing_styles = required_styles - set(style_definitions.keys())

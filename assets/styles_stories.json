@@ -2,8 +2,8 @@
     "line_spacing_normal": 50,
     "line_spacing_within_sentence": 30,
     "line_spacing_between_sentence_and_translation": 50,
-    "highlight_color_correct": [144, 238, 144, 180],
-    "glow_color": [144, 238, 144],
+    "highlight_color_correct": [173, 216, 230, 180],
+    "glow_color": [135, 206, 235],
     "overlay_color": [173, 216, 230, 150],
     "brightness_factor": 1.2,
     "blur_radius": 5,
@@ -157,10 +157,19 @@
     "story_intro": {
         "style_name": "story_intro",
         "bg_color": [245, 245, 255],
-        "text_color": [60, 60, 100],
+        "text_color": [13, 18, 53],
         "font_size": 65,
-        "font_path": "Rubik-Regular.ttf",
+        "font_path": "BonaNova-Regular.ttf",
         "outline_color": [255, 255, 255],
         "outline_width": 2
+    },
+    "question": {
+        "style_name": "question",
+        "bg_color": [255, 255, 255],
+        "text_color": [40, 40, 40],
+        "font_size": 75,
+        "font_path": "Rubik-Bold.ttf",
+        "outline_color": [255, 255, 255],
+        "outline_width": 1
     }
 }
