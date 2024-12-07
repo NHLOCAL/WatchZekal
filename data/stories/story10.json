@@ -1,128 +1,128 @@
 {
-  "video_title": "יום על הנהר",
-  "language_level": "קל",
-  "story_type": "סיפור הרפתקה",
+  "video_title": "יוֹם עַל הַנָּהָר",
+  "language_level": "קַל",
+  "story_type": "סִיפּוּר הַרְפַּתְקָה",
   "story": {
-    "title": "יום על הנהר",
+    "title": "יוֹם עַל הַנָּהָר",
     "text": [
       {
         "english": "Ariel, Yoav, and Matan were friends.",
-        "hebrew": "אריאל, יואב ומתן היו חברים."
+        "hebrew": "אֲרִיאֵל, יוֹאָב וּמַתָּן הָיוּ חֲבֵרִים."
       },
       {
         "english": "They decided to go fishing.",
-        "hebrew": "הם החליטו ללכת לדוג."
+        "hebrew": "הֵם הֶחְלִיטוּ לָלֶכֶת לָדוּג."
       },
       {
         "english": "They went to the river.",
-        "hebrew": "הם הלכו אל הנהר."
+        "hebrew": "הֵם הָלְכוּ אֶל הַנָּהָר."
       },
       {
         "english": "The sun was shining brightly.",
-        "hebrew": "השמש זרחה בעוצמה."
+        "hebrew": "הַשֶּׁמֶשׁ זָרְחָה בְּעָצְמָה."
       },
       {
         "english": "They set up their rods.",
-        "hebrew": "הם הציבו את החכות שלהם."
+        "hebrew": "הֵם הִצִּיבוּ אֶת הַחַכּוֹת שֶׁלָּהֶם."
       },
       {
         "english": "They waited patiently.",
-        "hebrew": "הם חיכו בסבלנות."
+        "hebrew": "הֵם חִכּוּ בְּסַבְלָנוּת."
       },
       {
         "english": "Yoav caught the first fish.",
-        "hebrew": "יואב תפס את הדג הראשון."
+        "hebrew": "יוֹאָב תָּפַס אֶת הַדָּג הָרִאשׁוֹן."
       },
       {
         "english": "\"Good job!\" said Ariel.",
-        "hebrew": "\"כל הכבוד!\" אמר אריאל."
+        "hebrew": "\"כָּל הַכָּבוֹד!\" אָמַר אֲרִיאֵל."
       },
       {
         "english": "They shared stories and jokes.",
-        "hebrew": "הם שיתפו סיפורים ובדיחות."
+        "hebrew": "הֵם שִׁיתְּפוּ סִפּוּרִים וּבְדִיחוֹת."
       },
       {
         "english": "Matan told a funny tale.",
-        "hebrew": "מתן סיפר סיפור מצחיק."
+        "hebrew": "מַתָּן סִיפֵּר סִפּוּר מַצְחִיק."
       },
       {
         "english": "They all laughed together.",
-        "hebrew": "הם צחקו יחד."
+        "hebrew": "הֵם צָחֲקוּ יַחַד."
       },
       {
         "english": "They enjoyed the peaceful day.",
-        "hebrew": "הם נהנו מהיום השקט."
+        "hebrew": "הֵם נֶהֱנוּ מֵהַיּוֹם הַשָּׁקֵט."
       },
       {
         "english": "They caught many fish.",
-        "hebrew": "הם תפסו הרבה דגים."
+        "hebrew": "הֵם תָּפְסוּ הַרְבֵּה דָּגִים."
       },
       {
         "english": "As the sun set, they packed up.",
-        "hebrew": "כששקעה השמש, הם ארזו."
+        "hebrew": "כַּאֲשֶׁר שָׁקְעָה הַשֶּׁמֶשׁ, הֵם אָרְזוּ."
       },
       {
         "english": "They went home happily.",
-        "hebrew": "הם חזרו הביתה בשמחה."
+        "hebrew": "הֵם חָזְרוּ הַבַּיְתָה בְּשִׂמְחָה."
       }
     ]
   },
   "vocabulary": [
     {
       "word": "fishing",
-      "translation": "דיג"
+      "translation": "דַּיִג"
     },
     {
       "word": "river",
-      "translation": "נהר"
+      "translation": "נָהָר"
     },
     {
       "word": "rod",
-      "translation": "חכה"
+      "translation": "חַכָּה"
     },
     {
       "word": "patiently",
-      "translation": "בסבלנות"
+      "translation": "בְּסַבְלָנוּת"
     },
     {
       "word": "joke",
-      "translation": "בדיחה"
+      "translation": "בְּדִיחָה"
     },
     {
       "word": "peaceful",
-      "translation": "שקט"
+      "translation": "שָׁקֵט"
     }
   ],
   "comprehension_questions": [
     {
-      "question": "לאן הלכו החברים?",
+      "question": "לְאָן הָלְכוּ הַחֲבֵרִים?",
       "options": [
-        "ליער",
-        "לנהר לדוג",
-        "לשוק"
+        "לַיַּעַר",
+        "לַנָּהָר לָדוּג",
+        "לַשּׁוּק"
       ],
       "answer": 1
     },
     {
-      "question": "מי תפס את הדג הראשון?",
+      "question": "מִי תָּפַס אֶת הַדָּג הָרִאשׁוֹן?",
       "options": [
-        "אריאל",
-        "יואב",
-        "מתן"
+        "אֲרִיאֵל",
+        "יוֹאָב",
+        "מַתָּן"
       ],
       "answer": 1
     },
     {
-      "question": "מה עשו החברים במהלך היום?",
+      "question": "מָה עָשׂוּ הַחֲבֵרִים בְּמַהֲלַךְ הַיּוֹם?",
       "options": [
-        "רבו ביניהם",
-        "שיתפו סיפורים וצחקו",
-        "ישנו"
+        "רָבוּ בֵּינֵיהֶם",
+        "שִׁיתְּפוּ סִפּוּרִים וְצָחֲקוּ",
+        "יָשְׁנוּ"
       ],
       "answer": 1
     }
   ],
   "call_to_action": {
-    "text": "הירשמו עכשיו כדי לא לפספס את סיפור ההרפתקה הבא שלנו!"
+    "text": "הֵרָשְׁמוּ עַכְשָׁיו כְּדֵי לֹא לְפַסְפֵּס אֶת סִפּוּר הַהַרְפַּתְקָה הַבָּא שֶׁלָּנוּ!"
   }
 }

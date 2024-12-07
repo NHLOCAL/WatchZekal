@@ -1,128 +1,128 @@
 {
-  "video_title": "טוב שכן טוב",
-  "language_level": "קל",
-  "story_type": "סיפור מרגש",
+  "video_title": "טוֹב שָׁכֵן טוֹב",
+  "language_level": "קַל",
+  "story_type": "סִפּוּר מְרַגֵּשׁ",
   "story": {
-    "title": "טוב שכן טוב",
+    "title": "טוֹב שָׁכֵן טוֹב",
     "text": [
       {
         "english": "Yaakov had a busy life.",
-        "hebrew": "ליעקב היו חיים עמוסים."
+        "hebrew": "לְיַעֲקֹב הָיוּ חַיִּים עֲמוּסִים."
       },
       {
         "english": "His elderly neighbor was Chaim.",
-        "hebrew": "שכנו המבוגר היה חיים."
+        "hebrew": "שְׁכֵנוֹ הַמְבוּגָּר הָיָה חַיִּים."
       },
       {
         "english": "Chaim needed help at home.",
-        "hebrew": "חיים נזקק לעזרה בבית."
+        "hebrew": "חַיִּים נִזְקַק לְעֶזְרָה בַּבַּיִת."
       },
       {
         "english": "Yaakov decided to assist him.",
-        "hebrew": "יעקב החליט לעזור לו."
+        "hebrew": "יַעֲקֹב הֶחְלִיט לְסַיֵּעַ לוֹ."
       },
       {
         "english": "He cleaned Chaim's garden.",
-        "hebrew": "הוא ניקה את הגינה של חיים."
+        "hebrew": "הוּא נִיקָּה אֶת הַגִּנָּה שֶׁל חַיִּים."
       },
       {
         "english": "He fixed broken things.",
-        "hebrew": "הוא תיקן דברים שבורים."
+        "hebrew": "הוּא תִּקֵּן דְּבָרִים שְׁבוּרִים."
       },
       {
         "english": "They talked and shared stories.",
-        "hebrew": "הם דיברו ושיתפו סיפורים."
+        "hebrew": "הֵם דִּבְּרוּ וְשִׁיתְּפוּ סִפּוּרִים."
       },
       {
         "english": "A deep friendship grew.",
-        "hebrew": "חברות עמוקה התפתחה."
+        "hebrew": "חֲבֵרוּת עֲמוּקָה הִתְפַּתְּחָה."
       },
       {
         "english": "Yaakov felt happy inside.",
-        "hebrew": "יעקב הרגיש שמח מבפנים."
+        "hebrew": "יַעֲקֹב הֵרְגִּישׁ שָׂמֵחַ מִבִּפְנִים."
       },
       {
         "english": "He learned the power of kindness.",
-        "hebrew": "הוא למד את כוח החסד."
+        "hebrew": "הוּא לָמַד אֶת כֹּחַ הַחֶסֶד."
       },
       {
         "english": "The community noticed his actions.",
-        "hebrew": "הקהילה שמה לב למעשיו."
+        "hebrew": "הַקְּהִלָּה שָׂמָה לֵב לְמַעֲשָׂיו."
       },
       {
         "english": "Others began to help too.",
-        "hebrew": "אחרים התחילו לעזור גם כן."
+        "hebrew": "אַחֵרִים הִתְחִילוּ גַּם הֵם לַעֲזֹר."
       },
       {
         "english": "Together, they supported each other.",
-        "hebrew": "ביחד, הם תמכו זה בזה."
+        "hebrew": "בְּיַחַד, הֵם תָּמְכוּ זֶה בָּזֶה."
       },
       {
         "english": "Yaakov understood community is important.",
-        "hebrew": "יעקב הבין שהקהילה חשובה."
+        "hebrew": "יַעֲקֹב הֵבִין שֶׁהַקְּהִלָּה חֲשׁוּבָה."
       },
       {
         "english": "He continued to help always.",
-        "hebrew": "הוא המשיך לעזור תמיד."
+        "hebrew": "הוּא הִמְשִׁיךְ לַעֲזֹר תָּמִיד."
       }
     ]
   },
   "vocabulary": [
     {
       "word": "neighbor",
-      "translation": "שכן"
+      "translation": "שָׁכֵן"
     },
     {
       "word": "assist",
-      "translation": "לסייע"
+      "translation": "לְסַיֵּעַ"
     },
     {
       "word": "friendship",
-      "translation": "חברות"
+      "translation": "חֲבֵרוּת"
     },
     {
       "word": "kindness",
-      "translation": "חסד"
+      "translation": "חֶסֶד"
     },
     {
       "word": "community",
-      "translation": "קהילה"
+      "translation": "קְהִלָּה"
     },
     {
       "word": "support",
-      "translation": "לתמוך"
+      "translation": "לִתְמֹךְ"
     }
   ],
   "comprehension_questions": [
     {
-      "question": "מי היה חיים?",
+      "question": "מִי הָיָה חַיִּים?",
       "options": [
-        "אביו של יעקב",
-        "שכנו המבוגר של יעקב",
-        "אחיו של יעקב"
+        "אָבִיו שֶׁל יַעֲקֹב",
+        "שְׁכֵנוֹ הַמְבוּגָּר שֶׁל יַעֲקֹב",
+        "אָחִיו שֶׁל יַעֲקֹב"
       ],
       "answer": 1
     },
     {
-      "question": "מה עשה יעקב למען חיים?",
+      "question": "מָה עָשָׂה יַעֲקֹב לְמַעַן חַיִּים?",
       "options": [
-        "התעלם ממנו",
-        "עזר לו בבית",
-        "עבר דירה"
+        "הִתְעַלֵּם מִמֶּנּוּ",
+        "סִיֵּעַ לוֹ בַּבַּיִת",
+        "עָבַר דִּירָה"
       ],
       "answer": 1
     },
     {
-      "question": "מה למד יעקב מהחוויה?",
+      "question": "מָה לָמַד יַעֲקֹב מֵהַחֲוָיָה?",
       "options": [
-        "שחסד מחזק קהילה",
-        "שאין זמן לעזור",
-        "שחיים אינו נחמד"
+        "שֶׁחֶסֶד מְחַזֵּק אֶת הַקְּהִלָּה",
+        "שֶׁאֵין זְמַן לַעֲזֹר",
+        "שֶׁחַיִּים אֵינוֹ נֶחְמָד"
       ],
       "answer": 0
     }
   ],
   "call_to_action": {
-    "text": "שתפו את הסיפור כדי להפיץ את המסר הטוב!"
+    "text": "שַׁתְּפוּ אֶת הַסִּיפּוּר כְּדֵי לְהָפִיץ אֶת הַמֶּסֶר הַטּוֹב!"
   }
 }

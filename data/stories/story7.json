@@ -3,7 +3,7 @@
   "language_level": "קַל",
   "story_type": "מָשָׁל קָצָר",
   "story": {
-    "title": "הָעוֹרֵב הַפִּקֵּחַ",
+    "title": "הָעוֹרֵב הַפִּיקֵּחַ",
     "text": [
       {
         "english": "On a hot day, a crow was thirsty.",
@@ -31,11 +31,11 @@
       },
       {
         "english": "He dropped them into the pitcher.",
-        "hebrew": "הוּא זָרַק אוֹתָם לְתוֹךְ הַכַּד."
+        "hebrew": "הוּא זָרַק אוֹתָן לְתוֹךְ הַכַּד."
       },
       {
         "english": "The water level rose.",
-        "hebrew": "מַפְלַס הַמַּיִם עָלָה."
+        "hebrew": "מִפְלַס הַמַּיִם עָלָה."
       },
       {
         "english": "He could drink now.",

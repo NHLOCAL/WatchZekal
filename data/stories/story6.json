@@ -1,132 +1,132 @@
 {
-  "video_title": "העץ הקטן",
-  "language_level": "קל",
-  "story_type": "אלגוריה על הטבע",
+  "video_title": "הַשָּׁתִיל הַקָּטָן",
+  "language_level": "קַל",
+  "story_type": "אַלְגוֹרְיָה עַל הַטֶּבַע",
   "story": {
-    "title": "העץ הקטן",
+    "title": "הַשָּׁתִיל הַקָּטָן",
     "text": [
       {
         "english": "A small sapling was impatient.",
-        "hebrew": "שתיל קטן היה חסר סבלנות."
+        "hebrew": "שָּׁתִיל קָטָן הָיָה חֲסַר סַבְלָנוּת."
       },
       {
         "english": "It wanted to be big.",
-        "hebrew": "הוא רצה להיות גדול."
+        "hebrew": "הוּא רָצָה לִהְיוֹת גָּדוֹל."
       },
       {
         "english": "It envied the tall trees.",
-        "hebrew": "הוא קנא בעצים הגבוהים."
+        "hebrew": "הוּא קִנֵּא בָּעֵצִים הַגְּבוֹהִים."
       },
       {
         "english": "The wind whispered softly.",
-        "hebrew": "הרוח לחשה חרש."
+        "hebrew": "הָרוּחַ לָחֲשָׁה חֶרֶשׁ."
       },
       {
         "english": "\"Grow slowly,\" the wind said.",
-        "hebrew": "\"גדל לאט,\" אמרה הרוח."
+        "hebrew": "\"גְּדַל לְאַט,\" אָמְרָה הָרוּחַ."
       },
       {
         "english": "The rain gently fell.",
-        "hebrew": "הגשם ירד בעדינות."
+        "hebrew": "הַגֶּשֶׁם יָרַד בְּעַדִינוּת."
       },
       {
         "english": "The sapling drank the water.",
-        "hebrew": "השתיל שתה את המים."
+        "hebrew": "הַשָּׁתִיל שָׁתָה אֶת הַמַּיִם."
       },
       {
         "english": "Seasons passed over time.",
-        "hebrew": "עונות חלפו עם הזמן."
+        "hebrew": "עוֹנוֹת חָלְפוּ עִם הַזְּמַן."
       },
       {
         "english": "The sapling became a tree.",
-        "hebrew": "השתיל הפך לעץ."
+        "hebrew": "הַשָּׁתִיל נַעֲשָׂה לְעֵץ."
       },
       {
         "english": "It provided shade and shelter.",
-        "hebrew": "הוא סיפק צל ומחסה."
+        "hebrew": "הוּא סִפֵּק צֵל וּמַחְסֶה."
       },
       {
         "english": "Animals rested under it.",
-        "hebrew": "חיות נחו תחתיו."
+        "hebrew": "חַיּוֹת נָחוּ תַחְתָּיו."
       },
       {
         "english": "The tree understood patience.",
-        "hebrew": "העץ הבין מהי סבלנות."
+        "hebrew": "הָעֵץ הֵבִין מַהִי סַבְלָנוּת."
       },
       {
         "english": "Growth takes time and care.",
-        "hebrew": "צמיחה דורשת זמן וטיפוח."
+        "hebrew": "צְמִיחָה דּוֹרֶשֶׁת זְמַן וְטִפּוּחַ."
       },
       {
         "english": "It was grateful to nature.",
-        "hebrew": "הוא היה אסיר תודה לטבע."
+        "hebrew": "הוּא הָיָה אָסִיר תּוֹדָה לַטֶּבַע."
       },
       {
         "english": "The tree stood strong and proud.",
-        "hebrew": "העץ עמד חזק וגאה."
+        "hebrew": "הָעֵץ עָמַד חָזָק וְגֵאֶה."
       }
     ]
   },
   "vocabulary": [
     {
       "word": "sapling",
-      "translation": "שתיל"
+      "translation": "שָּׁתִיל"
     },
     {
       "word": "impatient",
-      "translation": "חסר סבלנות"
+      "translation": "חֲסַר סַבְלָנוּת"
     },
     {
       "word": "envy",
-      "translation": "לקנא"
+      "translation": "לְקַנֵּא"
     },
     {
       "word": "whisper",
-      "translation": "ללחוש"
+      "translation": "לִלְחוֹשׁ"
     },
     {
       "word": "shelter",
-      "translation": "מחסה"
+      "translation": "מַחְסֶה"
     },
     {
       "word": "grateful",
-      "translation": "אסיר תודה"
+      "translation": "אָסִיר תּוֹדָה"
     },
-	{
-	  "word": "growth",
-	  "translation": "צמיחה"
-	}
+    {
+      "word": "growth",
+      "translation": "צְמִיחָה"
+    }
   ],
   "comprehension_questions": [
     {
-      "question": "מה רצה השתיל בתחילת הסיפור?",
+      "question": "מָה רָצָה הַשָּׁתִיל בִּתְחִלַּת הַסִּיפּוּר?",
       "options": [
-        "להישאר קטן",
-        "להיות גדול כמו העצים",
-        "לעזוב את היער"
+        "לְהִישָּׁאֵר קָטָן",
+        "לִהְיוֹת גָּדוֹל כְּמוֹ הָעֵצִים",
+        "לַעֲזוֹב אֶת הַיַּעַר"
       ],
       "answer": 1
     },
     {
-      "question": "מה למד העץ בסוף?",
+      "question": "מָה לָמַד הָעֵץ בַּסּוֹף?",
       "options": [
-        "שסבלנות חשובה לצמיחה",
-        "שמהירות היא המפתח",
-        "שגשם אינו טוב"
+        "שֶׁסַּבְלָנוּת חֲשׁוּבָה לַצְמִיחָה",
+        "שֶׁמְהִירוּת הִיא הַמַּפְתֵּחַ",
+        "שֶׁגֶּשֶׁם אֵינוֹ טוֹב"
       ],
       "answer": 0
     },
     {
-      "question": "מה סיפק העץ כשהוא גדל?",
+      "question": "מָה סִפֵּק הָעֵץ כְּשֶׁהוּא גָּדַל?",
       "options": [
-        "פירות",
-        "מחסה וצל",
-        "פרחים יפים"
+        "פֵּרוֹת",
+        "מַחְסֶה וְצֵל",
+        "פְּרָחִים יָפִים"
       ],
       "answer": 1
     }
   ],
   "call_to_action": {
-    "text": "התחברו לטבע ולמדו עוד איתנו! הירשמו עכשיו."
+    "text": "הִתְחַבְּרוּ לַטֶּבַע וְלִמְדוּ עוֹד אִתָּנוּ! הֵרָשְׁמוּ עַכְשָׁיו."
   }
 }

@@ -1,128 +1,128 @@
 {
-  "video_title": "ביקור בשוק",
-  "language_level": "קל",
-  "story_type": "סיפור יומיומי",
+  "video_title": "בִּקּוּר בַּשּׁוּק",
+  "language_level": "קַל",
+  "story_type": "סִפּוּר יוֹמְיוֹמִי",
   "story": {
-    "title": "ביקור בשוק",
+    "title": "בִּקּוּר בַּשּׁוּק",
     "text": [
       {
         "english": "Avraham went to the market.",
-        "hebrew": "אברהם הלך לשוק."
+        "hebrew": "אַבְרָהָם הָלַךְ לַשּׁוּק."
       },
       {
         "english": "He needed food for his family.",
-        "hebrew": "הוא היה צריך אוכל למשפחתו."
+        "hebrew": "הוּא הָיָה צָרִיךְ אוֹכֶל לְמִשְׁפַּחְתּוֹ."
       },
       {
         "english": "He met a trader named Eliyahu.",
-        "hebrew": "הוא פגש סוחר בשם אליהו."
+        "hebrew": "הוּא פָּגַשׁ סוֹחֵר בְּשֵׁם אֵלִיָּהוּ."
       },
       {
         "english": "Eliyahu offered a cheap deal.",
-        "hebrew": "אליהו הציע עסקה זולה."
+        "hebrew": "אֵלִיָּהוּ הִצִּיעַ עִסְקָה זוֹלָה."
       },
       {
         "english": "It seemed too good to be true.",
-        "hebrew": "זה נראה טוב מכדי להיות אמיתי."
+        "hebrew": "זֶה נִרְאָה טוֹב מִכְּדֵי לִהְיוֹת אֲמִתִּי."
       },
       {
         "english": "Avraham thought carefully.",
-        "hebrew": "אברהם חשב היטב."
+        "hebrew": "אַבְרָהָם חָשַׁב הֵיטֵב."
       },
       {
         "english": "He decided to be honest.",
-        "hebrew": "הוא החליט להיות ישר."
+        "hebrew": "הוּא הֶחְלִיט לִהְיוֹת יָשָׁר."
       },
       {
         "english": "\"No, thank you,\" he said.",
-        "hebrew": "\"לא, תודה,\" הוא אמר."
+        "hebrew": "\"לֹא, תּוֹדָה,\" הוּא אָמַר."
       },
       {
         "english": "Eliyahu smiled at him.",
-        "hebrew": "אליהו חייך אליו."
+        "hebrew": "אֵלִיָּהוּ חִיֵּךְ אֵלָיו."
       },
       {
         "english": "\"You are an honest man,\" Eliyahu said.",
-        "hebrew": "\"אתה איש ישר,\" אמר אליהו."
+        "hebrew": "\"אַתָּה אִישׁ יָשָׁר,\" אָמַר אֵלִיָּהוּ."
       },
       {
         "english": "He offered a fair price.",
-        "hebrew": "הוא הציע מחיר הוגן."
+        "hebrew": "הוּא הִצִּיעַ מְחִיר הוֹגֵן."
       },
       {
         "english": "Avraham bought the goods.",
-        "hebrew": "אברהם קנה את המוצרים."
+        "hebrew": "אַבְרָהָם קָנָה אֶת הַמּוּצָרִים."
       },
       {
         "english": "He learned honesty is important.",
-        "hebrew": "הוא למד שיושר הוא חשוב."
+        "hebrew": "הוּא לָמַד שֶׁיּוֹשֶׁר הוּא דָּבָר חָשׁוּב."
       },
       {
         "english": "Avraham returned home, happy.",
-        "hebrew": "אברהם חזר הביתה שמח."
+        "hebrew": "אַבְרָהָם חָזַר הַבַּיְתָה שָׂמֵחַ."
       },
       {
         "english": "His family was proud of him.",
-        "hebrew": "משפחתו הייתה גאה בו."
+        "hebrew": "מִשְׁפַּחְתּוֹ הָיְתָה גֵּאָה בּוֹ."
       }
     ]
   },
   "vocabulary": [
     {
       "word": "market",
-      "translation": "שוק"
+      "translation": "שׁוּק"
     },
     {
       "word": "trader",
-      "translation": "סוחר"
+      "translation": "סוֹחֵר"
     },
     {
       "word": "deal",
-      "translation": "עסקה"
+      "translation": "עִסְקָה"
     },
     {
       "word": "honest",
-      "translation": "ישר"
+      "translation": "יָשָׁר"
     },
     {
       "word": "goods",
-      "translation": "מוצרים"
+      "translation": "מוּצָרִים"
     },
     {
       "word": "fair",
-      "translation": "הוגן"
+      "translation": "הוֹגֵן"
     }
   ],
   "comprehension_questions": [
     {
-      "question": "למה הלך אברהם לשוק?",
+      "question": "לָמָּה הָלַךְ אַבְרָהָם לַשּׁוּק?",
       "options": [
-        "לקנות בגדים",
-        "לקנות אוכל למשפחתו",
-        "לפגוש חברים"
+        "לִקְנוֹת בְּגָדִים",
+        "לִקְנוֹת אוֹכֶל לְמִשְׁפַּחְתּוֹ",
+        "לִפְגֹּשׁ חֲבֵרִים"
       ],
       "answer": 1
     },
     {
-      "question": "מה הציע אליהו לאברהם?",
+      "question": "מָה הִצִּיעַ אֵלִיָּהוּ לְאַבְרָהָם?",
       "options": [
-        "עסקה זולה",
-        "עבודה חדשה",
-        "טיול"
+        "עִסְקָה זוֹלָה",
+        "עֲבוֹדָה חֲדָשָׁה",
+        "טִיּוּל"
       ],
       "answer": 0
     },
     {
-      "question": "מה למד אברהם בסיפור?",
+      "question": "מָה לָמַד אַבְרָהָם בַּסִּיפּוּר?",
       "options": [
-        "שכסף חשוב",
-        "שיושר חשוב",
-        "ששוק הוא מקום מסוכן"
+        "שֶׁכֶּסֶף חָשׁוּב",
+        "שֶׁיּוֹשֶׁר חָשׁוּב",
+        "שֶׁהַשּׁוּק מָקוֹם מְסוּכָּן"
       ],
       "answer": 1
     }
   ],
   "call_to_action": {
-    "text": "אל תשכחו לשתף את הסיפור עם חברים!"
+    "text": "אַל תִּשְׁכְּחוּ לְשַׁתֵּף אֶת הַסִּיפּוּר עִם חֲבֵרִים!"
   }
 }

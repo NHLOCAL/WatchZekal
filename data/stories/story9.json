@@ -1,128 +1,128 @@
 {
-  "video_title": "הסוד של האופה",
-  "language_level": "קל",
-  "story_type": "סיפור מעורר השראה",
+  "video_title": "הַסּוֹד שֶׁל הָאוֹפֶה",
+  "language_level": "קַל",
+  "story_type": "סִיפּוּר מְעוֹרֵר הַשְׁרָאָה",
   "story": {
-    "title": "הסוד של האופה",
+    "title": "הַסּוֹד שֶׁל הָאוֹפֶה",
     "text": [
       {
         "english": "Nahum was a famous baker.",
-        "hebrew": "נחום היה אופה מפורסם."
+        "hebrew": "נַחוּם הָיָה אוֹפֶה מְפוּרְסָם."
       },
       {
         "english": "His bread was delicious.",
-        "hebrew": "הלחם שלו היה טעים."
+        "hebrew": "הַלֶּחֶם שֶׁלוֹ הָיָה טָעִים."
       },
       {
         "english": "People asked for his secret.",
-        "hebrew": "אנשים שאלו על סודו."
+        "hebrew": "אֲנָשִׁים שָׁאֲלוּ עַל סוֹדוֹ."
       },
       {
         "english": "\"Is it a special ingredient?\" they asked.",
-        "hebrew": "\"האם זה מרכיב מיוחד?\" הם שאלו."
+        "hebrew": "\"הַאִם זֶה מַרְכִּיב מְיוּחָד?\" הֵם שָׁאֲלוּ."
       },
       {
         "english": "Nahum smiled kindly.",
-        "hebrew": "נחום חייך בחביבות."
+        "hebrew": "נַחוּם חִיֵּךְ בְּחַבִיבוּת."
       },
       {
         "english": "\"I use simple ingredients,\" he said.",
-        "hebrew": "\"אני משתמש רק במרכיבים פשוטים,\" הוא אמר."
+        "hebrew": "\"אֲנִי מִשְׁתַּמֵּשׁ רַק בְּמַרְכִּיבִים פְּשׁוּטִים,\" הוּא אָמַר."
       },
       {
         "english": "\"The secret is love and care.\"",
-        "hebrew": "\"הסוד הוא אהבה ומסירות.\""
+        "hebrew": "\"הַסּוֹד הוּא אַהֲבָה וּמְסִירוּת.\""
       },
       {
         "english": "He kneaded the dough gently.",
-        "hebrew": "הוא לש את הבצק בעדינות."
+        "hebrew": "הוּא לָשׁ אֶת הַבָּצֵק בְּעַדִינוּת."
       },
       {
         "english": "He baked with patience.",
-        "hebrew": "הוא אפה בסבלנות."
+        "hebrew": "הוּא אָפָה בְּסַבְלָנוּת."
       },
       {
         "english": "His passion made the bread special.",
-        "hebrew": "התשוקה שלו הפכה את הלחם למיוחד."
+        "hebrew": "הַתְּשׁוּקָה שֶׁלוֹ הָפְכָה אֶת הַלֶּחֶם לְמְיוּחָד."
       },
       {
         "english": "People tasted the difference.",
-        "hebrew": "אנשים טעמו את ההבדל."
+        "hebrew": "אֲנָשִׁים טָעֲמוּ אֶת הַהֶבְדֵּל."
       },
       {
         "english": "They appreciated his work.",
-        "hebrew": "הם העריכו את עבודתו."
+        "hebrew": "הֵם הֶעֱרִיכוּ אֶת עֲבוֹדָתוֹ."
       },
       {
         "english": "Nahum taught others to bake.",
-        "hebrew": "נחום לימד אחרים לאפות."
+        "hebrew": "נַחוּם לִימֵּד אֲחֵרִים לֶאֱפוֹת."
       },
       {
         "english": "He shared his love for baking.",
-        "hebrew": "הוא שיתף את אהבתו לאפייה."
+        "hebrew": "הוּא שִׁיתֵּף אֶת אַהֲבָתוֹ לָאֲפִיָּה."
       },
       {
         "english": "The town was grateful to him.",
-        "hebrew": "העיר הייתה אסירת תודה לו."
+        "hebrew": "הָעִיר הָיְתָה אֲסִירַת תּוֹדָה לוֹ."
       }
     ]
   },
   "vocabulary": [
     {
       "word": "baker",
-      "translation": "אופה"
+      "translation": "אוֹפֶה"
     },
     {
       "word": "delicious",
-      "translation": "טעים"
+      "translation": "טָעִים"
     },
     {
       "word": "ingredient",
-      "translation": "מרכיב"
+      "translation": "מַרְכִּיב"
     },
     {
       "word": "knead",
-      "translation": "ללוש"
+      "translation": "לָלוּשׁ"
     },
     {
       "word": "passion",
-      "translation": "תשוקה"
+      "translation": "תְּשׁוּקָה"
     },
     {
       "word": "appreciate",
-      "translation": "להעריך"
+      "translation": "לְהַעֲרִיךְ"
     }
   ],
   "comprehension_questions": [
     {
-      "question": "מה היה הסוד של נחום?",
+      "question": "מָה הָיָה הַסּוֹד שֶׁל נַחוּם?",
       "options": [
-        "מרכיב סודי",
-        "אהבה ותשומת לב",
-        "תנור מיוחד"
+        "מַרְכִּיב סוֹדִי",
+        "אַהֲבָה וְתְשׁוּמֶת לֵב",
+        "תַּנּוּר מְיוּחָד"
       ],
       "answer": 1
     },
     {
-      "question": "מה עשה נחום עם אחרים?",
+      "question": "מָה עָשָׂה נַחוּם עִם אֲחֵרִים?",
       "options": [
-        "לימד אותם לאפות",
-        "שמר את הסוד לעצמו",
-        "התעלם מהם"
+        "לִימֵּד אוֹתָם לֶאֱפוֹת",
+        "שָׁמַר אֶת הַסּוֹד לְעַצְמוֹ",
+        "הִתְעַלֵּם מֵהֶם"
       ],
       "answer": 0
     },
     {
-      "question": "איך הרגישו האנשים כלפי נחום?",
+      "question": "אֵיךְ הִרְגִּישׁוּ הָאֲנָשִׁים כְּלַפֵּי נַחוּם?",
       "options": [
-        "כעסו עליו",
-        "היו אדישים",
-        "העריכו והודו לו"
+        "כָּעֲסוּ עָלָיו",
+        "הָיוּ אֲדִישִׁים",
+        "הֶעֱרִיכוּ וְהוֹדוּ לוֹ"
       ],
       "answer": 2
     }
   ],
   "call_to_action": {
-    "text": "להשראה יומית, עקבו אחר הערוץ שלנו!"
+    "text": "לְהַשְׁרָאָה יוֹמִית, עִקְבוּ אַחַר הָעֲרוּץ שֶׁלָנוּ!"
   }
 }

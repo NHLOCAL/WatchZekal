@@ -1,128 +1,128 @@
 {
-  "video_title": "הרועה והכבשה האבודה",
-  "language_level": "קל",
-  "story_type": "אלגוריה פשוטה",
+  "video_title": "הָרוֹעֶה וְהַכִּבְשָׂה הָאֲבוּדָה",
+  "language_level": "קַל",
+  "story_type": "אַלְגוֹרְיָה פְּשׁוּטָה",
   "story": {
-    "title": "הרועה והכבשה האבודה",
+    "title": "הָרוֹעֶה וְהַכִּבְשָׂה הָאֲבוּדָה",
     "text": [
       {
         "english": "Young Elhanan was a shepherd.",
-        "hebrew": "אלחנן הצעיר היה רועה צאן."
+        "hebrew": "אֶלְחָנָן הַצָּעִיר הָיָה רוֹעֶה צֹאן."
       },
       {
         "english": "He cared for many sheep.",
-        "hebrew": "הוא טיפל בכבשים רבות."
+        "hebrew": "הוּא טִיפֵּל בִּכְבָשִׂים רַבּוֹת."
       },
       {
         "english": "One day, a sheep was missing.",
-        "hebrew": "יום אחד, כבשה נעלמה."
+        "hebrew": "יוֹם אֶחָד, כִּבְשָׂה אַחַת נֶעֶלְמָה."
       },
       {
         "english": "Elhanan left the flock.",
-        "hebrew": "אלחנן עזב את העדר."
+        "hebrew": "אֶלְחָנָן עָזַב אֶת הָעֵדֶר."
       },
       {
         "english": "He searched in the mountains.",
-        "hebrew": "הוא חיפש בהרים."
+        "hebrew": "הוּא חִפֵּשׂ בֶּהָרִים."
       },
       {
         "english": "He shouted loudly",
-        "hebrew": "הוא קרא בקול רם."
+        "hebrew": "הוּא קָרָא בְּקוֹל רָם."
       },
       {
         "english": "He found the sheep trapped.",
-        "hebrew": "הוא מצא את הכבשה לכודה."
+        "hebrew": "הוּא מָצָא אֶת הַכִּבְשָׂה לְכוּדָה."
       },
       {
         "english": "It was stuck between rocks.",
-        "hebrew": "היא הייתה תקועה בין סלעים."
+        "hebrew": "הִיא הָיְתָה תְּקוּעָה בֵּין סְלָעִים."
       },
       {
         "english": "He freed the sheep carefully.",
-        "hebrew": "הוא שחרר את הכבשה בזהירות."
+        "hebrew": "הוּא שִׁחְרֵר אֶת הַכִּבְשָׂה בְּזְהִירוּת."
       },
       {
         "english": "He returned to the flock.",
-        "hebrew": "הוא חזר לעדר."
+        "hebrew": "הוּא חָזַר לָעֵדֶר."
       },
       {
         "english": "Elhanan felt responsible and happy.",
-        "hebrew": "אלחנן הרגיש אחראי ושמח."
+        "hebrew": "אֶלְחָנָן הִרְגִּישׁ אַחְרָאִי וְשָׂמֵחַ."
       },
       {
         "english": "He cared for every sheep.",
-        "hebrew": "הוא דאג לכל כבשה."
+        "hebrew": "הוּא דָּאַג לְכָל כִּבְשָׂה."
       },
       {
         "english": "He learned the value of care.",
-        "hebrew": "הוא למד את ערך הדאגה."
+        "hebrew": "הוּא לָמַד אֶת עֶרֶךְ הַדְּאָגָה."
       },
       {
         "english": "Others admired his dedication.",
-        "hebrew": "אחרים העריצו את מסירותו."
+        "hebrew": "אֲחֵרִים הֶעֱרִיצוּ אֶת מְסִירוּתוֹ."
       },
       {
         "english": "He became a wise shepherd.",
-        "hebrew": "הוא הפך לרועה חכם."
+        "hebrew": "הוּא נַעֲשָׂה רוֹעֶה חָכָם."
       }
     ]
   },
   "vocabulary": [
     {
       "word": "shepherd",
-      "translation": "רועה צאן"
+      "translation": "רוֹעֶה צֹאן"
     },
     {
       "word": "flock",
-      "translation": "עדר"
+      "translation": "עֵדֶר"
     },
     {
       "word": "missing",
-      "translation": "נעדר"
+      "translation": "נֶעְדָּר"
     },
     {
       "word": "search",
-      "translation": "לחפש"
+      "translation": "לְחַפֵּשׂ"
     },
     {
       "word": "trap",
-      "translation": "ללכוד"
+      "translation": "לִלְכּוֹד"
     },
     {
       "word": "responsible",
-      "translation": "אחראי"
+      "translation": "אַחְרָאִי"
     }
   ],
   "comprehension_questions": [
     {
-      "question": "מה עשה אלחנן כשהכבשה נעלמה?",
+      "question": "מָה עָשָׂה אֶלְחָנָן כְּשֶׁהַכִּבְשָׂה נֶעֶלְמָה?",
       "options": [
-        "התעלם ממנה",
-        "חיפש אותה בהרים",
-        "חזר הביתה"
+        "הִתְעַלֵּם מִמֶּנָּה",
+        "חִפֵּשׂ אוֹתָהּ בֶּהָרִים",
+        "חָזַר הַבַּיְתָה"
       ],
       "answer": 1
     },
     {
-      "question": "איפה מצא אלחנן את הכבשה?",
+      "question": "אֵיפֹה מָצָא אֶלְחָנָן אֶת הַכִּבְשָׂה?",
       "options": [
-        "בין הסלעים",
-        "בכפר",
-        "ביער"
+        "בֵּין הַסְּלָעִים",
+        "בַּכְּפָר",
+        "בַּיַּעַר"
       ],
       "answer": 0
     },
     {
-      "question": "מה למד אלחנן בסיפור?",
+      "question": "מָה לָמַד אֶלְחָנָן בַּסִּיפּוּר?",
       "options": [
-        "שכבשים אינן חשובות",
-        "את ערך הדאגה והאחריות",
-        "שחיפוש הוא בזבוז זמן"
+        "שֶׁכְּבָשִׂים אֵינָן חֲשׁוּבוֹת",
+        "אֶת עֶרֶךְ הַדְּאָגָה וְהָאַחְרָיוּת",
+        "שֶׁחִפּוּשׂ הוּא בִּזְבּוּז זְמַן"
       ],
       "answer": 1
     }
   ],
   "call_to_action": {
-    "text": "למדתם משהו חדש? הירשמו לסיפורים נוספים!"
+    "text": "לְמַדְתֶּם מַשֶּׁהוּ חָדָשׁ? הֵרָשְׁמוּ לְסִפּוּרִים נוֹסָפִים!"
   }
 }
