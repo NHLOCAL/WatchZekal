@@ -1,3 +1,5 @@
+# build_story.py
+
 import json
 import sys
 import os
@@ -87,9 +89,11 @@ def remove_niqqud(text):
     without_niqqud = ''.join([c for c in normalized_text if not unicodedata.combining(c)])
     return without_niqqud
 
+
 # פונקציה לסניטיזציה של שמות קבצים
 def sanitize_filename(filename):
     return re.sub(r'[<>:"/\\|?*]', '_', filename)
+
 
 # פונקציה לבדוק אם הטקסט בעברית
 def is_hebrew(text):
@@ -98,11 +102,13 @@ def is_hebrew(text):
             return True
     return False
 
+
 # פונקציה לעיבוד טקסט בעברית
 def process_hebrew_text(text):
     reshaped_text = arabic_reshaper.reshape(text)
     bidi_text = get_display(reshaped_text)
     return bidi_text
+
 
 # פונקציות חדשות לבחירת צבעים מנוגדים ומגוונים
 def extract_main_colors(image_path, num_colors=2):
@@ -126,6 +132,7 @@ def extract_main_colors(image_path, num_colors=2):
         main_colors = [color for count, color in pixels]
         return main_colors
 
+
 def get_contrasting_color(rgb):
     """
     מחשב צבע מנוגד לצבע נתון על בסיס לומיננסיה.
@@ -141,6 +148,7 @@ def get_contrasting_color(rgb):
         return (0, 0, 0)  # שחור
     else:
         return (255, 255, 255)  # לבן
+
 
 def get_diverse_contrasting_color(rgb):
     """
@@ -171,6 +179,7 @@ def get_diverse_contrasting_color(rgb):
     r_new, g_new, b_new = colorsys.hls_to_rgb(h_new, l_new, s_new)
     return (int(r_new * 255), int(g_new * 255), int(b_new * 255))
 
+
 class FileManager:
     def __init__(self, output_dir, thumbnails_dir):
         self.output_dir = output_dir
@@ -185,6 +194,7 @@ class FileManager:
 
     def cleanup(self):
         self.temp_dir.cleanup()
+
 
 class ImageCreator:
     def __init__(self, styles):
@@ -376,8 +386,10 @@ class ImageCreator:
         self.cache[cache_key] = img
         return img
 
+
 def remove_asterisks(text):
     return text.replace("**", "")
+
 
 class AudioCreator:
     def __init__(self, temp_dir):
@@ -419,6 +431,7 @@ class AudioCreator:
 
     def shutdown(self):
         self.executor.shutdown(wait=True)
+
 
 class VideoCreator:
     def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
@@ -623,6 +636,31 @@ class VideoCreator:
             logging.error(f"שגיאה ביצירת קליפ הסיום: {e}")
             return None
 
+    def create_story_segment(self, text, style_name, background_image_path, duration=3):
+        """
+        יוצר קליפ עבור קטע "הסיפור" או "הסוף".
+        :param text: הטקסט להצגה
+        :param style_name: שם הסגנון ('story_start' או 'story_end')
+        :param background_image_path: נתיב לתמונת הרקע
+        :param duration: משך הקליפ בשניות
+        :return: ImageClip
+        """
+        text_lines = [text]
+        line_styles = [style_name]
+        clip = self.create_image_clip(text_lines, style_name, line_styles, background_image_path, process_background=True)
+        audio_tasks = [
+            (text, 'iw')  # הנחה שהטקסט בעברית
+        ]
+        audio_results = self.audio_creator.create_audios(audio_tasks)
+        clip = self.create_clip(
+            clip,
+            [
+                audio_results.get((text, 'iw'), "")
+            ],
+            min_duration=duration
+        )
+        return clip
+
     def calculate_pause_duration(self, text, seconds_per_word=0.6):
         """
         מחשבת את משך ההשהייה על פי מספר המילים בטקסט.
@@ -686,6 +724,7 @@ class VideoCreator:
         clips.append(clip_story_he)
 
         return clips
+
 
 class VideoAssembler:
     def __init__(self, file_manager, image_creator, audio_creator, style_definitions):
@@ -784,10 +823,10 @@ class VideoAssembler:
 
                 # מעבר לקטע הסיפור
                 if story['text']:
-                    story_intro = "כְּדֵי לְהָפִיק אֶת הַמֵּיטָב מֵהַסִּרְטוֹן: הַאֲזִינוּ לְהַקְרָאַת הַמִּשְׁפָּט בְּאַנְגְּלִית, נַסּוּ לִקְרֹא אוֹתוֹ בְּעַצְמְכֶם וּלְהָבִין אֶת הַמַּשְׁמָעוּת, וּלְאַחַר מִכֵּן צְפוּ בַּתַרְגּוּם לְעִבְרִית כְּדֵי לִבְדֹּק אֶת עַצְמְכֶם!"
+                    story_intro = "כְּדֵי לְהָפִיק אֶת הַמֵּיטָב מֵהַסִּרְטוֹן: הַאֲזִינוּ לְהַקְרָאַת הַמִּשְׁפָּט בְּאַנְגְּלִית, נַסּוּ לִקְרוֹא אוֹתוֹ בְּעַצְמְכֶם וּלְהָבִין אֶת הַמַּשְׁמָעוּת, וּלְאַחַר מִכֵּן צְפוּ בַּתַרְגּוּם לְעִבְרִית כְּדֵי לִבְדּוֹק אֶת עַצְמְכֶם!"
                     text_lines_intro_story = [story_intro]
-                    line_styles_intro_story = ['sentence']
-                    clip_story_intro = self.video_creator.create_image_clip(text_lines_intro_story, 'sentence', line_styles_intro_story, background_image_path, process_background=True)
+                    line_styles_intro_story = ['story_intro']
+                    clip_story_intro = self.video_creator.create_image_clip(text_lines_intro_story, 'story_intro', line_styles_intro_story, background_image_path, process_background=True)
                     audio_tasks = [(story_intro, 'iw')]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
                     clip_story_intro = self.video_creator.create_clip(
@@ -804,6 +843,13 @@ class VideoAssembler:
                     
                     clips.append(clip_story_intro)
 
+                    # הוספת קטע "הסיפור" בתחילת הסיפור
+                    story_start_text = "הסיפור"
+                    clip_story_start = self.video_creator.create_story_segment(story_start_text, 'story_start', background_image_path, duration=3)
+                    transition = self.video_creator.slide_transition(clips[-1], clip_story_start)
+                    clips.append(transition)
+                    clips.append(clip_story_start)
+
                     # הצגת הסיפור
                     for paragraph in story['text']:
                         english_text = paragraph['english']
@@ -812,6 +858,13 @@ class VideoAssembler:
                         # יצירת קליפ עם השהייה לאחר הקטע באנגלית
                         story_clips = self.video_creator.assemble_video_with_pause(english_text, hebrew_text, background_image_path)
                         clips.extend(story_clips)
+
+                    # הוספת קטע "הסוף" בסיום הסיפור
+                    story_end_text = "הסוף"
+                    clip_story_end = self.video_creator.create_story_segment(story_end_text, 'story_end', background_image_path, duration=3)
+                    transition = self.video_creator.slide_transition(clips[-1], clip_story_end)
+                    clips.append(transition)
+                    clips.append(clip_story_end)
 
                 # מעבר לקטע אוצר מילים
                 if vocabulary:
@@ -845,7 +898,6 @@ class VideoAssembler:
                         audio_paths = [
                             audio_results.get((word, 'en', True), ""),
                             audio_results.get((translation, 'iw'), "")
-
                         ]
 
                         clip_word = self.video_creator.create_clip(
@@ -986,6 +1038,7 @@ class VideoAssembler:
                 if 'final_clip' in locals():
                     final_clip.close()
 
+
 def main():
     file_manager = FileManager(OUTPUT_DIR, THUMBNAILS_DIR)
 
@@ -1012,7 +1065,10 @@ def main():
             "intro_subtitle",
             "video_number",
             "topic",
-            "logo"
+            "logo",
+            "story_start",
+            "story_end",
+            "story_intro"  # הוספת הסגנון החדש
         }
 
         missing_styles = required_styles - set(style_definitions.keys())
@@ -1040,6 +1096,7 @@ def main():
             file_manager.cleanup()
         if audio_creator:
             audio_creator.shutdown()
+
 
 if __name__ == "__main__":
     main()

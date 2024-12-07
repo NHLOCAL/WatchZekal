@@ -135,5 +135,32 @@
         "font_path": "Rubik-Bold.ttf",
         "border_color": [255, 255, 255],
         "border_width": 10
+    },
+    "story_start": {
+        "style_name": "story_start",
+        "bg_color": [240, 240, 255],
+        "text_color": [0, 102, 153],
+        "font_size": 120,
+        "font_path": "BonaNova-Bold.ttf",
+        "outline_color": [255, 255, 255],
+        "outline_width": 3
+    },
+    "story_end": {
+        "style_name": "story_end",
+        "bg_color": [240, 240, 255],
+        "text_color": [0, 102, 153],
+        "font_size": 120,
+        "font_path": "BonaNova-Bold.ttf",
+        "outline_color": [255, 255, 255],
+        "outline_width": 3
+    },
+    "story_intro": {
+        "style_name": "story_intro",
+        "bg_color": [245, 245, 255],
+        "text_color": [60, 60, 100],
+        "font_size": 65,
+        "font_path": "Rubik-Regular.ttf",
+        "outline_color": [255, 255, 255],
+        "outline_width": 2
     }
 }
