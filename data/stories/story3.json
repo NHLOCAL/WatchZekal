@@ -1,9 +1,9 @@
 {
-  "video_title": "בִּקּוּר בַּשּׁוּק",
+  "video_title": "בִּיקּוּר בַּשּׁוּק",
   "language_level": "קַל",
   "story_type": "סִפּוּר יוֹמְיוֹמִי",
   "story": {
-    "title": "בִּקּוּר בַּשּׁוּק",
+    "title": "בִּיקּוּר בַּשּׁוּק",
     "text": [
       {
         "english": "Avraham went to the market.",
@@ -19,7 +19,7 @@
       },
       {
         "english": "Eliyahu offered a cheap deal.",
-        "hebrew": "אֵלִיָּהוּ הִצִּיעַ עִסְקָה זוֹלָה."
+        "hebrew": "אֵלִיָּהוּ הִצִּיעַ עִיסְקָה זוֹלָה."
       },
       {
         "english": "It seemed too good to be true.",
@@ -99,7 +99,7 @@
       "options": [
         "לִקְנוֹת בְּגָדִים",
         "לִקְנוֹת אוֹכֶל לְמִשְׁפַּחְתּוֹ",
-        "לִפְגֹּשׁ חֲבֵרִים"
+        "לִפְגּוֹשׁ חֲבֵרִים"
       ],
       "answer": 1
     },
