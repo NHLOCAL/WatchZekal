@@ -461,7 +461,7 @@ class AudioCreator:
             )
             audio_config = texttospeech.AudioConfig(
                 audio_encoding=texttospeech.AudioEncoding.MP3,
-                speaking_rate=0.70 if slow else 0.9  # מהירות דיבור נמוכה/רגילה
+                speaking_rate=0.70 if slow else 0.95  # מהירות דיבור נמוכה/רגילה
             )
 
             response = self.client.synthesize_speech(
