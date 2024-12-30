@@ -69,7 +69,7 @@ while True:
                     continue
 
                 # בדיקה אם הסרטון הוא שורטס
-                if 'shorts' in video_description.lower():  # אם המילה "shorts" נמצאת בתיאור הסרטון
+                if 'englishshorts' in video_description.lower():  # אם המילה "shorts" נמצאת בתיאור הסרטון
                     video_description = None  # לא להוסיף תיאור לסרטוני שורטס
 
                 playlist_videos.append({
