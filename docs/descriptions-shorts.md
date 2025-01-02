@@ -34,7 +34,7 @@
 
 ---
 
-### **נושא 7: מזון ומשקאות מתקדמים**
+### **נושא 7: מזון ומשקאות**
 🍲 **לומדים לדבר על אוכל באנגלית!** נרחיב את אוצר המילים עם מילים מתקדמות מעולם האוכל, כמו מתכון, מרכיב וטעם. בתיאבון!  
 **#learnenglish #foodvocabulary #cuisine #englishshorts #tastyenglish**
 
