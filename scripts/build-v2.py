@@ -4,7 +4,12 @@ import os
 import random
 import re
 import numpy as np
-from gtts import gTTS
+# הסרת gTTS
+# from gtts import gTTS
+
+# הוספת ספריית Google Cloud Text-to-Speech
+from google.cloud import texttospeech
+
 from moviepy.editor import *
 from PIL import Image, ImageDraw, ImageFont
 import arabic_reshaper
@@ -13,6 +18,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import tempfile
 import logging
 from functools import lru_cache
+
+# הגדרת נתיב למפתח ה-API (ודאו שהקובץ JSON נמצא במיקום המתאים)
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\me\OneDrive\וידאו\מפתחות גישה\youtube-channel-440320-fe17f0f0a940.json"
 
 # הגדרת רמת הלוגינג
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -36,38 +44,32 @@ STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles.json')  # נתיב לקוב�
 FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Regular.ttf')  # ודא שהגופן תומך בעברית
 LOGO_PATH = os.path.join(LOGOS_DIR, 'logo.png')  # אם תרצה להשתמש בלוגו
 
-# הגדרות עיצוב (מקוריות הוסרו, עכשיו נטען מה-JSON)
-
 # הגדרות רווח בין שורות
-LINE_SPACING_NORMAL = 60  # רווח רגיל בין השורות
-LINE_SPACING_OUTRO_SUBTITLE = 80  # רווח גדול יותר אחרי שורה מסוימת
-LINE_SPACING_WITHIN_SENTENCE = 40  # רווח קטן בין שורות בתוך אותו משפט
-LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION = 60  # רווח גדול בין משפט לתרגומו
+LINE_SPACING_NORMAL = 60
+LINE_SPACING_OUTRO_SUBTITLE = 80
+LINE_SPACING_WITHIN_SENTENCE = 40
+LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION = 60
 
 # נתיב למוזיקת רקע (אם יש)
-BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')  # ודא שהקובץ קיים
+BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')
 
 # הגדרות MoviePy
 VIDEO_SIZE = (1920, 1080)
 FPS = 24
 THREADS = 8
 
-# פונקציה לסניטיזציה של שמות קבצים
 def sanitize_filename(filename):
     """
     מסיר תווים בלתי חוקיים משם קובץ ומחליף אותם ב-underscore.
     """
-    # הגדרת תווים בלתי חוקיים ב-Windows
     return re.sub(r'[<>:"/\\|?*]', '_', filename)
 
-# פונקציה לבדוק אם הטקסט בעברית
 def is_hebrew(text):
     for char in text:
         if '\u0590' <= char <= '\u05FF':
             return True
     return False
 
-# פונקציה לעיבוד טקסט בעברית
 def process_hebrew_text(text):
     reshaped_text = arabic_reshaper.reshape(text)
     bidi_text = get_display(reshaped_text)
@@ -113,15 +115,9 @@ class ImageCreator:
         elif direction == 'horizontal':
             for x in range(width):
                 mask.putpixel((x, 0), int(255 * (x / width)))
-        # ניתן להוסיף כיוונים נוספים אם רוצים
-
-        base.paste(top, (0, 0), mask)
-        return base
+        return base.paste(top, (0, 0), mask)
 
     def split_text_into_lines(self, text, font, max_width, draw):
-        """
-        מפצל טקסט לשורות כך שכל שורה לא תעבור את הרוחב המקסימלי.
-        """
         words = text.split()
         lines = []
         current_line = ""
@@ -151,13 +147,12 @@ class ImageCreator:
 
         # יצירת רקע
         if line_styles:
-            # אם line_styles מוגדר, נשתמש בסגנון לכל שורה
             first_style = style_definitions[line_styles[0]]
         else:
-            # אחרת, נשתמש בסגנון הכללי
             first_style = style_definitions['normal']
 
         if first_style['gradient']:
+            img = Image.new('RGB', (1920, 1080))
             img = self.create_gradient_background(
                 1920, 1080, 
                 first_style['gradient'][0], 
@@ -168,11 +163,8 @@ class ImageCreator:
             img = Image.new('RGB', (1920, 1080), color=tuple(first_style['bg_color']))
 
         draw = ImageDraw.Draw(img)
-
-        # הגדרת רוחב מקסימלי לטקסט (לדוגמה: 1720 פיקסלים מתוך 1920 עם שוליים)
         MAX_TEXT_WIDTH = 1720
 
-        # חישוב גובה כולל
         total_height = 0
         processed_lines = []
         for i, line in enumerate(text_lines):
@@ -184,18 +176,15 @@ class ImageCreator:
             font = self.get_font(current_style['font_path'], current_style['font_size'])
 
             if is_hebrew(line):
-                # פיצול שורות במידת הצורך לפני עיבוד
                 split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
                 for split_line in split_lines:
                     processed_line = process_hebrew_text(split_line)
                     processed_style = current_style.copy()
-                    # הוספת שם הסגנון לשימוש בהמשך
                     processed_style['style_name'] = line_styles[i] if line_styles and i < len(line_styles) else 'normal'
                     bbox = draw.textbbox((0, 0), processed_line, font=font)
                     width = bbox[2] - bbox[0]
                     height = bbox[3] - bbox[1]
                     processed_lines.append((processed_line, width, height, processed_style, font))
-                    # הגדרת רווח בהתאם לסגנון
                     if processed_style['style_name'] == 'sentence':
                         spacing = LINE_SPACING_WITHIN_SENTENCE
                     elif processed_style['style_name'] == 'translation':
@@ -203,21 +192,18 @@ class ImageCreator:
                     else:
                         spacing = LINE_SPACING_NORMAL
                     if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':
-                        spacing = LINE_SPACING_OUTRO_SUBTITLE  # רווח גדול יותר אחרי השורה השנייה
-                    total_height += height + spacing  # רווח בין השורות
+                        spacing = LINE_SPACING_OUTRO_SUBTITLE
+                    total_height += height + spacing
             else:
-                # פיצול שורות במידת הצורך לפני עיבוד
                 split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
                 for split_line in split_lines:
                     processed_line = split_line
                     processed_style = current_style.copy()
-                    # הוספת שם הסגנון לשימוש בהמשך
                     processed_style['style_name'] = line_styles[i] if line_styles and i < len(line_styles) else 'normal'
                     bbox = draw.textbbox((0, 0), processed_line, font=font)
                     width = bbox[2] - bbox[0]
                     height = bbox[3] - bbox[1]
                     processed_lines.append((processed_line, width, height, processed_style, font))
-                    # הגדרת רווח בהתאם לסגנון
                     if processed_style['style_name'] == 'sentence':
                         spacing = LINE_SPACING_WITHIN_SENTENCE
                     elif processed_style['style_name'] == 'translation':
@@ -225,29 +211,23 @@ class ImageCreator:
                     else:
                         spacing = LINE_SPACING_NORMAL
                     if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':
-                        spacing = LINE_SPACING_OUTRO_SUBTITLE  # רווח גדול יותר אחרי השורה השנייה
-                    total_height += height + spacing  # רווח בין השורות
+                        spacing = LINE_SPACING_OUTRO_SUBTITLE
+                    total_height += height + spacing
 
-        # הסרת הרווח הנוסף בסוף
         if processed_lines:
             total_height -= spacing
 
-        # מיקום ההתחלה במרכז אנכי
         current_y = (img.height - total_height) / 2
 
-        # ציור הטקסט
         for idx, (processed_line, width, height, current_style, font) in enumerate(processed_lines):
             style_name = current_style.get('style_name', 'normal')
             if style_name in ['sentence', 'translation']:
-                # יישור לימין עבור טקסט עברי
-                x_text = (img.width - width) / 2  # ניתן לשנות ל- img.width - width - שוליים אם רוצים יישור מוחלט לימין
+                x_text = (img.width - width) / 2
             else:
-                # יישור למרכז עבור טקסט LTR
-                x_text = (img.width - width) / 2  # מרכז אופקי
+                x_text = (img.width - width) / 2
 
             draw.text((x_text, current_y), processed_line, font=font, fill=tuple(current_style['text_color']))
 
-            # קביעת רווח בין השורות
             if idx < len(processed_lines) - 1:
                 next_style = processed_lines[idx + 1][3].get('style_name', 'normal')
                 if style_name == 'sentence' and next_style == 'translation':
@@ -257,12 +237,11 @@ class ImageCreator:
                 else:
                     spacing = LINE_SPACING_NORMAL
             else:
-                spacing = 0  # אין רווח לאחר השורה האחרונה
+                spacing = 0
 
-            current_y += height + spacing  # רווח בין השורות
+            current_y += height + spacing
 
-        # שמירת התמונה בזיכרון
-        img = img.convert("RGB")  # המרת חזרה ל-RGB אם הוספנו אלפא
+        img = img.convert("RGB")
         self.cache[cache_key] = img
         return img
 
@@ -270,13 +249,48 @@ class AudioCreator:
     def __init__(self, temp_dir):
         self.temp_dir = temp_dir
         self.executor = ThreadPoolExecutor(max_workers=THREADS)
+        # יצירת לקוח ל-Google Cloud Text-to-Speech
+        self.client = texttospeech.TextToSpeechClient()
 
     def create_audio_task(self, text, lang, slow=False):
+        """
+        יוצר קובץ אודיו באמצעות Google Cloud Text-to-Speech.
+        בוחר קולות פרימיום Wavenet:
+         - עברית: he-IL-Wavenet-C
+         - אנגלית: en-US-Wavenet-F
+        מהירות דיבור:
+         - 0.70 אם slow=True
+         - 0.95 אחרת
+        """
         try:
-            tts = gTTS(text=text, lang=lang, slow=slow)
+            # הגדרת שפה וקול לפי lang
+            if lang.startswith('he') or lang.startswith('iw'):
+                language_code = 'he-IL'
+                voice_name = 'he-IL-Wavenet-C'
+            else:
+                language_code = 'en-US'
+                voice_name = 'en-US-Wavenet-F'
+
+            synthesis_input = texttospeech.SynthesisInput(text=text)
+            voice_params = texttospeech.VoiceSelectionParams(
+                language_code=language_code,
+                name=voice_name
+            )
+            audio_config = texttospeech.AudioConfig(
+                audio_encoding=texttospeech.AudioEncoding.MP3,
+                speaking_rate=0.70 if slow else 0.95
+            )
+
+            response = self.client.synthesize_speech(
+                input=synthesis_input,
+                voice=voice_params,
+                audio_config=audio_config
+            )
+
             with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3', dir=self.temp_dir.name) as tmp_file:
-                tts.save(tmp_file.name)
+                tmp_file.write(response.audio_content)
                 return tmp_file.name
+
         except ValueError as e:
             logging.error(f"שגיאה ביצירת אודיו עבור הטקסט: '{text}' בשפה: '{lang}'. פרטים: {e}")
             raise
@@ -301,7 +315,9 @@ class AudioCreator:
             try:
                 audio_path = future.result()
                 results[tuple(task)] = audio_path
-                logging.info(f"אודיו נוצר עבור: '{task[0]}' בשפה: '{task[1]}' עם slow={task[2] if len(task) == 3 else False}")
+                logging.info(
+                    f"אודיו נוצר עבור: '{task[0]}' בשפה: '{task[1]}' עם slow={'True' if len(task) == 3 and task[2] else 'False'}"
+                )
             except Exception as e:
                 logging.error(f"שגיאה ביצירת אודיו עבור: '{task[0]}' בשפה: '{task[1]}'. פרטים: {e}")
         return results
@@ -318,11 +334,9 @@ class VideoCreator:
 
     def create_image_clip(self, text_lines, style, line_styles=None):
         img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles)
-        # יצירת שם קובץ בטוח
         filename = f"{'_'.join(text_lines)}.png"
         temp_image_path = self.file_manager.get_temp_path(filename)
         img.save(temp_image_path)
-        # יצירת קליפ ללא הגדרת משך, יוגדר לפי האודיו או min_duration
         image_clip = ImageClip(temp_image_path)
         return image_clip
 
@@ -350,10 +364,7 @@ class VideoCreator:
         return image_clip
 
     def slide_transition(self, clip1, clip2, duration=1):
-        # בחר כיוון אקראי
         direction = random.choice(['left', 'right', 'up', 'down'])
-
-        # הגדר את תנועת הקליפים בהתאם לכיוון
         if direction == 'left':
             move_out = lambda t: (-VIDEO_SIZE[0] * t / duration, 'center')
             move_in = lambda t: (VIDEO_SIZE[0] - VIDEO_SIZE[0] * t / duration, 'center')
@@ -363,20 +374,15 @@ class VideoCreator:
         elif direction == 'up':
             move_out = lambda t: ('center', -VIDEO_SIZE[1] * t / duration)
             move_in = lambda t: ('center', VIDEO_SIZE[1] - VIDEO_SIZE[1] * t / duration)
-        elif direction == 'down':
+        else:  # direction == 'down'
             move_out = lambda t: ('center', VIDEO_SIZE[1] * t / duration)
             move_in = lambda t: ('center', -VIDEO_SIZE[1] + VIDEO_SIZE[1] * t / duration)
 
-        # קטעים עם אנימציית מיקום
         clip1_moving = clip1.set_position(move_out).set_duration(duration)
         clip2_moving = clip2.set_position(move_in).set_duration(duration)
 
-        # שכבת הקליפים
         transition = CompositeVideoClip([clip1_moving, clip2_moving], size=VIDEO_SIZE).set_duration(duration)
-
-        # הגדרת אודיו ל-None כדי למנוע בעיות באודיו
         transition = transition.set_audio(None)
-
         return transition
 
     def add_logo_to_video(self, clip, logo_path, position='top-right', size=(180, 180), opacity=255, margin=(50, 50)):
@@ -416,11 +422,9 @@ class VideoCreator:
 
     def create_level_intro(self, level_num, level_name):
         text_lines_intro = [f"Level {level_num}", level_name]
-        # הגדרת סגנון לכל שורה: 'level' לכל שורה
         line_styles_intro = ['level', 'level']
         clip_intro = self.create_image_clip(text_lines_intro, 'level', line_styles_intro)
 
-        # יצירת אודיו לפתיחת Level
         audio_tasks = [
             (f"Level {level_num}", 'en'),
             (level_name, 'iw')
@@ -432,7 +436,7 @@ class VideoCreator:
                 audio_results.get((f"Level {level_num}", 'en'), ""),
                 audio_results.get((level_name, 'iw'), "")
             ],
-            min_duration=5  # **הוספת מינימום משך 5 שניות**
+            min_duration=5
         )
         return clip_intro
 
@@ -446,7 +450,6 @@ class VideoCreator:
         line_styles_outro = ['outro_title', 'outro_subtitle', 'outro', 'outro']
         clip_outro = self.create_image_clip(text_lines_outro, 'outro', line_styles_outro)
 
-        # יצירת אודיו לקליפ הסיום
         audio_tasks = [
             ("It's easy! Thank you for watching! Don't forget to like and subscribe.", 'en'),
             ("זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם.", 'iw')
@@ -470,20 +473,16 @@ class VideoAssembler:
         level_name = level['name']
         logging.info(f"מעבד Level {level_num}: {level_name}")
 
-        # יצירת שם קובץ וידאו בטוח
         safe_level_name = sanitize_filename("".join([c for c in level_name if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
         video_filename = f"Level_{level_num}_{safe_level_name}.mp4"
         video_path = os.path.join(output_dir, video_filename)
 
-        # רשימה לאחסון הקליפים
         clips = []
 
         try:
-            # יצירת קליפ פתיחה ל-Level
             clip_level_intro = self.video_creator.create_level_intro(level_num, level_name)
             clips.append(clip_level_intro)
 
-            # שמירת התמונה כמקדימה (Thumbnail)
             thumbnail_path = os.path.join(thumbnails_dir, f"Level_{level_num}_thumbnail.png")
             clip_level_intro.save_frame(thumbnail_path, t=0)
             logging.info(f"שומר תמונת תצוגה מקדימה בנתיב: {thumbnail_path}")
@@ -492,12 +491,10 @@ class VideoAssembler:
                 subtopic_name = subtopic['name']
                 logging.info(f"  מעבד Subtopic: {subtopic_name}")
 
-                # יצירת כותרת Subtopic עם עיצוב ייחודי
                 text_lines_subtopic = [subtopic_name]
                 line_styles_subtopic = ['subtopic']
                 clip_subtopic = self.video_creator.create_image_clip(text_lines_subtopic, 'subtopic', line_styles_subtopic)
 
-                # יצירת אודיו Subtopic
                 audio_tasks = [
                     (subtopic_name, 'en'),
                     (subtopic_name, 'iw')
@@ -509,10 +506,9 @@ class VideoAssembler:
                         audio_results.get((subtopic_name, 'en'), ""),
                         audio_results.get((subtopic_name, 'iw'), "")
                     ],
-                    min_duration=4.5  # **הוספת מינימום משך 4.5 שניות**
+                    min_duration=4.5
                 )
 
-                # יצירת מעבר בין הקליפ הקודם לחדש
                 if clips:
                     previous_clip = clips[-1]
                     transition = self.video_creator.slide_transition(previous_clip, clip_subtopic)
@@ -527,16 +523,14 @@ class VideoAssembler:
 
                     logging.info(f"    מעבד מילה: {word_text} - {word_translation}")
 
-                    # יצירת תמונה ראשונה: המילה והתרגום
                     text_lines_word = [word_text, word_translation]
                     line_styles_word = ['word', 'normal']
                     clip_word = self.video_creator.create_image_clip(text_lines_word, 'word', line_styles_word)
 
-                    # יצירת אודיו למילה ולתרגום עם הגדרת slow=True עבור אנגלית
                     audio_tasks = [
-                        (word_text, 'en', True),  # אנגלית באיטיות
+                        (word_text, 'en', True),
                         (word_translation, 'iw'),
-                        (word_text, 'en', True)   # אנגלית באיטיות שוב
+                        (word_text, 'en', True)
                     ]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
                     clip_word = self.video_creator.create_clip(
@@ -548,7 +542,6 @@ class VideoAssembler:
                         ]
                     )
 
-                    # יצירת מעבר
                     if clips:
                         previous_clip = clips[-1]
                         transition = self.video_creator.slide_transition(previous_clip, clip_word)
@@ -562,16 +555,14 @@ class VideoAssembler:
 
                         logging.info(f"      מעבד משפט: {sentence} - {translation}")
 
-                        # יצירת תמונה למשפט
                         text_lines_example = [sentence, translation]
                         line_styles_example = ['sentence', 'translation']
                         clip_example = self.video_creator.create_image_clip(text_lines_example, 'normal', line_styles_example)
 
-                        # יצירת אודיו למשפט ולתרגום עם הגדרת slow=True עבור אנגלית
                         audio_tasks = [
-                            (sentence, 'en', True),  # אנגלית באיטיות
+                            (sentence, 'en', True),
                             (translation, 'iw'),
-                            (sentence, 'en', True)   # אנגלית באיטיות שוב
+                            (sentence, 'en', True)
                         ]
                         audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
                         clip_example = self.video_creator.create_clip(
@@ -583,7 +574,6 @@ class VideoAssembler:
                             ]
                         )
 
-                        # יצירת מעבר
                         if clips:
                             previous_clip = clips[-1]
                             transition = self.video_creator.slide_transition(previous_clip, clip_example)
@@ -591,27 +581,22 @@ class VideoAssembler:
 
                         clips.append(clip_example)
 
-            # יצירת קטע הסיום
             clip_outro = self.video_creator.create_outro()
             transition = self.video_creator.slide_transition(clips[-1], clip_outro)
             clips.append(transition)
             clips.append(clip_outro)
 
-            # איחוד כל הקליפים לסרטון אחד עבור ה-Level
             logging.info(f"איחוד הקליפים לסרטון Level {level_num}: {level_name}")
             final_clip = concatenate_videoclips(clips, method="compose")
 
-            # הוספת מוזיקת רקע אם קיימת
             if os.path.exists(BACKGROUND_MUSIC_PATH):
                 background_music = AudioFileClip(BACKGROUND_MUSIC_PATH).volumex(0.1)
                 background_music = afx.audio_loop(background_music, duration=final_clip.duration)
                 final_audio = CompositeAudioClip([final_clip.audio, background_music])
                 final_clip = final_clip.set_audio(final_audio)
-                # סגירת background_music ו-final_audio לאחר השימוש
                 background_music.close()
                 final_audio.close()
 
-            # הוספת הלוגו לסרטון
             final_clip = self.video_creator.add_logo_to_video(
                 final_clip,
                 LOGO_PATH,
@@ -621,17 +606,14 @@ class VideoAssembler:
                 margin=(20, 20)
             )
 
-            # שמירת הוידאו
             logging.info(f"שומר את הסרטון בנתיב: {video_path}")
             final_clip.write_videofile(video_path, fps=FPS, codec='libx264', audio_codec='aac', threads=THREADS)
 
         except Exception as e:
             logging.error(f"שגיאה בתהליך הרכבת הוידאו ל-Level {level_num}: {e}")
         finally:
-            # סגירת כל הקליפים
             for clip in clips:
                 clip.close()
-            # סגירת final_clip אם לא כבר סגור
             if 'final_clip' in locals():
                 final_clip.close()
 
@@ -643,26 +625,20 @@ def close_clips(clips):
         clip.close()
 
 def main():
-    # ניהול קבצים
     file_manager = FileManager(OUTPUT_DIR, THUMBNAILS_DIR)
-
-    video_assembler = None  # אתחול מראש
+    video_assembler = None
 
     try:
-        # קריאת קובץ JSON
         with open(JSON_FILE, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        # קריאת קובץ העיצובים
         with open(STYLES_JSON_FILE, 'r', encoding='utf-8') as f:
             style_definitions = json.load(f)
 
-        # יצירת אובייקטים
         image_creator = ImageCreator(styles=style_definitions)
         audio_creator = AudioCreator(file_manager.temp_dir)
         video_assembler = VideoAssembler(file_manager, image_creator, audio_creator, style_definitions)
 
-        # לולאה דרך כל הרמות
         for level in data['levels']:
             video_assembler.assemble_level_video(level, OUTPUT_DIR, THUMBNAILS_DIR)
 
@@ -672,7 +648,6 @@ def main():
         logging.error(f"שגיאה כללית בתהליך יצירת הסרטונים: {e}")
 
     finally:
-        # ניקוי קבצים זמניים וסגירת ThreadPoolExecutor
         if file_manager:
             file_manager.cleanup()
         if video_assembler:
