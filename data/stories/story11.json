@@ -6,8 +6,8 @@
     "title": "השביל הנסתר",
     "text": [
       {
-        "english": "Netanel found an old map in a bookshop.",
-        "hebrew": "נתנאל מצא מפה ישנה בחנות ספרים."
+        "english": "James found an old map in a bookshop.",
+        "hebrew": "ג'יימס מצא מפה ישנה בחנות ספרים."
       },
       {
         "english": "He saw a hidden path marked in the forest.",
@@ -58,8 +58,8 @@
         "hebrew": "הם לבשו בגדים מסורתיים וצבעוניים."
       },
       {
-        "english": "Netanel learned about their unique customs.",
-        "hebrew": "נתנאל למד על המנהגים הייחודיים שלהם."
+        "english": "James learned about their unique customs.",
+        "hebrew": "ג'יימס למד על המנהגים הייחודיים שלהם."
       },
       {
         "english": "They shared stories and wisdom with him.",
@@ -78,8 +78,8 @@
         "hebrew": "מספר ימים חלפו במהירות בכפר."
       },
       {
-        "english": "Netanel felt deeply connected to them.",
-        "hebrew": "נתנאל הרגיש מחובר אליהם עמוקות."
+        "english": "James felt deeply connected to them.",
+        "hebrew": "ג'יימס הרגיש מחובר אליהם עמוקות."
       },
       {
         "english": "He realized the importance of openness and exploration.",
@@ -102,8 +102,8 @@
         "hebrew": "הוא חזר הביתה עם פרספקטיבה חדשה על החיים."
       },
       {
-        "english": "Netanel wrote extensively about his journey.",
-        "hebrew": "נתנאל כתב בהרחבה על מסעו."
+        "english": "James wrote extensively about his journey.",
+        "hebrew": "ג'יימס כתב בהרחבה על מסעו."
       },
       {
         "english": "He encouraged others to explore new places.",
@@ -143,7 +143,7 @@
   ],
   "comprehension_questions": [
     {
-      "question": "מה מצא נתנאל בחנות הספרים?",
+      "question": "מה מצא ג'יימס בחנות הספרים?",
       "options": [
         "ספר ישן",
         "מפה עם שביל נסתר",
@@ -152,7 +152,7 @@
       "answer": 1
     },
     {
-      "question": "מה עשה נתנאל בכפר?",
+      "question": "מה עשה ג'יימס בכפר?",
       "options": [
         "התעלם מהתושבים",
         "למד על המנהגים שלהם והשתתף בטקסים",
@@ -161,7 +161,7 @@
       "answer": 1
     },
     {
-      "question": "מה הבין נתנאל בסוף הסיפור?",
+      "question": "מה הבין ג'יימס בסוף הסיפור?",
       "options": [
         "שחקר תרבויות חדשות מעשיר את החיים",
         "שאין טעם לחקור מקומות חדשים",
@@ -171,6 +171,6 @@
     }
   ],
   "call_to_action": {
-    "text": "אהבתם את המסע של נתנאל? שתפו את הסיפור והירשמו לערוץ לעוד הרפתקאות!"
+    "text": "אהבתם את המסע של ג'יימס? שתפו את הסיפור והירשמו לערוץ לעוד הרפתקאות!"
   }
 }

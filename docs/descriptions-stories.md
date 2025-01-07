@@ -111,7 +111,7 @@
 ---
 
 **השביל הנסתר 🌳**  
-נתנאל מגלה מפה עתיקה המובילה לשביל סודי בלב היער. במסעו, הוא נחשף לתרבות ייחודית שמלמדת אותו על חשיבות הפתיחות והסקרנות.  
+ג'יימס מגלה מפה עתיקה המובילה לשביל סודי בלב היער. במסעו, הוא נחשף לתרבות ייחודית שמלמדת אותו על חשיבות הפתיחות והסקרנות.  
 #HiddenPath #CulturalDiscovery #IntermediateEnglish  
 
 ---
