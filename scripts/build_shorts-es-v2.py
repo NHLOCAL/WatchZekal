@@ -705,7 +705,7 @@ class VideoCreator:
             israel_flag_path = os.path.join(ASSETS_DIR, 'flags', 'israel_flag.png')
             spain_flag_path = os.path.join(ASSETS_DIR, 'flags', 'spain_flag.png')
 
-            flag_max_height = int(strip_height * 0.8)
+            flag_max_height = int(strip_height * 0.65)
             flag_aspect_ratio = 1.5
 
             # הגדרת מיקום התחלתי לטקסט
