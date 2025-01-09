@@ -651,12 +651,34 @@ class VideoCreator:
         יוצר רצועה תחתונה עם שמות השפות ודגלים.
         """
         try:
-            strip_height = int(height * 0.06)  # הקטנת גובה הרצועה ל-6%
-            strip_image = Image.new('RGB', (width, strip_height), color=(100, 120, 150))
+            strip_height = int(height * 0.06)  # גובה הרצועה
+
+            # יצירת תמונה עם שקיפות
+            strip_image = Image.new('RGBA', (width, strip_height), (0, 0, 0, 0))
             draw = ImageDraw.Draw(strip_image)
 
+            # יצירת גרדיאנט כרקע
+            def create_gradient(image, color1, color2):
+                gradient = Image.new('RGBA', image.size, color=color1)
+                for x in range(image.width):
+                    for y in range(image.height):
+                        ratio = y / image.height
+                        r = int(color1[0] * (1 - ratio) + color2[0] * ratio)
+                        g = int(color1[1] * (1 - ratio) + color2[1] * ratio)
+                        b = int(color1[2] * (1 - ratio) + color2[2] * ratio)
+                        a = int(color1[3] * (1 - ratio) + color2[3] * ratio)
+                        gradient.putpixel((x, y), (r, g, b, a))
+                return gradient
+
+            # צבע כהה יותר עם שקיפות (ניתן לשנות)
+            start_color = (40, 50, 70, 200)  # כחול כהה עם שקיפות
+            end_color = (20, 30, 45, 200)  # כחול כהה-סגלגל עם שקיפות
+            gradient_background = create_gradient(strip_image, start_color, end_color) # יצירת הגרדיאנט
+            strip_image.paste(gradient_background, (0, 0)) # הדבקת הגרדיאנט על הרצועה
+
+
             # גופן
-            font_size = int(strip_height * 0.5)
+            font_size = int(strip_height * 0.65)  # טקסט גדול יותר
             try:
                 font = self.image_creator.get_font("Rubik-Bold.ttf", font_size)
             except IOError:
@@ -674,42 +696,41 @@ class VideoCreator:
             spanish_bbox = draw.textbbox((0, 0), spanish_processed, font=font)
             spanish_width = spanish_bbox[2] - spanish_bbox[0]
             spanish_height = spanish_bbox[3] - spanish_bbox[1]
-            
-            # הוספת משתנה לרווח מינימלי בין הדגל לטקסט
-            text_spacing = 10
-            
+
+            # הגדרת רווח מינימלי בין הדגל לטקסט ובין קצה התצוגה לדגל
+            text_spacing = int(width * 0.02)  # 2% מרוחב המסך
+            edge_spacing = int(width * 0.03)  # 3% מרוחב המסך
+
             # הוספת הדגלים
             israel_flag_path = os.path.join(ASSETS_DIR, 'flags', 'israel_flag.png')
             spain_flag_path = os.path.join(ASSETS_DIR, 'flags', 'spain_flag.png')
-            
+
             flag_max_height = int(strip_height * 0.8)
             flag_aspect_ratio = 1.5
 
             # הגדרת מיקום התחלתי לטקסט
             hebrew_x = width
             spanish_x = 0
-            
-            
+
             if os.path.exists(israel_flag_path):
                 israel_flag = Image.open(israel_flag_path).convert("RGB")
                 flag_width = int(flag_max_height * flag_aspect_ratio)
                 israel_flag = israel_flag.resize((flag_width, flag_max_height), RESAMPLING)
-                 # מיקום דגל ישראל בימין
-                flag_x_israel = width - flag_width - int(text_spacing*2)
+                # מיקום דגל ישראל בימין
+                flag_x_israel = width - flag_width - edge_spacing
                 strip_image.paste(israel_flag, (flag_x_israel, (strip_height - flag_max_height) // 2))
-                 # הגדרת מיקום הטקסט עברית ליד הדגל
+                # הגדרת מיקום הטקסט עברית ליד הדגל
                 hebrew_x = flag_x_israel - hebrew_width - text_spacing
 
             else:
                 logging.warning(f"קובץ דגל ישראל לא נמצא בנתיב: {israel_flag_path}")
-            
-            
+
             if os.path.exists(spain_flag_path):
                 spain_flag = Image.open(spain_flag_path).convert("RGB")
                 flag_width = int(flag_max_height * flag_aspect_ratio)
                 spain_flag = spain_flag.resize((flag_width, flag_max_height), RESAMPLING)
                 # מיקום דגל ספרד בשמאל
-                flag_x_spain = int(text_spacing*2)
+                flag_x_spain = edge_spacing
                 strip_image.paste(spain_flag, (flag_x_spain, (strip_height - flag_max_height) // 2))
                 # הגדרת מיקום הטקסט ספרדית ליד הדגל
                 spanish_x = flag_x_spain + flag_width + text_spacing
@@ -720,18 +741,23 @@ class VideoCreator:
             # מיקום הטקסטים, עברית מימין, ספרדית משמאל - לאחר מיקום הדגלים
             y = (strip_height - max(hebrew_height, spanish_height)) // 2
 
-            # ציור הטקסטים
-            draw.text((hebrew_x, y), hebrew_processed, font=font, fill=(255, 255, 255))  # שינוי צבע הטקסט ללבן
-            draw.text((spanish_x, y), spanish_processed, font=font, fill=(255, 255, 255))  # שינוי צבע הטקסט ללבן
+            # ציור הטקסטים - צבע לבן יותר בולט
+            draw.text((hebrew_x, y), hebrew_processed, font=font, fill=(240, 240, 240))
+            draw.text((spanish_x, y), spanish_processed, font=font, fill=(240, 240, 240))
+            
+            # הוספת קו מעל הרצועה
+            line_width = int(strip_height * 0.04)
+            # קו בצבע שונה (ניתן לשנות)
+            draw.line([(0, 0), (width, 0)], fill=(50, 90, 130), width=line_width)
 
-             # שמירה לתיקייה הזמנית
+            # שמירה לתיקייה הזמנית
             temp_image_path = self.file_manager.get_temp_path("language_strip.png")
-            strip_image.save(temp_image_path)
+            strip_image.save(temp_image_path, "PNG")
 
             return temp_image_path, strip_height
         except Exception as e:
             logging.error(f"שגיאה ביצירת רצועת השפות: {e}")
-            return None, 0     
+            return None, 0
 
 
 class VideoAssemblerShorts:
