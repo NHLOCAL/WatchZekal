@@ -8,12 +8,8 @@
       {
         "sentence": "Hoy está **nublado**; puede que llueva",
         "translation": "היום מעונן; אולי ירד גשם"
-      },
-      {
-        "sentence": "El pronóstico dice que estará **nublado** toda la semana",
-        "translation": "התחזית אומרת שיהיה מעונן כל השבוע"
       }
     ],
-    "call_to_action": "כתבו בתגובות בספרדית איך אתם מתארים את מזג האוויר!"
+    "call_to_action": "כתבו בתגובות בספרדית!"
   } 
 ]
