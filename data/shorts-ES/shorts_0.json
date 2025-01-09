@@ -1,6 +1,6 @@
 [
   {
-    "video_number": 1,
+    "video_number": 0,
     "title": "מזג האוויר ותופעות טבע",
     "word": "Nublado",
     "translation": "מעונן",
@@ -8,10 +8,6 @@
       {
         "sentence": "Hoy está **nublado**; puede que llueva",
         "translation": "היום מעונן; אולי ירד גשם"
-      },
-      {
-        "sentence": "Un cielo **nublado** puede ser hermoso",
-        "translation": "שמיים מעוננים יכולים להיות יפים"
       },
       {
         "sentence": "El pronóstico dice que estará **nublado** toda la semana",
