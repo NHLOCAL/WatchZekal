@@ -703,7 +703,12 @@ class VideoCreator:
             else:
                 logging.warning(f"קובץ דגל ספרד לא נמצא בנתיב: {spain_flag_path}")
 
-            return strip_image, strip_height
+            if strip_image:
+              logging.info(f"Language strip created. Width: {width}, Height: {height}, Strip Height: {strip_height}")
+              return strip_image, strip_height
+            else:
+              logging.error(f"Failed to create language strip. Returning None and 0.")
+              return None, 0
 
         except Exception as e:
             logging.error(f"שגיאה ביצירת רצועת השפות: {e}")
@@ -831,10 +836,19 @@ class VideoAssemblerShorts:
      
                 # יצירת רצועת שפות והוספתה לכל קליפ
                 language_strip, strip_height = self.video_creator.create_language_strip(WIDTH, HEIGHT)
+                if language_strip:
+                    logging.info("Language strip created successfully, adding to clips.")
+                else:
+                    logging.error("Failed to create the language strip, skipping.")
+                    # אם הרצועה לא נוצרה, אין מה להמשיך. ניתן להמשיך עם הקוד הקיים
+                    return # חשוב שיהיה RETURN אם אין רצועה
                 for i in range(len(clips)):
                     if language_strip:
+                        logging.info(f"Adding language strip to clip at index: {i}")
                         clip_with_strip = self.add_language_strip_to_clip(clips[i], language_strip, strip_height)
                         clips[i] = clip_with_strip
+                    else:
+                        logging.warning(f"Skipping language strip for clip at index {i}, no language_strip was created.")
 
 
 
@@ -875,6 +889,7 @@ class VideoAssemblerShorts:
         מוסיף את רצועת השפות לתחתית הקליפ.
         """
         try:
+            logging.info("Attempting to add language strip to clip")
             # יצירת ImageClip מרצועת השפות
             strip_clip = ImageClip(np.array(language_strip)).set_duration(clip.duration)
 
@@ -891,11 +906,12 @@ class VideoAssemblerShorts:
             if clip.audio:
                 final_clip = final_clip.set_audio(clip.audio)
 
+            logging.info("Language strip added to clip successfully.")
             return final_clip
 
         except Exception as e:
-            logging.error(f"שגיאה בהוספת רצועת השפות לקליפ: {e}")
-            return clip                    
+            logging.error(f"Error adding language strip to clip: {e}")
+            return clip                  
 
 
 def main():
