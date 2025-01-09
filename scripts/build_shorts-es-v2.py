@@ -646,9 +646,9 @@ class VideoCreator:
             return None
 
 
-    def create_language_strip(self, width, height, hebrew_text="עברית", spanish_text="ספרדית"):
+    def create_language_strip(self, width, height, hebrew_text="עברית", spanish_text="ספרדית", text_bottom_margin=None):
         """
-        יוצר רצועה תחתונה עם שמות השפות ודגלים.
+        יוצר רצועה תחתונה עם שמות השפות ודגלים
         """
         try:
             strip_height = int(height * 0.08)  # גובה הרצועה
@@ -738,8 +738,13 @@ class VideoCreator:
             else:
                 logging.warning(f"קובץ דגל ספרד לא נמצא בנתיב: {spain_flag_path}")
 
+            # הגדרת ברירת מחדל למרחק התחתון של הטקסט
+            if text_bottom_margin is None:
+                text_bottom_margin = int(strip_height * 0.5)
+
             # מיקום הטקסטים, עברית מימין, ספרדית משמאל - לאחר מיקום הדגלים
-            y = (strip_height - max(hebrew_height, spanish_height)) // 2
+            # y = (strip_height - max(hebrew_height, spanish_height)) // 2
+            y = strip_height - max(hebrew_height, spanish_height) - text_bottom_margin
 
             # ציור הטקסטים - צבע לבן יותר בולט
             draw.text((hebrew_x, y), hebrew_processed, font=font, fill=(240, 240, 240))
