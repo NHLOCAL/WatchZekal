@@ -685,21 +685,25 @@ class VideoCreator:
             draw.text((hebrew_x, y), hebrew_processed, font=font, fill=(0, 0, 0))
             draw.text((spanish_x, y), spanish_processed, font=font, fill=(0, 0, 0))
 
-            # הוספת דגלים (הנתיבים צריכים להצביע למיקום הדגלים בתיקיית assets)
+            # הוספת דגלים
             israel_flag_path = os.path.join(ASSETS_DIR, 'flags', 'israel_flag.png')
             spain_flag_path = os.path.join(ASSETS_DIR, 'flags', 'spain_flag.png')
 
             flag_size = (int(strip_height * 0.8), int(strip_height * 0.8))
 
             if os.path.exists(israel_flag_path):
-                israel_flag = Image.open(israel_flag_path).resize(flag_size, RESAMPLING)
-                strip_image.paste(israel_flag, (int(hebrew_x + hebrew_width + padding * 0.5), (strip_height - flag_size[1]) // 2), israel_flag)
+                # המרת תמונת הדגל ל-RGB (הסרת ערוץ אלפא)
+                israel_flag = Image.open(israel_flag_path).convert("RGB").resize(flag_size, RESAMPLING)
+                # אין צורך להשתמש ב-israel_flag בתור מסכה מכיוון שהמרנו אותה ל-RGB
+                strip_image.paste(israel_flag, (int(hebrew_x + hebrew_width + padding * 0.5), (strip_height - flag_size[1]) // 2))
             else:
                 logging.warning(f"קובץ דגל ישראל לא נמצא בנתיב: {israel_flag_path}")
 
             if os.path.exists(spain_flag_path):
-                spain_flag = Image.open(spain_flag_path).resize(flag_size, RESAMPLING)
-                strip_image.paste(spain_flag, (int(spanish_x - flag_size[0] - padding * 0.5), (strip_height - flag_size[1]) // 2), spain_flag)
+                # המרת תמונת הדגל ל-RGB (הסרת ערוץ אלפא)
+                spain_flag = Image.open(spain_flag_path).convert("RGB").resize(flag_size, RESAMPLING)
+                # אין צורך להשתמש ב-spain_flag בתור מסכה מכיוון שהמרנו אותה ל-RGB
+                strip_image.paste(spain_flag, (int(spanish_x - flag_size[0] - padding * 0.5), (strip_height - flag_size[1]) // 2))
             else:
                 logging.warning(f"קובץ דגל ספרד לא נמצא בנתיב: {spain_flag_path}")
 
@@ -830,27 +834,6 @@ class VideoAssemblerShorts:
                     transition = self.video_creator.slide_transition(clips[-1], logo_clip)
                     clips.append(transition)
                     clips.append(logo_clip)
-     
-
-
-     
-                # יצירת רצועת שפות והוספתה לכל קליפ
-                language_strip, strip_height = self.video_creator.create_language_strip(WIDTH, HEIGHT)
-                if language_strip:
-                    logging.info("Language strip created successfully, adding to clips.")
-                else:
-                    logging.error("Failed to create the language strip, skipping.")
-                    # אם הרצועה לא נוצרה, אין מה להמשיך. ניתן להמשיך עם הקוד הקיים
-                    return # חשוב שיהיה RETURN אם אין רצועה
-                for i in range(len(clips)):
-                    if language_strip:
-                        logging.info(f"Adding language strip to clip at index: {i}")
-                        clip_with_strip = self.add_language_strip_to_clip(clips[i], language_strip, strip_height)
-                        clips[i] = clip_with_strip
-                    else:
-                        logging.warning(f"Skipping language strip for clip at index {i}, no language_strip was created.")
-
-
 
                 # איחוד הקליפים
                 logging.info(f"איחוד הקליפים לסרטון מספר {video_number}: {title}")
@@ -865,14 +848,9 @@ class VideoAssemblerShorts:
                     background_music.close()
                     final_audio.close()
 
-                # שמירת הווידאו
-                logging.info(f"שומר את הסרטון בנתיב: {video_path}")
-                final_clip.write_videofile(video_path, fps=FPS, codec='libx264', audio_codec='aac', threads=THREADS)
 
-                # תמונת תצוגה מקדימה
-                thumbnail_path = os.path.join(thumbnails_dir, f"Short_{video_number}_thumbnail.png")
-                final_clip.save_frame(thumbnail_path, t=0)
-                logging.info(f"שומר תמונת תצוגה מקדימה בנתיב: {thumbnail_path}")
+                # יצירת הסרטון הסופי ושמירתו
+                self.create_and_save_final_video(video_path, final_clip, video_number)
 
             except Exception as e:
                 logging.error(f"שגיאה בתהליך הרכבת הווידאו לסרטון מספר {video_number}: {e}")
@@ -911,7 +889,45 @@ class VideoAssemblerShorts:
 
         except Exception as e:
             logging.error(f"Error adding language strip to clip: {e}")
-            return clip                  
+            return clip
+
+
+    def create_and_save_final_video(self, video_path, final_clip, video_number):
+        """
+        יוצר את הסרטון הסופי, מוסיף לו את רצועת השפות ושומר אותו.
+        """
+        try:
+            # יצירת רצועת שפות
+            language_strip, strip_height = self.video_creator.create_language_strip(WIDTH, HEIGHT)
+
+            if language_strip:
+                # יצירת ImageClip מרצועת השפות
+                strip_clip = ImageClip(np.array(language_strip)).set_duration(final_clip.duration)
+
+                # מיקום רצועת השפות
+                strip_position = (0, VIDEO_SIZE[1] - strip_height)
+
+                # הרכבת הקליפ הסופי עם רצועת השפות - שים לב, קודם כל הקליפ ואז הרצועה
+                final_video_clip = CompositeVideoClip([final_clip, strip_clip.set_position(strip_position)])
+            else:
+                # אם אין רצועת שפות, פשוט השתמש בקליפ הסופי כמו שהוא
+                final_video_clip = final_clip
+
+            # שמירת הווידאו
+            logging.info(f"שומר את הסרטון בנתיב: {video_path}")
+            final_video_clip.write_videofile(video_path, fps=FPS, codec='libx264', audio_codec='aac', threads=THREADS)
+
+            # תמונת תצוגה מקדימה
+            thumbnail_path = os.path.join(thumbnails_dir, f"Short_{video_number}_thumbnail.png")
+            final_video_clip.save_frame(thumbnail_path, t=0)
+            logging.info(f"שומר תמונת תצוגה מקדימה בנתיב: {thumbnail_path}")
+
+        except Exception as e:
+            logging.error(f"שגיאה ביצירת או שמירת הסרטון הסופי: {e}")
+        finally:
+            if 'final_video_clip' in locals():
+                final_video_clip.close()
+            
 
 
 def main():
