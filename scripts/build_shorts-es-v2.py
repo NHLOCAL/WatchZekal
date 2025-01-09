@@ -651,7 +651,7 @@ class VideoCreator:
         יוצר רצועה תחתונה עם שמות השפות ודגלים.
         """
         try:
-            strip_height = int(height * 0.06)  # גובה הרצועה
+            strip_height = int(height * 0.08)  # גובה הרצועה
 
             # יצירת תמונה עם שקיפות
             strip_image = Image.new('RGBA', (width, strip_height), (0, 0, 0, 0))
@@ -678,7 +678,7 @@ class VideoCreator:
 
 
             # גופן
-            font_size = int(strip_height * 0.65)  # טקסט גדול יותר
+            font_size = int(strip_height * 0.5)  # טקסט גדול יותר
             try:
                 font = self.image_creator.get_font("Rubik-Bold.ttf", font_size)
             except IOError:
@@ -698,7 +698,7 @@ class VideoCreator:
             spanish_height = spanish_bbox[3] - spanish_bbox[1]
 
             # הגדרת רווח מינימלי בין הדגל לטקסט ובין קצה התצוגה לדגל
-            text_spacing = int(width * 0.02)  # 2% מרוחב המסך
+            text_spacing = int(width * 0.03)  # 3% מרוחב המסך
             edge_spacing = int(width * 0.03)  # 3% מרוחב המסך
 
             # הוספת הדגלים
