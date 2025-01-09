@@ -1,0 +1,23 @@
+[
+  {
+    "video_number": 1,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Nublado",
+    "translation": "מעונן",
+    "examples": [
+      {
+        "sentence": "Hoy está **nublado**; puede que llueva",
+        "translation": "היום מעונן; אולי ירד גשם"
+      },
+      {
+        "sentence": "Un cielo **nublado** puede ser hermoso",
+        "translation": "שמיים מעוננים יכולים להיות יפים"
+      },
+      {
+        "sentence": "El pronóstico dice que estará **nublado** toda la semana",
+        "translation": "התחזית אומרת שיהיה מעונן כל השבוע"
+      }
+    ],
+    "call_to_action": "כתבו בתגובות בספרדית איך אתם מתארים את מזג האוויר!"
+  } 
+]
