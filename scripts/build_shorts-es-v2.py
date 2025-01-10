@@ -672,7 +672,7 @@ class VideoCreator:
 
             # צבע כהה יותר עם שקיפות (ניתן לשנות)
             start_color = (100, 100, 128, 100)  # כחול כהה עם שקיפות
-            end_color = (0, 0, 128, 200)  # כחול כהה-סגלגל עם שקיפות
+            end_color = (0, 0, 128, 150)  # כחול כהה-סגלגל עם שקיפות
             
             gradient_background = create_gradient(strip_image, start_color, end_color) # יצירת הגרדיאנט
             strip_image.paste(gradient_background, (0, 0)) # הדבקת הגרדיאנט על הרצועה
