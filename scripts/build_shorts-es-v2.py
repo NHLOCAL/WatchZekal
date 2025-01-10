@@ -811,7 +811,7 @@ class VideoAssemblerShorts:
             logging.info(f"מעבד סרטון מספר {video_number}: {title}")
 
             safe_title = sanitize_filename("".join([c for c in title if c.isalnum() or c in (' ', '_')]).rstrip().replace(" ", "_"))
-            video_filename = f"Short_{video_number}_{safe_title}.mp4"
+            video_filename = f"Short_ES_{video_number}_{safe_title}.mp4"
             video_path = os.path.join(output_dir, video_filename)
 
             background_image_path = self.determine_background_image_path(title)
