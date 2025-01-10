@@ -671,8 +671,9 @@ class VideoCreator:
                 return gradient
 
             # צבע כהה יותר עם שקיפות (ניתן לשנות)
-            start_color = (40, 50, 70, 200)  # כחול כהה עם שקיפות
-            end_color = (20, 30, 45, 200)  # כחול כהה-סגלגל עם שקיפות
+            start_color = (100, 100, 128, 150)  # כחול כהה עם שקיפות
+            end_color = (0, 0, 128, 80)  # כחול כהה-סגלגל עם שקיפות
+            
             gradient_background = create_gradient(strip_image, start_color, end_color) # יצירת הגרדיאנט
             strip_image.paste(gradient_background, (0, 0)) # הדבקת הגרדיאנט על הרצועה
 
@@ -705,7 +706,7 @@ class VideoCreator:
             israel_flag_path = os.path.join(ASSETS_DIR, 'flags', 'israel_flag.png')
             spain_flag_path = os.path.join(ASSETS_DIR, 'flags', 'spain_flag.png')
 
-            flag_max_height = int(strip_height * 0.65)
+            flag_max_height = int(strip_height * 0.6)
             flag_aspect_ratio = 1.5
 
             # הגדרת מיקום התחלתי לטקסט
@@ -747,13 +748,16 @@ class VideoCreator:
             y = strip_height - max(hebrew_height, spanish_height) - text_bottom_margin
 
             # ציור הטקסטים - צבע לבן יותר בולט
-            draw.text((hebrew_x, y), hebrew_processed, font=font, fill=(240, 240, 240))
-            draw.text((spanish_x, y), spanish_processed, font=font, fill=(240, 240, 240))
+            draw.text((hebrew_x, y), hebrew_processed, font=font, fill=(0, 242, 232))
+            draw.text((spanish_x, y), spanish_processed, font=font, fill=(0, 242, 232))
             
+            
+            """
             # הוספת קו מעל הרצועה
             line_width = int(strip_height * 0.04)
             # קו בצבע שונה (ניתן לשנות)
             draw.line([(0, 0), (width, 0)], fill=(50, 90, 130), width=line_width)
+            """
 
             # שמירה לתיקייה הזמנית
             temp_image_path = self.file_manager.get_temp_path("language_strip.png")
