@@ -50,12 +50,12 @@ logging.getLogger().addHandler(file_handler)
 RESAMPLING = Image.LANCZOS
 
 # הגדרות בסיסיות
-DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'shorts-ES')  # שינוי לתיקיית "shorts"
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'shorts', 'es')  # שינוי לתיקיית "shorts"
 ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
 FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 LOGOS_DIR = os.path.join(ASSETS_DIR, 'logos')
 BACKGROUNDS_DIR = os.path.join(ASSETS_DIR, 'backgrounds')  # תיקיית רקעים
-OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'shorts-ES')  # הוספת "shorts" לנתיב היציאה
+OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output', 'shorts', 'es')  # הוספת "shorts" לנתיב היציאה
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 
 # נתיבים לקבצים
