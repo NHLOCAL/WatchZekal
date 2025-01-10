@@ -677,7 +677,6 @@ class VideoCreator:
             gradient_background = create_gradient(strip_image, start_color, end_color) # יצירת הגרדיאנט
             strip_image.paste(gradient_background, (0, 0)) # הדבקת הגרדיאנט על הרצועה
 
-
             # גופן
             font_size = int(strip_height * 0.5)  # טקסט גדול יותר
             try:
@@ -686,7 +685,7 @@ class VideoCreator:
                 logging.error("לא ניתן למצוא את הגופן Rubik-Bold.ttf. מוודא שהוא נמצא בתיקיית FONTS_DIR.")
                 font = ImageFont.load_default()
 
-             # טקסט עברית
+            # טקסט עברית
             hebrew_processed = process_hebrew_text(hebrew_text)
             hebrew_bbox = draw.textbbox((0, 0), hebrew_processed, font=font)
             hebrew_width = hebrew_bbox[2] - hebrew_bbox[0]
@@ -710,7 +709,7 @@ class VideoCreator:
             flag_max_height = int(strip_height * 0.6)
             flag_aspect_ratio = 1.5
 
-             # הגדרת מיקום התחלתי לטקסט
+            # הגדרת מיקום התחלתי לטקסט
             hebrew_x = width
             spanish_x = 0
             
@@ -741,8 +740,8 @@ class VideoCreator:
 
             else:
                 logging.warning(f"קובץ דגל ספרד לא נמצא בנתיב: {spain_flag_path}")
-                
-             # טעינת תמונת החץ אם קיימת
+
+            # טעינת תמונת החץ אם קיימת
             if os.path.exists(arrows_path):
                 arrow_img = Image.open(arrows_path).convert("RGBA")
                 # גודל החץ - תלוי בגובה השורה
@@ -751,11 +750,14 @@ class VideoCreator:
                 arrow_width = int(arrow_height * arrow_aspect)
                 arrow_img = arrow_img.resize((arrow_width, arrow_height), RESAMPLING)
             else:
-                logging.warning(f"קובץ החץ לא נמצא בנתיב: {arrows_path}")
-
+                 logging.warning(f"קובץ החץ לא נמצא בנתיב: {arrows_path}")
+            
             # מיקום החץ - בדיוק בין הטקסטים
             arrow_x = (hebrew_x + spanish_x + hebrew_width) // 2 - arrow_width // 2
 
+             # מיקום אנכי של החץ - מיושר למרכז הרצועה
+            arrow_y = (strip_height - arrow_height) // 2
+            
             # הגדרת ברירת מחדל למרחק התחתון של הטקסט
             if text_bottom_margin is None:
                 text_bottom_margin = int(strip_height * 0.5)
@@ -770,7 +772,7 @@ class VideoCreator:
 
             # אם קיים חץ - צייר אותו
             if arrow_img:
-                strip_image.paste(arrow_img, (arrow_x, y + (max(hebrew_height, spanish_height) - arrow_height) // 2), mask=arrow_img)
+                strip_image.paste(arrow_img, (arrow_x, arrow_y), mask=arrow_img)
 
             # שמירה לתיקייה הזמנית
             temp_image_path = self.file_manager.get_temp_path("language_strip.png")
