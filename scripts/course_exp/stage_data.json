@@ -1,0 +1,381 @@
+{
+  "stage_number": 1,
+  "stage_name_display_he": "שלב 1 – האלפבית, תנועות ועיצורים",
+  "stage_description_display_he": "בשלב זה נכיר את יסודות ההגייה באנגלית: האותיות, התנועות (Vowels) והעיצורים (Consonants), תוך השוואה לעברית ותרגול הגייה נכון. המטרה היא להניח בסיס מוצק שיאפשר קריאה והבנה בהמשך התוכנית.",
+
+  "lessons": [
+    {
+      "lesson_number": 1,
+      "lesson_title_display_he": "מבוא לאותיות באנגלית",
+      "video_title_display_he": "שיעור 1 – מבוא לאותיות באנגלית",
+      "video_duration_minutes": 5,
+
+      "sections": [
+        {
+          "section_number": 1,
+          "section_title_display_he": "הקדמה לשפה האנגלית",
+          "section_text_display_he": "באנגלית יש 26 אותיות, בהשוואה ל-22 אותיות בעברית. בשיעור זה נלמד איך קוראים להן, איך כותבים אות גדולה לעומת אות קטנה, ונקבל רקע קצר על ההבדל בין הכתב העברי לאנגלי.",
+          "narration_he": [
+            "ברוכים הבאים לשיעור הראשון בשלב 1! היום נכיר את 26 האותיות באנגלית באופן כללי. נלמד מה ההבדל בין אותיות גדולות לאותיות קטנות, ונבין איפה הן משמשות.",
+            "שימו לב שבאנגלית, בניגוד לעברית, לכל אות יש שתי צורות כתיבה: Capital (אות גדולה) ו-Small (אות קטנה). למשל, A גדולה ו-a קטנה. נתחיל בהצצה ראשונה לכל האותיות."
+          ],
+          "narration_en": []
+        },
+        {
+          "section_number": 2,
+          "section_title_display_he": "סקירת 26 האותיות",
+          "section_text_display_he": "האותיות באנגלית הן: A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z. (מוצג על המסך)",
+          "narration_he": [
+            "כעת אציין את שמות האותיות באנגלית. הקשיבו היטב להגייה שלהן. מיד לאחר שאקרא כל אות, תוכלו לחזור אחריי."
+          ],
+          "narration_en": [
+            "A", "B", "C", "D", "E", "F",
+            "G", "H", "I", "J", "K", "L",
+            "M", "N", "O", "P", "Q", "R",
+            "S", "T", "U", "V", "W", "X",
+            "Y", "Z"
+          ]
+        },
+        {
+          "section_number": 3,
+          "section_title_display_he": "Capital Letters vs. Small Letters",
+          "section_text_display_he": "באנגלית, אותיות גדולות משמשות בעיקר בתחילת משפט, בשמות פרטיים ובכותרות. אותיות קטנות משמשות לכל שאר הכתיבה השוטפת. לדוגמה: A/a, B/b, C/c.",
+          "narration_he": [
+            "למשל, כאשר אנו כותבים את השם 'Alice', אנו מתחילים באות גדולה A, אבל שאר האותיות יהיו קטנות: l, i, c, e.",
+            "באופן דומה, בתחילת משפט נשתמש באות גדולה, ולאחר מכן נעבור לכתיבה באותיות קטנות."
+          ],
+          "narration_en": []
+        }
+      ],
+
+      "exercises": [
+        {
+          "exercise_title_display_he": "תרגיל 1 – הקשבה וחזרה",
+          "exercise_instructions_display_he": "חזרו אחרי ההגייה של האותיות באנגלית, ונסו לשים לב להבדל בין שם האות לבין הצליל שלה במילים שונות.",
+          "exercise_narration_he": [
+            "האזינו שוב לאותיות ואחר כך חזרו אחריי בקול רם. אל תשכחו להבחין בין A גדולה ל-a קטנה, B גדולה ל-b קטנה, וכך הלאה."
+          ],
+          "exercise_narration_en": [
+            "A", "B", "C", "D", "E", "F",
+            "G", "H", "I", "J", "K", "L",
+            "M", "N", "O", "P", "Q", "R",
+            "S", "T", "U", "V", "W", "X",
+            "Y", "Z"
+          ]
+        },
+        {
+          "exercise_title_display_he": "תרגיל 2 – זיהוי אותיות",
+          "exercise_instructions_display_he": "נסו לומר איזו אות גדולה ואיזו אות קטנה כשאתם רואים אות מוצגת. לדוגמה, R/r, Q/q, וכו'.",
+          "exercise_narration_he": [
+            "בתצוגה תראו שילוב של אות גדולה וקטנה, למשל G ו-g. אמרו בקול: 'Capital G' או 'Small g' כדי להטמיע את ההבדל."
+          ],
+          "exercise_narration_en": []
+        }
+      ]
+    },
+    {
+      "lesson_number": 2,
+      "lesson_title_display_he": "תנועות (Vowels) והגייה בסיסית",
+      "video_title_display_he": "שיעור 2 – תנועות באנגלית",
+      "video_duration_minutes": 5,
+
+      "sections": [
+        {
+          "section_number": 1,
+          "section_title_display_he": "מהן תנועות?",
+          "section_text_display_he": "חמש התנועות העיקריות באנגלית הן A, E, I, O, U. לפעמים האות Y משמשת כתנועה. תנועות יכולות להופיע בצורות הגייה שונות (קצרה או ארוכה).",
+          "narration_he": [
+            "באנגלית, לכל תנועה יכולים להיות מספר צלילים. לדוגמה, A נשמעת אחרת במילה 'cat' לעומת 'cake'. בעברית לרוב לכל תנועה יש צליל קבוע, ולכן זהו הבדל חשוב שכדאי לשים אליו לב."
+          ],
+          "narration_en": []
+        },
+        {
+          "section_number": 2,
+          "section_title_display_he": "דוגמאות לצלילים",
+          "section_text_display_he": "דוגמאות: A ב-cat, A ב-cake. I ב-bit, I ב-bite. O ב-hot, O ב-hope.",
+          "narration_he": [
+            "בואו נשמע כעת שתי מילים עם אותה תנועה אך צליל שונה. חזרו אחריי ונסו להבחין בהבדל בין הצליל הקצר לצליל הארוך."
+          ],
+          "narration_en": [
+            "cat, cake",
+            "bit, bite",
+            "hot, hope"
+          ]
+        },
+        {
+          "section_number": 3,
+          "section_title_display_he": "השוואה לעברית",
+          "section_text_display_he": "בעברית, האות 'א' לא מבדילה בין צלילים קצרים לארוכים. באנגלית ההבדל משמעותי ויכול לשנות את משמעות המילה לחלוטין.",
+          "narration_he": [
+            "לדוגמה, המילה 'bit' משמעותה 'חתיכה קטנה', אך 'bite' משמעותה 'לנגוס'. שימו לב להבדל בהגייה.",
+            "ההמלצה היא להאזין כמה שיותר למילים באנגלית, ולדקלם אותן שוב ושוב כדי להתרגל לצליל הנכון."
+          ],
+          "narration_en": []
+        }
+      ],
+
+      "exercises": [
+        {
+          "exercise_title_display_he": "תרגיל 1 – הקשבה חוזרת",
+          "exercise_instructions_display_he": "האזינו לצמד המילים והגדירו איזו תנועה נשמעת ארוכה יותר. חזרו אחר הקריין לפחות פעמיים.",
+          "exercise_narration_he": [
+            "נסו לזהות את ההבדל בין הצליל ב-cat ל-cake, ובין bit ל-bite."
+          ],
+          "exercise_narration_en": [
+            "cat, cake, bit, bite"
+          ]
+        },
+        {
+          "exercise_title_display_he": "תרגיל 2 – חיבור למשפט קצר",
+          "exercise_instructions_display_he": "הרכיבו משפט קצר בעזרת מילה בכל צליל. לדוגמה: 'I like cake' לעומת 'I see a cat'.",
+          "exercise_narration_he": [
+            "נסו לבטא את המילים בצורה ברורה. חשבו כיצד הייתם מסבירים את ההבדל בין cat ו-cake לחבר דובר עברית."
+          ],
+          "exercise_narration_en": [
+            "I like cake",
+            "I see a cat"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson_number": 3,
+      "lesson_title_display_he": "עיצורים בסיסיים והשוואה לעברית",
+      "video_title_display_he": "שיעור 3 – עיצורים נפוצים",
+      "video_duration_minutes": 5,
+
+      "sections": [
+        {
+          "section_number": 1,
+          "section_title_display_he": "היכרות עם עיצורים נפוצים",
+          "section_text_display_he": "נכיר כעת עיצורים (Consonants) נפוצים כמו B, P, T, D, K, G. נשווה ביניהם לעברית.",
+          "narration_he": [
+            "בעברית יש פחות הבדל בין עיצורים מסוימים כמו P ל-F, אולם באנגלית ההבדל קריטי. בואו נתרגל כמה דוגמאות יחד."
+          ],
+          "narration_en": []
+        },
+        {
+          "section_number": 2,
+          "section_title_display_he": "דוגמאות לצמדי מילים",
+          "section_text_display_he": "Bat – Vat, Pit – Fit, Bed – Bad. הקשיבו להבדל בין הצלילים.",
+          "narration_he": [
+            "שימו לב שבמילה Bat אנחנו שומעים את הצליל B, בעוד ב-Vat הצליל V. אלו צלילים מאוד שונים באנגלית, גם אם בעברית הם עשויים להישמע דומים.",
+            "באנגלית, P נושף יותר מהאות פ' בעברית, ולכן חשוב לתת פיצוץ אוויר קל.",
+            "הקשיבו כעת לדוגמאות והחזרו אחריי."
+          ],
+          "narration_en": [
+            "Bat, Vat",
+            "Pit, Fit",
+            "Bed, Bad"
+          ]
+        },
+        {
+          "section_number": 3,
+          "section_title_display_he": "טיפ לדוברי עברית",
+          "section_text_display_he": "התרגלו להוציא אוויר קל בעיצור P. הקפידו להבחין בין B ל-V, ובין T ל-D (צליל קהה לעומת צליל 'מלא').",
+          "narration_he": [
+            "לעיתים ניתן להניח את היד מול הפה בעת הגיית P באנגלית, ולחוש את האוויר. כך תרכשו את ההרגל הנכון."
+          ],
+          "narration_en": []
+        }
+      ],
+
+      "exercises": [
+        {
+          "exercise_title_display_he": "תרגיל 1 – חזרות והקשבה פעילה",
+          "exercise_instructions_display_he": "האזינו לצמדי מילים (Bat – Vat, Pit – Fit) וחזרו אחר הקריין. נסו באמת להבדיל בין הצלילים.",
+          "exercise_narration_he": [
+            "אל תמהרו – ניתן להקשיב כמה פעמים ולבטא לאט, עד שההבדל יהיה ברור."
+          ],
+          "exercise_narration_en": [
+            "Bat, Vat",
+            "Pit, Fit"
+          ]
+        },
+        {
+          "exercise_title_display_he": "תרגיל 2 – צרו משפטים קצרים",
+          "exercise_instructions_display_he": "בנו משפטים קצרים המשתמשים במילים החדשות, כמו: Bat, Vat, Pit, Fit. לדוגמה: 'The bat is black' או 'I put my hat in the vat'.",
+          "exercise_narration_he": [
+            "אם אתם מתקשים, חזרו שוב להאזין להבדלים בין הצלילים.",
+            "אפשר להיות יצירתיים במשפטים – המטרה היא לתרגל הגייה נכונה."
+          ],
+          "exercise_narration_en": [
+            "The bat is black",
+            "I put my hat in the vat"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson_number": 4,
+      "lesson_title_display_he": "עיצורים מאתגרים לדוברי עברית",
+      "video_title_display_he": "שיעור 4 – R, Th, W מול V",
+      "video_duration_minutes": 5,
+
+      "sections": [
+        {
+          "section_number": 1,
+          "section_title_display_he": "הצליל R והצליל Th",
+          "section_text_display_he": "R באנגלית שונה מהאות ר' בעברית, ו-Th לא קיים כלל בעברית. זה עלול להיות מאתגר, לכן נתרגל הפקת הצלילים בשיטה נכונה.",
+          "narration_he": [
+            "את הצליל R באנגלית יש להפיק עם הלשון מעט אחורה ולא מגולגלת כמו בספרדית. לצליל Th, הכניסו בעדינות את קצה הלשון בין השיניים ונסו 'לנשוף' קלות.",
+            "נשמע דוגמאות של מילים עם R ו-Th ונחזור אחריהן."
+          ],
+          "narration_en": [
+            "Red, River, Three, That"
+          ]
+        },
+        {
+          "section_number": 2,
+          "section_title_display_he": "W לעומת V",
+          "section_text_display_he": "יש להקפיד על שפתיים מעוגלות עבור W, ושפה תחתונה שנוגעת בשיניים העליונות ב-V.",
+          "narration_he": [
+            "למשל, במילה Water השפתיים מתעגלות ב-W, בעוד במילה Very השפה התחתונה נוגעת קלות בשיניים העליונות.",
+            "נשמע כמה דוגמאות."
+          ],
+          "narration_en": [
+            "Water, Very, Window, Vine"
+          ]
+        }
+      ],
+
+      "exercises": [
+        {
+          "exercise_title_display_he": "תרגיל 1 – הקשבה מודרכת",
+          "exercise_instructions_display_he": "האזינו למילים הבאות: 'Red', 'Three', 'Water', 'Very'. חזרו אחר הקריין ודגשו על תנועת הלשון והשפתיים בכל מילה.",
+          "exercise_narration_he": [
+            "זכרו: ב-Th אתם באמת צריכים להכניס את הלשון בין השיניים.",
+            "ב-R אל תגלגלו את הלשון יותר מדי, רק הרימו אותה מעט מאחורי החך."
+          ],
+          "exercise_narration_en": [
+            "Red",
+            "Three",
+            "Water",
+            "Very"
+          ]
+        },
+        {
+          "exercise_title_display_he": "תרגיל 2 – משפטים מאתגרים",
+          "exercise_instructions_display_he": "קריין יאמר משפטים קצרים, ואתם תחזרו עליהם. שימו לב לאותיות R ו-Th, ול-W מול V.",
+          "exercise_narration_he": [
+            "חזרו אחר המשפטים בבקשה:"
+          ],
+          "exercise_narration_en": [
+            "I think this red car is very fast",
+            "We want water on Thursday",
+            "Van or wagon? That is the question"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson_number": 5,
+      "lesson_title_display_he": "חיבור אותיות וצירופים נפוצים",
+      "video_title_display_he": "שיעור 5 – Ch, Sh, Ph ועוד",
+      "video_duration_minutes": 5,
+
+      "sections": [
+        {
+          "section_number": 1,
+          "section_title_display_he": "צירופי אותיות והצליל המיוחד שלהם",
+          "section_text_display_he": "באנגלית, צירוף אותיות יכול לשנות לגמרי את הצליל. לדוגמה, ch (chip) נשמע כמו 'צ', בעוד sh (shop) נשמע כמו 'ש'. ph (phone) נהגה כ-F.",
+          "narration_he": [
+            "נכיר עכשיו כמה צירופים נפוצים: ch, sh, ph, ונתרגל הגייה נכונה ומילים שימושיות."
+          ],
+          "narration_en": []
+        },
+        {
+          "section_number": 2,
+          "section_title_display_he": "דוגמאות לצירופים",
+          "section_text_display_he": "Ch: chip, choice, child. Sh: shop, sheep, share. Ph: phone, photo, graph.",
+          "narration_he": [
+            "שימו לב להבדל בין 'chip' ל-'ship'. ב-ch אנו שומעים צליל צ' חזק יותר, וב-sh צליל ש' רך יותר.",
+            "בצירוף ph ההגייה היא f. כך phone נשמע 'פון'."
+          ],
+          "narration_en": [
+            "chip, ship, phone, graph"
+          ]
+        }
+      ],
+
+      "exercises": [
+        {
+          "exercise_title_display_he": "תרגיל 1 – הקשבה והבחנה",
+          "exercise_instructions_display_he": "האזינו למילים: chip, ship, phone, graph. חזרו אחר הקריין, ונקו את ההגייה שלכם כך שתישמע בבירור.",
+          "exercise_narration_he": [
+            "נסו להדגיש את ההבדל בין ch ל-sh תוך כדי דיבור איטי."
+          ],
+          "exercise_narration_en": [
+            "chip, ship, phone, graph"
+          ]
+        },
+        {
+          "exercise_title_display_he": "תרגיל 2 – יצירת משפטים",
+          "exercise_instructions_display_he": "שלבו את המילים החדשות במשפטים קצרים, לדוגמה: 'I like chips', או 'He took a photo with his phone'.",
+          "exercise_narration_he": [
+            "חשבו על שימוש יומיומי במילים הללו, ונסו להגות אותן נכון גם בשטף דיבור."
+          ],
+          "exercise_narration_en": [
+            "I like chips",
+            "He took a photo with his phone"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson_number": 6,
+      "lesson_title_display_he": "סיכום שלב 1 ותרגול הגייה",
+      "video_title_display_he": "שיעור 6 – סיכום השלב",
+      "video_duration_minutes": 5,
+
+      "sections": [
+        {
+          "section_number": 1,
+          "section_title_display_he": "חזרה על העיקר",
+          "section_text_display_he": "חוזרים בקצרה על האלפבית, התנועות, העיצורים והצירופים המיוחדים. נזכיר את הנקודות החשובות בהגייה לדוברי עברית.",
+          "narration_he": [
+            "בשלב זה למדנו להכיר את האותיות, כיצד להגות את התנועות בצורה נכונה, איך להבחין בין עיצורים דומים, וכיצד להתמודד עם R ו-Th.",
+            "זו הייתה הקדמה בסיסית, אך חשובה מאוד להמשך הלימוד."
+          ],
+          "narration_en": []
+        },
+        {
+          "section_number": 2,
+          "section_title_display_he": "תרגול משולב",
+          "section_text_display_he": "נשלב כעת כמה מילים שלמדנו למשפטים קצרים, נתמקד בהגייה נכונה ובביטחון בדיבור.",
+          "narration_he": [
+            "הקשיבו לדוגמאות ונסו לחזור אחריי בצורה מדויקת ככל האפשר. אם משהו לא ברור – חזרו לשיעורים הקודמים."
+          ],
+          "narration_en": [
+            "The cat is on the bed",
+            "She likes chips",
+            "I think this water is cold",
+            "Please call me on the phone"
+          ]
+        }
+      ],
+
+      "exercises": [
+        {
+          "exercise_title_display_he": "תרגיל 1 – חידון אותיות וקולות",
+          "exercise_instructions_display_he": "מנחה השיעור יאמר אות באנגלית, ואתם תצטרכו לציין אם זו אות גדולה או קטנה, ותיתנו דוגמה למילה שמתחילה בה.",
+          "exercise_narration_he": [
+            "לדוגמה: אם נאמר לכם 'B' – אמרו 'Capital B' ונסו לתת דוגמה: 'B for Bat'."
+          ],
+          "exercise_narration_en": []
+        },
+        {
+          "exercise_title_display_he": "תרגיל 2 – הכנה לשלב הבא",
+          "exercise_instructions_display_he": "בשלב הבא נלמד אוצר מילים בסיסי כמו מספרים וצבעים, אז מומלץ לתרגל פתיחת משפטים עם האותיות שלמדנו, בשילוב מילים ראשוניות כמו 'a', 'the', 'my'.",
+          "exercise_narration_he": [
+            "חשבו למשל על משפטים פשוטים: 'I see a cat', 'This is my bag'. נסו לאיית לעצמכם באותיות את המילים החדשות."
+          ],
+          "exercise_narration_en": [
+            "I see a cat",
+            "This is my bag"
+          ]
+        }
+      ]
+    }
+  ]
+}

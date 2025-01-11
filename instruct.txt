@@ -1,0 +1,719 @@
+C:.
+│   .gitattributes
+│   .gitignore
+│   LICENSE
+│   README.md
+│   requirements.txt
+│
+├───.github
+│   │   FUNDING.yml
+│   │
+│   └───workflows
+│           generate_videos.yml
+│
+├───assets
+│   │   arrows.png
+│   │   background_music.mp3
+│   │   styles.json
+│   │   styles_shorts.json
+│   │   styles_stories.json
+│   │
+│   ├───backgrounds
+│   │       channel-background.png
+│   │       ביקור בשוק.png
+│   │       בריאות ורפואה.png
+│   │       האיכר החכם.png
+│   │       החידה של המלך.png
+│   │       המטבע האבוד.png
+│   │       המערה המסתורית.png
+│   │       הסביבה והטבע.png
+│   │       הסדנה של הממציא.png
+│   │       הסוד של האופה.png
+│   │       העורב הפיקח.png
+│   │       הרועה והכבשה האבודה.png
+│   │       השביל הנסתר.png
+│   │       השתיל הקטן.png
+│   │       חוטב העצים הישר.png
+│   │       טוב שכן טוב.png
+│   │       טכנולוגיה וגאדג'טים.png
+│   │       יום על הנהר.png
+│   │       מזג האוויר ותופעות טבע.png
+│   │       מזון ומשקאות.png
+│   │       מקצועות ועבודות.png
+│   │       נסיעות וטיולים.png
+│   │       רגשות ותחושות.png
+│   │       תחביבים ופעילויות פנאי.png
+│   │       תקשורת ומדיה.png
+│   │
+│   ├───flags
+│   │       france_flag.png
+│   │       israel_flag.png
+│   │       spain_flag.png
+│   │
+│   ├───fonts
+│   │       BonaNova-Bold.ttf
+│   │       BonaNova-Regular.ttf
+│   │       Rubik-Bold.ttf
+│   │       Rubik-Regular.ttf
+│   │
+│   └───logos
+│           bell.png
+│           like.png
+│           logo-not-name.png
+│           logo.png
+│           logo_colored.png
+│           subscribe.png
+│
+├───data
+│   ├───levels
+│   │   │   words_level_0.json
+│   │   │   words_level_1.json
+│   │   │   words_level_10.json
+│   │   │   words_level_2.json
+│   │   │   words_level_3.json
+│   │   │   words_level_4.json
+│   │   │   words_level_5.json
+│   │   │   words_level_6.json
+│   │   │   words_level_7.json
+│   │   │   words_level_8.json
+│   │   │   words_level_9.json
+│   │   │
+│   │   └───es
+│   │           words_level_1.json
+│   │
+│   ├───shorts
+│   │   │   short.json
+│   │   │   shorts_1.json
+│   │   │   shorts_10.json
+│   │   │   shorts_2.json
+│   │   │   shorts_3.json
+│   │   │   shorts_4.json
+│   │   │   shorts_5.json
+│   │   │   shorts_6.json
+│   │   │   shorts_7.json
+│   │   │   shorts_8.json
+│   │   │   shorts_9.json
+│   │   │
+│   │   └───es
+│   │           shorts_0.json
+│   │           shorts_1.json
+│   │
+│   └───stories
+│           remove_nikud.py
+│           story1.json
+│           story10.json
+│           story11.json
+│           story12.json
+│           story13.json
+│           story14.json
+│           story15.json
+│           story16.json
+│           story17.json
+│           story18.json
+│           story19.json
+│           story2.json
+│           story20.json
+│           story21.json
+│           story22.json
+│           story23.json
+│           story24.json
+│           story25.json
+│           story26.json
+│           story27.json
+│           story28.json
+│           story29.json
+│           story3.json
+│           story30.json
+│           story4.json
+│           story5.json
+│           story6.json
+│           story7.json
+│           story8.json
+│           story9.json
+│
+├───docs
+│       channel_data.json
+│       descriptions-levels.md
+│       descriptions-shorts.md
+│       descriptions-stories.md
+│       levels.txt
+│       shorts.txt
+│       stories.txt
+│
+├───output
+│   │   Level_0_בסיס.mp4
+│   │
+│   ├───levels
+│   │   ├───levels mp3
+│   │   │       Level_10_נושאים_מתקדמים_ודקדוק_מורכב.mp3
+│   │   │       Level_1_יסודות.mp3
+│   │   │       Level_2_משפחה_וזמן.mp3
+│   │   │       Level_3_גוף_האדם_וביגוד.mp3
+│   │   │       Level_4_הבית_וחפצים_יומיומיים.mp3
+│   │   │       Level_5_מזון_ומשקאות.mp3
+│   │   │       Level_6_בעלי_חיים_וטבע.mp3
+│   │   │       Level_7_תחבורה_ומקומות_בעיר.mp3
+│   │   │       Level_8_פעילויות_ופנאי.mp3
+│   │   │       Level_9_רגשות_ותיאורים_מורכבים.mp3
+│   │   │
+│   │   ├───levels mp4
+│   │   │       Level_10_נושאים_מתקדמים_ודקדוק_מורכב.mp4
+│   │   │       Level_1_יסודות.mp4
+│   │   │       Level_2_משפחה_וזמן.mp4
+│   │   │       Level_3_גוף_האדם_וביגוד.mp4
+│   │   │       Level_4_הבית_וחפצים_יומיומיים.mp4
+│   │   │       Level_5_מזון_ומשקאות.mp4
+│   │   │       Level_6_בעלי_חיים_וטבע.mp4
+│   │   │       Level_7_תחבורה_ומקומות_בעיר.mp4
+│   │   │       Level_8_פעילויות_ופנאי.mp4
+│   │   │       Level_9_רגשות_ותיאורים_מורכבים.mp4
+│   │   │
+│   │   └───thumbnails
+│   │           Level_10_thumbnail.png
+│   │           Level_1_thumbnail.png
+│   │           Level_2_thumbnail.png
+│   │           Level_3_thumbnail.png
+│   │           Level_4_thumbnail.png
+│   │           Level_5_thumbnail.png
+│   │           Level_6_thumbnail.png
+│   │           Level_7_thumbnail.png
+│   │           Level_8_thumbnail.png
+│   │           Level_9_thumbnail.png
+│   │
+│   ├───previews
+│   │       combined_preview.png
+│   │       end_preview.png
+│   │       story_preview.png
+│   │       story_title_preview.png
+│   │
+│   ├───shorts
+│   │   ├───en
+│   │   │   ├───בריאות ורפואה
+│   │   │   │       Short_10_בריאות_ורפואה.mp4
+│   │   │   │       Short_11_בריאות_ורפואה.mp4
+│   │   │   │       Short_12_בריאות_ורפואה.mp4
+│   │   │   │       Short_13_בריאות_ורפואה.mp4
+│   │   │   │       Short_14_בריאות_ורפואה.mp4
+│   │   │   │       Short_15_בריאות_ורפואה.mp4
+│   │   │   │       Short_1_בריאות_ורפואה.mp4
+│   │   │   │       Short_2_בריאות_ורפואה.mp4
+│   │   │   │       Short_3_בריאות_ורפואה.mp4
+│   │   │   │       Short_4_בריאות_ורפואה.mp4
+│   │   │   │       Short_5_בריאות_ורפואה.mp4
+│   │   │   │       Short_6_בריאות_ורפואה.mp4
+│   │   │   │       Short_7_בריאות_ורפואה.mp4
+│   │   │   │       Short_8_בריאות_ורפואה.mp4
+│   │   │   │       Short_9_בריאות_ורפואה.mp4
+│   │   │   │
+│   │   │   ├───טכנולוגיה וגאדג'טים
+│   │   │   │       Short_10_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_11_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_12_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_13_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_14_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_15_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_1_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_2_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_3_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_4_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_5_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_6_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_7_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_8_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │       Short_9_טכנולוגיה_וגאדגטים.mp4
+│   │   │   │
+│   │   │   ├───מזג האויר
+│   │   │   │       Short_10_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_11_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_12_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_13_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_14_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_15_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_1_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_2_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_3_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_4_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_5_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_6_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_7_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_8_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │       Short_9_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │
+│   │   │   ├───מזון ומשקאות
+│   │   │   │       Short_10_מזון_ומשקאות.mp4
+│   │   │   │       Short_11_מזון_ומשקאות.mp4
+│   │   │   │       Short_12_מזון_ומשקאות.mp4
+│   │   │   │       Short_13_מזון_ומשקאות.mp4
+│   │   │   │       Short_14_מזון_ומשקאות.mp4
+│   │   │   │       Short_15_מזון_ומשקאות.mp4
+│   │   │   │       Short_1_מזון_ומשקאות.mp4
+│   │   │   │       Short_2_מזון_ומשקאות.mp4
+│   │   │   │       Short_3_מזון_ומשקאות.mp4
+│   │   │   │       Short_4_מזון_ומשקאות.mp4
+│   │   │   │       Short_5_מזון_ומשקאות.mp4
+│   │   │   │       Short_6_מזון_ומשקאות.mp4
+│   │   │   │       Short_7_מזון_ומשקאות.mp4
+│   │   │   │       Short_8_מזון_ומשקאות.mp4
+│   │   │   │       Short_9_מזון_ומשקאות.mp4
+│   │   │   │
+│   │   │   ├───מקצועות ועבודות
+│   │   │   │       Short_10_מקצועות_ועבודות.mp4
+│   │   │   │       Short_11_מקצועות_ועבודות.mp4
+│   │   │   │       Short_12_מקצועות_ועבודות.mp4
+│   │   │   │       Short_13_מקצועות_ועבודות.mp4
+│   │   │   │       Short_14_מקצועות_ועבודות.mp4
+│   │   │   │       Short_15_מקצועות_ועבודות.mp4
+│   │   │   │       Short_1_מקצועות_ועבודות.mp4
+│   │   │   │       Short_2_מקצועות_ועבודות.mp4
+│   │   │   │       Short_3_מקצועות_ועבודות.mp4
+│   │   │   │       Short_4_מקצועות_ועבודות.mp4
+│   │   │   │       Short_5_מקצועות_ועבודות.mp4
+│   │   │   │       Short_6_מקצועות_ועבודות.mp4
+│   │   │   │       Short_7_מקצועות_ועבודות.mp4
+│   │   │   │       Short_8_מקצועות_ועבודות.mp4
+│   │   │   │       Short_9_מקצועות_ועבודות.mp4
+│   │   │   │
+│   │   │   ├───רגשות ותחושות
+│   │   │   │       Short_10_רגשות_ותחושות.mp4
+│   │   │   │       Short_11_רגשות_ותחושות.mp4
+│   │   │   │       Short_12_רגשות_ותחושות.mp4
+│   │   │   │       Short_13_רגשות_ותחושות.mp4
+│   │   │   │       Short_14_רגשות_ותחושות.mp4
+│   │   │   │       Short_15_רגשות_ותחושות.mp4
+│   │   │   │       Short_1_רגשות_ותחושות.mp4
+│   │   │   │       Short_2_רגשות_ותחושות.mp4
+│   │   │   │       Short_3_רגשות_ותחושות.mp4
+│   │   │   │       Short_4_רגשות_ותחושות.mp4
+│   │   │   │       Short_5_רגשות_ותחושות.mp4
+│   │   │   │       Short_6_רגשות_ותחושות.mp4
+│   │   │   │       Short_7_רגשות_ותחושות.mp4
+│   │   │   │       Short_8_רגשות_ותחושות.mp4
+│   │   │   │       Short_9_רגשות_ותחושות.mp4
+│   │   │   │
+│   │   │   └───תחביבים ופעילויות פנאי
+│   │   │           Short_10_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_11_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_12_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_13_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_14_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_15_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_1_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_2_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_3_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_4_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_5_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_6_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_7_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_8_תחביבים_ופעילויות_פנאי.mp4
+│   │   │           Short_9_תחביבים_ופעילויות_פנאי.mp4
+│   │   │
+│   │   ├───es
+│   │   │   │   Short_ES_0_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_10_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_11_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_12_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_13_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_14_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_15_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_1_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_2_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_3_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_4_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_5_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_6_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_7_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_8_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │   Short_ES_9_מזג_האוויר_ותופעות_טבע.mp4
+│   │   │   │
+│   │   │   └───thumbnails
+│   │   └───thumbnails
+│   │           Short_10_thumbnail.png
+│   │           Short_11_thumbnail.png
+│   │           Short_12_thumbnail.png
+│   │           Short_13_thumbnail.png
+│   │           Short_14_thumbnail.png
+│   │           Short_15_thumbnail.png
+│   │           Short_1_thumbnail.png
+│   │           Short_2_thumbnail.png
+│   │           Short_3_thumbnail.png
+│   │           Short_4_thumbnail.png
+│   │           Short_5_thumbnail.png
+│   │           Short_6_thumbnail.png
+│   │           Short_7_thumbnail.png
+│   │           Short_8_thumbnail.png
+│   │           Short_9_thumbnail.png
+│   │
+│   ├───stories
+│   │   ├───thumbnails
+│   │   │       ביקור_בשוק_thumbnail.png
+│   │   │       האיכר_החכם_thumbnail.png
+│   │   │       החידה_של_המלך_thumbnail.png
+│   │   │       המטבע_האבוד_thumbnail.png
+│   │   │       המערה_המסתורית_thumbnail.png
+│   │   │       הסדנה_של_הממציא_thumbnail.png
+│   │   │       הסוד_של_האופה_thumbnail.png
+│   │   │       העורב_הפיקח_thumbnail.png
+│   │   │       הרועה_והכבשה_האבודה_thumbnail.png
+│   │   │       השביל_הנסתר_thumbnail.png
+│   │   │       השתיל_הקטן_thumbnail.png
+│   │   │       חוטב_העצים_הישר_thumbnail.png
+│   │   │       טוב_שכן_טוב_thumbnail.png
+│   │   │       יום_על_הנהר_thumbnail.png
+│   │   │
+│   │   ├───גרסאות קודמות
+│   │   │       השביל_הנסתר_v0.mp4
+│   │   │       השתיל_הקטן_v0.mp4
+│   │   │
+│   │   ├───סיפורים ברמה בינונית
+│   │   │       החידה_של_המלך.mp4
+│   │   │       המערה_המסתורית.mp4
+│   │   │       הסדנה_של_הממציא.mp4
+│   │   │       השביל_הנסתר.mp4
+│   │   │
+│   │   └───סיפורים ברמת מתחילים
+│   │           ביקור_בשוק.mp4
+│   │           האיכר_החכם.mp4
+│   │           המטבע_האבוד.mp4
+│   │           הסוד_של_האופה.mp4
+│   │           העורב_הפיקח.mp4
+│   │           הרועה_והכבשה_האבודה.mp4
+│   │           השתיל_הקטן.mp4
+│   │           חוטב_העצים_הישר.mp4
+│   │           טוב_שכן_טוב.mp4
+│   │           יום_על_הנהר.mp4
+│   │
+│   └───thumbnails
+│           Level_0_thumbnail.png
+│
+└───scripts
+    │   .env
+    │   build-v2.py
+    │   build.py
+    │   build_shorts-es-v2.py
+    │   build_shorts-v2.py
+    │   build_shorts.py
+    │   build_story-v2.py
+    │   build_story.py
+    │   detects_image_colors.py
+    │
+    ├───course_exp
+    │   │   build-course.py
+    │   │   stage_1_שיעור 2 – תנועות באנגליתTEMP_MPY_wvf_snd.mp3
+    │   │   stage_1_שיעור 3 – עיצורים נפוציםTEMP_MPY_wvf_snd.mp3
+    │   │   stage_data.json
+    │   │
+    │   └───output
+    │           lesson_1_audio.mp3
+    │           lesson_2_audio.mp3
+    │           lesson_3_audio.mp3
+    │           stage_1_שיעור 1 – מבוא לאותיות באנגלית.mp4
+    │           stage_1_שיעור 2 – תנועות באנגלית.mp4
+    │           stage_1_שיעור 3 – עיצורים נפוצים.mp4
+    │
+    ├───create_video_list
+    │       get_urls_channel.py
+    │       merge_urls_channel.py
+    │
+    ├───experiments
+    │       find_longest_sentences.py
+    │       try_tts_google_api.py
+    │
+    ├───logs
+    │       video_creation_20241103_235844.log
+    │       video_creation_20241108_055105.log
+    │       video_creation_20241108_055421.log
+    │       video_creation_20241108_062717.log
+    │       video_creation_20241108_081627.log
+    │       video_creation_20241108_082253.log
+    │       video_creation_20241108_082419.log
+    │       video_creation_20241108_082456.log
+    │       video_creation_20241108_082602.log
+    │       video_creation_20241108_082614.log
+    │       video_creation_20241108_082841.log
+    │       video_creation_20241108_083219.log
+    │       video_creation_20241108_083341.log
+    │       video_creation_20241108_083831.log
+    │       video_creation_20241108_084738.log
+    │       video_creation_20241108_085817.log
+    │       video_creation_20241108_090557.log
+    │       video_creation_20241108_090823.log
+    │       video_creation_20241108_091107.log
+    │       video_creation_20241108_091230.log
+    │       video_creation_20241108_091717.log
+    │       video_creation_20241108_092138.log
+    │       video_creation_20241108_092302.log
+    │       video_creation_20241108_092743.log
+    │       video_creation_20241108_093404.log
+    │       video_creation_20241108_093842.log
+    │       video_creation_20241108_093913.log
+    │       video_creation_20241108_095000.log
+    │       video_creation_20241108_095122.log
+    │       video_creation_20241108_095405.log
+    │       video_creation_20241108_095803.log
+    │       video_creation_20241108_095829.log
+    │       video_creation_20241108_100005.log
+    │       video_creation_20241108_100132.log
+    │       video_creation_20241108_100311.log
+    │       video_creation_20241108_100354.log
+    │       video_creation_20241108_100629.log
+    │       video_creation_20241108_100730.log
+    │       video_creation_20241108_101311.log
+    │       video_creation_20241108_101648.log
+    │       video_creation_20241108_102105.log
+    │       video_creation_20241109_184939.log
+    │       video_creation_20241109_185548.log
+    │       video_creation_20241109_200329.log
+    │       video_creation_20241109_233545.log
+    │       video_creation_20241109_233909.log
+    │       video_creation_20241109_234007.log
+    │       video_creation_20241109_234040.log
+    │       video_creation_20241109_234052.log
+    │       video_creation_20241109_234651.log
+    │       video_creation_20241109_234854.log
+    │       video_creation_20241109_234956.log
+    │       video_creation_20241109_235426.log
+    │       video_creation_20241110_000600.log
+    │       video_creation_20241110_000823.log
+    │       video_creation_20241110_002025.log
+    │       video_creation_20241110_002052.log
+    │       video_creation_20241110_002131.log
+    │       video_creation_20241110_002736.log
+    │       video_creation_20241110_002906.log
+    │       video_creation_20241110_003124.log
+    │       video_creation_20241110_003728.log
+    │       video_creation_20241110_004332.log
+    │       video_creation_20241110_004350.log
+    │       video_creation_20241110_005258.log
+    │       video_creation_20241110_010356.log
+    │       video_creation_20241110_011008.log
+    │       video_creation_20241110_011638.log
+    │       video_creation_20241110_012106.log
+    │       video_creation_20241110_013700.log
+    │       video_creation_20241110_014259.log
+    │       video_creation_20241110_014731.log
+    │       video_creation_20241110_014756.log
+    │       video_creation_20241110_014819.log
+    │       video_creation_20241110_014901.log
+    │       video_creation_20241110_015815.log
+    │       video_creation_20241110_021642.log
+    │       video_creation_20241110_021743.log
+    │       video_creation_20241110_022346.log
+    │       video_creation_20241110_023257.log
+    │       video_creation_20241110_023739.log
+    │       video_creation_20241110_024551.log
+    │       video_creation_20241110_024944.log
+    │       video_creation_20241110_052724.log
+    │       video_creation_20241110_053843.log
+    │       video_creation_20241110_173428.log
+    │       video_creation_20241110_173707.log
+    │       video_creation_20241110_173742.log
+    │       video_creation_20241110_175053.log
+    │       video_creation_20241110_180633.log
+    │       video_creation_20241110_180710.log
+    │       video_creation_20241110_181226.log
+    │       video_creation_20241110_181319.log
+    │       video_creation_20241110_181659.log
+    │       video_creation_20241110_183651.log
+    │       video_creation_20241110_184720.log
+    │       video_creation_20241110_185627.log
+    │       video_creation_20241110_190312.log
+    │       video_creation_20241110_190434.log
+    │       video_creation_20241110_191114.log
+    │       video_creation_20241110_191618.log
+    │       video_creation_20241110_193240.log
+    │       video_creation_20241110_193635.log
+    │       video_creation_20241110_193926.log
+    │       video_creation_20241110_195153.log
+    │       video_creation_20241110_195640.log
+    │       video_creation_20241110_195856.log
+    │       video_creation_20241110_200032.log
+    │       video_creation_20241110_200202.log
+    │       video_creation_20241110_201348.log
+    │       video_creation_20241110_201906.log
+    │       video_creation_20241110_201953.log
+    │       video_creation_20241110_202747.log
+    │       video_creation_20241110_203332.log
+    │       video_creation_20241110_203939.log
+    │       video_creation_20241110_204526.log
+    │       video_creation_20241110_204954.log
+    │       video_creation_20241110_205501.log
+    │       video_creation_20241110_211234.log
+    │       video_creation_20241110_212635.log
+    │       video_creation_20241110_212839.log
+    │       video_creation_20241110_212857.log
+    │       video_creation_20241110_214312.log
+    │       video_creation_20241110_214553.log
+    │       video_creation_20241110_215457.log
+    │       video_creation_20241115_012343.log
+    │       video_creation_20241115_012433.log
+    │       video_creation_20241115_015503.log
+    │       video_creation_20241115_020429.log
+    │       video_creation_20241115_022949.log
+    │       video_creation_20241115_025940.log
+    │       video_creation_20241115_030647.log
+    │       video_creation_20241115_061437.log
+    │       video_creation_20241115_062200.log
+    │       video_creation_20241115_062359.log
+    │       video_creation_20241115_063038.log
+    │       video_creation_20241115_063748.log
+    │       video_creation_20241115_064441.log
+    │       video_creation_20241115_064516.log
+    │       video_creation_20241115_065349.log
+    │       video_creation_20241115_065901.log
+    │       video_creation_20241115_071105.log
+    │       video_creation_20241115_071839.log
+    │       video_creation_20241115_072240.log
+    │       video_creation_20241115_072358.log
+    │       video_creation_20241115_072632.log
+    │       video_creation_20241115_073054.log
+    │       video_creation_20241115_074057.log
+    │       video_creation_20241115_074356.log
+    │       video_creation_20241115_074528.log
+    │       video_creation_20241115_075435.log
+    │       video_creation_20241115_075938.log
+    │       video_creation_20241115_080811.log
+    │       video_creation_20241115_081729.log
+    │       video_creation_20241115_082722.log
+    │       video_creation_20241123_172902.log
+    │       video_creation_20241123_180543.log
+    │       video_creation_20241123_182226.log
+    │       video_creation_20241123_182335.log
+    │       video_creation_20241201_185308.log
+    │       video_creation_20241201_190036.log
+    │       video_creation_20241201_190654.log
+    │       video_creation_20241201_191123.log
+    │       video_creation_20241201_191438.log
+    │       video_creation_20241201_192341.log
+    │       video_creation_20241201_192746.log
+    │       video_creation_20241201_194642.log
+    │       video_creation_20241201_195956.log
+    │       video_creation_20241201_200002.log
+    │       video_creation_20241201_201012.log
+    │       video_creation_20241201_202838.log
+    │       video_creation_20241201_205451.log
+    │       video_creation_20241201_205540.log
+    │       video_creation_20241201_210050.log
+    │       video_creation_20241201_210215.log
+    │       video_creation_20241201_210345.log
+    │       video_creation_20241201_211034.log
+    │       video_creation_20241201_211226.log
+    │       video_creation_20241201_211404.log
+    │       video_creation_20241201_211901.log
+    │       video_creation_20241201_212411.log
+    │       video_creation_20241201_212910.log
+    │       video_creation_20241201_213438.log
+    │       video_creation_20241207_205029.log
+    │       video_creation_20241207_210415.log
+    │       video_creation_20241207_211101.log
+    │       video_creation_20241207_213544.log
+    │       video_creation_20241207_220433.log
+    │       video_creation_20241207_221316.log
+    │       video_creation_20241207_221558.log
+    │       video_creation_20241207_222022.log
+    │       video_creation_20241207_222112.log
+    │       video_creation_20241207_222224.log
+    │       video_creation_20241207_223140.log
+    │       video_creation_20241207_223232.log
+    │       video_creation_20241207_225204.log
+    │       video_creation_20241207_225919.log
+    │       video_creation_20241207_230434.log
+    │       video_creation_20241207_231118.log
+    │       video_creation_20241207_231132.log
+    │       video_creation_20241207_231447.log
+    │       video_creation_20241207_231512.log
+    │       video_creation_20241207_231711.log
+    │       video_creation_20241207_232227.log
+    │       video_creation_20241207_232545.log
+    │       video_creation_20241207_232608.log
+    │       video_creation_20241207_233131.log
+    │       video_creation_20241207_233146.log
+    │       video_creation_20241207_233503.log
+    │       video_creation_20241207_233719.log
+    │       video_creation_20241207_235618.log
+    │       video_creation_20241208_001537.log
+    │       video_creation_20241208_004621.log
+    │       video_creation_20241208_011416.log
+    │       video_creation_20241208_012229.log
+    │       video_creation_20241208_021819.log
+    │       video_creation_20241208_022438.log
+    │       video_creation_20241208_023014.log
+    │       video_creation_20241208_023441.log
+    │       video_creation_20241208_023952.log
+    │       video_creation_20241208_024510.log
+    │       video_creation_20241208_025056.log
+    │       video_creation_20241208_025547.log
+    │       video_creation_20241208_030143.log
+    │       video_creation_20241208_030710.log
+    │       video_creation_20241208_031429.log
+    │       video_creation_20241208_031956.log
+    │       video_creation_20241208_033936.log
+    │       video_creation_20241226_183226.log
+    │       video_creation_20241226_183321.log
+    │       video_creation_20241226_185719.log
+    │       video_creation_20241226_190825.log
+    │       video_creation_20241226_191552.log
+    │       video_creation_20241226_192417.log
+    │       video_creation_20250102_174030.log
+    │       video_creation_20250102_180554.log
+    │       video_creation_20250102_180834.log
+    │       video_creation_20250102_182619.log
+    │       video_creation_20250107_222658.log
+    │       video_creation_20250107_222710.log
+    │       video_creation_20250107_223807.log
+    │       video_creation_20250107_224721.log
+    │       video_creation_20250107_225711.log
+    │       video_creation_20250109_231439.log
+    │       video_creation_20250109_231736.log
+    │       video_creation_20250109_232417.log
+    │       video_creation_20250109_232751.log
+    │       video_creation_20250109_233550.log
+    │       video_creation_20250109_234119.log
+    │       video_creation_20250109_235210.log
+    │       video_creation_20250109_235229.log
+    │       video_creation_20250110_000003.log
+    │       video_creation_20250110_000616.log
+    │       video_creation_20250110_002017.log
+    │       video_creation_20250110_003027.log
+    │       video_creation_20250110_003342.log
+    │       video_creation_20250110_004702.log
+    │       video_creation_20250110_004906.log
+    │       video_creation_20250110_004914.log
+    │       video_creation_20250110_005050.log
+    │       video_creation_20250110_005637.log
+    │       video_creation_20250110_005924.log
+    │       video_creation_20250110_010211.log
+    │       video_creation_20250110_010807.log
+    │       video_creation_20250110_011324.log
+    │       video_creation_20250110_012025.log
+    │       video_creation_20250110_012051.log
+    │       video_creation_20250110_012107.log
+    │       video_creation_20250110_012133.log
+    │       video_creation_20250110_015140.log
+    │       video_creation_20250110_015743.log
+    │       video_creation_20250110_020203.log
+    │       video_creation_20250110_022321.log
+    │       video_creation_20250110_022518.log
+    │       video_creation_20250110_023012.log
+    │       video_creation_20250110_023113.log
+    │       video_creation_20250110_023307.log
+    │       video_creation_20250110_023425.log
+    │       video_creation_20250110_025339.log
+    │       video_creation_20250110_030005.log
+    │       video_creation_20250110_031247.log
+    │       video_creation_20250110_032640.log
+    │       video_creation_20250110_033115.log
+    │       video_creation_20250110_034253.log
+    │       video_creation_20250110_034828.log
+    │       video_creation_20250110_034949.log
+    │       video_creation_20250110_035126.log
+    │       video_creation_20250110_035136.log
+    │       video_creation_20250110_035505.log
+    │       video_creation_20250110_035922.log
+    │
+    ├───nakdan
+    │       nakdan_nakdimon.py
+    │       nakdimon.onnx
+    │
+    └───__pycache__
+            build_story.cpython-310.pyc
+            preview_utils.cpython-310.pyc
