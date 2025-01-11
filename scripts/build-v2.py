@@ -39,7 +39,7 @@ THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 
 # נתיבים לקבצים
 json_name = str(sys.argv[1])
-JSON_FILE = os.path.join(DATA_DIR, f'{json_name}.json')
+JSON_FILE = os.path.join(DATA_DIR, f'words_level_{json_name}.json')
 STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles.json')  # נתיב לקובץ העיצובים
 FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Regular.ttf')  # ודא שהגופן תומך בעברית
 LOGO_PATH = os.path.join(LOGOS_DIR, 'logo.png')  # אם תרצה להשתמש בלוגו
