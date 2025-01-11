@@ -31,7 +31,7 @@ FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 LOGOS_DIR = os.path.join(ASSETS_DIR, 'logos')
 OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output')
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
-ENDINGS_JSON_FILE = os.path.join(ASSETS_DIR, 'endings.json')  # נתיב לקובץ סיומות סרטונים
+ENDINGS_JSON_FILE = os.path.join(DATA_DIR, 'endings.json')  # נתיב לקובץ סיומות סרטונים
 
 # נתיבים לקבצים
 json_name = str(sys.argv[1])
@@ -433,7 +433,7 @@ class VideoCreator:
                 audio_results.get((f"{level_word} {level_num}", lang_code), ""),
                 audio_results.get((level_name, 'iw'), "")
             ],
-            min_duration=8
+            min_duration=6
         )
         return clip_intro
 
