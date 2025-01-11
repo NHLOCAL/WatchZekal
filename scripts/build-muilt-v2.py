@@ -250,7 +250,7 @@ class AudioCreator:
         self.client = texttospeech.TextToSpeechClient()
         self.voice_configs = {
             'en': {'language_code': 'en-US', 'name': 'en-US-Wavenet-F'},
-            'es': {'language_code': 'es-ES', 'name': 'es-ES-Wavenet-B'},
+            'es': {'language_code': 'es-ES', 'name': 'es-ES-Wavenet-F'},
             'fr': {'language_code': 'fr-FR', 'name': 'fr-FR-Wavenet-A'},
             'iw': {'language_code': 'he-IL', 'name': 'he-IL-Wavenet-C'},
         }
