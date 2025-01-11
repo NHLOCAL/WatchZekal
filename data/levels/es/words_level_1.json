@@ -1,0 +1,498 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "name": "יסודות",
+      "subtopics": [
+        {
+          "name": "ברכות ונימוסים",
+          "words": [
+            {
+              "word": "Hola",
+              "translation": "שלום",
+              "examples": [
+                {
+                  "sentence": "¡Hola a ti!",
+                  "translation": "שלום לך!"
+                },
+                {
+                  "sentence": "Hola, ¿cómo estás?",
+                  "translation": "שלום, מה שלומך?"
+                },
+                {
+                  "sentence": "Hola, amigo mío",
+                  "translation": "שלום, חבר שלי"
+                }
+              ]
+            },
+            {
+              "word": "Adiós",
+              "translation": "להתראות",
+              "examples": [
+                {
+                  "sentence": "Adiós por ahora",
+                  "translation": "להתראות בינתיים"
+                },
+                {
+                  "sentence": "Adiós, nos vemos pronto",
+                  "translation": "להתראות, נתראה בקרוב"
+                },
+                {
+                  "sentence": "Es hora de decir adiós",
+                  "translation": "הגיע הזמן להגיד להתראות"
+                }
+              ]
+            },
+            {
+              "word": "Por favor",
+              "translation": "בבקשה",
+              "examples": [
+                {
+                  "sentence": "Por favor, entra",
+                  "translation": "בבקשה, היכנס"
+                },
+                {
+                  "sentence": "¿Puedes ayudarme, por favor?",
+                  "translation": "האם אתה יכול לעזור לי, בבקשה?"
+                },
+                {
+                  "sentence": "Por favor, toma asiento",
+                  "translation": "בבקשה שב"
+                }
+              ]
+            },
+            {
+              "word": "Gracias",
+              "translation": "תודה",
+              "examples": [
+                {
+                  "sentence": "Muchas gracias",
+                  "translation": "תודה רבה"
+                },
+                {
+                  "sentence": "Gracias por tu ayuda",
+                  "translation": "תודה על העזרה שלך"
+                },
+                {
+                  "sentence": "No, gracias",
+                  "translation": "לא, תודה"
+                }
+              ]
+            },
+            {
+              "word": "Sí",
+              "translation": "כן",
+              "examples": [
+                {
+                  "sentence": "Sí, entiendo",
+                  "translation": "כן, אני מבין"
+                },
+                {
+                  "sentence": "Sí, por favor",
+                  "translation": "כן, בבקשה"
+                },
+                {
+                  "sentence": "¿Es tuyo? Sí",
+                  "translation": "האם זה שלך? כן"
+                }
+              ]
+            },
+            {
+              "word": "No",
+              "translation": "לא",
+              "examples": [
+                {
+                  "sentence": "No, no lo quiero",
+                  "translation": "לא, אני לא רוצה את זה"
+                },
+                {
+                  "sentence": "No, gracias",
+                  "translation": "לא, תודה"
+                },
+                {
+                  "sentence": "¿Es tuyo? No",
+                  "translation": "האם זה שלך? לא"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "הצגה עצמית",
+          "words": [
+            {
+              "word": "Nombre",
+              "translation": "שם",
+              "examples": [
+                {
+                  "sentence": "Mi nombre es Sara",
+                  "translation": "שמי שרה"
+                },
+                {
+                  "sentence": "¿Cuál es tu nombre?",
+                  "translation": "מה שמך?"
+                },
+                {
+                  "sentence": "Su nombre es John",
+                  "translation": "שמו ג'ון"
+                }
+              ]
+            },
+            {
+              "word": "Yo",
+              "translation": "אני",
+              "examples": [
+                {
+                  "sentence": "Yo estoy feliz",
+                  "translation": "אני שמח"
+                },
+                {
+                  "sentence": "Me gusta el café",
+                  "translation": "אני אוהב קפה"
+                },
+                {
+                  "sentence": "Tengo un perro",
+                  "translation": "יש לי כלב"
+                }
+              ]
+            },
+            {
+              "word": "Soy",
+              "translation": "אני",
+              "examples": [
+                {
+                  "sentence": "Soy estudiante",
+                  "translation": "אני תלמיד"
+                },
+                {
+                  "sentence": "Soy de Israel",
+                  "translation": "אני מישראל"
+                },
+                {
+                  "sentence": "Tengo 20 años",
+                  "translation": "אני בן 20"
+                }
+              ]
+            },
+            {
+              "word": "De",
+              "translation": "מ-",
+              "examples": [
+                {
+                  "sentence": "Ella es de Francia",
+                  "translation": "היא מצרפת"
+                },
+                {
+                  "sentence": "Venimos de la ciudad",
+                  "translation": "אנחנו מגיעים מהעיר"
+                },
+                {
+                  "sentence": "Tengo un regalo de mi amigo",
+                  "translation": "יש לי מתנה מחבר שלי"
+                }
+              ]
+            },
+            {
+              "word": "Tú",
+              "translation": "אתה/את",
+              "examples": [
+                {
+                  "sentence": "Tú eres mi amigo",
+                  "translation": "אתה חבר שלי"
+                },
+                {
+                  "sentence": "¿Estás bien?",
+                  "translation": "האם אתה בסדר?"
+                },
+                {
+                  "sentence": "Tienes un coche bonito",
+                  "translation": "יש לך מכונית נחמדה"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "מספרים בסיסיים",
+          "words": [
+            {
+              "word": "Uno",
+              "translation": "אחד",
+              "examples": [
+                {
+                  "sentence": "Una manzana",
+                  "translation": "תפוח אחד"
+                },
+                {
+                  "sentence": "Tengo un hermano",
+                  "translation": "יש לי אח אחד"
+                },
+                {
+                  "sentence": "Dame un momento",
+                  "translation": "תן לי רגע אחד"
+                }
+              ]
+            },
+            {
+              "word": "Dos",
+              "translation": "שתיים",
+              "examples": [
+                {
+                  "sentence": "Dos libros",
+                  "translation": "שני ספרים"
+                },
+                {
+                  "sentence": "Tenemos dos perros",
+                  "translation": "יש לנו שני כלבים"
+                },
+                {
+                  "sentence": "Ella compró dos vestidos",
+                  "translation": "היא קנתה שתי שמלות"
+                }
+              ]
+            },
+            {
+              "word": "Tres",
+              "translation": "שלוש",
+              "examples": [
+                {
+                  "sentence": "Tres coches",
+                  "translation": "שלוש מכוניות"
+                },
+                {
+                  "sentence": "Él tiene tres hermanas",
+                  "translation": "יש לו שלוש אחיות"
+                },
+                {
+                  "sentence": "Comieron tres sándwiches",
+                  "translation": "הם אכלו שלושה סנדוויצ'ים"
+                }
+              ]
+            },
+            {
+              "word": "Cuatro",
+              "translation": "ארבע",
+              "examples": [
+                {
+                  "sentence": "Cuatro sillas",
+                  "translation": "ארבעה כיסאות"
+                },
+                {
+                  "sentence": "Necesitamos cuatro billetes",
+                  "translation": "אנחנו צריכים ארבעה כרטיסים"
+                },
+                {
+                  "sentence": "Ella tiene cuatro gatos",
+                  "translation": "יש לה ארבעה חתולים"
+                }
+              ]
+            },
+            {
+              "word": "Cinco",
+              "translation": "חמש",
+              "examples": [
+                {
+                  "sentence": "Cinco manzanas",
+                  "translation": "חמישה תפוחים"
+                },
+                {
+                  "sentence": "Corrió cinco millas",
+                  "translation": "הוא רץ חמישה מיילים"
+                },
+                {
+                  "sentence": "Compraron cinco regalos",
+                  "translation": "הם קנו חמישה מתנות"
+                }
+              ]
+            },
+            {
+              "word": "Seis",
+              "translation": "שש",
+              "examples": [
+                {
+                  "sentence": "Seis estudiantes",
+                  "translation": "שישה תלמידים"
+                },
+                {
+                  "sentence": "Él tiene seis años",
+                  "translation": "הוא בן שש"
+                },
+                {
+                  "sentence": "Seis perros",
+                  "translation": "שישה כלבים"
+                }
+              ]
+            },
+            {
+              "word": "Siete",
+              "translation": "שבע",
+              "examples": [
+                {
+                  "sentence": "Siete días a la semana",
+                  "translation": "שבעה ימים בשבוע"
+                },
+                {
+                  "sentence": "Habitación número siete",
+                  "translation": "חדר מספר שבע"
+                },
+                {
+                  "sentence": "Siete colores",
+                  "translation": "שבעה צבעים"
+                }
+              ]
+            },
+            {
+              "word": "Ocho",
+              "translation": "שמונה",
+              "examples": [
+                {
+                  "sentence": "Ocho patas",
+                  "translation": "שמונה רגליים"
+                },
+                {
+                  "sentence": "Son las ocho en punto",
+                  "translation": "השעה שמונה"
+                },
+                {
+                  "sentence": "Ocho personas",
+                  "translation": "שמונה אנשים"
+                }
+              ]
+            },
+            {
+              "word": "Nueve",
+              "translation": "תשע",
+              "examples": [
+                {
+                  "sentence": "Nueve meses",
+                  "translation": "תשעה חודשים"
+                },
+                {
+                  "sentence": "Nueve flores",
+                  "translation": "תשעה פרחים"
+                },
+                {
+                  "sentence": "Clase número nueve",
+                  "translation": "כיתה מספר תשע"
+                }
+              ]
+            },
+            {
+              "word": "Diez",
+              "translation": "עשר",
+              "examples": [
+                {
+                  "sentence": "Diez dedos",
+                  "translation": "עשר אצבעות"
+                },
+                {
+                  "sentence": "Puedo contar hasta diez",
+                  "translation": "אני יכול לספור עד עשר"
+                },
+                {
+                  "sentence": "Diez estudiantes",
+                  "translation": "עשרה תלמידים"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "צבעים ראשוניים",
+          "words": [
+            {
+              "word": "Rojo",
+              "translation": "אדום",
+              "examples": [
+                {
+                  "sentence": "La manzana es roja",
+                  "translation": "התפוח אדום"
+                },
+                {
+                  "sentence": "Ella lleva un vestido rojo",
+                  "translation": "היא לובשת שמלה אדומה"
+                },
+                {
+                  "sentence": "El rojo es mi color favorito",
+                  "translation": "אדום הוא הצבע האהוב עליי"
+                }
+              ]
+            },
+            {
+              "word": "Azul",
+              "translation": "כחול",
+              "examples": [
+                {
+                  "sentence": "El cielo es azul",
+                  "translation": "השמיים כחולים"
+                },
+                {
+                  "sentence": "Él tiene ojos azules",
+                  "translation": "יש לו עיניים כחולות"
+                },
+                {
+                  "sentence": "Me gusta el coche azul",
+                  "translation": "אני אוהב את המכונית הכחולה"
+                }
+              ]
+            },
+            {
+              "word": "Verde",
+              "translation": "ירוק",
+              "examples": [
+                {
+                  "sentence": "La hierba es verde",
+                  "translation": "הדשא ירוק"
+                },
+                {
+                  "sentence": "Ella compró una camisa verde",
+                  "translation": "היא קנתה חולצה ירוקה"
+                },
+                {
+                  "sentence": "Los árboles verdes son hermosos",
+                  "translation": "עצים ירוקים הם יפים"
+                }
+              ]
+            },
+            {
+              "word": "Amarillo",
+              "translation": "צהוב",
+              "examples": [
+                {
+                  "sentence": "El sol se ve amarillo",
+                  "translation": "השמש נראית צהובה"
+                },
+                {
+                  "sentence": "Él tiene una bicicleta amarilla",
+                  "translation": "יש לו אופניים צהובים"
+                },
+                {
+                  "sentence": "El plátano es amarillo",
+                  "translation": "הבננה צהובה"
+                }
+              ]
+            },
+            {
+              "word": "Negro",
+              "translation": "שחור",
+              "examples": [
+                {
+                  "sentence": "Tengo un gato negro",
+                  "translation": "יש לי חתול שחור"
+                },
+                {
+                  "sentence": "Ella lleva zapatos negros",
+                  "translation": "היא נועלת נעליים שחורות"
+                },
+                {
+                  "sentence": "La noche es negra",
+                  "translation": "הלילה שחור"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
