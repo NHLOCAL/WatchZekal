@@ -1,0 +1,367 @@
+{
+  "levels": [
+    {
+      "level": 3,
+      "name": "גוף האדם וביגוד",
+      "subtopics": [
+        {
+          "name": "חלקי גוף",
+          "words": [
+            {
+              "word": "Head",
+              "translation": "ראש",
+              "examples": [
+                {
+                  "sentence": "He wears a hat on his head",
+                  "translation": "הוא חובש כובע על ראשו"
+                },
+                {
+                  "sentence": "My head hurts",
+                  "translation": "כואב לי הראש"
+                },
+                {
+                  "sentence": "She nodded her head",
+                  "translation": "היא הנהנה בראשה"
+                }
+              ]
+            },
+            {
+              "word": "Hand",
+              "translation": "יד",
+              "examples": [
+                {
+                  "sentence": "Raise your hand",
+                  "translation": "הרם את ידך"
+                },
+                {
+                  "sentence": "She holds the baby in her hands",
+                  "translation": "היא מחזיקה את התינוק בידיה"
+                },
+                {
+                  "sentence": "Wash your hands before eating",
+                  "translation": "שטוף את ידיך לפני האכילה"
+                }
+              ]
+            },
+            {
+              "word": "Leg",
+              "translation": "רגל",
+              "examples": [
+                {
+                  "sentence": "He broke his leg",
+                  "translation": "הוא שבר את רגלו"
+                },
+                {
+                  "sentence": "She crossed her legs",
+                  "translation": "היא שילבה את רגליה"
+                },
+                {
+                  "sentence": "Long legs help him run fast",
+                  "translation": "רגליים ארוכות עוזרות לו לרוץ מהר"
+                }
+              ]
+            },
+            {
+              "word": "Eye",
+              "translation": "עין",
+              "examples": [
+                {
+                  "sentence": "She has blue eyes",
+                  "translation": "יש לה עיניים כחולות"
+                },
+                {
+                  "sentence": "Keep an eye on the bag",
+                  "translation": "שים עין על התיק"
+                },
+                {
+                  "sentence": "He winked his eye",
+                  "translation": "הוא קרץ בעינו"
+                }
+              ]
+            },
+            {
+              "word": "Ear",
+              "translation": "אוזן",
+              "examples": [
+                {
+                  "sentence": "Listen with your ears",
+                  "translation": "הקשיבו עם האוזניים שלכם"
+                },
+                {
+                  "sentence": "She wears earrings in her ears",
+                  "translation": "היא עונדת עגילים באוזניה"
+                },
+                {
+                  "sentence": "His ears are cold",
+                  "translation": "האוזניים שלו קרות"
+                }
+              ]
+            },
+            {
+              "word": "Mouth",
+              "translation": "פה",
+              "examples": [
+                {
+                  "sentence": "Open your mouth",
+                  "translation": "פתח את פיך"
+                },
+                {
+                  "sentence": "She smiled with her mouth",
+                  "translation": "היא חייכה עם פיה"
+                },
+                {
+                  "sentence": "Don't talk with your mouth full",
+                  "translation": "אל תדבר עם פה מלא"
+                }
+              ]
+            },
+            {
+              "word": "Nose",
+              "translation": "אף",
+              "examples": [
+                {
+                  "sentence": "He has a small nose",
+                  "translation": "יש לו אף קטן"
+                },
+                {
+                  "sentence": "She smells flowers with her nose",
+                  "translation": "היא מריחה פרחים עם אפה"
+                },
+                {
+                  "sentence": "Cover your nose when you sneeze",
+                  "translation": "כסה את אפך כשאתה מתעטש"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "פריטי לבוש",
+          "words": [
+            {
+              "word": "Shirt",
+              "translation": "חולצה",
+              "examples": [
+                {
+                  "sentence": "I wear a blue shirt",
+                  "translation": "אני לובש חולצה כחולה"
+                },
+                {
+                  "sentence": "His shirt is dirty",
+                  "translation": "החולצה שלו מלוכלכת"
+                },
+                {
+                  "sentence": "She bought a new shirt",
+                  "translation": "היא קנתה חולצה חדשה"
+                }
+              ]
+            },
+            {
+              "word": "Pants",
+              "translation": "מכנסיים",
+              "examples": [
+                {
+                  "sentence": "He wears black pants",
+                  "translation": "הוא לובש מכנסיים שחורים"
+                },
+                {
+                  "sentence": "My pants are too long",
+                  "translation": "המכנסיים שלי ארוכים מדי"
+                },
+                {
+                  "sentence": "She needs new pants",
+                  "translation": "היא צריכה מכנסיים חדשים"
+                }
+              ]
+            },
+            {
+              "word": "Shoes",
+              "translation": "נעליים",
+              "examples": [
+                {
+                  "sentence": "Put on your shoes",
+                  "translation": "נעול את הנעליים שלך"
+                },
+                {
+                  "sentence": "Her shoes are red",
+                  "translation": "הנעליים שלה אדומות"
+                },
+                {
+                  "sentence": "I bought new running shoes",
+                  "translation": "קניתי נעלי ריצה חדשות"
+                }
+              ]
+            },
+            {
+              "word": "Hat",
+              "translation": "כובע",
+              "examples": [
+                {
+                  "sentence": "He wears a hat",
+                  "translation": "הוא חובש כובע"
+                },
+                {
+                  "sentence": "Her hat is stylish",
+                  "translation": "הכובע שלה אופנתי"
+                },
+                {
+                  "sentence": "I lost my hat",
+                  "translation": "איבדתי את הכובע שלי"
+                }
+              ]
+            },
+            {
+              "word": "Dress",
+              "translation": "שמלה",
+              "examples": [
+                {
+                  "sentence": "She wears a beautiful dress",
+                  "translation": "היא לובשת שמלה יפה"
+                },
+                {
+                  "sentence": "The dress is too short",
+                  "translation": "השמלה קצרה מדי"
+                },
+                {
+                  "sentence": "I like your dress",
+                  "translation": "אני אוהב את השמלה שלך"
+                }
+              ]
+            },
+            {
+              "word": "Socks",
+              "translation": "גרביים",
+              "examples": [
+                {
+                  "sentence": "Wear warm socks",
+                  "translation": "לבש גרביים חמות"
+                },
+                {
+                  "sentence": "I can't find my socks",
+                  "translation": "אני לא מוצא את הגרביים שלי"
+                },
+                {
+                  "sentence": "Her socks are pink",
+                  "translation": "הגרביים שלה ורודות"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "תארים בסיסיים",
+          "words": [
+            {
+              "word": "Big",
+              "translation": "גדול",
+              "examples": [
+                {
+                  "sentence": "The elephant is big",
+                  "translation": "הפיל גדול"
+                },
+                {
+                  "sentence": "She lives in a big house",
+                  "translation": "היא גרה בבית גדול"
+                },
+                {
+                  "sentence": "He has a big dog",
+                  "translation": "יש לו כלב גדול"
+                }
+              ]
+            },
+            {
+              "word": "Small",
+              "translation": "קטן",
+              "examples": [
+                {
+                  "sentence": "The mouse is small",
+                  "translation": "העכבר קטן"
+                },
+                {
+                  "sentence": "They bought a small car",
+                  "translation": "הם קנו מכונית קטנה"
+                },
+                {
+                  "sentence": "She has small hands",
+                  "translation": "יש לה ידיים קטנות"
+                }
+              ]
+            },
+            {
+              "word": "Fast",
+              "translation": "מהיר",
+              "examples": [
+                {
+                  "sentence": "The cheetah is fast",
+                  "translation": "הצ'יטה מהירה"
+                },
+                {
+                  "sentence": "He runs very fast",
+                  "translation": "הוא רץ מאוד מהר"
+                },
+                {
+                  "sentence": "She drives a fast car",
+                  "translation": "היא נוהגת במכונית מהירה"
+                }
+              ]
+            },
+            {
+              "word": "Slow",
+              "translation": "איטי",
+              "examples": [
+                {
+                  "sentence": "The turtle is slow",
+                  "translation": "הצב איטי"
+                },
+                {
+                  "sentence": "Traffic is slow today",
+                  "translation": "התנועה איטית היום"
+                },
+                {
+                  "sentence": "He walks slowly",
+                  "translation": "הוא הולך לאט"
+                }
+              ]
+            },
+            {
+              "word": "Hot",
+              "translation": "חם",
+              "examples": [
+                {
+                  "sentence": "The soup is hot",
+                  "translation": "המרק חם"
+                },
+                {
+                  "sentence": "It's hot outside",
+                  "translation": "חם בחוץ"
+                },
+                {
+                  "sentence": "She likes hot coffee",
+                  "translation": "היא אוהבת קפה חם"
+                }
+              ]
+            },
+            {
+              "word": "Cold",
+              "translation": "קר",
+              "examples": [
+                {
+                  "sentence": "The ice is cold",
+                  "translation": "הקרח קר"
+                },
+                {
+                  "sentence": "It's cold in winter",
+                  "translation": "קר בחורף"
+                },
+                {
+                  "sentence": "He drinks cold water",
+                  "translation": "הוא שותה מים קרים"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
