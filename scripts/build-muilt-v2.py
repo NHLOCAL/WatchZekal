@@ -409,35 +409,34 @@ class VideoCreator:
             logging.error(f"שגיאה בהוספת הלוגו: {e}")
             return clip
 
-    def create_level_intro(self, level_num, level_name):
-        text_lines_intro = [f"Level {level_num}", level_name]
+    def create_level_intro(self, level_num, level_name, lang_code):
+        level_words = {
+            'en': 'Level',
+            'es': 'Nivel',
+            'fr': 'Niveau',
+            'iw': 'רמה'
+        }
+        level_word = level_words.get(lang_code, 'Level')  # ברירת מחדל לאנגלית אם לא נמצאה שפה
+
+        text_lines_intro = [f"{level_word} {level_num}", level_name]
         line_styles_intro = ['level', 'level']
         clip_intro = self.create_image_clip(text_lines_intro, 'level', line_styles_intro)
 
-        # יצירת משימות אודיו עבור "Level" בשפה המתאימה ועברית
         audio_tasks = [
-            (f"Level {level_num}", self.lang_code),
+            (f"{level_word} {level_num}", lang_code),
             (level_name, 'iw')
         ]
         audio_results = self.audio_creator.create_audios(audio_tasks)
-
-        # שימוש במילון לקבלת השם המתאים של "Level" לפי השפה
-        level_word_translations = {
-            'en': 'Level',
-            'es': 'Nivel',
-            'fr': 'Niveau'
-        }
-        level_word = level_word_translations.get(self.lang_code, 'Level')  # ברירת מחדל לאנגלית
-
         clip_intro = self.create_clip(
             clip_intro,
             [
-                audio_results.get((f"{level_word} {level_num}", self.lang_code), ""),
+                audio_results.get((f"{level_word} {level_num}", lang_code), ""),
                 audio_results.get((level_name, 'iw'), "")
             ],
-            min_duration=5
+            min_duration=8
         )
         return clip_intro
+
 
     def create_outro(self, lang_code):
         with open(ENDINGS_JSON_FILE, 'r', encoding='utf-8') as f:
@@ -451,7 +450,7 @@ class VideoCreator:
         clip_outro = self.create_image_clip(text_lines_outro, 'outro', line_styles_outro)
         audio_results = self.audio_creator.create_audios(outro_audio_tasks)
         audio_paths = [audio_results.get(tuple(task), "") for task in outro_audio_tasks]
-        clip_outro = self.create_clip(clip_outro, audio_paths)
+        clip_outro = self.create_clip(clip_outro, audio_paths, min_duration=15)
         return clip_outro
 
 class VideoAssembler:
@@ -471,7 +470,7 @@ class VideoAssembler:
         clips = []
 
         try:
-            clip_level_intro = self.video_creator.create_level_intro(level_num, level_name)
+            clip_level_intro = self.video_creator.create_level_intro(level_num, level_name, self.lang_code)
             clips.append(clip_level_intro)
 
             thumbnail_path = os.path.join(thumbnails_dir, f"Level_{level_num}_thumbnail.png")
