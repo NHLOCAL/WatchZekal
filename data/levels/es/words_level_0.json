@@ -1,0 +1,33 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "name": "יסודות",
+      "subtopics": [
+        {
+          "name": "ברכות ונימוסים",
+          "words": [
+            {
+              "word": "No",
+              "translation": "לא",
+              "examples": [
+                {
+                  "sentence": "No, no lo quiero",
+                  "translation": "לא, אני לא רוצה את זה"
+                },
+                {
+                  "sentence": "No, gracias",
+                  "translation": "לא, תודה"
+                },
+                {
+                  "sentence": "¿Es tuyo? No",
+                  "translation": "האם זה שלך? לא"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
