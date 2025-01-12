@@ -31,8 +31,7 @@ FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 LOGOS_DIR = os.path.join(ASSETS_DIR, 'logos')
 OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output')
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
-ENDINGS_JSON_FILE = os.path.join(DATA_DIR, 'endings.json')  # נתיב לקובץ סיומות סרטונים
-
+LANG_SETTINGS_FILE = os.path.join(DATA_DIR, 'lang_settings.json')  # נתיב לקובץ הגדרות שפה
 # נתיבים לקבצים
 json_name = str(sys.argv[1])
 lang_code = str(sys.argv[2])  # קוד שפה (en, es, fr)
@@ -243,24 +242,18 @@ class ImageCreator:
         return img
 
 class AudioCreator:
-    def __init__(self, temp_dir, lang_code):
+    def __init__(self, temp_dir, lang_settings):
         self.temp_dir = temp_dir
-        self.lang_code = lang_code
+        self.lang_settings = lang_settings
         self.executor = ThreadPoolExecutor(max_workers=THREADS)
         self.client = texttospeech.TextToSpeechClient()
-        self.voice_configs = {
-            'en': {'language_code': 'en-US', 'name': 'en-US-Wavenet-F'},
-            'es': {'language_code': 'es-ES', 'name': 'es-ES-Wavenet-F'},
-            'fr': {'language_code': 'fr-FR', 'name': 'fr-FR-Wavenet-A'},
-            'iw': {'language_code': 'he-IL', 'name': 'he-IL-Wavenet-C'},
-        }
 
     def create_audio_task(self, text, lang, slow=False):
         try:
-            if lang == 'iw':
-                voice_config = self.voice_configs['iw']
-            else:
-                voice_config = self.voice_configs.get(self.lang_code, self.voice_configs['en'])  # ברירת מחדל לאנגלית אם לא נמצאה שפה
+            voice_config = self.lang_settings.get(lang, self.lang_settings['en']).get('voice', None)
+            if voice_config is None:
+                logging.error(f"לא נמצאו הגדרות קול עבור שפה: {lang}")
+                raise ValueError(f"לא נמצאו הגדרות קול עבור שפה: {lang}")
 
             synthesis_input = texttospeech.SynthesisInput(text=text)
             voice_params = texttospeech.VoiceSelectionParams(
@@ -314,12 +307,12 @@ class AudioCreator:
         self.executor.shutdown(wait=True)
 
 class VideoCreator:
-    def __init__(self, file_manager, image_creator, audio_creator, style_definitions, lang_code):
+    def __init__(self, file_manager, image_creator, audio_creator, style_definitions, lang_settings):
         self.file_manager = file_manager
         self.image_creator = image_creator
         self.audio_creator = audio_creator
         self.style_definitions = style_definitions
-        self.lang_code = lang_code
+        self.lang_settings = lang_settings
 
     def create_image_clip(self, text_lines, style, line_styles=None):
         img = self.image_creator.create_image(text_lines, self.style_definitions, line_styles)
@@ -410,14 +403,7 @@ class VideoCreator:
             return clip
 
     def create_level_intro(self, level_num, level_name, lang_code):
-        level_words = {
-            'en': 'Level',
-            'es': 'Nivel',
-            'fr': 'Niveau',
-            'iw': 'רמה'
-        }
-        level_word = level_words.get(lang_code, 'Level')  # ברירת מחדל לאנגלית אם לא נמצאה שפה
-
+        level_word = self.lang_settings.get(lang_code, self.lang_settings['en']).get('level_word', 'Level')  # ברירת מחדל לאנגלית אם לא נמצאה שפה
         text_lines_intro = [f"{level_word} {level_num}", level_name]
         line_styles_intro = ['level', 'level']
         clip_intro = self.create_image_clip(text_lines_intro, 'level', line_styles_intro)
@@ -439,13 +425,14 @@ class VideoCreator:
 
 
     def create_outro(self, lang_code):
-        with open(ENDINGS_JSON_FILE, 'r', encoding='utf-8') as f:
-            endings = json.load(f)
+        outro_data = self.lang_settings.get(lang_code, self.lang_settings['en']).get('outro', None)
+        if outro_data is None:
+             logging.error(f"לא נמצאו הגדרות outro עבור שפה: {lang_code}")
+             raise ValueError(f"לא נמצאו הגדרות outro עבור שפה: {lang_code}")
 
-        ending_data = endings.get(lang_code, endings['en'])  # ברירת מחדל לאנגלית אם לא נמצאה שפה
-        text_lines_outro = ending_data['text_lines']
-        line_styles_outro = ending_data['line_styles']
-        outro_audio_tasks = ending_data['audio_tasks']
+        text_lines_outro = outro_data['text_lines']
+        line_styles_outro = outro_data['line_styles']
+        outro_audio_tasks = outro_data['audio_tasks']
 
         clip_outro = self.create_image_clip(text_lines_outro, 'outro', line_styles_outro)
         audio_results = self.audio_creator.create_audios(outro_audio_tasks)
@@ -454,11 +441,14 @@ class VideoCreator:
         return clip_outro
 
 class VideoAssembler:
-    def __init__(self, file_manager, image_creator, audio_creator, style_definitions, lang_code):
-        self.video_creator = VideoCreator(file_manager, image_creator, audio_creator, style_definitions, lang_code)
-        self.lang_code = lang_code
+    def __init__(self, file_manager, image_creator, audio_creator, style_definitions, lang_settings):
+        self.video_creator = VideoCreator(file_manager, image_creator, audio_creator, style_definitions, lang_settings)
+        self.lang_code = None
+        self.lang_settings = lang_settings
 
-    def assemble_level_video(self, level, output_dir, thumbnails_dir):
+
+    def assemble_level_video(self, level, output_dir, thumbnails_dir, lang_code):
+        self.lang_code = lang_code
         level_num = level['level']
         level_name = level['name']
         logging.info(f"מעבד Level {level_num}: {level_name}")
@@ -626,12 +616,15 @@ def main():
         with open(STYLES_JSON_FILE, 'r', encoding='utf-8') as f:
             style_definitions = json.load(f)
 
+        with open(LANG_SETTINGS_FILE, 'r', encoding='utf-8') as f:
+            lang_settings = json.load(f)
+
         image_creator = ImageCreator(styles=style_definitions)
-        audio_creator = AudioCreator(file_manager.temp_dir, lang_code)
-        video_assembler = VideoAssembler(file_manager, image_creator, audio_creator, style_definitions, lang_code)
+        audio_creator = AudioCreator(file_manager.temp_dir, lang_settings)
+        video_assembler = VideoAssembler(file_manager, image_creator, audio_creator, style_definitions, lang_settings)
 
         for level in data['levels']:
-            video_assembler.assemble_level_video(level, file_manager.output_dir, file_manager.thumbnails_dir)
+            video_assembler.assemble_level_video(level, file_manager.output_dir, file_manager.thumbnails_dir, lang_code)
 
         logging.info("יצירת כל הסרטונים הסתיימה!")
 

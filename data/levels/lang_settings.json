@@ -1,0 +1,122 @@
+{
+  "en": {
+    "level_word": "Level",
+    "voice": {
+      "language_code": "en-US",
+      "name": "en-US-Wavenet-F"
+    },
+    "outro": {
+      "text_lines": [
+        "זה קל!",
+        "למד אנגלית בקלי קלות",
+        "Thank you for watching!",
+        "Don't forget to like and subscribe"
+      ],
+      "line_styles": [
+        "outro_title",
+        "outro_subtitle",
+        "outro",
+        "outro"
+      ],
+      "audio_tasks": [
+        [
+          "It's easy! Thank you for watching! Don't forget to like and subscribe",
+          "en"
+        ],
+        [
+          "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
+          "iw"
+        ]
+      ]
+    }
+  },
+  "es": {
+    "level_word": "Nivel",
+    "voice": {
+      "language_code": "es-ES",
+      "name": "es-ES-Wavenet-F"
+    },
+    "outro": {
+      "text_lines": [
+        "זה קל!",
+        "למד ספרדית בקלי קלות",
+        "¡Gracias por ver!",
+        "No olvides darle a 'me gusta' y suscribirte"
+      ],
+      "line_styles": [
+        "outro_title",
+        "outro_subtitle",
+        "outro",
+        "outro"
+      ],
+      "audio_tasks": [
+        [
+          "¡Es fácil! ¡Gracias por ver! No olvides darle a 'me gusta' y suscribirte",
+          "es"
+        ],
+        [
+          "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
+          "iw"
+        ]
+      ]
+    }
+  },
+  "fr": {
+    "level_word": "Niveau",
+    "voice": {
+      "language_code": "fr-FR",
+      "name": "fr-FR-Wavenet-A"
+    },
+    "outro": {
+      "text_lines": [
+        "זה קל!",
+        "למד צרפתית בקלי קלות",
+        "Merci d'avoir regardé !",
+        "N'oubliez pas d'aimer et de vous abonner"
+      ],
+      "line_styles": [
+        "outro_title",
+        "outro_subtitle",
+        "outro",
+        "outro"
+      ],
+      "audio_tasks": [
+        [
+          "C'est facile ! Merci d'avoir regardé ! N'oubliez pas d'aimer et de vous abonner",
+          "fr"
+        ],
+        [
+          "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
+          "iw"
+        ]
+      ]
+    }
+  },
+  "iw": {
+    "level_word": "רמה",
+    "voice": {
+      "language_code": "he-IL",
+      "name": "he-IL-Wavenet-C"
+    },
+    "outro": {
+      "text_lines": [
+        "זה קל!",
+        "למד עברית בקלי קלות",
+        "תודה שצפיתם!",
+        "אל תשכחו לעשות like ולהירשם"
+      ],
+      "line_styles": [
+        "outro_title",
+        "outro_subtitle",
+        "outro",
+        "outro"
+      ],
+      "audio_tasks": [
+        [
+          "זה קל! תודה שצפיתם! אל תשכחו לעשות לייק ולהירשם",
+          "iw"
+        ]
+      ]
+    }
+  }
+}
