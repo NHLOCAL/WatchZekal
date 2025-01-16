@@ -29,11 +29,27 @@ LOGOS_DIR = os.path.join(ASSETS_DIR, 'logos')
 OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output')
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 LANG_SETTINGS_FILE = os.path.join(DATA_DIR, 'lang_settings.json')  # נתיב לקובץ הגדרות שפה
+
+# נתיב לתיקיית תמונות רקע
+BACKGROUNDS_DIR = os.path.join(ASSETS_DIR, 'backgrounds')
+os.makedirs(BACKGROUNDS_DIR, exist_ok=True)
+
+# שמות קבצי תמונות רקע עבור כל סוג מקטע
+BACKGROUND_IMAGES = {
+    'subtopic': 'subtopic_background.png',
+    'word': 'word_background.png',
+    'sentence': 'sentence_background.png',
+    'translation': 'sentence_background.png',
+    'level': 'intro_outro_background.png',  # תמונה משותפת להקדמה ולסיום
+    'outro': 'intro_outro_background.png',  # תמונה משותפת להקדמה ולסיום
+     'outro_title': 'intro_outro_background.png' #אותה תמונה
+}
+
 # נתיבים לקבצים
 json_name = str(sys.argv[1])
 lang_code = str(sys.argv[2])  # קוד שפה (en, es, fr)
 JSON_FILE = os.path.join(DATA_DIR, lang_code, f'words_level_{json_name}.json')
-STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles.json')  # נתיב לקובץ העיצובים
+STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles-v2.json')  # נתיב לקובץ העיצובים
 FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Regular.ttf')  # ודא שהגופן תומך בעברית
 LOGO_PATH = os.path.join(LOGOS_DIR, 'logo.png')  # אם תרצה להשתמש בלוגו
 
@@ -97,19 +113,6 @@ class ImageCreator:
             logging.error(f"לא ניתן למצוא את הגופן בנתיב: {font_path}")
             raise
 
-    def create_gradient_background(self, width, height, start_color, end_color, direction='vertical'):
-        base = Image.new('RGB', (width, height), start_color)
-        top = Image.new('RGB', (width, height), end_color)
-        mask = Image.new('L', (width, height))
-
-        if direction == 'vertical':
-            for y in range(height):
-                mask.putpixel((0, y), int(255 * (y / height)))
-        elif direction == 'horizontal':
-            for x in range(width):
-                mask.putpixel((x, 0), int(255 * (x / width)))
-        return base.paste(top, (0, 0), mask)
-
     def split_text_into_lines(self, text, font, max_width, draw):
         words = text.split()
         lines = []
@@ -138,23 +141,26 @@ class ImageCreator:
             logging.info("שימוש בתמונה מקאש")
             return self.cache[cache_key]
 
-        # יצירת רקע
+        # טעינת תמונת רקע
         if line_styles:
-            first_style = style_definitions[line_styles[0]]
+            first_style_name = line_styles[0]
         else:
-            first_style = style_definitions['normal']
+            first_style_name = 'normal'
 
-        if first_style['gradient']:
-            img = Image.new('RGB', (1920, 1080))
-            img = self.create_gradient_background(
-                1920, 1080, 
-                first_style['gradient'][0], 
-                first_style['gradient'][1], 
-                first_style['gradient_direction']
-            )
+        background_image_name = BACKGROUND_IMAGES.get(first_style_name)
+        if background_image_name:
+            background_image_path = os.path.join(BACKGROUNDS_DIR, background_image_name)
+            try:
+                img = Image.open(background_image_path).convert("RGBA")
+                # שינוי גודל התמונה כך שתתאים לגודל הסרטון
+                img = img.resize(VIDEO_SIZE, Image.LANCZOS)
+            except FileNotFoundError:
+                logging.error(f"תמונת רקע לא נמצאה בנתיב: {background_image_path}")
+                raise
         else:
-            img = Image.new('RGB', (1920, 1080), color=tuple(first_style['bg_color']))
-
+            logging.error(f"לא הוגדרה תמונת רקע עבור סוג מקטע: {first_style_name}")
+            raise ValueError(f"לא הוגדרה תמונת רקע עבור סוג מקטע: {first_style_name}")
+        
         draw = ImageDraw.Draw(img)
         MAX_TEXT_WIDTH = 1720
 
