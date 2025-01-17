@@ -1,13 +1,13 @@
 {
   "video_title": "קוֹלוֹת מִן הֶעָבָר",
   "language_level": "בֵּינוֹנִי",
-  "story_type": "נַרָטִיב הִיסְטוֹרִי",
+  "story_type": "נָרָטִיב הִיסְטוֹרִי",
   "story": {
     "title": "קוֹלוֹת מִן הֶעָבָר",
     "text": [
       {
         "english": "Eitan found an old box in the attic.",
-        "hebrew": "אֵיתָן מָצָא תֵּיבָה יְשָׁנָה בַּעֲלִיַּת הַגַּג."
+        "hebrew": "אֵיתָן מָצָא תֵּיבָה יְשָׁנָה בַּעֲלִיַּית הַגַּג."
       },
       {
         "english": "Inside were letters and photographs.",
@@ -19,7 +19,7 @@
       },
       {
         "english": "He began reading the letters carefully.",
-        "hebrew": "הוּא הִתְחִיל לִקְרֹא אֶת הַמִּכְתָּבִים בִּקְפִידָה."
+        "hebrew": "הוּא הִתְחִיל לִקְרוֹא אֶת הַמִּכְתָּבִים בִּקְפִידָה."
       },
       {
         "english": "They told stories of struggles and hope.",
@@ -31,15 +31,15 @@
       },
       {
         "english": "They faced wars and hardships.",
-        "hebrew": "הֵם הִתְמוֹדְדוּ עִם מִלְחָמוֹת וְקוֹשִׁי."
+        "hebrew": "הֵם הִתְמוֹדְדוּ עִם מִלְחָמוֹת וְקֹשִׁי."
       },
       {
         "english": "Yet, they remained strong and united.",
-        "hebrew": "עִם זֹאת, הֵם נִשְׁאֲרוּ חֲזָקִים וּמְאוּחָדִים."
+        "hebrew": "עִם זֹאת, הֵם נִשְׁאֲרוּ חֲזָקִים וּמְאֻחָדִים."
       },
       {
         "english": "Eitan felt a deep connection to them.",
-        "hebrew": "אֵיתָן הִרְגִּישׁ חִיבּוּר עָמֹק אֲלֵיהֶם."
+        "hebrew": "אֵיתָן הִרְגִּישׁ חִיבּוּר עָמוֹק אֲלֵיהֶם."
       },
       {
         "english": "He appreciated their sacrifices.",
@@ -90,7 +90,7 @@
   "vocabulary": [
     {
       "word": "attic",
-      "translation": "עֲלִיַּת גַּג"
+      "translation": "עֲלִיַּית גַּג"
     },
     {
       "word": "ancestor",
@@ -115,7 +115,7 @@
   ],
   "comprehension_questions": [
     {
-      "question": "מָה מָצָא אֵיתָן בַּעֲלִיַּת הַגַּג?",
+      "question": "מָה מָצָא אֵיתָן בַּעֲלִיַּית הַגַּג?",
       "options": [
         "אוֹצַר כֶּסֶף",
         "תֵּיבָה עִם מִכְתָּבִים וּתְמוּנוֹת",
@@ -136,7 +136,7 @@
       "question": "מָה הֶחְלִיטוּ לַעֲשׂוֹת אֵיתָן וּמִשְׁפַּחְתּוֹ?",
       "options": [
         "לִמְכּוֹר אֶת הַתֵּיבָה",
-        "לְשַׁמֵּר אֶת הַזִּכְרוֹנוֹת וְלִיצוֹר סֵפֶר",
+        "לְשַׁמֵּר אֶת הַזִּכְרוֹנוֹת וְלִיצּוֹר סֵפֶר",
         "לִשְׁכּוֹחַ מֵהֶעָבָר"
       ],
       "answer": 1
