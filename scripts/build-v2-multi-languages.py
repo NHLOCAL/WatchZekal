@@ -493,13 +493,12 @@ class VideoAssembler:
                         # הוספת השהייה בין קטעי משפט ותרגום
                         if clips:
                             previous_clip = clips[-1]
-                            if previous_clip.duration < SENTENCE_TRANSITION_DURATION:
-                                previous_clip = previous_clip.set_duration(SENTENCE_TRANSITION_DURATION)
-                            # לא מוסיפים מעבר בין קטעי משפט ותרגום
-                            if previous_clip != clip_example:
-                                clips.append(clip_example)
-                            else:
-                                clips.append(clip_example)
+                            # הארכת משך הקליפ הקודם אם הוא מסוג sentence או translation
+                            if line_styles_example[0] in ['sentence', 'translation']:
+                                 previous_clip = previous_clip.set_duration(previous_clip.duration + SENTENCE_TRANSITION_DURATION)
+                                 clips[-1] = previous_clip  # עדכון הקליפ ברשימה
+                            
+                            clips.append(clip_example)
                         else:
                             clips.append(clip_example)
 
