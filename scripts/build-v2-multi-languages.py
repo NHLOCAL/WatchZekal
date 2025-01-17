@@ -40,18 +40,18 @@ BACKGROUND_IMAGES = {
     'word': 'word_background.png',
     'sentence': 'sentence_background.png',
     'translation': 'sentence_background.png',
-    'level': 'intro_outro_background.png',  # תמונה משותפת להקדמה ולסיום
-    'outro': 'intro_outro_background.png',  # תמונה משותפת להקדמה ולסיום
-     'outro_title': 'intro_outro_background.png' #אותה תמונה
+    'level': 'intro_outro_background.png',
+    'outro': 'intro_outro_background.png',
+    'outro_title': 'intro_outro_background.png'
 }
 
 # נתיבים לקבצים
 json_name = str(sys.argv[1])
 lang_code = str(sys.argv[2])  # קוד שפה (en, es, fr)
 JSON_FILE = os.path.join(DATA_DIR, lang_code, f'words_level_{json_name}.json')
-STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles-v2.json')  # נתיב לקובץ העיצובים
-FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Regular.ttf')  # ודא שהגופן תומך בעברית
-LOGO_PATH = os.path.join(LOGOS_DIR, 'logo.png')  # אם תרצה להשתמש בלוגו
+STYLES_JSON_FILE = os.path.join(ASSETS_DIR, 'styles-v2.json')  # שימוש בקובץ styles-v2.json
+FONT_PATH = os.path.join(FONTS_DIR, 'Rubik-Regular.ttf')
+LOGO_PATH = os.path.join(LOGOS_DIR, 'logo.png')
 
 # הגדרות רווח בין שורות
 LINE_SPACING_NORMAL = 60
@@ -59,13 +59,16 @@ LINE_SPACING_OUTRO_SUBTITLE = 80
 LINE_SPACING_WITHIN_SENTENCE = 40
 LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION = 60
 
-# נתיב למוזיקת רקע (אם יש)
+# נתיב למוזיקת רקע
 BACKGROUND_MUSIC_PATH = os.path.join(ASSETS_DIR, 'background_music.mp3')
 
 # הגדרות MoviePy
 VIDEO_SIZE = (1920, 1080)
 FPS = 24
 THREADS = 8
+
+# זמן השהייה בין קטעי משפט ותרגום (בשניות)
+SENTENCE_TRANSITION_DURATION = 1.0
 
 def sanitize_filename(filename):
     """
@@ -135,13 +138,11 @@ class ImageCreator:
         return lines
 
     def create_image(self, text_lines, style_definitions, line_styles=None):
-        # שימוש בקאשינג למניעת יצירת תמונות חוזרות
         cache_key = tuple(text_lines) + tuple(line_styles or [])
         if cache_key in self.cache:
             logging.info("שימוש בתמונה מקאש")
             return self.cache[cache_key]
 
-        # טעינת תמונת רקע
         if line_styles:
             first_style_name = line_styles[0]
         else:
@@ -152,7 +153,6 @@ class ImageCreator:
             background_image_path = os.path.join(BACKGROUNDS_DIR, background_image_name)
             try:
                 img = Image.open(background_image_path).convert("RGBA")
-                # שינוי גודל התמונה כך שתתאים לגודל הסרטון
                 img = img.resize(VIDEO_SIZE, Image.LANCZOS)
             except FileNotFoundError:
                 logging.error(f"תמונת רקע לא נמצאה בנתיב: {background_image_path}")
@@ -341,7 +341,7 @@ class VideoCreator:
             return clip
 
     def create_level_intro(self, level_num, level_name, lang_code):
-        level_word = self.lang_settings.get(lang_code, self.lang_settings['en']).get('level_word', 'Level')  # ברירת מחדל לאנגלית אם לא נמצאה שפה
+        level_word = self.lang_settings.get(lang_code, self.lang_settings['en']).get('level_word', 'Level')
         text_lines_intro = [f"{level_word} {level_num}", level_name]
         line_styles_intro = ['level', 'level']
         clip_intro = self.create_image_clip(text_lines_intro, 'level', line_styles_intro)
@@ -489,13 +489,19 @@ class VideoAssembler:
                                 audio_results.get((sentence, self.lang_code, True), "")
                             ]
                         )
-
+                        
+                        # הוספת השהייה בין קטעי משפט ותרגום
                         if clips:
                             previous_clip = clips[-1]
-                            transition = self.video_creator.slide_transition(previous_clip, clip_example)
-                            clips.append(transition)
-
-                        clips.append(clip_example)
+                            if previous_clip.duration < SENTENCE_TRANSITION_DURATION:
+                                previous_clip = previous_clip.set_duration(SENTENCE_TRANSITION_DURATION)
+                            # לא מוסיפים מעבר בין קטעי משפט ותרגום
+                            if previous_clip != clip_example:
+                                clips.append(clip_example)
+                            else:
+                                clips.append(clip_example)
+                        else:
+                            clips.append(clip_example)
 
             clip_outro = self.video_creator.create_outro(self.lang_code)
             transition = self.video_creator.slide_transition(clips[-1], clip_outro)
@@ -529,7 +535,8 @@ class VideoAssembler:
             logging.error(f"שגיאה בתהליך הרכבת הוידאו ל-Level {level_num}: {e}")
         finally:
             for clip in clips:
-                clip.close()
+                if clip:
+                  clip.close()
             if 'final_clip' in locals():
                 final_clip.close()
 
