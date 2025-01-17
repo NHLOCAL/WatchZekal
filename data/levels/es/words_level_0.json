@@ -12,8 +12,12 @@
               "translation": "לא",
               "examples": [
                 {
-                  "sentence": "¿Es tuyo? No",
-                  "translation": "האם זה שלך? לא"
+                  "sentence": "¡Hola a ti!",
+                  "translation": "שלום לך!"
+                },
+                {
+                  "sentence": "Hola, ¿cómo estás?",
+                  "translation": "שלום, מה שלומך?"
                 }
               ]
             }
