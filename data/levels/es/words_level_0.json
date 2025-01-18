@@ -2,22 +2,22 @@
   "levels": [
     {
       "level": 0,
-      "name": "יסודות",
+      "name": "יְסוֹדוֹת",
       "subtopics": [
         {
-          "name": "ברכות",
+          "name": "בְּרָכוֹת",
           "words": [
             {
               "word": "No",
-              "translation": "לא",
+              "translation": "לֹא",
               "examples": [
                 {
                   "sentence": "¡Hola a ti!",
-                  "translation": "שלום לך!"
+                  "translation": "שָׁלוֹם לְךָ!"
                 },
                 {
                   "sentence": "Hola, ¿cómo estás?",
-                  "translation": "שלום, מה שלומך?"
+                  "translation": "שָׁלוֹם, מַה שְּׁלוֹמְךָ?"
                 }
               ]
             }

@@ -87,6 +87,19 @@ def process_hebrew_text(text):
     bidi_text = get_display(reshaped_text)
     return bidi_text
 
+def remove_nikud(text):
+  """
+  מסירה ניקוד מטקסט עברי.
+
+  Args:
+    text: טקסט עברי עם ניקוד.
+
+  Returns:
+    טקסט עברי ללא ניקוד.
+  """
+  nikud_chars = set(chr(i) for i in range(0x0591, 0x05C7 + 1))
+  return ''.join(c for c in text if c not in nikud_chars)
+
 class FileManager:
     def __init__(self, output_dir, thumbnails_dir, lang_code):
         self.output_dir = os.path.join(output_dir, lang_code)  # תיקיית פלט לפי שפה
@@ -167,6 +180,9 @@ class ImageCreator:
         total_height = 0
         processed_lines = []
         for i, line in enumerate(text_lines):
+            # הסרת ניקוד
+            line_without_nikud = remove_nikud(line) if is_hebrew(line) else line
+
             if line_styles and i < len(line_styles):
                 current_style = style_definitions[line_styles[i]]
             else:
@@ -175,7 +191,7 @@ class ImageCreator:
             font = self.get_font(current_style['font_path'], current_style['font_size'])
 
             if is_hebrew(line):
-                split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
+                split_lines = self.split_text_into_lines(line_without_nikud, font, MAX_TEXT_WIDTH, draw)
                 for split_line in split_lines:
                     processed_line = process_hebrew_text(split_line)
                     processed_style = current_style.copy()
@@ -194,7 +210,7 @@ class ImageCreator:
                         spacing = LINE_SPACING_OUTRO_SUBTITLE
                     total_height += height + spacing
             else:
-                split_lines = self.split_text_into_lines(line, font, MAX_TEXT_WIDTH, draw)
+                split_lines = self.split_text_into_lines(line_without_nikud, font, MAX_TEXT_WIDTH, draw)
                 for split_line in split_lines:
                     processed_line = split_line
                     processed_style = current_style.copy()
