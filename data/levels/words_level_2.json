@@ -2,509 +2,509 @@
   "levels": [
     {
       "level": 2,
-      "name": "משפחה וזמן",
+      "name": "מִשְׁפָּחָה וּזְמַן",
       "subtopics": [
         {
-          "name": "בני משפחה",
+          "name": "בְּנֵי מִשְׁפָּחָה",
           "words": [
             {
               "word": "Mother",
-              "translation": "אמא",
+              "translation": "אִמָּא",
               "examples": [
                 {
                   "sentence": "My mother is kind",
-                  "translation": "אמי נחמדה"
+                  "translation": "אִמִּי נְחְמָדָה"
                 },
                 {
                   "sentence": "She is a mother of two",
-                  "translation": "היא אמא לשניים"
+                  "translation": "הִיא אִמָּא לִשְׁנַיִים"
                 },
                 {
                   "sentence": "Mother cooks dinner",
-                  "translation": "אמא מבשלת ארוחת ערב"
+                  "translation": "אִמָּא מְבַשֶּׁלֶת אֲרוּחַת עֶרֶב"
                 }
               ]
             },
             {
               "word": "Father",
-              "translation": "אבא",
+              "translation": "אַבָּא",
               "examples": [
                 {
                   "sentence": "His father is tall",
-                  "translation": "אביו גבוה"
+                  "translation": "אָבִיו גָּבוֹהַּ"
                 },
                 {
                   "sentence": "Father goes to work",
-                  "translation": "אבא הולך לעבודה"
+                  "translation": "אַבָּא הוֹלֵךְ לָעֲבוֹדָה"
                 },
                 {
                   "sentence": "I love my father",
-                  "translation": "אני אוהב את אבא שלי"
+                  "translation": "אֲנִי אוֹהֵב אֶת אַבָּא שֶׁלִּי"
                 }
               ]
             },
             {
               "word": "Brother",
-              "translation": "אח",
+              "translation": "אָח",
               "examples": [
                 {
                   "sentence": "I have a brother",
-                  "translation": "יש לי אח"
+                  "translation": "יֵשׁ לִי אָח"
                 },
                 {
                   "sentence": "His brother is older",
-                  "translation": "אחיו מבוגר יותר"
+                  "translation": "אָחִיו מְבוּגָּר יוֹתֵר"
                 },
                 {
                   "sentence": "Brother and sister play",
-                  "translation": "אח ואחות משחקים"
+                  "translation": "אָח וְאָחוֹת מְשַׂחֲקִים"
                 }
               ]
             },
             {
               "word": "Sister",
-              "translation": "אחות",
+              "translation": "אָחוֹת",
               "examples": [
                 {
                   "sentence": "She is my sister",
-                  "translation": "היא אחותי"
+                  "translation": "הִיא אֲחוֹתִי"
                 },
                 {
                   "sentence": "Her sister is young",
-                  "translation": "אחותה צעירה"
+                  "translation": "אֲחוֹתָהּ צְעִירָה"
                 },
                 {
                   "sentence": "I help my sister",
-                  "translation": "אני עוזר לאחותי"
+                  "translation": "אֲנִי עוֹזֵר לַאֲחוֹתִי"
                 }
               ]
             },
             {
               "word": "Grandmother",
-              "translation": "סבתא",
+              "translation": "סַבְתָּא",
               "examples": [
                 {
                   "sentence": "Grandmother tells stories",
-                  "translation": "סבתא מספרת סיפורים"
+                  "translation": "סַבְתָּא מְסַפֶּרֶת סִיפּוּרִים"
                 },
                 {
                   "sentence": "I visit my grandmother",
-                  "translation": "אני מבקר את סבתא שלי"
+                  "translation": "אֲנִי מְבַקֵּר אֶת סַבְתָּא שֶׁלִּי"
                 },
                 {
                   "sentence": "She loves her grandmother",
-                  "translation": "היא אוהבת את סבתא שלה"
+                  "translation": "הִיא אוֹהֶבֶת אֶת סַבְתָּא שֶׁלָּהּ"
                 }
               ]
             },
             {
               "word": "Grandfather",
-              "translation": "סבא",
+              "translation": "סַבָּא",
               "examples": [
                 {
                   "sentence": "His grandfather is funny",
-                  "translation": "סבא שלו מצחיק"
+                  "translation": "סַבָּא שֶׁלּוֹ מַצְחִיק"
                 },
                 {
                   "sentence": "Grandfather plays chess",
-                  "translation": "סבא משחק שחמט"
+                  "translation": "סַבָּא מְשַׂחֵק שַׁחְמָט"
                 },
                 {
                   "sentence": "We go fishing with grandfather",
-                  "translation": "אנחנו הולכים לדוג עם סבא"
+                  "translation": "אֲנַחְנוּ הוֹלְכִים לָדוג עִם סַבָּא"
                 }
               ]
             }
           ]
         },
         {
-          "name": "ימות השבוע",
+          "name": "יְמוֹת הַשָּׁבוּעַ",
           "words": [
             {
               "word": "Sunday",
-              "translation": "יום ראשון",
+              "translation": "יוֹם רִאשׁוֹן",
               "examples": [
                 {
                   "sentence": "Today is Sunday",
-                  "translation": "היום יום ראשון"
+                  "translation": "הַיּוֹם יוֹם רִאשׁוֹן"
                 },
                 {
                   "sentence": "We rest on Sunday",
-                  "translation": "אנחנו נחים ביום ראשון"
+                  "translation": "אֲנַחְנוּ נָחִים בְּיוֹם רִאשׁוֹן"
                 },
                 {
                   "sentence": "Sunday is the first day",
-                  "translation": "יום ראשון הוא היום הראשון"
+                  "translation": "יוֹם רִאשׁוֹן הוּא הַיּוֹם הָרִאשׁוֹן"
                 }
               ]
             },
             {
               "word": "Monday",
-              "translation": "יום שני",
+              "translation": "יוֹם שֵׁנִי",
               "examples": [
                 {
                   "sentence": "Monday comes after Sunday",
-                  "translation": "יום שני מגיע אחרי יום ראשון"
+                  "translation": "יוֹם שֵׁנִי מַגִּיעַ אַחֲרֵי יוֹם רִאשׁוֹן"
                 },
                 {
                   "sentence": "I have school on Monday",
-                  "translation": "יש לי בית ספר ביום שני"
+                  "translation": "יֵשׁ לִי בֵּית סֵפֶר בְּיוֹם שֵׁנִי"
                 },
                 {
                   "sentence": "She works on Monday",
-                  "translation": "היא עובדת ביום שני"
+                  "translation": "הִיא עוֹבֶדֶת בְּיוֹם שֵׁנִי"
                 }
               ]
             },
             {
               "word": "Tuesday",
-              "translation": "יום שלישי",
+              "translation": "יוֹם שְׁלִישִׁי",
               "examples": [
                 {
                   "sentence": "Tuesday is my favorite day",
-                  "translation": "יום שלישי הוא היום האהוב עליי"
+                  "translation": "יוֹם שְׁלִישִׁי הוּא הַיּוֹם הָאָהוּב עָלַיי"
                 },
                 {
                   "sentence": "We play soccer on Tuesday",
-                  "translation": "אנחנו משחקים כדורגל ביום שלישי"
+                  "translation": "אֲנַחְנוּ מְשַׂחֲקִים כַּדּוּרֶגֶל בְּיוֹם שְׁלִישִׁי"
                 },
                 {
                   "sentence": "He has a meeting on Tuesday",
-                  "translation": "יש לו פגישה ביום שלישי"
+                  "translation": "יֵשׁ לוֹ פְּגִישָׁה בְּיוֹם שְׁלִישִׁי"
                 }
               ]
             },
             {
               "word": "Wednesday",
-              "translation": "יום רביעי",
+              "translation": "יוֹם רְבִיעִי",
               "examples": [
                 {
                   "sentence": "Midweek is Wednesday",
-                  "translation": "אמצע השבוע הוא יום רביעי"
+                  "translation": "אֶמְצַע הַשָּׁבוּעַ הוּא יוֹם רְבִיעִי"
                 },
                 {
                   "sentence": "She visits on Wednesday",
-                  "translation": "היא מבקרת ביום רביעי"
+                  "translation": "הִיא מְבַקֶּרֶת בְּיוֹם רְבִיעִי"
                 },
                 {
                   "sentence": "Wednesday is busy",
-                  "translation": "יום רביעי עמוס"
+                  "translation": "יוֹם רְבִיעִי עָמוּס"
                 }
               ]
             },
             {
               "word": "Thursday",
-              "translation": "יום חמישי",
+              "translation": "יוֹם חֲמִישִׁי",
               "examples": [
                 {
                   "sentence": "Thursday is almost weekend",
-                  "translation": "יום חמישי הוא כמעט סוף השבוע"
+                  "translation": "יוֹם חֲמִישִׁי הוּא כִּמְעַט סוֹף הַשָּׁבוּעַ"
                 },
                 {
                   "sentence": "We have a test on Thursday",
-                  "translation": "יש לנו מבחן ביום חמישי"
+                  "translation": "יֵשׁ לָנוּ מִבְחָן בְּיוֹם חֲמִישִׁי"
                 },
                 {
                   "sentence": "He travels on Thursday",
-                  "translation": "הוא נוסע ביום חמישי"
+                  "translation": "הוּא נוֹסֵעַ בְּיוֹם חֲמִישִׁי"
                 }
               ]
             },
             {
               "word": "Friday",
-              "translation": "יום שישי",
+              "translation": "יוֹם שִׁישִּׁי",
               "examples": [
                 {
                   "sentence": "Friday is the last workday",
-                  "translation": "יום שישי הוא היום האחרון לעבודה"
+                  "translation": "יוֹם שִׁישִּׁי הוּא הַיּוֹם הָאַחֲרוֹן לָעֲבוֹדָה"
                 },
                 {
                   "sentence": "We celebrate on Friday",
-                  "translation": "אנחנו חוגגים ביום שישי"
+                  "translation": "אֲנַחְנוּ חוֹגְגִים בְּיוֹם שִׁישִּׁי"
                 },
                 {
                   "sentence": "She finishes early on Friday",
-                  "translation": "היא מסיימת מוקדם ביום שישי"
+                  "translation": "הִיא מְסַיֶּימֶת מוּקְדָּם בְּיוֹם שִׁישִּׁי"
                 }
               ]
             },
             {
               "word": "Saturday",
-              "translation": "יום שבת",
+              "translation": "יוֹם שַׁבָּת",
               "examples": [
                 {
                   "sentence": "Saturday is the weekend",
-                  "translation": "יום שבת הוא סוף השבוע"
+                  "translation": "יוֹם שַׁבָּת הוּא סוֹף הַשָּׁבוּעַ"
                 },
                 {
                   "sentence": "They relax on Saturday",
-                  "translation": "הם נרגעים ביום שבת"
+                  "translation": "הֵם נִרְגָּעִים בְּיוֹם שַׁבָּת"
                 },
                 {
                   "sentence": "Saturday night is fun",
-                  "translation": "ליל שבת הוא כיף"
+                  "translation": "לֵיל שַׁבָּת הוּא כֵּיף"
                 }
               ]
             }
           ]
         },
         {
-          "name": "חלקי היום",
+          "name": "חֶלְקֵי הַיּוֹם",
           "words": [
             {
               "word": "Morning",
-              "translation": "בוקר",
+              "translation": "בּוֹקֶר",
               "examples": [
                 {
                   "sentence": "Good morning!",
-                  "translation": "בוקר טוב!"
+                  "translation": "בּוֹקֶר טוֹב!"
                 },
                 {
                   "sentence": "I eat breakfast in the morning",
-                  "translation": "אני אוכל ארוחת בוקר בבוקר"
+                  "translation": "אֲנִי אוֹכֵל אֲרוּחַת בּוֹקֶר בַּבּוֹקֶר"
                 },
                 {
                   "sentence": "The sun rises in the morning",
-                  "translation": "השמש זורחת בבוקר"
+                  "translation": "הַשֶּׁמֶשׁ זוֹרַחַת בַּבּוֹקֶר"
                 }
               ]
             },
             {
               "word": "Afternoon",
-              "translation": "צהריים",
+              "translation": "צָהֳרַיִים",
               "examples": [
                 {
                   "sentence": "Good afternoon!",
-                  "translation": "צהריים טובים!"
+                  "translation": "צָהֳרַיִים טוֹבִים!"
                 },
                 {
                   "sentence": "She studies in the afternoon",
-                  "translation": "היא לומדת בצהריים"
+                  "translation": "הִיא לוֹמֶדֶת בַּצָּהֳרַיִים"
                 },
                 {
                   "sentence": "We meet in the afternoon",
-                  "translation": "אנחנו נפגשים בצהריים"
+                  "translation": "אֲנַחְנוּ נִפְגָּשִׁים בַּצָּהֳרַיִים"
                 }
               ]
             },
             {
               "word": "Evening",
-              "translation": "ערב",
+              "translation": "עֶרֶב",
               "examples": [
                 {
                   "sentence": "Good evening!",
-                  "translation": "ערב טוב!"
+                  "translation": "עֶרֶב טוֹב!"
                 },
                 {
                   "sentence": "They have dinner in the evening",
-                  "translation": "הם אוכלים ארוחת ערב בערב"
+                  "translation": "הֵם אוֹכְלִים אֲרוּחַת עֶרֶב בָּעֶרֶב"
                 },
                 {
                   "sentence": "The sky is beautiful in the evening",
-                  "translation": "השמיים יפים בערב"
+                  "translation": "הַשָּׁמַיִים יָפִים בָּעֶרֶב"
                 }
               ]
             },
             {
               "word": "Night",
-              "translation": "לילה",
+              "translation": "לַיְלָה",
               "examples": [
                 {
                   "sentence": "Good night!",
-                  "translation": "לילה טוב!"
+                  "translation": "לַיְלָה טוֹב!"
                 },
                 {
                   "sentence": "He sleeps at night",
-                  "translation": "הוא ישן בלילה"
+                  "translation": "הוּא יָשֵׁן בַּלַּיְלָה"
                 },
                 {
                   "sentence": "The stars shine at night",
-                  "translation": "הכוכבים זורחים בלילה"
+                  "translation": "הַכּוֹכָבִים זוֹרְחִים בַּלַּיְלָה"
                 }
               ]
             }
           ]
         },
         {
-          "name": "מספרים 11-20",
+          "name": "מִסְפָּרִים 11-20",
           "words": [
             {
               "word": "Eleven",
-              "translation": "אחת עשרה",
+              "translation": "אַחַת עֶשְׂרֵה",
               "examples": [
                 {
                   "sentence": "She is eleven years old",
-                  "translation": "היא בת אחת עשרה"
+                  "translation": "הִיא בַּת אַחַת עֶשְׂרֵה"
                 },
                 {
                   "sentence": "Eleven players on a team",
-                  "translation": "אחת עשרה שחקנים בקבוצה"
+                  "translation": "אַחַת עֶשְׂרֵה שַׂחְקָנִים בִּקְבוּצָה"
                 },
                 {
                   "sentence": "The clock shows eleven",
-                  "translation": "השעון מראה אחת עשרה"
+                  "translation": "הַשָּׁעוֹן מַרְאֶה אַחַת עֶשְׂרֵה"
                 }
               ]
             },
             {
               "word": "Twelve",
-              "translation": "שתים עשרה",
+              "translation": "שְׁתֵּים עֶשְׂרֵה",
               "examples": [
                 {
                   "sentence": "It's twelve o'clock",
-                  "translation": "השעה שתים עשרה"
+                  "translation": "הַשָּׁעָה שְׁתֵּים עֶשְׂרֵה"
                 },
                 {
                   "sentence": "He bought twelve eggs",
-                  "translation": "הוא קנה שתים עשרה ביצים"
+                  "translation": "הוּא קָנָה שְׁתֵּים עֶשְׂרֵה בֵּיצִים"
                 },
                 {
                   "sentence": "Twelve months in a year",
-                  "translation": "שתים עשרה חודשים בשנה"
+                  "translation": "שְׁתֵּים עֶשְׂרֵה חוֹדָשִׁים בְּשָׁנָה"
                 }
               ]
             },
             {
               "word": "Thirteen",
-              "translation": "שלוש עשרה",
+              "translation": "שְׁלוֹשׁ עֶשְׂרֵה",
               "examples": [
                 {
                   "sentence": "She has thirteen dolls",
-                  "translation": "יש לה שלוש עשרה בובות"
+                  "translation": "יֵשׁ לָהּ שְׁלוֹשׁ עֶשְׂרֵה בּוּבּוֹת"
                 },
                 {
                   "sentence": "Thirteen is a lucky number",
-                  "translation": "שלוש עשרה הוא מספר מזל"
+                  "translation": "שְׁלוֹשׁ עֶשְׂרֵה הוּא מִסְפַּר מַזָּל"
                 },
                 {
                   "sentence": "He is thirteen today",
-                  "translation": "הוא בן שלוש עשרה היום"
+                  "translation": "הוּא בֶּן שְׁלוֹשׁ עֶשְׂרֵה הַיּוֹם"
                 }
               ]
             },
             {
               "word": "Fourteen",
-              "translation": "ארבע עשרה",
+              "translation": "אַרְבַּע עֶשְׂרֵה",
               "examples": [
                 {
                   "sentence": "Fourteen students in the class",
-                  "translation": "ארבע עשרה תלמידים בכיתה"
+                  "translation": "אַרְבַּע עֶשְׂרֵה תַּלְמִידִים בַּכִּיתָּה"
                 },
                 {
                   "sentence": "She ran fourteen miles",
-                  "translation": "היא רצה ארבעה עשר מיילים"
+                  "translation": "הִיא רָצָה אַרְבָּעָה עָשָׂר מַיְילִים"
                 },
                 {
                   "sentence": "The book has fourteen chapters",
-                  "translation": "הספר מכיל ארבעה עשר פרקים"
+                  "translation": "הַסֵּפֶר מֵכִיל אַרְבָּעָה עָשָׂר פְּרָקִים"
                 }
               ]
             },
             {
               "word": "Fifteen",
-              "translation": "חמש עשרה",
+              "translation": "חֲמֵשׁ עֶשְׂרֵה",
               "examples": [
                 {
                   "sentence": "He is fifteen years old",
-                  "translation": "הוא בן חמש עשרה"
+                  "translation": "הוּא בֶּן חֲמֵשׁ עֶשְׂרֵה"
                 },
                 {
                   "sentence": "Fifteen minutes left",
-                  "translation": "נשארו חמש עשרה דקות"
+                  "translation": "נִשְׁאֲרוּ חֲמֵשׁ עֶשְׂרֵה דַּקּוֹת"
                 },
                 {
                   "sentence": "She scored fifteen points",
-                  "translation": "היא השיגה חמש עשרה נקודות"
+                  "translation": "הִיא הִשִּׂיגָה חֲמֵשׁ עֶשְׂרֵה נְקודּוֹת"
                 }
               ]
             },
             {
               "word": "Sixteen",
-              "translation": "שש עשרה",
+              "translation": "שֵׁשׁ עֶשְׂרֵה",
               "examples": [
                 {
                   "sentence": "The box contains sixteen chocolates",
-                  "translation": "הקופסה מכילה שש-עשרה שוקולדים"
+                  "translation": "הַקּוּפְסָה מְכִילָה שֵׁשׁ עֶשְׂרֵה שׁוֹקוֹלָדִים"
                 },
                 {
                   "sentence": "She turns sixteen tomorrow",
-                  "translation": "היא תהיה בת שש עשרה מחר"
+                  "translation": "הִיא תִּהְיֶה בַּת שֵׁשׁ עֶשְׂרֵה מָחָר"
                 },
                 {
                   "sentence": "They have sixteen dollars",
-                  "translation": "יש להם שש עשרה דולר"
+                  "translation": "יֵשׁ לָהֶם שֵׁשׁ עֶשְׂרֵה דּוֹלָר"
                 }
               ]
             },
             {
               "word": "Seventeen",
-              "translation": "שבע עשרה",
+              "translation": "שְׁבַע עֶשְׂרֵה",
               "examples": [
                 {
                   "sentence": "Seventeen people attended",
-                  "translation": "שבע עשרה אנשים נכחו"
+                  "translation": "שְׁבַע עֶשְׂרֵה אֲנָשִׁים נָכְחוּ"
                 },
                 {
                   "sentence": "Room seventeen is upstairs",
-                  "translation": "חדר שבע עשרה הוא בקומה העליונה"
+                  "translation": "חֶדֶר שְׁבַע עֶשְׂרֵה הוּא בַּקּוֹמָה הָעֶלְיוֹנָה"
                 },
                 {
                   "sentence": "She read seventeen books",
-                  "translation": "היא קראה שבעה עשר ספרים"
+                  "translation": "הִיא קָרְאָה שִׁבְעָה עָשָׂר סְפָרִים"
                 }
               ]
             },
             {
               "word": "Eighteen",
-              "translation": "שמונה עשרה",
+              "translation": "שְׁמוֹנֶה עֶשְׂרֵה",
               "examples": [
                 {
                   "sentence": "He is eighteen and can vote",
-                  "translation": "הוא בן שמונה עשרה ויכול להצביע"
+                  "translation": "הוּא בֶּן שְׁמוֹנֶה עֶשְׂרֵה וְיָכוֹל לְהַצְבִּיעַ"
                 },
                 {
                   "sentence": "Eighteen wheels on the truck",
-                  "translation": "שמונה עשרה גלגלים במשאית"
+                  "translation": "שְׁמוֹנֶה עֶשְׂרֵה גַּלְגַּלִּים בַּמַּשָּׂאִית"
                 },
                 {
                   "sentence": "They traveled eighteen miles",
-                  "translation": "הם נסעו שמונה עשר מיילים"
+                  "translation": "הֵם נָסְעוּ שְׁמוֹנָה עָשָׂר מַיְילִים"
                 }
               ]
             },
             {
               "word": "Nineteen",
-              "translation": "תשע עשרה",
+              "translation": "תְּשַׁע עֶשְׂרֵה",
               "examples": [
                 {
                   "sentence": "Nineteen students passed",
-                  "translation": "תשע עשרה תלמידים עברו"
+                  "translation": "תְּשַׁע עֶשְׂרֵה תַּלְמִידִים עָבְרוּ"
                 },
                 {
                   "sentence": "He waited nineteen minutes",
-                  "translation": "הוא חיכה תשע עשרה דקות"
+                  "translation": "הוּא חִיכָּה תְּשַׁע עֶשְׂרֵה דַּקּוֹת"
                 },
                 {
                   "sentence": "She collected nineteen stamps",
-                  "translation": "היא אספה תשע עשרה בולים"
+                  "translation": "הִיא אָסְפָה תְּשַׁע עֶשְׂרֵה בּוּלִים"
                 }
               ]
             },
             {
               "word": "Twenty",
-              "translation": "עשרים",
+              "translation": "עֶשְׂרִים",
               "examples": [
                 {
                   "sentence": "She is twenty years old",
-                  "translation": "היא בת עשרים"
+                  "translation": "הִיא בַּת עֶשְׂרִים"
                 },
                 {
                   "sentence": "Twenty people came",
-                  "translation": "עשרים אנשים באו"
+                  "translation": "עֶשְׂרִים אֲנָשִׁים בָּאוּ"
                 },
                 {
                   "sentence": "They planted twenty trees",
-                  "translation": "הם שתלו עשרים עצים"
+                  "translation": "הֵם שָׁתְלוּ עֶשְׂרִים עֵצִים"
                 }
               ]
             }
