@@ -58,17 +58,27 @@ def main(json_file_path, comparison_file_path):
     """Main function to process and compare the JSON files."""
     try:
         with open(json_file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+            original_data = json.load(f)  # Store original data
 
-        processed_data = process_json(data)
-
-        # Directly overwrite the original file with processed data
-        with open(json_file_path, 'w', encoding='utf-8') as outfile:
-            json.dump(processed_data, outfile, ensure_ascii=False, indent=2)
-        print(f"Processed data saved to: {json_file_path}")
+        processed_data = process_json(original_data) # Store processed data separately
 
         if comparison_file_path:
-            compare_json_files(json_file_path, comparison_file_path)
+          with open(comparison_file_path, 'r', encoding='utf-8') as f:
+              comparison_data = json.load(f)
+          # Convert JSON objects to strings for line-by-line comparison
+          str1 = json.dumps(processed_data, ensure_ascii=False, indent=2, sort_keys=True).splitlines()
+          str2 = json.dumps(comparison_data, ensure_ascii=False, indent=2, sort_keys=True).splitlines()
+
+          # Calculate differences
+          diff = difflib.unified_diff(str1, str2, fromfile="processed_data", tofile=comparison_file_path)
+
+          diff_lines = list(diff)
+          if diff_lines:
+              print("Differences between files:")
+              for line in diff_lines:
+                  print(line)
+          else:
+              print("Files are identical.")
 
     except FileNotFoundError:
         print(f"Error: File not found at '{json_file_path}'.")
