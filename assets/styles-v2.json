@@ -7,14 +7,16 @@
     },
     "subtopic": {
         "style_name": "subtopic",
-        "text_color": [0, 0, 128],
-        "font_size": 120,
+        "text_color": [65, 105, 225],
+        "font_size": 140, 
         "font_path": "Rubik-Bold.ttf"
     },
      "level": {
         "style_name": "level",
-        "text_color": [255, 69, 0],
-        "font_size": 140,
+         "text_color": [255, 165, 0],
+         "stroke_width": 3,
+          "stroke_color": [44, 44, 44],
+        "font_size": 150,
         "font_path": "Rubik-Bold.ttf"
     },
     "word": {
@@ -23,21 +25,21 @@
         "font_size": 120,
         "font_path": "Rubik-Bold.ttf"
     },
-    "outro": {
+   "outro": {
         "style_name": "outro",
-        "text_color": [255, 255, 255],
+        "text_color": [220, 20, 60],
         "font_size": 75,
         "font_path": "Rubik-Regular.ttf"
     },
     "outro_title": {
         "style_name": "outro_title",
-        "text_color": [255, 255, 255],
+         "text_color": [255, 255, 255],
         "font_size": 140,
         "font_path": "Rubik-Bold.ttf"
     },
      "outro_subtitle": {
         "style_name": "outro_subtitle",
-        "text_color": [255, 255, 255],
+         "text_color": [255, 215, 0],
         "font_size": 120,
         "font_path": "Rubik-Bold.ttf"
     },
@@ -55,16 +57,16 @@
     },
     "intro_title": {
         "style_name": "intro_title",
-        "text_color": [44, 44, 44],
-        "font_size": 160,
+         "text_color": [44, 44, 44],
+        "font_size": 170,
         "font_path": "Rubik-Bold.ttf",
-        "stroke_width": 4,
-        "stroke_color": [211, 211, 211]
+         "stroke_width": 4,
+        "stroke_color": [116,157,156]
     },
     "intro_subtitle": {
       "style_name": "intro_subtitle",
       "text_color": [44, 44, 44],
       "font_size": 120,
-      "font_path": "Rubik-Regular.ttf"
+      "font_path": "Rubik-Bold.ttf"
     }
 }
