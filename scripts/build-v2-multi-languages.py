@@ -33,19 +33,22 @@ LANG_SETTINGS_FILE = os.path.join(DATA_DIR, 'lang_settings.json')  # נתיב ל
 
 # נתיב לתיקיית תמונות רקע
 BACKGROUNDS_DIR = os.path.join(ASSETS_DIR, 'backgrounds')
-os.makedirs(BACKGROUNDS_DIR, exist_ok=True)
+BACKGROUNDS_LEVELS_DIR = os.path.join(BACKGROUNDS_DIR, 'levels')
+BACKGROUNDS_INTROS_OUTROS_DIR = os.path.join(BACKGROUNDS_LEVELS_DIR, 'intros_outros')
+os.makedirs(BACKGROUNDS_LEVELS_DIR, exist_ok=True)
+os.makedirs(BACKGROUNDS_INTROS_OUTROS_DIR, exist_ok=True)
 
 # שמות קבצי תמונות רקע עבור כל סוג מקטע
 BACKGROUND_IMAGES = {
-    'subtopic': 'subtopic_background.png',
-    'word': 'word_background.png',
-    'sentence': 'sentence_background.png',
-    'translation': 'sentence_background.png',
-    'level': 'intro_outro_background.png',
-    'outro': 'intro_outro_background.png',
-    'outro_title': 'intro_outro_background.png',
-    'intro': 'intro_outro_background.png',
-    'intro_title': 'intro_outro_background.png'
+    'subtopic': os.path.join('levels', 'subtopic_background.png'),
+    'word': os.path.join('levels', 'word_background.png'),
+    'sentence': os.path.join('levels', 'sentence_background.png'),
+    'translation': os.path.join('levels', 'sentence_background.png'),
+    'level': None,  # יוגדר דינמית לפי שפה
+    'outro': None,  # יוגדר דינמית לפי שפה
+    'outro_title': None,  # יוגדר דינמית לפי שפה
+    'intro': None,  # יוגדר דינמית לפי שפה
+    'intro_title': None  # יוגדר דינמית לפי שפה
 }
 
 # נתיבים לקבצים
@@ -160,6 +163,18 @@ class ImageCreator:
             draw.text((x + stroke_width, y + stroke_width), text, font=font, fill=stroke_color)
             draw.text((x, y), text, font=font, fill=fill)
 
+    def get_background_image_path(self, style_name, lang_code=None):
+        if style_name in ['intro', 'outro', 'intro_title', 'outro_title', 'level']:
+            if not lang_code:
+                lang_code = 'en'  # ברירת מחדל לאנגלית
+            # קבלת שם השפה באנגלית מהגדרות השפה
+            with open(LANG_SETTINGS_FILE, 'r', encoding='utf-8') as f:
+                lang_settings = json.load(f)
+            lang_name = lang_settings.get(lang_code, {}).get('language_name_en', 'english').lower()
+            return os.path.join(BACKGROUNDS_INTROS_OUTROS_DIR, f'intro_outro_background_{lang_name}.png')
+        else:
+            return os.path.join(BACKGROUNDS_DIR, BACKGROUND_IMAGES.get(style_name, ''))
+
     def create_image(self, text_lines, style_definitions, line_styles=None, lang_code='iw'):
         cache_key = tuple(text_lines) + tuple(line_styles or []) + (lang_code,)
         if cache_key in self.cache:
@@ -171,18 +186,14 @@ class ImageCreator:
         else:
             first_style_name = 'normal'
 
-        background_image_name = BACKGROUND_IMAGES.get(first_style_name)
-        if background_image_name:
-            background_image_path = os.path.join(BACKGROUNDS_DIR, background_image_name)
-            try:
-                img = Image.open(background_image_path).convert("RGBA")
-                img = img.resize(VIDEO_SIZE, Image.LANCZOS)
-            except FileNotFoundError:
-                logging.error(f"תמונת רקע לא נמצאה בנתיב: {background_image_path}")
-                raise
-        else:
-            logging.error(f"לא הוגדרה תמונת רקע עבור סוג מקטע: {first_style_name}")
-            raise ValueError(f"לא הוגדרה תמונת רקע עבור סוג מקטע: {first_style_name}")
+        background_image_path = self.get_background_image_path(first_style_name, lang_code)
+        
+        try:
+            img = Image.open(background_image_path).convert("RGBA")
+            img = img.resize(VIDEO_SIZE, Image.LANCZOS)
+        except FileNotFoundError:
+            logging.error(f"תמונת רקע לא נמצאה בנתיב: {background_image_path}")
+            raise
         
         draw = ImageDraw.Draw(img)
         MAX_TEXT_WIDTH = 1720
