@@ -1,5 +1,6 @@
 {
   "en": {
+    "language_name": "אנגלית",
     "level_word": "Level",
     "voice": {
       "language_code": "en-US",
@@ -31,6 +32,7 @@
     }
   },
   "es": {
+    "language_name": "ספרדית",
     "level_word": "Nivel",
     "voice": {
       "language_code": "es-ES",
@@ -62,6 +64,7 @@
     }
   },
   "fr": {
+     "language_name": "צרפתית",
     "level_word": "Niveau",
     "voice": {
       "language_code": "fr-FR",
@@ -93,6 +96,7 @@
     }
   },
   "iw": {
+    "language_name": "עברית",
     "level_word": "רמה",
     "voice": {
       "language_code": "he-IL",
