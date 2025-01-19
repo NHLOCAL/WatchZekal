@@ -270,31 +270,41 @@ class ImageCreator:
             current_y += height + spacing
             
         # Add flags if it's the intro screen
-        if line_styles and line_styles[0] == 'intro':
+        if line_styles and line_styles[0] == 'intro_title':
             try:
-               
-                flag_lang_code = lang_code
+                lang_settings_file = os.path.join(DATA_DIR, 'lang_settings.json')
+                with open(lang_settings_file, 'r', encoding='utf-8') as f:
+                    lang_settings = json.load(f)
+
+                language_name_iw = lang_settings.get(lang_code, lang_settings['en']).get('language_name_iw', 'אנגלית')
                 
-                if lang_code == 'iw':
-                   flag_lang_code = 'he'
-                
-                source_flag_path = os.path.join(FLAGS_DIR, f'{flag_lang_code}.png')
-                target_flag_path = os.path.join(FLAGS_DIR, 'iw.png')
+                source_flag_path = os.path.join(FLAGS_DIR, f'{language_name_iw}.png')
+                target_flag_path = os.path.join(FLAGS_DIR, 'עברית.png')
+
 
                 source_flag = Image.open(source_flag_path).convert("RGBA")
                 target_flag = Image.open(target_flag_path).convert("RGBA")
 
-                flag_size = (100, 100)
-                source_flag = source_flag.resize(flag_size, RESAMPLING)
-                target_flag = target_flag.resize(flag_size, RESAMPLING)
                 
-                total_flags_width = source_flag.width + target_flag.width + 20
+                flag_height = 100
+                source_flag_aspect_ratio = source_flag.width / source_flag.height
+                source_flag_width = int(flag_height * source_flag_aspect_ratio)
+                
+                target_flag_aspect_ratio = target_flag.width / target_flag.height
+                target_flag_width = int(flag_height * target_flag_aspect_ratio)
+
+
+                source_flag = source_flag.resize((source_flag_width, flag_height), RESAMPLING)
+                target_flag = target_flag.resize((target_flag_width, flag_height), RESAMPLING)
+                
+                flag_spacing = 20
+                total_flags_width = source_flag.width + target_flag.width + flag_spacing
                 flags_start_x = (img.width - total_flags_width) / 2
                 
-                flags_y = current_y + 20
+                flags_y = current_y + 20 + height
                 
                 img.paste(source_flag, (int(flags_start_x), int(flags_y)), source_flag)
-                img.paste(target_flag, (int(flags_start_x + source_flag.width + 20), int(flags_y)), target_flag)
+                img.paste(target_flag, (int(flags_start_x + source_flag.width + flag_spacing), int(flags_y)), target_flag)
 
             except FileNotFoundError:
                 logging.error("אחד הדגלים לא נמצא")
