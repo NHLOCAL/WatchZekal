@@ -201,13 +201,14 @@ class ImageCreator:
         total_height = 0
         processed_lines = []
         for i, line in enumerate(text_lines):
-            # הסרת ניקוד
             line_without_nikud = remove_nikud(line) if is_hebrew(line) else line
-
+            
+            # קביעת הסגנון הנוכחי
+            current_style = style_definitions['normal']  # ברירת מחדל
+            style_name = 'normal'
             if line_styles and i < len(line_styles):
                 current_style = style_definitions[line_styles[i]]
-            else:
-                current_style = style_definitions['normal']
+                style_name = line_styles[i]
 
             font = self.get_font(current_style['font_path'], current_style['font_size'])
 
@@ -216,38 +217,46 @@ class ImageCreator:
                 for split_line in split_lines:
                     processed_line = process_hebrew_text(split_line)
                     processed_style = current_style.copy()
-                    processed_style['style_name'] = line_styles[i] if line_styles and i < len(line_styles) else 'normal'
+                    processed_style['style_name'] = style_name
                     bbox = draw.textbbox((0, 0), processed_line, font=font)
                     width = bbox[2] - bbox[0]
                     height = bbox[3] - bbox[1]
                     processed_lines.append((processed_line, width, height, processed_style, font))
-                    if processed_style['style_name'] == 'sentence':
+                    
+                    # קביעת המרווח בין השורות
+                    if style_name == 'sentence':
                         spacing = LINE_SPACING_WITHIN_SENTENCE
-                    elif processed_style['style_name'] == 'translation':
+                    elif style_name == 'translation':
                         spacing = LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION
                     else:
                         spacing = LINE_SPACING_NORMAL
-                    if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':
+                        
+                    if i == 1 and style_name == 'outro_subtitle':
                         spacing = LINE_SPACING_OUTRO_SUBTITLE
+                        
                     total_height += height + spacing
             else:
                 split_lines = self.split_text_into_lines(line_without_nikud, font, MAX_TEXT_WIDTH, draw)
                 for split_line in split_lines:
                     processed_line = split_line
                     processed_style = current_style.copy()
-                    processed_style['style_name'] = line_styles[i] if line_styles and i < len(line_styles) else 'normal'
+                    processed_style['style_name'] = style_name
                     bbox = draw.textbbox((0, 0), processed_line, font=font)
                     width = bbox[2] - bbox[0]
                     height = bbox[3] - bbox[1]
                     processed_lines.append((processed_line, width, height, processed_style, font))
-                    if processed_style['style_name'] == 'sentence':
+                    
+                    # קביעת המרווח בין השורות
+                    if style_name == 'sentence':
                         spacing = LINE_SPACING_WITHIN_SENTENCE
-                    elif processed_style['style_name'] == 'translation':
+                    elif style_name == 'translation':
                         spacing = LINE_SPACING_BETWEEN_SENTENCE_AND_TRANSLATION
                     else:
                         spacing = LINE_SPACING_NORMAL
-                    if i == 1 and line_styles and line_styles[i] == 'outro_subtitle':
+                        
+                    if i == 1 and style_name == 'outro_subtitle':
                         spacing = LINE_SPACING_OUTRO_SUBTITLE
+                        
                     total_height += height + spacing
 
         if processed_lines:
