@@ -27,21 +27,25 @@
     },
    "outro": {
         "style_name": "outro",
-        "text_color": [255, 255, 255],
+        "text_color": [105, 105, 105],
         "font_size": 75,
         "font_path": "Rubik-Regular.ttf"
     },
     "outro_title": {
         "style_name": "outro_title",
-         "text_color": [175, 238, 238],
+         "text_color": [0, 139, 139],
         "font_size": 140,
-        "font_path": "Rubik-Bold.ttf"
+        "font_path": "Rubik-Bold.ttf",
+         "stroke_width": 2,
+        "stroke_color": [176, 224, 230]
     },
      "outro_subtitle": {
         "style_name": "outro_subtitle",
-         "text_color": [175, 238, 238],
+         "text_color": [0, 139, 139],
         "font_size": 120,
-        "font_path": "Rubik-Bold.ttf"
+        "font_path": "Rubik-Bold.ttf",
+        "stroke_width": 2,
+        "stroke_color": [176, 224, 230]
     },
     "sentence": {
         "style_name": "sentence",
