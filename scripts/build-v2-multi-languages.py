@@ -42,8 +42,8 @@ os.makedirs(BACKGROUNDS_INTROS_OUTROS_DIR, exist_ok=True)
 BACKGROUND_IMAGES = {
     'subtopic': os.path.join('levels', 'subtopic_background.png'),
     'word': os.path.join('levels', 'word_background.png'),
-    'sentence': os.path.join('levels', 'sentence_background.png'),
-    'translation': os.path.join('levels', 'sentence_background.png'),
+    'sentence': os.path.join('levels', 'word_background.png'),
+    'translation': os.path.join('levels', 'word_background.png'),
     'level': None,  # יוגדר דינמית לפי שפה
     'outro': None,  # יוגדר דינמית לפי שפה
     'outro_title': None,  # יוגדר דינמית לפי שפה
@@ -296,18 +296,15 @@ class ImageCreator:
                 source_flag = Image.open(source_flag_path).convert("RGBA")
                 target_flag = Image.open(target_flag_path).convert("RGBA")
 
-                
+                # קביעת גובה הדגל
                 flag_height = 100
-                source_flag_aspect_ratio = source_flag.width / source_flag.height
-                source_flag_width = int(flag_height * source_flag_aspect_ratio)
-                
-                target_flag_aspect_ratio = target_flag.width / target_flag.height
-                target_flag_width = int(flag_height * target_flag_aspect_ratio)
+                # קביעת יחס קבוע של 2:3 (גובה:רוחב)
+                flag_width = int(flag_height * 1.5)  # 1.5 = 3/2
 
+                # שינוי גודל הדגלים לפי היחס הקבוע
+                source_flag = source_flag.resize((flag_width, flag_height), RESAMPLING)
+                target_flag = target_flag.resize((flag_width, flag_height), RESAMPLING)
 
-                source_flag = source_flag.resize((source_flag_width, flag_height), RESAMPLING)
-                target_flag = target_flag.resize((target_flag_width, flag_height), RESAMPLING)
-                
                 flag_spacing = 20
                 total_flags_width = source_flag.width + target_flag.width + flag_spacing
                 flags_start_x = (img.width - total_flags_width) / 2
