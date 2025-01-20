@@ -420,16 +420,18 @@ class VideoCreator:
     
     def create_intro(self, lang_code):
         lang_name_en = self.lang_settings.get(lang_code, self.lang_settings['en']).get('language_name_en', 'english')
+        lang_name_iw = self.lang_settings.get(lang_code, self.lang_settings['en']).get('language_name_iw', 'אנגלית')
+
         text_lines_intro = [
             "מושגים בשלבים",
-            f"לדבר {self.lang_settings.get(lang_code, self.lang_settings['en']).get('language_name_iw', 'אנגלית')}, צעד אחר צעד"
+            f"לדבר {lang_name_iw}, צעד אחר צעד"
         ]
         line_styles_intro = ['intro_title', 'intro_subtitle']
         clip_intro = self.create_image_clip(text_lines_intro, 'intro', line_styles_intro, lang_code)
 
         audio_tasks = [
             ("מושגים בשלבים", "iw"),
-            (f"לדבר {lang_name_en}, צעד אחר צעד", "en")
+            (f"לדבר {lang_name_iw}, צעד אחר צעד", "iw")
         ]
 
         audio_results = self.audio_creator.create_audios(audio_tasks)
@@ -437,7 +439,7 @@ class VideoCreator:
              clip_intro,
             [
               audio_results.get(("מושגים בשלבים", "iw"), ""),
-              audio_results.get((f"לדבר {lang_name_en}, צעד אחר צעד", "en"), "")
+              audio_results.get((f"לדבר {lang_name_iw}, צעד אחר צעד", "iw"), "")
              ],
              min_duration=6
         )
