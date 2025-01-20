@@ -1,0 +1,498 @@
+{
+    "levels": [
+      {
+        "level": 2,
+        "name": "מִשְׁפָּחָה וּזְמַן",
+        "subtopics": [
+          {
+            "name": "בְּנֵי מִשְׁפָּחָה",
+            "words": [
+              {
+                "word": "Madre",
+                "translation": "אִמָּא",
+                "examples": [
+                  {
+                    "sentence": "Mi madre es amable",
+                    "translation": "אִמִּי נְחְמָדָה"
+                  },
+                  {
+                    "sentence": "Ella es madre de dos",
+                    "translation": "הִיא אִמָּא לִשְׁנַיִים"
+                  },
+                  {
+                    "sentence": "Mamá cocina la cena",
+                    "translation": "אִמָּא מְבַשֶּׁלֶת אֲרוּחַת עֶרֶב"
+                  }
+                ]
+              },
+              {
+                "word": "Padre",
+                "translation": "אַבָּא",
+                "examples": [
+                  {
+                    "sentence": "Su padre es alto",
+                    "translation": "אָבִיו גָּבוֹהַּ"
+                  },
+                  {
+                    "sentence": "Papá va a trabajar",
+                    "translation": "אַבָּא הוֹלֵךְ לָעֲבוֹדָה"
+                  },
+                  {
+                    "sentence": "Amo a mi padre",
+                    "translation": "אֲנִי אוֹהֵב אֶת אַבָּא שֶׁלִּי"
+                  }
+                ]
+              },
+              {
+                "word": "Hermano",
+                "translation": "אָח",
+                "examples": [
+                  {
+                    "sentence": "Tengo un hermano",
+                    "translation": "יֵשׁ לִי אָח"
+                  },
+                  {
+                    "sentence": "Su hermano es mayor",
+                    "translation": "אָחִיו מְבוּגָּר יוֹתֵר"
+                  },
+                  {
+                    "sentence": "Hermano y hermana juegan",
+                    "translation": "אָח וְאָחוֹת מְשַׂחֲקִים"
+                  }
+                ]
+              },
+              {
+                "word": "Hermana",
+                "translation": "אָחוֹת",
+                "examples": [
+                  {
+                    "sentence": "Ella es mi hermana",
+                    "translation": "הִיא אֲחוֹתִי"
+                  },
+                  {
+                    "sentence": "Su hermana es joven",
+                    "translation": "אֲחוֹתָהּ צְעִירָה"
+                  },
+                  {
+                    "sentence": "Ayudo a mi hermana",
+                    "translation": "אֲנִי עוֹזֵר לַאֲחוֹתִי"
+                  }
+                ]
+              },
+              {
+                "word": "Abuela",
+                "translation": "סַבְתָּא",
+                "examples": [
+                  {
+                    "sentence": "La abuela cuenta cuentos",
+                    "translation": "סַבְתָּא מְסַפֶּרֶת סִיפּוּרִים"
+                  },
+                  {
+                    "sentence": "Visito a mi abuela",
+                    "translation": "אֲנִי מְבַקֵּר אֶת סַבְתָּא שֶׁלִּי"
+                  },
+                  {
+                    "sentence": "Ella ama a su abuela",
+                    "translation": "הִיא אוֹהֶבֶת אֶת סַבְתָּא שֶׁלָּהּ"
+                  }
+                ]
+              },
+              {
+                "word": "Abuelo",
+                "translation": "סַבָּא",
+                "examples": [
+                  {
+                    "sentence": "Su abuelo es divertido",
+                    "translation": "סַבָּא שֶׁלּוֹ מַצְחִיק"
+                  },
+                  {
+                    "sentence": "El abuelo juega al ajedrez",
+                    "translation": "סַבָּא מְשַׂחֵק שַׁחְמָט"
+                  },
+                  {
+                    "sentence": "Vamos a pescar con el abuelo",
+                    "translation": "אֲנַחְנוּ הוֹלְכִים לָדוּג עִם סַבָּא"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "יְמוֹת הַשָּׁבוּעַ",
+            "words": [
+              {
+                "word": "Domingo",
+                "translation": "יוֹם רִאשׁוֹן",
+                "examples": [
+                  {
+                    "sentence": "Hoy es domingo",
+                    "translation": "הַיּוֹם יוֹם רִאשׁוֹן"
+                  },
+                  {
+                    "sentence": "Descansamos el domingo",
+                    "translation": "אֲנַחְנוּ נָחִים בְּיוֹם רִאשׁוֹן"
+                  },
+                  {
+                    "sentence": "El domingo es el primer día",
+                    "translation": "יוֹם רִאשׁוֹן הוּא הַיּוֹם הָרִאשׁוֹן"
+                  }
+                ]
+              },
+              {
+                "word": "Lunes",
+                "translation": "יוֹם שֵׁנִי",
+                "examples": [
+                  {
+                    "sentence": "El lunes viene después del domingo",
+                    "translation": "יוֹם שֵׁנִי מַגִּיעַ אַחֲרֵי יוֹם רִאשׁוֹן"
+                  },
+                  {
+                    "sentence": "Tengo escuela el lunes",
+                    "translation": "יֵשׁ לִי בֵּית סֵפֶר בְּיוֹם שֵׁנִי"
+                  },
+                  {
+                    "sentence": "Ella trabaja los lunes",
+                    "translation": "הִיא עוֹבֶדֶת בְּיוֹם שֵׁנִי"
+                  }
+                ]
+              },
+              {
+                "word": "Martes",
+                "translation": "יוֹם שְׁלִישִׁי",
+                "examples": [
+                  {
+                    "sentence": "El martes es mi día favorito",
+                    "translation": "יוֹם שְׁלִישִׁי הוּא הַיּוֹם הָאָהוּב עָלַיי"
+                  },
+                  {
+                    "sentence": "Jugamos al fútbol los martes",
+                    "translation": "אֲנַחְנוּ מְשַׂחֲקִים כַּדּוּרֶגֶל בְּיוֹם שְׁלִישִׁי"
+                  },
+                  {
+                    "sentence": "Él tiene una reunión el martes",
+                    "translation": "יֵשׁ לוֹ פְּגִישָׁה בְּיוֹם שְׁלִישִׁי"
+                  }
+                ]
+              },
+              {
+                "word": "Miércoles",
+                "translation": "יוֹם רְבִיעִי",
+                "examples": [
+                  {
+                    "sentence": "El miércoles es mitad de semana",
+                    "translation": "אֶמְצַע הַשָּׁבוּעַ הוּא יוֹם רְבִיעִי"
+                  },
+                  {
+                    "sentence": "Ella visita los miércoles",
+                    "translation": "הִיא מְבַקֶּרֶת בְּיוֹם רְבִיעִי"
+                  },
+                  {
+                    "sentence": "El miércoles está ocupado",
+                    "translation": "יוֹם רְבִיעִי עָמוּס"
+                  }
+                ]
+              },
+              {
+                "word": "Jueves",
+                "translation": "יוֹם חֲמִישִׁי",
+                "examples": [
+                  {
+                    "sentence": "El jueves es casi fin de semana",
+                    "translation": "יוֹם חֲמִישִׁי הוּא כִּמְעַט סוֹף הַשָּׁבוּעַ"
+                  },
+                  {
+                    "sentence": "Tenemos un examen el jueves",
+                    "translation": "יֵשׁ לָנוּ מִבְחָן בְּיוֹם חֲמִישִׁי"
+                  },
+                  {
+                    "sentence": "Él viaja los jueves",
+                    "translation": "הוּא נוֹסֵעַ בְּיוֹם חֲמִישִׁי"
+                  }
+                ]
+              },
+              {
+                "word": "Viernes",
+                "translation": "יוֹם שִׁישִּׁי",
+                "examples": [
+                  {
+                    "sentence": "El viernes es el último día de trabajo",
+                    "translation": "יוֹם שִׁישִּׁי הוּא הַיּוֹם הָאַחֲרוֹן לָעֲבוֹדָה"
+                  },
+                  {
+                    "sentence": "Celebramos el viernes",
+                    "translation": "אֲנַחְנוּ חוֹגְגִים בְּיוֹם שִׁישִּׁי"
+                  },
+                  {
+                    "sentence": "Ella termina temprano los viernes",
+                    "translation": "הִיא מְסַיֶּימֶת מוּקְדָּם בְּיוֹם שִׁישִּׁי"
+                  }
+                ]
+              },
+              {
+                "word": "Sábado",
+                "translation": "יוֹם שַׁבָּת",
+                "examples": [
+                  {
+                    "sentence": "El sábado es fin de semana",
+                    "translation": "יוֹם שַׁבָּת הוּא סוֹף הַשָּׁבוּעַ"
+                  },
+                  {
+                    "sentence": "Ellos se relajan los sábados",
+                    "translation": "הֵם נִרְגָּעִים בְּיוֹם שַׁבָּת"
+                  },
+                  {
+                    "sentence": "La noche del sábado es divertida",
+                    "translation": "לֵיל שַׁבָּת הוּא כֵּיף"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "חֶלְקֵי הַיּוֹם",
+            "words": [
+              {
+                "word": "Mañana",
+                "translation": "בּוֹקֶר",
+                "examples": [
+                  {
+                    "sentence": "¡Buenos días!",
+                    "translation": "בּוֹקֶר טוֹב!"
+                  },
+                  {
+                    "sentence": "Desayuno por la mañana",
+                    "translation": "אֲנִי אוֹכֵל אֲרוּחַת בּוֹקֶר בַּבּוֹקֶר"
+                  },
+                  {
+                    "sentence": "El sol sale por la mañana",
+                    "translation": "הַשֶּׁמֶשׁ זוֹרַחַת בַּבּוֹקֶר"
+                  }
+                ]
+              },
+              {
+                "word": "Tarde",
+                "translation": "צָהֳרַיִים",
+                "examples": [
+                  {
+                    "sentence": "¡Buenas tardes!",
+                    "translation": "צָהֳרַיִים טוֹבִים!"
+                  },
+                  {
+                    "sentence": "Ella estudia por la tarde",
+                    "translation": "הִיא לוֹמֶדֶת בַּצָּהֳרַיִים"
+                  },
+                  {
+                    "sentence": "Nos reunimos por la tarde",
+                    "translation": "אֲנַחְנוּ נִפְגָּשִׁים בַּצָּהֳרַיִים"
+                  }
+                ]
+              },
+              {
+                "word": "Noche",
+                "translation": "עֶרֶב, לַיְלָה",
+                "examples": [
+                  {
+                    "sentence": "¡Buenas noches!",
+                    "translation": "לַיְלָה טוֹב!"
+                  },
+                  {
+                    "sentence": "Él duerme por la noche",
+                    "translation": "הוּא יָשֵׁן בַּלַּיְלָה"
+                  },
+                  {
+                    "sentence": "Las estrellas brillan por la noche",
+                    "translation": "הַכּוֹכָבִים זוֹרְחִים בַּלַּיְלָה"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "מִסְפָּרִים 11-20",
+            "words": [
+              {
+                "word": "Once",
+                "translation": "אַחַת עֶשְׂרֵה",
+                "examples": [
+                  {
+                    "sentence": "Ella tiene once años",
+                    "translation": "הִיא בַּת אַחַת עֶשְׂרֵה"
+                  },
+                  {
+                    "sentence": "Once jugadores en un equipo",
+                    "translation": "אַחַד עָשָׂר שַׂחְקָנִים בִּקְבוּצָה"
+                  },
+                  {
+                    "sentence": "El reloj marca las once",
+                    "translation": "הַשָּׁעוֹן מַרְאֶה אַחַת עֶשְׂרֵה"
+                  }
+                ]
+              },
+              {
+                "word": "Doce",
+                "translation": "שְׁתֵּים עֶשְׂרֵה",
+                "examples": [
+                  {
+                    "sentence": "Son las doce en punto",
+                    "translation": "הַשָּׁעָה שְׁתֵּים עֶשְׂרֵה"
+                  },
+                  {
+                    "sentence": "Él compró doce huevos",
+                    "translation": "הוּא קָנָה שְׁתֵּים עֶשְׂרֵה בֵּיצִים"
+                  },
+                  {
+                    "sentence": "Doce meses en un año",
+                    "translation": "שְׁתֵּים עֶשְׂרֵה חוֹדָשִׁים בְּשָׁנָה"
+                  }
+                ]
+              },
+              {
+                "word": "Trece",
+                "translation": "שְׁלוֹשׁ עֶשְׂרֵה",
+                "examples": [
+                  {
+                    "sentence": "Ella tiene trece muñecas",
+                    "translation": "יֵשׁ לָהּ שְׁלוֹשׁ עֶשְׂרֵה בּוּבּוֹת"
+                  },
+                  {
+                    "sentence": "Trece es un número de la suerte",
+                    "translation": "שְׁלוֹשׁ עֶשְׂרֵה הוּא מִסְפַּר מַזָּל"
+                  },
+                  {
+                    "sentence": "Él cumple trece hoy",
+                    "translation": "הוּא בֶּן שְׁלוֹשׁ עֶשְׂרֵה הַיּוֹם"
+                  }
+                ]
+              },
+              {
+                "word": "Catorce",
+                "translation": "אַרְבַּע עֶשְׂרֵה",
+                "examples": [
+                  {
+                    "sentence": "Catorce estudiantes en la clase",
+                    "translation": "אַרְבַּע עֶשְׂרֵה תַּלְמִידִים בַּכִּיתָּה"
+                  },
+                  {
+                    "sentence": "Ella corrió catorce millas",
+                    "translation": "הִיא רָצָה אַרְבָּעָה עָשָׂר מַיְילִים"
+                  },
+                  {
+                    "sentence": "El libro tiene catorce capítulos",
+                    "translation": "הַסֵּפֶר מֵכִיל אַרְבָּעָה עָשָׂר פְּרָקִים"
+                  }
+                ]
+              },
+              {
+                "word": "Quince",
+                "translation": "חֲמֵשׁ עֶשְׂרֵה",
+                "examples": [
+                  {
+                    "sentence": "Él tiene quince años",
+                    "translation": "הוּא בֶּן חֲמֵשׁ עֶשְׂרֵה"
+                  },
+                  {
+                    "sentence": "Quedan quince minutos",
+                    "translation": "נִשְׁאֲרוּ חֲמֵשׁ עֶשְׂרֵה דַּקּוֹת"
+                  },
+                  {
+                    "sentence": "Ella anotó quince puntos",
+                    "translation": "הִיא הִשִּׂיגָה חֲמֵשׁ עֶשְׂרֵה נְקודּוֹת"
+                  }
+                ]
+              },
+              {
+                "word": "Dieciséis",
+                "translation": "שֵׁשׁ עֶשְׂרֵה",
+                "examples": [
+                  {
+                    "sentence": "La caja contiene dieciséis chocolates",
+                    "translation": "הַקּוּפְסָה מְכִילָה שֵׁשׁ עֶשְׂרֵה שׁוֹקוֹלָדִים"
+                  },
+                  {
+                    "sentence": "Ella cumple dieciséis mañana",
+                    "translation": "הִיא תִּהְיֶה בַּת שֵׁשׁ עֶשְׂרֵה מָחָר"
+                  },
+                  {
+                    "sentence": "Ellos tienen dieciséis dólares",
+                    "translation": "יֵשׁ לָהֶם שֵׁשׁ עֶשְׂרֵה דּוֹלָר"
+                  }
+                ]
+              },
+              {
+                "word": "Diecisiete",
+                "translation": "שְׁבַע עֶשְׂרֵה",
+                "examples": [
+                  {
+                    "sentence": "Asistieron diecisiete personas",
+                    "translation": "שִׁבְעָה עָשָׂר אֲנָשִׁים נָכְחוּ"
+                  },
+                  {
+                    "sentence": "La habitación diecisiete está arriba",
+                    "translation": "חֶדֶר שְׁבַע עֶשְׂרֵה נִמְצָא בַּקּוֹמָה הָעֶלְיוֹנָה"
+                  },
+                  {
+                    "sentence": "Ella leyó diecisiete libros",
+                    "translation": "הִיא קָרְאָה שִׁבְעָה עָשָׂר סְפָרִים"
+                  }
+                ]
+              },
+              {
+                "word": "Dieciocho",
+                "translation": "שְׁמוֹנֶה עֶשְׂרֵה",
+                "examples": [
+                  {
+                    "sentence": "Él tiene dieciocho años y puede votar",
+                    "translation": "הוּא בֶּן שְׁמוֹנֶה עֶשְׂרֵה וְיָכוֹל לְהַצְבִּיעַ"
+                  },
+                  {
+                    "sentence": "Dieciocho ruedas en el camión",
+                    "translation": "שְׁמוֹנָה עָשָׂר גַּלְגַּלִּים בַּמַּשָּׂאִית"
+                  },
+                  {
+                    "sentence": "Ellos viajaron dieciocho millas",
+                    "translation": "הֵם נָסְעוּ שְׁמוֹנָה עָשָׂר מַיְילִים"
+                  }
+                ]
+              },
+              {
+                "word": "Diecinueve",
+                "translation": "תְּשַׁע עֶשְׂרֵה",
+                "examples": [
+                  {
+                    "sentence": "Diecinueve estudiantes aprobaron",
+                    "translation": "תִּשְׁעָה עָשָׂר תַּלְמִידִים עָבְרוּ"
+                  },
+                  {
+                    "sentence": "Él esperó diecinueve minutos",
+                    "translation": "הוּא חִיכָּה תְּשַׁע עֶשְׂרֵה דַּקּוֹת"
+                  },
+                  {
+                    "sentence": "Ella coleccionó diecinueve sellos",
+                    "translation": "הִיא אָסְפָה תִּשְׁעָה עָשָׂר בּוּלִים"
+                  }
+                ]
+              },
+              {
+                "word": "Veinte",
+                "translation": "עֶשְׂרִים",
+                "examples": [
+                  {
+                    "sentence": "Ella tiene veinte años",
+                    "translation": "הִיא בַּת עֶשְׂרִים"
+                  },
+                  {
+                    "sentence": "Vinieron veinte personas",
+                    "translation": "עֶשְׂרִים אֲנָשִׁים בָּאוּ"
+                  },
+                  {
+                    "sentence": "Ellos plantaron veinte árboles",
+                    "translation": "הֵם שָׁתְלוּ עֶשְׂרִים עֵצִים"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
