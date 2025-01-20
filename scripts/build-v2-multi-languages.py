@@ -429,9 +429,13 @@ class VideoCreator:
         line_styles_intro = ['intro_title', 'intro_subtitle']
         clip_intro = self.create_image_clip(text_lines_intro, 'intro', line_styles_intro, lang_code)
 
+        # הוספת משפט עידוד להרשמה (יושמע בלבד, לא יוצג)
+        subscribe_message = "אַל תִּשְׁכְּחוּ לְהֵרָשֵׁם לֶעָרוּץ שֶׁלָּנוּ כְּדֵי לְהִתְעַדְכֵּן בְּעוֹד סִרְטוֹנִים שֶׁיְּסַיְּעוּ לָכֶם בְּלִמּוּד שָׂפוֹת!"
+
         audio_tasks = [
             ("מושגים בשלבים", "iw"),
-            (f"לדבר {lang_name_iw}, צעד אחר צעד", "iw")
+            (f"לדבר {lang_name_iw}, צעד אחר צעד", "iw"),
+            (subscribe_message, "iw")  # הוספת משפט העידוד להקראה
         ]
 
         audio_results = self.audio_creator.create_audios(audio_tasks)
@@ -439,12 +443,12 @@ class VideoCreator:
              clip_intro,
             [
               audio_results.get(("מושגים בשלבים", "iw"), ""),
-              audio_results.get((f"לדבר {lang_name_iw}, צעד אחר צעד", "iw"), "")
+              audio_results.get((f"לדבר {lang_name_iw}, צעד אחר צעד", "iw"), ""),
+              audio_results.get((subscribe_message, "iw"), "")  # הוספת האודיו של משפט העידוד
              ],
              min_duration=6
         )
         return clip_intro
-
 
     def create_level_intro(self, level_num, level_name, lang_code):
         level_word = self.lang_settings.get(lang_code, self.lang_settings['en']).get('level_word', 'Level')
