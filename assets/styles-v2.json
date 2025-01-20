@@ -7,16 +7,18 @@
     },
     "subtopic": {
         "style_name": "subtopic",
-        "text_color": [65, 105, 225],
-        "font_size": 160,
-        "font_path": "Rubik-Bold.ttf"
+        "text_color": [0, 70, 150],
+        "font_size": 170,
+        "font_path": "Rubik-Bold.ttf",
+        "stroke_width": 3,
+        "stroke_color": [100, 170, 255]
     },
      "level": {
         "style_name": "level",
          "text_color": [255, 165, 0],
          "stroke_width": 3,
           "stroke_color": [50, 50, 50],
-        "font_size": 150,
+        "font_size": 160,
         "font_path": "Rubik-Bold.ttf"
     },
     "word": {
