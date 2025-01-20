@@ -27,13 +27,15 @@
     },
    "outro": {
         "style_name": "outro",
-        "text_color": [105, 105, 105],
+        "text_color": [255, 165, 0],
         "font_size": 75,
-        "font_path": "Rubik-Regular.ttf"
+        "font_path": "Rubik-Regular.ttf",
+         "stroke_width": 2,
+        "stroke_color": [50, 50, 50]
     },
     "outro_title": {
         "style_name": "outro_title",
-         "text_color": [0, 139, 139],
+         "text_color": [0, 70, 150],
         "font_size": 140,
         "font_path": "Rubik-Bold.ttf",
          "stroke_width": 2,
@@ -41,8 +43,8 @@
     },
      "outro_subtitle": {
         "style_name": "outro_subtitle",
-         "text_color": [0, 139, 139],
-        "font_size": 120,
+         "text_color": [0, 70, 150],
+        "font_size": 100,
         "font_path": "Rubik-Bold.ttf",
         "stroke_width": 2,
         "stroke_color": [176, 224, 230]
@@ -61,16 +63,18 @@
     },
     "intro_title": {
         "style_name": "intro_title",
-         "text_color": [0, 70, 150],
+        "text_color": [0, 70, 150],
         "font_size": 170,
         "font_path": "Rubik-Bold.ttf",
-         "stroke_width": 4,
+        "stroke_width": 4,
         "stroke_color": [100, 170, 255]
     },
     "intro_subtitle": {
       "style_name": "intro_subtitle",
       "text_color": [255, 165, 0],
       "font_size": 120,
-      "font_path": "Rubik-Bold.ttf"
+      "font_path": "Rubik-Bold.ttf",
+      "stroke_width": 2,
+      "stroke_color": [50, 50, 50]
     }
 }
