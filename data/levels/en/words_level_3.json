@@ -57,7 +57,7 @@
                 },
                 {
                   "sentence": "Long legs help him run fast",
-                  "translation": "רַגְלַיִים אֲרֻוכּוֹת עוֹזְרוֹת לוֹ לָרוּץ מַהֵר"
+                  "translation": "רַגְלַיִים אֲרוּכּוֹת עוֹזְרוֹת לוֹ לָרוּץ מַהֵר"
                 }
               ]
             },
@@ -81,19 +81,19 @@
             },
             {
               "word": "Ear",
-              "translation": "אוזן",
+              "translation": "אֹזֶן",
               "examples": [
                 {
                   "sentence": "Listen with your ears",
-                  "translation": "הקשיבו עם האוזניים שלכם"
+                  "translation": "הַקְשִׁיבוּ עִם הָאֹזְנַיִים שֶׁלָּכֶם"
                 },
                 {
                   "sentence": "She wears earrings in her ears",
-                  "translation": "היא עונדת עגילים באוזניה"
+                  "translation": "הִיא עוֹנֶדֶת עֲגִילִים בְּאֹזְנֶיהָ"
                 },
                 {
                   "sentence": "His ears are cold",
-                  "translation": "האוזניים שלו קרות"
+                  "translation": "הָאֹזְנַיִים שֶׁלּוֹ קָרוֹת"
                 }
               ]
             },
@@ -107,7 +107,7 @@
                 },
                 {
                   "sentence": "She smiled with her mouth",
-                  "translation": "היא חייכה עם פיה"
+                  "translation": "הִיא חִיְּכָה עִם פִּיהָ"
                 },
                 {
                   "sentence": "Don't talk with your mouth full",
@@ -166,11 +166,11 @@
                 },
                 {
                   "sentence": "My pants are too long",
-                  "translation": "הַמִּכְנָסַיִים שֶׁלִּי אֲרֻוכִּים מִדַּי"
+                  "translation": "הַמִּכְנָסַיִים שֶׁלִּי אֲרוּכִּים מִדַּי"
                 },
                 {
-                  "sentence": "She needs new pants",
-                  "translation": "הִיא צְרִיכָה מִכְנָסַיִים חֲדָשִׁים"
+                  "sentence": "He needs new pants",
+                  "translation": "הוּא צָרִיךְ מִכְנָסַיִים חֲדָשִׁים"
                 }
               ]
             },
@@ -180,7 +180,7 @@
               "examples": [
                 {
                   "sentence": "Put on your shoes",
-                  "translation": "נעול את הנעליים שלך"
+                  "translation": "נְעֹל אֶת הַנַּעֲלַיִים שֶׁלְּךָ"
                 },
                 {
                   "sentence": "Her shoes are red",
@@ -202,7 +202,7 @@
                 },
                 {
                   "sentence": "Her hat is stylish",
-                  "translation": "הכובע שלה אופנתי"
+                  "translation": "הַכּוֹבַע שֶׁלָּהּ אוֹפְנָתִי"
                 },
                 {
                   "sentence": "I lost my hat",
@@ -224,7 +224,7 @@
                 },
                 {
                   "sentence": "I like your dress",
-                  "translation": "אֲנִי אוֹהֵב אֶת הַשִּׂמְלָה שֶׁלְּךָ"
+                  "translation": "אֲנִי אוֹהֶבֶת אֶת הַשִּׂמְלָה שֶׁלָּךְ"
                 }
               ]
             },
