@@ -575,15 +575,16 @@ class VideoCreator:
 
             clip_intro = self.create_image_clip(text_lines_intro, 'intro_subtitle', line_styles_intro, background_image_path)
 
+            # יצירת אודיו לכותרת ומספר הסרטון - שניהם בעברית ('iw')
             audio_tasks = [
-                (title, lang_code), # שימוש בקוד השפה הרלוונטי
+                (title, 'iw'), # כותרת תוקרא בעברית
                 (f"מספר {video_number}", 'iw')
             ]
             audio_results = self.audio_creator.create_audios(audio_tasks)
             clip_intro = self.create_clip(
                 clip_intro,
                 [
-                    audio_results.get((title, lang_code), ""), # שימוש בקוד השפה הרלוונטי
+                    audio_results.get((title, 'iw'), ""), # שימוש באודיו כותרת עברית
                     audio_results.get((f"מספר {video_number}", 'iw'), "")
                 ],
                 min_duration=3
