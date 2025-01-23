@@ -264,6 +264,14 @@ class ImageCreator:
 
         current_y = (img.height - total_height) / 2
 
+        # הוספת offset ויזואלי חכם
+        if processed_lines:
+            first_line_height = processed_lines[0][2] # גובה השורה הראשונה
+            visual_offset_factor = 0.2 # גורם offset - ניתן לשנות לפי הצורך (0.1-0.3)
+            visual_offset = first_line_height * visual_offset_factor
+            current_y -= visual_offset
+
+
         for idx, (processed_line, width, height, current_style, font) in enumerate(processed_lines):
             style_name = current_style.get('style_name', 'normal')
             if style_name in ['sentence', 'translation']:
