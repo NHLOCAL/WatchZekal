@@ -593,21 +593,13 @@ class VideoCreator:
             logging.error(f"שגיאה ביצירת קליפ הפתיחה: {e}")
             return None
 
-    def create_outro(self, call_to_action, background_image_path, lang_code):
+    def create_outro(self, call_to_action, background_image_path): # הסרנו lang_code מכיוון שההקראה תמיד בעברית
         try:
             text_lines_outro = [call_to_action]
             line_styles_outro = ['call_to_action']
 
             clip_outro = self.create_image_clip(text_lines_outro, 'outro', line_styles_outro, background_image_path)
-
-            audio_tasks = [(call_to_action, lang_code)] # שימוש בקוד השפה הרלוונטי
-            audio_results = self.audio_creator.create_audios(audio_tasks)
-            clip_outro = self.create_clip(
-                clip_outro,
-                [audio_results.get((call_to_action, lang_code), "")], # שימוש בקוד השפה הרלוונטי
-                min_duration=4
-            )
-            return clip_outro
+            return clip_outro # החזר רק את קליפ התמונה, בלי אודיו בשלב זה
         except Exception as e:
             logging.error(f"שגיאה ביצירת קליפ הסיום: {e}")
             return None
@@ -825,12 +817,25 @@ class VideoAssemblerShorts:
 
                     clips.append(clip_example)
 
+                # קריאה לפעולה
                 if call_to_action:
-                    clip_outro = self.video_creator.create_outro(call_to_action, background_image_path, lang_code) # קוד שפה ל outro
-                    if clip_outro:
+                    clip_outro_image = self.video_creator.create_outro(call_to_action, background_image_path) # יצירת קליפ תמונה בלבד
+                    if clip_outro_image:
+                        # יצירת משימת אודיו לקריאה לפעולה בעברית
+                        audio_tasks_outro = [(call_to_action, 'iw')]
+                        audio_results_outro = self.video_creator.audio_creator.create_audios(audio_tasks_outro)
+                        audio_path_outro = audio_results_outro.get((call_to_action, 'iw'), "")
+
+                        # יצירת קליפ סיום סופי עם תמונה ואודיו
+                        clip_outro = self.video_creator.create_clip(
+                            clip_outro_image, # שימוש בקליפ התמונה שנוצר
+                            [audio_path_outro], # הוספת נתיב האודיו לקריאה לפעולה
+                            min_duration=4
+                        )
                         transition = self.video_creator.slide_transition(clips[-1], clip_outro)
                         clips.append(transition)
                         clips.append(clip_outro)
+                        clip_outro_image.close() # סגירת קליפ התמונה לאחר שימוש
 
                 logo_clip = self.video_creator.add_logo_clip(duration=5, background_image_path=background_image_path)
                 if logo_clip:
