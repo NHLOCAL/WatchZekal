@@ -81,11 +81,11 @@
             },
             {
               "word": "Tomato",
-              "translation": "עַגְבָנִיָּה",
+              "translation": "עַגְבָנִיָּיה",
               "examples": [
                 {
                   "sentence": "She sliced a tomato",
-                  "translation": "הִיא פָּרְסָה עַגְבָנִיָּה"
+                  "translation": "הִיא פָּרְסָה עַגְבָנִיָּיה"
                 },
                 {
                   "sentence": "Tomatoes are red and juicy",
@@ -342,7 +342,7 @@
               "examples": [
                 {
                   "sentence": "He drinks coffee every morning",
-                  "translation": "הוּא שׁוֹתֶה קָפֶה כָּל בֹּקֶר"
+                  "translation": "הוּא שׁוֹתֶה קָפֶה כָּל בּוֹקֶר"
                 },
                 {
                   "sentence": "The coffee is hot",
@@ -368,7 +368,7 @@
                 },
                 {
                   "sentence": "The tea is bitter without sugar",
-                  "translation": "הַתֵּה מַר בְּלִי סֻכָּר"
+                  "translation": "הַתֵּה מַר בְּלִי סוּכָּר"
                 }
               ]
             },
@@ -450,7 +450,7 @@
               "examples": [
                 {
                   "sentence": "She drinks hot chocolate in winter",
-                  "translation": "הִיא שׁוֹתָה שׁוֹקוֹ חַם בַּחֹרֶף"
+                  "translation": "הִיא שׁוֹתָה שׁוֹקוֹ חַם בַּחוֹרֶף"
                 },
                 {
                   "sentence": "Hot chocolate is sweet",
@@ -476,7 +476,7 @@
                 },
                 {
                   "sentence": "She made lemonade with lemons and sugar",
-                  "translation": "הִיא הֵכִינָה לִימוֹנָדָה עִם לִימוֹנִים וְסֻכָּר"
+                  "translation": "הִיא הֵכִינָה לִימוֹנָדָה עִם לִימוֹנִים וְסוּכָּר"
                 }
               ]
             },
@@ -490,7 +490,7 @@
                 },
                 {
                   "sentence": "Cocktails have mixed drinks",
-                  "translation": "קוֹקְטֵיילִים הֵם מַשְׁקָאוֹת מְעֹרְבָּבִים"
+                  "translation": "קוֹקְטֵיילִים הֵם מַשְׁקָאוֹת מְעוּרְבָּבִים"
                 },
                 {
                   "sentence": "She enjoys fruity cocktails",
@@ -567,7 +567,7 @@
                 },
                 {
                   "sentence": "Breakfast is important",
-                  "translation": "אֲרוּחַת הַבֹּקֶר חֲשׁוּבָה"
+                  "translation": "אֲרוּחַת הַבּוֹקֶר חֲשׁוּבָה"
                 },
                 {
                   "sentence": "They had eggs for breakfast",
@@ -577,19 +577,19 @@
             },
             {
               "word": "Lunch",
-              "translation": "אֲרוּחַת צָהֳרַיִם",
+              "translation": "אֲרוּחַת צָהֳרַיִים",
               "examples": [
                 {
                   "sentence": "She is cooking lunch",
-                  "translation": "הִיא מְבַשֶּׁלֶת אֲרוּחַת צָהֳרַיִם"
+                  "translation": "הִיא מְבַשֶּׁלֶת אֲרוּחַת צָהֳרַיִים"
                 },
                 {
                   "sentence": "They eat lunch at noon",
-                  "translation": "הֵם אוֹכְלִים אֲרוּחַת צָהֳרַיִם בַּצָּהֳרַיִם"
+                  "translation": "הֵם אוֹכְלִים אֲרוּחַת צָהֳרַיִים בַּצָּהֳרַיִים"
                 },
                 {
                   "sentence": "He packed a lunch for work",
-                  "translation": "הוּא אָרַז אֲרוּחַת צָהֳרַיִם לַעֲבוֹדָה"
+                  "translation": "הוּא אָרַז אֲרוּחַת צָהֳרַיִים לַעֲבוֹדָה"
                 }
               ]
             },
@@ -631,19 +631,19 @@
             },
             {
               "word": "Dessert",
-              "translation": "קִיינוּחַ",
+              "translation": "קִינוּחַ",
               "examples": [
                 {
                   "sentence": "Ice cream is a dessert",
-                  "translation": "גְּלִידָה הִיא קִיינוּחַ"
+                  "translation": "גְּלִידָה הִיא קִינוּחַ"
                 },
                 {
                   "sentence": "She baked a cake for dessert",
-                  "translation": "הִיא אָפְתָה עוּגָה לְקִיינוּחַ"
+                  "translation": "הִיא אָפְתָה עוּגָה לְקִינוּחַ"
                 },
                 {
                   "sentence": "They love sweet desserts",
-                  "translation": "הֵם אוֹהֲבִים קִיינוּחִים מְתוּקִים"
+                  "translation": "הֵם אוֹהֲבִים קִינוּחִים מְתוּקִים"
                 }
               ]
             },
@@ -711,7 +711,7 @@
                 },
                 {
                   "sentence": "Brunch is between breakfast and lunch",
-                  "translation": "בְּרָאנְץ' הוּא בֵּין אֲרוּחַת בֹּקֶר לְצָהֳרַיִם"
+                  "translation": "בְּרָאנְץ' הוּא בֵּין אֲרוּחַת בּוֹקֶר לְצָהֳרַיִים"
                 },
                 {
                   "sentence": "She hosted a brunch party",
@@ -725,7 +725,7 @@
               "examples": [
                 {
                   "sentence": "The hotel offers a buffet breakfast",
-                  "translation": "הַמָּלוֹן מַצִּיעַ מַזְנוּן אֲרוּחַת בֹּקֶר"
+                  "translation": "הַמָּלוֹן מַצִּיעַ מַזְנוּן אֲרוּחַת בּוֹקֶר"
                 },
                 {
                   "sentence": "They enjoyed the buffet dinner",
@@ -823,7 +823,7 @@
                 },
                 {
                   "sentence": "She packed sandwiches for lunch",
-                  "translation": "הִיא אָרְזָה כְּרִיכִים לַאֲרוּחַת צָהֳרַיִם"
+                  "translation": "הִיא אָרְזָה כְּרִיכִים לַאֲרוּחַת צָהֳרַיִים"
                 }
               ]
             }
