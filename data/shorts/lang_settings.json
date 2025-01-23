@@ -1,0 +1,86 @@
+{
+  "en": {
+    "language_name_en": "english",
+     "language_name_iw": "אנגלית",
+    "level_word": "Level",
+    "voice": {
+      "language_code": "en-US",
+      "name": "en-US-Wavenet-F"
+    },
+    "outro": {
+      "call_to_action": "Like this video and subscribe for more!",
+      "audio_tasks": [
+        [
+          "Like this video and subscribe for more!",
+          "en"
+        ],
+        [
+          "עשו לייק לסרטון הזה והירשמו לערוץ לעוד!",
+          "iw"
+        ]
+      ]
+    }
+  },
+  "es": {
+     "language_name_en": "spanish",
+     "language_name_iw": "ספרדית",
+    "level_word": "Nivel",
+    "voice": {
+      "language_code": "es-ES",
+      "name": "es-ES-Wavenet-F"
+    },
+    "outro": {
+      "call_to_action": "¡Dale me gusta a este video y suscríbete para más!",
+      "audio_tasks": [
+        [
+          "¡Dale me gusta a este video y suscríbete para más!",
+          "es"
+        ],
+        [
+          "עשו לייק לסרטון הזה והירשמו לערוץ לעוד!",
+          "iw"
+        ]
+      ]
+    }
+  },
+  "fr": {
+     "language_name_en": "french",
+     "language_name_iw": "צרפתית",
+    "level_word": "Niveau",
+    "voice": {
+      "language_code": "fr-FR",
+      "name": "fr-FR-Wavenet-A"
+    },
+    "outro": {
+      "call_to_action": "Aimez cette vidéo et abonnez-vous pour plus !",
+      "audio_tasks": [
+        [
+          "Aimez cette vidéo et abonnez-vous pour plus !",
+          "fr"
+        ],
+        [
+          "עשו לייק לסרטון הזה והירשמו לערוץ לעוד!",
+          "iw"
+        ]
+      ]
+    }
+  },
+    "iw": {
+        "language_name_en": "hebrew",
+        "language_name_iw": "עברית",
+        "level_word": "רמה",
+        "voice": {
+          "language_code": "he-IL",
+          "name": "he-IL-Wavenet-C"
+        },
+        "outro": {
+          "call_to_action": "עשו לייק לסרטון הזה והירשמו לערוץ לעוד!",
+          "audio_tasks": [
+            [
+              "עשו לייק לסרטון הזה והירשמו לערוץ לעוד!",
+              "iw"
+            ]
+          ]
+        }
+      }
+}

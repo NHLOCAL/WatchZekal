@@ -1,0 +1,23 @@
+[
+    {
+        "video_number": 0,
+        "title": "מזג האוויר ותופעות טבע",
+        "word": "Cloudy",
+        "translation": "מעונן",
+        "examples": [
+            {
+                "sentence": "It is **cloudy** today; we might get rain.",
+                "translation": "היום מעונן; אולי ירד גשם."
+            },
+            {
+                "sentence": "A **cloudy** sky can be beautiful.",
+                "translation": "שמיים מעוננים יכולים להיות יפים."
+            },
+            {
+                "sentence": "The forecast says it will be **cloudy** all week.",
+                "translation": "התחזית אומרת שיהיה מעונן כל השבוע."
+            }
+        ],
+        "call_to_action": "כתבו בתגובות איך אתם מתארים את מזג האוויר באנגלית!"
+    }
+]
