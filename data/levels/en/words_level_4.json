@@ -75,7 +75,7 @@
                 },
                 {
                   "sentence": "They watch TV in the living room",
-                  "translation": "הֵם צוֹפִים בְּטֵלֵוִיזְיָה בַּסָּלוֹן"
+                  "translation": "הֵם צוֹפִים בְּטֵלֵוִויזְיָה בַּסָּלוֹן"
                 }
               ]
             },
@@ -157,7 +157,7 @@
               "examples": [
                 {
                   "sentence": "He stores boxes in the attic",
-                  "translation": "הוּא מְאַחְסֵן קֻפְסָאוֹת בַּעֲלִייַּת הַגַּג"
+                  "translation": "הוּא מְאַחְסֵן קוּפְסָאוֹת בַּעֲלִייַּת הַגַּג"
                 },
                 {
                   "sentence": "The attic is dusty",
@@ -219,7 +219,7 @@
                 },
                 {
                   "sentence": "He dries clothes in the laundry room",
-                  "translation": "הוּא מְיַבֵּשׁ בְּגָדִים בַּחֲדַר הַכְּבִיסָה"
+                  "translation": "הוּא מְיַיבֵּשׁ בְּגָדִים בַּחֲדַר הַכְּבִיסָה"
                 }
               ]
             }
@@ -266,19 +266,19 @@
             },
             {
               "word": "Chair",
-              "translation": "כִּסֵּא",
+              "translation": "כִּיסֵּא",
               "examples": [
                 {
                   "sentence": "Sit on the chair",
-                  "translation": "שֵׁב עַל הַכִּסֵּא"
+                  "translation": "שֵׁב עַל הַכִּיסֵּא"
                 },
                 {
                   "sentence": "The chair is broken",
-                  "translation": "הַכִּסֵּא שָׁבוּר"
+                  "translation": "הַכִּיסֵּא שָׁבוּר"
                 },
                 {
                   "sentence": "He bought four chairs",
-                  "translation": "הוּא קָנָה אַרְבָּעָה כִּסְאוֹת"
+                  "translation": "הוּא קָנָה אַרְבָּעָה כִּיסְאוֹת"
                 }
               ]
             },
@@ -302,19 +302,19 @@
             },
             {
               "word": "Television",
-              "translation": "טֵלֵוִיזְיָה",
+              "translation": "טֵלֵווִיזְיָה",
               "examples": [
                 {
                   "sentence": "Turn on the television",
-                  "translation": "הַפְעֵל אֶת הַטֵּלֵוִיזְיָה"
+                  "translation": "הַפְעֵל אֶת הַטֵּלֵווִיזְיָה"
                 },
                 {
                   "sentence": "She watches movies on the television",
-                  "translation": "הִיא צוֹפָה בְּסְרָטִים בַּטֵּלֵוִיזְיָה"
+                  "translation": "הִיא צוֹפָה בְּסְרָטִים בַּטֵּלֵווִיזְיָה"
                 },
                 {
                   "sentence": "The television is big",
-                  "translation": "הַטֵּלֵוִיזְיָה גְּדוֹלָה"
+                  "translation": "הַטֵּלֵווִיזְיָה גְּדוֹלָה"
                 }
               ]
             },
@@ -585,7 +585,7 @@
                 },
                 {
                   "sentence": "The pot is on the stove",
-                  "translation": "הַסִּיר עַל הַכִּירַיִם"
+                  "translation": "הַסִּיר עַל הַכִּירַיִים"
                 },
                 {
                   "sentence": "She cooks soup in the pot",
@@ -661,7 +661,7 @@
                 },
                 {
                   "sentence": "She makes smoothies with the blender",
-                  "translation": "הִיא מְכִינָה שֵׁיקִים עִם הַבְּלֶנְדֶּר"
+                  "translation": "הִיא מְכִינָה שֵׁייקִים עִם הַבְּלֶנְדֶּר"
                 }
               ]
             }
