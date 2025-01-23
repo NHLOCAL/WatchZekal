@@ -21,7 +21,7 @@
                 },
                 {
                   "sentence": "Apples are red or green",
-                  "translation": "תַּפּוּחִים הֵם אֲדוּמִים אוֹ יְרוֹקִים"
+                  "translation": "תַּפּוּחִים הֵם אֲדוּמִּים אוֹ יְרוּקִּים"
                 }
               ]
             },
@@ -35,7 +35,7 @@
                 },
                 {
                   "sentence": "He ate a banana for breakfast",
-                  "translation": "הוּא אָכַל בַּנָּנָה לַאֲרוּחַת בֹּקֶר"
+                  "translation": "הוּא אָכַל בַּנָּנָה לַאֲרוּחַת בּוֹקֶר"
                 },
                 {
                   "sentence": "Bananas are yellow and sweet",
@@ -53,11 +53,11 @@
                 },
                 {
                   "sentence": "Oranges have vitamin C",
-                  "translation": "תַּפּוּזִים מַכִּילִים וִיטָמִין סִי"
+                  "translation": "תַּפּוּזִים מַכִּילִים וִיטָמִין C"
                 },
                 {
                   "sentence": "I peeled an orange",
-                  "translation": "קִילַּפְתִּי תַּפּוּז"
+                  "translation": "קִילַפְתִּי תַּפּוּז"
                 }
               ]
             },
@@ -125,7 +125,7 @@
                 },
                 {
                   "sentence": "Cucumbers are green and fresh",
-                  "translation": "מְלָפְפוֹנִים יְרוֹקִים וְרַעֲנַנִּים"
+                  "translation": "מְלָפְפוֹנִים יְרוֹקִּים וְרַעֲנַנִּים"
                 },
                 {
                   "sentence": "He sliced cucumbers thinly",
@@ -147,7 +147,7 @@
                 },
                 {
                   "sentence": "Strawberries are sweet and red",
-                  "translation": "תּוּתִים מְתוּקִים וַאֲדוּמִים"
+                  "translation": "תּוּתִים מְתוּקִים וַאֲדוּמִּים"
                 }
               ]
             },
@@ -157,7 +157,7 @@
               "examples": [
                 {
                   "sentence": "He ate green grapes",
-                  "translation": "הוּא אָכַל עֲנָבִים יְרוֹקִים"
+                  "translation": "הוּא אָכַל עֲנָבִים יְרוֹקִּים"
                 },
                 {
                   "sentence": "Grapes grow on vines",
@@ -197,7 +197,7 @@
                 },
                 {
                   "sentence": "Lettuce is green and crunchy",
-                  "translation": "חַסָּה יְרוֹקָה וּפְרִיכָה"
+                  "translation": "חַסָּה יְרוּקָה וּפְרִיכָה"
                 },
                 {
                   "sentence": "She grows lettuce in her garden",
@@ -215,7 +215,7 @@
                 },
                 {
                   "sentence": "Onions can make you cry",
-                  "translation": "בְּצָלִים יְכוֹלִים לָגְרֹם לְךָ לִבְכּוֹת"
+                  "translation": "בְּצָלִים יְכוֹלִים לִגְרֹם לְךָ לִבְכּוֹת"
                 },
                 {
                   "sentence": "She fried onions for the soup",
@@ -229,7 +229,7 @@
               "examples": [
                 {
                   "sentence": "She added red peppers to the dish",
-                  "translation": "הִיא הוֹסִיפָה פִּלְפְּלִים אֲדוּמִים לַמָּנָה"
+                  "translation": "הִיא הוֹסִיפָה פִּלְפְּלִים אֲדוּמִּים לַמָּנָה"
                 },
                 {
                   "sentence": "Peppers can be spicy",
@@ -251,7 +251,7 @@
                 },
                 {
                   "sentence": "Corn is yellow and sweet",
-                  "translation": "תִּירָס צָהֹב וּמָתוֹק"
+                  "translation": "תִּירָס צָהוֹב וּמָתוֹק"
                 },
                 {
                   "sentence": "She boiled the corn",
@@ -296,7 +296,7 @@
                 },
                 {
                   "sentence": "She poured water into the glass",
-                  "translation": "הִיא מָזְגָה מַיִם לְכּוֹס"
+                  "translation": "הִיא מָזְגָה מַיִם לְכוֹס"
                 }
               ]
             },
@@ -404,7 +404,7 @@
                 },
                 {
                   "sentence": "She poured wine into the glass",
-                  "translation": "הִיא מָזְגָה יַיִן לְכּוֹס"
+                  "translation": "הִיא מָזְגָה יַיִן לְכוֹס"
                 }
               ]
             },
@@ -450,7 +450,7 @@
               "examples": [
                 {
                   "sentence": "She drinks hot chocolate in winter",
-                  "translation": "הִיא שׁוֹתָה שׁוֹקוֹ חַם בַּחוֹרֶף"
+                  "translation": "הִיא שׁוֹתָה שׁוֹקוֹ חַם בַּחֹרֶף"
                 },
                 {
                   "sentence": "Hot chocolate is sweet",
@@ -472,7 +472,7 @@
                 },
                 {
                   "sentence": "Lemonade is refreshing",
-                  "translation": "לִימוֹנָדָה מְרַעֲנֶנֶת"
+                  "translation": "לִימוֹנָדָה מְרַעְנֶנֶת"
                 },
                 {
                   "sentence": "She made lemonade with lemons and sugar",
@@ -559,11 +559,11 @@
           "words": [
             {
               "word": "Breakfast",
-              "translation": "אֲרוּחַת בֹּקֶר",
+              "translation": "אֲרוּחַת בּוֹקֶר",
               "examples": [
                 {
                   "sentence": "She eats cereal for breakfast",
-                  "translation": "הִיא אוֹכֶלֶת דְּגָנִים לַאֲרוּחַת בֹּקֶר"
+                  "translation": "הִיא אוֹכֶלֶת דְּגָנִים לַאֲרוּחַת בּוֹקֶר"
                 },
                 {
                   "sentence": "Breakfast is important",
@@ -571,7 +571,7 @@
                 },
                 {
                   "sentence": "They had eggs for breakfast",
-                  "translation": "הֵם אָכְלוּ בֵּיצִים לַאֲרוּחַת בֹּקֶר"
+                  "translation": "הֵם אָכְלוּ בֵּיצִים לַאֲרוּחַת בּוֹקֶר"
                 }
               ]
             },
@@ -631,37 +631,37 @@
             },
             {
               "word": "Dessert",
-              "translation": "קִנּוּחַ",
+              "translation": "קִיינוּחַ",
               "examples": [
                 {
                   "sentence": "Ice cream is a dessert",
-                  "translation": "גְּלִידָה הִיא קִנּוּחַ"
+                  "translation": "גְּלִידָה הִיא קִיינוּחַ"
                 },
                 {
                   "sentence": "She baked a cake for dessert",
-                  "translation": "הִיא אָפְתָה עוּגָה לְקִנּוּחַ"
+                  "translation": "הִיא אָפְתָה עוּגָה לְקִיינוּחַ"
                 },
                 {
                   "sentence": "They love sweet desserts",
-                  "translation": "הֵם אוֹהֲבִים קִנּוּחִים מְתוּקִים"
+                  "translation": "הֵם אוֹהֲבִים קִיינוּחִים מְתוּקִים"
                 }
               ]
             },
             {
               "word": "Appetizer",
-              "translation": "מְתַאֲבֵן",
+              "translation": "מְתַאֲבֵּן",
               "examples": [
                 {
                   "sentence": "We ordered appetizers before the meal",
-                  "translation": "הִזְמַנּוּ מְתַאֲבְנִים לִפְנֵי הָאֲרוּחָה"
+                  "translation": "הִזְמַנוּ מְתַאֲבְּנִים לִפְנֵי הָאֲרוּחָה"
                 },
                 {
                   "sentence": "An appetizer can be a small dish",
-                  "translation": "מְתַאֲבֵן יָכוֹל לִהְיוֹת מָנָה קְטַנָּה"
+                  "translation": "מְתַאֲבֵּן יָכוֹל לִהְיוֹת מָנָה קְטַנָּה"
                 },
                 {
                   "sentence": "She made bruschetta as an appetizer",
-                  "translation": "הִיא הֵכִינָה בְּרוּסְקֶטָה כִּמְתַאֲבֵן"
+                  "translation": "הִיא הֵכִינָה בְּרוּסְקֶטָה כִּמְתַאֲבֵּן"
                 }
               ]
             },
@@ -671,7 +671,7 @@
               "examples": [
                 {
                   "sentence": "The main course is fish",
-                  "translation": "הַמָּנָה הָעִיקָּרִית הִיא דָּג"
+                  "translation": "הַמָּנָה הָעִיקָּרִית הִיא דָג"
                 },
                 {
                   "sentence": "He enjoyed the main course",
@@ -707,7 +707,7 @@
               "examples": [
                 {
                   "sentence": "They went out for brunch",
-                  "translation": "הֵם יָצְאוּ לְבְרָאנְץ'"
+                  "translation": "הֵם יָצְאוּ לִבְרָאנְץ'"
                 },
                 {
                   "sentence": "Brunch is between breakfast and lunch",
@@ -715,7 +715,7 @@
                 },
                 {
                   "sentence": "She hosted a brunch party",
-                  "translation": "הִיא אִירְחָה מְסִיבַּת בְּרָאנְץ'"
+                  "translation": "הִיא אֵירְחָה מְסִיבַּת בְּרָאנְץ'"
                 }
               ]
             },
@@ -733,7 +733,7 @@
                 },
                 {
                   "sentence": "Buffet allows you to choose food",
-                  "translation": "מַזְנוּן מַאְפְשֵׁר לְךָ לִבְחוֹר אוֹכֶל"
+                  "translation": "מַזְנוּן מְאַפְשֵׁר לְךָ לִבְחוֹר אוֹכֶל"
                 }
               ]
             },
