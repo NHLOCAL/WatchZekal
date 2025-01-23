@@ -1,0 +1,317 @@
+[
+  {
+      "video_number": 1,
+      "title": "מקצועות ועבודות",
+      "word": "Ingeniero",
+      "translation": "מהנדס",
+      "examples": [
+          {
+              "sentence": "Mi hermano es un **ingeniero** que construye puentes",
+              "translation": "אחי הוא מהנדס שבונה גשרים"
+          },
+          {
+              "sentence": "Ella se convirtió en **ingeniera** después de años de estudio",
+              "translation": "היא הפכה למהנדסת לאחר שנים של לימוד"
+          },
+          {
+              "sentence": "El **ingeniero** diseñó un nuevo dispositivo",
+              "translation": "המהנדס תכנן מכשיר חדש"
+          }
+      ],
+      "call_to_action": "האם אתם מכירים מהנדס? שתפו בתגובות בספרדית!"
+  },
+  {
+      "video_number": 2,
+      "title": "מקצועות ועבודות",
+      "word": "Artista",
+      "translation": "אמן",
+      "examples": [
+          {
+              "sentence": "Ella es una **artista** que pinta paisajes",
+              "translation": "היא אמנית שצובעת נופים"
+          },
+          {
+              "sentence": "El **artista** exhibió su obra en una galería",
+              "translation": "האמן הציג את עבודתו בגלריה"
+          },
+          {
+              "sentence": "Ser **artista** requiere creatividad",
+              "translation": "להיות אמן דורש יצירתיות"
+          }
+      ],
+      "call_to_action": "מי האמן האהוב עליכם? כתבו לנו בספרדית!"
+  },
+  {
+      "video_number": 3,
+      "title": "מקצועות ועבודות",
+      "word": "Cocinero",
+      "translation": "שף",
+      "examples": [
+          {
+              "sentence": "El **cocinero** preparó una comida deliciosa",
+              "translation": "השף הכין ארוחה טעימה"
+          },
+          {
+              "sentence": "Ella sueña con convertirse en **cocinera**",
+              "translation": "היא חולמת להיות שף"
+          },
+          {
+              "sentence": "El **cocinero** trabaja en un restaurante famoso",
+              "translation": "השף עובד במסעדה מפורסמת"
+          }
+      ],
+      "call_to_action": "מה המנה האהובה עליכם? שתפו בתגובות בספרדית!"
+  },
+  {
+      "video_number": 4,
+      "title": "מקצועות ועבודות",
+      "word": "Piloto",
+      "translation": "טייס",
+      "examples": [
+          {
+              "sentence": "El **piloto** aterrizó el avión sin problemas",
+              "translation": "הטייס נחת את המטוס בצורה חלקה"
+          },
+          {
+              "sentence": "Se entrenó durante años para convertirse en **piloto**",
+              "translation": "הוא התאמן שנים כדי להפוך לטייס"
+          },
+          {
+              "sentence": "Ser **piloto** es un trabajo desafiante",
+              "translation": "להיות טייס זה עבודה מאתגרת"
+          }
+      ],
+      "call_to_action": "האם הייתם רוצים להיות טייסים? ספרו לנו בספרדית!"
+  },
+  {
+      "video_number": 5,
+      "title": "מקצועות ועבודות",
+      "word": "Enfermera",
+      "translation": "אחות",
+      "examples": [
+          {
+              "sentence": "La **enfermera** cuidó a los pacientes",
+              "translation": "האחות טיפלה בחולים"
+          },
+          {
+              "sentence": "Él agradeció a la **enfermera** por su ayuda",
+              "translation": "הוא הודה לאחות על עזרתה"
+          },
+          {
+              "sentence": "Ser **enfermera** requiere compasión",
+              "translation": "להיות אחות דורש חמלה"
+          }
+      ],
+      "call_to_action": "האם אתם מכירים אחות מסורה? שתפו בתגובות!"
+  },
+  {
+      "video_number": 6,
+      "title": "מקצועות ועבודות",
+      "word": "Profesor",
+      "translation": "מורה",
+      "examples": [
+          {
+              "sentence": "El **profesor** explicó la lección con claridad",
+              "translation": "המורה הסביר את השיעור בבירור"
+          },
+          {
+              "sentence": "Ella es una **profesora** dedicada",
+              "translation": "היא מורה מסורה"
+          },
+          {
+              "sentence": "Los estudiantes respetan a un buen **profesor**",
+              "translation": "תלמידים מכבדים מורה טוב"
+          }
+      ],
+      "call_to_action": "מה אתם אוהבים במורה שלכם? כתבו לנו בספרדית!"
+  },
+  {
+      "video_number": 7,
+      "title": "מקצועות ועבודות",
+      "word": "Doctor",
+      "translation": "רופא",
+      "examples": [
+          {
+              "sentence": "El **doctor** examinó al paciente",
+              "translation": "הרופא בדק את החולה"
+          },
+          {
+              "sentence": "Ella quiere ser **doctora**",
+              "translation": "היא רוצה להפוך לרופאה"
+          },
+          {
+              "sentence": "Un **doctor** ayuda a las personas a mantenerse saludables",
+              "translation": "רופא עוזר לאנשים להישאר בריאים"
+          }
+      ],
+      "call_to_action": "האם ביקרתם רופא לאחרונה? שתפו בספרדית!"
+  },
+  {
+      "video_number": 8,
+      "title": "מקצועות ועבודות",
+      "word": "Abogado",
+      "translation": "עורך דין",
+      "examples": [
+          {
+              "sentence": "El **abogado** representó a su cliente en la corte",
+              "translation": "עורך הדין ייצג את הלקוח שלו בבית המשפט"
+          },
+          {
+              "sentence": "Ella consultó a un **abogado** para obtener asesoramiento legal",
+              "translation": "היא התייעצה עם עורך דין לקבלת ייעוץ משפטי"
+          },
+          {
+              "sentence": "Ser **abogado** requiere conocimiento de la ley",
+              "translation": "להיות עורך דין דורש ידע בחוק"
+          }
+      ],
+      "call_to_action": "מה אתם יודעים על מקצוע עריכת הדין? שתפו איתנו בספרדית!"
+  },
+  {
+      "video_number": 9,
+      "title": "מקצועות ועבודות",
+      "word": "Granjero",
+      "translation": "חקלאי",
+      "examples": [
+          {
+              "sentence": "El **granjero** se despierta temprano todos los días",
+              "translation": "החקלאי מתעורר מוקדם כל יום"
+          },
+          {
+              "sentence": "Los **granjeros** cultivan y crían animales",
+              "translation": "חקלאים מגדלים גידולים ובעלי חיים"
+          },
+          {
+              "sentence": "El **granjero** le mostró la granja",
+              "translation": "החקלאי הראה לה את החווה"
+          }
+      ],
+      "call_to_action": "האם הייתם בחווה? שתפו את החוויה בספרדית!"
+  },
+  {
+      "video_number": 10,
+      "title": "מקצועות ועבודות",
+      "word": "Arquitecto",
+      "translation": "אדריכל",
+      "examples": [
+          {
+              "sentence": "El **arquitecto** diseñó un edificio moderno",
+              "translation": "האדריכל תכנן בניין מודרני"
+          },
+          {
+              "sentence": "Ella estudió para convertirse en **arquitecta**",
+              "translation": "היא למדה כדי להפוך לאדריכלית"
+          },
+          {
+              "sentence": "Los **arquitectos** planifican y diseñan estructuras",
+              "translation": "אדריכלים מתכננים ומעצבים מבנים"
+          }
+      ],
+      "call_to_action": "מהו המבנה האהוב עליכם? ספרו לנו בספרדית!"
+  },
+  {
+      "video_number": 11,
+      "title": "מקצועות ועבודות",
+      "word": "Contador",
+      "translation": "רואה חשבון",
+      "examples": [
+          {
+              "sentence": "El **contador** preparó el informe financiero",
+              "translation": "רואה החשבון הכין את הדוח הכספי"
+          },
+          {
+              "sentence": "Ella contrató a un **contador** para su negocio",
+              "translation": "היא שכרה רואה חשבון לעסק שלה"
+          },
+          {
+              "sentence": "Los **contadores** manejan asuntos de dinero",
+              "translation": "רואי חשבון מנהלים ענייני כסף"
+          }
+      ],
+      "call_to_action": "האם חשבתם להיות רואי חשבון? כתבו לנו בספרדית!"
+  },
+  {
+      "video_number": 12,
+      "title": "מקצועות ועבודות",
+      "word": "Bombero",
+      "translation": "כבאי",
+      "examples": [
+          {
+              "sentence": "El **bombero** rescató a la familia",
+              "translation": "הכבאי הציל את המשפחה"
+          },
+          {
+              "sentence": "Los **bomberos** son personas valientes",
+              "translation": "כבאים הם אנשים אמיצים"
+          },
+          {
+              "sentence": "Se convirtió en **bombero** para ayudar a otros",
+              "translation": "הוא הפך לכבאי כדי לעזור לאחרים"
+          }
+      ],
+      "call_to_action": "מה אתם חושבים על עבודת הכבאים? שתפו בספרדית!"
+  },
+  {
+      "video_number": 13,
+      "title": "מקצועות ועבודות",
+      "word": "Periodista",
+      "translation": "עיתונאי",
+      "examples": [
+          {
+              "sentence": "Ella es una **periodista** respetada",
+              "translation": "היא עיתונאית מכובדת"
+          },
+          {
+              "sentence": "El **periodista** escribió un artículo interesante",
+              "translation": "העיתונאי כתב מאמר מעניין"
+          },
+          {
+              "sentence": "Los **periodistas** informan las noticias",
+              "translation": "עיתונאים מדווחים על החדשות"
+          }
+      ],
+      "call_to_action": "האם אתם קוראים עיתונים? מה אתם אוהבים לקרוא?"
+  },
+  {
+      "video_number": 14,
+      "title": "מקצועות ועבודות",
+      "word": "Mecánico",
+      "translation": "מכונאי",
+      "examples": [
+          {
+              "sentence": "El **mecánico** arregló mi coche",
+              "translation": "המכונאי תיקן את המכונית שלי"
+          },
+          {
+              "sentence": "Trabaja como **mecánico** en un garaje",
+              "translation": "הוא עובד כמכונאי במוסך"
+          },
+          {
+              "sentence": "Es difícil encontrar buenos **mecánicos**",
+              "translation": "קשה למצוא מכונאים טובים"
+          }
+      ],
+      "call_to_action": "האם אתם יודעים לתקן דברים? ספרו לנו בספרדית!"
+  },
+  {
+      "video_number": 15,
+      "title": "מקצועות ועבודות",
+      "word": "Científico",
+      "translation": "מדען",
+      "examples": [
+          {
+              "sentence": "El **científico** hizo un nuevo descubrimiento",
+              "translation": "המדען עשה תגלית חדשה"
+          },
+          {
+              "sentence": "Ella quiere ser **científica** cuando sea grande",
+              "translation": "היא רוצה להיות מדענית כשהיא תגדל"
+          },
+          {
+              "sentence": "Los **científicos** realizan experimentos",
+              "translation": "מדענים מבצעים ניסויים"
+          }
+      ],
+      "call_to_action": "איזה תחום במדע מעניין אתכם? שתפו בספרדית!"
+  }
+]
