@@ -1,0 +1,317 @@
+[
+  {
+    "video_number": 1,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Nuageux",
+    "translation": "מעונן",
+    "examples": [
+      {
+        "sentence": "C'est **nuageux** aujourd'hui; il pourrait pleuvoir",
+        "translation": "היום מעונן; אולי ירד גשם"
+      },
+      {
+        "sentence": "Un ciel **nuageux** peut être beau",
+        "translation": "שמיים מעוננים יכולים להיות יפים"
+      },
+      {
+        "sentence": "Les prévisions disent qu'il fera **nuageux** toute la semaine",
+        "translation": "התחזית אומרת שיהיה מעונן כל השבוע"
+      }
+    ],
+    "call_to_action": "כתבו בתגובות בצרפתית איך אתם מתארים את מזג האוויר!"
+  },
+  {
+    "video_number": 2,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Ensoleillé",
+    "translation": "שמשי",
+    "examples": [
+      {
+        "sentence": "C'est une journée **ensoleillée**; allons à la plage",
+        "translation": "זהו יום שמשי; בואו נלך לחוף"
+      },
+      {
+        "sentence": "Elle aime les matins **ensoleillés**",
+        "translation": "היא אוהבת בקרים שמשיים"
+      },
+      {
+        "sentence": "Portez des lunettes de soleil par temps **ensoleillé**",
+        "translation": "הרכיבו משקפי שמש ביום שמשי"
+      }
+    ],
+    "call_to_action": "מה אתם אוהבים לעשות ביום שמשי? שתפו בתגובות!"
+  },
+  {
+    "video_number": 3,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Pluvieux",
+    "translation": "גשום",
+    "examples": [
+      {
+        "sentence": "N'oubliez pas votre parapluie; il fait **pluvieux** aujourd'hui",
+        "translation": "אל תשכח את המטרייה שלך; היום גשום"
+      },
+      {
+        "sentence": "J'aime lire des livres les jours **pluvieux**",
+        "translation": "אני אוהב לקרוא ספרים בימים גשומים"
+      },
+      {
+        "sentence": "La saison **pluvieuse** commence en automne",
+        "translation": "העונה הגשומה מתחילה בסתיו"
+      }
+    ],
+    "call_to_action": "מה אתם עושים ביום גשום? כתבו לנו בצרפתית!"
+  },
+  {
+    "video_number": 4,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Venteux",
+    "translation": "סוער",
+    "examples": [
+      {
+        "sentence": "Une journée **venteuse** est parfaite pour faire voler un cerf-volant",
+        "translation": "יום סוער הוא מושלם להעפת עפיפון"
+      },
+      {
+        "sentence": "Il fait trop **venteux** pour sortir",
+        "translation": "סוער מדי כדי לצאת החוצה"
+      },
+      {
+        "sentence": "Tenez votre chapeau; il fait **venteux**",
+        "translation": "תחזיק את הכובע שלך; סוער"
+      }
+    ],
+    "call_to_action": "איך אתם מתמודדים עם מזג אוויר סוער? שתפו בתגובות!"
+  },
+  {
+    "video_number": 5,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Orage",
+    "translation": "סערה",
+    "examples": [
+      {
+        "sentence": "L'**orage** a causé des pannes de courant la nuit dernière",
+        "translation": "הסערה גרמה להפסקות חשמל אמש"
+      },
+      {
+        "sentence": "Ils sont restés à l'intérieur pendant l'**orage**",
+        "translation": "הם נשארו בבית במהלך הסערה"
+      },
+      {
+        "sentence": "Le navire a été pris dans un **orage**",
+        "translation": "הספינה נקלעה לסערה"
+      }
+    ],
+    "call_to_action": "האם חוויתם סערה חזקה? ספרו לנו בצרפתית!"
+  },
+  {
+    "video_number": 6,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Arc-en-ciel",
+    "translation": "קשת",
+    "examples": [
+      {
+        "sentence": "Après la pluie, nous avons vu un bel **arc-en-ciel**",
+        "translation": "אחרי הגשם, ראינו קשת יפה"
+      },
+      {
+        "sentence": "Un **arc-en-ciel** a sept couleurs",
+        "translation": "לקשת יש שבעה צבעים"
+      },
+      {
+        "sentence": "Ils ont pris des photos de l'**arc-en-ciel**",
+        "translation": "הם צילמו את הקשת"
+      }
+    ],
+    "call_to_action": "מהו הצבע האהוב עליכם בקשת? כתבו לנו בצרפתית!"
+  },
+  {
+    "video_number": 7,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Brouillard",
+    "translation": "ערפל",
+    "examples": [
+      {
+        "sentence": "Conduire dans le **brouillard** peut être dangereux",
+        "translation": "נהיגה בערפל יכולה להיות מסוכנת"
+      },
+      {
+        "sentence": "La ville était couverte de **brouillard** ce matin",
+        "translation": "העיר הייתה מכוסה בערפל הבוקר"
+      },
+      {
+        "sentence": "Le **brouillard** s'est dissipé à midi",
+        "translation": "הערפל התפזר עד הצהריים"
+      }
+    ],
+    "call_to_action": "האם אתם אוהבים ערפל? שתפו בתגובות!"
+  },
+  {
+    "video_number": 8,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Tonnerre",
+    "translation": "רעם",
+    "examples": [
+      {
+        "sentence": "Nous avons entendu un fort **tonnerre** pendant l'orage",
+        "translation": "שמענו רעם חזק במהלך הסערה"
+      },
+      {
+        "sentence": "Le chien a peur du **tonnerre**",
+        "translation": "הכלב מפחד מרעמים"
+      },
+      {
+        "sentence": "Après le **tonnerre**, nous avons vu des éclairs",
+        "translation": "אחרי הרעם, ראינו ברקים"
+      }
+    ],
+    "call_to_action": "איך אתם מרגישים כשיש רעמים? כתבו לנו בצרפתית!"
+  },
+  {
+    "video_number": 9,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Éclair",
+    "translation": "ברק",
+    "examples": [
+      {
+        "sentence": "L'**éclair** a illuminé le ciel",
+        "translation": "ברק האיר את השמיים"
+      },
+      {
+        "sentence": "Ils ont regardé les **éclairs** depuis la fenêtre",
+        "translation": "הם צפו בברקים מהחלון"
+      },
+      {
+        "sentence": "L'**éclair** peut être dangereux",
+        "translation": "ברק יכול להיות מסוכן"
+      }
+    ],
+    "call_to_action": "האם ראיתם פעם ברק מקרוב? שתפו אותנו!"
+  },
+  {
+    "video_number": 10,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Neige",
+    "translation": "שלג",
+    "examples": [
+      {
+        "sentence": "Les enfants ont joué dans la **neige**",
+        "translation": "הילדים שיחקו בשלג"
+      },
+      {
+        "sentence": "Il **neige** rarement dans notre ville",
+        "translation": "נדיר שיורד שלג בעיר שלנו"
+      },
+      {
+        "sentence": "Ils ont construit un bonhomme de neige après la chute de **neige**",
+        "translation": "הם בנו איש שלג אחרי שירד שלג"
+      }
+    ],
+    "call_to_action": "האם אתם אוהבים שלג? מה אתם עושים כשיורד שלג?"
+  },
+  {
+    "video_number": 11,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Grêle",
+    "translation": "ברד",
+    "examples": [
+      {
+        "sentence": "Il a commencé à **grêler** pendant l'orage",
+        "translation": "התחיל לרדת ברד במהלך הסערה"
+      },
+      {
+        "sentence": "La **grêle** peut endommager les voitures et les fenêtres",
+        "translation": "ברד יכול לגרום נזק למכוניות וחלונות"
+      },
+      {
+        "sentence": "Ils ont regardé la **grêle** de l'intérieur",
+        "translation": "הם צפו בברד מתוך הבית"
+      }
+    ],
+    "call_to_action": "שתפו חוויות שלכם עם ברד בצרפתית!"
+  },
+  {
+    "video_number": 12,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Brise",
+    "translation": "בריזה",
+    "examples": [
+      {
+        "sentence": "Une **brise** fraîche est rafraîchissante par une chaude journée",
+        "translation": "בריזה קרירה מרעננת ביום חם"
+      },
+      {
+        "sentence": "Ils ont apprécié la **brise** de mer",
+        "translation": "הם נהנו מבריזת הים"
+      },
+      {
+        "sentence": "Les rideaux bougeaient avec la **brise**",
+        "translation": "הווילונות נעו עם הבריזה"
+      }
+    ],
+    "call_to_action": "מה אתם אוהבים לעשות כשיש בריזה נעימה?"
+  },
+  {
+    "video_number": 13,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Ouragan",
+    "translation": "הוריקן",
+    "examples": [
+      {
+        "sentence": "L'**ouragan** a causé des dégâts considérables",
+        "translation": "ההוריקן גרם לנזקים נרחבים"
+      },
+      {
+        "sentence": "Les résidents ont évacué avant l'**ouragan**",
+        "translation": "התושבים פונו לפני ההוריקן"
+      },
+      {
+        "sentence": "La saison des **ouragans** s'étend de juin à novembre",
+        "translation": "עונת ההוריקנים היא מיוני עד נובמבר"
+      }
+    ],
+    "call_to_action": "האם למדתם על הוריקנים? שתפו מה אתם יודעים!"
+  },
+  {
+    "video_number": 14,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Inondation",
+    "translation": "שיטפון",
+    "examples": [
+      {
+        "sentence": "De fortes pluies ont provoqué une **inondation** dans la région",
+        "translation": "גשמים כבדים גרמו לשיטפון באזור"
+      },
+      {
+        "sentence": "Ils se sont déplacés vers un terrain plus élevé pendant l'**inondation**",
+        "translation": "הם עברו למקום גבוה יותר במהלך השיטפון"
+      },
+      {
+        "sentence": "Les **inondations** peuvent être dangereuses et destructrices",
+        "translation": "שיטפונות יכולים להיות מסוכנים והרסניים"
+      }
+    ],
+    "call_to_action": "איך נוכל להתכונן לשיטפונות? שתפו רעיונות בצרפתית!"
+  },
+  {
+    "video_number": 15,
+    "title": "מזג האוויר ותופעות טבע",
+    "word": "Sécheresse",
+    "translation": "בצורת",
+    "examples": [
+      {
+        "sentence": "La **sécheresse** a affecté les agriculteurs",
+        "translation": "הבצורת השפיעה על החקלאים"
+      },
+      {
+        "sentence": "L'eau est rare pendant une **sécheresse**",
+        "translation": "המים נדירים במהלך בצורת"
+      },
+      {
+        "sentence": "Ils ont prié pour la pluie pour mettre fin à la **sécheresse**",
+        "translation": "הם התפללו לגשם כדי לסיים את הבצורת"
+      }
+    ],
+    "call_to_action": "מה ניתן לעשות בזמן בצורת? כתבו לנו בצרפתית!"
+  }
+]
