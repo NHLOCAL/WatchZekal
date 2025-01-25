@@ -1,0 +1,498 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "name": "יְסוֹדוֹת",
+      "subtopics": [
+        {
+          "name": "בְּרָכוֹת וְנִימוּסִים",
+          "words": [
+            {
+              "word": "Bonjour",
+              "translation": "שָׁלוֹם",
+              "examples": [
+                {
+                  "sentence": "Bonjour à toi !",
+                  "translation": "שָׁלוֹם לְךָ!"
+                },
+                {
+                  "sentence": "Bonjour, comment vas-tu ?",
+                  "translation": "שָׁלוֹם, מַה שְּׁלוֹמְךָ?"
+                },
+                {
+                  "sentence": "Bonjour, mon ami",
+                  "translation": "שָׁלוֹם, חָבֵר שֶׁלִּי"
+                }
+              ]
+            },
+            {
+              "word": "Au revoir",
+              "translation": "לְהִתְרָאוֹת",
+              "examples": [
+                {
+                  "sentence": "Au revoir pour le moment",
+                  "translation": "לְהִתְרָאוֹת בֵּינְתַיִים"
+                },
+                {
+                  "sentence": "Au revoir, à bientôt",
+                  "translation": "לְהִתְרָאוֹת, נִתְרָאֶה בְּקָרוֹב"
+                },
+                {
+                  "sentence": "Il est temps de se dire au revoir",
+                  "translation": "הִגִּיעַ הַזְּמַן לְהַגִּיד לְהִתְרָאוֹת"
+                }
+              ]
+            },
+            {
+              "word": "S'il vous plaît",
+              "translation": "בְּבַקָּשָׁה",
+              "examples": [
+                {
+                  "sentence": "S'il vous plaît, entrez",
+                  "translation": "בְּבַקָּשָׁה, הִיכָּנֵס"
+                },
+                {
+                  "sentence": "Pouvez-vous m'aider, s'il vous plaît ?",
+                  "translation": "הַאִם אַתָּה יָכוֹל לַעֲזוֹר לִי, בְּבַקָּשָׁה?"
+                },
+                {
+                  "sentence": "Veuillez vous asseoir",
+                  "translation": "בְּבַקָּשָׁה שֵׁב"
+                }
+              ]
+            },
+            {
+              "word": "Merci",
+              "translation": "תּוֹדָה",
+              "examples": [
+                {
+                  "sentence": "Merci beaucoup",
+                  "translation": "תּוֹדָה רַבָּה"
+                },
+                {
+                  "sentence": "Merci pour votre aide",
+                  "translation": "תּוֹדָה עַל הָעֶזְרָה שֶׁלְּךָ"
+                },
+                {
+                  "sentence": "Non, merci",
+                  "translation": "לֹא, תּוֹדָה"
+                }
+              ]
+            },
+            {
+              "word": "Oui",
+              "translation": "כֵּן",
+              "examples": [
+                {
+                  "sentence": "Oui, je comprends",
+                  "translation": "כֵּן, אֲנִי מֵבִין"
+                },
+                {
+                  "sentence": "Oui, s'il vous plaît",
+                  "translation": "כֵּן, בְּבַקָּשָׁה"
+                },
+                {
+                  "sentence": "Est-ce à vous ? Oui",
+                  "translation": "הַאִם זֶה שֶׁלְּךָ? כֵּן"
+                }
+              ]
+            },
+            {
+              "word": "Non",
+              "translation": "לֹא",
+              "examples": [
+                {
+                  "sentence": "Non, je ne le veux pas",
+                  "translation": "לֹא, אֲנִי לֹא רוֹצֶה אֶת זֶה"
+                },
+                {
+                  "sentence": "Non, merci",
+                  "translation": "לֹא, תּוֹדָה"
+                },
+                {
+                  "sentence": "Est-ce à vous ? Non",
+                  "translation": "הַאִם זֶה שֶׁלְּךָ? לֹא"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "הַצָּגָה עַצְמִית",
+          "words": [
+            {
+              "word": "Nom",
+              "translation": "שֵׁם",
+              "examples": [
+                {
+                  "sentence": "Je m'appelle Sarah",
+                  "translation": "שְׁמִי שָׂרָה"
+                },
+                {
+                  "sentence": "Quel est votre nom ?",
+                  "translation": "מַה שִּׁמְךָ?"
+                },
+                {
+                  "sentence": "Il s'appelle John",
+                  "translation": "שְׁמוֹ ג'וֹן"
+                }
+              ]
+            },
+            {
+              "word": "Je",
+              "translation": "אֲנִי",
+              "examples": [
+                {
+                  "sentence": "Je suis heureux",
+                  "translation": "אֲנִי שָׂמֵחַ"
+                },
+                {
+                  "sentence": "J'aime le café",
+                  "translation": "אֲנִי אוֹהֵב קָפֶה"
+                },
+                {
+                  "sentence": "J'ai un chien",
+                  "translation": "יֵשׁ לִי כֶּלֶב"
+                }
+              ]
+            },
+            {
+              "word": "Suis",
+              "translation": "אֲנִי (פּוֹעַל עֵזֶר בִּזְמַן הוֹוֶה)",
+              "examples": [
+                {
+                  "sentence": "Je suis étudiant",
+                  "translation": "אֲנִי תַּלְמִיד"
+                },
+                {
+                  "sentence": "Je suis d'Israël",
+                  "translation": "אֲנִי מִיִּשְׂרָאֵל"
+                },
+                {
+                  "sentence": "J'ai 20 ans",
+                  "translation": "אֲנִי בֶּן 20"
+                }
+              ]
+            },
+            {
+              "word": "De",
+              "translation": "מִ-",
+              "examples": [
+                {
+                  "sentence": "Elle vient de France",
+                  "translation": "הִיא מִצָּרְפַת"
+                },
+                {
+                  "sentence": "Nous venons de la ville",
+                  "translation": "אֲנַחְנוּ מַגִּיעִים מֵהָעִיר"
+                },
+                {
+                  "sentence": "J'ai un cadeau de mon ami",
+                  "translation": "יֵשׁ לִי מַתָּנָה מֵחָבֵר שֶׁלִּי"
+                }
+              ]
+            },
+            {
+              "word": "Vous",
+              "translation": "אַתָּה/אַתְּ",
+              "examples": [
+                {
+                  "sentence": "Vous êtes mon ami",
+                  "translation": "אַתָּה חָבֵר שֶׁלִּי"
+                },
+                {
+                  "sentence": "Allez-vous bien ?",
+                  "translation": "הַאִם אַתָּה בְּסֵדֶר?"
+                },
+                {
+                  "sentence": "Vous avez une belle voiture",
+                  "translation": "יֵשׁ לְךָ מְכוֹנִית נֶחְמָדָה"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "מִסְפָּרִים בְּסִיסִיִּים",
+          "words": [
+            {
+              "word": "Un",
+              "translation": "אֶחָד",
+              "examples": [
+                {
+                  "sentence": "Une pomme",
+                  "translation": "תַּפּוּחַ אֶחָד"
+                },
+                {
+                  "sentence": "J'ai un frère",
+                  "translation": "יֵשׁ לִי אָח אֶחָד"
+                },
+                {
+                  "sentence": "Donne-moi un instant",
+                  "translation": "תֵּן לִי רֶגַע אֶחָד"
+                }
+              ]
+            },
+            {
+              "word": "Deux",
+              "translation": "שְׁתַּיִים",
+              "examples": [
+                {
+                  "sentence": "Deux livres",
+                  "translation": "שְׁנֵי סְפָרִים"
+                },
+                {
+                  "sentence": "Nous avons deux chiens",
+                  "translation": "יֵשׁ לָנוּ שְׁנֵי כְּלָבִים"
+                },
+                {
+                  "sentence": "Elle a acheté deux robes",
+                  "translation": "הִיא קָנְתָה שְׁתֵּי שְׂמָלוֹת"
+                }
+              ]
+            },
+            {
+              "word": "Trois",
+              "translation": "שָׁלוֹשׁ",
+              "examples": [
+                {
+                  "sentence": "Trois voitures",
+                  "translation": "שָׁלוֹשׁ מְכוֹנִיּוֹת"
+                },
+                {
+                  "sentence": "Il a trois sœurs",
+                  "translation": "יֵשׁ לוֹ שָׁלוֹשׁ אֲחָיוֹת"
+                },
+                {
+                  "sentence": "Ils ont mangé trois sandwichs",
+                  "translation": "הֵם אָכְלוּ שְׁלוֹשָׁה סֶנְדְּוִויצִ'ים"
+                }
+              ]
+            },
+            {
+              "word": "Quatre",
+              "translation": "אַרְבַּע",
+              "examples": [
+                {
+                  "sentence": "Quatre chaises",
+                  "translation": "אַרְבָּעָה כִּיסְּאוֹת"
+                },
+                {
+                  "sentence": "Nous avons besoin de quatre billets",
+                  "translation": "אֲנַחְנוּ צְרִיכִים אַרְבָּעָה כַּרְטִיסִים"
+                },
+                {
+                  "sentence": "Elle a quatre chats",
+                  "translation": "יֵשׁ לָהּ אַרְבָּעָה חֲתוּלִים"
+                }
+              ]
+            },
+            {
+              "word": "Cinq",
+              "translation": "חָמֵשׁ",
+              "examples": [
+                {
+                  "sentence": "Cinq pommes",
+                  "translation": "חֲמִישָּׁה תַּפּוּחִים"
+                },
+                {
+                  "sentence": "Il a couru cinq miles",
+                  "translation": "הוּא רָץ חֲמִישָּׁה מַיְילִים"
+                },
+                {
+                  "sentence": "Ils ont acheté cinq cadeaux",
+                  "translation": "הֵם קָנוּ חֲמִישָּׁה מַתָּנוֹת"
+                }
+              ]
+            },
+            {
+              "word": "Six",
+              "translation": "שֵׁשׁ",
+              "examples": [
+                {
+                  "sentence": "Six étudiants",
+                  "translation": "שִׁישָּׁה תַּלְמִידִים"
+                },
+                {
+                  "sentence": "Il a six ans",
+                  "translation": "הוּא בֶּן שֵׁשׁ"
+                },
+                {
+                  "sentence": "Six chiens",
+                  "translation": "שִׁישָּׁה כְּלָבִים"
+                }
+              ]
+            },
+            {
+              "word": "Sept",
+              "translation": "שֶׁבַע",
+              "examples": [
+                {
+                  "sentence": "Sept jours par semaine",
+                  "translation": "שִׁבְעָה יָמִים בַּשָּׁבוּעַ"
+                },
+                {
+                  "sentence": "Chambre numéro sept",
+                  "translation": "חֶדֶר מִסְפָּר שֶׁבַע"
+                },
+                {
+                  "sentence": "Sept couleurs",
+                  "translation": "שִׁבְעָה צְבָעִים"
+                }
+              ]
+            },
+            {
+              "word": "Huit",
+              "translation": "שְׁמוֹנֶה",
+              "examples": [
+                {
+                  "sentence": "Huit pattes",
+                  "translation": "שְׁמוֹנֶה רַגְלַיִים"
+                },
+                {
+                  "sentence": "Il est huit heures",
+                  "translation": "הַשָּׁעָה שְׁמוֹנֶה"
+                },
+                {
+                  "sentence": "Huit personnes",
+                  "translation": "שְׁמוֹנָה אֲנָשִׁים"
+                }
+              ]
+            },
+            {
+              "word": "Neuf",
+              "translation": "תֵּשַׁע",
+              "examples": [
+                {
+                  "sentence": "Neuf mois",
+                  "translation": "תִּשְׁעָה חוֹדָשִׁים"
+                },
+                {
+                  "sentence": "Neuf fleurs",
+                  "translation": "תִּשְׁעָה פְּרָחִים"
+                },
+                {
+                  "sentence": "Classe numéro neuf",
+                  "translation": "כִּיתָּה מִסְפָּר תֵּשַׁע"
+                }
+              ]
+            },
+            {
+              "word": "Dix",
+              "translation": "עֶשֶׂר",
+              "examples": [
+                {
+                  "sentence": "Dix doigts",
+                  "translation": "עֶשֶׂר אֶצְבָּעוֹת"
+                },
+                {
+                  "sentence": "Je peux compter jusqu'à dix",
+                  "translation": "אֲנִי יָכוֹל לִסְפּוֹר עַד עֶשֶׂר"
+                },
+                {
+                  "sentence": "Dix étudiants",
+                  "translation": "עֲשָׂרָה תַּלְמִידִים"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "צְבָעִים רִאשׁוֹנִיִּים",
+          "words": [
+            {
+              "word": "Rouge",
+              "translation": "אָדוֹם",
+              "examples": [
+                {
+                  "sentence": "La pomme est rouge",
+                  "translation": "הַתַּפּוּחַ אָדוֹם"
+                },
+                {
+                  "sentence": "Elle porte une robe rouge",
+                  "translation": "הִיא לוֹבֶשֶׁת שִׂמְלָה אֲדוּמָּה"
+                },
+                {
+                  "sentence": "Le rouge est ma couleur préférée",
+                  "translation": "אָדוֹם הוּא הַצֶּבַע הָאָהוּב עָלַיי"
+                }
+              ]
+            },
+            {
+              "word": "Bleu",
+              "translation": "כָּחוֹל",
+              "examples": [
+                {
+                  "sentence": "Le ciel est bleu",
+                  "translation": "הַשָּׁמַיִים כְּחוּלִּים"
+                },
+                {
+                  "sentence": "Il a les yeux bleus",
+                  "translation": "יֵשׁ לוֹ עֵינַיִים כְּחוּלּוֹת"
+                },
+                {
+                  "sentence": "J'aime la voiture bleue",
+                  "translation": "אֲנִי אוֹהֵב אֶת הַמְּכוֹנִית הַכְּחוּלָּה"
+                }
+              ]
+            },
+            {
+              "word": "Vert",
+              "translation": "יָרוֹק",
+              "examples": [
+                {
+                  "sentence": "L'herbe est verte",
+                  "translation": "הַדֶּשֶׁא יָרוֹק"
+                },
+                {
+                  "sentence": "Elle a acheté une chemise verte",
+                  "translation": "הִיא קָנְתָה חוּלְצָה יְרוּקָּה"
+                },
+                {
+                  "sentence": "Les arbres verts sont magnifiques",
+                  "translation": "עֵצִים יְרוּקִּים הֵם יָפִים"
+                }
+              ]
+            },
+            {
+              "word": "Jaune",
+              "translation": "צָהוֹב",
+              "examples": [
+                {
+                  "sentence": "Le soleil semble jaune",
+                  "translation": "הַשֶּׁמֶשׁ נִרְאֵית צְהוּבָּה"
+                },
+                {
+                  "sentence": "Il a un vélo jaune",
+                  "translation": "יֵשׁ לוֹ אוֹפַנַּיִים צְהוּבִּים"
+                },
+                {
+                  "sentence": "La banane est jaune",
+                  "translation": "הַבָּנָנָה צְהוּבָּה"
+                }
+              ]
+            },
+            {
+              "word": "Noir",
+              "translation": "שָׁחוֹר",
+              "examples": [
+                {
+                  "sentence": "J'ai un chat noir",
+                  "translation": "יֵשׁ לִי חָתוּל שָׁחוֹר"
+                },
+                {
+                  "sentence": "Elle porte des chaussures noires",
+                  "translation": "הִיא נוֹעֶלֶת נַעֲלַיִים שְׁחוֹרוֹת"
+                },
+                {
+                  "sentence": "La nuit est noire",
+                  "translation": "הַלַּיְלָה שָׁחוֹר"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
