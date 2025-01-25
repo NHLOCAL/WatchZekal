@@ -24,22 +24,22 @@
     "video_number": 2,
     "title": "מזג האוויר ותופעות טבע",
     "word": "Ensoleillé",
-    "translation": "שמשי",
+    "translation": "שִׁמְשִׁי",
     "examples": [
       {
         "sentence": "C'est une journée **ensoleillée**; allons à la plage",
-        "translation": "זהו יום שמשי; בואו נלך לחוף"
+        "translation": "זהו יום שִׁמְשִׁי; בואו נלך לחוף"
       },
       {
         "sentence": "Elle aime les matins **ensoleillés**",
-        "translation": "היא אוהבת בקרים שמשיים"
+        "translation": "היא אוהבת בקרים שִׁמְשִׁיים"
       },
       {
         "sentence": "Portez des lunettes de soleil par temps **ensoleillé**",
-        "translation": "הרכיבו משקפי שמש ביום שמשי"
+        "translation": "הרכיבו משקפי שמש ביום שִׁמְשִׁי"
       }
     ],
-    "call_to_action": "מה אתם אוהבים לעשות ביום שמשי? שתפו בתגובות!"
+    "call_to_action": "מה אתם אוהבים לעשות ביום שִׁמְשִׁי? שתפו בתגובות!"
   },
   {
     "video_number": 3,

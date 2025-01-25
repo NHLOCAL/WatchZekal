@@ -179,7 +179,10 @@ class ImageCreator:
         return segments
 
     def create_image(self, text_lines, style_definitions, line_styles=None, background_image_path=None):
-        cache_key = tuple(text_lines) + tuple(line_styles or []) + (background_image_path,)
+        # הסר ניקוד מהטקסט לתצוגה
+        display_text_lines = [remove_nikud(line) if is_hebrew(line) else line for line in text_lines]
+        
+        cache_key = tuple(display_text_lines) + tuple(line_styles or []) + (background_image_path,)
         if cache_key in self.cache:
             logging.info("שימוש בתמונה מקאש")
             return self.cache[cache_key]
@@ -244,7 +247,7 @@ class ImageCreator:
 
         total_height = 0
         processed_lines = []
-        for i, line in enumerate(text_lines):
+        for i, line in enumerate(display_text_lines):
             if line_styles and i < len(line_styles):
                 style_name = line_styles[i]
                 try:
@@ -517,7 +520,7 @@ class VideoCreator:
 
     def add_logo_clip(self, duration=5, background_image_path=None):
         try:
-            if background_image_path and os.path.exists(background_image_path):
+            if (background_image_path and os.path.exists(background_image_path)):
                 try:
                     background = Image.open(background_image_path).convert("RGB")
                     background = background.resize((WIDTH, HEIGHT), RESAMPLING)
@@ -762,12 +765,14 @@ class VideoAssemblerShorts:
                 if intro_clip:
                     clips.append(intro_clip)
 
+                # שימוש בטקסט מנוקד להקראה ובטקסט ללא ניקוד לתצוגה
                 text_lines_word = [word, translation]
                 line_styles_word = ['word', 'translation']
                 clip_word = self.video_creator.create_image_clip(text_lines_word, 'word', line_styles_word, background_image_path)
 
+                # שימוש בטקסט המנוקד המקורי להקראה
                 audio_tasks = [
-                    (word, lang_code, True), # שימוש בקוד שפה משתנה
+                    (word, lang_code, True),
                     (translation, 'iw'),
                 ]
                 audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
@@ -789,12 +794,14 @@ class VideoAssemblerShorts:
                     sentence = example['sentence']
                     ex_translation = example['translation']
 
+                    # שימוש בטקסט מנוקד להקראה ובטקסט ללא ניקוד לתצוגה
                     text_lines_example = [sentence, ex_translation]
                     line_styles_example = ['sentence', 'translation']
                     clip_example = self.video_creator.create_image_clip(text_lines_example, 'sentence', line_styles_example, background_image_path)
 
+                    # שימוש בטקסט המנוקד המקורי להקראה
                     audio_tasks = [
-                        (sentence, lang_code, True), # שימוש בקוד שפה משתנה
+                        (sentence, lang_code, True),
                         (ex_translation, 'iw'),
                     ]
                     audio_results = self.video_creator.audio_creator.create_audios(audio_tasks)
