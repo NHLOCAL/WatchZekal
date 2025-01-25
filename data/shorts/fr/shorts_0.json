@@ -6,7 +6,7 @@
       "translation": "מעונן",
       "examples": [
         {
-          "sentence": "C'est nuageux aujourd'hui",
+          "sentence": "C'est **nuageux** aujourd'hui",
           "translation": "היום מעונן"
         }
       ],
