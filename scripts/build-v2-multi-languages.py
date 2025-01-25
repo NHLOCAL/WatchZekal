@@ -642,7 +642,7 @@ class VideoAssembler:
             final_clip = concatenate_videoclips(clips, method="compose")
 
             if os.path.exists(BACKGROUND_MUSIC_PATH):
-                background_music = AudioFileClip(BACKGROUND_MUSIC_PATH).volumex(0.01)
+                background_music = AudioFileClip(BACKGROUND_MUSIC_PATH).volumex(0.02)
                 background_music = afx.audio_loop(background_music, duration=final_clip.duration)
                 final_audio = CompositeAudioClip([final_clip.audio, background_music])
                 final_clip = final_clip.set_audio(final_audio)
