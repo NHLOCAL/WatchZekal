@@ -855,7 +855,7 @@ class VideoAssemblerShorts:
                     background_music.close()
                     final_audio.close()
 
-                self.create_and_save_final_video(video_path, final_clip, video_number, lang_code) # קוד שפה לשמירה
+                self.create_and_save_final_video(video_path, final_clip, video_number, lang_code, thumbnails_dir) # קוד שפה לשמירה
 
             except Exception as e:
                 logging.error(f"שגיאה בתהליך הרכבת הווידאו לסרטון מספר {video_number}: {e}")
@@ -888,7 +888,7 @@ class VideoAssemblerShorts:
             return clip
 
 
-    def create_and_save_final_video(self, video_path, final_clip, video_number, lang_code):
+    def create_and_save_final_video(self, video_path, final_clip, video_number, lang_code, thumbnails_dir):
         try:
             language_strip_path, strip_height = self.video_creator.create_language_strip(WIDTH, HEIGHT, lang_code) # קוד שפה לרצועה
 
@@ -904,7 +904,7 @@ class VideoAssemblerShorts:
             # final_video_clip = final_video_clip.fx(afx.speedx, 1.0) # שמירה על מהירות תקינה
             final_video_clip.write_videofile(video_path, fps=FPS, codec='libx264', audio_codec='aac', threads=THREADS)
 
-            thumbnail_path = os.path.join(thumbnails_dir, f"Short_{video_number}_thumbnail.png")
+            thumbnail_path = os.path.join(thumbnails_dir, f"Short_{lang_code}_{video_number}_thumbnail.png")
             final_video_clip.save_frame(thumbnail_path, t=0)
             logging.info(f"שומר תמונת תצוגה מקדימה בנתיב: {thumbnail_path}")
 
