@@ -28,6 +28,7 @@ FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 LOGOS_DIR = os.path.join(ASSETS_DIR, 'logos')
 FLAGS_DIR = os.path.join(ASSETS_DIR, 'flags')
 OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'output')
+CONCEPTS_DIR = os.path.join(OUTPUT_DIR, 'concepts')  # תיקיית concepts חדשה
 THUMBNAILS_DIR = os.path.join(OUTPUT_DIR, 'thumbnails')
 LANG_SETTINGS_FILE = os.path.join(DATA_DIR, 'lang_settings.json')  # נתיב לקובץ הגדרות שפה
 
@@ -108,7 +109,7 @@ def remove_nikud(text):
 
 class FileManager:
     def __init__(self, output_dir, thumbnails_dir, lang_code):
-        self.output_dir = os.path.join(output_dir, lang_code)  # תיקיית פלט לפי שפה
+        self.output_dir = os.path.join(CONCEPTS_DIR, lang_code)  # שימוש בתיקיית concepts
         self.thumbnails_dir = os.path.join(thumbnails_dir, lang_code)  # תיקיית תמונות ממוזערות לפי שפה
         os.makedirs(self.output_dir, exist_ok=True)
         os.makedirs(self.thumbnails_dir, exist_ok=True)
