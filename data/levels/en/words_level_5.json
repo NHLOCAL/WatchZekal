@@ -53,7 +53,7 @@
                 },
                 {
                   "sentence": "Oranges have vitamin C",
-                  "translation": "תַּפּוּזִים מַכִּילִים וִיטָמִין C"
+                  "translation": "תַּפּוּזִים מְכִילִים וִיטָמִין C"
                 },
                 {
                   "sentence": "I peeled an orange",
@@ -125,7 +125,7 @@
                 },
                 {
                   "sentence": "Cucumbers are green and fresh",
-                  "translation": "מְלָפְפוֹנִים יְרוֹקִּים וְרַעֲנַנִּים"
+                  "translation": "מְלָפְפוֹנִים יְרוּקִּים וְרַעֲנַנִּים"
                 },
                 {
                   "sentence": "He sliced cucumbers thinly",
@@ -157,7 +157,7 @@
               "examples": [
                 {
                   "sentence": "He ate green grapes",
-                  "translation": "הוּא אָכַל עֲנָבִים יְרוֹקִּים"
+                  "translation": "הוּא אָכַל עֲנָבִים יְרוּקִּים"
                 },
                 {
                   "sentence": "Grapes grow on vines",
@@ -211,7 +211,7 @@
               "examples": [
                 {
                   "sentence": "He chopped an onion",
-                  "translation": "הוּא קִצֵּץ בָּצָל"
+                  "translation": "הוּא קָצַץ בָּצָל"
                 },
                 {
                   "sentence": "Onions can make you cry",
@@ -386,7 +386,7 @@
                 },
                 {
                   "sentence": "They serve soda at the party",
-                  "translation": "הֵם מַגִּישִׁים סוֹדָה בַּמְּסִיבָה"
+                  "translation": "הֵם מַגִּישִׁים סוֹדָה בַּמְּסִיבָּה"
                 }
               ]
             },
@@ -508,7 +508,7 @@
                 },
                 {
                   "sentence": "Energy drinks contain caffeine",
-                  "translation": "מַשְׁקָאוֹת אֶנֶרְגְּיָה מַכִּילִים קָפֵאִין"
+                  "translation": "מַשְׁקָאוֹת אֶנֶרְגְּיָה מְכִילִים קָפֵאִין"
                 },
                 {
                   "sentence": "She avoids energy drinks",
@@ -679,7 +679,7 @@
                 },
                 {
                   "sentence": "They served steak as the main course",
-                  "translation": "הֵם הִגִּישׁוּ סְטֵייק כַּמָּנָה עִיקָּרִית"
+                  "translation": "הֵם הִגִּישׁוּ סְטֵייק כְּמָּנָה עִיקָּרִית"
                 }
               ]
             },
@@ -721,19 +721,19 @@
             },
             {
               "word": "Buffet",
-              "translation": "מַזְנוּן",
+              "translation": "מִזְנוֹן",
               "examples": [
                 {
                   "sentence": "The hotel offers a buffet breakfast",
-                  "translation": "הַמָּלוֹן מַצִּיעַ מַזְנוּן אֲרוּחַת בּוֹקֶר"
+                  "translation": "הַמָּלוֹן מַצִּיעַ מִזְנוֹן אֲרוּחַת בּוֹקֶר"
                 },
                 {
                   "sentence": "They enjoyed the buffet dinner",
-                  "translation": "הֵם נֶהֱנוּ מֵאֲרוּחַת הָעֶרֶב בַּמַּזְנוּן"
+                  "translation": "הֵם נֶהֱנוּ מֵאֲרוּחַת הָעֶרֶב בַּמִזְנוֹן"
                 },
                 {
                   "sentence": "Buffet allows you to choose food",
-                  "translation": "מַזְנוּן מְאַפְשֵׁר לְךָ לִבְחוֹר אוֹכֶל"
+                  "translation": "מִזְנוֹן מְאַפְשֵׁר לְךָ לִבְחוֹר אוֹכֶל"
                 }
               ]
             },
@@ -819,7 +819,7 @@
                 },
                 {
                   "sentence": "Sandwiches are easy to make",
-                  "translation": "כְּרִיכִים קַלִּים לְהָכֵנָה"
+                  "translation": "כְּרִיכִים קַלִּים לַהֲכָנָה"
                 },
                 {
                   "sentence": "She packed sandwiches for lunch",

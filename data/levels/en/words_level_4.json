@@ -2,7 +2,7 @@
   "levels": [
     {
       "level": 4,
-      "name": "הַבַּיִת וְחֵפְצִים יוֹמְיוֹמִיִּים",
+      "name": "הַבַּיִת וַחֲפָצִים יוֹמְיוֹמִיִּים",
       "subtopics": [
         {
           "name": "חַדְרֵי הַבַּיִת",
@@ -99,19 +99,19 @@
             },
             {
               "word": "Garage",
-              "translation": "מוֹסָךְ",
+              "translation": "מוּסָךְ",
               "examples": [
                 {
                   "sentence": "The car is in the garage",
-                  "translation": "הַמְּכוֹנִית בַּמּוֹסָךְ"
+                  "translation": "הַמְּכוֹנִית בַּמוּסָךְ"
                 },
                 {
                   "sentence": "He works in the garage",
-                  "translation": "הוּא עוֹבֵד בַּמּוֹסָךְ"
+                  "translation": "הוּא עוֹבֵד בַּמוּסָךְ"
                 },
                 {
                   "sentence": "The garage door is open",
-                  "translation": "דֶּלֶת הַמּוֹסָךְ פְּתוּחָה"
+                  "translation": "דֶּלֶת הַמוּסָךְ פְּתוּחָה"
                 }
               ]
             },
@@ -302,19 +302,19 @@
             },
             {
               "word": "Television",
-              "translation": "טֵלֵווִיזְיָה",
+              "translation": "טֵלֵוִויזְיָה",
               "examples": [
                 {
                   "sentence": "Turn on the television",
-                  "translation": "הַפְעֵל אֶת הַטֵּלֵווִיזְיָה"
+                  "translation": "הַפְעֵל אֶת הַטֵּלֵוִויזְיָה"
                 },
                 {
                   "sentence": "She watches movies on the television",
-                  "translation": "הִיא צוֹפָה בְּסְרָטִים בַּטֵּלֵווִיזְיָה"
+                  "translation": "הִיא צוֹפָה בְּסְרָטִים בַּטֵּלֵוִויזְיָה"
                 },
                 {
                   "sentence": "The television is big",
-                  "translation": "הַטֵּלֵווִיזְיָה גְּדוֹלָה"
+                  "translation": "הַטֵּלֵוִויזְיָה גְּדוֹלָה"
                 }
               ]
             },
@@ -360,7 +360,7 @@
               "examples": [
                 {
                   "sentence": "Bake the cake in the oven",
-                  "translation": "אֱפֵה אֶת הָעוּגָה בַּתַּנּוּר"
+                  "translation": "תֹּאפֶה אֶת הָעוּגָה בַּתַּנּוּר"
                 },
                 {
                   "sentence": "The oven is hot",
@@ -414,7 +414,7 @@
               "examples": [
                 {
                   "sentence": "She works at the desk",
-                  "translation": "הִיא עוֹבֶדֶת בַּשּׁוּלְחָן הַכְּתִיבָה"
+                  "translation": "הִיא עוֹבֶדֶת בְּשּׁוּלְחָן הַכְּתִיבָה"
                 },
                 {
                   "sentence": "The desk has drawers",
@@ -517,7 +517,7 @@
                 },
                 {
                   "sentence": "He washes the plates",
-                  "translation": "הוּא שׁוֹטֵף אֶת הַצְּלָחוֹת"
+                  "translation": "הוּא שׁוֹטֵף אֶת הַצַּלָּחוֹת"
                 }
               ]
             },
@@ -581,7 +581,7 @@
               "examples": [
                 {
                   "sentence": "Boil water in the pot",
-                  "translation": "רְתַח מַיִם בַּסִּיר"
+                  "translation": "מַרְתִּיחִים מַיִם בַּסִּיר"
                 },
                 {
                   "sentence": "The pot is on the stove",
@@ -595,19 +595,19 @@
             },
             {
               "word": "Pan",
-              "translation": "מַחְבַּת",
+              "translation": "מַחֲבַת",
               "examples": [
                 {
                   "sentence": "Fry eggs in the pan",
-                  "translation": "טַגֵּן בֵּיצִים בַּמַּחְבַּת"
+                  "translation": "טַגֵּן בֵּיצִים בַּמַחֲבַת"
                 },
                 {
                   "sentence": "The pan is hot",
-                  "translation": "הַמַּחְבַּת חַמָּה"
+                  "translation": "הַמַחֲבַת חַמָּה"
                 },
                 {
                   "sentence": "He cleans the pan after cooking",
-                  "translation": "הוּא מְנַקֶּה אֶת הַמַּחְבַּת לְאַחַר הַבִּישּׁוּל"
+                  "translation": "הוּא מְנַקֶּה אֶת הַמַחֲבַת לְאַחַר הַבִּישּׁוּל"
                 }
               ]
             },
@@ -635,7 +635,7 @@
               "examples": [
                 {
                   "sentence": "Toast bread in the toaster",
-                  "translation": "טוֹסְט לֶחֶם בַּמַּצְנֵם"
+                  "translation": "לֶחֶם טוֹסְט בַּמַּצְנֵם"
                 },
                 {
                   "sentence": "The toaster is old",
