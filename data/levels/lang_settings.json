@@ -126,5 +126,137 @@
             ]
           ]
         }
+      },
+    "ar": {
+        "language_name_en": "arabic",
+        "language_name_iw": "ערבית",
+        "level_word": "مستوى",
+        "voice": {
+          "language_code": "ar-XA",
+          "name": "ar-XA-Wavenet-B"
+        },
+        "outro": {
+          "text_lines": [
+            "זה קל!",
+            "למד ערבית בקלי קלות",
+            "شكرا للمشاهدة!",
+            "لا تنسوا الإعجاب والاشتراك"
+          ],
+          "line_styles": [
+            "outro_title",
+            "outro_subtitle",
+            "outro",
+            "outro"
+          ],
+           "audio_tasks": [
+            [
+              "هذا سهل! شكرا للمشاهدة! لا تنسوا الإعجاب والاشتراك",
+              "ar"
+            ],
+             [
+              "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
+              "iw"
+            ]
+          ]
+        }
+      },
+    "ru": {
+        "language_name_en": "russian",
+         "language_name_iw": "רוסית",
+        "level_word": "Уровень",
+        "voice": {
+          "language_code": "ru-RU",
+          "name": "ru-RU-Wavenet-A"
+        },
+        "outro": {
+          "text_lines": [
+            "זה קל!",
+            "למד רוסית בקלי קלות",
+             "Спасибо за просмотр!",
+            "Не забудьте поставить лайк и подписаться"
+          ],
+          "line_styles": [
+            "outro_title",
+            "outro_subtitle",
+            "outro",
+            "outro"
+          ],
+          "audio_tasks": [
+            [
+              "Это легко! Спасибо за просмотр! Не забудьте поставить лайк и подписаться",
+              "ru"
+            ],
+            [
+              "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
+              "iw"
+            ]
+          ]
+        }
+      },
+  "it": {
+        "language_name_en": "italian",
+         "language_name_iw": "איטלקית",
+        "level_word": "Livello",
+        "voice": {
+          "language_code": "it-IT",
+          "name": "it-IT-Wavenet-A"
+        },
+        "outro": {
+          "text_lines": [
+            "זה קל!",
+             "למד איטלקית בקלי קלות",
+            "Grazie per aver guardato!",
+            "Non dimenticare di mettere 'mi piace' e iscriverti"
+          ],
+          "line_styles": [
+            "outro_title",
+            "outro_subtitle",
+            "outro",
+            "outro"
+          ],
+          "audio_tasks": [
+            [
+              "È facile! Grazie per aver guardato! Non dimenticare di mettere 'mi piace' e iscriverti",
+              "it"
+            ],
+            [
+              "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
+              "iw"
+            ]
+          ]
+        }
+      },
+ "de": {
+        "language_name_en": "german",
+         "language_name_iw": "גרמנית",
+        "level_word": "Niveau",
+        "voice": {
+          "language_code": "de-DE",
+          "name": "de-DE-Wavenet-A"
+        },
+        "outro": {
+          "text_lines": [
+            "זה קל!",
+            "למד גרמנית בקלי קלות",
+            "Danke fürs Zuschauen!",
+            "Vergessen Sie nicht, zu liken und zu abonnieren"
+          ],
+          "line_styles": [
+            "outro_title",
+            "outro_subtitle",
+            "outro",
+            "outro"
+          ],
+          "audio_tasks": [
+            [
+              "Es ist einfach! Danke fürs Zuschauen! Vergessen Sie nicht, zu liken und zu abonnieren",
+              "de"
+            ],
+            [
+              "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
+              "iw"
+            ]
+          ]
+        }
       }
 }

@@ -30,5 +30,37 @@
           "language_code": "he-IL",
           "name": "he-IL-Wavenet-C"
         }
+      },
+   "ar": {
+        "language_name_en": "arabic",
+        "language_name_iw": "ערבית",
+        "voice": {
+          "language_code": "ar-XA",
+          "name": "ar-XA-Wavenet-B"
+        }
+      },
+    "ru": {
+        "language_name_en": "russian",
+         "language_name_iw": "רוסית",
+        "voice": {
+          "language_code": "ru-RU",
+          "name": "ru-RU-Wavenet-A"
+        }
+      },
+  "it": {
+        "language_name_en": "italian",
+         "language_name_iw": "איטלקית",
+        "voice": {
+          "language_code": "it-IT",
+          "name": "it-IT-Wavenet-A"
+        }
+      },
+ "de": {
+        "language_name_en": "german",
+         "language_name_iw": "גרמנית",
+        "voice": {
+          "language_code": "de-DE",
+          "name": "de-DE-Wavenet-A"
+        }
       }
 }
