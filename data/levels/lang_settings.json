@@ -1,7 +1,7 @@
 {
   "en": {
     "language_name_en": "english",
-     "language_name_iw": "אנגלית",
+    "language_name_iw": "אנגלית",
     "level_word": "Level",
     "voice": {
       "language_code": "en-US",
@@ -33,8 +33,8 @@
     }
   },
   "es": {
-     "language_name_en": "spanish",
-     "language_name_iw": "ספרדית",
+    "language_name_en": "spanish",
+    "language_name_iw": "ספרדית",
     "level_word": "Nivel",
     "voice": {
       "language_code": "es-ES",
@@ -66,8 +66,8 @@
     }
   },
   "fr": {
-     "language_name_en": "french",
-     "language_name_iw": "צרפתית",
+    "language_name_en": "french",
+    "language_name_iw": "צרפתית",
     "level_word": "Niveau",
     "voice": {
       "language_code": "fr-FR",
@@ -98,165 +98,165 @@
       ]
     }
   },
-    "iw": {
-        "language_name_en": "hebrew",
-        "language_name_iw": "עברית",
-        "level_word": "רמה",
-        "voice": {
-          "language_code": "he-IL",
-          "name": "he-IL-Wavenet-C"
-        },
-        "outro": {
-          "text_lines": [
-            "זה קל!",
-            "למד עברית בקלי קלות",
-            "תודה שצפיתם!",
-            "אל תשכחו לעשות like ולהירשם"
-          ],
-          "line_styles": [
-            "outro_title",
-            "outro_subtitle",
-            "outro",
-            "outro"
-          ],
-          "audio_tasks": [
-            [
-              "זה קל! תודה שצפיתם! אל תשכחו לעשות לייק ולהירשם",
-              "iw"
-            ]
-          ]
-        }
-      },
-    "ar": {
-        "language_name_en": "arabic",
-        "language_name_iw": "ערבית",
-        "level_word": "مستوى",
-        "voice": {
-          "language_code": "ar-XA",
-          "name": "ar-XA-Wavenet-B"
-        },
-        "outro": {
-          "text_lines": [
-            "זה קל!",
-            "למד ערבית בקלי קלות",
-            "شكرا للمشاهدة!",
-            "لا تنسوا الإعجاب والاشتراك"
-          ],
-          "line_styles": [
-            "outro_title",
-            "outro_subtitle",
-            "outro",
-            "outro"
-          ],
-           "audio_tasks": [
-            [
-              "هذا سهل! شكرا للمشاهدة! لا تنسوا الإعجاب والاشتراك",
-              "ar"
-            ],
-             [
-              "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
-              "iw"
-            ]
-          ]
-        }
-      },
-    "ru": {
-        "language_name_en": "russian",
-         "language_name_iw": "רוסית",
-        "level_word": "Уровень",
-        "voice": {
-          "language_code": "ru-RU",
-          "name": "ru-RU-Wavenet-A"
-        },
-        "outro": {
-          "text_lines": [
-            "זה קל!",
-            "למד רוסית בקלי קלות",
-             "Спасибо за просмотр!",
-            "Не забудьте поставить лайк и подписаться"
-          ],
-          "line_styles": [
-            "outro_title",
-            "outro_subtitle",
-            "outro",
-            "outro"
-          ],
-          "audio_tasks": [
-            [
-              "Это легко! Спасибо за просмотр! Не забудьте поставить лайк и подписаться",
-              "ru"
-            ],
-            [
-              "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
-              "iw"
-            ]
-          ]
-        }
-      },
+  "iw": {
+    "language_name_en": "hebrew",
+    "language_name_iw": "עברית",
+    "level_word": "רמה",
+    "voice": {
+      "language_code": "he-IL",
+      "name": "he-IL-Wavenet-C"
+    },
+    "outro": {
+      "text_lines": [
+        "זה קל!",
+        "למד עברית בקלי קלות",
+        "תודה שצפיתם!",
+        "אל תשכחו לעשות like ולהירשם"
+      ],
+      "line_styles": [
+        "outro_title",
+        "outro_subtitle",
+        "outro",
+        "outro"
+      ],
+      "audio_tasks": [
+        [
+          "זה קל! תודה שצפיתם! אל תשכחו לעשות לייק ולהירשם",
+          "iw"
+        ]
+      ]
+    }
+  },
+  "ar": {
+    "language_name_en": "arabic",
+    "language_name_iw": "ערבית",
+    "level_word": "مستوى",
+    "voice": {
+      "language_code": "ar-XA",
+      "name": "ar-XA-Wavenet-B"
+    },
+    "outro": {
+      "text_lines": [
+        "זה קל!",
+        "למד ערבית בקלי קלות",
+        "!شكراً على المشاهدة",
+        "لا تنسوا الإعجاب والاشتراك!"
+      ],
+      "line_styles": [
+        "outro_title",
+        "outro_subtitle",
+        "outro",
+        "outro"
+      ],
+      "audio_tasks": [
+        [
+          "!هذا سهل! شكراً على المشاهدة! لا تنسوا الإعجاب والاشتراك",
+          "ar"
+        ],
+        [
+          "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
+          "iw"
+        ]
+      ]
+    }
+  },
+  "ru": {
+    "language_name_en": "russian",
+    "language_name_iw": "רוסית",
+    "level_word": "Уровень",
+    "voice": {
+      "language_code": "ru-RU",
+      "name": "ru-RU-Wavenet-A"
+    },
+    "outro": {
+      "text_lines": [
+        "זה קל!",
+        "למד רוסית בקלי קלות",
+        "Спасибо за просмотр!",
+        "Не забудьте поставить лайк и подписаться!"
+      ],
+      "line_styles": [
+        "outro_title",
+        "outro_subtitle",
+        "outro",
+        "outro"
+      ],
+      "audio_tasks": [
+        [
+          "Это просто! Спасибо за просмотр! Не забудьте поставить лайк и подписаться!",
+          "ru"
+        ],
+        [
+          "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
+          "iw"
+        ]
+      ]
+    }
+  },
   "it": {
-        "language_name_en": "italian",
-         "language_name_iw": "איטלקית",
-        "level_word": "Livello",
-        "voice": {
-          "language_code": "it-IT",
-          "name": "it-IT-Wavenet-A"
-        },
-        "outro": {
-          "text_lines": [
-            "זה קל!",
-             "למד איטלקית בקלי קלות",
-            "Grazie per aver guardato!",
-            "Non dimenticare di mettere 'mi piace' e iscriverti"
-          ],
-          "line_styles": [
-            "outro_title",
-            "outro_subtitle",
-            "outro",
-            "outro"
-          ],
-          "audio_tasks": [
-            [
-              "È facile! Grazie per aver guardato! Non dimenticare di mettere 'mi piace' e iscriverti",
-              "it"
-            ],
-            [
-              "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
-              "iw"
-            ]
-          ]
-        }
-      },
- "de": {
-        "language_name_en": "german",
-         "language_name_iw": "גרמנית",
-        "level_word": "Niveau",
-        "voice": {
-          "language_code": "de-DE",
-          "name": "de-DE-Wavenet-A"
-        },
-        "outro": {
-          "text_lines": [
-            "זה קל!",
-            "למד גרמנית בקלי קלות",
-            "Danke fürs Zuschauen!",
-            "Vergessen Sie nicht, zu liken und zu abonnieren"
-          ],
-          "line_styles": [
-            "outro_title",
-            "outro_subtitle",
-            "outro",
-            "outro"
-          ],
-          "audio_tasks": [
-            [
-              "Es ist einfach! Danke fürs Zuschauen! Vergessen Sie nicht, zu liken und zu abonnieren",
-              "de"
-            ],
-            [
-              "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
-              "iw"
-            ]
-          ]
-        }
-      }
+    "language_name_en": "italian",
+    "language_name_iw": "איטלקית",
+    "level_word": "Livello",
+    "voice": {
+      "language_code": "it-IT",
+      "name": "it-IT-Wavenet-A"
+    },
+    "outro": {
+      "text_lines": [
+        "זה קל!",
+        "למד איטלקית בקלי קלות",
+        "Grazie per la visione!",
+        "Non dimenticate di mettere mi piace e di iscrivervi!"
+      ],
+      "line_styles": [
+        "outro_title",
+        "outro_subtitle",
+        "outro",
+        "outro"
+      ],
+      "audio_tasks": [
+        [
+          "È facile! Grazie per la visione! Non dimenticate di mettere mi piace e di iscrivervi!",
+          "it"
+        ],
+        [
+          "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
+          "iw"
+        ]
+      ]
+    }
+  },
+  "de": {
+    "language_name_en": "german",
+    "language_name_iw": "גרמנית",
+    "level_word": "Niveau",
+    "voice": {
+      "language_code": "de-DE",
+      "name": "de-DE-Wavenet-A"
+    },
+    "outro": {
+      "text_lines": [
+        "זה קל!",
+        "למד גרמנית בקלי קלות",
+        "Danke fürs Zuschauen!",
+        "Vergesst nicht zu liken und zu abonnieren!"
+      ],
+      "line_styles": [
+        "outro_title",
+        "outro_subtitle",
+        "outro",
+        "outro"
+      ],
+      "audio_tasks": [
+        [
+          "Das ist einfach! Danke fürs Zuschauen! Vergesst nicht zu liken und zu abonnieren!",
+          "de"
+        ],
+        [
+          "זה קל! תודה שצפיתם! אל תשכחו לעשות like ולהירשם",
+          "iw"
+        ]
+      ]
+    }
+  }
 }
