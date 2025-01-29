@@ -74,7 +74,8 @@ def send_and_receive() -> str:
         }
     }
 
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-thinking-exp-01-21:generateContent"
+    # אפשרות חילופית: gemini-2.0-flash-thinking-exp-01-21
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-exp-1206:generateContent"
     params = {"key": API_KEY}
     headers = {"Content-Type": "application/json"}
 

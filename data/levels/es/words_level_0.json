@@ -5,19 +5,15 @@
       "name": "יְסוֹדוֹת",
       "subtopics": [
         {
-          "name": "בְּרָכוֹת",
+          "name": "בְּרָכוֹת וְנִימוּסִים",
           "words": [
             {
-              "word": "No",
-              "translation": "לֹא",
+              "word": "Hola",
+              "translation": "שָׁלוֹם",
               "examples": [
                 {
                   "sentence": "¡Hola a ti!",
-                  "translation": "שָׁלוֹם לְךָ!"
-                },
-                {
-                  "sentence": "Hola, ¿cómo estás?",
-                  "translation": "שָׁלוֹם, מַה שְּׁלוֹמְךָ?"
+                  "translation": "שָׁלוֹם לְךָ!"
                 }
               ]
             }
