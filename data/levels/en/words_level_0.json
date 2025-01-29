@@ -1,29 +1,25 @@
 {
-    "levels": [
+  "levels": [
+    {
+      "level": 0,
+      "name": "יְסוֹדוֹת",
+      "subtopics": [
         {
-            "level": 0,
-            "name": "בסיס",
-            "subtopics": [
+          "name": "בְּרָכוֹת וְנִימוּסִים",
+          "words": [
+            {
+              "word": "Hello",
+              "translation": "שָׁלוֹם",
+              "examples": [
                 {
-                    "name": "נושא משנה 1",
-                    "words": [
-                        {
-                            "word": "Word1",
-                            "translation": "תרגום1",
-                            "examples": [
-                                {
-                                    "sentence": "This is an example sentence that is quite long and needs to be wrapped properly.",
-                                    "translation": "זהו משפט דוגמה שהוא די ארוך וצריך לעטוף אותו כראוי בלי עין רעה"
-                                },
-								{
-                                    "sentence": "This is an example sentence",
-                                    "translation": "זהו משפט דוגמה"
-                                }
-                            ]
-                        }
-                    ]
+                  "sentence": "Hello to you!",
+                  "translation": "שָׁלוֹם לְךָ!"
                 }
-            ]
+              ]
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }

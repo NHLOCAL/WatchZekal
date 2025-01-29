@@ -15,14 +15,14 @@ if not API_KEY:
 
 SYSTEM_INST_TEMPLATE = """
 אתה מודל שפה גדול שמקבל קבצי JSON המיועדים לבניית סרטונים ללימוד אנגלית.
-על בסיס התוכן בקובץ, עליך ליצור קובץ JSON חדש וזהה לחלוטין שמלמד {target_language} במקום אנגלית.
-עליך להחליף את המילים באנגלית למילים ב{target_language}, וכך גם את המשפטים לדוגמה.
+על בסיס התוכן בקובץ, עליך ליצור קובץ JSON חדש וזהה לחלוטין שמלמד {target_language_iw} במקום אנגלית.
+עליך להחליף את המילים באנגלית למילים ב{target_language_iw}, וכך גם את המשפטים לדוגמה.
 הקפד לשמור על מבנה זהה של תוכן ושים לב ששמות השלבים, הקטעים והקריאה לפעולה ישארו בעברית!
 
 הקובץ JSON המלא יסופק לך בהודעה הבאה.
 עליך להחזיר קובץ JSON מתורגם מלא בתוך תגי קוד Markdown (```json ... ```).
 
-הקפד על תרגום מדויק, ניסוח תקין ובאיכות גבוהה בשפה ה{target_language}.
+הקפד על תרגום מדויק, ניסוח תקין ובאיכות גבוהה בשפה ה{target_language_iw}.
 """
 
 conversation = []
@@ -150,7 +150,7 @@ def compare_json_content(original_json, translated_json):
     else:
         print("לא נמצאו שינויים בשדות JSON שאינם 'word' או 'sentence'.")
 
-def translate_json_file(file_path, target_language):
+def translate_json_file(file_path, target_language_iw, target_language_en, target_lang_code):
     """
     מתרגם קובץ JSON שלם משפה אחת לשפה אחרת באמצעות Gemini API.
     שולח את כל קובץ ה-JSON כהקשר ראשוני ומקבל קובץ JSON מתורגם מלא.
@@ -158,12 +158,14 @@ def translate_json_file(file_path, target_language):
 
     Args:
         file_path (str): נתיב לקובץ JSON.
-        target_language (str): שפת היעד לתרגום (באנגלית, לדוגמה "English", "French", "Arabic").
+        target_language_iw (str): שפת היעד לתרגום בעברית (לדוגמה "צרפתית", "ספרדית", "ערבית").
+        target_language_en (str): שפת היעד לתרגום באנגלית (לדוגמה "French", "Spanish", "Arabic").
+        target_lang_code (str): קיצור שפת היעד (לדוגמה "fr", "es", "ar").
     """
     global conversation, SYSTEM_INST, TEMPERATURE
     conversation = []
 
-    SYSTEM_INST = SYSTEM_INST_TEMPLATE.format(target_language=target_language)
+    SYSTEM_INST = SYSTEM_INST_TEMPLATE.format(target_language_iw=target_language_iw)
 
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
@@ -200,7 +202,11 @@ def translate_json_file(file_path, target_language):
 
             compare_json_content(original_json_data, translated_data)
 
-            output_file_path = file_path.replace(".json", f"_translated_צרפתית.json") if target_language == "צרפתית" else file_path.replace(".json", f"_translated_{target_language}.json")
+            output_dir = target_lang_code
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+            output_file_path = os.path.join(output_dir, os.path.basename(file_path))
+
             with open(output_file_path, 'w', encoding='utf-8') as outfile:
                 json.dump(translated_data, outfile, indent=2, ensure_ascii=False)
             print(f"קובץ JSON מתורגם נשמר ב: '{output_file_path}'")
@@ -216,15 +222,34 @@ def translate_json_file(file_path, target_language):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="תרגום קובץ JSON לשפת יעד.")
+    parser.add_argument("target_lang_code", type=str, help="קוד שפה לתרגום (en, es, fr, iw)")
     parser.add_argument("level_number", type=int, help="מספר רמת הקובץ (לדוגמה, 1 עבור words_level_1.json)")
     args = parser.parse_args()
 
+    target_lang_code = args.target_lang_code
     level_number = args.level_number
-    file_path = f"words_level_{level_number}.json"
-    target_language = "אנגלית"
+    file_name = f"words_level_{level_number}.json"
+    file_path = os.path.join("en", file_name) # Assume original English files are in 'en' subfolder
 
     if not os.path.exists(file_path):
         print(f"Error: קובץ לא נמצא: '{file_path}'")
         exit()
 
-    translate_json_file(file_path, target_language)
+    try:
+        with open("lang_settings.json", 'r', encoding='utf-8') as f:
+            lang_settings = json.load(f)
+    except FileNotFoundError:
+        print("Error: lang_settings.json לא נמצא.")
+        exit()
+    except json.JSONDecodeError:
+        print("Error: שגיאה בפענוח lang_settings.json.")
+        exit()
+
+    if target_lang_code not in lang_settings:
+        print(f"Error: קוד שפה '{target_lang_code}' לא נתמך ב-lang_settings.json.")
+        exit()
+
+    target_language_iw = lang_settings[target_lang_code]["language_name_iw"]
+    target_language_en = lang_settings[target_lang_code]["language_name_en"]
+
+    translate_json_file(file_path, target_language_iw, target_language_en, target_lang_code)
