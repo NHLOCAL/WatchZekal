@@ -5,7 +5,8 @@ import base64
 from PIL import Image
 from io import BytesIO
 import re
-import argparse  # ייבוא argparse לטיפול בארגומנטים משורת הפקודה
+import argparse
+from deepdiff import DeepDiff
 
 API_KEY = os.environ.get("GEMINI_API_KEY")
 if not API_KEY:
@@ -25,7 +26,7 @@ SYSTEM_INST_TEMPLATE = """
 """
 
 conversation = []
-TEMPERATURE = 0.6 # הגדרת טמפרטורה גלובלית - ניתן לשנות כאן
+TEMPERATURE = 0.6
 
 def encode_image_to_base64(image_path: str) -> str:
     with open(image_path, "rb") as image_file:
@@ -64,16 +65,16 @@ def send_and_receive() -> str:
             ]
         },
         "contents": conversation,
-        "generationConfig": { # הגדרת generationConfig בדומה ל-CURL
-            "temperature": TEMPERATURE, # שימוש בטמפרטורה הגלובלית
-            "topK": 64, # ערכים אופציונליים נוספים - ניתן להסיר אם לא נדרש
-            "topP": 0.95, # ערכים אופציונליים נוספים
-            "maxOutputTokens": 65536, # ערכים אופציונליים נוספים
-            "responseMimeType": "text/plain" # ערכים אופציונליים נוספים
+        "generationConfig": {
+            "temperature": TEMPERATURE,
+            "topK": 64,
+            "topP": 0.95,
+            "maxOutputTokens": 65536,
+            "responseMimeType": "text/plain"
         }
     }
 
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-thinking-exp-01-21:generateContent" # שימוש במודל gemini-2.0-flash-thinking-exp-01-21
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-thinking-exp-01-21:generateContent"
     params = {"key": API_KEY}
     headers = {"Content-Type": "application/json"}
 
@@ -134,22 +135,34 @@ def validate_json_structure(original_json, translated_json):
                 return False
         return True
     else:
-        return True  # ערכים פרימיטיביים - אין צורך לבדוק מבנה לעומק
+        return True
+
+def compare_json_content(original_json, translated_json):
+    """
+    השוואת תוכן JSON וזיהוי שינויים בשדות שאינם 'word' או 'sentence'.
+    מציג את השינויים במסוף.
+    """
+    diff = DeepDiff(original_json, translated_json, exclude_regex_paths=[r"root\['levels'\]\[\d+\]\['subtopics'\]\[\d+\]\['words'\]\[\d+\]\['word'\]", r"root\['levels'\]\[\d+\]\['subtopics'\]\[\d+\]\['words'\]\[\d+\]\['examples'\]\[\d+\]\['sentence'\]"])
+
+    if diff:
+        print("נמצאו שינויים בשדות JSON שאינם 'word' או 'sentence':")
+        print(diff.to_json(indent=2))
+    else:
+        print("לא נמצאו שינויים בשדות JSON שאינם 'word' או 'sentence'.")
 
 def translate_json_file(file_path, target_language):
     """
     מתרגם קובץ JSON שלם משפה אחת לשפה אחרת באמצעות Gemini API.
     שולח את כל קובץ ה-JSON כהקשר ראשוני ומקבל קובץ JSON מתורגם מלא.
-    מוודא שהמבנה של קובץ ה-JSON המתורגם זהה למקור.
+    מוודא שהמבנה של קובץ ה-JSON המתורגם זהה למקור ובודק שינויים בתוכן.
 
     Args:
         file_path (str): נתיב לקובץ JSON.
         target_language (str): שפת היעד לתרגום (באנגלית, לדוגמה "English", "French", "Arabic").
     """
     global conversation, SYSTEM_INST, TEMPERATURE
-    conversation = [] # איפוס השיחה בתחילת תרגום קובץ חדש
+    conversation = []
 
-    # הגדרת הנחיית מערכת דינמית עם שפת היעד
     SYSTEM_INST = SYSTEM_INST_TEMPLATE.format(target_language=target_language)
 
     try:
@@ -162,34 +175,35 @@ def translate_json_file(file_path, target_language):
         print(f"Error: שגיאה בפענוח קובץ JSON. ודא שהקובץ '{file_path}' הוא קובץ JSON תקין.")
         return None
 
-    original_json_data = json_data.copy() # שמירת עותק של ה JSON המקורי לצורך השוואה
+    original_json_data = json_data.copy()
 
     json_string = json.dumps(json_data, indent=2, ensure_ascii=False)
 
-    # שליחת קובץ JSON מלא כהודעה למשתמש
     add_user_text(f"```json\n{json_string}\n```")
 
     print("שולח בקשה לתרגום קובץ JSON מלא...")
-    translated_text_md = send_and_receive() # מקבל תשובה בפורמט Markdown עם קוד JSON
+    translated_text_md = send_and_receive()
 
     print("תגובה מהמודל התקבלה.")
 
-    # חילוץ קוד JSON מתוך תגי Markdown
-    json_match = re.search(r'```json\s*(.*?)\s*```', translated_text_md, re.DOTALL) # חילוץ JSON מתגי MD
+    json_match = re.search(r'```json\s*(.*?)\s*```', translated_text_md, re.DOTALL)
     if json_match:
         translated_json_string = json_match.group(1).strip()
         try:
-            translated_data = json.loads(translated_json_string) # טעינת JSON מהמחרוזת
+            translated_data = json.loads(translated_json_string)
 
-            if validate_json_structure(original_json_data, translated_data): # וידוא מבנה JSON
+            if validate_json_structure(original_json_data, translated_data):
                 print("מבנה קובץ JSON תואם למקור - תקין.")
-                output_file_path = file_path.replace(".json", f"_translated_צרפתית.json") if target_language == "French" else file_path.replace(".json", f"_translated_{target_language}.json")
-                with open(output_file_path, 'w', encoding='utf-8') as outfile:
-                    json.dump(translated_data, outfile, indent=2, ensure_ascii=False)
-                print(f"קובץ JSON מתורגם נשמר ב: '{output_file_path}'")
             else:
                 print("Error: מבנה קובץ JSON לא תואם את המבנה המקורי!")
-                print("תרגום נכשל עקב אי התאמה במבנה.")
+                print("תרגום עלול להיות לא תקין עקב אי התאמה במבנה.")
+
+            compare_json_content(original_json_data, translated_data)
+
+            output_file_path = file_path.replace(".json", f"_translated_צרפתית.json") if target_language == "צרפתית" else file_path.replace(".json", f"_translated_{target_language}.json")
+            with open(output_file_path, 'w', encoding='utf-8') as outfile:
+                json.dump(translated_data, outfile, indent=2, ensure_ascii=False)
+            print(f"קובץ JSON מתורגם נשמר ב: '{output_file_path}'")
 
         except json.JSONDecodeError:
             print("Error: לא הצלחתי לפענח JSON מהתגובה של המודל.")
@@ -200,17 +214,16 @@ def translate_json_file(file_path, target_language):
         print("תוכן התגובה המלא מהמודל:")
         print(translated_text_md)
 
-
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="תרגום קובץ JSON לשפת יעד.") # הגדרת parser
-    parser.add_argument("level_number", type=int, help="מספר רמת הקובץ (לדוגמה, 1 עבור words_level_1.json)") # הוספת ארגומנט לקבלת מס' רמה
-    args = parser.parse_args() # קריאת ארגומנטים משורת הפקודה
+    parser = argparse.ArgumentParser(description="תרגום קובץ JSON לשפת יעד.")
+    parser.add_argument("level_number", type=int, help="מספר רמת הקובץ (לדוגמה, 1 עבור words_level_1.json)")
+    args = parser.parse_args()
 
-    level_number = args.level_number # קבלת מס' רמה מהארגומנטים
-    file_path = f"words_level_{level_number}.json" # בניית נתיב קובץ דינמי
-    target_language = "צרפתית" # שנה כאן את שפת היעד הרצויה
+    level_number = args.level_number
+    file_path = f"words_level_{level_number}.json"
+    target_language = "אנגלית"
 
-    if not os.path.exists(file_path): # בדיקה אם הקובץ קיים
+    if not os.path.exists(file_path):
         print(f"Error: קובץ לא נמצא: '{file_path}'")
         exit()
 
