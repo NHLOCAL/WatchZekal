@@ -222,8 +222,8 @@ def translate_json_file(file_path, target_language_iw, target_language_en, targe
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="תרגום קובץ JSON לשפת יעד.")
-    parser.add_argument("target_lang_code", type=str, help="קוד שפה לתרגום (en, es, fr, iw)")
     parser.add_argument("level_number", type=int, help="מספר רמת הקובץ (לדוגמה, 1 עבור words_level_1.json)")
+    parser.add_argument("target_lang_code", type=str, help="קוד שפה לתרגום (en, es, fr, iw)")
     args = parser.parse_args()
 
     target_lang_code = args.target_lang_code
