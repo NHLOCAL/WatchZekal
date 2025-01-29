@@ -112,11 +112,35 @@ def send_and_receive() -> str:
 
     return resp_text
 
+def validate_json_structure(original_json, translated_json):
+    """
+    פונקציה רקורסיבית לווידוא שמבנה ה-JSON זהה בין שני אובייקטים.
+    """
+    if type(original_json) != type(translated_json):
+        return False
+
+    if isinstance(original_json, dict):
+        if set(original_json.keys()) != set(translated_json.keys()):
+            return False
+        for key in original_json:
+            if not validate_json_structure(original_json[key], translated_json[key]):
+                return False
+        return True
+    elif isinstance(original_json, list):
+        if len(original_json) != len(translated_json):
+            return False
+        for i in range(len(original_json)):
+            if not validate_json_structure(original_json[i], translated_json[i]):
+                return False
+        return True
+    else:
+        return True  # ערכים פרימיטיביים - אין צורך לבדוק מבנה לעומק
 
 def translate_json_file(file_path, target_language):
     """
     מתרגם קובץ JSON שלם משפה אחת לשפה אחרת באמצעות Gemini API.
     שולח את כל קובץ ה-JSON כהקשר ראשוני ומקבל קובץ JSON מתורגם מלא.
+    מוודא שהמבנה של קובץ ה-JSON המתורגם זהה למקור.
 
     Args:
         file_path (str): נתיב לקובץ JSON.
@@ -138,6 +162,8 @@ def translate_json_file(file_path, target_language):
         print(f"Error: שגיאה בפענוח קובץ JSON. ודא שהקובץ '{file_path}' הוא קובץ JSON תקין.")
         return None
 
+    original_json_data = json_data.copy() # שמירת עותק של ה JSON המקורי לצורך השוואה
+
     json_string = json.dumps(json_data, indent=2, ensure_ascii=False)
 
     # שליחת קובץ JSON מלא כהודעה למשתמש
@@ -154,10 +180,16 @@ def translate_json_file(file_path, target_language):
         translated_json_string = json_match.group(1).strip()
         try:
             translated_data = json.loads(translated_json_string) # טעינת JSON מהמחרוזת
-            output_file_path = file_path.replace(".json", f"_translated_{target_language}.json")
-            with open(output_file_path, 'w', encoding='utf-8') as outfile:
-                json.dump(translated_data, outfile, indent=2, ensure_ascii=False)
-            print(f"קובץ JSON מתורגם נשמר ב: '{output_file_path}'")
+
+            if validate_json_structure(original_json_data, translated_data): # וידוא מבנה JSON
+                print("מבנה קובץ JSON תואם למקור - תקין.")
+                output_file_path = file_path.replace(".json", f"_translated_צרפתית.json") if target_language == "French" else file_path.replace(".json", f"_translated_{target_language}.json")
+                with open(output_file_path, 'w', encoding='utf-8') as outfile:
+                    json.dump(translated_data, outfile, indent=2, ensure_ascii=False)
+                print(f"קובץ JSON מתורגם נשמר ב: '{output_file_path}'")
+            else:
+                print("Error: מבנה קובץ JSON לא תואם את המבנה המקורי!")
+                print("תרגום נכשל עקב אי התאמה במבנה.")
 
         except json.JSONDecodeError:
             print("Error: לא הצלחתי לפענח JSON מהתגובה של המודל.")
@@ -176,7 +208,6 @@ if __name__ == "__main__":
 
     level_number = args.level_number # קבלת מס' רמה מהארגומנטים
     file_path = f"words_level_{level_number}.json" # בניית נתיב קובץ דינמי
-    target_language = "צרפתית" # שנה כאן את שפת היעד הרצויה
 
     if not os.path.exists(file_path): # בדיקה אם הקובץ קיים
         print(f"Error: קובץ לא נמצא: '{file_path}'")
