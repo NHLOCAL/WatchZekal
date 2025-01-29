@@ -5,6 +5,7 @@ import base64
 from PIL import Image
 from io import BytesIO
 import re
+import argparse  # ייבוא argparse לטיפול בארגומנטים משורת הפקודה
 
 API_KEY = os.environ.get("GEMINI_API_KEY")
 if not API_KEY:
@@ -72,7 +73,7 @@ def send_and_receive() -> str:
         }
     }
 
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent" # שימוש במודל gemini-2.0-flash-exp
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-thinking-exp-01-21:generateContent" # שימוש במודל gemini-2.0-flash-thinking-exp-01-21
     params = {"key": API_KEY}
     headers = {"Content-Type": "application/json"}
 
@@ -169,7 +170,16 @@ def translate_json_file(file_path, target_language):
 
 
 if __name__ == "__main__":
-    file_path = "words_level_0.json"
+    parser = argparse.ArgumentParser(description="תרגום קובץ JSON לשפת יעד.") # הגדרת parser
+    parser.add_argument("level_number", type=int, help="מספר רמת הקובץ (לדוגמה, 1 עבור words_level_1.json)") # הוספת ארגומנט לקבלת מס' רמה
+    args = parser.parse_args() # קריאת ארגומנטים משורת הפקודה
+
+    level_number = args.level_number # קבלת מס' רמה מהארגומנטים
+    file_path = f"words_level_{level_number}.json" # בניית נתיב קובץ דינמי
     target_language = "צרפתית" # שנה כאן את שפת היעד הרצויה
+
+    if not os.path.exists(file_path): # בדיקה אם הקובץ קיים
+        print(f"Error: קובץ לא נמצא: '{file_path}'")
+        exit()
 
     translate_json_file(file_path, target_language)
