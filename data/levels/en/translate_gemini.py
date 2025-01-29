@@ -4,6 +4,7 @@ import requests
 import base64
 from PIL import Image
 from io import BytesIO
+import re
 
 API_KEY = os.environ.get("GEMINI_API_KEY")
 if not API_KEY:
@@ -11,13 +12,15 @@ if not API_KEY:
     exit()
 
 SYSTEM_INST_TEMPLATE = """
-אתה מודל שפה גדול שמבצע תרגום מקצועי של טקסטים בעברית ל{target_language}.
-המשימה שלך היא לתרגם טקסטים מקובץ JSON לשפת ה{target_language}, תוך התמקדות בשדות ספציפיים בלבד: 'sentence' ו- 'word'.
-עליך לשמור על מבנה ה-JSON המקורי ולתרגם רק את הערכים של השדות האלה.
-הקובץ JSON המלא יסופק לך בהודעה הראשונה כהקשר.
-לאחר מכן, תקבל משפט אחד בכל פעם משדות הטקסט הרלוונטיים מתוך ה-JSON, ותגובתך צריכה להיות תרגום של המשפט הזה ל{target_language} בלבד.
-אל תתרגם שדות אחרים או מילים מחוץ לשדות 'sentence' ו- 'word'.
-השתמש בתרגום מקצועי וטבעי, המתאים ללימוד שפה.
+אתה מודל שפה גדול שמקבל קבצי JSON המיועדים לבניית סרטונים ללימוד אנגלית.
+על בסיס התוכן בקובץ, עליך ליצור קובץ JSON חדש וזהה לחלוטין שמלמד {target_language} במקום אנגלית.
+עליך להחליף את המילים באנגלית למילים ב{target_language}, וכך גם את המשפטים לדוגמה.
+הקפד לשמור על מבנה זהה של תוכן ושים לב ששמות השלבים, הקטעים והקריאה לפעולה ישארו בעברית!
+
+הקובץ JSON המלא יסופק לך בהודעה הבאה.
+עליך להחזיר קובץ JSON מתורגם מלא בתוך תגי קוד Markdown (```json ... ```).
+
+הקפד על תרגום מדויק, ניסוח תקין ובאיכות גבוהה בשפה ה{target_language}.
 """
 
 conversation = []
@@ -108,16 +111,11 @@ def send_and_receive() -> str:
 
     return resp_text
 
-def translate_text(text_to_translate, target_language):
-    global conversation
-    add_user_text(text_to_translate)
-    translated_text = send_and_receive()
-    return translated_text
 
 def translate_json_file(file_path, target_language):
     """
-    מתרגם טקסט בעברית בקובץ JSON לשפה הרצויה, רק בשדות 'sentence' ו- 'word'.
-    שולח את כל קובץ ה-JSON כהקשר ראשוני.
+    מתרגם קובץ JSON שלם משפה אחת לשפה אחרת באמצעות Gemini API.
+    שולח את כל קובץ ה-JSON כהקשר ראשוני ומקבל קובץ JSON מתורגם מלא.
 
     Args:
         file_path (str): נתיב לקובץ JSON.
@@ -126,12 +124,12 @@ def translate_json_file(file_path, target_language):
     global conversation, SYSTEM_INST, TEMPERATURE
     conversation = [] # איפוס השיחה בתחילת תרגום קובץ חדש
 
-    # הגדרת הנחיית מערכת דינמית עם שפת היעד והטמפרטורה
-    SYSTEM_INST = SYSTEM_INST_TEMPLATE.format(target_language=target_language, temperature=TEMPERATURE)
+    # הגדרת הנחיית מערכת דינמית עם שפת היעד
+    SYSTEM_INST = SYSTEM_INST_TEMPLATE.format(target_language=target_language)
 
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+            json_data = json.load(f)
     except FileNotFoundError:
         print(f"Error: קובץ לא נמצא בנתיב '{file_path}'.")
         return None
@@ -139,35 +137,39 @@ def translate_json_file(file_path, target_language):
         print(f"Error: שגיאה בפענוח קובץ JSON. ודא שהקובץ '{file_path}' הוא קובץ JSON תקין.")
         return None
 
-    # שליחת קובץ JSON מלא כהקשר ראשוני
-    add_user_text(f"הקובץ JSON הבא מספק הקשר לתרגום: \n\n ```json\n{json.dumps(data, indent=2, ensure_ascii=False)}\n```\n\n עכשיו אתחיל לשלוח לך משפטים בודדים לתרגום.")
+    json_string = json.dumps(json_data, indent=2, ensure_ascii=False)
 
-    def translate_recursive(json_object):
-        if isinstance(json_object, dict):
-            for key, value in json_object.items():
-                if isinstance(value, str) and key in ["sentence", "word"]: # תרגום רק בשדות 'sentence' ו- 'word'
-                    print(f"מתרגם שדה '{key}': '{value}'")
-                    translated_text = translate_text(value, target_language)
-                    print(f"-> תרגום: '{translated_text}'")
-                    json_object[key] = translated_text
-                elif isinstance(value, (dict, list)):
-                    translate_recursive(value)
-        elif isinstance(json_object, list):
-            for item in json_object:
-                translate_recursive(item)
+    # שליחת קובץ JSON מלא כהודעה למשתמש
+    add_user_text(f"```json\n{json_string}\n```")
 
-    translate_recursive(data)
+    print("שולח בקשה לתרגום קובץ JSON מלא...")
+    translated_text_md = send_and_receive() # מקבל תשובה בפורמט Markdown עם קוד JSON
 
-    output_file_path = file_path.replace(".json", f"_translated_{target_language}.json")
-    try:
-        with open(output_file_path, 'w', encoding='utf-8') as outfile:
-            json.dump(data, outfile, indent=2, ensure_ascii=False)
-        print(f"קובץ JSON מתורגם נשמר ב: '{output_file_path}'")
-    except Exception as e:
-        print(f"Error: שגיאה בשמירת קובץ JSON מתורגם: {e}")
+    print("תגובה מהמודל התקבלה.")
+
+    # חילוץ קוד JSON מתוך תגי Markdown
+    json_match = re.search(r'```json\s*(.*?)\s*```', translated_text_md, re.DOTALL) # חילוץ JSON מתגי MD
+    if json_match:
+        translated_json_string = json_match.group(1).strip()
+        try:
+            translated_data = json.loads(translated_json_string) # טעינת JSON מהמחרוזת
+            output_file_path = file_path.replace(".json", f"_translated_{target_language}.json")
+            with open(output_file_path, 'w', encoding='utf-8') as outfile:
+                json.dump(translated_data, outfile, indent=2, ensure_ascii=False)
+            print(f"קובץ JSON מתורגם נשמר ב: '{output_file_path}'")
+
+        except json.JSONDecodeError:
+            print("Error: לא הצלחתי לפענח JSON מהתגובה של המודל.")
+            print("תוכן התגובה המלא מהמודל:")
+            print(translated_text_md)
+    else:
+        print("Error: לא נמצא קוד JSON בתגובה מהמודל (תגי ```json לא נמצאו).")
+        print("תוכן התגובה המלא מהמודל:")
+        print(translated_text_md)
+
 
 if __name__ == "__main__":
     file_path = "words_level_0.json"
-    target_language = "French" # שנה כאן את שפת היעד הרצויה
+    target_language = "צרפתית" # שנה כאן את שפת היעד הרצויה
 
     translate_json_file(file_path, target_language)
