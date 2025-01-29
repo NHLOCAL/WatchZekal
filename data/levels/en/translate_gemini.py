@@ -208,6 +208,7 @@ if __name__ == "__main__":
 
     level_number = args.level_number # קבלת מס' רמה מהארגומנטים
     file_path = f"words_level_{level_number}.json" # בניית נתיב קובץ דינמי
+    target_language = "צרפתית" # שנה כאן את שפת היעד הרצויה
 
     if not os.path.exists(file_path): # בדיקה אם הקובץ קיים
         print(f"Error: קובץ לא נמצא: '{file_path}'")
