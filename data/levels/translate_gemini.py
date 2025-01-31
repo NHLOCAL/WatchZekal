@@ -34,18 +34,20 @@ QUALITY_CHECK_INST_TEMPLATE = """
 * **מיקוד בדיקה:**  חפש משפטים שבהם יש **טעויות ניסוח ברורות**, **תרגום לא מדויק** או **שימוש בשפה שאינו תקני או מקובל** ב{source_language_iw} או בעברית.
 * **סוגי טעויות:**  שים לב לטעויות דקדוקיות, תחביריות, סמנטיות וטעויות תרגום המשנות את המשמעות המקורית.
 * **אי הכללה:**  **אין צורך** להציע שיפורים סגנוניים, גיוון ניסוח או שינויים שאינם נובעים **מטעות ברורה**. התמקד אך ורק בתיקון טעויות מהותיות.
+* **פלט במקרה של תקינות:** אם לא נמצאו טעויות או משפטים הדורשים תיקון, החזר את המחרוזת הבאה בדיוק: "NO_ERRORS_FOUND"
 
 **פורמט פלט:**
 * הצג **רשימה ממוקדת וברורה** של **כל המשפטים הדורשים תיקון**.
 * עבור כל משפט בעייתי, הצג **גם את המשפט בשפת המקור ({source_language_iw} או עברית) וגם את המשפט המתורגם**.
 * ציין **בבירור את סוג הבעיה** (למשל: טעות תרגום, ניסוח לא תקני בעברית, טעות דקדוק ב{source_language_iw}).
 
-**דגש על מיקוד:**  התשובה שלך צריכה להיות **ממוקדת אך ורק** בהצגת משפטים הדורשים תיקון בשתי השפות, ללא המלצות לשינויים שאינם תיקון טעות ברורה.
+**דגש על מיקוד:**  התשובה שלך צריכה להיות **ממוקדת אך ורק** בהצגת משפטים הדורשים תיקון בשתי השפות, ללא המלצות לשינויים שאינם תיקון טעות ברורה. או החזרת המחרוזת "NO_ERRORS_FOUND" אם אין טעויות.
 """
 
 
 conversation = []
-TEMPERATURE = 0.7
+TEMPERATURE = 0.6 # Updated temperature
+TEMPERATURE_QUALITY_CHECK = 0.7 # Temperature for quality check, set to 0 for more deterministic output. Can be adjusted.
 
 def encode_image_to_base64(image_path: str) -> str:
     with open(image_path, "rb") as image_file:
@@ -75,7 +77,9 @@ def add_user_image(image_path: str, mime_type: str = "image/jpeg"):
         ]
     })
 
-def send_and_receive() -> str:
+def send_and_receive(quality_check=False) -> str:
+    current_temperature = TEMPERATURE_QUALITY_CHECK if quality_check else TEMPERATURE
+
     payload = {
         "systemInstruction": {
             "role": "system",
@@ -85,7 +89,7 @@ def send_and_receive() -> str:
         },
         "contents": conversation,
         "generationConfig": {
-            "temperature": TEMPERATURE,
+            "temperature": current_temperature,
             "topK": 64,
             "topP": 0.95,
             "maxOutputTokens": 65536,
@@ -93,9 +97,7 @@ def send_and_receive() -> str:
         }
     }
 
-    # אפשרות חילופית: gemini-2.0-flash-thinking-exp-01-21
-    # gemini-exp-1206
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-thinking-exp-01-21:generateContent"
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-thinking-exp-01-21:generateContent" # Updated model
     params = {"key": API_KEY}
     headers = {"Content-Type": "application/json"}
 
@@ -187,7 +189,7 @@ def perform_quality_check(file_path, source_language_iw, target_language_iw, sou
     global conversation, SYSTEM_INST
     conversation = []
 
-    QUALITY_CHECK_SYS_INST = QUALITY_CHECK_INST_TEMPLATE.replace("אנגלית", source_language_iw)
+    QUALITY_CHECK_SYS_INST = QUALITY_CHECK_INST_TEMPLATE.format(source_language_iw=source_language_iw)
     SYSTEM_INST = QUALITY_CHECK_SYS_INST
 
     try:
@@ -204,8 +206,12 @@ def perform_quality_check(file_path, source_language_iw, target_language_iw, sou
     add_user_text(f"```json\n{json_string}\n```")
 
     print("שולח בקשה לביצוע בדיקת איכות תרגום...")
-    quality_check_report_md = send_and_receive()
+    quality_check_report_md = send_and_receive(quality_check=True) # Pass quality_check=True to send_and_receive
     print("דוח בדיקת איכות התקבל מהמודל.")
+
+    if quality_check_report_md.strip() == "NO_ERRORS_FOUND": # Check for "NO_ERRORS_FOUND"
+        print("לא נמצאו שגיאות תרגום על ידי המודל.")
+        return # Skip saving report
 
     report_filename = f"quality_report_{os.path.basename(file_path).replace('.json', '')}_{target_lang_code}.txt"
     output_dir = target_lang_code
