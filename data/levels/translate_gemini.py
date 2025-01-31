@@ -25,8 +25,27 @@ SYSTEM_INST_TEMPLATE = """
 הקפד על תרגום מדויק, ניסוח תקין ובאיכות גבוהה בשפה ה{target_language_iw}.
 """
 
+QUALITY_CHECK_INST_TEMPLATE = """
+**תפקידך:** לבדוק קבצי JSON המכילים אוצר מילים ב{source_language_iw}, תרגומים לעברית ומשפטי דוגמה בשתי השפות.
+
+**משימה:**  עליך לבצע בדיקה **יסודית** של התוכן כדי לוודא **דיוק ניסוח ותרגום** בשתי השפות - {source_language_iw} ועברית.
+
+**הנחיות ספציפיות:**
+* **מיקוד בדיקה:**  חפש משפטים שבהם יש **טעויות ניסוח ברורות**, **תרגום לא מדויק** או **שימוש בשפה שאינו תקני או מקובל** ב{source_language_iw} או בעברית.
+* **סוגי טעויות:**  שים לב לטעויות דקדוקיות, תחביריות, סמנטיות וטעויות תרגום המשנות את המשמעות המקורית.
+* **אי הכללה:**  **אין צורך** להציע שיפורים סגנוניים, גיוון ניסוח או שינויים שאינם נובעים **מטעות ברורה**. התמקד אך ורק בתיקון טעויות מהותיות.
+
+**פורמט פלט:**
+* הצג **רשימה ממוקדת וברורה** של **כל המשפטים הדורשים תיקון**.
+* עבור כל משפט בעייתי, הצג **גם את המשפט בשפת המקור ({source_language_iw} או עברית) וגם את המשפט המתורגם**.
+* ציין **בבירור את סוג הבעיה** (למשל: טעות תרגום, ניסוח לא תקני בעברית, טעות דקדוק ב{source_language_iw}).
+
+**דגש על מיקוד:**  התשובה שלך צריכה להיות **ממוקדת אך ורק** בהצגת משפטים הדורשים תיקון בשתי השפות, ללא המלצות לשינויים שאינם תיקון טעות ברורה.
+"""
+
+
 conversation = []
-TEMPERATURE = 0.6
+TEMPERATURE = 0.7
 
 def encode_image_to_base64(image_path: str) -> str:
     with open(image_path, "rb") as image_file:
@@ -75,7 +94,8 @@ def send_and_receive() -> str:
     }
 
     # אפשרות חילופית: gemini-2.0-flash-thinking-exp-01-21
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-exp-1206:generateContent"
+    # gemini-exp-1206
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-thinking-exp-01-21:generateContent"
     params = {"key": API_KEY}
     headers = {"Content-Type": "application/json"}
 
@@ -151,6 +171,51 @@ def compare_json_content(original_json, translated_json):
     else:
         print("לא נמצאו שינויים בשדות JSON שאינם 'word' או 'sentence'.")
 
+def perform_quality_check(file_path, source_language_iw, target_language_iw, source_lang_code, target_lang_code):
+    """
+    מבצע בדיקת איכות לתוכן JSON מתורגם באמצעות Gemini API.
+    מנתח את קובץ ה-JSON המתורגם ומבקש מהמודל לבדוק את התרגום.
+    שומר את דוח הבדיקה לקובץ טקסט.
+
+    Args:
+        file_path (str): נתיב לקובץ JSON המתורגם.
+        source_language_iw (str): שפת המקור בעברית (לדוגמה "אנגלית").
+        target_language_iw (str): שפת היעד בעברית (לדוגמה "צרפתית").
+        source_lang_code (str): קוד שפת המקור (לדוגמה "en").
+        target_lang_code (str): קוד שפת היעד (לדוגמה "fr").
+    """
+    global conversation, SYSTEM_INST
+    conversation = []
+
+    QUALITY_CHECK_SYS_INST = QUALITY_CHECK_INST_TEMPLATE.replace("אנגלית", source_language_iw)
+    SYSTEM_INST = QUALITY_CHECK_SYS_INST
+
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            json_data = json.load(f)
+    except FileNotFoundError:
+        print(f"Error: קובץ לא נמצא בנתיב '{file_path}'.")
+        return None
+    except json.JSONDecodeError:
+        print(f"Error: שגיאה בפענוח קובץ JSON. ודא שהקובץ '{file_path}' הוא קובץ JSON תקין.")
+        return None
+
+    json_string = json.dumps(json_data, indent=2, ensure_ascii=False)
+    add_user_text(f"```json\n{json_string}\n```")
+
+    print("שולח בקשה לביצוע בדיקת איכות תרגום...")
+    quality_check_report_md = send_and_receive()
+    print("דוח בדיקת איכות התקבל מהמודל.")
+
+    report_filename = f"quality_report_{os.path.basename(file_path).replace('.json', '')}_{target_lang_code}.txt"
+    output_dir = target_lang_code
+    report_file_path = os.path.join(output_dir, report_filename)
+
+    with open(report_file_path, 'w', encoding='utf-8') as report_file:
+        report_file.write(quality_check_report_md)
+    print(f"דוח בדיקת איכות נשמר ב: '{report_file_path}'")
+
+
 def translate_json_file(file_path, target_language_iw, target_language_en, target_lang_code):
     """
     מתרגם קובץ JSON שלם משפה אחת לשפה אחרת באמצעות Gemini API.
@@ -211,6 +276,11 @@ def translate_json_file(file_path, target_language_iw, target_language_en, targe
             with open(output_file_path, 'w', encoding='utf-8') as outfile:
                 json.dump(translated_data, outfile, indent=2, ensure_ascii=False)
             print(f"קובץ JSON מתורגם נשמר ב: '{output_file_path}'")
+
+            # Perform quality check after saving the translated JSON
+            source_language_iw = "אנגלית" # Source language is always English in this script's context
+            perform_quality_check(output_file_path, source_language_iw, target_language_iw, "en", target_lang_code)
+
 
         except json.JSONDecodeError:
             print("Error: לא הצלחתי לפענח JSON מהתגובה של המודל.")
