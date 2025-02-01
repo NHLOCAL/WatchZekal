@@ -48,10 +48,20 @@ QUALITY_CHECK_INST_TEMPLATE = """
 **דגש על מיקוד:**  התשובה שלך צריכה להיות **ממוקדת אך ורק** בהצגת משפטים הדורשים תיקון בשתי השפות, כולל משפט חלופי תקין, או החזרת המחרוזת "NO_ERRORS_FOUND" אם אין טעויות.
 """
 
-
 conversation = []
-TEMPERATURE = 0.6 # Updated temperature
-TEMPERATURE_QUALITY_CHECK = 0.7 # Temperature for quality check, set to 0 for more deterministic output. Can be adjusted.
+TEMPERATURE = 0.6 
+TEMPERATURE_QUALITY_CHECK = 0.7
+
+MODELS_CONFIG = {
+    "thinking": {
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-thinking-exp-01-21:generateContent",
+        "temperature": TEMPERATURE_QUALITY_CHECK
+    },
+    "1206": {
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-exp-1206:generateContent",
+        "temperature": TEMPERATURE_QUALITY_CHECK
+    }
+}
 
 def encode_image_to_base64(image_path: str) -> str:
     with open(image_path, "rb") as image_file:
@@ -81,8 +91,22 @@ def add_user_image(image_path: str, mime_type: str = "image/jpeg"):
         ]
     })
 
-def send_and_receive(quality_check=False) -> str:
-    current_temperature = TEMPERATURE_QUALITY_CHECK if quality_check else TEMPERATURE
+def send_and_receive(model_name="thinking", quality_check=False) -> str:
+    """
+    שולח בקשה ל-Gemini API ומקבל תגובה.
+
+    Args:
+        model_name (str): שם המודל לשימוש ("thinking" או "1206").
+        quality_check (bool): האם מדובר בבדיקת איכות.
+
+    Returns:
+        str: תגובת המודל.
+    """
+    model_config = MODELS_CONFIG.get(model_name)
+    if not model_config:
+        raise ValueError(f"Invalid model name: {model_name}")
+
+    current_temperature = model_config["temperature"] if quality_check else TEMPERATURE
 
     payload = {
         "systemInstruction": {
@@ -101,7 +125,7 @@ def send_and_receive(quality_check=False) -> str:
         }
     }
 
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-thinking-exp-01-21:generateContent" # Updated model
+    url = model_config["url"]
     params = {"key": API_KEY}
     headers = {"Content-Type": "application/json"}
 
@@ -126,11 +150,11 @@ def send_and_receive(quality_check=False) -> str:
                 })
                 resp_text = model_text
             else:
-                print("לא נמצא תוכן בתשובת המודל.")
+                print(f"לא נמצא תוכן בתשובת המודל {model_name}.")
         else:
-            print("לא התקבלה תשובה מהמודל.")
+            print(f"לא התקבלה תשובה מהמודל {model_name}.")
     except requests.exceptions.RequestException as e:
-        print(f"שגיאת בקשה ל-API: {e}")
+        print(f"שגיאת בקשה ל-API ({model_name}): {e}")
         if response is not None:
             print(f"סטטוס קוד: {response.status_code}")
             print("תוכן התגובה:")
@@ -179,8 +203,8 @@ def compare_json_content(original_json, translated_json):
 
 def perform_quality_check(file_path, source_language_iw, target_language_iw, source_lang_code, target_lang_code):
     """
-    מבצע בדיקת איכות לתוכן JSON מתורגם באמצעות Gemini API.
-    מנתח את קובץ ה-JSON המתורגם ומבקש מהמודל לבדוק את התרגום.
+    מבצע בדיקת איכות כפולה לתוכן JSON מתורגם באמצעות Gemini API, פעם אחת עם מודל "thinking" ופעם נוספת עם מודל "1206".
+    משלב את תוצאות שתי הבדיקות לדוח אחד.
     שומר את דוח הבדיקה לקובץ טקסט.
 
     Args:
@@ -210,21 +234,38 @@ def perform_quality_check(file_path, source_language_iw, target_language_iw, sou
     add_user_text(f"```json\n{json_string}\n```")
 
     print("שולח בקשה לביצוע בדיקת איכות תרגום...")
-    quality_check_report_md = send_and_receive(quality_check=True) # Pass quality_check=True to send_and_receive
-    print("דוח בדיקת איכות התקבל מהמודל.")
 
-    if quality_check_report_md.strip() == "NO_ERRORS_FOUND": # Check for "NO_ERRORS_FOUND"
-        print("לא נמצאו שגיאות תרגום על ידי המודל.")
-        return # Skip saving report
+    # Perform quality check with "thinking" model
+    quality_check_report_thinking = send_and_receive(model_name="thinking", quality_check=True)
+    print(f"דוח בדיקת איכות התקבל מהמודל thinking.")
 
+    # Reset conversation for the second quality check
+    conversation = []
+    add_user_text(f"```json\n{json_string}\n```")
+
+    # Perform quality check with "1206" model
+    quality_check_report_1206 = send_and_receive(model_name="1206", quality_check=True)
+    print(f"דוח בדיקת איכות התקבל מהמודל 1206.")
+    
+    # Combine reports
+    combined_report = ""
+    if quality_check_report_thinking.strip() == "NO_ERRORS_FOUND" and quality_check_report_1206.strip() == "NO_ERRORS_FOUND":
+        combined_report = "NO_ERRORS_FOUND"
+        print("לא נמצאו שגיאות תרגום על ידי שני המודלים.")
+    else:
+        combined_report += "דוח בדיקת איכות - מודל thinking:\n"
+        combined_report += quality_check_report_thinking + "\n\n"
+        combined_report += "דוח בדיקת איכות - מודל 1206:\n"
+        combined_report += quality_check_report_1206
+
+    # Save combined report
     report_filename = f"quality_report_{os.path.basename(file_path).replace('.json', '')}_{target_lang_code}.txt"
     output_dir = target_lang_code
     report_file_path = os.path.join(output_dir, report_filename)
 
     with open(report_file_path, 'w', encoding='utf-8') as report_file:
-        report_file.write(quality_check_report_md)
-    print(f"דוח בדיקת איכות נשמר ב: '{report_file_path}'")
-
+        report_file.write(combined_report)
+    print(f"דוח בדיקת איכות משולב נשמר ב: '{report_file_path}'")
 
 def translate_json_file(file_path, target_language_iw, target_language_en, target_lang_code):
     """
@@ -288,9 +329,8 @@ def translate_json_file(file_path, target_language_iw, target_language_en, targe
             print(f"קובץ JSON מתורגם נשמר ב: '{output_file_path}'")
 
             # Perform quality check after saving the translated JSON
-            source_language_iw = "אנגלית" # Source language is always English in this script's context
+            source_language_iw = "אנגלית" 
             perform_quality_check(output_file_path, source_language_iw, target_language_iw, "en", target_lang_code)
-
 
         except json.JSONDecodeError:
             print("Error: לא הצלחתי לפענח JSON מהתגובה של המודל.")
@@ -310,7 +350,7 @@ if __name__ == "__main__":
     target_lang_code = args.target_lang_code
     level_number = args.level_number
     file_name = f"words_level_{level_number}.json"
-    file_path = os.path.join("en", file_name) # Assume original English files are in 'en' subfolder
+    file_path = os.path.join("en", file_name)
 
     if not os.path.exists(file_path):
         print(f"Error: קובץ לא נמצא: '{file_path}'")
