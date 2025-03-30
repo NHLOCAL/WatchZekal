@@ -21,12 +21,14 @@ ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
 FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 output_frames_dir = os.path.join(BASE_DIR, "subtitle_frames") # תיקייה לשמירת תמונות
 srt_files_dir = os.path.join(BASE_DIR, "srt_files")  # תיקייה לשמירת קבצי SRT
+output_dir = os.path.join(BASE_DIR, "output")  # תיקייה לשמירת קבצי וידאו
 
 # --- יצירת תיקיות נדרשות ---
 os.makedirs(ASSETS_DIR, exist_ok=True)
 os.makedirs(FONTS_DIR, exist_ok=True)
 os.makedirs(output_frames_dir, exist_ok=True)
 os.makedirs(srt_files_dir, exist_ok=True)  # יצירת תיקיית SRT
+os.makedirs(output_dir, exist_ok=True)
 
 # --- הגדרות קלט ---
 youtube_link = input("הזן קישור YouTube לשיר: ")
@@ -276,7 +278,7 @@ print(f"Hebrew SRT saved to: {srt_he_file}")
 
 # --- הגדרת שם קובץ פלט ושם השיר ---
 output_video_base = os.path.splitext(os.path.basename(mp3_file))[0]
-output_video_file = f"{output_video_base}_subtitled_v3.mp4" # עדכון שם קובץ פלט
+output_video_file = os.path.join(output_dir, f"{output_video_base}_subtitled.mp4")  # עדכון שם קובץ פלט
 song_title_text = output_video_base.replace('_', ' ').replace('-', ' ').title()
 print(f"שם השיר שיוצג: {song_title_text}")
 print(f"שם קובץ הפלט יהיה: {output_video_file}")
@@ -642,21 +644,34 @@ else:
 print("מוסיף את האודיו לקליפ הסופי...")
 final_clip_with_saving = final_clip_with_saving.set_audio(audio_clip)
 
-# --- יצירת קובץ הוידאו הסופי (ללא שינוי) ---
+# --- יצירת קובץ הוידאו הסופי ---
 print(f"יוצר את קובץ הוידאו '{output_video_file}'...")
+temp_audio_file = os.path.join(output_dir, f'temp-audio-{output_video_base}.m4a')  # עדכון נתיב קובץ temp audio
 try:
     final_clip_with_saving.write_videofile(output_video_file, fps=video_fps, codec='libx264', audio_codec='aac',
-                                           temp_audiofile=f'temp-audio-{output_video_base}.m4a', remove_temp=True,
+                                           temp_audiofile=temp_audio_file, remove_temp=True,
                                            threads=os.cpu_count() or 4, preset='medium', logger='bar')
     print(f"\nיצירת הוידאו '{output_video_file}' הושלמה בהצלחה!")
-    if combined_subs_list_for_frames: print(f"פריימים נשמרו בתיקייה: '{output_frames_dir}'")
-except Exception as e: print(f"\nשגיאה במהלך יצירת הוידאו:\n{e}")
+    if combined_subs_list_for_frames:
+        print(f"פריימים נשמרו בתיקייה: '{output_frames_dir}'")
+except Exception as e:
+    print(f"\nשגיאה במהלך יצירת הוידאו:\n{e}")
 finally:
-    # --- שחרור משאבים (ללא שינוי) ---
+    # --- מחיקת קובץ temp audio אם קיים ---
+    if os.path.exists(temp_audio_file):
+        try:
+            os.remove(temp_audio_file)
+            print(f"קובץ temp audio נמחק: {temp_audio_file}")
+        except Exception as e:
+            print(f"אזהרה: לא ניתן למחוק את קובץ temp audio '{temp_audio_file}': {e}")
+
+    # --- שחרור משאבים ---
     print("משחרר משאבים...")
     for clip_var in ['audio_clip', 'final_clip', 'final_clip_with_saving', 'background_clip', 'title_clip', 'subtitles_clip']:
         clip_obj = locals().get(clip_var)
         if clip_obj and hasattr(clip_obj, 'close') and callable(getattr(clip_obj, 'close', None)):
-            try: clip_obj.close()
-            except Exception as e_close: print(f"Warning: Error closing {clip_var}: {e_close}")
+            try:
+                clip_obj.close()
+            except Exception as e_close:
+                print(f"Warning: Error closing {clip_var}: {e_close}")
     print("סיום.")
