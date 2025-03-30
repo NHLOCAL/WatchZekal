@@ -183,7 +183,7 @@ def generate_subtitles_from_youtube(youtube_url):
         api_key=os.environ.get("GEMINI_API_KEY"),
     )
 
-    model = "gemini-" # "gemini-2.5-pro-exp-03-25" # Or your preferred model
+    model = "gemini-2.0-flash" # "gemini-2.5-pro-exp-03-25" # Or your preferred model
 
     system_instruction_content = """You are an expert transcriber and translator.
 Your task is to process song audio/text and return subtitles in JSON format.
@@ -511,12 +511,11 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
         return mp.ColorClip(size=video_res, color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0), []
 
     # --- שילוב הכתוביות מה-JSON ---
-    # <<< שינוי: המרת המפתחות למחרוזות באופן עקבי >>>
-    subs_en_map = {str(sub.get('id', f'en_{i}')): sub for i, sub in enumerate(subs_en)} # Convert key to string
-    subs_he_map = {str(sub.get('id', f'he_{i}')): sub for i, sub in enumerate(subs_he)} # Convert key to string
-
-    # כעת all_ids תהיה רשימה של מחרוזות בלבד, וניתן למיין אותה
+    subs_en_map = {str(sub.get('id', f'en_{i}')): sub for i, sub in enumerate(subs_en)}
+    subs_he_map = {str(sub.get('id', f'he_{i}')): sub for i, sub in enumerate(subs_he)}
     all_ids = sorted(list(set(subs_en_map.keys()) | set(subs_he_map.keys())))
+
+    print(f"DEBUG: Starting merge. Found {len(subs_en_map)} EN keys, {len(subs_he_map)} HE keys. Total unique IDs: {len(all_ids)}") # DEBUG
 
     for idx in all_ids:
         sub_en = subs_en_map.get(idx)
@@ -525,62 +524,82 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
         he_start, he_end, he_text = (0, 0, "")
         valid_en, valid_he = False, False
 
+        # --- Validate English ---
         try:
             if sub_en and 'start_time' in sub_en and 'end_time' in sub_en and 'text' in sub_en:
                  en_start = max(0, float(sub_en['start_time']))
                  en_end = max(en_start, float(sub_en['end_time'])) # Ensure end >= start
-                 en_text = sub_en.get('text', '').strip().replace('\\n', '\n') # Handle literal \n
-                 if en_end > en_start: valid_en = True
+                 # Treat empty string text as invalid for combination purposes
+                 en_text_raw = sub_en.get('text', None)
+                 if en_text_raw is not None: # Allow empty string only if explicitly present
+                      en_text = str(en_text_raw).strip().replace('\\n', '\n')
+                      # Check duration and non-empty text (allowing whitespace-only text for now)
+                      if en_end > en_start: # Removed the non-empty check here, handle later
+                          valid_en = True
+                 # else: print(f"DEBUG EN {idx}: No 'text' field") # Debug
+            # else: print(f"DEBUG EN {idx}: Missing keys or sub_en is None") # Debug
         except (ValueError, TypeError) as e: print(f"Warning: Invalid data in English sub ID {idx}: {e}")
 
+        # --- Validate Hebrew ---
         try:
             if sub_he and 'start_time' in sub_he and 'end_time' in sub_he and 'text' in sub_he:
                  he_start = max(0, float(sub_he['start_time']))
-                 he_end = max(he_start, float(sub_he['end_time'])) # Ensure end >= start
-                 he_text = sub_he.get('text', '').strip().replace('\\n', '\n') # Handle literal \n
-                 if he_end > he_start: valid_he = True
+                 he_end = max(he_start, float(sub_he['end_time']))
+                 he_text_raw = sub_he.get('text', None)
+                 if he_text_raw is not None:
+                      he_text = str(he_text_raw).strip().replace('\\n', '\n')
+                      if he_end > he_start: # Removed non-empty check
+                          valid_he = True
+                 # else: print(f"DEBUG HE {idx}: No 'text' field") # Debug
+            # else: print(f"DEBUG HE {idx}: Missing keys or sub_he is None") # Debug
         except (ValueError, TypeError) as e: print(f"Warning: Invalid data in Hebrew sub ID {idx}: {e}")
 
-
-        start_time = 0
+        # --- Combine Text and Times (More Flexible) ---
+        combined_text_parts = []
+        start_time = float('inf')
         end_time = 0
-        combined_text = ""
 
-        if valid_en and valid_he:
-            start_time = max(en_start, he_start) # Start when both are ready? Or min? Let's try min start, max end
-            start_time = min(en_start, he_start)
-            end_time = max(en_end, he_end)     # End when the last one finishes
-            # Add extra line break between languages only if both exist
-            combined_text = f"{en_text}\n\n{he_text}" if en_text and he_text else (en_text or he_text)
-        elif valid_en:
-            start_time, end_time = en_start, en_end
-            combined_text = en_text
-        elif valid_he:
-            start_time, end_time = he_start, he_end
-            combined_text = he_text
+        if valid_en and en_text: # Add English if valid and has non-empty text after stripping
+            combined_text_parts.append(en_text)
+            start_time = min(start_time, en_start)
+            end_time = max(end_time, en_end)
 
-        if combined_text and end_time > start_time:
-             sub_id = f"combined_sub_{idx}_{subtitle_id_counter}"
-             # Ensure duration is at least one frame long
-             min_duration = 1.0 / video_fps_local
-             if end_time - start_time < min_duration:
-                 end_time = start_time + min_duration
-                 # print(f"Adjusted duration for sub ID {sub_id} to {min_duration:.3f}s")
+        if valid_he and he_text: # Add Hebrew if valid and has non-empty text after stripping
+            combined_text_parts.append(he_text)
+            start_time = min(start_time, he_start)
+            end_time = max(end_time, he_end)
 
-             # Clip end time to total duration
-             end_time = min(end_time, total_duration)
-             start_time = min(start_time, total_duration) # Also clip start time just in case
+        # print(f"DEBUG {idx}: Valid EN={valid_en}, EN Text='{en_text[:10]}', Valid HE={valid_he}, HE Text='{he_text[:10]}', Parts={len(combined_text_parts)}") # DEBUG
 
-             if end_time > start_time: # Final check after clipping
+        # Only proceed if we have at least one valid text part
+        if combined_text_parts:
+            # Join with double newline only if both parts exist
+            combined_text = "\n\n".join(combined_text_parts)
+            sub_id = f"combined_sub_{idx}_{subtitle_id_counter}"
+
+            # Ensure duration is at least one frame
+            min_duration = 1.0 / video_fps_local
+            if end_time - start_time < min_duration:
+                end_time = start_time + min_duration
+
+            # Clip times to total duration
+            end_time = min(end_time, total_duration)
+            start_time = min(start_time, total_duration) # Clip start time too
+
+            if end_time > start_time: # Final check
                 combined_subs_format.append(((start_time, end_time), combined_text.strip(), sub_id))
                 subtitle_id_counter += 1
+                # print(f"DEBUG {idx}: Added combined sub. Start={start_time:.2f}, End={end_time:.2f}, Text='{combined_text[:20]}...'") # DEBUG
+            # else: print(f"DEBUG {idx}: Skipping sub, end time <= start time after clipping.") # DEBUG
+        # else: print(f"DEBUG {idx}: No valid text parts to combine.") # DEBUG
+
 
     if not combined_subs_format:
         print("אזהרה: לא נוצרו כתוביות משולבות תקינות."); return mp.ColorClip(size=video_res, color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0), []
 
     combined_subs_format.sort(key=lambda item: item[0][0])
-    print(f"DEBUG: Combined {len(combined_subs_format)} subtitle entries.")
-
+    print(f"DEBUG: Finished merge. Combined {len(combined_subs_format)} subtitle entries.")
+    # if combined_subs_format: print(f"DEBUG: First combined sub: {combined_subs_format[0]}") # DEBUG
     # --- Generator function (same as before) ---
     def generator(txt):
         try:
