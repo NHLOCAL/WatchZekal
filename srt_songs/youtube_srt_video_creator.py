@@ -183,7 +183,7 @@ def generate_subtitles_from_youtube(youtube_url):
         api_key=os.environ.get("GEMINI_API_KEY"),
     )
 
-    model = "gemini-2.5-pro-exp-03-25" # "gemini-2.0-flash" #  # Or your preferred model
+    model = "gemini-2.0-flash" # "gemini-2.5-pro-exp-03-25"
 
     system_instruction_content = """עליך ליצור כתוביות עבור הסרטון המצורף, תוך הקפדה על דיוק התמלול וניסוח טבעי שמתאים לשפה המדוברת בסרטון. הפלט חייב להיות **רשימת JSON (Array)** כפי שמוצג להלן.  
 
@@ -191,7 +191,7 @@ def generate_subtitles_from_youtube(youtube_url):
 - **`id`**: מספר סידורי המייצג את סדר הופעת הכתובית.  
 - **`start_time`**: זמן התחלה בפורמט **שניות עשרוניות (float)**, לדוגמה `12.759`.  
 - **`end_time`**: זמן סיום בפורמט **שניות עשרוניות (float)**, לדוגמה `18.859`.  
-- **`text`**: טקסט הכתובית, שיכול להכיל שורות מרובות (מופרדות באמצעות `\n`).  
+- **`text`**: טקסט הכתובית, שיכול להכיל תוכן קצר בן שורה או שתיים (מופרדות באמצעות `\\n`).  
 
 יש לשמור על דיוק בזמנים ובתוכן כדי להבטיח שהתוצאה תוכל להיות מומרת בקלות לקובץ SRT.
 
@@ -199,27 +199,48 @@ def generate_subtitles_from_youtube(youtube_url):
 ```json
 [
   {
-    "id": 1,
-    "start_time": 12.759,
-    "end_time": 18.859,
-    "text": "I will never forget\nthe night I saw my father cry"
+    \"id\": 1,
+    \"start_time\": 12.759,
+    \"end_time\": 18.859,
+    \"text\": \"I will never forget\\nthe night I saw my father cry\"
   },
   {
-    "id": 2,
-    "start_time": 21.359,
-    "end_time": 28.729,
-    "text": "I was frightened and alone\nand his tears were burning in my eyes, deep in my soul"
+    \"id\": 2,
+    \"start_time\": 21.359,
+    \"end_time\": 28.729,
+    \"text\": \"I was frightened and alone\\nand his tears\"
   }
 ]
 ```"""
 
     generate_content_config = types.GenerateContentConfig(
-        # <<< דרישת JSON מה-API >>>
         response_mime_type="application/json",
-        system_instruction=[
-            types.Part.from_text(text=system_instruction_content),
-        ],
-    )
+        response_schema=genai.types.Schema(
+            type = genai.types.Type.ARRAY,
+            items = genai.types.Schema(
+                type = genai.types.Type.OBJECT,
+                required = ["id", "start_time", "end_time", "text"],
+                properties = {
+                    "id": genai.types.Schema(
+                        type = genai.types.Type.INTEGER,
+                        description = "מספר סידורי של הכתובית",
+                    ),
+                    "start_time": genai.types.Schema(
+                        type = genai.types.Type.NUMBER,
+                        description = "זמן התחלת הכתובית בשניות (float, לדוגמה 12.759)",
+                    ),
+                    "end_time": genai.types.Schema(
+                        type = genai.types.Type.NUMBER,
+                        description = "זמן סיום הכתובית בשניות (float, לדוגמה 18.859)",
+                    ),
+                    "text": genai.types.Schema(
+                        type = genai.types.Type.STRING,
+                        description = "תוכן הכתובית, יכול להכיל תוכן קצר בעל שורה או שתיים עם הפרדה `\n`",
+                    ),
+                },
+            ),
+        ),
+    )  
 
     transcription_prompt_text = """Transcribe the following song accurately.
 Output the result as a JSON array following the specified format (id, start_time, end_time, text).
