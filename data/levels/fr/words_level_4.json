@@ -1,0 +1,673 @@
+{
+  "levels": [
+    {
+      "level": 4,
+      "name": "הַבַּיִת וַחֲפָצִים יוֹמְיוֹמִיִּים",
+      "subtopics": [
+        {
+          "name": "חַדְרֵי הַבַּיִת",
+          "words": [
+            {
+              "word": "Chambre",
+              "translation": "חֲדַר שֵׁינָה",
+              "examples": [
+                {
+                  "sentence": "Elle dort dans la chambre",
+                  "translation": "הִיא יְשֵׁנָה בַּחֲדַר הַשֵּׁינָה"
+                },
+                {
+                  "sentence": "La chambre est à l'étage",
+                  "translation": "חֲדַר הַשֵּׁינָה בַּקּוֹמָה הָעֶלְיוֹנָה"
+                },
+                {
+                  "sentence": "Ils ont peint la chambre",
+                  "translation": "הֵם צָבְעוּ אֶת חֲדַר הַשֵּׁינָה"
+                }
+              ]
+            },
+            {
+              "word": "Cuisine",
+              "translation": "מִטְבָּח",
+              "examples": [
+                {
+                  "sentence": "La cuisine est propre",
+                  "translation": "הַמִּטְבָּח נָקִי"
+                },
+                {
+                  "sentence": "Elle cuisine dans la cuisine",
+                  "translation": "הִיא מְבַשֶּׁלֶת בַּמִּטְבָּח"
+                },
+                {
+                  "sentence": "Ils mangent dans la cuisine",
+                  "translation": "הֵם אוֹכְלִים בַּמִּטְבָּח"
+                }
+              ]
+            },
+            {
+              "word": "Salle de bain",
+              "translation": "חֲדַר אַמְבַּטְיָה",
+              "examples": [
+                {
+                  "sentence": "Il se douche dans la salle de bain",
+                  "translation": "הוּא מִתְקַלֵּחַ בַּחֲדַר הָאַמְבַּטְיָה"
+                },
+                {
+                  "sentence": "La salle de bain est petite",
+                  "translation": "חֲדַר הָאַמְבַּטְיָה קָטָן"
+                },
+                {
+                  "sentence": "Elle nettoie la salle de bain",
+                  "translation": "הִיא מְנַקָּה אֶת חֲדַר הָאַמְבַּטְיָה"
+                }
+              ]
+            },
+            {
+              "word": "Salon",
+              "translation": "סָלוֹן",
+              "examples": [
+                {
+                  "sentence": "Nous nous détendons dans le salon",
+                  "translation": "אֲנַחְנוּ נִרְגָּעִים בַּסָּלוֹן"
+                },
+                {
+                  "sentence": "Le salon a un canapé",
+                  "translation": "בַּסָּלוֹן יֵשׁ סַפָּה"
+                },
+                {
+                  "sentence": "Ils regardent la télé dans le salon",
+                  "translation": "הֵם צוֹפִים בְּטֵלֵוִויזְיָה בַּסָּלוֹן"
+                }
+              ]
+            },
+            {
+              "word": "Salle à manger",
+              "translation": "חֲדַר אוֹכֶל",
+              "examples": [
+                {
+                  "sentence": "Nous mangeons dans la salle à manger",
+                  "translation": "אֲנַחְנוּ אוֹכְלִים בַּחֲדַר הָאוֹכֶל"
+                },
+                {
+                  "sentence": "La salle à manger est grande",
+                  "translation": "חֲדַר הָאוֹכֶל גָּדוֹל"
+                },
+                {
+                  "sentence": "Ils dînent dans la salle à manger",
+                  "translation": "הֵם אוֹכְלִים אֲרוּחַת עֶרֶב בַּחֲדַר הָאוֹכֶל"
+                }
+              ]
+            },
+            {
+              "word": "Garage",
+              "translation": "מוּסָךְ",
+              "examples": [
+                {
+                  "sentence": "La voiture est dans le garage",
+                  "translation": "הַמְּכוֹנִית בַּמוּסָךְ"
+                },
+                {
+                  "sentence": "Il travaille dans le garage",
+                  "translation": "הוּא עוֹבֵד בַּמוּסָךְ"
+                },
+                {
+                  "sentence": "La porte du garage est ouverte",
+                  "translation": "דֶּלֶת הַמוּסָךְ פְּתוּחָה"
+                }
+              ]
+            },
+            {
+              "word": "Jardin",
+              "translation": "גִּינָה",
+              "examples": [
+                {
+                  "sentence": "Les fleurs poussent dans le jardin",
+                  "translation": "פְּרָחִים גְּדֵלִים בַּגִּינָה"
+                },
+                {
+                  "sentence": "Ils s'assoient dans le jardin",
+                  "translation": "הֵם יוֹשְׁבִים בַּגִּינָה"
+                },
+                {
+                  "sentence": "Le jardin est beau",
+                  "translation": "הַגִּינָה יָפָה"
+                }
+              ]
+            },
+            {
+              "word": "Couloir",
+              "translation": "מִסְדְּרוֹן",
+              "examples": [
+                {
+                  "sentence": "Le couloir est long",
+                  "translation": "הַמִּסְדְּרוֹן אָרוֹךְ"
+                },
+                {
+                  "sentence": "Elle descend le couloir",
+                  "translation": "הִיא הוֹלֶכֶת לְאוֹרֶךְ הַמִּסְדְּרוֹן"
+                },
+                {
+                  "sentence": "Des photos sont accrochées dans le couloir",
+                  "translation": "תְּמוּנוֹת תְּלוּיוֹת בַּמִּסְדְּרוֹן"
+                }
+              ]
+            },
+            {
+              "word": "Grenier",
+              "translation": "עֲלִייַּת גַּג",
+              "examples": [
+                {
+                  "sentence": "Il stocke des boîtes dans le grenier",
+                  "translation": "הוּא מְאַחְסֵן קוּפְסָאוֹת בַּעֲלִייַּת הַגַּג"
+                },
+                {
+                  "sentence": "Le grenier est poussiéreux",
+                  "translation": "עֲלִייַּת הַגַּג מְאוּבֶּקֶת"
+                },
+                {
+                  "sentence": "Elle monte au grenier",
+                  "translation": "הִיא מְטַפֶּסֶת לַעֲלִייַּת הַגַּג"
+                }
+              ]
+            },
+            {
+              "word": "Sous-sol",
+              "translation": "מַרְתֵּף",
+              "examples": [
+                {
+                  "sentence": "Ils jouent à des jeux au sous-sol",
+                  "translation": "הֵם מְשַׂחֲקִים מִשְׂחָקִים בַּמַּרְתֵּף"
+                },
+                {
+                  "sentence": "Le sous-sol est froid",
+                  "translation": "הַמַּרְתֵּף קַר"
+                },
+                {
+                  "sentence": "Il range des outils au sous-sol",
+                  "translation": "הוּא מְאַחְסֵן כֵּלִים בַּמַּרְתֵּף"
+                }
+              ]
+            },
+            {
+              "word": "Bureau",
+              "translation": "חֲדַר עֲבוֹדָה",
+              "examples": [
+                {
+                  "sentence": "Elle lit dans le bureau",
+                  "translation": "הִיא קוֹרֵאת בַּחֲדַר הָעֲבוֹדָה"
+                },
+                {
+                  "sentence": "Le bureau a beaucoup de livres",
+                  "translation": "בַּחֲדַר הָעֲבוֹדָה יֵשׁ הַרְבֵּה סְפָרִים"
+                },
+                {
+                  "sentence": "Il travaille dans le bureau",
+                  "translation": "הוּא עוֹבֵד בַּחֲדַר הָעֲבוֹדָה"
+                }
+              ]
+            },
+            {
+              "word": "Buanderie",
+              "translation": "חֲדַר כְּבִיסָה",
+              "examples": [
+                {
+                  "sentence": "Elle lave les vêtements dans la buanderie",
+                  "translation": "הִיא מְכַבֶּסֶת בְּגָדִים בַּחֲדַר הַכְּבִיסָה"
+                },
+                {
+                  "sentence": "La buanderie est petite",
+                  "translation": "חֲדַר הַכְּבִיסָה קָטָן"
+                },
+                {
+                  "sentence": "Il sèche les vêtements dans la buanderie",
+                  "translation": "הוּא מְיַיבֵּשׁ בְּגָדִים בַּחֲדַר הַכְּבִיסָה"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "רִיהוּט וּמַכְשִׁירִים",
+          "words": [
+            {
+              "word": "Lit",
+              "translation": "מִיטָּה",
+              "examples": [
+                {
+                  "sentence": "Le lit est confortable",
+                  "translation": "הַמִּיטָּה נוֹחָה"
+                },
+                {
+                  "sentence": "Il dort sur le lit",
+                  "translation": "הוּא יָשֵׁן עַל הַמִּיטָּה"
+                },
+                {
+                  "sentence": "Ils ont acheté un nouveau lit",
+                  "translation": "הֵם קָנוּ מִיטָּה חֲדָשָׁה"
+                }
+              ]
+            },
+            {
+              "word": "Table",
+              "translation": "שׁוּלְחָן",
+              "examples": [
+                {
+                  "sentence": "Le dîner est sur la table",
+                  "translation": "אֲרוּחַת הָעֶרֶב עַל הַשּׁוּלְחָן"
+                },
+                {
+                  "sentence": "Elle met la table",
+                  "translation": "הִיא מְסַדֶּרֶת אֶת הַשּׁוּלְחָן"
+                },
+                {
+                  "sentence": "La table est en bois",
+                  "translation": "הַשּׁוּלְחָן מֵעֵץ"
+                }
+              ]
+            },
+            {
+              "word": "Chaise",
+              "translation": "כִּיסֵּא",
+              "examples": [
+                {
+                  "sentence": "Assieds-toi sur la chaise",
+                  "translation": "שֵׁב עַל הַכִּיסֵּא"
+                },
+                {
+                  "sentence": "La chaise est cassée",
+                  "translation": "הַכִּיסֵּא שָׁבוּר"
+                },
+                {
+                  "sentence": "Il a acheté quatre chaises",
+                  "translation": "הוּא קָנָה אַרְבָּעָה כִּיסְאוֹת"
+                }
+              ]
+            },
+            {
+              "word": "Réfrigérateur",
+              "translation": "מְקָרֵר",
+              "examples": [
+                {
+                  "sentence": "Le lait est dans le réfrigérateur",
+                  "translation": "הֶחָלָב בַּמְּקָרֵר"
+                },
+                {
+                  "sentence": "Le réfrigérateur est plein",
+                  "translation": "הַמְּקָרֵר מָלֵא"
+                },
+                {
+                  "sentence": "Ils ont besoin d'un nouveau réfrigérateur",
+                  "translation": "הֵם צְרִיכִים מְקָרֵר חָדָשׁ"
+                }
+              ]
+            },
+            {
+              "word": "Télévision",
+              "translation": "טֵלֵוִויזְיָה",
+              "examples": [
+                {
+                  "sentence": "Allume la télévision",
+                  "translation": "הַפְעֵל אֶת הַטֵּלֵוִויזְיָה"
+                },
+                {
+                  "sentence": "Elle regarde des films à la télévision",
+                  "translation": "הִיא צוֹפָה בְּסְרָטִים בַּטֵּלֵוִויזְיָה"
+                },
+                {
+                  "sentence": "La télévision est grande",
+                  "translation": "הַטֵּלֵוִויזְיָה גְּדוֹלָה"
+                }
+              ]
+            },
+            {
+              "word": "Canapé",
+              "translation": "סַפָּה",
+              "examples": [
+                {
+                  "sentence": "Ils s'assoient sur le canapé",
+                  "translation": "הֵם יוֹשְׁבִים עַל הַסַּפָּה"
+                },
+                {
+                  "sentence": "Le canapé est confortable",
+                  "translation": "הַסַּפָּה נוֹחָה"
+                },
+                {
+                  "sentence": "Il dort parfois sur le canapé",
+                  "translation": "הוּא יָשֵׁן עַל הַסַּפָּה לִפְעָמִים"
+                }
+              ]
+            },
+            {
+              "word": "Lampe",
+              "translation": "מְנוֹרָה",
+              "examples": [
+                {
+                  "sentence": "Éteins la lampe",
+                  "translation": "כַּבֵּה אֶת הַמְּנוֹרָה"
+                },
+                {
+                  "sentence": "La lampe est brillante",
+                  "translation": "הַמְּנוֹרָה בְּהִירָה"
+                },
+                {
+                  "sentence": "Elle a acheté une nouvelle lampe",
+                  "translation": "הִיא קָנְתָה מְנוֹרָה חֲדָשָׁה"
+                }
+              ]
+            },
+            {
+              "word": "Four",
+              "translation": "תַּנּוּר",
+              "examples": [
+                {
+                  "sentence": "Fais cuire le gâteau au four",
+                  "translation": "תֹּאפֶה אֶת הָעוּגָה בַּתַּנּוּר"
+                },
+                {
+                  "sentence": "Le four est chaud",
+                  "translation": "הַתַּנּוּר חַם"
+                },
+                {
+                  "sentence": "Ils ont cuisiné du poulet au four",
+                  "translation": "הֵם בִּישְּׁלוּ עוֹף בַּתַּנּוּר"
+                }
+              ]
+            },
+            {
+              "word": "Micro-ondes",
+              "translation": "מִיקְרוֹגַל",
+              "examples": [
+                {
+                  "sentence": "Chauffe la nourriture au micro-ondes",
+                  "translation": "חַמֵּם אֶת הָאוֹכֶל בַּמִּיקְרוֹגַל"
+                },
+                {
+                  "sentence": "Le micro-ondes est rapide",
+                  "translation": "הַמִּיקְרוֹגַל מָהִיר"
+                },
+                {
+                  "sentence": "Elle utilise le micro-ondes quotidiennement",
+                  "translation": "הִיא מִשְׁתַּמֶּשֶׁת בַּמִּיקְרוֹגַל מִדֵּי יוֹם"
+                }
+              ]
+            },
+            {
+              "word": "Armoire",
+              "translation": "אֲרוֹן בְּגָדִים",
+              "examples": [
+                {
+                  "sentence": "Les vêtements sont dans l'armoire",
+                  "translation": "הַבְּגָדִים בַּאֲרוֹן הַבְּגָדִים"
+                },
+                {
+                  "sentence": "L'armoire est grande",
+                  "translation": "אֲרוֹן הַבְּגָדִים גָּדוֹל"
+                },
+                {
+                  "sentence": "Il ouvre l'armoire",
+                  "translation": "הוּא פּוֹתֵחַ אֶת אֲרוֹן הַבְּגָדִים"
+                }
+              ]
+            },
+            {
+              "word": "Bureau",
+              "translation": "שׁוּלְחָן כְּתִיבָה",
+              "examples": [
+                {
+                  "sentence": "Elle travaille au bureau",
+                  "translation": "הִיא עוֹבֶדֶת בְּשּׁוּלְחָן הַכְּתִיבָה"
+                },
+                {
+                  "sentence": "Le bureau a des tiroirs",
+                  "translation": "לַשּׁוּלְחָן הַכְּתִיבָה יֵשׁ מְגֵירוֹת"
+                },
+                {
+                  "sentence": "Il a acheté un nouveau bureau",
+                  "translation": "הוּא קָנָה שׁוּלְחָן כְּתִיבָה חָדָשׁ"
+                }
+              ]
+            },
+            {
+              "word": "Étagère",
+              "translation": "מַדַּף סְפָרִים",
+              "examples": [
+                {
+                  "sentence": "Les livres sont sur l'étagère",
+                  "translation": "הַסְּפָרִים עַל מַדַּף הַסְּפָרִים"
+                },
+                {
+                  "sentence": "L'étagère est pleine",
+                  "translation": "מַדַּף הַסְּפָרִים מָלֵא"
+                },
+                {
+                  "sentence": "Elle range l'étagère",
+                  "translation": "הִיא מְסַדֶּרֶת אֶת מַדַּף הַסְּפָרִים"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "כְּלֵי בַּיִת",
+          "words": [
+            {
+              "word": "Cuillère",
+              "translation": "כַּף",
+              "examples": [
+                {
+                  "sentence": "Mange de la soupe avec une cuillère",
+                  "translation": "אֱכוֹל מָרָק עִם כַּף"
+                },
+                {
+                  "sentence": "La cuillère est en argent",
+                  "translation": "הַכַּף מִכֶּסֶף"
+                },
+                {
+                  "sentence": "Elle a remué le thé avec une cuillère",
+                  "translation": "הִיא עִרְבְּבָה אֶת הַתֵּה עִם כַּף"
+                }
+              ]
+            },
+            {
+              "word": "Fourchette",
+              "translation": "מַזְלֵג",
+              "examples": [
+                {
+                  "sentence": "Utilise la fourchette pour manger",
+                  "translation": "הִשְׁתַּמֵּשׁ בַּמַּזְלֵג כְּדֵי לֶאֱכוֹל"
+                },
+                {
+                  "sentence": "La fourchette est sur la table",
+                  "translation": "הַמַּזְלֵג עַל הַשּׁוּלְחָן"
+                },
+                {
+                  "sentence": "Il a laissé tomber la fourchette",
+                  "translation": "הוּא הִפִּיל אֶת הַמַּזְלֵג"
+                }
+              ]
+            },
+            {
+              "word": "Couteau",
+              "translation": "סַכִּין",
+              "examples": [
+                {
+                  "sentence": "Coupe le pain avec un couteau",
+                  "translation": "חֲתוֹךְ אֶת הַלֶּחֶם עִם סַכִּין"
+                },
+                {
+                  "sentence": "Le couteau est tranchant",
+                  "translation": "הַסַּכִּין חַדָּה"
+                },
+                {
+                  "sentence": "Elle tient le couteau avec précaution",
+                  "translation": "הִיא מַחְזִיקָה אֶת הַסַּכִּין בִּזְהִירוּת"
+                }
+              ]
+            },
+            {
+              "word": "Assiette",
+              "translation": "צַלַּחַת",
+              "examples": [
+                {
+                  "sentence": "Mets la nourriture sur l'assiette",
+                  "translation": "שִׂים אֶת הָאוֹכֶל עַל הַצַּלַּחַת"
+                },
+                {
+                  "sentence": "L'assiette est blanche",
+                  "translation": "הַצַּלַּחַת לְבָנָה"
+                },
+                {
+                  "sentence": "Il lave les assiettes",
+                  "translation": "הוּא שׁוֹטֵף אֶת הַצַּלָּחוֹת"
+                }
+              ]
+            },
+            {
+              "word": "Tasse",
+              "translation": "סֵפֶל",
+              "examples": [
+                {
+                  "sentence": "Je bois du thé dans une tasse",
+                  "translation": "אֲנִי שׁוֹתֶה תֵּה מִסֵּפֶל"
+                },
+                {
+                  "sentence": "La tasse est vide",
+                  "translation": "הַסֵּפֶל רֵיק"
+                },
+                {
+                  "sentence": "Elle a cassé la tasse",
+                  "translation": "הִיא שָׁבְרָה אֶת הַסֵּפֶל"
+                }
+              ]
+            },
+            {
+              "word": "Verre",
+              "translation": "כּוֹס",
+              "examples": [
+                {
+                  "sentence": "Verse de l'eau dans le verre",
+                  "translation": "שְׁפוֹךְ מַיִם לְכּוֹס"
+                },
+                {
+                  "sentence": "Le verre est plein",
+                  "translation": "הַכּוֹס מְלֵאָה"
+                },
+                {
+                  "sentence": "Il boit du jus dans un verre",
+                  "translation": "הוּא שׁוֹתֶה מִיץ מִכּוֹס"
+                }
+              ]
+            },
+            {
+              "word": "Bol",
+              "translation": "קְעָרָה",
+              "examples": [
+                {
+                  "sentence": "Mélange la salade dans un bol",
+                  "translation": "עַרְבֵּב אֶת הַסָּלָט בִּקְעָרָה"
+                },
+                {
+                  "sentence": "Le bol est grand",
+                  "translation": "הַקְּעָרָה גְּדוֹלָה"
+                },
+                {
+                  "sentence": "Elle sert de la soupe dans des bols",
+                  "translation": "הִיא מַגִּישָׁה מָרָק בִּקְעָרוֹת"
+                }
+              ]
+            },
+            {
+              "word": "Casserole",
+              "translation": "סִיר",
+              "examples": [
+                {
+                  "sentence": "Fais bouillir de l'eau dans la casserole",
+                  "translation": "מַרְתִּיחִים מַיִם בַּסִּיר"
+                },
+                {
+                  "sentence": "La casserole est sur la cuisinière",
+                  "translation": "הַסִּיר עַל הַכִּירַיִים"
+                },
+                {
+                  "sentence": "Elle cuisine de la soupe dans la casserole",
+                  "translation": "הִיא מְבַשֶּׁלֶת מָרָק בַּסִּיר"
+                }
+              ]
+            },
+            {
+              "word": "Poêle",
+              "translation": "מַחֲבַת",
+              "examples": [
+                {
+                  "sentence": "Fais frire des œufs dans la poêle",
+                  "translation": "טַגֵּן בֵּיצִים בַּמַחֲבַת"
+                },
+                {
+                  "sentence": "La poêle est chaude",
+                  "translation": "הַמַחֲבַת חַמָּה"
+                },
+                {
+                  "sentence": "Il nettoie la poêle après avoir cuisiné",
+                  "translation": "הוּא מְנַקֶּה אֶת הַמַחֲבַת לְאַחַר הַבִּישּׁוּל"
+                }
+              ]
+            },
+            {
+              "word": "Bouilloire",
+              "translation": "קוּמְקוּם",
+              "examples": [
+                {
+                  "sentence": "Chauffe de l'eau dans la bouilloire",
+                  "translation": "חַמֵּם מַיִם בַּקּוּמְקוּם"
+                },
+                {
+                  "sentence": "La bouilloire bout",
+                  "translation": "הַקּוּמְקוּם רוֹתֵחַ"
+                },
+                {
+                  "sentence": "Elle verse du thé de la bouilloire",
+                  "translation": "הִיא מוֹזֶגֶת תֵּה מֵהַקּוּמְקוּם"
+                }
+              ]
+            },
+            {
+              "word": "Grille-pain",
+              "translation": "מַצְנֵם",
+              "examples": [
+                {
+                  "sentence": "Fais griller du pain dans le grille-pain",
+                  "translation": "לֶחֶם טוֹסְט בַּמַּצְנֵם"
+                },
+                {
+                  "sentence": "Le grille-pain est vieux",
+                  "translation": "הַמַּצְנֵם יָשָׁן"
+                },
+                {
+                  "sentence": "Il a acheté un nouveau grille-pain",
+                  "translation": "הוּא קָנָה מַצְנֵם חָדָשׁ"
+                }
+              ]
+            },
+            {
+              "word": "Mixeur",
+              "translation": "בְּלֶנְדֶּר",
+              "examples": [
+                {
+                  "sentence": "Mixe les fruits dans le mixeur",
+                  "translation": "עַרְבֵּב פֵּירוֹת בַּבְּלֶנְדֶּר"
+                },
+                {
+                  "sentence": "Le mixeur est bruyant",
+                  "translation": "הַבְּלֶנְדֶּר רוֹעֵשׁ"
+                },
+                {
+                  "sentence": "Elle fait des smoothies avec le mixeur",
+                  "translation": "הִיא מְכִינָה שֵׁייקִים עִם הַבְּלֶנְדֶּר"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

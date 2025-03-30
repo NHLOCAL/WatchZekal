@@ -1,0 +1,25 @@
+{
+  "levels": [
+    {
+      "level": 0,
+      "name": "יְסוֹדוֹת",
+      "subtopics": [
+        {
+          "name": "בְּרָכוֹת וְנִימוּסִים",
+          "words": [
+            {
+              "word": "Hello",
+              "translation": "שָׁלוֹם",
+              "examples": [
+                {
+                  "sentence": "Hello to you!",
+                  "translation": "שָׁלוֹם לְךָ!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

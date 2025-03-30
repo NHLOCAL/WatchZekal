@@ -1,0 +1,25 @@
+{
+  "levels": [
+    {
+      "level": 0,
+      "name": "יְסוֹדוֹת",
+      "subtopics": [
+        {
+          "name": "בְּרָכוֹת וְנִימוּסִים",
+          "words": [
+            {
+              "word": "Bonjour",
+              "translation": "שָׁלוֹם",
+              "examples": [
+                {
+                  "sentence": "Bonjour à toi !",
+                  "translation": "שָׁלוֹם לְךָ!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

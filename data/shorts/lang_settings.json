@@ -1,0 +1,66 @@
+{
+  "en": {
+    "language_name_en": "english",
+     "language_name_iw": "אנגלית",
+    "voice": {
+      "language_code": "en-US",
+      "name": "en-US-Wavenet-F"
+    }
+  },
+  "es": {
+     "language_name_en": "spanish",
+     "language_name_iw": "ספרדית",
+    "voice": {
+      "language_code": "es-ES",
+      "name": "es-ES-Wavenet-F"
+    }
+  },
+  "fr": {
+     "language_name_en": "french",
+     "language_name_iw": "צרפתית",
+    "voice": {
+      "language_code": "fr-FR",
+      "name": "fr-FR-Wavenet-E"
+    }
+  },
+    "iw": {
+        "language_name_en": "hebrew",
+        "language_name_iw": "עברית",
+        "voice": {
+          "language_code": "he-IL",
+          "name": "he-IL-Wavenet-C"
+        }
+      },
+   "ar": {
+        "language_name_en": "arabic",
+        "language_name_iw": "ערבית",
+        "voice": {
+          "language_code": "ar-XA",
+          "name": "ar-XA-Wavenet-B"
+        }
+      },
+    "ru": {
+        "language_name_en": "russian",
+         "language_name_iw": "רוסית",
+        "voice": {
+          "language_code": "ru-RU",
+          "name": "ru-RU-Wavenet-A"
+        }
+      },
+  "it": {
+        "language_name_en": "italian",
+         "language_name_iw": "איטלקית",
+        "voice": {
+          "language_code": "it-IT",
+          "name": "it-IT-Wavenet-A"
+        }
+      },
+ "de": {
+        "language_name_en": "german",
+         "language_name_iw": "גרמנית",
+        "voice": {
+          "language_code": "de-DE",
+          "name": "de-DE-Wavenet-A"
+        }
+      }
+}

@@ -2,491 +2,491 @@
   "levels": [
     {
       "level": 1,
-      "name": "יסודות",
+      "name": "יְסוֹדוֹת",
       "subtopics": [
         {
-          "name": "ברכות ונימוסים",
+          "name": "בְּרָכוֹת וְנִימוּסִים",
           "words": [
             {
               "word": "Hello",
-              "translation": "שלום",
+              "translation": "שָׁלוֹם",
               "examples": [
                 {
                   "sentence": "Hello there!",
-                  "translation": "שלום לך!"
+                  "translation": "שָׁלוֹם לְךָ!"
                 },
                 {
                   "sentence": "Hello, how are you?",
-                  "translation": "שלום, מה שלומך?"
+                  "translation": "שָׁלוֹם, מַה שְּׁלוֹמְךָ?"
                 },
                 {
                   "sentence": "Hello, my friend",
-                  "translation": "שלום, חבר שלי"
+                  "translation": "שָׁלוֹם, חָבֵר שֶׁלִּי"
                 }
               ]
             },
             {
               "word": "Goodbye",
-              "translation": "להתראות",
+              "translation": "לְהִתְרָאוֹת",
               "examples": [
                 {
                   "sentence": "Goodbye for now",
-                  "translation": "להתראות בינתיים"
+                  "translation": "לְהִתְרָאוֹת בֵּינְתַיִים"
                 },
                 {
                   "sentence": "Goodbye, see you soon",
-                  "translation": "להתראות, נתראה בקרוב"
+                  "translation": "לְהִתְרָאוֹת, נִתְרָאֶה בְּקָרוֹב"
                 },
                 {
                   "sentence": "It's time to say goodbye",
-                  "translation": "הגיע הזמן להגיד להתראות"
+                  "translation": "הִגִּיעַ הַזְּמַן לְהַגִּיד לְהִתְרָאוֹת"
                 }
               ]
             },
             {
               "word": "Please",
-              "translation": "בבקשה",
+              "translation": "בְּבַקָּשָׁה",
               "examples": [
                 {
                   "sentence": "Please, come in",
-                  "translation": "בבקשה, היכנס"
+                  "translation": "בְּבַקָּשָׁה, הִיכָּנֵס"
                 },
                 {
                   "sentence": "Can you help me, please?",
-                  "translation": "האם אתה יכול לעזור לי, בבקשה?"
+                  "translation": "הַאִם אַתָּה יָכוֹל לַעֲזוֹר לִי, בְּבַקָּשָׁה?"
                 },
                 {
                   "sentence": "Please take a seat",
-                  "translation": "בבקשה שב"
+                  "translation": "בְּבַקָּשָׁה שֵׁב"
                 }
               ]
             },
             {
               "word": "Thank you",
-              "translation": "תודה",
+              "translation": "תּוֹדָה",
               "examples": [
                 {
                   "sentence": "Thank you very much",
-                  "translation": "תודה רבה"
+                  "translation": "תּוֹדָה רַבָּה"
                 },
                 {
                   "sentence": "Thank you for your help",
-                  "translation": "תודה על העזרה שלך"
+                  "translation": "תּוֹדָה עַל הָעֶזְרָה שֶׁלְּךָ"
                 },
                 {
                   "sentence": "No, thank you",
-                  "translation": "לא, תודה"
+                  "translation": "לֹא, תּוֹדָה"
                 }
               ]
             },
             {
               "word": "Yes",
-              "translation": "כן",
+              "translation": "כֵּן",
               "examples": [
                 {
                   "sentence": "Yes, I understand",
-                  "translation": "כן, אני מבין"
+                  "translation": "כֵּן, אֲנִי מֵבִין"
                 },
                 {
                   "sentence": "Yes, please",
-                  "translation": "כן, בבקשה"
+                  "translation": "כֵּן, בְּבַקָּשָׁה"
                 },
                 {
                   "sentence": "Is this yours? Yes",
-                  "translation": "האם זה שלך? כן"
+                  "translation": "הַאִם זֶה שֶׁלְּךָ? כֵּן"
                 }
               ]
             },
             {
               "word": "No",
-              "translation": "לא",
+              "translation": "לֹא",
               "examples": [
                 {
                   "sentence": "No, I don't want it",
-                  "translation": "לא, אני לא רוצה את זה"
+                  "translation": "לֹא, אֲנִי לֹא רוֹצֶה אֶת זֶה"
                 },
                 {
                   "sentence": "No, thank you",
-                  "translation": "לא, תודה"
+                  "translation": "לֹא, תּוֹדָה"
                 },
                 {
                   "sentence": "Is this yours? No",
-                  "translation": "האם זה שלך? לא"
+                  "translation": "הַאִם זֶה שֶׁלְּךָ? לֹא"
                 }
               ]
             }
           ]
         },
         {
-          "name": "הצגה עצמית",
+          "name": "הַצָּגָה עַצְמִית",
           "words": [
             {
               "word": "Name",
-              "translation": "שם",
+              "translation": "שֵׁם",
               "examples": [
                 {
                   "sentence": "My name is Sarah",
-                  "translation": "שמי שרה"
+                  "translation": "שְׁמִי שָׂרָה"
                 },
                 {
                   "sentence": "What is your name?",
-                  "translation": "מה שמך?"
+                  "translation": "מַה שִּׁמְךָ?"
                 },
                 {
                   "sentence": "His name is John",
-                  "translation": "שמו ג'ון"
+                  "translation": "שְׁמוֹ ג'וֹן"
                 }
               ]
             },
             {
               "word": "I",
-              "translation": "אני",
+              "translation": "אֲנִי",
               "examples": [
                 {
                   "sentence": "I am happy",
-                  "translation": "אני שמח"
+                  "translation": "אֲנִי שָׂמֵחַ"
                 },
                 {
                   "sentence": "I like coffee",
-                  "translation": "אני אוהב קפה"
+                  "translation": "אֲנִי אוֹהֵב קָפֶה"
                 },
                 {
                   "sentence": "I have a dog",
-                  "translation": "יש לי כלב"
+                  "translation": "יֵשׁ לִי כֶּלֶב"
                 }
               ]
             },
             {
               "word": "Am",
-              "translation": "אני (פועל עזר בזמן הווה)",
+              "translation": "אֲנִי (פּוֹעַל עֵזֶר בִּזְמַן הוֹוֶה)",
               "examples": [
                 {
                   "sentence": "I am a student",
-                  "translation": "אני תלמיד"
+                  "translation": "אֲנִי תַּלְמִיד"
                 },
                 {
                   "sentence": "I am from Israel",
-                  "translation": "אני מישראל"
+                  "translation": "אֲנִי מִיִּשְׂרָאֵל"
                 },
                 {
                   "sentence": "I am 20 years old",
-                  "translation": "אני בן 20"
+                  "translation": "אֲנִי בֶּן 20"
                 }
               ]
             },
             {
               "word": "From",
-              "translation": "מ-",
+              "translation": "מִ-",
               "examples": [
                 {
                   "sentence": "She is from France",
-                  "translation": "היא מצרפת"
+                  "translation": "הִיא מִצָּרְפַת"
                 },
                 {
                   "sentence": "We come from the city",
-                  "translation": "אנחנו מגיעים מהעיר"
+                  "translation": "אֲנַחְנוּ מַגִּיעִים מֵהָעִיר"
                 },
                 {
                   "sentence": "I have a gift from my friend",
-                  "translation": "יש לי מתנה מחבר שלי"
+                  "translation": "יֵשׁ לִי מַתָּנָה מֵחָבֵר שֶׁלִּי"
                 }
               ]
             },
             {
               "word": "You",
-              "translation": "אתה/את",
+              "translation": "אַתָּה/אַתְּ",
               "examples": [
                 {
                   "sentence": "You are my friend",
-                  "translation": "אתה חבר שלי"
+                  "translation": "אַתָּה חָבֵר שֶׁלִּי"
                 },
                 {
                   "sentence": "Are you okay?",
-                  "translation": "האם אתה בסדר?"
+                  "translation": "הַאִם אַתָּה בְּסֵדֶר?"
                 },
                 {
                   "sentence": "You have a nice car",
-                  "translation": "יש לך מכונית נחמדה"
+                  "translation": "יֵשׁ לְךָ מְכוֹנִית נֶחְמָדָה"
                 }
               ]
             }
           ]
         },
         {
-          "name": "מספרים בסיסיים",
+          "name": "מִסְפָּרִים בְּסִיסִיִּים",
           "words": [
             {
               "word": "One",
-              "translation": "אחד",
+              "translation": "אֶחָד",
               "examples": [
                 {
                   "sentence": "One apple",
-                  "translation": "תפוח אחד"
+                  "translation": "תַּפּוּחַ אֶחָד"
                 },
                 {
                   "sentence": "I have one brother",
-                  "translation": "יש לי אח אחד"
+                  "translation": "יֵשׁ לִי אָח אֶחָד"
                 },
                 {
                   "sentence": "Give me one moment",
-                  "translation": "תן לי רגע אחד"
+                  "translation": "תֵּן לִי רֶגַע אֶחָד"
                 }
               ]
             },
             {
               "word": "Two",
-              "translation": "שתיים",
+              "translation": "שְׁתַּיִים",
               "examples": [
                 {
                   "sentence": "Two books",
-                  "translation": "שני ספרים"
+                  "translation": "שְׁנֵי סְפָרִים"
                 },
                 {
                   "sentence": "We have two dogs",
-                  "translation": "יש לנו שני כלבים"
+                  "translation": "יֵשׁ לָנוּ שְׁנֵי כְּלָבִים"
                 },
                 {
                   "sentence": "She bought two dresses",
-                  "translation": "היא קנתה שתי שמלות"
+                  "translation": "הִיא קָנְתָה שְׁתֵּי שְׂמָלוֹת"
                 }
               ]
             },
             {
               "word": "Three",
-              "translation": "שלוש",
+              "translation": "שָׁלוֹשׁ",
               "examples": [
                 {
                   "sentence": "Three cars",
-                  "translation": "שלוש מכוניות"
+                  "translation": "שָׁלוֹשׁ מְכוֹנִיּוֹת"
                 },
                 {
                   "sentence": "He has three sisters",
-                  "translation": "יש לו שלוש אחיות"
+                  "translation": "יֵשׁ לוֹ שָׁלוֹשׁ אֲחָיוֹת"
                 },
                 {
                   "sentence": "They ate three sandwiches",
-                  "translation": "הם אכלו שלושה סנדוויצ'ים"
+                  "translation": "הֵם אָכְלוּ שְׁלוֹשָׁה סֶנְדְּוִויצִ'ים"
                 }
               ]
             },
             {
               "word": "Four",
-              "translation": "ארבע",
+              "translation": "אַרְבַּע",
               "examples": [
                 {
                   "sentence": "Four chairs",
-                  "translation": "ארבעה כיסאות"
+                  "translation": "אַרְבָּעָה כִּיסְּאוֹת"
                 },
                 {
                   "sentence": "We need four tickets",
-                  "translation": "אנחנו צריכים ארבעה כרטיסים"
+                  "translation": "אֲנַחְנוּ צְרִיכִים אַרְבָּעָה כַּרְטִיסִים"
                 },
                 {
                   "sentence": "She has four cats",
-                  "translation": "יש לה ארבעה חתולים"
+                  "translation": "יֵשׁ לָהּ אַרְבָּעָה חֲתוּלִים"
                 }
               ]
             },
             {
               "word": "Five",
-              "translation": "חמש",
+              "translation": "חָמֵשׁ",
               "examples": [
                 {
                   "sentence": "Five apples",
-                  "translation": "חמישה תפוחים"
+                  "translation": "חֲמִישָּׁה תַּפּוּחִים"
                 },
                 {
                   "sentence": "He ran five miles",
-                  "translation": "הוא רץ חמישה מיילים"
+                  "translation": "הוּא רָץ חֲמִישָּׁה מַיְילִים"
                 },
                 {
                   "sentence": "They bought five gifts",
-                  "translation": "הם קנו חמישה מתנות"
+                  "translation": "הֵם קָנוּ חָמֵשׁ מַתָּנוֹת"
                 }
               ]
             },
             {
               "word": "Six",
-              "translation": "שש",
+              "translation": "שֵׁשׁ",
               "examples": [
                 {
                   "sentence": "Six students",
-                  "translation": "שישה תלמידים"
+                  "translation": "שִׁישָּׁה תַּלְמִידִים"
                 },
                 {
                   "sentence": "He is six years old",
-                  "translation": "הוא בן שש"
+                  "translation": "הוּא בֶּן שֵׁשׁ"
                 },
                 {
                   "sentence": "Six dogs",
-                  "translation": "שישה כלבים"
+                  "translation": "שִׁישָּׁה כְּלָבִים"
                 }
               ]
             },
             {
               "word": "Seven",
-              "translation": "שבע",
+              "translation": "שֶׁבַע",
               "examples": [
                 {
                   "sentence": "Seven days a week",
-                  "translation": "שבעה ימים בשבוע"
+                  "translation": "שִׁבְעָה יָמִים בַּשָּׁבוּעַ"
                 },
                 {
                   "sentence": "Room number seven",
-                  "translation": "חדר מספר שבע"
+                  "translation": "חֶדֶר מִסְפָּר שֶׁבַע"
                 },
                 {
                   "sentence": "Seven colors",
-                  "translation": "שבעה צבעים"
+                  "translation": "שִׁבְעָה צְבָעִים"
                 }
               ]
             },
             {
               "word": "Eight",
-              "translation": "שמונה",
+              "translation": "שְׁמוֹנֶה",
               "examples": [
                 {
                   "sentence": "Eight legs",
-                  "translation": "שמונה רגליים"
+                  "translation": "שְׁמוֹנֶה רַגְלַיִים"
                 },
                 {
                   "sentence": "It's eight o'clock",
-                  "translation": "השעה שמונה"
+                  "translation": "הַשָּׁעָה שְׁמוֹנֶה"
                 },
                 {
                   "sentence": "Eight people",
-                  "translation": "שמונה אנשים"
+                  "translation": "שְׁמוֹנָה אֲנָשִׁים"
                 }
               ]
             },
             {
               "word": "Nine",
-              "translation": "תשע",
+              "translation": "תֵּשַׁע",
               "examples": [
                 {
                   "sentence": "Nine months",
-                  "translation": "תשעה חודשים"
+                  "translation": "תִּשְׁעָה חוֹדָשִׁים"
                 },
                 {
                   "sentence": "Nine flowers",
-                  "translation": "תשעה פרחים"
+                  "translation": "תִּשְׁעָה פְּרָחִים"
                 },
                 {
                   "sentence": "Class number nine",
-                  "translation": "כיתה מספר תשע"
+                  "translation": "כִּיתָּה מִסְפָּר תֵּשַׁע"
                 }
               ]
             },
             {
               "word": "Ten",
-              "translation": "עשר",
+              "translation": "עֶשֶׂר",
               "examples": [
                 {
                   "sentence": "Ten fingers",
-                  "translation": "עשר אצבעות"
+                  "translation": "עֶשֶׂר אֶצְבָּעוֹת"
                 },
                 {
                   "sentence": "I can count to ten",
-                  "translation": "אני יכול לספור עד עשר"
+                  "translation": "אֲנִי יָכוֹל לִסְפּוֹר עַד עֶשֶׂר"
                 },
                 {
                   "sentence": "Ten students",
-                  "translation": "עשרה תלמידים"
+                  "translation": "עֲשָׂרָה תַּלְמִידִים"
                 }
               ]
             }
           ]
         },
         {
-          "name": "צבעים ראשוניים",
+          "name": "צְבָעִים רִאשׁוֹנִיִּים",
           "words": [
             {
               "word": "Red",
-              "translation": "אדום",
+              "translation": "אָדוֹם",
               "examples": [
                 {
                   "sentence": "The apple is red",
-                  "translation": "התפוח אדום"
+                  "translation": "הַתַּפּוּחַ אָדוֹם"
                 },
                 {
                   "sentence": "She wears a red dress",
-                  "translation": "היא לובשת שמלה אדומה"
+                  "translation": "הִיא לוֹבֶשֶׁת שִׂמְלָה אֲדוּמָּה"
                 },
                 {
                   "sentence": "Red is my favorite color",
-                  "translation": "אדום הוא הצבע האהוב עליי"
+                  "translation": "אָדוֹם הוּא הַצֶּבַע הָאָהוּב עָלַיי"
                 }
               ]
             },
             {
               "word": "Blue",
-              "translation": "כחול",
+              "translation": "כָּחוֹל",
               "examples": [
                 {
                   "sentence": "The sky is blue",
-                  "translation": "השמיים כחולים"
+                  "translation": "הַשָּׁמַיִים כְּחוּלִּים"
                 },
                 {
                   "sentence": "He has blue eyes",
-                  "translation": "יש לו עיניים כחולות"
+                  "translation": "יֵשׁ לוֹ עֵינַיִים כְּחוּלּוֹת"
                 },
                 {
                   "sentence": "I like the blue car",
-                  "translation": "אני אוהב את המכונית הכחולה"
+                  "translation": "אֲנִי אוֹהֵב אֶת הַמְּכוֹנִית הַכְּחוּלָּה"
                 }
               ]
             },
             {
               "word": "Green",
-              "translation": "ירוק",
+              "translation": "יָרוֹק",
               "examples": [
                 {
                   "sentence": "The grass is green",
-                  "translation": "הדשא ירוק"
+                  "translation": "הַדֶּשֶׁא יָרוֹק"
                 },
                 {
                   "sentence": "She bought a green shirt",
-                  "translation": "היא קנתה חולצה ירוקה"
+                  "translation": "הִיא קָנְתָה חוּלְצָה יְרוּקָּה"
                 },
                 {
                   "sentence": "Green trees are beautiful",
-                  "translation": "עצים ירוקים הם יפים"
+                  "translation": "עֵצִים יְרוּקִּים הֵם יָפִים"
                 }
               ]
             },
             {
               "word": "Yellow",
-              "translation": "צהוב",
+              "translation": "צָהוֹב",
               "examples": [
                 {
                   "sentence": "The sun looks yellow",
-                  "translation": "השמש נראית צהובה"
+                  "translation": "הַשֶּׁמֶשׁ נִרְאֵית צְהוּבָּה"
                 },
                 {
                   "sentence": "He has a yellow bike",
-                  "translation": "יש לו אופניים צהובים"
+                  "translation": "יֵשׁ לוֹ אוֹפַנַּיִים צְהוּבִּים"
                 },
                 {
                   "sentence": "The banana is yellow",
-                  "translation": "הבננה צהובה"
+                  "translation": "הַבָּנָנָה צְהוּבָּה"
                 }
               ]
             },
             {
               "word": "Black",
-              "translation": "שחור",
+              "translation": "שָׁחוֹר",
               "examples": [
                 {
                   "sentence": "I have a black cat",
-                  "translation": "יש לי חתול שחור"
+                  "translation": "יֵשׁ לִי חָתוּל שָׁחוֹר"
                 },
                 {
                   "sentence": "She wears black shoes",
-                  "translation": "היא נועלת נעליים שחורות"
+                  "translation": "הִיא נוֹעֶלֶת נַעֲלַיִים שְׁחוֹרוֹת"
                 },
                 {
                   "sentence": "The night is black",
-                  "translation": "הלילה שחור"
+                  "translation": "הַלַּיְלָה שָׁחוֹר"
                 }
               ]
             }

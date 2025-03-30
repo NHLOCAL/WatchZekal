@@ -1,0 +1,516 @@
+{
+  "levels": [
+    {
+      "level": 2,
+      "name": "מִשְׁפָּחָה וּזְמַן",
+      "subtopics": [
+        {
+          "name": "בְּנֵי מִשְׁפָּחָה",
+          "words": [
+            {
+              "word": "Mère",
+              "translation": "אִמָּא",
+              "examples": [
+                {
+                  "sentence": "Ma mère est gentille",
+                  "translation": "אִמִּי נְחְמָדָה"
+                },
+                {
+                  "sentence": "Elle est mère de deux enfants",
+                  "translation": "הִיא אִמָּא לִשְׁנַיִים"
+                },
+                {
+                  "sentence": "Maman prépare le diner",
+                  "translation": "אִמָּא מְבַשֶּׁלֶת אֲרוּחַת עֶרֶב"
+                }
+              ]
+            },
+            {
+              "word": "Père",
+              "translation": "אַבָּא",
+              "examples": [
+                {
+                  "sentence": "Son père est grand",
+                  "translation": "אָבִיו גָּבוֹהַּ"
+                },
+                {
+                  "sentence": "Papa va au travail",
+                  "translation": "אַבָּא הוֹלֵךְ לָעֲבוֹדָה"
+                },
+                {
+                  "sentence": "J'aime mon père",
+                  "translation": "אֲנִי אוֹהֵב אֶת אַבָּא שֶׁלִּי"
+                }
+              ]
+            },
+            {
+              "word": "Frère",
+              "translation": "אָח",
+              "examples": [
+                {
+                  "sentence": "J'ai un frère",
+                  "translation": "יֵשׁ לִי אָח"
+                },
+                {
+                  "sentence": "Son frère est plus âgé",
+                  "translation": "אָחִיו מְבוּגָּר יוֹתֵר"
+                },
+                {
+                  "sentence": "Frère et sœur jouent",
+                  "translation": "אָח וְאָחוֹת מְשַׂחֲקִים"
+                }
+              ]
+            },
+            {
+              "word": "Sœur",
+              "translation": "אָחוֹת",
+              "examples": [
+                {
+                  "sentence": "Elle est ma sœur",
+                  "translation": "הִיא אֲחוֹתִי"
+                },
+                {
+                  "sentence": "Sa sœur est jeune",
+                  "translation": "אֲחוֹתָהּ צְעִירָה"
+                },
+                {
+                  "sentence": "J'aide ma sœur",
+                  "translation": "אֲנִי עוֹזֵר לַאֲחוֹתִי"
+                }
+              ]
+            },
+            {
+              "word": "Grand-mère",
+              "translation": "סַבְתָּא",
+              "examples": [
+                {
+                  "sentence": "Grand-mère raconte des histoires",
+                  "translation": "סַבְתָּא מְסַפֶּרֶת סִיפּוּרִים"
+                },
+                {
+                  "sentence": "Je rends visite à ma grand-mère",
+                  "translation": "אֲנִי מְבַקֵּר אֶת סַבְתָּא שֶׁלִּי"
+                },
+                {
+                  "sentence": "Elle aime sa grand-mère",
+                  "translation": "הִיא אוֹהֶבֶת אֶת סַבְתָּא שֶׁלָּהּ"
+                }
+              ]
+            },
+            {
+              "word": "Grand-père",
+              "translation": "סַבָּא",
+              "examples": [
+                {
+                  "sentence": "Son grand-père est drôle",
+                  "translation": "סַבָּא שֶׁלּוֹ מַצְחִיק"
+                },
+                {
+                  "sentence": "Grand-père joue aux échecs",
+                  "translation": "סַבָּא מְשַׂחֵק שַׁחְמָט"
+                },
+                {
+                  "sentence": "Nous allons à la pêche avec grand-père",
+                  "translation": "אֲנַחְנוּ הוֹלְכִים לָדוּג עִם סַבָּא"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "יְמוֹת הַשָּׁבוּעַ",
+          "words": [
+            {
+              "word": "Dimanche",
+              "translation": "יוֹם רִאשׁוֹן",
+              "examples": [
+                {
+                  "sentence": "Aujourd'hui, c'est dimanche",
+                  "translation": "הַיּוֹם יוֹם רִאשׁוֹן"
+                },
+                {
+                  "sentence": "Nous nous reposons le dimanche",
+                  "translation": "אֲנַחְנוּ נָחִים בְּיוֹם רִאשׁוֹן"
+                },
+                {
+                  "sentence": "Dimanche est le premier jour",
+                  "translation": "יוֹם רִאשׁוֹן הוּא הַיּוֹם הָרִאשׁוֹן"
+                }
+              ]
+            },
+            {
+              "word": "Lundi",
+              "translation": "יוֹם שֵׁנִי",
+              "examples": [
+                {
+                  "sentence": "Lundi vient après dimanche",
+                  "translation": "יוֹם שֵׁנִי מַגִּיעַ אַחֲרֵי יוֹם רִאשׁוֹן"
+                },
+                {
+                  "sentence": "J'ai école le lundi",
+                  "translation": "יֵשׁ לִי בֵּית סֵפֶר בְּיוֹם שֵׁנִי"
+                },
+                {
+                  "sentence": "Elle travaille le lundi",
+                  "translation": "הִיא עוֹבֶדֶת בְּיוֹם שֵׁנִי"
+                }
+              ]
+            },
+            {
+              "word": "Mardi",
+              "translation": "יוֹם שְׁלִישִׁי",
+              "examples": [
+                {
+                  "sentence": "Mardi est mon jour préféré",
+                  "translation": "יוֹם שְׁלִישִׁי הוּא הַיּוֹם הָאָהוּב עָלַיי"
+                },
+                {
+                  "sentence": "Nous jouons au football le mardi",
+                  "translation": "אֲנַחְנוּ מְשַׂחֲקִים כַּדּוּרֶגֶל בְּיוֹם שְׁלִישִׁי"
+                },
+                {
+                  "sentence": "Il a une réunion le mardi",
+                  "translation": "יֵשׁ לוֹ פְּגִישָׁה בְּיוֹם שְׁלִישִׁי"
+                }
+              ]
+            },
+            {
+              "word": "Mercredi",
+              "translation": "יוֹם רְבִיעִי",
+              "examples": [
+                {
+                  "sentence": "Le milieu de la semaine est mercredi",
+                  "translation": "אֶמְצַע הַשָּׁבוּעַ הוּא יוֹם רְבִיעִי"
+                },
+                {
+                  "sentence": "Elle rend visite le mercredi",
+                  "translation": "הִיא מְבַקֶּרֶת בְּיוֹם רְבִיעִי"
+                },
+                {
+                  "sentence": "Mercredi est chargé",
+                  "translation": "יוֹם רְבִיעִי עָמוּס"
+                }
+              ]
+            },
+            {
+              "word": "Jeudi",
+              "translation": "יוֹם חֲמִישִׁי",
+              "examples": [
+                {
+                  "sentence": "Jeudi est presque le week-end",
+                  "translation": "יוֹם חֲמִישִׁי הוּא כִּמְעַט סוֹף הַשָּׁבוּעַ"
+                },
+                {
+                  "sentence": "Nous avons un test le jeudi",
+                  "translation": "יֵשׁ לָנוּ מִבְחָן בְּיוֹם חֲמִישִׁי"
+                },
+                {
+                  "sentence": "Il voyage le jeudi",
+                  "translation": "הוּא נוֹסֵעַ בְּיוֹם חֲמִישִׁי"
+                }
+              ]
+            },
+            {
+              "word": "Vendredi",
+              "translation": "יוֹם שִׁישִּׁי",
+              "examples": [
+                {
+                  "sentence": "Vendredi est le dernier jour de travail",
+                  "translation": "יוֹם שִׁישִּׁי הוּא הַיּוֹם הָאַחֲרוֹן לָעֲבוֹדָה"
+                },
+                {
+                  "sentence": "Nous célébrons le vendredi",
+                  "translation": "אֲנַחְנוּ חוֹגְגִים בְּיוֹם שִׁישִּׁי"
+                },
+                {
+                  "sentence": "Elle finit tôt le vendredi",
+                  "translation": "הִיא מְסַיֶּימֶת מוּקְדָּם בְּיוֹם שִׁישִּׁי"
+                }
+              ]
+            },
+            {
+              "word": "Samedi",
+              "translation": "יוֹם שַׁבָּת",
+              "examples": [
+                {
+                  "sentence": "Samedi est le week-end",
+                  "translation": "יוֹם שַׁבָּת הוּא סוֹף הַשָּׁבוּעַ"
+                },
+                {
+                  "sentence": "Ils se détendent le samedi",
+                  "translation": "הֵם נִרְגָּעִים בְּיוֹם שַׁבָּת"
+                },
+                {
+                  "sentence": "Samedi soir est amusant",
+                  "translation": "לֵיל שַׁבָּת הוּא כֵּיף"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "חֶלְקֵי הַיּוֹם",
+          "words": [
+            {
+              "word": "Matin",
+              "translation": "בּוֹקֶר",
+              "examples": [
+                {
+                  "sentence": "Bonjour !",
+                  "translation": "בּוֹקֶר טוֹב!"
+                },
+                {
+                  "sentence": "Je mange le petit déjeuner le matin",
+                  "translation": "אֲנִי אוֹכֵל אֲרוּחַת בּוֹקֶר בַּבּוֹקֶר"
+                },
+                {
+                  "sentence": "Le soleil se lève le matin",
+                  "translation": "הַשֶּׁמֶשׁ זוֹרַחַת בַּבּוֹקֶר"
+                }
+              ]
+            },
+            {
+              "word": "Après-midi",
+              "translation": "צָהֳרַיִים",
+              "examples": [
+                {
+                  "sentence": "Bon après-midi !",
+                  "translation": "צָהֳרַיִים טוֹבִים!"
+                },
+                {
+                  "sentence": "Elle étudie l'après-midi",
+                  "translation": "הִיא לוֹמֶדֶת בַּצָּהֳרַיִים"
+                },
+                {
+                  "sentence": "Nous nous rencontrons l'après-midi",
+                  "translation": "אֲנַחְנוּ נִפְגָּשִׁים בַּצָּהֳרַיִים"
+                }
+              ]
+            },
+            {
+              "word": "Soir",
+              "translation": "עֶרֶב",
+              "examples": [
+                {
+                  "sentence": "Bonsoir !",
+                  "translation": "עֶרֶב טוֹב!"
+                },
+                {
+                  "sentence": "Ils dînent le soir",
+                  "translation": "הֵם אוֹכְלִים אֲרוּחַת עֶרֶב בָּעֶרֶב"
+                },
+                {
+                  "sentence": "Le ciel est magnifique le soir",
+                  "translation": "הַשָּׁמַיִים יָפִים בָּעֶרֶב"
+                }
+              ]
+            },
+            {
+              "word": "Nuit",
+              "translation": "לַיְלָה",
+              "examples": [
+                {
+                  "sentence": "Bonne nuit !",
+                  "translation": "לַיְלָה טוֹב!"
+                },
+                {
+                  "sentence": "Il dort la nuit",
+                  "translation": "הוּא יָשֵׁן בַּלַּיְלָה"
+                },
+                {
+                  "sentence": "Les étoiles brillent la nuit",
+                  "translation": "הַכּוֹכָבִים זוֹרְחִים בַּלַּיְלָה"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "מִסְפָּרִים 11-20",
+          "words": [
+            {
+              "word": "Onze",
+              "translation": "אַחַת עֶשְׂרֵה",
+              "examples": [
+                {
+                  "sentence": "Elle a onze ans",
+                  "translation": "הִיא בַּת אַחַת עֶשְׂרֵה"
+                },
+                {
+                  "sentence": "Onze joueurs dans une équipe",
+                  "translation": "אַחַד עָשָׂר שַׂחְקָנִים בִּקְבוּצָה"
+                },
+                {
+                  "sentence": "L'horloge affiche onze heures",
+                  "translation": "הַשָּׁעוֹן מַרְאֶה אַחַת עֶשְׂרֵה"
+                }
+              ]
+            },
+            {
+              "word": "Douze",
+              "translation": "שְׁתֵּים עֶשְׂרֵה",
+              "examples": [
+                {
+                  "sentence": "Il est douze heures",
+                  "translation": "הַשָּׁעָה שְׁתֵּים עֶשְׂרֵה"
+                },
+                {
+                  "sentence": "Il a acheté douze œufs",
+                  "translation": "הוּא קָנָה שְׁתֵּים עֶשְׂרֵה בֵּיצִים"
+                },
+                {
+                  "sentence": "Douze mois dans une année",
+                  "translation": "שְׁנֵים עָשָׂר חוֹדָשִׁים בְּשָׁנָה"
+                }
+              ]
+            },
+            {
+              "word": "Treize",
+              "translation": "שְׁלוֹשׁ עֶשְׂרֵה",
+              "examples": [
+                {
+                  "sentence": "Elle a treize poupées",
+                  "translation": "יֵשׁ לָהּ שְׁלוֹשׁ עֶשְׂרֵה בּוּבּוֹת"
+                },
+                {
+                  "sentence": "Treize est un nombre porte-bonheur",
+                  "translation": "שְׁלוֹשׁ עֶשְׂרֵה הוּא מִסְפַּר מַזָּל"
+                },
+                {
+                  "sentence": "Il a treize ans aujourd'hui",
+                  "translation": "הוּא בֶּן שְׁלוֹשׁ עֶשְׂרֵה הַיּוֹם"
+                }
+              ]
+            },
+            {
+              "word": "Quatorze",
+              "translation": "אַרְבַּע עֶשְׂרֵה",
+              "examples": [
+                {
+                  "sentence": "Quatorze élèves dans la classe",
+                  "translation": "אַרְבָּעָה עָשָׂר תַּלְמִידִים בַּכִּיתָּה"
+                },
+                {
+                  "sentence": "Elle a couru quatorze miles",
+                  "translation": "הִיא רָצָה אַרְבָּעָה עָשָׂר מַיְילִים"
+                },
+                {
+                  "sentence": "Le livre a quatorze chapitres",
+                  "translation": "הַסֵּפֶר מֵכִיל אַרְבָּעָה עָשָׂר פְּרָקִים"
+                }
+              ]
+            },
+            {
+              "word": "Quinze",
+              "translation": "חֲמֵשׁ עֶשְׂרֵה",
+              "examples": [
+                {
+                  "sentence": "Il a quinze ans",
+                  "translation": "הוּא בֶּן חֲמֵשׁ עֶשְׂרֵה"
+                },
+                {
+                  "sentence": "Quinze minutes restantes",
+                  "translation": "נִשְׁאֲרוּ חֲמֵשׁ עֶשְׂרֵה דַּקּוֹת"
+                },
+                {
+                  "sentence": "Elle a marqué quinze points",
+                  "translation": "הִיא הִשִּׂיגָה חֲמֵשׁ עֶשְׂרֵה נְקודּוֹת"
+                }
+              ]
+            },
+            {
+              "word": "Seize",
+              "translation": "שֵׁשׁ עֶשְׂרֵה",
+              "examples": [
+                {
+                  "sentence": "La boîte contient seize chocolats",
+                  "translation": "הַקּוּפְסָה מְכִילָה שִׁשָּׁה עָשָׂר שׁוֹקוֹלָדִים"
+                },
+                {
+                  "sentence": "Elle aura seize ans demain",
+                  "translation": "הִיא תִּהְיֶה בַּת שֵׁשׁ עֶשְׂרֵה מָחָר"
+                },
+                {
+                  "sentence": "Ils ont seize dollars",
+                  "translation": "יֵשׁ לָהֶם שֵׁשׁ עֶשְׂרֵה דּוֹלָר"
+                }
+              ]
+            },
+            {
+              "word": "Dix-sept",
+              "translation": "שְׁבַע עֶשְׂרֵה",
+              "examples": [
+                {
+                  "sentence": "Dix-sept personnes ont assisté",
+                  "translation": "שִׁבְעָה עָשָׂר אֲנָשִׁים נָכְחוּ"
+                },
+                {
+                  "sentence": "La chambre dix-sept est à l'étage",
+                  "translation": "חֶדֶר שְׁבַע עֶשְׂרֵה נִמְצָא בַּקּוֹמָה הָעֶלְיוֹנָה"
+                },
+                {
+                  "sentence": "Elle a lu dix-sept livres",
+                  "translation": "הִיא קָרְאָה שִׁבְעָה עָשָׂר סְפָרִים"
+                }
+              ]
+            },
+            {
+              "word": "Dix-huit",
+              "translation": "שְׁמוֹנֶה עֶשְׂרֵה",
+              "examples": [
+                {
+                  "sentence": "Il a dix-huit ans et peut voter",
+                  "translation": "הוּא בֶּן שְׁמוֹנֶה עֶשְׂרֵה וְיָכוֹל לְהַצְבִּיעַ"
+                },
+                {
+                  "sentence": "Dix-huit roues sur le camion",
+                  "translation": "שְׁמוֹנָה עָשָׂר גַּלְגַּלִּים בַּמַּשָּׂאִית"
+                },
+                {
+                  "sentence": "Ils ont parcouru dix-huit miles",
+                  "translation": "הֵם נָסְעוּ שְׁמוֹנָה עָשָׂר מַיְילִים"
+                }
+              ]
+            },
+            {
+              "word": "Dix-neuf",
+              "translation": "תְּשַׁע עֶשְׂרֵה",
+              "examples": [
+                {
+                  "sentence": "Dix-neuf élèves ont réussi",
+                  "translation": "תִּשְׁעָה עָשָׂר תַּלְמִידִים עָבְרוּ"
+                },
+                {
+                  "sentence": "Il a attendu dix-neuf minutes",
+                  "translation": "הוּא חִיכָּה תְּשַׁע עֶשְׂרֵה דַּקּוֹת"
+                },
+                {
+                  "sentence": "Elle a collectionné dix-neuf timbres",
+                  "translation": "הִיא אָסְפָה תִּשְׁעָה עָשָׂר בּוּלִים"
+                }
+              ]
+            },
+            {
+              "word": "Vingt",
+              "translation": "עֶשְׂרִים",
+              "examples": [
+                {
+                  "sentence": "Elle a vingt ans",
+                  "translation": "הִיא בַּת עֶשְׂרִים"
+                },
+                {
+                  "sentence": "Vingt personnes sont venues",
+                  "translation": "עֶשְׂרִים אֲנָשִׁים בָּאוּ"
+                },
+                {
+                  "sentence": "Ils ont planté vingt arbres",
+                  "translation": "הֵם שָׁתְלוּ עֶשְׂרִים עֵצִים"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

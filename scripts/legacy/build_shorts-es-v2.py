@@ -702,8 +702,8 @@ class VideoCreator:
             edge_spacing = int(width * 0.03)  # 3% מרוחב המסך
 
             # הוספת הדגלים
-            israel_flag_path = os.path.join(ASSETS_DIR, 'flags', 'israel_flag.png')
-            spain_flag_path = os.path.join(ASSETS_DIR, 'flags', 'spain_flag.png')
+            israel_flag_path = os.path.join(ASSETS_DIR, 'flags', 'עברית.png')
+            spain_flag_path = os.path.join(ASSETS_DIR, 'flags', 'ספרדית.png')
             arrows_path = os.path.join(ASSETS_DIR, 'arrows.png')
 
             flag_max_height = int(strip_height * 0.6)

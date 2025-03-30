@@ -1,0 +1,835 @@
+{
+  "levels": [
+    {
+      "level": 5,
+      "name": "מָזוֹן וּמַשְׁקָאוֹת",
+      "subtopics": [
+        {
+          "name": "פֵּירוֹת וִירָקוֹת",
+          "words": [
+            {
+              "word": "Pomme",
+              "translation": "תַּפּוּחַ",
+              "examples": [
+                {
+                  "sentence": "J'aime manger une pomme",
+                  "translation": "אֲנִי אוֹהֵב לֶאֱכוֹל תַּפּוּחַ"
+                },
+                {
+                  "sentence": "Elle a cueilli une pomme de l'arbre",
+                  "translation": "הִיא קָטְפָה תַּפּוּחַ מֵהָעֵץ"
+                },
+                {
+                  "sentence": "Les pommes sont rouges ou vertes",
+                  "translation": "תַּפּוּחִים הֵם אֲדוּמִּים אוֹ יְרוּקִּים"
+                }
+              ]
+            },
+            {
+              "word": "Banane",
+              "translation": "בַּנָּנָה",
+              "examples": [
+                {
+                  "sentence": "Les singes adorent les bananes",
+                  "translation": "קוֹפִים אוֹהֲבִים בַּנָּנוֹת"
+                },
+                {
+                  "sentence": "Il a mangé une banane au petit-déjeuner",
+                  "translation": "הוּא אָכַל בַּנָּנָה לַאֲרוּחַת בּוֹקֶר"
+                },
+                {
+                  "sentence": "Les bananes sont jaunes et sucrées",
+                  "translation": "בַּנָּנוֹת צְהוּבּוֹת וּמְתוּקוֹת"
+                }
+              ]
+            },
+            {
+              "word": "Orange",
+              "translation": "תַּפּוּז",
+              "examples": [
+                {
+                  "sentence": "Elle a bu du jus d'orange",
+                  "translation": "הִיא שָׁתְתָה מִיץ תַּפּוּזִים"
+                },
+                {
+                  "sentence": "Les oranges contiennent de la vitamine C",
+                  "translation": "תַּפּוּזִים מְכִילִים וִיטָמִין C"
+                },
+                {
+                  "sentence": "J'ai pelé une orange",
+                  "translation": "קִילַפְתִּי תַּפּוּז"
+                }
+              ]
+            },
+            {
+              "word": "Carotte",
+              "translation": "גֶּזֶר",
+              "examples": [
+                {
+                  "sentence": "Les lapins mangent des carottes",
+                  "translation": "אַרְנָבִים אוֹכְלִים גְּזָרִים"
+                },
+                {
+                  "sentence": "Il a haché les carottes",
+                  "translation": "הוּא חָתַךְ אֶת הַגְּזָרִים"
+                },
+                {
+                  "sentence": "Les carottes sont bonnes pour les yeux",
+                  "translation": "גְּזָרִים טוֹבִים לָעֵינַיִים שֶׁלְּךָ"
+                }
+              ]
+            },
+            {
+              "word": "Tomate",
+              "translation": "עַגְבָנִיָּיה",
+              "examples": [
+                {
+                  "sentence": "Elle a tranché une tomate",
+                  "translation": "הִיא פָּרְסָה עַגְבָנִיָּיה"
+                },
+                {
+                  "sentence": "Les tomates sont rouges et juteuses",
+                  "translation": "עַגְבָנִיּוֹת אֲדוּמוֹת וַעֲסִיסִיּוֹת"
+                },
+                {
+                  "sentence": "Il a ajouté des tomates à la salade",
+                  "translation": "הוּא הוֹסִיף עַגְבָנִיּוֹת לַסָּלָט"
+                }
+              ]
+            },
+            {
+              "word": "Pomme de terre",
+              "translation": "תַּפּוּחַ אֲדָמָה",
+              "examples": [
+                {
+                  "sentence": "Nous avons cuit des pommes de terre au four",
+                  "translation": "אָפִינוּ תַּפּוּחֵי אֲדָמָה"
+                },
+                {
+                  "sentence": "Les frites sont faites à partir de pommes de terre",
+                  "translation": "צִ'יפְּס עָשׂוּי מִתַּפּוּחֵי אֲדָמָה"
+                },
+                {
+                  "sentence": "Les pommes de terre poussent sous terre",
+                  "translation": "תַּפּוּחֵי אֲדָמָה גְּדֵלִים מִתַּחַת לָאֲדָמָה"
+                }
+              ]
+            },
+            {
+              "word": "Concombre",
+              "translation": "מְלָפְפוֹן",
+              "examples": [
+                {
+                  "sentence": "Elle a fait une salade de concombre",
+                  "translation": "הִיא הֵכִינָה סָלָט מְלָפְפוֹנִים"
+                },
+                {
+                  "sentence": "Les concombres sont verts et frais",
+                  "translation": "מְלָפְפוֹנִים יְרוּקִּים וְרַעֲנַנִּים"
+                },
+                {
+                  "sentence": "Il a tranché finement les concombres",
+                  "translation": "הוּא פָּרַס מְלָפְפוֹנִים דַּק"
+                }
+              ]
+            },
+            {
+              "word": "Fraise",
+              "translation": "תּוּת",
+              "examples": [
+                {
+                  "sentence": "J'adore la glace à la fraise",
+                  "translation": "אֲנִי אוֹהֵב גְּלִידַת תּוּת"
+                },
+                {
+                  "sentence": "Elle a cueilli des fraises dans le champ",
+                  "translation": "הִיא קָטְפָה תּוּתִים בַּשָּׂדֶה"
+                },
+                {
+                  "sentence": "Les fraises sont sucrées et rouges",
+                  "translation": "תּוּתִים מְתוּקִים וַאֲדוּמִּים"
+                }
+              ]
+            },
+            {
+              "word": "Raisins",
+              "translation": "עֲנָבִים",
+              "examples": [
+                {
+                  "sentence": "Il a mangé des raisins verts",
+                  "translation": "הוּא אָכַל עֲנָבִים יְרוּקִּים"
+                },
+                {
+                  "sentence": "Les raisins poussent sur des vignes",
+                  "translation": "עֲנָבִים גְּדֵלִים עַל גְּפָנִים"
+                },
+                {
+                  "sentence": "Ils ont fait du vin à partir de raisins",
+                  "translation": "הֵם יִיצְּרוּ יַיִן מֵעֲנָבִים"
+                }
+              ]
+            },
+            {
+              "word": "Pastèque",
+              "translation": "אֲבַטִּיחַ",
+              "examples": [
+                {
+                  "sentence": "Nous avons mangé de la pastèque au pique-nique",
+                  "translation": "אָכַלְנוּ אֲבַטִּיחַ בַּפִּיקְנִיק"
+                },
+                {
+                  "sentence": "Les pastèques sont grosses et juteuses",
+                  "translation": "אֲבַטִּיחִים גְּדוֹלִים וַעֲסִיסִיִּים"
+                },
+                {
+                  "sentence": "Elle a acheté une pastèque au marché",
+                  "translation": "הִיא קָנְתָה אֲבַטִּיחַ מֵהַשּׁוּק"
+                }
+              ]
+            },
+            {
+              "word": "Laitue",
+              "translation": "חַסָּה",
+              "examples": [
+                {
+                  "sentence": "Il a mis de la laitue dans le sandwich",
+                  "translation": "הוּא שָׂם חַסָּה בַּכָּרִיךְ"
+                },
+                {
+                  "sentence": "La laitue est verte et croquante",
+                  "translation": "חַסָּה יְרוּקָה וּפְרִיכָה"
+                },
+                {
+                  "sentence": "Elle cultive de la laitue dans son jardin",
+                  "translation": "הִיא מְגַדֶּלֶת חַסָּה בַּגִּינָה שֶׁלָּהּ"
+                }
+              ]
+            },
+            {
+              "word": "Oignon",
+              "translation": "בָּצָל",
+              "examples": [
+                {
+                  "sentence": "Il a haché un oignon",
+                  "translation": "הוּא קָצַץ בָּצָל"
+                },
+                {
+                  "sentence": "Les oignons peuvent vous faire pleurer",
+                  "translation": "בְּצָלִים יְכוֹלִים לִגְרֹם לְךָ לִבְכּוֹת"
+                },
+                {
+                  "sentence": "Elle a fait frire des oignons pour la soupe",
+                  "translation": "הִיא טִיגְּנָה בָּצָל לַמָּרָק"
+                }
+              ]
+            },
+            {
+              "word": "Poivre",
+              "translation": "פִּלְפֵּל",
+              "examples": [
+                {
+                  "sentence": "Elle a ajouté des poivrons rouges au plat",
+                  "translation": "הִיא הוֹסִיפָה פִּלְפְּלִים אֲדוּמִּים לַמָּנָה"
+                },
+                {
+                  "sentence": "Les poivrons peuvent être épicés",
+                  "translation": "פִּלְפְּלִים יְכוֹלִים לִהְיוֹת חֲרִיפִים"
+                },
+                {
+                  "sentence": "Il a farci les poivrons avec du riz",
+                  "translation": "הוּא מִילֵּא אֶת הַפִּלְפְּלִים בְּאוֹרֶז"
+                }
+              ]
+            },
+            {
+              "word": "Maïs",
+              "translation": "תִּירָס",
+              "examples": [
+                {
+                  "sentence": "Ils ont mangé du maïs en épi",
+                  "translation": "הֵם אָכְלוּ קֶלַח תִּירָס"
+                },
+                {
+                  "sentence": "Le maïs est jaune et sucré",
+                  "translation": "תִּירָס צָהוֹב וּמָתוֹק"
+                },
+                {
+                  "sentence": "Elle a fait bouillir le maïs",
+                  "translation": "הִיא בִּישְּׁלָה אֶת הַתִּירָס"
+                }
+              ]
+            },
+            {
+              "word": "Brocoli",
+              "translation": "בְּרוֹקוֹלִי",
+              "examples": [
+                {
+                  "sentence": "Il n'aime pas le brocoli",
+                  "translation": "הוּא לֹא אוֹהֵב בְּרוֹקוֹלִי"
+                },
+                {
+                  "sentence": "Le brocoli est sain",
+                  "translation": "בְּרוֹקוֹלִי בָּרִיא"
+                },
+                {
+                  "sentence": "Elle a cuit le brocoli à la vapeur",
+                  "translation": "הִיא אִדְּתָה אֶת הַבְּרוֹקוֹלִי"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "מַשְׁקָאוֹת",
+          "words": [
+            {
+              "word": "Eau",
+              "translation": "מַיִם",
+              "examples": [
+                {
+                  "sentence": "Bois de l'eau tous les jours",
+                  "translation": "שְׁתֵה מַיִם כָּל יוֹם"
+                },
+                {
+                  "sentence": "L'eau est froide",
+                  "translation": "הַמַּיִם קָרִים"
+                },
+                {
+                  "sentence": "Elle a versé de l'eau dans le verre",
+                  "translation": "הִיא מָזְגָה מַיִם לְכוֹס"
+                }
+              ]
+            },
+            {
+              "word": "Jus",
+              "translation": "מִיץ",
+              "examples": [
+                {
+                  "sentence": "Il aime le jus d'orange",
+                  "translation": "הוּא אוֹהֵב מִיץ תַּפּוּזִים"
+                },
+                {
+                  "sentence": "Le jus est sucré",
+                  "translation": "הַמִּיץ מָתוֹק"
+                },
+                {
+                  "sentence": "Elle a fait du jus frais",
+                  "translation": "הִיא הֵכִינָה מִיץ טָרִי"
+                }
+              ]
+            },
+            {
+              "word": "Lait",
+              "translation": "חָלָב",
+              "examples": [
+                {
+                  "sentence": "Elle boit du lait avec des biscuits",
+                  "translation": "הִיא שׁוֹתָה חָלָב עִם עוּגִיּוֹת"
+                },
+                {
+                  "sentence": "Le lait est blanc",
+                  "translation": "חָלָב לָבָן"
+                },
+                {
+                  "sentence": "Il a ajouté du lait à son café",
+                  "translation": "הוּא הוֹסִיף חָלָב לַקָּפֶה שֶׁלּוֹ"
+                }
+              ]
+            },
+            {
+              "word": "Café",
+              "translation": "קָפֶה",
+              "examples": [
+                {
+                  "sentence": "Il boit du café tous les matins",
+                  "translation": "הוּא שׁוֹתֶה קָפֶה כָּל בּוֹקֶר"
+                },
+                {
+                  "sentence": "Le café est chaud",
+                  "translation": "הַקָּפֶה חַם"
+                },
+                {
+                  "sentence": "Elle aime le café noir",
+                  "translation": "הִיא אוֹהֶבֶת קָפֶה שָׁחוֹר"
+                }
+              ]
+            },
+            {
+              "word": "Thé",
+              "translation": "תֵּה",
+              "examples": [
+                {
+                  "sentence": "Voulez-vous du thé ?",
+                  "translation": "הַאִם תִּרְצֶה תֵּה?"
+                },
+                {
+                  "sentence": "Elle boit du thé vert",
+                  "translation": "הִיא שׁוֹתָה תֵּה יָרוֹק"
+                },
+                {
+                  "sentence": "Le thé est amer sans sucre",
+                  "translation": "הַתֵּה מַר בְּלִי סוּכָּר"
+                }
+              ]
+            },
+            {
+              "word": "Soda",
+              "translation": "סוֹדָה",
+              "examples": [
+                {
+                  "sentence": "Il a acheté une canette de soda",
+                  "translation": "הוּא קָנָה פַּחִית סוֹדָה"
+                },
+                {
+                  "sentence": "Le soda est pétillant",
+                  "translation": "סוֹדָה תּוֹסֶסֶת"
+                },
+                {
+                  "sentence": "Ils servent du soda à la fête",
+                  "translation": "הֵם מַגִּישִׁים סוֹדָה בַּמְּסִיבָּה"
+                }
+              ]
+            },
+            {
+              "word": "Vin",
+              "translation": "יַיִן",
+              "examples": [
+                {
+                  "sentence": "Ils ont bu du vin rouge",
+                  "translation": "הֵם שָׁתוּ יַיִן אָדוֹם"
+                },
+                {
+                  "sentence": "Le vin est fait à partir de raisins",
+                  "translation": "יַיִן עָשׂוּי מֵעֲנָבִים"
+                },
+                {
+                  "sentence": "Elle a versé du vin dans le verre",
+                  "translation": "הִיא מָזְגָה יַיִן לְכוֹס"
+                }
+              ]
+            },
+            {
+              "word": "Bière",
+              "translation": "בִּירָה",
+              "examples": [
+                {
+                  "sentence": "Il a commandé une bière froide",
+                  "translation": "הוּא הִזְמִין בִּירָה קָרָה"
+                },
+                {
+                  "sentence": "La bière est populaire en Allemagne",
+                  "translation": "בִּירָה פּוֹפּוּלָרִית בְּגֶרְמַנְיָה"
+                },
+                {
+                  "sentence": "Ils ont bu de la bière au bar",
+                  "translation": "הֵם שָׁתוּ בִּירָה בַּבָּר"
+                }
+              ]
+            },
+            {
+              "word": "Smoothie",
+              "translation": "שֵׁייק",
+              "examples": [
+                {
+                  "sentence": "Elle a fait un smoothie aux fruits",
+                  "translation": "הִיא הֵכִינָה שֵׁייק פֵּירוֹת"
+                },
+                {
+                  "sentence": "Les smoothies sont sains",
+                  "translation": "שֵׁייקִים בְּרִיאִים"
+                },
+                {
+                  "sentence": "Il aime les smoothies à la banane",
+                  "translation": "הוּא אוֹהֵב שֵׁייק בַּנָּנָה"
+                }
+              ]
+            },
+            {
+              "word": "Chocolat chaud",
+              "translation": "שׁוֹקוֹ חַם",
+              "examples": [
+                {
+                  "sentence": "Elle boit du chocolat chaud en hiver",
+                  "translation": "הִיא שׁוֹתָה שׁוֹקוֹ חַם בַּחוֹרֶף"
+                },
+                {
+                  "sentence": "Le chocolat chaud est sucré",
+                  "translation": "שׁוֹקוֹ חַם מָתוֹק"
+                },
+                {
+                  "sentence": "Il a ajouté des guimauves à son chocolat chaud",
+                  "translation": "הוּא הוֹסִיף מַרְשְׁמֶלוֹ לַשּׁוֹקוֹ הֶחָם שֶׁלּוֹ"
+                }
+              ]
+            },
+            {
+              "word": "Limonade",
+              "translation": "לִימוֹנָדָה",
+              "examples": [
+                {
+                  "sentence": "Ils ont vendu de la limonade au stand",
+                  "translation": "הֵם מָכְרוּ לִימוֹנָדָה בַּדּוּכָן"
+                },
+                {
+                  "sentence": "La limonade est rafraîchissante",
+                  "translation": "לִימוֹנָדָה מְרַעְנֶנֶת"
+                },
+                {
+                  "sentence": "Elle a fait de la limonade avec des citrons et du sucre",
+                  "translation": "הִיא הֵכִינָה לִימוֹנָדָה עִם לִימוֹנִים וְסוּכָּר"
+                }
+              ]
+            },
+            {
+              "word": "Cocktail",
+              "translation": "קוֹקְטֵייל",
+              "examples": [
+                {
+                  "sentence": "Il a commandé un cocktail au bar",
+                  "translation": "הוּא הִזְמִין קוֹקְטֵייל בַּבָּר"
+                },
+                {
+                  "sentence": "Les cocktails contiennent des boissons mélangées",
+                  "translation": "קוֹקְטֵיילִים הֵם מַשְׁקָאוֹת מְעוּרְבָּבִים"
+                },
+                {
+                  "sentence": "Elle apprécie les cocktails fruités",
+                  "translation": "הִיא נֶהֱנֵית מִקּוֹקְטֵיילִים פֵּירוֹתִיִּים"
+                }
+              ]
+            },
+            {
+              "word": "Boisson énergétique",
+              "translation": "מַשְׁקֶה אֶנֶרְגְּיָה",
+              "examples": [
+                {
+                  "sentence": "Il a bu une boisson énergétique avant le match",
+                  "translation": "הוּא שָׁתָה מַשְׁקֶה אֶנֶרְגְּיָה לִפְנֵי הַמִּשְׂחָק"
+                },
+                {
+                  "sentence": "Les boissons énergétiques contiennent de la caféine",
+                  "translation": "מַשְׁקָאוֹת אֶנֶרְגְּיָה מְכִילִים קָפֵאִין"
+                },
+                {
+                  "sentence": "Elle évite les boissons énergétiques",
+                  "translation": "הִיא נִמְנַעַת מִמַּשְׁקָאוֹת אֶנֶרְגְּיָה"
+                }
+              ]
+            },
+            {
+              "word": "Milkshake",
+              "translation": "מִילְקְשֵׁייק",
+              "examples": [
+                {
+                  "sentence": "Ils ont partagé un milkshake au chocolat",
+                  "translation": "הֵם חָלְקוּ מִילְקְשֵׁייק שׁוֹקוֹלָד"
+                },
+                {
+                  "sentence": "Les milkshakes sont froids et sucrés",
+                  "translation": "מִילְקְשֵׁייקִים קָרִים וּמְתוּקִים"
+                },
+                {
+                  "sentence": "Il adore les milkshakes à la fraise",
+                  "translation": "הוּא אוֹהֵב מִילְקְשֵׁייק תּוּת"
+                }
+              ]
+            },
+            {
+              "word": "Eau minérale",
+              "translation": "מַיִם מִינֵרָלִיִּים",
+              "examples": [
+                {
+                  "sentence": "Elle préfère l'eau minérale",
+                  "translation": "הִיא מַעֲדִיפָה מַיִם מִינֵרָלִיִּים"
+                },
+                {
+                  "sentence": "L'eau minérale est saine",
+                  "translation": "מַיִם מִינֵרָלִיִּים בְּרִיאִים"
+                },
+                {
+                  "sentence": "Ils ont commandé de l'eau minérale au restaurant",
+                  "translation": "הֵם הִזְמִינוּ מַיִם מִינֵרָלִיִּים בַּמִּסְעָדָה"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "אֲרוּחוֹת",
+          "words": [
+            {
+              "word": "Petit-déjeuner",
+              "translation": "אֲרוּחַת בּוֹקֶר",
+              "examples": [
+                {
+                  "sentence": "Elle mange des céréales au petit-déjeuner",
+                  "translation": "הִיא אוֹכֶלֶת דְּגָנִים לַאֲרוּחַת בּוֹקֶר"
+                },
+                {
+                  "sentence": "Le petit-déjeuner est important",
+                  "translation": "אֲרוּחַת הַבּוֹקֶר חֲשׁוּבָה"
+                },
+                {
+                  "sentence": "Ils ont mangé des œufs au petit-déjeuner",
+                  "translation": "הֵם אָכְלוּ בֵּיצִים לַאֲרוּחַת בּוֹקֶר"
+                }
+              ]
+            },
+            {
+              "word": "Déjeuner",
+              "translation": "אֲרוּחַת צָהֳרַיִים",
+              "examples": [
+                {
+                  "sentence": "Elle prépare le déjeuner",
+                  "translation": "הִיא מְבַשֶּׁלֶת אֲרוּחַת צָהֳרַיִים"
+                },
+                {
+                  "sentence": "Ils déjeunent à midi",
+                  "translation": "הֵם אוֹכְלִים אֲרוּחַת צָהֳרַיִים בַּצָּהֳרַיִים"
+                },
+                {
+                  "sentence": "Il a préparé un déjeuner pour le travail",
+                  "translation": "הוּא אָרַז אֲרוּחַת צָהֳרַיִים לַעֲבוֹדָה"
+                }
+              ]
+            },
+            {
+              "word": "Dîner",
+              "translation": "אֲרוּחַת עֶרֶב",
+              "examples": [
+                {
+                  "sentence": "Nous dînons à 19h",
+                  "translation": "אֲנַחְנוּ אוֹכְלִים אֲרוּחַת עֶרֶב בְּשָׁעָה 7"
+                },
+                {
+                  "sentence": "Elle a préparé un grand dîner",
+                  "translation": "הִיא הֵכִינָה אֲרוּחַת עֶרֶב גְּדוֹלָה"
+                },
+                {
+                  "sentence": "Le dîner est prêt",
+                  "translation": "אֲרוּחַת הָעֶרֶב מוּכָנָה"
+                }
+              ]
+            },
+            {
+              "word": "Collation",
+              "translation": "חָטִיף",
+              "examples": [
+                {
+                  "sentence": "Il a mangé une collation entre les repas",
+                  "translation": "הוּא אָכַל חָטִיף בֵּין הָאֲרוּחוֹת"
+                },
+                {
+                  "sentence": "Les collations peuvent être saines",
+                  "translation": "חֲטִיפִים יְכוֹלִים לִהְיוֹת בְּרִיאִים"
+                },
+                {
+                  "sentence": "Elle a emballé des collations pour le voyage",
+                  "translation": "הִיא אָרְזָה חֲטִיפִים לַטִּיּוּל"
+                }
+              ]
+            },
+            {
+              "word": "Dessert",
+              "translation": "קִינוּחַ",
+              "examples": [
+                {
+                  "sentence": "La glace est un dessert",
+                  "translation": "גְּלִידָה הִיא קִינוּחַ"
+                },
+                {
+                  "sentence": "Elle a fait un gâteau pour le dessert",
+                  "translation": "הִיא אָפְתָה עוּגָה לְקִינוּחַ"
+                },
+                {
+                  "sentence": "Ils adorent les desserts sucrés",
+                  "translation": "הֵם אוֹהֲבִים קִינוּחִים מְתוּקִים"
+                }
+              ]
+            },
+            {
+              "word": "Apéritif",
+              "translation": "מְתַאֲבֵּן",
+              "examples": [
+                {
+                  "sentence": "Nous avons commandé des apéritifs avant le repas",
+                  "translation": "הִזְמַנוּ מְתַאֲבְּנִים לִפְנֵי הָאֲרוּחָה"
+                },
+                {
+                  "sentence": "Un apéritif peut être un petit plat",
+                  "translation": "מְתַאֲבֵּן יָכוֹל לִהְיוֹת מָנָה קְטַנָּה"
+                },
+                {
+                  "sentence": "Elle a préparé de la bruschetta comme apéritif",
+                  "translation": "הִיא הֵכִינָה בְּרוּסְקֶטָה כִּמְתַאֲבֵּן"
+                }
+              ]
+            },
+            {
+              "word": "Plat principal",
+              "translation": "מָנָה עִיקָּרִית",
+              "examples": [
+                {
+                  "sentence": "Le plat principal est du poisson",
+                  "translation": "הַמָּנָה הָעִיקָּרִית הִיא דָג"
+                },
+                {
+                  "sentence": "Il a apprécié le plat principal",
+                  "translation": "הוּא נֶהֱנָה מֵהַמָּנָה הָעִיקָּרִית"
+                },
+                {
+                  "sentence": "Ils ont servi du steak comme plat principal",
+                  "translation": "הֵם הִגִּישׁוּ סְטֵייק כְּמָּנָה עִיקָּרִית"
+                }
+              ]
+            },
+            {
+              "word": "Souper",
+              "translation": "אֲרוּחַת עֶרֶב קַלָּה",
+              "examples": [
+                {
+                  "sentence": "Elle a pris un souper léger",
+                  "translation": "הִיא אָכְלָה אֲרוּחַת עֶרֶב קַלָּה"
+                },
+                {
+                  "sentence": "Le souper est généralement tardif",
+                  "translation": "אֲרוּחַת עֶרֶב קַלָּה בְּדֶרֶךְ כְּלָל מְאוּחֶרֶת"
+                },
+                {
+                  "sentence": "Il a préparé des sandwichs pour le souper",
+                  "translation": "הוּא הֵכִין כְּרִיכִים לַאֲרוּחַת עֶרֶב קַלָּה"
+                }
+              ]
+            },
+            {
+              "word": "Brunch",
+              "translation": "בְּרָאנְץ'",
+              "examples": [
+                {
+                  "sentence": "Ils sont sortis pour le brunch",
+                  "translation": "הֵם יָצְאוּ לִבְרָאנְץ'"
+                },
+                {
+                  "sentence": "Le brunch est entre le petit-déjeuner et le déjeuner",
+                  "translation": "בְּרָאנְץ' הוּא בֵּין אֲרוּחַת בּוֹקֶר לְצָהֳרַיִים"
+                },
+                {
+                  "sentence": "Elle a organisé un brunch",
+                  "translation": "הִיא אֵירְחָה מְסִיבַּת בְּרָאנְץ'"
+                }
+              ]
+            },
+            {
+              "word": "Buffet",
+              "translation": "מִזְנוֹן",
+              "examples": [
+                {
+                  "sentence": "L'hôtel propose un petit-déjeuner buffet",
+                  "translation": "הַמָּלוֹן מַצִּיעַ מִזְנוֹן אֲרוּחַת בּוֹקֶר"
+                },
+                {
+                  "sentence": "Ils ont apprécié le dîner buffet",
+                  "translation": "הֵם נֶהֱנוּ מֵאֲרוּחַת הָעֶרֶב בַּמִזְנוֹן"
+                },
+                {
+                  "sentence": "Le buffet vous permet de choisir la nourriture",
+                  "translation": "מִזְנוֹן מְאַפְשֵׁר לְךָ לִבְחוֹר אוֹכֶל"
+                }
+              ]
+            },
+            {
+              "word": "Pique-nique",
+              "translation": "פִּיקְנִיק",
+              "examples": [
+                {
+                  "sentence": "Ils ont pique-niqué dans le parc",
+                  "translation": "הֵם עָרְכוּ פִּיקְנִיק בַּפָּארְק"
+                },
+                {
+                  "sentence": "Elle a emballé des sandwichs pour le pique-nique",
+                  "translation": "הִיא אָרְזָה כְּרִיכִים לַפִּיקְנִיק"
+                },
+                {
+                  "sentence": "Les pique-niques sont amusants en été",
+                  "translation": "פִּיקְנִיקִים כֵּיפִיִּים בַּקַּיִץ"
+                }
+              ]
+            },
+            {
+              "word": "Barbecue",
+              "translation": "עַל הָאֵשׁ",
+              "examples": [
+                {
+                  "sentence": "Il a grillé de la viande au barbecue",
+                  "translation": "הוּא צָלָה בָּשָׂר עַל הָאֵשׁ"
+                },
+                {
+                  "sentence": "Ils ont invité des amis à un barbecue",
+                  "translation": "הֵם הִזְמִינוּ חֲבֵרִים לְעַל הָאֵשׁ"
+                },
+                {
+                  "sentence": "Les barbecues sont populaires en été",
+                  "translation": "עַל הָאֵשׁ פּוֹפּוּלָרִי בַּקַּיִץ"
+                }
+              ]
+            },
+            {
+              "word": "Salade",
+              "translation": "סָלָט",
+              "examples": [
+                {
+                  "sentence": "Elle a fait une salade fraîche",
+                  "translation": "הִיא הֵכִינָה סָלָט טָרִי"
+                },
+                {
+                  "sentence": "La salade est saine",
+                  "translation": "סָלָט בָּרִיא"
+                },
+                {
+                  "sentence": "Il a ajouté de la vinaigrette à la salade",
+                  "translation": "הוּא הוֹסִיף רוֹטֶב לַסָּלָט"
+                }
+              ]
+            },
+            {
+              "word": "Soupe",
+              "translation": "מָרָק",
+              "examples": [
+                {
+                  "sentence": "Ils ont servi de la soupe au poulet",
+                  "translation": "הֵם הִגִּישׁוּ מָרָק עוֹף"
+                },
+                {
+                  "sentence": "La soupe est chaude et réconfortante",
+                  "translation": "מָרָק חַם וּמְנַחֵם"
+                },
+                {
+                  "sentence": "Elle cuisine de la soupe aux légumes",
+                  "translation": "הִיא מְבַשֶּׁלֶת מָרָק יְרָקוֹת"
+                }
+              ]
+            },
+            {
+              "word": "Sandwich",
+              "translation": "כָּרִיךְ",
+              "examples": [
+                {
+                  "sentence": "Il a mangé un sandwich au fromage",
+                  "translation": "הוּא אָכַל כָּרִיךְ גְּבִינָה"
+                },
+                {
+                  "sentence": "Les sandwichs sont faciles à faire",
+                  "translation": "כְּרִיכִים קַלִּים לַהֲכָנָה"
+                },
+                {
+                  "sentence": "Elle a emballé des sandwichs pour le déjeuner",
+                  "translation": "הִיא אָרְזָה כְּרִיכִים לַאֲרוּחַת צָהֳרַיִים"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

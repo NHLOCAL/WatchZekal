@@ -1,0 +1,25 @@
+{
+  "levels": [
+    {
+      "level": 0,
+      "name": "יְסוֹדוֹת",
+      "subtopics": [
+        {
+          "name": "בְּרָכוֹת וְנִימוּסִים",
+          "words": [
+            {
+              "word": "Hola",
+              "translation": "שָׁלוֹם",
+              "examples": [
+                {
+                  "sentence": "¡Hola a ti!",
+                  "translation": "שָׁלוֹם לְךָ!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
