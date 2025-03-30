@@ -265,18 +265,41 @@ except Exception as e:
 first_subtitle_start_time = audio_duration
 try:
     subs_en_timing = pysrt.open(srt_en_file, encoding='utf-8')
-    if subs_en_timing: first_subtitle_start_time = min(first_subtitle_start_time, subs_en_timing[0].start.ordinal / 1000.0)
-except: pass
+    if subs_en_timing and subs_en_timing[0].start.ordinal >= 0: # Ensure non-negative start time
+        first_subtitle_start_time = min(first_subtitle_start_time, subs_en_timing[0].start.ordinal / 1000.0)
+except Exception as e:
+    print(f"Warning: Could not parse English SRT for timing: {e}")
 try:
     subs_he_timing = pysrt.open(srt_he_file, encoding='utf-8')
-    if subs_he_timing: first_subtitle_start_time = min(first_subtitle_start_time, subs_he_timing[0].start.ordinal / 1000.0)
-except: pass
+    if subs_he_timing and subs_he_timing[0].start.ordinal >= 0: # Ensure non-negative start time
+        first_subtitle_start_time = min(first_subtitle_start_time, subs_he_timing[0].start.ordinal / 1000.0)
+except Exception as e:
+    print(f"Warning: Could not parse Hebrew SRT for timing: {e}")
 
-if first_subtitle_start_time >= audio_duration:
-    print("אזהרה: לא נמצאו כתוביות, כותרת שיר לא תוצג.")
-    first_subtitle_start_time = 0
+# Define a minimum duration needed to display the title meaningfully
+min_title_duration_threshold = 0.5 # <<< החלט כמה זמן מינימום הכותרת צריכה להופיע (למשל 0.5 שניות)
+
+title_clip = None # Initialize title_clip to None
+
+if first_subtitle_start_time < min_title_duration_threshold:
+    print(f"אזהרה: הכתובית הראשונה מתחילה מוקדם מאוד ({first_subtitle_start_time:.2f}s). מדלג על הצגת כותרת השיר.")
+    # Make sure first_subtitle_start_time isn't used incorrectly later if it was audio_duration
+    if first_subtitle_start_time >= audio_duration:
+         first_subtitle_start_time = 0 # Reset if no valid subtitles were found
 else:
-     print(f"הכתובית הראשונה מתחילה ב: {first_subtitle_start_time:.2f} שניות")
+     # Only create title if there's enough time before the first subtitle
+     print(f"הכתובית הראשונה מתחילה ב: {first_subtitle_start_time:.2f} שניות. יוצר קליפ כותרת.")
+     try:
+         title_max_width = video_resolution[0] * 0.9
+         title_clip = mp.TextClip(song_title_text, font=font_path, fontsize=fontsize_title, color=color_title,
+                                  stroke_color=stroke_color_title, stroke_width=stroke_width_title,
+                                  method='caption', align='center', size=(title_max_width, None))
+         # Set duration EXPLICITLY to the calculated start time
+         title_clip = title_clip.set_position(position_title).set_duration(first_subtitle_start_time).set_start(0)
+         print("קליפ כותרת נוצר.")
+     except Exception as e:
+         print(f"שגיאה ביצירת קליפ הכותרת: {e}")
+         title_clip = None # Ensure title_clip is None if creation failed
 
 # --- יצירת קליפ כותרת השיר (אם צריך) ---
 title_clip = None
@@ -559,12 +582,12 @@ def save_subtitle_frame_processor(get_frame, t):
     return frame
 
 # --- שילוב הקליפים (ללא שינוי) ---
-print("משלב את הרקע, הכותרת, כתוביות משולבות ואודיו...")
+print("משלב את הרקע, הכותרת (אם קיימת), כתוביות משולבות ואודיו...")
 clips_to_composite = [background_clip]
-if title_clip: clips_to_composite.append(title_clip)
+if title_clip: # This check remains the same
+    clips_to_composite.append(title_clip)
 clips_to_composite.append(subtitles_clip)
 final_clip = mp.CompositeVideoClip(clips_to_composite, size=video_resolution)
-final_clip = final_clip.set_audio(audio_clip).set_duration(audio_duration).set_fps(video_fps)
 
 # --- החלת פונקציית שמירת הפריימים (ללא שינוי) ---
 print("מחבר את מנגנון שמירת הפריימים לקליפ...")
