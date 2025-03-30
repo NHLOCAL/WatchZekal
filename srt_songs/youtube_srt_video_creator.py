@@ -20,11 +20,13 @@ DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'levels')
 ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
 FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 output_frames_dir = os.path.join(BASE_DIR, "subtitle_frames") # תיקייה לשמירת תמונות
+srt_files_dir = os.path.join(BASE_DIR, "srt_files")  # תיקייה לשמירת קבצי SRT
 
 # --- יצירת תיקיות נדרשות ---
 os.makedirs(ASSETS_DIR, exist_ok=True)
 os.makedirs(FONTS_DIR, exist_ok=True)
 os.makedirs(output_frames_dir, exist_ok=True)
+os.makedirs(srt_files_dir, exist_ok=True)  # יצירת תיקיית SRT
 
 # --- הגדרות קלט ---
 youtube_link = input("הזן קישור YouTube לשיר: ")
@@ -151,14 +153,14 @@ def generate_srt_from_youtube(youtube_url):
 
 
     # --- שמירת קובץ SRT אנגלי (התוכן הנקי) ---
-    english_srt_filename = os.path.join(BASE_DIR, f"{base_filename}_en.srt") # Ensure saving in BASE_DIR
+    english_srt_filename = os.path.join(srt_files_dir, f"{base_filename}_en.srt")  # Save in srt_files_dir
     try:
         with open(english_srt_filename, "w", encoding="utf-8") as f:
             f.write(english_srt_content)
         print(f"\nEnglish SRT saved to: {english_srt_filename}")
     except Exception as e:
         print(f"\nError saving English SRT file '{english_srt_filename}': {e}")
-        return None, None # Stop if saving fails
+        return None, None  # Stop if saving fails
 
 
     # --- הכנת קלט לתרגום (שימוש בתוכן הנקי) ---
@@ -189,7 +191,7 @@ def generate_srt_from_youtube(youtube_url):
     # print(hebrew_srt_content) # Uncomment for debugging the cleaned content
 
     # --- שמירת קובץ SRT עברי (התוכן הנקי) ---
-    hebrew_srt_filename = os.path.join(BASE_DIR, f"{base_filename}_he.srt") # Ensure saving in BASE_DIR
+    hebrew_srt_filename = os.path.join(srt_files_dir, f"{base_filename}_he.srt")  # Save in srt_files_dir
     try:
         with open(hebrew_srt_filename, "w", encoding="utf-8") as f:
             f.write(hebrew_srt_content)
@@ -221,9 +223,9 @@ if video_id:
 else:
     base_filename = "default_song"
 
-# Save SRT content to temporary files (optional, can be in-memory as well)
-srt_en_file = os.path.join(BASE_DIR, f"{base_filename}_en.srt")
-srt_he_file = os.path.join(BASE_DIR, f"{base_filename}_he.srt")
+# Update paths for SRT files
+srt_en_file = os.path.join(srt_files_dir, f"{base_filename}_en.srt")
+srt_he_file = os.path.join(srt_files_dir, f"{base_filename}_he.srt")
 
 with open(srt_en_file, "w", encoding="utf-8") as f:
     f.write(english_srt_content)
