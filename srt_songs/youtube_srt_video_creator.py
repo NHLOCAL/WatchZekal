@@ -183,21 +183,35 @@ def generate_subtitles_from_youtube(youtube_url):
         api_key=os.environ.get("GEMINI_API_KEY"),
     )
 
-    model = "gemini-2.0-flash" # "gemini-2.5-pro-exp-03-25" # Or your preferred model
+    model = "gemini-2.5-pro-exp-03-25" # "gemini-2.0-flash" #  # Or your preferred model
 
-    system_instruction_content = """You are an expert transcriber and translator.
-Your task is to process song audio/text and return subtitles in JSON format.
-The output MUST be a valid JSON array of objects.
-Each object in the array MUST represent a single subtitle segment and have the following keys:
-- "id": An integer sequence number (starting from 1).
-- "start_time": The start time of the subtitle in SECONDS (float).
-- "end_time": The end time of the subtitle in SECONDS (float).
-- "text": The text content of the subtitle (string). Use \\n for line breaks within the text if needed.
+    system_instruction_content = """עליך ליצור כתוביות עבור הסרטון המצורף, תוך הקפדה על דיוק התמלול וניסוח טבעי שמתאים לשפה המדוברת בסרטון. הפלט חייב להיות **רשימת JSON (Array)** כפי שמוצג להלן.  
 
-Divide the subtitles intelligently based on song phrases or logical breaks.
-Ensure the timestamps are accurate and in float seconds.
-Do NOT include any text outside the JSON array itself (no explanations, no markdown fences like ```json ... ```).
-Output ONLY the JSON array."""
+כל כתובית חייבת לכלול:  
+- **`id`**: מספר סידורי המייצג את סדר הופעת הכתובית.  
+- **`start_time`**: זמן התחלה בפורמט **שניות עשרוניות (float)**, לדוגמה `12.759`.  
+- **`end_time`**: זמן סיום בפורמט **שניות עשרוניות (float)**, לדוגמה `18.859`.  
+- **`text`**: טקסט הכתובית, שיכול להכיל שורות מרובות (מופרדות באמצעות `\n`).  
+
+יש לשמור על דיוק בזמנים ובתוכן כדי להבטיח שהתוצאה תוכל להיות מומרת בקלות לקובץ SRT.
+
+### **מבנה JSON לדוגמה:**
+```json
+[
+  {
+    "id": 1,
+    "start_time": 12.759,
+    "end_time": 18.859,
+    "text": "I will never forget\nthe night I saw my father cry"
+  },
+  {
+    "id": 2,
+    "start_time": 21.359,
+    "end_time": 28.729,
+    "text": "I was frightened and alone\nand his tears were burning in my eyes, deep in my soul"
+  }
+]
+```"""
 
     generate_content_config = types.GenerateContentConfig(
         # <<< דרישת JSON מה-API >>>
@@ -322,7 +336,6 @@ Original English JSON:
         for chunk in stream_response_he:
             if chunk.text:
                 hebrew_json_raw += chunk.text
-                # print(".", end="")
 
     except types.generation_types.BlockedPromptException as e:
          print(f"Error: Prompt was blocked for Hebrew generation. Reason: {e}")
