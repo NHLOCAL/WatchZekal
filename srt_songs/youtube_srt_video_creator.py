@@ -54,10 +54,10 @@ spacing_within_language = 10 # <<< רווח קטן בין שורות באותה 
 spacing_between_languages = 35 # <<< רווח גדול יותר בין אנגלית לעברית
 
 # --- הגדרות עיצוב כותרת שיר ---
-fontsize_title = 80
-color_title = 'black'
+fontsize_title = 120
+color_title = 'blue'
 stroke_color_title = 'white'
-stroke_width_title = 2.0
+stroke_width_title = 4.0
 position_title = ('center', 'center')
 
 # --- בדיקת קיום קבצים ---
