@@ -1,6 +1,4 @@
-*.srt
+output/
 subtitle_frames/
-*temp*
 legacy/
-fonts/
-assets/
+srt_files/
