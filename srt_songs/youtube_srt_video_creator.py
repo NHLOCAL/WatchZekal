@@ -424,12 +424,22 @@ def create_styled_subtitle_clip_pil(srt_en_file_local, srt_he_file_local, font_p
             font_he = ImageFont.truetype(font_path_local, font_size_he)
         except Exception as e: print(f"שגיאה קריטית בטעינת פונט PIL '{font_path_local}': {e}"); return mp.ColorClip(size=(1,1), color=(0,0,0,0), ismask=True, duration=0.1).set_opacity(0)
 
-        max_text_width = video_res[0] * 0.75 # <<< הגדרת רוחב מקסימלי לכתוביות (90% מרוחב הוידאו)
+        max_text_width = video_res[0] * 0.75
 
+        # <<<--- התחלה: תיקון לטיפול בטקסט ריק ---<<<
+        if not txt or not txt.strip(): # בדוק אם הטקסט ריק או מכיל רק רווחים
+            # צור פריים שקוף ריק בגודל מלא ובפורמט RGBA
+            # חשוב: MoviePy מצפה לסדר (גובה, רוחב, ערוצים) עבור NumPy
+            empty_frame_array = np.zeros((video_res[1], video_res[0], 4), dtype=np.uint8) # H, W, 4 (RGBA)
+            # החזר ImageClip עקבי עם פריימים אחרים
+            return mp.ImageClip(empty_frame_array, ismask=False, transparent=True).set_duration(0.1)
+        # <<<--- סוף: תיקון לטיפול בטקסט ריק ---<<<
+
+        # המשך הקוד הקיים ליצירת תמונה עם טקסט
         img = Image.new('RGBA', video_res, (0, 0, 0, 0))
         draw = ImageDraw.Draw(img)
         original_lines = txt.splitlines()
-        if not original_lines: return mp.ColorClip(size=(1,1), color=(0,0,0,0), ismask=True, duration=0.1).set_opacity(0)
+        # if not original_lines: ... # כבר טופל למעלה, אבל אפשר להשאיר כבטחון אם רוצים
 
         # --- פונקציית עזר לגלישת שורות לפי מילים ---
         def wrap_text(line_text, font, max_width):
@@ -569,11 +579,11 @@ def create_styled_subtitle_clip_pil(srt_en_file_local, srt_he_file_local, font_p
             # קדם את Y לגובה השורה הבאה + הרווח שאחרי השורה הנוכחית
             current_y += detail['height'] + detail['spacing_after']
 
-# Inside the generator function, at the very end:
+    # Inside the generator function, at the very end:
 
         frame_array = np.array(img)
-        # <<< הוספת transparent=True כדי לעזור ל-MoviePy לטפל באלפא נכון >>>
         return mp.ImageClip(frame_array, ismask=False, transparent=True).set_duration(0.1)
+
 
     # --- 4. יצירת ה-SubtitlesClip (ללא שינוי מהקודם שלך, רק לוודא שה-generator מעודכן) ---
     subs_for_moviepy = [(item[0], item[1]) for item in combined_subs_format]
