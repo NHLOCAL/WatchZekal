@@ -596,7 +596,13 @@ final_clip = mp.CompositeVideoClip(clips_to_composite, size=video_resolution)
 print("מחבר את מנגנון שמירת הפריימים לקליפ...")
 if combined_subs_list_for_frames:
      final_clip_with_saving = final_clip.fl(save_subtitle_frame_processor, apply_to='color')
-else: print("אזהרה: אין כתוביות לשמירת פריימים."); final_clip_with_saving = final_clip
+else:
+    print("אזהרה: אין כתוביות לשמירת פריימים.")
+    final_clip_with_saving = final_clip # הקצאה ישירה אם אין עיבוד נדרש
+
+# <<<--- התיקון: הוסף את האודיו כאן ---<<<
+print("מוסיף את האודיו לקליפ הסופי...")
+final_clip_with_saving = final_clip_with_saving.set_audio(audio_clip)
 
 # --- יצירת קובץ הוידאו הסופי (ללא שינוי) ---
 print(f"יוצר את קובץ הוידאו '{output_video_file}'...")
