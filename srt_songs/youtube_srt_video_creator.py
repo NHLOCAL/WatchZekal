@@ -148,7 +148,7 @@ def generate_srt_from_youtube(youtube_url):
         api_key=os.environ.get("GEMINI_API_KEY"),
     )
 
-    model = "gemini-2.5-pro-exp-03-25"  # or a suitable model
+    model = "gemini-2.0-flash-thinking-exp" # "gemini-2.5-pro-exp-03-25"  # or a suitable model
 
     system_instruction_content = """עליך לתמלל את השירים שאתה מקבל באופן מדויק בפורמט SRT, בצע חלוקה חכמה של הקטעים בהתאם לקטעי השיר"""
 
