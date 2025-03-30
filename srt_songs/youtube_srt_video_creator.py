@@ -7,8 +7,6 @@ import re
 import urllib.parse
 import moviepy.editor as mp
 from moviepy.video.tools.subtitles import SubtitlesClip
-# import pysrt <<< לא נדרש יותר!
-import math # For ceiling function
 import imageio # לשמירת תמונות
 import numpy as np # MoviePy משתמש בזה, וגם אנחנו לקליפ תמונה
 from PIL import Image, ImageDraw, ImageFont # ליצירת טקסט מתקדמת
@@ -17,7 +15,6 @@ from bidi.algorithm import get_display # לסדר תצוגה מימין לשמא
 
 # --- הגדרות נתיבים ותיקיות ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'levels')
 ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
 FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 output_frames_dir = os.path.join(BASE_DIR, "subtitle_frames")
@@ -50,7 +47,6 @@ fontsize_he = 57
 color_subs = 'black'
 stroke_color_subs = 'white'
 stroke_width_subs = 1.5
-position_subs = ('center', 'center')
 spacing_within_language = 10
 spacing_between_languages = 35
 
@@ -462,7 +458,6 @@ except Exception as e:
     except: pass
     exit()
 
-
 # --- מציאת זמן התחלה של הכתובית הראשונה (מנתוני ה-JSON) ---
 first_subtitle_start_time = audio_duration if audio_duration else float('inf')
 try:
@@ -687,7 +682,6 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
 
             return wrapped_lines or ([line_text.strip()] if line_text.strip() else [])
 
-
         total_text_height = 0
         processed_line_details = []
         original_line_is_hebrew = []
@@ -796,7 +790,6 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
 
     return subtitle_moviepy_clip, combined_subs_format
 
-
 # --- עיבוד כתוביות משולב ---
 print("מעבד כתוביות משולבות (אנגלית ועברית) מנתוני JSON באמצעות PIL עם BiDi...")
 subtitles_clip, combined_subs_list_for_frames = create_styled_subtitle_clip_pil(
@@ -894,7 +887,6 @@ def save_subtitle_frame_processor(get_frame, t):
     # Always return the original frame
     return frame
 
-
 # --- שילוב הקליפים ---
 print("משלב את הרקע, הכותרת (אם קיימת), כתוביות משולבות ואודיו...")
 clips_to_composite = [background_clip]
@@ -914,7 +906,6 @@ final_clip = mp.CompositeVideoClip(clips_to_composite, size=video_resolution)
 # Set duration explicitly from audio AFTER composition
 final_clip = final_clip.set_duration(audio_duration)
 
-
 # --- החלת פונקציית שמירת הפריימים ---
 print("מחבר את מנגנון שמירת הפריימים לקליפ...")
 # Check if there are subtitles AND the clip is valid
@@ -925,7 +916,6 @@ if combined_subs_list_for_frames and final_clip and final_clip.duration > 0:
 else:
     print("אזהרה: אין כתוביות לשמירת פריימים או שהקליפ אינו תקין.")
     final_clip_with_saving = final_clip # Use the clip without the frame processor
-
 
 # --- הוספת אודיו ---
 print("מוסיף את האודיו לקליפ הסופי...")
