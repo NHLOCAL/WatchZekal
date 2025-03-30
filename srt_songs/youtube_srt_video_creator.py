@@ -185,8 +185,8 @@ def generate_subtitles_from_youtube(youtube_url):
 
 כל כתובית חייבת לכלול:  
 - **`id`**: מספר סידורי המייצג את סדר הופעת הכתובית.  
-- **`start_time`**: זמן התחלה בפורמט **שניות עשרוניות (float)**, לדוגמה `12.759`.  
-- **`end_time`**: זמן סיום בפורמט **שניות עשרוניות (float)**, לדוגמה `18.859`.  
+- **`start_time`**: זמן התחלה בפורמט **שניות עשרוניות (float)**, לדוגמה `122.759`.  
+- **`end_time`**: זמן סיום בפורמט **שניות עשרוניות (float)**, לדוגמה `128.859`.  
 - **`text`**: טקסט הכתובית, שיכול להכיל תוכן קצר בן שורה או שתיים (מופרדות באמצעות `\\n`).  
 
 יש לשמור על דיוק בזמנים ובתוכן כדי להבטיח שהתוצאה תוכל להיות מומרת בקלות לקובץ SRT.
@@ -223,11 +223,11 @@ def generate_subtitles_from_youtube(youtube_url):
                     ),
                     "start_time": genai.types.Schema(
                         type = genai.types.Type.NUMBER,
-                        description = "זמן התחלת הכתובית בשניות (float, לדוגמה 12.759)",
+                        description = "זמן התחלת הכתובית בשניות (float, לדוגמה 122.759)",
                     ),
                     "end_time": genai.types.Schema(
                         type = genai.types.Type.NUMBER,
-                        description = "זמן סיום הכתובית בשניות (float, לדוגמה 18.859)",
+                        description = "זמן סיום הכתובית בשניות (float, לדוגמה 128.859)",
                     ),
                     "text": genai.types.Schema(
                         type = genai.types.Type.STRING,
