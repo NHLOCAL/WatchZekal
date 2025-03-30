@@ -549,8 +549,6 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
                       # Check duration and non-empty text (allowing whitespace-only text for now)
                       if en_end > en_start: # Removed the non-empty check here, handle later
                           valid_en = True
-                 # else: print(f"DEBUG EN {idx}: No 'text' field") # Debug
-            # else: print(f"DEBUG EN {idx}: Missing keys or sub_en is None") # Debug
         except (ValueError, TypeError) as e: print(f"Warning: Invalid data in English sub ID {idx}: {e}")
 
         # --- Validate Hebrew ---
@@ -563,8 +561,6 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
                       he_text = str(he_text_raw).strip().replace('\\n', '\n')
                       if he_end > he_start: # Removed non-empty check
                           valid_he = True
-                 # else: print(f"DEBUG HE {idx}: No 'text' field") # Debug
-            # else: print(f"DEBUG HE {idx}: Missing keys or sub_he is None") # Debug
         except (ValueError, TypeError) as e: print(f"Warning: Invalid data in Hebrew sub ID {idx}: {e}")
 
         # --- Combine Text and Times (More Flexible) ---
@@ -581,8 +577,6 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
             combined_text_parts.append(he_text)
             start_time = min(start_time, he_start)
             end_time = max(end_time, he_end)
-
-        # print(f"DEBUG {idx}: Valid EN={valid_en}, EN Text='{en_text[:10]}', Valid HE={valid_he}, HE Text='{he_text[:10]}', Parts={len(combined_text_parts)}") # DEBUG
 
         # Only proceed if we have at least one valid text part
         if combined_text_parts:
@@ -602,17 +596,12 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
             if end_time > start_time: # Final check
                 combined_subs_format.append(((start_time, end_time), combined_text.strip(), sub_id))
                 subtitle_id_counter += 1
-                # print(f"DEBUG {idx}: Added combined sub. Start={start_time:.2f}, End={end_time:.2f}, Text='{combined_text[:20]}...'") # DEBUG
-            # else: print(f"DEBUG {idx}: Skipping sub, end time <= start time after clipping.") # DEBUG
-        # else: print(f"DEBUG {idx}: No valid text parts to combine.") # DEBUG
-
 
     if not combined_subs_format:
         print("אזהרה: לא נוצרו כתוביות משולבות תקינות."); return mp.ColorClip(size=video_res, color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0), []
 
     combined_subs_format.sort(key=lambda item: item[0][0])
     print(f"DEBUG: Finished merge. Combined {len(combined_subs_format)} subtitle entries.")
-    # if combined_subs_format: print(f"DEBUG: First combined sub: {combined_subs_format[0]}") # DEBUG
     # --- Generator function (same as before) ---
     def generator(txt):
         try:
@@ -966,7 +955,6 @@ finally:
         clip_obj = locals().get(clip_var_name)
         if clip_obj and hasattr(clip_obj, 'close') and callable(getattr(clip_obj, 'close', None)):
             try:
-                # print(f"Closing {clip_var_name}...") # Debug
                 clip_obj.close()
             except Exception as e_close:
                 print(f"Warning: Error closing {clip_var_name}: {e_close}")
