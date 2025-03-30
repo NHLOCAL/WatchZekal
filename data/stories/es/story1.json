@@ -1,0 +1,144 @@
+{
+  "video_title": "הַמַּטְבֵּעַ הָאָבוּד",
+  "language_level": "קַל",
+  "story_type": "מָשָׁל פָּשׁוּט",
+  "story": {
+    "title": "הַמַּטְבֵּעַ הָאָבוּד",
+    "text": [
+      {
+        "spanish": "David perdió una moneda de oro.",
+        "hebrew": "דָּוִד אִיבֵּד מַטְבֵּעַ זָהָב."
+      },
+      {
+        "spanish": "Buscó en su pequeña casa.",
+        "hebrew": "הוּא חִיפֵּשׂ בְּבֵיתוֹ הַקָּטָן."
+      },
+      {
+        "spanish": "Miró debajo de la cama.",
+        "hebrew": "הוּא הִסְתַּכֵּל מִתַּחַת לַמִּיטָּה."
+      },
+      {
+        "spanish": "Revisó detrás del sofá.",
+        "hebrew": "הוּא בָּדַק מֵאֲחוֹרֵי הַסַּפָּה."
+      },
+      {
+        "spanish": "Abrió todos los cajones.",
+        "hebrew": "הוּא פָּתַח כָּל מְגֵירָה."
+      },
+      {
+        "spanish": "Buscó entre los libros.",
+        "hebrew": "הוּא חִיפֵּשׂ בֵּין הַסְּפָרִים."
+      },
+      {
+        "spanish": "David fue al jardín.",
+        "hebrew": "דָּוִד הָלַךְ לַגִּינָּה."
+      },
+      {
+        "spanish": "Miró debajo de las flores.",
+        "hebrew": "הוּא הִסְתַּכֵּל מִתַּחַת לַפְּרָחִים."
+      },
+      {
+        "spanish": "No pudo encontrarla.",
+        "hebrew": "הוּא לֹא הִצְלִיחַ לִמְצוֹא אוֹתוֹ."
+      },
+      {
+        "spanish": "Se sintió triste y cansado.",
+        "hebrew": "הוּא הִרְגִּישׁ עָצוּב וְעָיֵיף."
+      },
+      {
+        "spanish": "Su esposa Raquel sonrió.",
+        "hebrew": "אִשְׁתּוֹ רָחֵל חִיְּיכָה."
+      },
+      {
+        "spanish": "Ella dijo: \"Estamos aquí\".",
+        "hebrew": "הִיא אָמְרָה, \"אֲנַחְנוּ כָּאן.\""
+      },
+      {
+        "spanish": "Sus hijos lo abrazaron.",
+        "hebrew": "יְלָדָיו חִיבְּקוּ אוֹתוֹ."
+      },
+      {
+        "spanish": "Los vecinos vinieron a ayudar.",
+        "hebrew": "הַשְּׁכֵנִים בָּאוּ לַעֲזוֹר."
+      },
+      {
+        "spanish": "Trajeron comida y té.",
+        "hebrew": "הֵם הֵבִיאוּ אוֹכֶל וְתֵה."
+      },
+      {
+        "spanish": "David se sintió rico en amor.",
+        "hebrew": "דָּוִד הִרְגִּישׁ עָשִׁיר בְּאַהֲבָה."
+      },
+      {
+        "spanish": "Se dio cuenta de lo que es la verdadera riqueza.",
+        "hebrew": "הוּא הֵבִין מָהוּ הָעֹשֶׁר הָאֲמִיתִּי."
+      },
+      {
+        "spanish": "La familia y los amigos son lo más importante.",
+        "hebrew": "מִשְׁפָּחָה וַחֲבֵרִים הֵם הַחֲשׁוּבִים בְּיוֹתֵר."
+      }
+    ]
+  },
+  "vocabulary": [
+    {
+      "word": "moneda",
+      "translation": "מַטְבֵּעַ"
+    },
+    {
+      "word": "buscar",
+      "translation": "לְחַפֵּשׂ"
+    },
+    {
+      "word": "cajón",
+      "translation": "מְגֵירָה"
+    },
+    {
+      "word": "jardín",
+      "translation": "גִּינָּה"
+    },
+    {
+      "word": "darse cuenta",
+      "translation": "לְהָבִין"
+    },
+    {
+      "word": "riqueza",
+      "translation": "עוֹשֶׁר"
+    },
+    {
+      "word": "importante",
+      "translation": "חָשׁוּב"
+    }
+  ],
+  "comprehension_questions": [
+    {
+      "question": "אֵיפֹה חִיפֵּשׂ דָּוִד אֶת הַמַּטְבֵּעַ?",
+      "options": [
+        "רַק בַּגִּינָּה",
+        "בַּבַּיִת וּבַגִּינָּה",
+        "רַק בַּמִּטְבָּח"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "מִי בָּאוּ לַעֲזוֹר לְדָוִד?",
+      "options": [
+        "הַשְּׁכֵנִים",
+        "אֲנָשִׁים זָרִים",
+        "אַף אֶחָד"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "מָה הֵבִין דָּוִד בְּסוֹף הַסִּיפּוּר?",
+      "options": [
+        "שֶׁהַמַּטְבֵּעַ בַּגִּינָּה",
+        "שֶׁעוֹשֶׁר אֲמִיתִּי הוּא כֶּסֶף",
+        "שֶׁמִּשְׁפָּחָה וַחֲבֵרִים הֵם הַחֲשׁוּבִים"
+      ],
+      "answer": 2
+    }
+  ],
+  "call_to_action": {
+    "text": "אָהַבְתֶּם אֶת הַסִּיפּוּר? לַחֲצוּ לַיְיק וְהִצְטָרְפוּ אֵלֵינוּ לְעוֹד!"
+  }
+}

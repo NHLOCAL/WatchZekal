@@ -118,8 +118,8 @@
         "hebrew": "הכפריים כיבדו את בחירתו והודו לו."
       },
       {
-        "english": "Ezra learned about responsibility and ethical choices.",
-        "hebrew": "עזרא למד על אחריות ובחירות אתיות."
+        "english": "Ezra learned about responsibility and right choices.",
+        "hebrew": "עזרא למד על אחריות ובחירות נכונות."
       },
       {
         "english": "He understood that great power requires wisdom.",
@@ -167,10 +167,6 @@
     {
       "word": "intentions",
       "translation": "כוונות"
-    },
-    {
-      "word": "ethical",
-      "translation": "אתי"
     }
   ],
   "comprehension_questions": [

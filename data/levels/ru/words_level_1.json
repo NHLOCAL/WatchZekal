@@ -8,109 +8,109 @@
           "name": "בְּרָכוֹת וְנִימוּסִים",
           "words": [
             {
-              "word": "Hola",
+              "word": "Привет",
               "translation": "שָׁלוֹם",
               "examples": [
                 {
-                  "sentence": "¡Hola!",
+                  "sentence": "Привет!",
                   "translation": "שָׁלוֹם לְךָ!"
                 },
                 {
-                  "sentence": "Hola, ¿cómo estás?",
+                  "sentence": "Привет, как дела?",
                   "translation": "שָׁלוֹם, מַה שְּׁלוֹמְךָ?"
                 },
                 {
-                  "sentence": "Hola, amigo mío",
+                  "sentence": "Привет, мой друг",
                   "translation": "שָׁלוֹם, חָבֵר שֶׁלִּי"
                 }
               ]
             },
             {
-              "word": "Adiós",
+              "word": "До свидания",
               "translation": "לְהִתְרָאוֹת",
               "examples": [
                 {
-                  "sentence": "Adiós por ahora",
+                  "sentence": "До свидания пока",
                   "translation": "לְהִתְרָאוֹת בֵּינְתַיִים"
                 },
                 {
-                  "sentence": "Adiós, nos vemos pronto",
+                  "sentence": "До свидания, до скорой встречи",
                   "translation": "לְהִתְרָאוֹת, נִתְרָאֶה בְּקָרוֹב"
                 },
                 {
-                  "sentence": "Es hora de decir adiós",
+                  "sentence": "Пора прощаться",
                   "translation": "הִגִּיעַ הַזְּמַן לְהַגִּיד לְהִתְרָאוֹת"
                 }
               ]
             },
             {
-              "word": "Por favor",
+              "word": "Пожалуйста",
               "translation": "בְּבַקָּשָׁה",
               "examples": [
                 {
-                  "sentence": "Por favor, entra",
+                  "sentence": "Пожалуйста, входите",
                   "translation": "בְּבַקָּשָׁה, הִיכָּנֵס"
                 },
                 {
-                  "sentence": "¿Puedes ayudarme, por favor?",
+                  "sentence": "Вы можете мне помочь, пожалуйста?",
                   "translation": "הַאִם אַתָּה יָכוֹל לַעֲזוֹר לִי, בְּבַקָּשָׁה?"
                 },
                 {
-                  "sentence": "Por favor, toma asiento",
+                  "sentence": "Пожалуйста, присаживайтесь",
                   "translation": "בְּבַקָּשָׁה שֵׁב"
                 }
               ]
             },
             {
-              "word": "Gracias",
+              "word": "Спасибо",
               "translation": "תּוֹדָה",
               "examples": [
                 {
-                  "sentence": "Muchas gracias",
+                  "sentence": "Большое спасибо",
                   "translation": "תּוֹדָה רַבָּה"
                 },
                 {
-                  "sentence": "Gracias por tu ayuda",
+                  "sentence": "Спасибо за вашу помощь",
                   "translation": "תּוֹדָה עַל הָעֶזְרָה שֶׁלְּךָ"
                 },
                 {
-                  "sentence": "No, gracias",
+                  "sentence": "Нет, спасибо",
                   "translation": "לֹא, תּוֹדָה"
                 }
               ]
             },
             {
-              "word": "Sí",
+              "word": "Да",
               "translation": "כֵּן",
               "examples": [
                 {
-                  "sentence": "Sí, entiendo",
+                  "sentence": "Да, я понимаю",
                   "translation": "כֵּן, אֲנִי מֵבִין"
                 },
                 {
-                  "sentence": "Sí, por favor",
+                  "sentence": "Да, пожалуйста",
                   "translation": "כֵּן, בְּבַקָּשָׁה"
                 },
                 {
-                  "sentence": "¿Es esto tuyo? Sí",
+                  "sentence": "Это ваше? Да",
                   "translation": "הַאִם זֶה שֶׁלְּךָ? כֵּן"
                 }
               ]
             },
             {
-              "word": "No",
+              "word": "Нет",
               "translation": "לֹא",
               "examples": [
                 {
-                  "sentence": "No, no lo quiero",
+                  "sentence": "Нет, я не хочу это",
                   "translation": "לֹא, אֲנִי לֹא רוֹצֶה אֶת זֶה"
                 },
                 {
-                  "sentence": "No, gracias",
+                  "sentence": "Нет, спасибо",
                   "translation": "לֹא, תּוֹדָה"
                 },
                 {
-                  "sentence": "¿Es esto tuyo? No",
+                  "sentence": "Это ваше? Нет",
                   "translation": "הַאִם זֶה שֶׁלְּךָ? לֹא"
                 }
               ]
@@ -121,92 +121,74 @@
           "name": "הַצָּגָה עַצְמִית",
           "words": [
             {
-              "word": "Nombre",
+              "word": "Имя",
               "translation": "שֵׁם",
               "examples": [
                 {
-                  "sentence": "Mi nombre es Sarah",
+                  "sentence": "Меня зовут Сара",
                   "translation": "שְׁמִי שָׂרָה"
                 },
                 {
-                  "sentence": "¿Cuál es tu nombre?",
+                  "sentence": "Как тебя зовут?",
                   "translation": "מַה שִּׁמְךָ?"
                 },
                 {
-                  "sentence": "Su nombre es John",
+                  "sentence": "Его зовут Джон",
                   "translation": "שְׁמוֹ ג'וֹן"
                 }
               ]
             },
             {
-              "word": "Yo",
+              "word": "Я",
               "translation": "אֲנִי",
               "examples": [
                 {
-                  "sentence": "Yo estoy feliz",
+                  "sentence": "Я счастлив",
                   "translation": "אֲנִי שָׂמֵחַ"
                 },
                 {
-                  "sentence": "Me gusta el café",
+                  "sentence": "Я люблю кофе",
                   "translation": "אֲנִי אוֹהֵב קָפֶה"
                 },
                 {
-                  "sentence": "Tengo un perro",
+                  "sentence": "У меня есть собака",
                   "translation": "יֵשׁ לִי כֶּלֶב"
                 }
               ]
             },
             {
-              "word": "Soy",
-              "translation": "אֲנִי",
-              "examples": [
-                {
-                  "sentence": "Soy estudiante",
-                  "translation": "אֲנִי תַּלְמִיד"
-                },
-                {
-                  "sentence": "Soy de Israel",
-                  "translation": "אֲנִי מִיִּשְׂרָאֵל"
-                },
-                {
-                  "sentence": "Tengo 20 años",
-                  "translation": "אֲנִי בֶּן 20"
-                }
-              ]
-            },
-            {
-              "word": "De",
+              "word": "Из",
               "translation": "מִ-",
               "examples": [
                 {
-                  "sentence": "Ella es de Francia",
+                  "sentence": "Она из Франции",
                   "translation": "הִיא מִצָּרְפַת"
                 },
                 {
-                  "sentence": "Venimos de la ciudad",
+                  "sentence": "Мы из города",
                   "translation": "אֲנַחְנוּ מַגִּיעִים מֵהָעִיר"
                 },
                 {
-                  "sentence": "Tengo un regalo de mi amigo",
+                  "sentence": "У меня есть подарок от моего друга",
                   "translation": "יֵשׁ לִי מַתָּנָה מֵחָבֵר שֶׁלִּי"
                 }
               ]
             },
             {
-              "word": "Tú",
+              "word": "Ты",
               "translation": "אַתָּה/אַתְּ",
               "examples": [
                 {
-                  "sentence": "Tú eres mi amigo",
+                  "sentence": "Ты мой друг",
                   "translation": "אַתָּה חָבֵר שֶׁלִּי"
                 },
                 {
-                  "sentence": "¿Estás bien?",
+                  "sentence": "Ты в порядке?",
                   "translation": "הַאִם אַתָּה בְּסֵדֶר?"
                 },
                 {
-                  "sentence": "Tienes un coche bonito",
-                  "translation": "יֵשׁ לְךָ מְכוֹנִית נֶחְמָדָה"
+                  "sentence": "У тебя хорошая машина",
+                  "translation": "יֵשׁ לְךָ מְכוֹנִית טוֹבָה"
                 }
               ]
             }
@@ -216,181 +198,181 @@
           "name": "מִסְפָּרִים בְּסִיסִיִּים",
           "words": [
             {
-              "word": "Uno",
+              "word": "Один",
               "translation": "אֶחָד",
               "examples": [
                 {
-                  "sentence": "Una manzana",
+                  "sentence": "Одно яблоко",
                   "translation": "תַּפּוּחַ אֶחָד"
                 },
                 {
-                  "sentence": "Tengo un hermano",
+                  "sentence": "У меня есть один брат",
                   "translation": "יֵשׁ לִי אָח אֶחָד"
                 },
                 {
-                  "sentence": "Dame un momento",
+                  "sentence": "Дай мне минутку",
                   "translation": "תֵּן לִי רֶגַע אֶחָד"
                 }
               ]
             },
             {
-              "word": "Dos",
+              "word": "Два",
               "translation": "שְׁתַּיִים",
               "examples": [
                 {
-                  "sentence": "Dos libros",
+                  "sentence": "Две книги",
                   "translation": "שְׁנֵי סְפָרִים"
                 },
                 {
-                  "sentence": "Tenemos dos perros",
+                  "sentence": "У нас две собаки",
                   "translation": "יֵשׁ לָנוּ שְׁנֵי כְּלָבִים"
                 },
                 {
-                  "sentence": "Ella compró dos vestidos",
+                  "sentence": "Она купила два платья",
                   "translation": "הִיא קָנְתָה שְׁתֵּי שְׂמָלוֹת"
                 }
               ]
             },
             {
-              "word": "Tres",
+              "word": "Три",
               "translation": "שָׁלוֹשׁ",
               "examples": [
                 {
-                  "sentence": "Tres coches",
+                  "sentence": "Три машины",
                   "translation": "שָׁלוֹשׁ מְכוֹנִיּוֹת"
                 },
                 {
-                  "sentence": "Él tiene tres hermanas",
+                  "sentence": "У него три сестры",
                   "translation": "יֵשׁ לוֹ שָׁלוֹשׁ אֲחָיוֹת"
                 },
                 {
-                  "sentence": "Ellos comieron tres sándwiches",
+                  "sentence": "Они съели три сэндвича",
                   "translation": "הֵם אָכְלוּ שְׁלוֹשָׁה סֶנְדְּוִויצִ'ים"
                 }
               ]
             },
             {
-              "word": "Cuatro",
+              "word": "Четыре",
               "translation": "אַרְבַּע",
               "examples": [
                 {
-                  "sentence": "Cuatro sillas",
+                  "sentence": "Четыре стула",
                   "translation": "אַרְבָּעָה כִּיסְּאוֹת"
                 },
                 {
-                  "sentence": "Necesitamos cuatro boletos",
+                  "sentence": "Нам нужно четыре билета",
                   "translation": "אֲנַחְנוּ צְרִיכִים אַרְבָּעָה כַּרְטִיסִים"
                 },
                 {
-                  "sentence": "Ella tiene cuatro gatos",
+                  "sentence": "У нее четыре кошки",
                   "translation": "יֵשׁ לָהּ אַרְבָּעָה חֲתוּלִים"
                 }
               ]
             },
             {
-              "word": "Cinco",
+              "word": "Пять",
               "translation": "חָמֵשׁ",
               "examples": [
                 {
-                  "sentence": "Cinco manzanas",
+                  "sentence": "Пять яблок",
                   "translation": "חֲמִישָּׁה תַּפּוּחִים"
                 },
                 {
-                  "sentence": "Él corrió cinco millas",
+                  "sentence": "Он пробежал пять миль",
                   "translation": "הוּא רָץ חֲמִישָּׁה מַיְילִים"
                 },
                 {
-                  "sentence": "Ellos compraron cinco regalos",
-                  "translation": "הֵם קָנוּ חֲמִישָּׁה מַתָּנוֹת"
+                  "sentence": "Они купили пять подарков",
+                  "translation": "הֵם קָנוּ חָמֵשׁ מַתָּנוֹת"
                 }
               ]
             },
             {
-              "word": "Seis",
+              "word": "Шесть",
               "translation": "שֵׁשׁ",
               "examples": [
                 {
-                  "sentence": "Seis estudiantes",
+                  "sentence": "Шесть студентов",
                   "translation": "שִׁישָּׁה תַּלְמִידִים"
                 },
                 {
-                  "sentence": "Él tiene seis años",
+                  "sentence": "Ему шесть лет",
                   "translation": "הוּא בֶּן שֵׁשׁ"
                 },
                 {
-                  "sentence": "Seis perros",
+                  "sentence": "Шесть собак",
                   "translation": "שִׁישָּׁה כְּלָבִים"
                 }
               ]
             },
             {
-              "word": "Siete",
+              "word": "Семь",
               "translation": "שֶׁבַע",
               "examples": [
                 {
-                  "sentence": "Siete días a la semana",
+                  "sentence": "Семь дней в неделю",
                   "translation": "שִׁבְעָה יָמִים בַּשָּׁבוּעַ"
                 },
                 {
-                  "sentence": "Habitación número siete",
+                  "sentence": "Номер комнаты семь",
                   "translation": "חֶדֶר מִסְפָּר שֶׁבַע"
                 },
                 {
-                  "sentence": "Siete colores",
+                  "sentence": "Семь цветов",
                   "translation": "שִׁבְעָה צְבָעִים"
                 }
               ]
             },
             {
-              "word": "Ocho",
+              "word": "Восемь",
               "translation": "שְׁמוֹנֶה",
               "examples": [
                 {
-                  "sentence": "Ocho piernas",
+                  "sentence": "Восемь ног",
                   "translation": "שְׁמוֹנֶה רַגְלַיִים"
                 },
                 {
-                  "sentence": "Son las ocho en punto",
+                  "sentence": "Сейчас восемь часов",
                   "translation": "הַשָּׁעָה שְׁמוֹנֶה"
                 },
                 {
-                  "sentence": "Ocho personas",
+                  "sentence": "Восемь человек",
                   "translation": "שְׁמוֹנָה אֲנָשִׁים"
                 }
               ]
             },
             {
-              "word": "Nueve",
+              "word": "Девять",
               "translation": "תֵּשַׁע",
               "examples": [
                 {
-                  "sentence": "Nueve meses",
+                  "sentence": "Девять месяцев",
                   "translation": "תִּשְׁעָה חוֹדָשִׁים"
                 },
                 {
-                  "sentence": "Nueve flores",
+                  "sentence": "Девять цветов",
                   "translation": "תִּשְׁעָה פְּרָחִים"
                 },
                 {
-                  "sentence": "Clase número nueve",
+                  "sentence": "Класс номер девять",
                   "translation": "כִּיתָּה מִסְפָּר תֵּשַׁע"
                 }
               ]
             },
             {
-              "word": "Diez",
+              "word": "Десять",
               "translation": "עֶשֶׂר",
               "examples": [
                 {
-                  "sentence": "Diez dedos",
+                  "sentence": "Десять пальцев",
                   "translation": "עֶשֶׂר אֶצְבָּעוֹת"
                 },
                 {
-                  "sentence": "Puedo contar hasta diez",
+                  "sentence": "Я умею считать до десяти",
                   "translation": "אֲנִי יָכוֹל לִסְפּוֹר עַד עֶשֶׂר"
                 },
                 {
-                  "sentence": "Diez estudiantes",
+                  "sentence": "Десять студентов",
                   "translation": "עֲשָׂרָה תַּלְמִידִים"
                 }
               ]
@@ -401,91 +383,91 @@
           "name": "צְבָעִים רִאשׁוֹנִיִּים",
           "words": [
             {
-              "word": "Rojo",
+              "word": "Красный",
               "translation": "אָדוֹם",
               "examples": [
                 {
-                  "sentence": "La manzana es roja",
+                  "sentence": "Яблоко красное",
                   "translation": "הַתַּפּוּחַ אָדוֹם"
                 },
                 {
-                  "sentence": "Ella lleva un vestido rojo",
+                  "sentence": "Она носит красное платье",
                   "translation": "הִיא לוֹבֶשֶׁת שִׂמְלָה אֲדוּמָּה"
                 },
                 {
-                  "sentence": "El rojo es mi color favorito",
+                  "sentence": "Красный - мой любимый цвет",
                   "translation": "אָדוֹם הוּא הַצֶּבַע הָאָהוּב עָלַיי"
                 }
               ]
             },
             {
-              "word": "Azul",
+              "word": "Синий",
               "translation": "כָּחוֹל",
               "examples": [
                 {
-                  "sentence": "El cielo es azul",
+                  "sentence": "Небо синее",
                   "translation": "הַשָּׁמַיִים כְּחוּלִּים"
                 },
                 {
-                  "sentence": "Él tiene ojos azules",
+                  "sentence": "У него синие глаза",
                   "translation": "יֵשׁ לוֹ עֵינַיִים כְּחוּלּוֹת"
                 },
                 {
-                  "sentence": "Me gusta el coche azul",
+                  "sentence": "Мне нравится синяя машина",
                   "translation": "אֲנִי אוֹהֵב אֶת הַמְּכוֹנִית הַכְּחוּלָּה"
                 }
               ]
             },
             {
-              "word": "Verde",
+              "word": "Зеленый",
               "translation": "יָרוֹק",
               "examples": [
                 {
-                  "sentence": "La hierba es verde",
+                  "sentence": "Трава зеленая",
                   "translation": "הַדֶּשֶׁא יָרוֹק"
                 },
                 {
-                  "sentence": "Ella compró una camisa verde",
+                  "sentence": "Она купила зеленую рубашку",
                   "translation": "הִיא קָנְתָה חוּלְצָה יְרוּקָּה"
                 },
                 {
-                  "sentence": "Los árboles verdes son hermosos",
+                  "sentence": "Зеленые деревья красивы",
                   "translation": "עֵצִים יְרוּקִּים הֵם יָפִים"
                 }
               ]
             },
             {
-              "word": "Amarillo",
+              "word": "Желтый",
               "translation": "צָהוֹב",
               "examples": [
                 {
-                  "sentence": "El sol se ve amarillo",
+                  "sentence": "Солнце выглядит желтым",
                   "translation": "הַשֶּׁמֶשׁ נִרְאֵית צְהוּבָּה"
                 },
                 {
-                  "sentence": "Él tiene una bicicleta amarilla",
+                  "sentence": "У него желтый велосипед",
                   "translation": "יֵשׁ לוֹ אוֹפַנַּיִים צְהוּבִּים"
                 },
                 {
-                  "sentence": "El plátano es amarillo",
+                  "sentence": "Банан желтый",
                   "translation": "הַבָּנָנָה צְהוּבָּה"
                 }
               ]
             },
             {
-              "word": "Negro",
+              "word": "Черный",
               "translation": "שָׁחוֹר",
               "examples": [
                 {
-                  "sentence": "Tengo un gato negro",
+                  "sentence": "У меня есть черный кот",
                   "translation": "יֵשׁ לִי חָתוּל שָׁחוֹר"
                 },
                 {
-                  "sentence": "Ella lleva zapatos negros",
+                  "sentence": "Она носит черные туфли",
                   "translation": "הִיא נוֹעֶלֶת נַעֲלַיִים שְׁחוֹרוֹת"
                 },
                 {
-                  "sentence": "La noche es negra",
+                  "sentence": "Ночь черная",
                   "translation": "הַלַּיְלָה שָׁחוֹר"
                 }
               ]

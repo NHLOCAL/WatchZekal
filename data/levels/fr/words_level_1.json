@@ -8,109 +8,109 @@
           "name": "בְּרָכוֹת וְנִימוּסִים",
           "words": [
             {
-              "word": "Hola",
+              "word": "Bonjour",
               "translation": "שָׁלוֹם",
               "examples": [
                 {
-                  "sentence": "¡Hola!",
+                  "sentence": "Bonjour à toi !",
                   "translation": "שָׁלוֹם לְךָ!"
                 },
                 {
-                  "sentence": "Hola, ¿cómo estás?",
+                  "sentence": "Bonjour, comment vas-tu ?",
                   "translation": "שָׁלוֹם, מַה שְּׁלוֹמְךָ?"
                 },
                 {
-                  "sentence": "Hola, amigo mío",
+                  "sentence": "Bonjour, mon ami",
                   "translation": "שָׁלוֹם, חָבֵר שֶׁלִּי"
                 }
               ]
             },
             {
-              "word": "Adiós",
+              "word": "Au revoir",
               "translation": "לְהִתְרָאוֹת",
               "examples": [
                 {
-                  "sentence": "Adiós por ahora",
+                  "sentence": "Au revoir pour le moment",
                   "translation": "לְהִתְרָאוֹת בֵּינְתַיִים"
                 },
                 {
-                  "sentence": "Adiós, nos vemos pronto",
+                  "sentence": "Au revoir, à bientôt",
                   "translation": "לְהִתְרָאוֹת, נִתְרָאֶה בְּקָרוֹב"
                 },
                 {
-                  "sentence": "Es hora de decir adiós",
+                  "sentence": "Il est temps de se dire au revoir",
                   "translation": "הִגִּיעַ הַזְּמַן לְהַגִּיד לְהִתְרָאוֹת"
                 }
               ]
             },
             {
-              "word": "Por favor",
+              "word": "S'il vous plaît",
               "translation": "בְּבַקָּשָׁה",
               "examples": [
                 {
-                  "sentence": "Por favor, entra",
+                  "sentence": "S'il vous plaît, entrez",
                   "translation": "בְּבַקָּשָׁה, הִיכָּנֵס"
                 },
                 {
-                  "sentence": "¿Puedes ayudarme, por favor?",
+                  "sentence": "Pouvez-vous m'aider, s'il vous plaît ?",
                   "translation": "הַאִם אַתָּה יָכוֹל לַעֲזוֹר לִי, בְּבַקָּשָׁה?"
                 },
                 {
-                  "sentence": "Por favor, toma asiento",
+                  "sentence": "Veuillez vous asseoir",
                   "translation": "בְּבַקָּשָׁה שֵׁב"
                 }
               ]
             },
             {
-              "word": "Gracias",
+              "word": "Merci",
               "translation": "תּוֹדָה",
               "examples": [
                 {
-                  "sentence": "Muchas gracias",
+                  "sentence": "Merci beaucoup",
                   "translation": "תּוֹדָה רַבָּה"
                 },
                 {
-                  "sentence": "Gracias por tu ayuda",
+                  "sentence": "Merci pour votre aide",
                   "translation": "תּוֹדָה עַל הָעֶזְרָה שֶׁלְּךָ"
                 },
                 {
-                  "sentence": "No, gracias",
+                  "sentence": "Non, merci",
                   "translation": "לֹא, תּוֹדָה"
                 }
               ]
             },
             {
-              "word": "Sí",
+              "word": "Oui",
               "translation": "כֵּן",
               "examples": [
                 {
-                  "sentence": "Sí, entiendo",
+                  "sentence": "Oui, je comprends",
                   "translation": "כֵּן, אֲנִי מֵבִין"
                 },
                 {
-                  "sentence": "Sí, por favor",
+                  "sentence": "Oui, s'il vous plaît",
                   "translation": "כֵּן, בְּבַקָּשָׁה"
                 },
                 {
-                  "sentence": "¿Es esto tuyo? Sí",
+                  "sentence": "Est-ce à vous ? Oui",
                   "translation": "הַאִם זֶה שֶׁלְּךָ? כֵּן"
                 }
               ]
             },
             {
-              "word": "No",
+              "word": "Non",
               "translation": "לֹא",
               "examples": [
                 {
-                  "sentence": "No, no lo quiero",
+                  "sentence": "Non, je ne le veux pas",
                   "translation": "לֹא, אֲנִי לֹא רוֹצֶה אֶת זֶה"
                 },
                 {
-                  "sentence": "No, gracias",
+                  "sentence": "Non, merci",
                   "translation": "לֹא, תּוֹדָה"
                 },
                 {
-                  "sentence": "¿Es esto tuyo? No",
+                  "sentence": "Est-ce à vous ? Non",
                   "translation": "הַאִם זֶה שֶׁלְּךָ? לֹא"
                 }
               ]
@@ -121,55 +121,55 @@
           "name": "הַצָּגָה עַצְמִית",
           "words": [
             {
-              "word": "Nombre",
+              "word": "Nom",
               "translation": "שֵׁם",
               "examples": [
                 {
-                  "sentence": "Mi nombre es Sarah",
+                  "sentence": "Je m'appelle Sarah",
                   "translation": "שְׁמִי שָׂרָה"
                 },
                 {
-                  "sentence": "¿Cuál es tu nombre?",
+                  "sentence": "Quel est votre nom ?",
                   "translation": "מַה שִּׁמְךָ?"
                 },
                 {
-                  "sentence": "Su nombre es John",
+                  "sentence": "Il s'appelle John",
                   "translation": "שְׁמוֹ ג'וֹן"
                 }
               ]
             },
             {
-              "word": "Yo",
+              "word": "Je",
               "translation": "אֲנִי",
               "examples": [
                 {
-                  "sentence": "Yo estoy feliz",
+                  "sentence": "Je suis heureux",
                   "translation": "אֲנִי שָׂמֵחַ"
                 },
                 {
-                  "sentence": "Me gusta el café",
+                  "sentence": "J'aime le café",
                   "translation": "אֲנִי אוֹהֵב קָפֶה"
                 },
                 {
-                  "sentence": "Tengo un perro",
+                  "sentence": "J'ai un chien",
                   "translation": "יֵשׁ לִי כֶּלֶב"
                 }
               ]
             },
             {
-              "word": "Soy",
-              "translation": "אֲנִי",
+              "word": "Suis",
+              "translation": "אֲנִי (פּוֹעַל עֵזֶר בִּזְמַן הוֹוֶה)",
               "examples": [
                 {
-                  "sentence": "Soy estudiante",
+                  "sentence": "Je suis étudiant",
                   "translation": "אֲנִי תַּלְמִיד"
                 },
                 {
-                  "sentence": "Soy de Israel",
+                  "sentence": "Je suis d'Israël",
                   "translation": "אֲנִי מִיִּשְׂרָאֵל"
                 },
                 {
-                  "sentence": "Tengo 20 años",
+                  "sentence": "J'ai 20 ans",
                   "translation": "אֲנִי בֶּן 20"
                 }
               ]
@@ -179,33 +179,33 @@
               "translation": "מִ-",
               "examples": [
                 {
-                  "sentence": "Ella es de Francia",
+                  "sentence": "Elle vient de France",
                   "translation": "הִיא מִצָּרְפַת"
                 },
                 {
-                  "sentence": "Venimos de la ciudad",
+                  "sentence": "Nous venons de la ville",
                   "translation": "אֲנַחְנוּ מַגִּיעִים מֵהָעִיר"
                 },
                 {
-                  "sentence": "Tengo un regalo de mi amigo",
+                  "sentence": "J'ai un cadeau de mon ami",
                   "translation": "יֵשׁ לִי מַתָּנָה מֵחָבֵר שֶׁלִּי"
                 }
               ]
             },
             {
-              "word": "Tú",
+              "word": "Vous",
               "translation": "אַתָּה/אַתְּ",
               "examples": [
                 {
-                  "sentence": "Tú eres mi amigo",
+                  "sentence": "Vous êtes mon ami",
                   "translation": "אַתָּה חָבֵר שֶׁלִּי"
                 },
                 {
-                  "sentence": "¿Estás bien?",
+                  "sentence": "Allez-vous bien ?",
                   "translation": "הַאִם אַתָּה בְּסֵדֶר?"
                 },
                 {
-                  "sentence": "Tienes un coche bonito",
+                  "sentence": "Vous avez une belle voiture",
                   "translation": "יֵשׁ לְךָ מְכוֹנִית נֶחְמָדָה"
                 }
               ]
@@ -216,181 +216,181 @@
           "name": "מִסְפָּרִים בְּסִיסִיִּים",
           "words": [
             {
-              "word": "Uno",
+              "word": "Un",
               "translation": "אֶחָד",
               "examples": [
                 {
-                  "sentence": "Una manzana",
+                  "sentence": "Une pomme",
                   "translation": "תַּפּוּחַ אֶחָד"
                 },
                 {
-                  "sentence": "Tengo un hermano",
+                  "sentence": "J'ai un frère",
                   "translation": "יֵשׁ לִי אָח אֶחָד"
                 },
                 {
-                  "sentence": "Dame un momento",
+                  "sentence": "Donne-moi un instant",
                   "translation": "תֵּן לִי רֶגַע אֶחָד"
                 }
               ]
             },
             {
-              "word": "Dos",
+              "word": "Deux",
               "translation": "שְׁתַּיִים",
               "examples": [
                 {
-                  "sentence": "Dos libros",
+                  "sentence": "Deux livres",
                   "translation": "שְׁנֵי סְפָרִים"
                 },
                 {
-                  "sentence": "Tenemos dos perros",
+                  "sentence": "Nous avons deux chiens",
                   "translation": "יֵשׁ לָנוּ שְׁנֵי כְּלָבִים"
                 },
                 {
-                  "sentence": "Ella compró dos vestidos",
+                  "sentence": "Elle a acheté deux robes",
                   "translation": "הִיא קָנְתָה שְׁתֵּי שְׂמָלוֹת"
                 }
               ]
             },
             {
-              "word": "Tres",
+              "word": "Trois",
               "translation": "שָׁלוֹשׁ",
               "examples": [
                 {
-                  "sentence": "Tres coches",
+                  "sentence": "Trois voitures",
                   "translation": "שָׁלוֹשׁ מְכוֹנִיּוֹת"
                 },
                 {
-                  "sentence": "Él tiene tres hermanas",
+                  "sentence": "Il a trois sœurs",
                   "translation": "יֵשׁ לוֹ שָׁלוֹשׁ אֲחָיוֹת"
                 },
                 {
-                  "sentence": "Ellos comieron tres sándwiches",
+                  "sentence": "Ils ont mangé trois sandwichs",
                   "translation": "הֵם אָכְלוּ שְׁלוֹשָׁה סֶנְדְּוִויצִ'ים"
                 }
               ]
             },
             {
-              "word": "Cuatro",
+              "word": "Quatre",
               "translation": "אַרְבַּע",
               "examples": [
                 {
-                  "sentence": "Cuatro sillas",
+                  "sentence": "Quatre chaises",
                   "translation": "אַרְבָּעָה כִּיסְּאוֹת"
                 },
                 {
-                  "sentence": "Necesitamos cuatro boletos",
+                  "sentence": "Nous avons besoin de quatre billets",
                   "translation": "אֲנַחְנוּ צְרִיכִים אַרְבָּעָה כַּרְטִיסִים"
                 },
                 {
-                  "sentence": "Ella tiene cuatro gatos",
+                  "sentence": "Elle a quatre chats",
                   "translation": "יֵשׁ לָהּ אַרְבָּעָה חֲתוּלִים"
                 }
               ]
             },
             {
-              "word": "Cinco",
+              "word": "Cinq",
               "translation": "חָמֵשׁ",
               "examples": [
                 {
-                  "sentence": "Cinco manzanas",
+                  "sentence": "Cinq pommes",
                   "translation": "חֲמִישָּׁה תַּפּוּחִים"
                 },
                 {
-                  "sentence": "Él corrió cinco millas",
+                  "sentence": "Il a couru cinq miles",
                   "translation": "הוּא רָץ חֲמִישָּׁה מַיְילִים"
                 },
                 {
-                  "sentence": "Ellos compraron cinco regalos",
+                  "sentence": "Ils ont acheté cinq cadeaux",
                   "translation": "הֵם קָנוּ חֲמִישָּׁה מַתָּנוֹת"
                 }
               ]
             },
             {
-              "word": "Seis",
+              "word": "Six",
               "translation": "שֵׁשׁ",
               "examples": [
                 {
-                  "sentence": "Seis estudiantes",
+                  "sentence": "Six étudiants",
                   "translation": "שִׁישָּׁה תַּלְמִידִים"
                 },
                 {
-                  "sentence": "Él tiene seis años",
+                  "sentence": "Il a six ans",
                   "translation": "הוּא בֶּן שֵׁשׁ"
                 },
                 {
-                  "sentence": "Seis perros",
+                  "sentence": "Six chiens",
                   "translation": "שִׁישָּׁה כְּלָבִים"
                 }
               ]
             },
             {
-              "word": "Siete",
+              "word": "Sept",
               "translation": "שֶׁבַע",
               "examples": [
                 {
-                  "sentence": "Siete días a la semana",
+                  "sentence": "Sept jours par semaine",
                   "translation": "שִׁבְעָה יָמִים בַּשָּׁבוּעַ"
                 },
                 {
-                  "sentence": "Habitación número siete",
+                  "sentence": "Chambre numéro sept",
                   "translation": "חֶדֶר מִסְפָּר שֶׁבַע"
                 },
                 {
-                  "sentence": "Siete colores",
+                  "sentence": "Sept couleurs",
                   "translation": "שִׁבְעָה צְבָעִים"
                 }
               ]
             },
             {
-              "word": "Ocho",
+              "word": "Huit",
               "translation": "שְׁמוֹנֶה",
               "examples": [
                 {
-                  "sentence": "Ocho piernas",
+                  "sentence": "Huit pattes",
                   "translation": "שְׁמוֹנֶה רַגְלַיִים"
                 },
                 {
-                  "sentence": "Son las ocho en punto",
+                  "sentence": "Il est huit heures",
                   "translation": "הַשָּׁעָה שְׁמוֹנֶה"
                 },
                 {
-                  "sentence": "Ocho personas",
+                  "sentence": "Huit personnes",
                   "translation": "שְׁמוֹנָה אֲנָשִׁים"
                 }
               ]
             },
             {
-              "word": "Nueve",
+              "word": "Neuf",
               "translation": "תֵּשַׁע",
               "examples": [
                 {
-                  "sentence": "Nueve meses",
+                  "sentence": "Neuf mois",
                   "translation": "תִּשְׁעָה חוֹדָשִׁים"
                 },
                 {
-                  "sentence": "Nueve flores",
+                  "sentence": "Neuf fleurs",
                   "translation": "תִּשְׁעָה פְּרָחִים"
                 },
                 {
-                  "sentence": "Clase número nueve",
+                  "sentence": "Classe numéro neuf",
                   "translation": "כִּיתָּה מִסְפָּר תֵּשַׁע"
                 }
               ]
             },
             {
-              "word": "Diez",
+              "word": "Dix",
               "translation": "עֶשֶׂר",
               "examples": [
                 {
-                  "sentence": "Diez dedos",
+                  "sentence": "Dix doigts",
                   "translation": "עֶשֶׂר אֶצְבָּעוֹת"
                 },
                 {
-                  "sentence": "Puedo contar hasta diez",
+                  "sentence": "Je peux compter jusqu'à dix",
                   "translation": "אֲנִי יָכוֹל לִסְפּוֹר עַד עֶשֶׂר"
                 },
                 {
-                  "sentence": "Diez estudiantes",
+                  "sentence": "Dix étudiants",
                   "translation": "עֲשָׂרָה תַּלְמִידִים"
                 }
               ]
@@ -401,91 +401,91 @@
           "name": "צְבָעִים רִאשׁוֹנִיִּים",
           "words": [
             {
-              "word": "Rojo",
+              "word": "Rouge",
               "translation": "אָדוֹם",
               "examples": [
                 {
-                  "sentence": "La manzana es roja",
+                  "sentence": "La pomme est rouge",
                   "translation": "הַתַּפּוּחַ אָדוֹם"
                 },
                 {
-                  "sentence": "Ella lleva un vestido rojo",
+                  "sentence": "Elle porte une robe rouge",
                   "translation": "הִיא לוֹבֶשֶׁת שִׂמְלָה אֲדוּמָּה"
                 },
                 {
-                  "sentence": "El rojo es mi color favorito",
+                  "sentence": "Le rouge est ma couleur préférée",
                   "translation": "אָדוֹם הוּא הַצֶּבַע הָאָהוּב עָלַיי"
                 }
               ]
             },
             {
-              "word": "Azul",
+              "word": "Bleu",
               "translation": "כָּחוֹל",
               "examples": [
                 {
-                  "sentence": "El cielo es azul",
+                  "sentence": "Le ciel est bleu",
                   "translation": "הַשָּׁמַיִים כְּחוּלִּים"
                 },
                 {
-                  "sentence": "Él tiene ojos azules",
+                  "sentence": "Il a les yeux bleus",
                   "translation": "יֵשׁ לוֹ עֵינַיִים כְּחוּלּוֹת"
                 },
                 {
-                  "sentence": "Me gusta el coche azul",
+                  "sentence": "J'aime la voiture bleue",
                   "translation": "אֲנִי אוֹהֵב אֶת הַמְּכוֹנִית הַכְּחוּלָּה"
                 }
               ]
             },
             {
-              "word": "Verde",
+              "word": "Vert",
               "translation": "יָרוֹק",
               "examples": [
                 {
-                  "sentence": "La hierba es verde",
+                  "sentence": "L'herbe est verte",
                   "translation": "הַדֶּשֶׁא יָרוֹק"
                 },
                 {
-                  "sentence": "Ella compró una camisa verde",
+                  "sentence": "Elle a acheté une chemise verte",
                   "translation": "הִיא קָנְתָה חוּלְצָה יְרוּקָּה"
                 },
                 {
-                  "sentence": "Los árboles verdes son hermosos",
+                  "sentence": "Les arbres verts sont magnifiques",
                   "translation": "עֵצִים יְרוּקִּים הֵם יָפִים"
                 }
               ]
             },
             {
-              "word": "Amarillo",
+              "word": "Jaune",
               "translation": "צָהוֹב",
               "examples": [
                 {
-                  "sentence": "El sol se ve amarillo",
+                  "sentence": "Le soleil semble jaune",
                   "translation": "הַשֶּׁמֶשׁ נִרְאֵית צְהוּבָּה"
                 },
                 {
-                  "sentence": "Él tiene una bicicleta amarilla",
+                  "sentence": "Il a un vélo jaune",
                   "translation": "יֵשׁ לוֹ אוֹפַנַּיִים צְהוּבִּים"
                 },
                 {
-                  "sentence": "El plátano es amarillo",
+                  "sentence": "La banane est jaune",
                   "translation": "הַבָּנָנָה צְהוּבָּה"
                 }
               ]
             },
             {
-              "word": "Negro",
+              "word": "Noir",
               "translation": "שָׁחוֹר",
               "examples": [
                 {
-                  "sentence": "Tengo un gato negro",
+                  "sentence": "J'ai un chat noir",
                   "translation": "יֵשׁ לִי חָתוּל שָׁחוֹר"
                 },
                 {
-                  "sentence": "Ella lleva zapatos negros",
+                  "sentence": "Elle porte des chaussures noires",
                   "translation": "הִיא נוֹעֶלֶת נַעֲלַיִים שְׁחוֹרוֹת"
                 },
                 {
-                  "sentence": "La noche es negra",
+                  "sentence": "La nuit est noire",
                   "translation": "הַלַּיְלָה שָׁחוֹר"
                 }
               ]

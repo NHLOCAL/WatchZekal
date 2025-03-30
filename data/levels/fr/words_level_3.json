@@ -1,0 +1,367 @@
+{
+  "levels": [
+    {
+      "level": 3,
+      "name": "גּוּף הָאָדָם וּבִיגּוּד",
+      "subtopics": [
+        {
+          "name": "חֶלְקֵי גּוּף",
+          "words": [
+            {
+              "word": "Tête",
+              "translation": "רֹאשׁ",
+              "examples": [
+                {
+                  "sentence": "Il porte un chapeau sur la tête",
+                  "translation": "הוּא חוֹבֵשׁ כּוֹבַעַ עַל רֹאשׁוֹ"
+                },
+                {
+                  "sentence": "J'ai mal à la tête",
+                  "translation": "כּוֹאֵב לִי הָרֹאשׁ"
+                },
+                {
+                  "sentence": "Elle a hoché la tête",
+                  "translation": "הִיא הִנְהֲנָה בְּרֹאשָׁהּ"
+                }
+              ]
+            },
+            {
+              "word": "Main",
+              "translation": "יָד",
+              "examples": [
+                {
+                  "sentence": "Levez la main",
+                  "translation": "הָרֵם אֶת יָדְךָ"
+                },
+                {
+                  "sentence": "Elle tient le bébé dans ses mains",
+                  "translation": "הִיא מַחְזִיקָה אֶת הַתִּינוֹק בְּיָדֶיהָ"
+                },
+                {
+                  "sentence": "Lavez-vous les mains avant de manger",
+                  "translation": "שְׁטוֹף אֶת יָדֶיךָ לִפְנֵי הָאֲכִילָה"
+                }
+              ]
+            },
+            {
+              "word": "Jambe",
+              "translation": "רֶגֶל",
+              "examples": [
+                {
+                  "sentence": "Il s'est cassé la jambe",
+                  "translation": "הוּא שָׁבַר אֶת רַגְלוֹ"
+                },
+                {
+                  "sentence": "Elle a croisé les jambes",
+                  "translation": "הִיא שִׁילְּבָה אֶת רַגְלֶיהָ"
+                },
+                {
+                  "sentence": "Les longues jambes l'aident à courir vite",
+                  "translation": "רַגְלַיִים אֲרוּכּוֹת עוֹזְרוֹת לוֹ לָרוּץ מַהֵר"
+                }
+              ]
+            },
+            {
+              "word": "Oeil",
+              "translation": "עַיִן",
+              "examples": [
+                {
+                  "sentence": "Elle a les yeux bleus",
+                  "translation": "יֵשׁ לָהּ עֵינַיִים כְּחוּלוֹת"
+                },
+                {
+                  "sentence": "Gardez un œil sur le sac",
+                  "translation": "שִׂים עַיִן עַל הַתִּיק"
+                },
+                {
+                  "sentence": "Il a fait un clin d'œil",
+                  "translation": "הוּא קָרַץ בְּעֵינוֹ"
+                }
+              ]
+            },
+            {
+              "word": "Oreille",
+              "translation": "אֹזֶן",
+              "examples": [
+                {
+                  "sentence": "Écoutez avec vos oreilles",
+                  "translation": "הַקְשִׁיבוּ עִם הָאֹזְנַיִים שֶׁלָּכֶם"
+                },
+                {
+                  "sentence": "Elle porte des boucles d'oreilles",
+                  "translation": "הִיא עוֹנֶדֶת עֲגִילִים בְּאֹזְנֶיהָ"
+                },
+                {
+                  "sentence": "Il a les oreilles froides",
+                  "translation": "הָאֹזְנַיִים שֶׁלּוֹ קָרוֹת"
+                }
+              ]
+            },
+            {
+              "word": "Bouche",
+              "translation": "פֶּה",
+              "examples": [
+                {
+                  "sentence": "Ouvrez la bouche",
+                  "translation": "פְּתַח אֶת פִּיךָ"
+                },
+                {
+                  "sentence": "Elle a souri avec sa bouche",
+                  "translation": "הִיא חִיְּכָה עִם פִּיהָ"
+                },
+                {
+                  "sentence": "Ne parlez pas la bouche pleine",
+                  "translation": "אַל תְּדַבֵּר עִם פֶּה מָלֵא"
+                }
+              ]
+            },
+            {
+              "word": "Nez",
+              "translation": "אַף",
+              "examples": [
+                {
+                  "sentence": "Il a un petit nez",
+                  "translation": "יֵשׁ לוֹ אַף קָטָן"
+                },
+                {
+                  "sentence": "Elle sent les fleurs avec son nez",
+                  "translation": "הִיא מְרִיחָה פְּרָחִים עִם אַפָּהּ"
+                },
+                {
+                  "sentence": "Couvrez-vous le nez lorsque vous éternuez",
+                  "translation": "כַּסֵּה אֶת אַפְּךָ כְּשֶׁאַתָּה מִתְעַטֵּשׁ"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "פְּרִיטֵי לְבוּשׁ",
+          "words": [
+            {
+              "word": "Chemise",
+              "translation": "חוּלְצָה",
+              "examples": [
+                {
+                  "sentence": "Je porte une chemise bleue",
+                  "translation": "אֲנִי לוֹבֵשׁ חוּלְצָה כְּחוּלָה"
+                },
+                {
+                  "sentence": "Sa chemise est sale",
+                  "translation": "הַחוּלְצָה שֶׁלּוֹ מְלוּכְלֶכֶת"
+                },
+                {
+                  "sentence": "Elle a acheté une nouvelle chemise",
+                  "translation": "הִיא קָנְתָה חוּלְצָה חֲדָשָׁה"
+                }
+              ]
+            },
+            {
+              "word": "Pantalon",
+              "translation": "מִכְנָסַיִים",
+              "examples": [
+                {
+                  "sentence": "Il porte un pantalon noir",
+                  "translation": "הוּא לוֹבֵשׁ מִכְנָסַיִים שְׁחוֹרִים"
+                },
+                {
+                  "sentence": "Mon pantalon est trop long",
+                  "translation": "הַמִּכְנָסַיִים שֶׁלִּי אֲרוּכִּים מִדַּי"
+                },
+                {
+                  "sentence": "Il a besoin d'un nouveau pantalon",
+                  "translation": "הוּא צָרִיךְ מִכְנָסַיִים חֲדָשִׁים"
+                }
+              ]
+            },
+            {
+              "word": "Chaussures",
+              "translation": "נַעֲלַיִים",
+              "examples": [
+                {
+                  "sentence": "Mettez vos chaussures",
+                  "translation": "נְעֹל אֶת הַנַּעֲלַיִים שֶׁלְּךָ"
+                },
+                {
+                  "sentence": "Ses chaussures sont rouges",
+                  "translation": "הַנַּעֲלַיִים שֶׁלָּהּ אֲדֻומּוֹת"
+                },
+                {
+                  "sentence": "J'ai acheté de nouvelles chaussures de course",
+                  "translation": "קָנִיתִי נַעֲלֵי רִיצָה חֲדָשׁוֹת"
+                }
+              ]
+            },
+            {
+              "word": "Chapeau",
+              "translation": "כּוֹבַע",
+              "examples": [
+                {
+                  "sentence": "Il porte un chapeau",
+                  "translation": "הוּא חוֹבֵשׁ כּוֹבַע"
+                },
+                {
+                  "sentence": "Son chapeau est élégant",
+                  "translation": "הַכּוֹבַע שֶׁלָּהּ אוֹפְנָתִי"
+                },
+                {
+                  "sentence": "J'ai perdu mon chapeau",
+                  "translation": "אִיבַּדְתִּי אֶת הַכּוֹבַע שֶׁלִּי"
+                }
+              ]
+            },
+            {
+              "word": "Robe",
+              "translation": "שִׂמְלָה",
+              "examples": [
+                {
+                  "sentence": "Elle porte une belle robe",
+                  "translation": "הִיא לוֹבֶשֶׁת שִׂמְלָה יָפָה"
+                },
+                {
+                  "sentence": "La robe est trop courte",
+                  "translation": "הַשִּׂמְלָה קְצָרָה מִדַּי"
+                },
+                {
+                  "sentence": "J'aime ta robe",
+                  "translation": "אֲנִי אוֹהֶבֶת אֶת הַשִּׂמְלָה שֶׁלָּךְ"
+                }
+              ]
+            },
+            {
+              "word": "Chaussettes",
+              "translation": "גַּרְבַּיִים",
+              "examples": [
+                {
+                  "sentence": "Portez des chaussettes chaudes",
+                  "translation": "לְבַשׁ גַּרְבַּיִים חַמּוֹת"
+                },
+                {
+                  "sentence": "Je ne trouve pas mes chaussettes",
+                  "translation": "אֲנִי לֹא מוֹצֵא אֶת הַגַּרְבַּיִים שֶׁלִּי"
+                },
+                {
+                  "sentence": "Ses chaussettes sont roses",
+                  "translation": "הַגַּרְבַּיִים שֶׁלָּהּ וְרוּדוֹת"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "תְּאָרִים בְּסִיסִיִּים",
+          "words": [
+            {
+              "word": "Grand",
+              "translation": "גָּדוֹל",
+              "examples": [
+                {
+                  "sentence": "L'éléphant est grand",
+                  "translation": "הַפִּיל גָּדוֹל"
+                },
+                {
+                  "sentence": "Elle habite dans une grande maison",
+                  "translation": "הִיא גָּרָה בְּבַיִת גָּדוֹל"
+                },
+                {
+                  "sentence": "Il a un grand chien",
+                  "translation": "יֵשׁ לוֹ כֶּלֶב גָּדוֹל"
+                }
+              ]
+            },
+            {
+              "word": "Petit",
+              "translation": "קָטָן",
+              "examples": [
+                {
+                  "sentence": "La souris est petite",
+                  "translation": "הָעַכְבָּר קָטָן"
+                },
+                {
+                  "sentence": "Ils ont acheté une petite voiture",
+                  "translation": "הֵם קָנוּ מְכוֹנִית קְטַנָּה"
+                },
+                {
+                  "sentence": "Elle a de petites mains",
+                  "translation": "יֵשׁ לָהּ יָדַיִים קְטַנּוֹת"
+                }
+              ]
+            },
+            {
+              "word": "Rapide",
+              "translation": "מָהִיר",
+              "examples": [
+                {
+                  "sentence": "Le guépard est rapide",
+                  "translation": "הַצִּ'יטָה מְהִירָה"
+                },
+                {
+                  "sentence": "Il court très vite",
+                  "translation": "הוּא רָץ מְאוֹד מַהֵר"
+                },
+                {
+                  "sentence": "Elle conduit une voiture rapide",
+                  "translation": "הִיא נוֹהֶגֶת בִּמְכוֹנִית מְהִירָה"
+                }
+              ]
+            },
+            {
+              "word": "Lent",
+              "translation": "אִיטִי",
+              "examples": [
+                {
+                  "sentence": "La tortue est lente",
+                  "translation": "הַצָּב אִיטִי"
+                },
+                {
+                  "sentence": "La circulation est lente aujourd'hui",
+                  "translation": "הַתְּנוּעָה אִיטִית הַיּוֹם"
+                },
+                {
+                  "sentence": "Il marche lentement",
+                  "translation": "הוּא הוֹלֵךְ לְאַט"
+                }
+              ]
+            },
+            {
+              "word": "Chaud",
+              "translation": "חַם",
+              "examples": [
+                {
+                  "sentence": "La soupe est chaude",
+                  "translation": "הַמָּרָק חַם"
+                },
+                {
+                  "sentence": "Il fait chaud dehors",
+                  "translation": "חַם בַּחוּץ"
+                },
+                {
+                  "sentence": "Elle aime le café chaud",
+                  "translation": "הִיא אוֹהֶבֶת קָפֶה חַם"
+                }
+              ]
+            },
+            {
+              "word": "Froid",
+              "translation": "קַר",
+              "examples": [
+                {
+                  "sentence": "La glace est froide",
+                  "translation": "הַקֶּרַח קַר"
+                },
+                {
+                  "sentence": "Il fait froid en hiver",
+                  "translation": "קַר בַּחוֹרֶף"
+                },
+                {
+                  "sentence": "Il boit de l'eau froide",
+                  "translation": "הוּא שׁוֹתֶה מַיִם קָרִים"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
