@@ -94,6 +94,50 @@ def clean_srt_content(srt_text):
 
 
 def generate_srt_from_youtube(youtube_url):
+    # --- חישוב שמות קבצים צפויים ---
+    try:
+        parsed_url = urllib.parse.urlparse(youtube_url)
+        query_params = urllib.parse.parse_qs(parsed_url.query)
+        video_id = query_params.get('v')
+        if video_id:
+            base_filename = video_id[0]
+        else:
+            # Fallback (כמו בקוד המקורי שלך, תלוי ב-mp3_file הגלובלי)
+            base_filename = re.sub(r'\W+', '_', os.path.splitext(os.path.basename(mp3_file))[0]) if 'mp3_file' in globals() and mp3_file else "default_song"
+            print(f"אזהרה: לא זוהה Video ID מהקישור. משתמש בשם חלופי: {base_filename}")
+
+        english_srt_filename = os.path.join(srt_files_dir, f"{base_filename}_en.srt")
+        hebrew_srt_filename = os.path.join(srt_files_dir, f"{base_filename}_he.srt")
+    except Exception as e:
+        print(f"שגיאה בניתוח הקישור או הגדרת שמות קבצים: {e}")
+        print("לא ניתן לבדוק קבצים קיימים. ממשיך לנסות ליצור כתוביות.")
+        english_srt_filename = None # סמן כלא ידוע כדי למנוע שגיאות בהמשך הבדיקה
+        hebrew_srt_filename = None
+
+    # --- בדיקה אם קבצי SRT כבר קיימים ---
+    if english_srt_filename and hebrew_srt_filename and \
+       os.path.exists(english_srt_filename) and os.path.exists(hebrew_srt_filename):
+        print(f"\nנמצאו קבצי SRT קיימים:\n  EN: {english_srt_filename}\n  HE: {hebrew_srt_filename}")
+        print("מדלג על שלב יצירת הכתוביות מ-YouTube וטוען את הקבצים הקיימים.")
+        try:
+            with open(english_srt_filename, "r", encoding="utf-8") as f_en:
+                english_srt_content = f_en.read()
+            with open(hebrew_srt_filename, "r", encoding="utf-8") as f_he:
+                hebrew_srt_content = f_he.read()
+
+            if not english_srt_content.strip() or not hebrew_srt_content.strip():
+                 print("אזהרה: אחד מקבצי ה-SRT הקיימים ריק. ממשיך ליצירה מחדש.")
+            else:
+                 print("תוכן הכתוביות נטען בהצלחה מהקבצים.")
+                 return english_srt_content, hebrew_srt_content # <<< החזרה מוקדמת עם התוכן הקיים
+
+        except Exception as e:
+            print(f"שגיאה בקריאת קבצי SRT קיימים: {e}. ממשיך לנסות ליצור כתוביות מחדש.")
+            # אם הקריאה נכשלה, נמשיך לשלב היצירה למטה
+
+    # --- אם הקבצים לא קיימים או היתה שגיאה בקריאה, המשך עם היצירה ---
+    print("\nקבצי SRT לא נמצאו או היו שגויים. מתחיל תהליך יצירה מ-YouTube...")
+
     if not os.environ.get("GEMINI_API_KEY"):
         print("שגיאה: לא נמצא מפתח API של Gemini. אנא הגדר את משתנה הסביבה GEMINI_API_KEY.")
         return None, None
@@ -128,32 +172,28 @@ def generate_srt_from_youtube(youtube_url):
 
     print("Generating English SRT...")
     english_srt_content_raw = ""
+    # ... (המשך הלולאה שלך לקבלת התוכן האנגלי) ...
     for chunk in client.models.generate_content_stream(
         model=model,
         contents=contents_english,
         config=generate_content_config,
     ):
-        print(chunk.text, end="")
+        # print(chunk.text, end="") # אפשר לכבות את ההדפסה הזו אם רוצים
         english_srt_content_raw += chunk.text
+    print("English SRT generation complete.")
 
-    # --- ניקוי תוכן SRT אנגלי ---
+
     english_srt_content = clean_srt_content(english_srt_content_raw)
     print("\n--- English SRT Cleaned ---")
-    # print(english_srt_content) # Uncomment for debugging the cleaned content
 
-    # Extract video ID from URL to create a valid filename
-    parsed_url = urllib.parse.urlparse(youtube_url)
-    query_params = urllib.parse.parse_qs(parsed_url.query)
-    video_id = query_params.get('v')
-    if video_id:
-        base_filename = video_id[0]
-    else:
-        # Fallback if video ID extraction fails
-        base_filename = re.sub(r'\W+', '_', os.path.splitext(os.path.basename(mp3_file))[0]) if 'mp3_file' in globals() and mp3_file else "default_song"
+    # ודא שיש לנו שמות קבצים גם אם החישוב הראשוני נכשל מסיבה כלשהי
+    if not english_srt_filename:
+        base_filename = "generated_fallback" # שם קובץ חלופי במקרה קיצון
+        english_srt_filename = os.path.join(srt_files_dir, f"{base_filename}_en.srt")
+        hebrew_srt_filename = os.path.join(srt_files_dir, f"{base_filename}_he.srt")
 
 
     # --- שמירת קובץ SRT אנגלי (התוכן הנקי) ---
-    english_srt_filename = os.path.join(srt_files_dir, f"{base_filename}_en.srt")  # Save in srt_files_dir
     try:
         with open(english_srt_filename, "w", encoding="utf-8") as f:
             f.write(english_srt_content)
@@ -164,6 +204,7 @@ def generate_srt_from_youtube(youtube_url):
 
 
     # --- הכנת קלט לתרגום (שימוש בתוכן הנקי) ---
+    # ... (המשך הקוד שלך ליצירת התרגום העברי) ...
     contents_hebrew = [
         types.Content(
             role="user",
@@ -182,46 +223,43 @@ def generate_srt_from_youtube(youtube_url):
         contents=contents_hebrew,
         config=generate_content_config,
     ):
-        print(chunk.text, end="")
+        # print(chunk.text, end="") # אפשר לכבות
         hebrew_srt_content_raw += chunk.text
+    print("Hebrew SRT generation complete.")
 
-    # --- ניקוי תוכן SRT עברי ---
     hebrew_srt_content = clean_srt_content(hebrew_srt_content_raw)
     print("\n--- Hebrew SRT Cleaned ---")
-    # print(hebrew_srt_content) # Uncomment for debugging the cleaned content
 
     # --- שמירת קובץ SRT עברי (התוכן הנקי) ---
-    hebrew_srt_filename = os.path.join(srt_files_dir, f"{base_filename}_he.srt")  # Save in srt_files_dir
     try:
         with open(hebrew_srt_filename, "w", encoding="utf-8") as f:
             f.write(hebrew_srt_content)
         print(f"\nHebrew SRT saved to: {hebrew_srt_filename}")
     except Exception as e:
         print(f"\nError saving Hebrew SRT file '{hebrew_srt_filename}': {e}")
-        # Decide if you want to return the English one even if Hebrew fails
-        return english_srt_content, None
+        return english_srt_content, None # החזר רק אנגלית אם שמירת עברית נכשלה
 
 
-    # --- החזרת התוכן הנקי ---
+    # --- החזרת התוכן הנקי שנוצר ---
     return english_srt_content, hebrew_srt_content
 
-
-# --- הפקת כתוביות מיוטיוב ---
-print("מתחיל הפקת כתוביות מיוטיוב...")
+# --- קריאה לפונקציה ---
+print("בודק או יוצר כתוביות מיוטיוב...")
+# שאר הקוד לא משתנה - הוא יקבל את התוכן מהפונקציה, בין אם נוצר עכשיו או נטען מקובץ
 english_srt_content, hebrew_srt_content = generate_srt_from_youtube(youtube_link)
 
 if not english_srt_content or not hebrew_srt_content:
-    print("שגיאה בהפקת כתוביות. יציאה.")
+    print("שגיאה בהפקת או טעינת כתוביות. יציאה.")
     exit()
 
-# Extract video ID from URL to create a valid filename
+# חישוב שמות הקבצים שוב לצורך וידוא ושמירה (למקרה שהיו חסרים קודם)
 parsed_url = urllib.parse.urlparse(youtube_link)
 query_params = urllib.parse.parse_qs(parsed_url.query)
 video_id = query_params.get('v')
 if video_id:
     base_filename = video_id[0]
 else:
-    base_filename = "default_song"
+    base_filename = re.sub(r'\W+', '_', os.path.splitext(os.path.basename(mp3_file))[0]) if 'mp3_file' in globals() and mp3_file else "default_song"
 
 # Update paths for SRT files
 srt_en_file = os.path.join(srt_files_dir, f"{base_filename}_en.srt")
