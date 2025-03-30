@@ -1,0 +1,6 @@
+*.srt
+subtitle_frames/
+*temp*
+legacy/
+fonts/
+assets/
