@@ -15,9 +15,10 @@ import arabic_reshaper # <<< חדש: לעיצוב תווים ערביים/עבר
 from bidi.algorithm import get_display # <<< חדש: לסדר תצוגה מימין לשמאל (RTL)
 
 # --- הגדרות נתיבים ותיקיות ---
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ASSETS_DIR = os.path.join(BASE_DIR, "assets")
-FONTS_DIR = os.path.join(BASE_DIR, "fonts")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # נתיב לסקריפט הנוכחי
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data', 'levels')
+ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
+FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
 output_frames_dir = os.path.join(BASE_DIR, "subtitle_frames") # תיקייה לשמירת תמונות
 
 # --- יצירת תיקיות נדרשות ---
@@ -34,7 +35,7 @@ video_resolution = (1280, 720)
 video_fps = 25
 
 # --- נתיבי קבצים נוספים ---
-background_image_path = os.path.join(ASSETS_DIR, "word_background.png")
+background_image_path = os.path.join(ASSETS_DIR, 'backgrounds', 'levels', "word_background.png")
 font_name = "Rubik-Regular.ttf"
 font_path = os.path.join(FONTS_DIR, font_name)
 
