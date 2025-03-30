@@ -305,17 +305,17 @@ def draw_text_with_stroke(draw, pos, text, font, fill_color, stroke_color, strok
 def is_hebrew(text_line):
     return any('\u0590' <= char <= '\u05FF' for char in text_line)
 
-# --- פונקציית עיבוד כתוביות מעודכנת - עם BiDi ורווחים משופרים ---
+# --- פונקציית עיבוד כתוביות מעודכנת - עם BiDi, רווחים משופרים וגלישת שורות ---
 def create_styled_subtitle_clip_pil(srt_en_file_local, srt_he_file_local, font_path_local, font_size_en, font_size_he,
                                    text_color, stroke_color, stroke_width_local,
-                                   spacing_intra, spacing_inter, # <<< רווחים נפרדים
+                                   spacing_intra, spacing_inter, # <<< רווחים: spacing_intra לגלישה פנימית, spacing_inter בין קטעי זמן
                                    video_res, total_duration):
     subs_en = []
     subs_he = []
     combined_subs_format = []
     subtitle_id_counter = 0
 
-    # --- 1. קריאת קבצי SRT (זהה לקודם) ---
+    # --- 1. קריאת קבצי SRT ---
     try:
         subs_en_pysrt = pysrt.open(srt_en_file_local, encoding='utf-8')
         subs_en = [(sub.start.ordinal / 1000.0, sub.end.ordinal / 1000.0, sub.text_without_tags.strip().replace('\\N', '\n').replace('\\n', '\n')) for sub in subs_en_pysrt if sub.text_without_tags.strip()]
@@ -328,90 +328,198 @@ def create_styled_subtitle_clip_pil(srt_en_file_local, srt_he_file_local, font_p
     if not subs_en and not subs_he:
         print("אזהרה: לא נמצאו כתוביות."); return mp.ColorClip(size=(1,1), color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0), []
 
-    # --- 2. שילוב הכתוביות (זהה לקודם) ---
+    # --- 2. שילוב הכתוביות ---
     max_len = max(len(subs_en), len(subs_he))
     for i in range(max_len):
         en_start, en_end, en_text = subs_en[i] if i < len(subs_en) else (0, 0, "")
         he_start, he_end, he_text = subs_he[i] if i < len(subs_he) else (0, 0, "")
         start_time = min(en_start, he_start) if en_text and he_text else (en_start if en_text else he_start)
-        if i == 0 and not (en_text and he_text): start_time = max(en_start, he_start)
+        # Handle case where one subtitle starts much later than the other in the first pair
+        if i == 0 and en_text and he_text and abs(en_start - he_start) > 0.1: # Threshold can be adjusted
+             start_time = max(en_start, he_start) # Start when both are ready if significantly different
+        elif i == 0 and not (en_text and he_text):
+             start_time = max(en_start, he_start) # If only one exists at start, use its time
+
         end_time = max(en_end, he_end)
         combined_text = ""
         if en_text and he_text: combined_text = f"{en_text}\n{he_text}"
         elif en_text: combined_text = en_text
         elif he_text: combined_text = he_text
         if combined_text:
-            sub_id = f"combined_sub_{subtitle_id_counter}"; combined_subs_format.append(((start_time, end_time), combined_text, sub_id)); subtitle_id_counter += 1
+            sub_id = f"combined_sub_{subtitle_id_counter}"; combined_subs_format.append(((start_time, end_time), combined_text.strip(), sub_id)); subtitle_id_counter += 1
 
     if not combined_subs_format:
         print("אזהרה: לא נוצרו כתוביות משולבות."); return mp.ColorClip(size=(1,1), color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0), []
 
-    # --- 3. הגדרת ה-Generator עבור SubtitlesClip (עם שינויים) ---
+    # --- 3. הגדרת ה-Generator עבור SubtitlesClip (עם גלישת שורות) ---
     def generator(txt):
         try:
             font_en = ImageFont.truetype(font_path_local, font_size_en)
             font_he = ImageFont.truetype(font_path_local, font_size_he)
         except Exception as e: print(f"שגיאה קריטית בטעינת פונט PIL '{font_path_local}': {e}"); return mp.ColorClip(size=(1,1), color=(0,0,0,0), ismask=True, duration=0.1).set_opacity(0)
 
+        max_text_width = video_res[0] * 0.75 # <<< הגדרת רוחב מקסימלי לכתוביות (90% מרוחב הוידאו)
+
         img = Image.new('RGBA', video_res, (0, 0, 0, 0))
         draw = ImageDraw.Draw(img)
-        lines = txt.splitlines()
-        if not lines: return mp.ColorClip(size=(1,1), color=(0,0,0,0), ismask=True, duration=0.1).set_opacity(0)
+        original_lines = txt.splitlines()
+        if not original_lines: return mp.ColorClip(size=(1,1), color=(0,0,0,0), ismask=True, duration=0.1).set_opacity(0)
 
-        # חישוב גובה כולל ופרטי שורות (כולל זיהוי שפה)
+        # --- פונקציית עזר לגלישת שורות לפי מילים ---
+        def wrap_text(line_text, font, max_width):
+            words = line_text.split(' ')
+            wrapped_lines = []
+            current_line = ''
+            for word in words:
+                if not word: continue # Skip empty strings resulting from multiple spaces
+
+                # בדוק רוחב של השורה הנוכחית + המילה הבאה
+                test_line = f"{current_line} {word}".strip()
+                try:
+                    # Use textlength which might be slightly faster than bbox for width check
+                    line_width = draw.textlength(test_line, font=font)
+                except AttributeError: # Fallback for older PIL/Pillow or specific fonts
+                     bbox = draw.textbbox((0, 0), test_line, font=font)
+                     line_width = bbox[2] - bbox[0]
+
+
+                if line_width <= max_width:
+                    current_line = test_line
+                else:
+                    # אם הוספת המילה חורגת:
+                    # 1. אם השורה הנוכחית לא ריקה, הוסף אותה לרשימה
+                    if current_line:
+                        wrapped_lines.append(current_line)
+                    # 2. התחל שורה חדשה עם המילה הנוכחית
+                    current_line = word
+                    # 3. בדוק אם המילה הבודדת עצמה ארוכה מדי
+                    try:
+                         word_width = draw.textlength(current_line, font=font)
+                    except AttributeError:
+                         bbox_word = draw.textbbox((0, 0), current_line, font=font)
+                         word_width = bbox_word[2] - bbox_word[0]
+
+                    if word_width > max_width:
+                         print(f"אזהרה: מילה בודדת '{word}' ארוכה מרוחב השורה המותר ({max_width:.0f}px). היא תוצג בשורה נפרדת אך עשויה לחרוג.")
+                         # במקרה כזה, פשוט מוסיפים את המילה הארוכה כשורה בפני עצמה.
+                         # אפשר לשקול חיתוך תווים כאן אם רוצים, אך זה מסבך.
+                         if current_line: # Add the long word line
+                             wrapped_lines.append(current_line)
+                         current_line = "" # Reset for next word
+
+            # הוסף את השורה האחרונה שנבנתה (אם ישנה)
+            if current_line:
+                wrapped_lines.append(current_line)
+
+            # אם הקלט המקורי לא היה ריק אבל לא נוצרו שורות (נדיר)
+            if not wrapped_lines and line_text.strip():
+                 return [line_text.strip()]
+            # אם הקלט היה ריק או רק רווחים
+            elif not wrapped_lines:
+                return []
+
+            return wrapped_lines
+
+
+        # --- חישוב גובה כולל ופרטי שורות (כולל זיהוי שפה וגלישה) ---
         total_text_height = 0
-        line_details = []
-        for i, line in enumerate(lines):
-            is_line_hebrew = is_hebrew(line)
-            font_for_line = font_he if is_line_hebrew else font_en
+        processed_line_details = [] # רשימה לשמור את כל השורות הסופיות לאחר גלישה
+        original_line_indices_map = {} # מעקב איזה שורות מקוריות יצרו כל שורה סופית
+        original_line_is_hebrew = [] # שמירת השפה של כל שורה מקורית
+
+        # שלב 1: גלישה ויצירת רשימת שורות שטוחה, תוך שמירת מידע מקור
+        flat_line_counter = 0
+        for i, line in enumerate(original_lines):
+            is_heb = is_hebrew(line)
+            original_line_is_hebrew.append(is_heb)
+            font_for_line = font_he if is_heb else font_en
+            # בצע גלישה על השורה הנוכחית
+            wrapped_lines_for_current = wrap_text(line, font_for_line, max_text_width)
+
+            for wrapped_line in wrapped_lines_for_current:
+                processed_line_details.append({
+                    'text': wrapped_line,
+                    'font': font_for_line,
+                    'is_hebrew': is_heb,
+                    'original_index': i, # אינדקס השורה המקורית ממנה נוצרה זו
+                    'flat_index': flat_line_counter # אינדקס רץ של כל השורות הסופיות
+                })
+                original_line_indices_map[flat_line_counter] = i
+                flat_line_counter += 1
+
+        # שלב 2: חישוב גיאומטריה ורווחים עבור כל שורה ברשימה השטוחה
+        num_processed_lines = len(processed_line_details)
+        for k, detail in enumerate(processed_line_details):
             try:
-                bbox = draw.textbbox((0, 0), line, font=font_for_line)
-                line_width = bbox[2] - bbox[0]
-                line_height = bbox[3] - bbox[1]
-            except Exception as e: print(f"אזהרה בחישוב גבולות: '{line}'. {e}"); line_width = 100; line_height = font_for_line.size
-            line_details.append({'text': line, 'font': font_for_line, 'width': line_width, 'height': line_height, 'is_hebrew': is_line_hebrew})
+                # bbox נותן גובה מדויק יותר מ-size עבור פונטים מסוימים
+                bbox = draw.textbbox((0, 0), detail['text'], font=detail['font'])
+                detail['width'] = bbox[2] - bbox[0]
+                detail['height'] = bbox[3] - bbox[1]
+            except Exception as e:
+                print(f"אזהרה בחישוב גבולות עבור: '{detail['text']}'. שגיאה: {e}. משתמש בגודל פונט.")
+                detail['width'] = draw.textlength(detail['text'], font=detail['font']) if hasattr(draw, 'textlength') else 100
+                detail['height'] = detail['font'].size # Fallback height
 
-            # חישוב רווח *אחרי* שורה זו
+            # חישוב הרווח *אחרי* שורה זו
             current_spacing = 0
-            if i < len(lines) - 1: # אם זו לא השורה האחרונה
-                next_line_is_hebrew = is_hebrew(lines[i+1])
-                # אם השפה משתנה (אנגלית -> עברית), השתמש ברווח הגדול
-                if not is_line_hebrew and next_line_is_hebrew:
-                    current_spacing = spacing_inter
-                else: # אחרת, השתמש ברווח הקטן
-                    current_spacing = spacing_intra
-            line_details[-1]['spacing_after'] = current_spacing # שמירת הרווח
-            total_text_height += line_height + current_spacing
+            is_last_line_overall = (k == num_processed_lines - 1)
 
+            if not is_last_line_overall:
+                next_detail = processed_line_details[k+1]
+                # בדוק אם השורה הבאה שייכת לאותה שורה מקורית (כלומר, זו גלישה פנימית)
+                if detail['original_index'] == next_detail['original_index']:
+                    current_spacing = spacing_intra # רווח קטן בין שורות שנגלשו מאותה שורה מקורית
+                else:
+                    # אם השורה הבאה היא משורה מקורית אחרת = סוף קטע זמן נוכחי / התחלה של קטע הבא
+                    current_spacing = spacing_inter # רווח גדול בין קטעי זמן שונים (בין שורות מקוריות שונות)
+            # אם זו השורה האחרונה בסך הכל, אין רווח אחריה
+
+            detail['spacing_after'] = current_spacing
+            total_text_height += detail['height'] + current_spacing
+            # אין צורך להסיר רווח אחרון כאן, כי החישוב מסתמך על הרווח *שאחרי* כל שורה,
+            # והשורה האחרונה ממילא לא מוסיפה רווח אחריה לחישוב.
+
+        # חישוב מיקום התחלתי אנכי (מרכוז)
         current_y = (video_res[1] - total_text_height) / 2
 
-        # ציור הטקסט שורה אחר שורה (עם BiDi)
-        for detail in line_details:
-            x_text = (video_res[0] - detail['width']) / 2
+        # שלב 3: ציור הטקסט שורה אחר שורה (מהרשימה השטוחה)
+        for detail in processed_line_details:
+            x_text = (video_res[0] - detail['width']) / 2 # מרכוז אופקי של כל שורה
             text_to_draw = detail['text']
 
-            # <<< החלת BiDi על טקסט עברי >>>
+            # החלת עיצוב BiDi על טקסט עברי
             if detail['is_hebrew']:
-                reshaped_text = arabic_reshaper.reshape(text_to_draw)
-                text_to_draw = get_display(reshaped_text)
+                try:
+                    reshaped_text = arabic_reshaper.reshape(text_to_draw)
+                    text_to_draw = get_display(reshaped_text)
+                except Exception as e:
+                    print(f"שגיאה בעיבוד BiDi עבור: '{text_to_draw}'. שגיאה: {e}")
+                    # המשך עם הטקסט המקורי במקרה של שגיאה
 
+            # ציור הטקסט עם קו מתאר
             draw_text_with_stroke(draw, (x_text, current_y), text_to_draw, detail['font'],
                                   text_color, stroke_color, stroke_width_local)
-            current_y += detail['height'] + detail['spacing_after'] # קדם Y לפי הגובה + הרווח שחושב
+
+            # קדם את Y לגובה השורה הבאה + הרווח שאחרי השורה הנוכחית
+            current_y += detail['height'] + detail['spacing_after']
+
+# Inside the generator function, at the very end:
 
         frame_array = np.array(img)
-        return mp.ImageClip(frame_array, ismask=False).set_duration(0.1)
+        # <<< הוספת transparent=True כדי לעזור ל-MoviePy לטפל באלפא נכון >>>
+        return mp.ImageClip(frame_array, ismask=False, transparent=True).set_duration(0.1)
 
-    # --- 4. יצירת ה-SubtitlesClip (זהה לקודם) ---
+    # --- 4. יצירת ה-SubtitlesClip (ללא שינוי מהקודם שלך, רק לוודא שה-generator מעודכן) ---
     subs_for_moviepy = [(item[0], item[1]) for item in combined_subs_format]
     if not subs_for_moviepy: print("אזהרה: אין כתוביות ל-MoviePy."); return mp.ColorClip(size=(1,1), color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0), []
     try:
+        # שימוש ב-generator שכולל גלישת שורות והתיקון transparent=True
         subtitle_moviepy_clip = SubtitlesClip(subs_for_moviepy, generator)
         subtitle_moviepy_clip = subtitle_moviepy_clip.set_duration(total_duration).set_position('center')
     except Exception as e: print(f"שגיאה ביצירת SubtitlesClip: {e}"); return mp.ColorClip(size=(1,1), color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0), []
 
     return subtitle_moviepy_clip, combined_subs_format
-
+    
 # --- עיבוד כתוביות משולב ---
 print("מעבד כתוביות משולבות (אנגלית ועברית) באמצעות PIL עם BiDi...")
 subtitles_clip, combined_subs_list_for_frames = create_styled_subtitle_clip_pil(
