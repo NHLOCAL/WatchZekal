@@ -17,31 +17,125 @@ from bidi.algorithm import get_display # לסדר תצוגה מימין לשמא
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
 FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
+DEMO_SONGS_DIR = os.path.join(BASE_DIR, 'demo_songs') # <<< תיקיית שירי הדגמה
 output_frames_dir = os.path.join(BASE_DIR, "subtitle_frames")
 json_files_dir = os.path.join(BASE_DIR, "json_files") # תיקייה לקבצי JSON
 output_dir = os.path.join(BASE_DIR, "output")
+SONG_LIST_JSON_PATH = os.path.join(BASE_DIR, 'song_list.json') # <<< נתיב לקובץ רשימת השירים
 
 # --- יצירת תיקיות נדרשות ---
 os.makedirs(ASSETS_DIR, exist_ok=True)
 os.makedirs(FONTS_DIR, exist_ok=True)
+os.makedirs(DEMO_SONGS_DIR, exist_ok=True) # <<< יצירת תיקיית שירי דמו
 os.makedirs(output_frames_dir, exist_ok=True)
 os.makedirs(json_files_dir, exist_ok=True) # יצירת תיקיית JSON
 os.makedirs(output_dir, exist_ok=True)
 
-# --- הגדרות קלט ---
-youtube_link = input("הזן קישור YouTube לשיר: ")
-mp3_file = input(f"הכנס נתיב לקובץ שיר (ברירת מחדל: {os.path.join(BASE_DIR, 'so much closer.mp3')}) >>> ") or os.path.join(BASE_DIR, "so much closer.mp3")
+# --- פונקציה לטעינת רשימת שירים ובחירת המשתמש ---
+def select_song_from_list(json_path, songs_directory):
+    """
+    Loads a list of songs from a JSON file, prompts the user to select one,
+    and returns the selected song's details (name, youtube_url) and the
+    expected mp3 path.
 
-# --- הגדרות כלליות ---
+    Args:
+        json_path (str): Path to the JSON file containing the song list.
+                         Expected format: [{"name": "Song Name 1", "youtube_url": "url1"}, ...]
+        songs_directory (str): Path to the directory where MP3 files are expected.
+
+    Returns:
+        tuple: (selected_song_name, selected_youtube_url, expected_mp3_path)
+               Returns (None, None, None) if loading fails, the list is empty,
+               or the user provides invalid input multiple times.
+    """
+    if not os.path.exists(json_path):
+        print(f"שגיאה: קובץ רשימת השירים '{json_path}' לא נמצא.")
+        print("אנא צור קובץ 'song_list.json' בפורמט:")
+        print('[{"name": "שם השיר 1", "youtube_url": "קישור_יוטיוב_1"}, ...]')
+        return None, None, None
+
+    try:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            songs = json.load(f)
+    except json.JSONDecodeError:
+        print(f"שגיאה: קובץ ה-JSON '{json_path}' אינו תקין.")
+        return None, None, None
+    except Exception as e:
+        print(f"שגיאה בטעינת קובץ ה-JSON '{json_path}': {e}")
+        return None, None, None
+
+    if not isinstance(songs, list) or not songs:
+        print(f"שגיאה: קובץ ה-JSON '{json_path}' ריק או שאינו מכיל רשימה תקינה.")
+        return None, None, None
+
+    print("\n--- רשימת שירים זמינים ---")
+    for i, song in enumerate(songs):
+        # Validate entry structure
+        if not isinstance(song, dict) or 'name' not in song or 'youtube_url' not in song:
+            print(f"אזהרה: דילוג על רשומה לא תקינה באינדקס {i} בקובץ ה-JSON.")
+            continue
+        print(f"{i + 1}. {song['name']}")
+    print("-------------------------")
+
+    while True:
+        try:
+            choice_str = input(f"הזן את מספר השיר שברצונך לעבד (1-{len(songs)}): ")
+            choice = int(choice_str)
+            if 1 <= choice <= len(songs):
+                selected_song = songs[choice - 1]
+                 # Re-check structure just in case invalid ones weren't filtered above
+                if not isinstance(selected_song, dict) or 'name' not in selected_song or 'youtube_url' not in selected_song:
+                     print("שגיאה פנימית: בחירה הצביעה על רשומה לא תקינה. נסה שוב.")
+                     continue # Prompt again
+
+                song_name = selected_song['name']
+                youtube_url = selected_song['youtube_url']
+                # Derive the expected MP3 filename based on the 'name' field
+                # Assuming the filename is exactly the name + .mp3
+                expected_mp3_filename = f"{song_name}.mp3"
+                expected_mp3_path = os.path.join(songs_directory, expected_mp3_filename)
+
+                print(f"\nבחרת: {song_name}")
+                print(f"קישור YouTube: {youtube_url}")
+                print(f"נתיב MP3 צפוי: {expected_mp3_path}")
+                # <<< הוספת הבדיקה כאן, לאחר בחירת השיר >>>
+                if not os.path.exists(expected_mp3_path):
+                    print(f"\n!!! שגיאה קריטית !!!")
+                    print(f"קובץ האודיו הצפוי '{expected_mp3_path}' עבור השיר '{song_name}' לא נמצא בתיקייה '{songs_directory}'.")
+                    print(f"ודא שהקובץ קיים עם השם המדויק (כולל סיומת mp3) והנתיב הנכון.")
+                    # אפשר להחליט אם לצאת או לאפשר למשתמש לנסות שוב
+                    # exit() # יציאה מיידית
+                    print("אנא בחר שיר אחר או תקן את שם הקובץ / מיקומו ונסה שנית.")
+                    return None, None, None # חזרה ללולאה הראשית כדי לאפשר בחירה מחדש או יציאה
+
+                return song_name, youtube_url, expected_mp3_path
+            else:
+                print(f"בחירה לא חוקית. אנא הזן מספר בין 1 ל-{len(songs)}.")
+        except ValueError:
+            print("קלט לא תקין. אנא הזן מספר בלבד.")
+        except KeyboardInterrupt:
+             print("\nיציאה לפי בקשת המשתמש.")
+             return None, None, None
+
+
+# --- קבלת קלט מהמשתמש באמצעות הפונקציה החדשה ---
+selected_song_name, youtube_link, mp3_file = select_song_from_list(SONG_LIST_JSON_PATH, DEMO_SONGS_DIR)
+
+# --- יציאה אם המשתמש לא בחר שיר או אם הקובץ לא נמצא ---
+if not selected_song_name or not youtube_link or not mp3_file:
+    print("לא נבחר שיר או נמצאה שגיאה. יוצא מהתוכנית.")
+    exit()
+
+# --- הגדרות כלליות (ללא שינוי) ---
 video_resolution = (1280, 720)
 video_fps = 25
 
-# --- נתיבי קבצים נוספים ---
+# --- נתיבי קבצים נוספים (ללא שינוי) ---
 background_image_path = os.path.join(ASSETS_DIR, 'backgrounds', 'levels', "word_background.png")
 font_name = "Rubik-Regular.ttf"
 font_path = os.path.join(FONTS_DIR, font_name)
 
-# --- הגדרות עיצוב כתוביות מעודכנות ---
+# --- הגדרות עיצוב כתוביות מעודכנות (ללא שינוי) ---
 fontsize_en = 60
 fontsize_he = 57
 color_subs = 'black'
@@ -50,18 +144,20 @@ stroke_width_subs = 1.5
 spacing_within_language = 10
 spacing_between_languages = 35
 
-# --- הגדרות עיצוב כותרת שיר ---
+# --- הגדרות עיצוב כותרת שיר (ללא שינוי) ---
 fontsize_title = 120
 color_title = 'blue'
 stroke_color_title = 'white'
 stroke_width_title = 4.0
 position_title = ('center', 'center')
 
-# --- בדיקת קיום קבצים ---
-if not os.path.exists(mp3_file): print(f"שגיאה: קובץ האודיו '{mp3_file}' לא נמצא."); exit()
+# --- בדיקת קיום קבצים חיוניים נוספים (רק רקע ופונט, כי MP3 נבדק בפונקציה) ---
+# if not os.path.exists(mp3_file): print(f"שגיאה: קובץ האודיו '{mp3_file}' לא נמצא."); exit() # <<< הבדיקה עברה לפונקציה select_song_from_list
 if not os.path.exists(background_image_path): print(f"שגיאה: קובץ תמונת הרקע '{background_image_path}' לא נמצא."); exit()
 if not os.path.exists(font_path): print(f"שגיאה: קובץ הפונט '{font_path}' לא נמצא."); exit()
 
+
+# --- פונקציית ניקוי JSON (ללא שינוי) ---
 def clean_json_text(raw_text):
     """Removes potential Markdown fences (```json ... ```) from the raw text."""
     # Pattern to find ```json ... ``` or ``` ... ```, capturing the content inside
@@ -75,6 +171,7 @@ def clean_json_text(raw_text):
         # If no fences found, return the original text stripped.
         return raw_text.strip()
 
+# --- פונקציית פענוח JSON (ללא שינוי) ---
 def parse_json_response(json_text, language_name):
     """Parses JSON response, validates structure, and returns the list."""
     cleaned_text = clean_json_text(json_text) # <<< נקה לפני הפענוח
@@ -118,8 +215,8 @@ def parse_json_response(json_text, language_name):
         print(f"An unexpected error occurred during JSON parsing for {language_name}: {e}")
         return None
 
-
-def generate_subtitles_from_youtube(youtube_url):
+# --- פונקציית יצירת כתוביות מ-YouTube (ללא שינוי פנימי, רק הקריאה אליה תשתמש ב-youtube_link מהבחירה) ---
+def generate_subtitles_from_youtube(youtube_url, mp3_audio_path): # <<< הוספנו את נתיב ה-MP3 כדי שיוכל ליצור שם קובץ חלופי אם ה-URL לא תקין
     # --- חישוב שמות קבצים צפויים ---
     try:
         parsed_url = urllib.parse.urlparse(youtube_url)
@@ -128,8 +225,9 @@ def generate_subtitles_from_youtube(youtube_url):
         if video_id:
             base_filename = video_id[0]
         else:
-            base_filename = re.sub(r'\W+', '_', os.path.splitext(os.path.basename(mp3_file))[0]) if 'mp3_file' in globals() and mp3_file else "default_song"
-            print(f"אזהרה: לא זוהה Video ID מהקישור. משתמש בשם חלופי: {base_filename}")
+             # <<< שימוש בשם קובץ ה-MP3 כגיבוי לשם קובץ ה-JSON >>>
+            base_filename = re.sub(r'\W+', '_', os.path.splitext(os.path.basename(mp3_audio_path))[0])
+            print(f"אזהרה: לא זוהה Video ID מהקישור. משתמש בשם חלופי מה-MP3: {base_filename}")
 
         english_json_filename = os.path.join(json_files_dir, f"{base_filename}_en.json")
         hebrew_json_filename = os.path.join(json_files_dir, f"{base_filename}_he.json")
@@ -139,7 +237,7 @@ def generate_subtitles_from_youtube(youtube_url):
         english_json_filename = None
         hebrew_json_filename = None
 
-    # --- בדיקה אם קבצי JSON כבר קיימים ---
+    # --- בדיקה אם קבצי JSON כבר קיימים (ללא שינוי) ---
     if english_json_filename and hebrew_json_filename and \
        os.path.exists(english_json_filename) and os.path.exists(hebrew_json_filename):
         print(f"\nנמצאו קבצי JSON קיימים:\n  EN: {english_json_filename}\n  HE: {hebrew_json_filename}")
@@ -168,7 +266,7 @@ def generate_subtitles_from_youtube(youtube_url):
             print(f"שגיאה בקריאת קבצי JSON קיימים: {e}. ממשיך לנסות ליצור כתוביות מחדש.")
 
 
-    # --- אם הקבצים לא קיימים או היתה שגיאה בקריאה, המשך עם היצירה ---
+    # --- אם הקבצים לא קיימים או היתה שגיאה בקריאה, המשך עם היצירה (ללא שינוי לוגיקה פנימית) ---
     print("\nקבצי JSON לא נמצאו או היו שגויים. מתחיל תהליך יצירה מ-YouTube...")
 
     if not os.environ.get("GEMINI_API_KEY"):
@@ -179,7 +277,7 @@ def generate_subtitles_from_youtube(youtube_url):
         api_key=os.environ.get("GEMINI_API_KEY"),
     )
 
-    model = "gemini-2.0-flash" # "gemini-2.5-pro-exp-03-25"
+    model = "gemini-2.5-pro-exp-03-25" # "gemini-2.5-pro-exp-03-25"
 
     system_instruction_content = """You must generate subtitles for the provided video, ensuring transcription accuracy and natural phrasing suitable for the video's spoken language. The output must be a **JSON Array** as shown below.
 
@@ -244,7 +342,7 @@ Maintain precision in both timestamps (adhering strictly to the specified total 
                 },
             ),
         ),
-    )  
+    )
 
     transcription_prompt_text = """Transcribe the following song accurately.
 Output the result as a JSON array following the specified format (id, start_time, end_time, text).
@@ -267,70 +365,56 @@ Output ONLY the JSON array."""
     print("Generating English Subtitles (JSON)...")
     english_json_raw = ""
     try:
-        # <<< חזרה לשימוש ב-stream כמו בקוד המקורי >>>
         stream_response = client.models.generate_content_stream(
             model=model,
             contents=contents_english,
             config=generate_content_config,
-            # stream=True is implied by generate_content_stream
         )
-        # <<< איסוף התוכן מה-stream >>>
         for chunk in stream_response:
-            # Assuming chunk.text contains parts of the JSON string
-            # Add safety check in case a chunk is empty or has no text
             if chunk.text:
                  english_json_raw += chunk.text
-                 # Optional: print progress if needed, but can clutter output
-                 # print(".", end="")
 
     except types.generation_types.BlockedPromptException as e:
          print(f"Error: Prompt was blocked for English generation. Reason: {e}")
-         # You might want to inspect e.BlockReason or similar attributes if available
          return None, None
     except types.generation_types.StopCandidateException as e:
          print(f"Error: Generation stopped unexpectedly for English. Reason: {e}")
-         # Inspect e.FinishReason
          return None, None
     except Exception as e:
         print(f"Error during Gemini API stream call for English: {e}")
-        # Attempt to print response details if available in the exception context
         try:
-             # Accessing response details might differ based on the exception type
-             # This is a generic attempt
              if hasattr(e, 'response'):
                   print("Gemini response details (if available):", e.response)
-             # Print safety feedback if the exception structure allows (might need adjustment)
-             # The structure might be different for stream errors vs. direct call errors
-             # print("Gemini safety feedback (if available):", stream_response.prompt_feedback)
         except Exception as report_err:
              print(f"(Could not report detailed error info: {report_err})")
         return None, None
 
-    print("\nEnglish JSON stream finished.") # Added newline for clarity
+    print("\nEnglish JSON stream finished.")
 
-    # <<< פענוח ה-JSON *לאחר* סיום ה-stream >>>
     english_subs_data = parse_json_response(english_json_raw, "English")
 
     if english_subs_data is None:
         print("Failed to get valid English JSON data.")
         return None, None
 
-    # Ensure filenames exist
+    # Ensure filenames exist even if URL parsing failed earlier
     if not english_json_filename:
-        base_filename = "generated_fallback"
+        base_filename = re.sub(r'\W+', '_', os.path.splitext(os.path.basename(mp3_audio_path))[0]) # Use MP3 name again
         english_json_filename = os.path.join(json_files_dir, f"{base_filename}_en.json")
         hebrew_json_filename = os.path.join(json_files_dir, f"{base_filename}_he.json")
+        print(f"Info: Using fallback JSON filenames based on MP3: {english_json_filename}, {hebrew_json_filename}")
 
-    # --- שמירת קובץ JSON אנגלי ---
+
+    # --- שמירת קובץ JSON אנגלי (ללא שינוי) ---
     try:
         with open(english_json_filename, "w", encoding="utf-8") as f:
             json.dump(english_subs_data, f, ensure_ascii=False, indent=2)
         print(f"English JSON saved to: {english_json_filename}")
     except Exception as e:
         print(f"\nError saving English JSON file '{english_json_filename}': {e}")
-        return None, None
+        return None, None # <<< שינוי: להחזיר None, None כי אין לנו עברי עדיין
 
-    # --- הכנת קלט לתרגום ---
+    # --- הכנת קלט לתרגום (ללא שינוי) ---
     translation_prompt_text = f"""Translate the text in the following English JSON subtitles to Hebrew.
 Maintain the exact same JSON structure, including 'id', 'start_time', and 'end_time' values. Only translate the 'text' field for each object.
 Ensure the Hebrew text uses standard characters and line breaks (\\n) appropriately.
@@ -351,13 +435,11 @@ Original English JSON:
     print("\nGenerating Hebrew Subtitles (JSON)...")
     hebrew_json_raw = ""
     try:
-        # <<< שימוש ב-stream גם לתרגום >>>
         stream_response_he = client.models.generate_content_stream(
             model=model,
             contents=contents_hebrew,
             config=generate_content_config,
         )
-        # <<< איסוף התוכן מה-stream >>>
         for chunk in stream_response_he:
             if chunk.text:
                 hebrew_json_raw += chunk.text
@@ -373,21 +455,19 @@ Original English JSON:
         try:
             if hasattr(e, 'response'):
                  print("Gemini response details (if available):", e.response)
-            # print("Gemini safety feedback (if available):", stream_response_he.prompt_feedback)
         except Exception as report_err:
             print(f"(Could not report detailed error info: {report_err})")
         return english_subs_data, None # Return English data
 
     print("\nHebrew JSON stream finished.")
 
-    # <<< פענוח ה-JSON *לאחר* סיום ה-stream >>>
     hebrew_subs_data = parse_json_response(hebrew_json_raw, "Hebrew")
 
     if hebrew_subs_data is None:
         print("Failed to get valid Hebrew JSON data.")
         return english_subs_data, None
 
-    # --- שמירת קובץ JSON עברי ---
+    # --- שמירת קובץ JSON עברי (ללא שינוי) ---
     try:
         with open(hebrew_json_filename, "w", encoding="utf-8") as f:
             json.dump(hebrew_subs_data, f, ensure_ascii=False, indent=2)
@@ -396,16 +476,17 @@ Original English JSON:
         print(f"\nError saving Hebrew JSON file '{hebrew_json_filename}': {e}")
         return english_subs_data, None
 
-    # --- החזרת הנתונים המפוענחים ---
+    # --- החזרת הנתונים המפוענחים (ללא שינוי) ---
     return english_subs_data, hebrew_subs_data
 
-# --- (המשך הקוד נשאר זהה מנקודה זו) ---
-
-# --- קריאה לפונקציה ---
+# --- קריאה לפונקציה ליצירת/טעינת כתוביות ---
+# <<< שימוש ב-youtube_link מהבחירה, וב-mp3_file מהבחירה (עבור שם קובץ חלופי) >>>
 print("בודק או יוצר כתוביות מיוטיוב (פורמט JSON)...")
-english_subtitle_data, hebrew_subtitle_data = generate_subtitles_from_youtube(youtube_link)
+english_subtitle_data, hebrew_subtitle_data = generate_subtitles_from_youtube(youtube_link, mp3_file)
 
-# <<< בדיקה אם קיבלנו נתוני רשימה (list) >>>
+# --- המשך הקוד (בדיקות תקינות, עיבוד וידאו וכו') נשאר זהה ברובו ---
+
+# <<< בדיקה אם קיבלנו נתוני רשימה (list) - ללא שינוי >>>
 if not isinstance(english_subtitle_data, list) and not isinstance(hebrew_subtitle_data, list):
     print("שגיאה קריטית: לא הופקו או נטענו נתוני כתוביות תקינים (לא בפורמט רשימה). יציאה.")
     exit()
@@ -416,28 +497,31 @@ elif not english_subtitle_data:
 elif not hebrew_subtitle_data:
      print("אזהרה: לא הופקו/נטענו כתוביות בעברית. ממשיך עם אנגלית בלבד.")
 
-
-# חישוב שמות הקבצים שוב לצורך וידוא
-parsed_url = urllib.parse.urlparse(youtube_link)
-query_params = urllib.parse.parse_qs(parsed_url.query)
-video_id = query_params.get('v')
-if video_id:
-    base_filename = video_id[0]
-else:
-    base_filename = re.sub(r'\W+', '_', os.path.splitext(os.path.basename(mp3_file))[0]) if 'mp3_file' in globals() and mp3_file else "default_song"
+# <<< חישוב שמות קבצים לשימוש בהמשך (מבוסס על הקישור הנבחר או שם ה-MP3) - ללא שינוי מהלוגיקה בתוך הפונקציה >>>
+try:
+    parsed_url = urllib.parse.urlparse(youtube_link)
+    query_params = urllib.parse.parse_qs(parsed_url.query)
+    video_id = query_params.get('v')
+    if video_id:
+        base_filename = video_id[0]
+    else:
+        base_filename = re.sub(r'\W+', '_', os.path.splitext(os.path.basename(mp3_file))[0])
+except Exception: # Fallback in case url parsing fails completely
+     base_filename = re.sub(r'\W+', '_', os.path.splitext(os.path.basename(mp3_file))[0])
 
 json_en_file = os.path.join(json_files_dir, f"{base_filename}_en.json")
 json_he_file = os.path.join(json_files_dir, f"{base_filename}_he.json")
 
 # --- הגדרת שם קובץ פלט ושם השיר ---
-output_video_base = os.path.splitext(os.path.basename(mp3_file))[0]
+# <<< שימוש ב- selected_song_name לכותרת, ובשם קובץ ה-mp3 לשם קובץ הפלט >>>
+output_video_base = os.path.splitext(os.path.basename(mp3_file))[0] # מבוסס על שם קובץ ה-MP3 בפועל
 output_video_file = os.path.join(output_dir, f"{output_video_base}_subtitled.mp4")
-song_title_text = output_video_base.replace('_', ' ').replace('-', ' ').title()
+song_title_text = selected_song_name # שימוש בשם מה-JSON לכותרת
 print(f"שם השיר שיוצג: {song_title_text}")
 print(f"שם קובץ הפלט יהיה: {output_video_file}")
 print(f"תמונות כתוביות יישמרו בתיקייה: {output_frames_dir}")
 
-# --- טעינת אודיו ---
+# --- טעינת אודיו (ללא שינוי) ---
 print("טוען אודיו...")
 try:
     audio_clip = mp.AudioFileClip(mp3_file)
@@ -446,7 +530,7 @@ try:
 except Exception as e:
      print(f"שגיאה בטעינת קובץ האודיו '{mp3_file}': {e}"); exit()
 
-# --- יצירת קליפ רקע מתמונה ---
+# --- יצירת קליפ רקע מתמונה (ללא שינוי) ---
 print("טוען תמונת רקע...")
 try:
     # Explicitly set duration to avoid issues if audio load fails partially
@@ -466,7 +550,7 @@ except Exception as e:
     except: pass
     exit()
 
-# --- מציאת זמן התחלה של הכתובית הראשונה (מנתוני ה-JSON) ---
+# --- מציאת זמן התחלה של הכתובית הראשונה (מנתוני ה-JSON) (ללא שינוי) ---
 first_subtitle_start_time = audio_duration if audio_duration else float('inf')
 try:
     if english_subtitle_data and isinstance(english_subtitle_data, list) and len(english_subtitle_data) > 0:
@@ -490,7 +574,7 @@ title_clip = None # Initialize title_clip to None
 # Ensure first_subtitle_start_time is not greater than audio duration
 first_subtitle_start_time = min(first_subtitle_start_time, audio_duration if audio_duration else 0)
 
-
+# --- יצירת קליפ כותרת (ללא שינוי) ---
 if first_subtitle_start_time < min_title_duration_threshold:
     print(f"אזהרה: הכתובית הראשונה מתחילה מוקדם מאוד ({first_subtitle_start_time:.2f}s) או שאין מספיק זמן. מדלג על הצגת כותרת השיר.")
 else:
@@ -516,8 +600,7 @@ else:
      else:
           print("משך הכותרת המחושב הוא 0, מדלג על יצירת קליפ כותרת.")
 
-
-# --- פונקציית עזר לציור טקסט עם קו מתאר (ללא שינוי) ---
+# --- פונקציות עזר לציור טקסט ובדיקת עברית (ללא שינוי) ---
 def draw_text_with_stroke(draw, pos, text, font, fill_color, stroke_color, stroke_width_local):
     x, y = pos
     offset = stroke_width_local
@@ -527,12 +610,10 @@ def draw_text_with_stroke(draw, pos, text, font, fill_color, stroke_color, strok
     draw.text((x, y + offset), text, font=font, fill=stroke_color)
     draw.text((x, y), text, font=font, fill=fill_color)
 
-
-# --- פונקציית עזר לבדיקה אם שורה מכילה עברית (ללא שינוי) ---
 def is_hebrew(text_line):
     return any('\u0590' <= char <= '\u05FF' for char in text_line)
 
-# --- פונקציית עיבוד כתוביות מעודכנת - מקבלת נתוני JSON ---
+# --- פונקציית עיבוד כתוביות מ-JSON (ללא שינוי פנימי) ---
 def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local, font_size_en, font_size_he,
                                    text_color, stroke_color, stroke_width_local,
                                    spacing_intra, spacing_inter,
@@ -550,13 +631,14 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
     # --- שילוב הכתוביות מה-JSON ---
     subs_en_map = {str(sub.get('id', f'en_{i}')): sub for i, sub in enumerate(subs_en)}
     subs_he_map = {str(sub.get('id', f'he_{i}')): sub for i, sub in enumerate(subs_he)}
-    all_ids = sorted(list(set(subs_en_map.keys()) | set(subs_he_map.keys())))
+    all_ids = sorted(list(set(subs_en_map.keys()) | set(subs_he_map.keys())), key=lambda x: int(re.search(r'\d+', str(x)).group()) if re.search(r'\d+', str(x)) else 0) # Attempt numeric sort
+
 
     print(f"DEBUG: Starting merge. Found {len(subs_en_map)} EN keys, {len(subs_he_map)} HE keys. Total unique IDs: {len(all_ids)}") # DEBUG
 
-    for idx in all_ids:
-        sub_en = subs_en_map.get(idx)
-        sub_he = subs_he_map.get(idx)
+    for idx_str in all_ids: # Use idx_str as it comes from keys()
+        sub_en = subs_en_map.get(idx_str)
+        sub_he = subs_he_map.get(idx_str)
         en_start, en_end, en_text = (0, 0, "")
         he_start, he_end, he_text = (0, 0, "")
         valid_en, valid_he = False, False
@@ -566,14 +648,12 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
             if sub_en and 'start_time' in sub_en and 'end_time' in sub_en and 'text' in sub_en:
                  en_start = max(0, float(sub_en['start_time']))
                  en_end = max(en_start, float(sub_en['end_time'])) # Ensure end >= start
-                 # Treat empty string text as invalid for combination purposes
                  en_text_raw = sub_en.get('text', None)
                  if en_text_raw is not None: # Allow empty string only if explicitly present
                       en_text = str(en_text_raw).strip().replace('\\n', '\n')
-                      # Check duration and non-empty text (allowing whitespace-only text for now)
-                      if en_end > en_start: # Removed the non-empty check here, handle later
+                      if en_end > en_start: # Only need valid duration
                           valid_en = True
-        except (ValueError, TypeError) as e: print(f"Warning: Invalid data in English sub ID {idx}: {e}")
+        except (ValueError, TypeError) as e: print(f"Warning: Invalid data in English sub ID {idx_str}: {e}")
 
         # --- Validate Hebrew ---
         try:
@@ -583,50 +663,75 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
                  he_text_raw = sub_he.get('text', None)
                  if he_text_raw is not None:
                       he_text = str(he_text_raw).strip().replace('\\n', '\n')
-                      if he_end > he_start: # Removed non-empty check
+                      if he_end > he_start:
                           valid_he = True
-        except (ValueError, TypeError) as e: print(f"Warning: Invalid data in Hebrew sub ID {idx}: {e}")
+        except (ValueError, TypeError) as e: print(f"Warning: Invalid data in Hebrew sub ID {idx_str}: {e}")
 
         # --- Combine Text and Times (More Flexible) ---
         combined_text_parts = []
         start_time = float('inf')
         end_time = 0
 
-        if valid_en and en_text: # Add English if valid and has non-empty text after stripping
+        # Determine effective times and text
+        has_en_text = valid_en and en_text.strip()
+        has_he_text = valid_he and he_text.strip()
+
+        if has_en_text:
             combined_text_parts.append(en_text)
             start_time = min(start_time, en_start)
             end_time = max(end_time, en_end)
 
-        if valid_he and he_text: # Add Hebrew if valid and has non-empty text after stripping
+        if has_he_text:
             combined_text_parts.append(he_text)
             start_time = min(start_time, he_start)
             end_time = max(end_time, he_end)
 
-        # Only proceed if we have at least one valid text part
-        if combined_text_parts:
-            # Join with double newline only if both parts exist
-            combined_text = "\n\n".join(combined_text_parts)
-            sub_id = f"combined_sub_{idx}_{subtitle_id_counter}"
+        # Handle cases where only one language exists but timing might be from the other
+        if not has_en_text and valid_en: # English exists but has empty text
+            start_time = min(start_time, en_start)
+            end_time = max(end_time, en_end)
+        if not has_he_text and valid_he: # Hebrew exists but has empty text
+             start_time = min(start_time, he_start)
+             end_time = max(end_time, he_end)
+
+
+        # Only proceed if we have at least one valid text part OR if we have timing info
+        # This allows empty text entries to define timing for the other language if needed
+        if combined_text_parts or (start_time != float('inf') and end_time > 0):
+             # Use double newline only if both valid text parts exist
+            combined_text = "\n\n".join(combined_text_parts) if has_en_text and has_he_text else "".join(combined_text_parts)
+
+             # Use a more robust ID including the original string ID if possible
+            sub_id = f"combined_{idx_str}_{subtitle_id_counter}"
 
             # Ensure duration is at least one frame
             min_duration = 1.0 / video_fps_local
-            if end_time - start_time < min_duration:
+            if end_time == 0: # Case where only start time was found (unlikely but possible)
+                 end_time = start_time + min_duration
+            elif end_time - start_time < min_duration:
                 end_time = start_time + min_duration
 
             # Clip times to total duration
             end_time = min(end_time, total_duration)
-            start_time = min(start_time, total_duration) # Clip start time too
+            # Allow start_time to be 0, clip only if it exceeds total_duration (edge case)
+            start_time = min(start_time if start_time != float('inf') else 0, total_duration)
+
 
             if end_time > start_time: # Final check
+                # Pass the combined text (even if empty) and the derived interval
                 combined_subs_format.append(((start_time, end_time), combined_text.strip(), sub_id))
                 subtitle_id_counter += 1
+            # else:
+                # print(f"DEBUG: Skipping sub {sub_id} due to invalid time range: {start_time:.3f} -> {end_time:.3f}")
+
 
     if not combined_subs_format:
         print("אזהרה: לא נוצרו כתוביות משולבות תקינות."); return mp.ColorClip(size=video_res, color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0), []
 
     combined_subs_format.sort(key=lambda item: item[0][0])
     print(f"DEBUG: Finished merge. Combined {len(combined_subs_format)} subtitle entries.")
-    # --- Generator function (same as before) ---
+
+    # --- Generator function (same as before, handles empty text) ---
     def generator(txt):
         try:
             font_en = ImageFont.truetype(font_path_local, font_size_en)
@@ -638,7 +743,6 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
         # Handle potential empty text passed by SubtitlesClip
         if not txt or not txt.strip():
             empty_frame_array = np.zeros((video_res[1], video_res[0], 4), dtype=np.uint8) # H, W, 4 (RGBA)
-            # Return an ImageClip with minimal duration
             return mp.ImageClip(empty_frame_array, ismask=False, transparent=True).set_duration(1.0/video_fps_local)
 
 
@@ -647,7 +751,7 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
         # Split text into lines, handling potential double line breaks from merging
         original_lines = [line for line in txt.splitlines() if line.strip()] # Filter out empty lines
 
-
+        # --- Text Wrapping Function (same as before) ---
         def wrap_text(line_text, font, max_width):
             words = line_text.split(' ')
             wrapped_lines = []
@@ -657,13 +761,11 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
 
                 test_line = f"{current_line} {word}".strip()
                 try:
-                    # Use textbbox for potentially more accurate width
                     bbox = draw.textbbox((0, 0), test_line, font=font)
                     line_width = bbox[2] - bbox[0]
                 except Exception: # Fallback if textbbox fails
                      try: line_width = draw.textlength(test_line, font=font)
                      except AttributeError: line_width = len(test_line) * font.size * 0.6 # Rough estimate
-
 
                 if line_width <= max_width:
                     current_line = test_line
@@ -679,28 +781,42 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
                          except AttributeError: word_width = len(current_line) * font.size * 0.6
 
                     if word_width > max_width:
-                         # print(f"אזהרה: מילה בודדת '{word}' ארוכה מרוחב השורה המותר ({max_width:.0f}px).")
-                         # Just add the long word as its own line, even if it overflows
-                         if current_line:
+                         if current_line: # Add the line before the long word
                              wrapped_lines.append(current_line)
-                         current_line = "" # Reset for next word
+                             current_line = "" # Reset before adding long word
+                         wrapped_lines.append(word) # Add the long word as its own line
+                         current_line = "" # Reset after adding long word
 
             if current_line:
                 wrapped_lines.append(current_line)
 
-            return wrapped_lines or ([line_text.strip()] if line_text.strip() else [])
+            return wrapped_lines or ([line_text.strip()] if line_text.strip() else []) # Return original if not wrapped or empty list
+
 
         total_text_height = 0
         processed_line_details = []
         original_line_is_hebrew = []
-
         flat_line_counter = 0
-        last_original_index = -1
+
+        # Determine language for each original non-empty line block
+        # This assumes EN comes before HE if both are present and separated by \n\n
+        lang_blocks = txt.split('\n\n')
+        line_langs = []
+        for block in lang_blocks:
+             block_lines = [ln for ln in block.splitlines() if ln.strip()]
+             if not block_lines: continue
+             # Check the first line of the block to determine its primary language
+             is_heb_block = is_hebrew(block_lines[0])
+             line_langs.extend([is_heb_block] * len(block_lines))
+
+
+        # Process original lines again for wrapping and details
+        current_lang_index = 0
         for i, line in enumerate(original_lines):
-            is_heb = is_hebrew(line)
+            is_heb = line_langs[current_lang_index] if current_lang_index < len(line_langs) else is_hebrew(line) # Fallback if lang detection failed
             original_line_is_hebrew.append(is_heb)
             font_for_line = font_he if is_heb else font_en
-            # --- Wrapping ---
+
             wrapped_lines_for_current = wrap_text(line, font_for_line, max_text_width)
 
             for k, wrapped_line in enumerate(wrapped_lines_for_current):
@@ -708,27 +824,28 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
                     'text': wrapped_line,
                     'font': font_for_line,
                     'is_hebrew': is_heb,
-                    'original_index': i, # Index within the *filtered* original_lines list
-                    'is_first_wrapped': k == 0, # Is this the first line from a wrap?
+                    'original_index': i,
+                    'is_first_wrapped': k == 0,
                     'flat_index': flat_line_counter
                 })
                 flat_line_counter += 1
-            last_original_index = i
+            current_lang_index += 1
 
 
-        # --- Calculate Geometry & Spacing ---
+        # --- Calculate Geometry & Spacing (same as before) ---
         num_processed_lines = len(processed_line_details)
         for k, detail in enumerate(processed_line_details):
             try:
-                bbox = draw.textbbox((0, 0), detail['text'], font=detail['font'], anchor='lt') # Use left-top anchor
+                # Use textbbox with align='left' for consistent bounding box calculation
+                bbox = draw.textbbox((0, 0), detail['text'], font=detail['font'], align='left')
                 detail['width'] = bbox[2] - bbox[0]
                 detail['height'] = bbox[3] - bbox[1]
-                detail['y_offset'] = bbox[1] # Vertical offset from baseline
+                # detail['y_offset'] = bbox[1] # Usually 0 or negative for top chars
             except Exception as e:
-                print(f"Warning calculating bbox for '{detail['text']}': {e}. Using fallback.")
+                # print(f"Warning calculating bbox for '{detail['text']}': {e}. Using fallback.")
                 detail['width'] = draw.textlength(detail['text'], font=detail['font']) if hasattr(draw, 'textlength') else 100
                 detail['height'] = detail['font'].size * 1.2 # Add some padding for height fallback
-                detail['y_offset'] = 0
+                # detail['y_offset'] = 0
 
             # --- Determine spacing AFTER this line ---
             current_spacing = 0
@@ -736,23 +853,24 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
 
             if not is_last_line_overall:
                 next_detail = processed_line_details[k+1]
-                # Check if next line belongs to the same original line (wrap)
                 if detail['original_index'] == next_detail['original_index']:
                     current_spacing = spacing_intra # Small space for wrapped lines
                 else:
-                    # Next line is from a different original subtitle line (language change or next block)
                      current_spacing = spacing_inter # Larger space between language blocks
 
             detail['spacing_after'] = current_spacing
             total_text_height += detail['height'] + current_spacing
 
-        # Adjust total height (remove last spacing which isn't needed)
+        # Adjust total height
         if processed_line_details:
              total_text_height -= processed_line_details[-1]['spacing_after']
 
 
-        # --- Drawing ---
-        current_y = (video_res[1] - total_text_height) / 2
+        # --- Drawing (same as before) ---
+        # Start drawing slightly lower than pure center if total height is large?
+        start_y_offset = 0 # Can adjust this offset if needed
+        current_y = (video_res[1] - total_text_height) / 2 + start_y_offset
+
 
         for detail in processed_line_details:
             x_text = (video_res[0] - detail['width']) / 2
@@ -765,8 +883,8 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
                 except Exception as e:
                     print(f"שגיאה בעיבוד BiDi עבור: '{text_to_draw}'. שגיאה: {e}")
 
-            # Adjust Y pos by bbox offset for more accurate vertical placement
-            draw_y = current_y #- detail['y_offset'] # Experiment with/without y_offset correction
+            # Use the calculated height for vertical positioning step
+            draw_y = current_y
             draw_text_with_stroke(draw, (x_text, draw_y), text_to_draw, detail['font'],
                                   text_color, stroke_color, stroke_width_local)
 
@@ -774,11 +892,12 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
 
 
         frame_array = np.array(img)
-        # Return an ImageClip with minimal duration, SubtitlesClip handles the actual timing
         return mp.ImageClip(frame_array, ismask=False, transparent=True).set_duration(1.0/video_fps_local)
     # --- End of Generator ---
 
-    # --- Create SubtitlesClip ---
+    # --- Create SubtitlesClip (same as before) ---
+    # Filter out entries with empty text before passing to SubtitlesClip?
+    # Let's try passing all, generator handles empty text
     subs_for_moviepy = [(item[0], item[1]) for item in combined_subs_format]
 
     if not subs_for_moviepy:
@@ -786,8 +905,7 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
         return mp.ColorClip(size=video_res, color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0), []
 
     try:
-        # Increase SubtitlesClip verbosity for debugging if needed
-        subtitle_moviepy_clip = SubtitlesClip(subs_for_moviepy, generator)#, verbose=True)
+        subtitle_moviepy_clip = SubtitlesClip(subs_for_moviepy, generator)
         subtitle_moviepy_clip = subtitle_moviepy_clip.set_duration(total_duration).set_position('center')
         print(f"SubtitlesClip created with duration: {subtitle_moviepy_clip.duration:.2f}s")
     except Exception as e:
@@ -798,7 +916,7 @@ def create_styled_subtitle_clip_pil(subs_data_en, subs_data_he, font_path_local,
 
     return subtitle_moviepy_clip, combined_subs_format
 
-# --- עיבוד כתוביות משולב ---
+# --- עיבוד כתוביות משולב (ללא שינוי) ---
 print("מעבד כתוביות משולבות (אנגלית ועברית) מנתוני JSON באמצעות PIL עם BiDi...")
 subtitles_clip, combined_subs_list_for_frames = create_styled_subtitle_clip_pil(
     english_subtitle_data, hebrew_subtitle_data,
@@ -808,7 +926,7 @@ subtitles_clip, combined_subs_list_for_frames = create_styled_subtitle_clip_pil(
     video_resolution, audio_duration, video_fps # Pass video_fps
 )
 
-# בדיקה אם הקליפ נוצר בהצלחה
+# --- בדיקת תקינות קליפ כתוביות (ללא שינוי) ---
 if not hasattr(subtitles_clip, 'duration') or subtitles_clip.duration <= 0:
      print("יצירת הוידאו בוטלה עקב שגיאה קריטית ביצירת קליפ הכתוביות או קליפ ריק.")
      try: audio_clip.close()
@@ -821,81 +939,73 @@ elif subtitles_clip.duration > audio_duration + 1:
     subtitles_clip = subtitles_clip.set_duration(audio_duration)
 
 
-# --- פונקציה לניקוי שם קובץ (משופרת) ---
+# --- פונקציה לניקוי שם קובץ (ללא שינוי) ---
 def sanitize_filename(text, max_len=50):
     text = text.replace('\n', ' ').replace('\r', '')
-    # Remove specific problematic characters for filenames
     text = re.sub(r'[\\/*?:"<>|.!@#$%^&+=~`{}\[\];\'’,]', "", text)
     text = text.strip()
     text = re.sub(r'\s+', ' ', text) # Consolidate whitespace
-    if not text: return "subtitle" # Handle empty string case
+    if not text: return "subtitle"
 
-    # Truncate if too long
     if len(text) > max_len:
-        # Try cutting at last space before max_len
         cut_point = text.rfind(' ', 0, max_len)
-        # Ensure cut_point isn't too early (e.g., first word is very long)
         if cut_point != -1 and cut_point > max_len // 2 :
              text = text[:cut_point].rstrip() + "..."
         else:
-             # Otherwise, just hard cut
              text = text[:max_len].rstrip() + "..."
     return text
 
-# --- הכנת נתונים לשמירת פריימים ---
+# --- הכנת נתונים לשמירת פריימים (ללא שינוי) ---
 saved_subtitle_ids = set() # Re-initialize here to ensure it's fresh for each run
 
-# --- פונקציית עיבוד ושמירת פריימים ---
+# --- פונקציית עיבוד ושמירת פריימים (ללא שינוי) ---
 print("מגדיר פונקציית שמירת פריימים...")
 def save_subtitle_frame_processor(get_frame, t):
-    # Get the frame for the current time
     try:
         frame = get_frame(t)
     except Exception as e:
-        # This can happen near the very end of the clip sometimes
-        # print(f"Warning: Could not get frame at t={t:.4f}. Error: {e}")
-        # Return a black frame or the last good frame if possible? For now, just return None or re-raise
-        # Returning a dummy frame to avoid crashing write_videofile
         return np.zeros((video_resolution[1], video_resolution[0], 3), dtype=np.uint8) # Return black frame
 
-    # Check if time 't' falls within any subtitle interval
     active_sub_found = None
     for interval, text, sub_id in combined_subs_list_for_frames:
         start_time, end_time = interval
-        # Use a small epsilon for float comparison robustness
-        epsilon = 1 / (video_fps * 2) # Half frame duration tolerance
+        epsilon = 1 / (video_fps * 2)
         if (start_time - epsilon) <= t < (end_time - epsilon):
-            active_sub_found = (text, sub_id)
-            break # Found the active subtitle for this time 't'
+            # Only consider saving if the subtitle text is not empty
+            if text and text.strip():
+                 active_sub_found = (text, sub_id)
+            break
 
     if active_sub_found:
         text, sub_id = active_sub_found
         if sub_id not in saved_subtitle_ids:
             try:
-                # Format time for filename (e.g., 0065_123 for 65.123 seconds)
                 time_sec = int(t)
                 time_ms = int((t - time_sec) * 1000)
                 time_str = f"{time_sec:04d}_{time_ms:03d}"
-                safe_text = sanitize_filename(text)
-                # Limit filename length further if needed
+                safe_text = sanitize_filename(text) # Sanitize the actual text found
                 max_fname_len = 150
                 filename_base = f"frame_{time_str}_{safe_text}"
                 filename = os.path.join(output_frames_dir, f"{filename_base[:max_fname_len]}.png")
 
-                # Prevent overwriting if file exists (e.g., from rounding issues)
                 if not os.path.exists(filename):
-                    imageio.imwrite(filename, frame)
+                    # Convert RGBA frame (from PIL) to RGB for imageio
+                    if frame.shape[2] == 4:
+                        frame_rgb = frame[..., :3] # Take only RGB channels
+                    else:
+                         frame_rgb = frame # Assume it's already RGB
+                    imageio.imwrite(filename, frame_rgb) # Save RGB frame
                 saved_subtitle_ids.add(sub_id)
-                # print(f"DEBUG: Processed frame for sub {sub_id} at t={t:.3f}") # Optional debug
 
             except Exception as e:
                 print(f"שגיאה בשמירת פריים {t:.3f}s (sub_id: {sub_id}): {e}")
                 saved_subtitle_ids.add(sub_id) # Mark as processed even if save failed
 
-    # Always return the original frame
+    # Always return the original frame (possibly RGBA)
     return frame
 
-# --- שילוב הקליפים ---
+
+# --- שילוב הקליפים (ללא שינוי) ---
 print("משלב את הרקע, הכותרת (אם קיימת), כתוביות משולבות ואודיו...")
 clips_to_composite = [background_clip]
 if title_clip and title_clip.duration > 0:
@@ -909,37 +1019,32 @@ if not clips_to_composite:
      print("Error: No valid clips to composite. Exiting.")
      exit()
 
-# Ensure the composite respects the intended video size
 final_clip = mp.CompositeVideoClip(clips_to_composite, size=video_resolution)
-# Set duration explicitly from audio AFTER composition
 final_clip = final_clip.set_duration(audio_duration)
 
-# --- החלת פונקציית שמירת הפריימים ---
+# --- החלת פונקציית שמירת הפריימים (ללא שינוי) ---
 print("מחבר את מנגנון שמירת הפריימים לקליפ...")
-# Check if there are subtitles AND the clip is valid
 if combined_subs_list_for_frames and final_clip and final_clip.duration > 0:
+     # Apply to 'color' (video frames), not 'mask'
      final_clip_with_saving = final_clip.fl(save_subtitle_frame_processor, apply_to=['color'])
-     # Propagate duration just in case fl changes it (it shouldn't)
      final_clip_with_saving = final_clip_with_saving.set_duration(final_clip.duration)
 else:
     print("אזהרה: אין כתוביות לשמירת פריימים או שהקליפ אינו תקין.")
-    final_clip_with_saving = final_clip # Use the clip without the frame processor
+    final_clip_with_saving = final_clip
 
-# --- הוספת אודיו ---
+# --- הוספת אודיו (ללא שינוי) ---
 print("מוסיף את האודיו לקליפ הסופי...")
 if audio_clip:
     final_clip_with_saving = final_clip_with_saving.set_audio(audio_clip)
-    # Final duration check after adding audio
     final_clip_with_saving = final_clip_with_saving.set_duration(audio_duration)
 else:
     print("Warning: No valid audio clip to attach.")
 
 
-# --- יצירת קובץ הוידאו הסופי ---
+# --- יצירת קובץ הוידאו הסופי (ללא שינוי) ---
 print(f"יוצר את קובץ הוידאו '{output_video_file}'...")
 temp_audio_file = os.path.join(output_dir, f'temp-audio-{output_video_base}.m4a')
 try:
-    # Ensure the final clip object is valid before writing
     if not final_clip_with_saving or final_clip_with_saving.duration <= 0:
          raise ValueError("Final video clip is invalid or has zero duration.")
 
@@ -950,25 +1055,29 @@ try:
         audio_codec='aac',
         temp_audiofile=temp_audio_file,
         remove_temp=True,
-        threads=max(1, (os.cpu_count() or 2) // 2), # Conservative thread usage
+        threads=max(1, (os.cpu_count() or 2) // 2),
         preset='medium',
         logger='bar',
-        # ffmpeg_params=["-loglevel", "error"] # Reduce ffmpeg console noise
+        # ffmpeg_params=["-loglevel", "error"]
     )
     print(f"\nיצירת הוידאו '{output_video_file}' הושלמה בהצלחה!")
-    if combined_subs_list_for_frames:
-        print(f"פריימים נשמרו בתיקייה: '{output_frames_dir}'")
+    # Only print frame saving message if subtitles actually existed
+    if any(item[1] and item[1].strip() for item in combined_subs_list_for_frames):
+         print(f"פריימים נשמרו בתיקייה: '{output_frames_dir}'")
+    else:
+         print("לא נשמרו פריימים כיוון שלא היו כתוביות עם טקסט.")
+
 except Exception as e:
     print(f"\nשגיאה במהלך יצירת הוידאו:\n{e}")
     import traceback
     traceback.print_exc()
 finally:
-    # --- מחיקת קובץ temp audio ---
+    # --- מחיקת קובץ temp audio (ללא שינוי) ---
     if os.path.exists(temp_audio_file):
         try: os.remove(temp_audio_file); print(f"קובץ temp audio נמחק: {temp_audio_file}")
         except Exception as e: print(f"אזהרה: לא ניתן למחוק את קובץ temp audio '{temp_audio_file}': {e}")
 
-    # --- שחרור משאבים ---
+    # --- שחרור משאבים (ללא שינוי) ---
     print("משחרר משאבים...")
     for clip_var_name in ['audio_clip', 'background_clip', 'title_clip', 'subtitles_clip', 'final_clip', 'final_clip_with_saving']:
         clip_obj = locals().get(clip_var_name)
