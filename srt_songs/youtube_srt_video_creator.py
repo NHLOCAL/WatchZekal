@@ -447,9 +447,14 @@ Output ONLY the JSON array."""
         return None, None # <<< שינוי: להחזיר None, None כי אין לנו עברי עדיין
 
     # --- הכנת קלט לתרגום (ללא שינוי) ---
-    translation_prompt_text = f"""Translate the text in the following English JSON subtitles to Hebrew.
-Maintain the exact same JSON structure, including 'id', 'start_time', and 'end_time' values. Only translate the 'text' field for each object.
-Ensure the Hebrew text uses standard characters and line breaks (\\n) appropriately.
+    translation_prompt_text = f"""Translate the `text` field in the following English JSON subtitles into **natural-sounding Hebrew**.
+
+Maintain the exact same JSON structure, including the 'id', 'start_time', and 'end_time' values. Only translate the 'text' field for each object.
+
+The Hebrew translation must be accurate but phrased naturally, as someone would speak or sing.
+
+**Crucially, do not add any Hebrew diacritics (nikud) to the translated text.** Use only standard Hebrew letters. Ensure line breaks (`\\n`) are preserved or used appropriately in the Hebrew translation where needed.
+
 Output ONLY the translated JSON array.
 
 Original English JSON:
