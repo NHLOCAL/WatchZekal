@@ -181,38 +181,38 @@ def generate_subtitles_from_youtube(youtube_url):
 
     model = "gemini-2.0-flash" # "gemini-2.5-pro-exp-03-25"
 
-    system_instruction_content = """עליך ליצור כתוביות עבור הסרטון המצורף, תוך הקפדה על דיוק התמלול וניסוח טבעי שמתאים לשפה המדוברת בסרטון. הפלט חייב להיות **רשימת JSON (Array)** כפי שמוצג להלן.  
+    system_instruction_content = """You must generate subtitles for the provided video, ensuring transcription accuracy and natural phrasing suitable for the video's spoken language. The output must be a **JSON Array** as shown below.
 
-**דגש קריטי על פורמט הזמן:** שדות `start_time` ו-`end_time` חייבים להיות אך ורק בפורמט של **שניות עשרוניות (float)**, המייצגות את **מספר השניות הכולל** מתחילת הסרטון. **אין להשתמש בפורמט המשלב דקות ושניות.** לדוגמה, זמן של 2 דקות, 30 שניות ו-110 מילישניות יירשם אך ורק כ-`150.11`, **ולא** כ-`2:30.11` או `2.30` או כל פורמט אחר המשלב דקות.
+**Critical Time Format Requirement:** The `start_time` and `end_time` fields MUST be represented exclusively as **decimal seconds (float)**, indicating the **total number of seconds** from the beginning of the video. **Do NOT use formats that include minutes and seconds.** For example, a time of 2 minutes and 30.11 seconds must be written solely as `150.11`, **NOT** as `2:30.11`, `2.30`, or any other format incorporating minutes.
 
-כל כתובית חייבת לכלול:  
-- **`id`**: מספר סידורי המייצג את סדר הופעת הכתובית.  
-- **`start_time`**: זמן התחלה בפורמט **שניות עשרוניות (float)**, לדוגמה `122.759` או `150.11`. יש להשתמש בסך כל השניות מתחילת הסרטון.
-- **`end_time`**: זמן סיום בפורמט **שניות עשרוניות (float)**, לדוגמה `128.859` או `155.80`. יש להשתמש בסך כל השניות מתחילת הסרטון.
-- **`text`**: טקסט הכתובית, שיכול להכיל תוכן קצר בן שורה או שתיים (מופרדות באמצעות `\\n`).  
+Each subtitle object within the array must include:
+- **`id`**: A sequential integer representing the order of the subtitle.
+- **`start_time`**: The start time in **decimal seconds (float)** format, e.g., `122.759` or `150.11`. Use the total elapsed seconds from the video start.
+- **`end_time`**: The end time in **decimal seconds (float)** format, e.g., `128.859` or `155.80`. Use the total elapsed seconds from the video start.
+- **`text`**: The subtitle text content, which can be a short line or two (separated by `\\n`).
 
-יש לשמור על דיוק בזמנים (בפורמט השניות המצוין) ובתוכן כדי להבטיח שהתוצאה תוכל להיות מומרת בקלות לקובץ SRT.
+Maintain precision in both timestamps (adhering strictly to the specified total seconds format) and content to ensure the result can be easily converted to an SRT file.
 
-### **מבנה JSON לדוגמה:**
+### **Example JSON Structure:**
 ```json
 [
   {
-    \"id\": 1,
-    \"start_time\": 12.759,
-    \"end_time\": 18.859,
-    \"text\": \"I will never forget\\nthe night I saw my father cry\"
+    "id": 1,
+    "start_time": 12.759,
+    "end_time": 18.859,
+    "text": "I will never forget\\nthe night I saw my father cry"
   },
   {
-    \"id\": 2,
-    \"start_time\": 21.359,
-    \"end_time\": 28.729,
-    \"text\": \"I was frightened and alone\\nand his tears\"
+    "id": 2,
+    "start_time": 21.359,
+    "end_time": 28.729,
+    "text": "I was frightened and alone\\nand his tears"
   },
   {
-    \"id\": 3,
-    \"start_time\": 150.11,
-    \"end_time\": 155.80,
-    \"text\": \"This is an example showing\\ntime above 60 seconds\"
+    "id": 3,
+    "start_time": 150.11,
+    "end_time": 155.80,
+    "text": "This is an example showing\\ntime above 60 seconds in total seconds format"
   }
 ]
 ```"""
