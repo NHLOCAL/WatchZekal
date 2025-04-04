@@ -173,8 +173,9 @@ def clean_json_text(raw_text):
 
 # --- פונקציית פענוח JSON (ללא שינוי) ---
 def parse_json_response(json_text, language_name):
-    """Parses JSON response, validates structure, and returns the list."""
-    cleaned_text = clean_json_text(json_text) # <<< נקה לפני הפענוח
+    """Parses JSON response, validates structure, and returns the list.
+       Handles timecodes in "MM:SS.milliseconds" format and converts them to seconds."""
+    cleaned_text = clean_json_text(json_text)
     if not cleaned_text:
         print(f"Error: JSON text for {language_name} is empty after cleaning.")
         return None
@@ -186,14 +187,39 @@ def parse_json_response(json_text, language_name):
             else: raise ValueError("JSON response is not a list.")
 
         if data:
-            item = data[0]
-            if not isinstance(item, dict):
-                raise ValueError(f"Items in {language_name} JSON list are not dictionaries.")
-            required_keys = {"start_time", "end_time", "text"} # ID is good but optional for processing
-            if not required_keys.issubset(item.keys()):
-                raise ValueError(f"Dictionary in {language_name} JSON is missing required keys ({required_keys}). Found: {item.keys()}")
-            if not isinstance(item['start_time'], (int, float)) or not isinstance(item['end_time'], (int, float)):
-                 print(f"Warning: Timestamps in first item of {language_name} JSON are not numbers (int/float). Found: start={type(item['start_time'])}, end={type(item['end_time'])}. Will attempt conversion later.")
+            for item in data: # Iterate through each item to process timestamps
+                if not isinstance(item, dict):
+                    raise ValueError(f"Items in {language_name} JSON list are not dictionaries.")
+                required_keys = {"start_time", "end_time", "text"}
+                if not required_keys.issubset(item.keys()):
+                    raise ValueError(f"Dictionary in {language_name} JSON is missing required keys ({required_keys}). Found: {item.keys()}")
+
+                for time_key in ["start_time", "end_time"]:
+                    time_value = item[time_key]
+                    if isinstance(time_value, str):
+                        if re.match(r"\d{2}:\d{2}\.\d{3}", time_value): # Check for MM:SS.milliseconds format
+                            try:
+                                minutes, seconds_milliseconds = time_value.split(":")
+                                seconds, milliseconds = seconds_milliseconds.split(".")
+                                total_seconds = int(minutes) * 60 + int(seconds) + int(milliseconds) / 1000.0
+                                item[time_key] = float(total_seconds) # Convert to float seconds
+                            except ValueError:
+                                print(f"Warning: Could not parse time string '{time_value}' in {language_name} for {time_key}. Keeping as string.")
+                        else:
+                            print(f"Warning: Time value '{time_value}' in {language_name} for {time_key} is a string but not in expected MM:SS.milliseconds format. Attempting float conversion.")
+                            try:
+                                item[time_key] = float(time_value) # Try to convert string to float anyway
+                            except ValueError:
+                                print(f"Error: Could not convert time string '{time_value}' to float in {language_name} for {time_key}. Setting to 0.")
+                                item[time_key] = 0.0 # Fallback to 0 if conversion fails
+                    elif not isinstance(time_value, (int, float)):
+                        print(f"Warning: Timestamps in {language_name} JSON are not strings or numbers (int/float). Found: {type(time_value)} for {time_key}. Attempting conversion to float.")
+                        try:
+                            item[time_key] = float(time_value)
+                        except ValueError:
+                            print(f"Error: Could not convert timestamp to float in {language_name} for {time_key}. Setting to 0.")
+                            item[time_key] = 0.0 # Fallback to 0 if conversion fails
+
 
         print(f"Successfully parsed JSON for {language_name}.")
         return data
@@ -206,7 +232,6 @@ def parse_json_response(json_text, language_name):
     except ValueError as e:
         print(f"Error: Invalid JSON structure for {language_name}. Error: {e}")
         print("--- Received Data Structure ---")
-        # Use print(data) only if 'data' was successfully assigned before the error
         try: print(data)
         except NameError: print("(Could not assign data before error)")
         print("--- End of Received Data Structure ---")
@@ -279,38 +304,41 @@ def generate_subtitles_from_youtube(youtube_url, mp3_audio_path): # <<< הוספ
 
     model = "gemini-2.5-pro-exp-03-25" # "gemini-2.5-pro-exp-03-25"
 
-    system_instruction_content = """You must generate subtitles for the provided video, ensuring transcription accuracy and natural phrasing suitable for the video's spoken language. The output must be a **JSON Array** as shown below.
+    system_instruction_content = """You must create subtitles for the attached video. The output must be a **JSON Array** as shown below.
 
-**Critical Time Format Requirement:** The `start_time` and `end_time` fields MUST be represented exclusively as **decimal seconds (float)**, indicating the **total number of seconds** from the beginning of the video. **Do NOT use formats that include minutes and seconds.** For example, a time of 2 minutes and 30.11 seconds must be written solely as `150.11`, **NOT** as `2:30.11`, `2.30`, or any other format incorporating minutes.
+**CRITICAL REQUIREMENT for Time Format:**
+The `start_time` and `end_time` fields must be **strings** in the exact format `MM:SS.milliseconds` (two digits for minutes, two digits for seconds, a period, and three digits for milliseconds).
+**Example:** `"start_time": "01:45.320"`, `"end_time": "01:50.100"`.
+**Do NOT use float seconds or any other format.**
 
-Each subtitle object within the array must include:
-- **`id`**: A sequential integer representing the order of the subtitle.
-- **`start_time`**: The start time in **decimal seconds (float)** format, e.g., `122.759` or `150.11`. Use the total elapsed seconds from the video start.
-- **`end_time`**: The end time in **decimal seconds (float)** format, e.g., `128.859` or `155.80`. Use the total elapsed seconds from the video start.
-- **`text`**: The subtitle text content, which can be a short line or two (separated by `\\n`).
+Each subtitle object in the JSON array must include:
+- **`id`**: Sequential number (integer).
+- **`start_time`**: Start time (string in `MM:SS.milliseconds` format).
+- **`end_time`**: End time (string in `MM:SS.milliseconds` format).
+- **`text`**: Subtitle text (string, can contain `\\n` for new lines).
 
-Maintain precision in both timestamps (adhering strictly to the specified total seconds format) and content to ensure the result can be easily converted to an SRT file.
+Maintain accuracy in the timings (using the specified string format) and the content. Output ONLY the JSON array.
 
 ### **Example JSON Structure:**
 ```json
 [
   {
     "id": 1,
-    "start_time": 12.759,
-    "end_time": 18.859,
+    "start_time": "00:12.759",
+    "end_time": "00:18.859",
     "text": "I will never forget\\nthe night I saw my father cry"
   },
   {
     "id": 2,
-    "start_time": 21.359,
-    "end_time": 28.729,
+    "start_time": "00:21.359",
+    "end_time": "00:28.729",
     "text": "I was frightened and alone\\nand his tears"
   },
   {
     "id": 3,
-    "start_time": 150.11,
-    "end_time": 155.80,
-    "text": "This is an example showing\\ntime above 60 seconds in total seconds format"
+    "start_time": "02:30.110",
+    "end_time": "02:35.800",
+    "text": "This shows the required\\nMM:SS.ms format"
   }
 ]
 ```"""
@@ -327,13 +355,17 @@ Maintain precision in both timestamps (adhering strictly to the specified total 
                         type = genai.types.Type.INTEGER,
                         description = "מספר סידורי של הכתובית",
                     ),
+                    # --- שינוי כאן ---
                     "start_time": genai.types.Schema(
-                        type = genai.types.Type.NUMBER,
-                        description = "זמן התחלת הכתובית בשניות (float, לדוגמה 122.759)",
+                        type = genai.types.Type.STRING, # <<< נשאר STRING
+                        description = "זמן התחלת הכתובית בפורמט מחרוזת 'MM:SS.milliseconds' (לדוגמה '02:30.110').", # <<< התיאור ממוקד בפורמט המחרוזת
+                        pattern=r"^\d{2}:\d{2}\.\d{3}$" # <<< נוסף Pattern לאכיפת הפורמט
                     ),
+                    # --- שינוי כאן ---
                     "end_time": genai.types.Schema(
-                        type = genai.types.Type.NUMBER,
-                        description = "זמן סיום הכתובית בשניות (float, לדוגמה 128.859)",
+                        type = genai.types.Type.STRING, # <<< נשאר STRING
+                        description = "זמן סיום הכתובית בפורמט מחרוזת 'MM:SS.milliseconds' (לדוגמה '02:35.800').", # <<< התיאור ממוקד בפורמט המחרוזת
+                        pattern=r"^\d{2}:\d{2}\.\d{3}$" # <<< נוסף Pattern לאכיפת הפורמט
                     ),
                     "text": genai.types.Schema(
                         type = genai.types.Type.STRING,
@@ -343,7 +375,7 @@ Maintain precision in both timestamps (adhering strictly to the specified total 
             ),
         ),
     )
-
+    
     transcription_prompt_text = """Transcribe the following song accurately.
 Output the result as a JSON array following the specified format (id, start_time, end_time, text).
 Use float seconds for times. Divide segments intelligently.
