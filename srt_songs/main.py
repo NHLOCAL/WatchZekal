@@ -6,23 +6,20 @@ import sys
 from subtitle_generator import SubtitleGenerator
 from video_creator import VideoCreator
 
-# --- Configuration ---
-# Adjust paths relative to this main.py file's location
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets') # Assumes assets is one level up
+ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
 FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
-DEMO_SONGS_DIR = os.path.join(BASE_DIR, 'demo_songs') # Assumes demo_songs is in the same dir as main.py
+DEMO_SONGS_DIR = os.path.join(BASE_DIR, 'demo_songs')
 JSON_FILES_DIR = os.path.join(BASE_DIR, "json_files")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
-OUTPUT_FRAMES_DIR = os.path.join(OUTPUT_DIR, "subtitle_frames") # Frames inside output dir
+OUTPUT_FRAMES_DIR = os.path.join(OUTPUT_DIR, "subtitle_frames")
 SONG_LIST_JSON_PATH = os.path.join(BASE_DIR, 'song_list.json')
 
-# --- Function to select song --- (Moved from original script)
 def select_song_from_list(json_path, songs_directory):
     """
-    Loads a list of songs from a JSON file, prompts the user to select one,
-    checks for the corresponding MP3 file, and returns details.
-    """
+Loads a list of songs from a JSON file, prompts the user to select one,
+checks for the corresponding MP3 file, and returns details.
+"""
     if not os.path.exists(json_path):
         print(f"שגיאה: קובץ רשימת השירים '{json_path}' לא נמצא.")
         print("אנא צור קובץ 'song_list.json' בפורמט:")
@@ -68,7 +65,6 @@ def select_song_from_list(json_path, songs_directory):
                 selected_song = valid_songs[choice - 1]
                 song_name = selected_song['name']
                 youtube_url = selected_song['youtube_url']
-                # Derive the expected MP3 filename based on the 'name' field
                 expected_mp3_filename = f"{song_name}.mp3"
                 expected_mp3_path = os.path.join(songs_directory, expected_mp3_filename)
 
@@ -76,16 +72,13 @@ def select_song_from_list(json_path, songs_directory):
                 print(f"קישור YouTube: {youtube_url}")
                 print(f"נתיב MP3 צפוי: {expected_mp3_path}")
 
-                # --- Critical Check: Verify MP3 file existence ---
                 if not os.path.exists(expected_mp3_path):
                     print(f"\n!!! שגיאה קריטית !!!")
                     print(f"קובץ האודיו הצפוי '{expected_mp3_path}' עבור השיר '{song_name}' לא נמצא בתיקייה '{songs_directory}'.")
-                    print(f"ודא שהקובץ קיים עם השם המדויק (כולל סיומת mp3) והנתיב הנכון.")
+                    print("ודא שהקובץ קיים עם השם המדויק (כולל סיומת mp3) והנתיב הנכון.")
                     print("אנא בחר שיר אחר או תקן את שם הקובץ / מיקומו ונסה שנית.")
-                    # Continue the loop to allow another selection
-                    continue # Ask for input again
+                    continue
                 else:
-                    # MP3 file exists, return the details
                     return song_name, youtube_url, expected_mp3_path
             else:
                 print(f"בחירה לא חוקית. אנא הזן מספר בין 1 ל-{len(valid_songs)} או 'q'.")
@@ -95,39 +88,30 @@ def select_song_from_list(json_path, songs_directory):
              print("\nיציאה לפי בקשת המשתמש.")
              return None, None, None
 
-
 def main():
-    """Main execution function"""
     print("--- יוצר וידאו כתוביות YouTube ---")
 
-    # --- Create necessary base directories ---
-    # (Output directories will be created by VideoCreator)
     os.makedirs(ASSETS_DIR, exist_ok=True)
     os.makedirs(FONTS_DIR, exist_ok=True)
     os.makedirs(DEMO_SONGS_DIR, exist_ok=True)
-    os.makedirs(JSON_FILES_DIR, exist_ok=True) # SubtitleGenerator needs this
-    os.makedirs(OUTPUT_DIR, exist_ok=True)     # VideoCreator needs this base
+    os.makedirs(JSON_FILES_DIR, exist_ok=True)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    # --- Get API Key ---
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         print("שגיאה: משתנה הסביבה 'GEMINI_API_KEY' לא הוגדר.")
         print("אנא הגדר את המפתח והפעל את הסקריפט מחדש.")
-        sys.exit(1) # Exit if no API key
+        sys.exit(1)
 
-    # --- Select Song ---
     selected_song_name, youtube_link, mp3_file_path = select_song_from_list(SONG_LIST_JSON_PATH, DEMO_SONGS_DIR)
-
     if not selected_song_name:
         print("לא נבחר שיר. יוצא מהתוכנית.")
-        sys.exit(0) # Clean exit
+        sys.exit(0)
 
-    # --- Step 1: Generate or Load Subtitles ---
-    print("\n--- שלב 1: יצירה או טעינה של כתוביות ---")
+    print("\n--- יצירה או טעינה של כתוביות ---")
     subtitle_generator = SubtitleGenerator(api_key=api_key, json_output_dir=JSON_FILES_DIR)
     english_subs, hebrew_subs = subtitle_generator.generate_or_load_subtitles(youtube_link, mp3_file_path)
 
-    # Check results from subtitle generation/loading
     if english_subs is None and hebrew_subs is None:
         print("\nשגיאה קריטית: לא ניתן היה ליצור או לטעון כתוביות.")
         print("יוצא מהתוכנית.")
@@ -141,18 +125,14 @@ def main():
     else:
         print("\nנתוני הכתוביות הוכנו בהצלחה.")
 
-
-    # --- Step 2: Create Video ---
-    print("\n--- שלב 2: יצירת הוידאו ---")
-
-    # Define configuration for VideoCreator
+    print("\n--- יצירת הוידאו ---")
     video_creator_config = {
         'assets_dir': ASSETS_DIR,
         'fonts_dir': FONTS_DIR,
         'output_frames_dir': OUTPUT_FRAMES_DIR,
         'output_video_dir': OUTPUT_DIR,
-        'background_image_name': os.path.join('levels', "word_background.png"), # Relative path within assets/backgrounds
-        'font_name': "Rubik-Regular.ttf", # Relative path within fonts_dir
+        'background_image_name': os.path.join('levels', "word_background.png"),
+        'font_name': "Rubik-Regular.ttf",
         'video_resolution': (1280, 720),
         'video_fps': 25,
         'fontsize_en': 60,
@@ -171,16 +151,12 @@ def main():
 
     try:
         video_creator = VideoCreator(config=video_creator_config)
-
-        # Determine base filename for output video from the MP3 path
         output_base_name = os.path.splitext(os.path.basename(mp3_file_path))[0]
-
-        # Call the creation method
         created_video_path = video_creator.create_video(
             mp3_path=mp3_file_path,
             song_title_text=selected_song_name,
-            english_subtitle_data=english_subs, # Pass potentially None or empty lists
-            hebrew_subtitle_data=hebrew_subs,   # Pass potentially None or empty lists
+            english_subtitle_data=english_subs,
+            hebrew_subtitle_data=hebrew_subs,
             output_video_filename_base=output_base_name
         )
 
