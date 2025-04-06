@@ -290,17 +290,15 @@ class VideoCreator:
             has_en_text = valid_en and en_text # Check if text is non-empty
             has_he_text = valid_he and he_text
 
+            # Append English text first if it exists
             if has_en_text:
                 combined_text_parts.append(en_text)
                 start_time = min(start_time, en_start)
                 end_time = max(end_time, en_end)
 
+            # Append Hebrew text *after* English if it exists
             if has_he_text:
-                # Insert Hebrew before English if both exist, otherwise append
-                if has_en_text:
-                     combined_text_parts.insert(0, he_text) # HE first
-                else:
-                     combined_text_parts.append(he_text)
+                combined_text_parts.append(he_text)
                 start_time = min(start_time, he_start)
                 end_time = max(end_time, he_end)
 
