@@ -20,51 +20,43 @@ class VideoCreator:
     def __init__(self, resolved_config):
         """
         Initializes the VideoCreator with resolved configuration settings.
-
-        Args:
-            resolved_config (dict): A dictionary containing configuration with
-                                    *absolute paths* already resolved.
-                                    Expected keys based on video_config.json structure:
-                                    - paths (dict with absolute paths: assets_dir, fonts_dir, output_frames_dir, output_video_dir)
-                                    - video_settings (dict)
-                                    - background (dict with absolute background_image_path)
-                                    - title_style (dict with font_name, size, color, etc.)
-                                    - subtitle_style (dict with font_name, common, english, hebrew, layout sections)
         """
-        self.cfg = resolved_config # Store the resolved config
+        self.cfg = resolved_config
 
-        # Extract key paths and settings for easier access
         self.paths = self.cfg['paths']
         self.video_settings = self.cfg['video_settings']
         self.bg_settings = self.cfg['background']
         self.title_style = self.cfg['title_style']
         self.subtitle_style = self.cfg['subtitle_style']
 
-        # Construct absolute font paths
         self.title_font_path = os.path.join(self.paths['fonts_dir'], self.title_style['font_name'])
         self.subtitle_font_path = os.path.join(self.paths['fonts_dir'], self.subtitle_style['font_name'])
 
-        # --- Use paths directly from resolved_config ---
         self.background_image_path = self.bg_settings['background_image_path']
+        # --- הוספה: אחסון נתיב רקע הפתיח ---
+        self.intro_background_image_path = self.bg_settings.get('intro_background_image_path') # .get() למקרה שלא הוגדר
+        # --- סוף הוספה ---
+
         self.output_frames_dir = self.paths['output_frames_dir']
-        self.output_video_dir = self.paths['output_dir'] # Use the correct key 'output_dir'
-        # --- End paths ---
+        self.output_video_dir = self.paths['output_dir'] # תוקן מהפעם הקודמת
 
-        self._validate_paths()
-        self._ensure_dirs_exist() # Directories should already be created by main, but double-check
+        self._validate_paths() # נעדכן את המתודה הזו
+        self._ensure_dirs_exist()
 
-        # State for frame saving during render
         self.combined_subs_list_for_frames = []
         self.saved_subtitle_ids = set()
 
     def _validate_paths(self):
-        """Checks if essential files (fonts, background) exist using absolute paths."""
+        """Checks if essential files (fonts, backgrounds) exist using absolute paths."""
         if not os.path.exists(self.title_font_path):
             raise FileNotFoundError(f"Error: Title font file not found at '{self.title_font_path}'")
         if not os.path.exists(self.subtitle_font_path):
             raise FileNotFoundError(f"Error: Subtitle font file not found at '{self.subtitle_font_path}'")
         if not os.path.exists(self.background_image_path):
             raise FileNotFoundError(f"Error: Background image not found at '{self.background_image_path}'")
+        # --- הוספה: ולידציה לרקע הפתיח (אם קיים) ---
+        if self.intro_background_image_path and not os.path.exists(self.intro_background_image_path):
+             raise FileNotFoundError(f"Error: Intro background image specified but not found at '{self.intro_background_image_path}'")
 
     def _ensure_dirs_exist(self):
         """Creates output directories if they don't exist."""
@@ -130,35 +122,73 @@ class VideoCreator:
         return first_start_time
 
     def _create_title_clip(self, song_title_text, title_duration):
-        """Creates the title text clip using settings from title_style."""
+        """Creates the title text clip using PIL rendering for reliability."""
         if title_duration <= 0:
             print("Title duration is zero or negative, skipping title clip creation.")
             return None
 
-        print(f"Creating title clip for duration: {title_duration:.2f}s")
+        print(f"Creating title clip using PIL for duration: {title_duration:.2f}s")
         try:
-            title_clip = mp.TextClip(song_title_text, font=self.title_font_path, # Use resolved path
-                                     fontsize=self.title_style['font_size'],
-                                     color=self.title_style['color'],
-                                     stroke_color=self.title_style.get('stroke_color'), # Use .get for optional keys
-                                     stroke_width=self.title_style.get('stroke_width', 0),
-                                     method='label')
+            # 1. Load Font using PIL
+            title_font_size = self.title_style['font_size']
+            try:
+                font = ImageFont.truetype(self.title_font_path, title_font_size)
+            except IOError:
+                print(f"CRITICAL Error: Could not load title font file '{self.title_font_path}' with PIL.")
+                raise # Re-raise error
 
-            # Resize if too wide
-            max_width = self.video_settings['resolution'][0] * 0.9
-            if title_clip.w > max_width:
-                 title_clip = title_clip.resize(width=max_width)
+            # 2. Create Transparent Image
+            video_w, video_h = self.video_settings['resolution']
+            img = Image.new('RGBA', (video_w, video_h), (0, 0, 0, 0))
+            draw = ImageDraw.Draw(img)
 
-            # Position uses list from JSON -> tuple for moviepy
-            pos = tuple(self.title_style['position'])
-            title_clip = title_clip.set_position(pos)
+            # 3. Calculate Text Size and Position
+            # Use textbbox for accurate dimensions
+            try:
+                bbox = draw.textbbox((0, 0), song_title_text, font=font)
+                text_width = bbox[2] - bbox[0]
+                text_height = bbox[3] - bbox[1]
+            except AttributeError: # Fallback for older PIL/Pillow
+                text_width = draw.textlength(song_title_text, font=font) if hasattr(draw, 'textlength') else len(song_title_text) * title_font_size * 0.6
+                text_height = title_font_size * 1.2 # Estimate
+
+            # Handle Positioning (only 'center', 'center' implemented here)
+            pos_config = self.title_style['position'] # Should be ["center", "center"]
+            x_pos = (video_w - text_width) / 2
+            y_pos = (video_h - text_height) / 2
+            # TODO: Add logic here if other positions like 'top_left', 'bottom_center' are needed
+
+            # 4. Draw Text with Stroke using helper function
+            self._draw_text_with_stroke(
+                draw=draw,
+                pos=(x_pos, y_pos),
+                text=song_title_text,
+                font=font,
+                fill_color=self.title_style['color'],
+                stroke_color=self.title_style.get('stroke_color'),
+                stroke_width=self.title_style.get('stroke_width', 0)
+            )
+
+            # 5. Convert PIL Image to NumPy array
+            frame_array = np.array(img)
+
+            # 6. Create MoviePy ImageClip
+            title_clip = mp.ImageClip(frame_array, ismask=False, transparent=True)
             title_clip = title_clip.set_duration(title_duration).set_start(0)
-            print("Title clip created.")
+
+            # Optional: Resize if too wide (might not be needed with PIL bbox)
+            # max_width = video_w * 0.9
+            # if title_clip.w > max_width:
+            #      title_clip = title_clip.resize(width=max_width)
+            # title_clip = title_clip.set_position('center') # Position is handled by PIL drawing now
+
+            print("Title clip created using PIL.")
             return title_clip
+
         except Exception as e:
-            print(f"Error creating title clip: {e}")
+            print(f"Error creating title clip using PIL: {e}")
             traceback.print_exc()
-            return None
+            return None # Don't halt execution for title error
 
     # --- Subtitle Rendering Helpers ---
 
@@ -518,40 +548,58 @@ class VideoCreator:
     def create_video(self, mp3_path, song_title_text, english_subtitle_data, hebrew_subtitle_data, output_video_filename_base):
         """
         Orchestrates the video creation process using external config.
-
-        Args:
-            mp3_path (str): Path to the input audio file.
-            song_title_text (str): Text for the title card.
-            english_subtitle_data (list | None): Parsed English subtitle data.
-            hebrew_subtitle_data (list | None): Parsed Hebrew subtitle data.
-            output_video_filename_base (str): Base name for the output video file (without extension).
-
-        Returns:
-            str | None: The path to the created video file, or None if creation failed.
+        Includes separate intro background and PIL-based title rendering.
         """
         print(f"\n--- Starting Video Creation for: {output_video_filename_base} ---")
-        # Use the absolute output dir path
         output_video_file = os.path.join(self.output_video_dir, f"{output_video_filename_base}_subtitled.mp4")
         temp_audio_file = os.path.join(self.output_video_dir, f'temp-audio-{output_video_filename_base}-{int(time.time())}.m4a')
 
         audio_clip = None
         background_clip = None
+        intro_background_clip = None # קליפ חדש לרקע הפתיח
         title_clip = None
         subtitles_clip = None
         final_clip_for_render = None
 
         try:
+            # 1. Load Audio
             audio_clip, audio_duration = self._load_audio(mp3_path)
-            background_clip = self._create_background_clip(audio_duration)
 
+            # 2. Create Main Background (Full Duration)
+            background_clip = self._create_background_clip(audio_duration) # This uses self.background_image_path
+
+            # 3. Determine Title Duration
             first_sub_time = self._get_first_subtitle_time(english_subtitle_data, hebrew_subtitle_data, audio_duration)
             min_title_threshold = 0.5
             title_duration = first_sub_time if first_sub_time >= min_title_threshold else 0
-            title_clip = self._create_title_clip(song_title_text, title_duration)
 
+            # 4. Create Intro Background Clip (If applicable)
+            if title_duration > 0 and self.intro_background_image_path:
+                print("Creating intro background clip...")
+                try:
+                    # Create clip with intro image, same duration as title
+                    intro_background_clip = mp.ImageClip(self.intro_background_image_path, duration=title_duration)
+                    target_w, target_h = self.video_settings['resolution']
+                    # Resize/crop intro background similarly to main background
+                    intro_background_clip = intro_background_clip.resize(height=target_h)
+                    if intro_background_clip.w > target_w:
+                        intro_background_clip = intro_background_clip.crop(x_center=intro_background_clip.w / 2, width=target_w)
+                    intro_background_clip = intro_background_clip.resize((target_w, target_h))
+                    intro_background_clip = intro_background_clip.set_fps(self.video_settings['fps'])
+                    intro_background_clip = intro_background_clip.set_start(0).set_duration(title_duration) # Set start and duration explicitly
+                    print("Intro background clip created.")
+                except Exception as e:
+                    print(f"Warning: Could not create intro background clip from '{self.intro_background_image_path}': {e}")
+                    intro_background_clip = None # Fallback to main background if intro fails
+
+            # 5. Create Title Clip (Using PIL)
+            title_clip = self._create_title_clip(song_title_text, title_duration) # Now uses PIL
+
+            # 6. Create Subtitle Clip
             subtitles_clip, _ = self._create_styled_subtitle_clip_pil(
                 english_subtitle_data, hebrew_subtitle_data, audio_duration
             )
+            # (Validation logic for subtitles_clip remains the same)
             if not subtitles_clip or subtitles_clip.duration <= 0:
                  print("Warning: Subtitle clip generation failed or resulted in an empty clip.")
                  subtitles_clip = None
@@ -559,16 +607,32 @@ class VideoCreator:
                 print(f"Warning: Subtitles clip duration ({subtitles_clip.duration:.2f}s) significantly exceeds audio duration ({audio_duration:.2f}s). Trimming.")
                 subtitles_clip = subtitles_clip.set_duration(audio_duration)
 
-            print("Compositing video layers...")
-            clips_to_composite = [background_clip]
-            if title_clip: clips_to_composite.append(title_clip)
-            if subtitles_clip: clips_to_composite.append(subtitles_clip)
-            else: print("Info: No valid subtitle clip to composite.")
 
-            # Use resolution from config
+            # 7. Composite Clips (Order Matters for Layering!)
+            print("Compositing video layers...")
+            clips_to_composite = [background_clip] # Start with main background (bottom layer)
+
+            # Add Intro Background *on top* of main background if it exists
+            if intro_background_clip:
+                clips_to_composite.append(intro_background_clip)
+                print("Adding intro background layer.")
+            else:
+                 print("Using main background for intro section.")
+
+            # Add Title Clip (rendered with PIL) on top
+            if title_clip:
+                clips_to_composite.append(title_clip)
+
+            # Add Subtitles Clip on top
+            if subtitles_clip:
+                clips_to_composite.append(subtitles_clip)
+            else:
+                 print("Info: No valid subtitle clip to composite.")
+
             composite_video = mp.CompositeVideoClip(clips_to_composite, size=self.video_settings['resolution'])
             composite_video = composite_video.set_duration(audio_duration)
 
+            # 8. Apply Frame Saving (Logic unchanged)
             print("Attaching frame saving processor...")
             if self.combined_subs_list_for_frames:
                  final_video_layers = composite_video.fl(self._save_subtitle_frame_processor, apply_to=['color'])
@@ -578,19 +642,21 @@ class VideoCreator:
                 print("No subtitle data for frame saving, skipping processor attachment.")
                 final_video_layers = composite_video
 
+            # 9. Add Audio
             print("Adding audio...")
             final_clip_for_render = final_video_layers.set_audio(audio_clip)
             final_clip_for_render = final_clip_for_render.set_duration(audio_duration)
 
+            # 10. Write Video File (Logic unchanged)
             print(f"Writing final video to '{output_video_file}'...")
             if not final_clip_for_render or final_clip_for_render.duration <= 0:
                  raise ValueError("Final video clip for rendering is invalid or has zero duration.")
 
-            self.saved_subtitle_ids = set() # Reset before render
+            self.saved_subtitle_ids = set()
 
             final_clip_for_render.write_videofile(
                 output_video_file,
-                fps=self.video_settings['fps'], # Use FPS from config
+                fps=self.video_settings['fps'],
                 codec='libx264',
                 audio_codec='aac',
                 temp_audiofile=temp_audio_file,
@@ -603,13 +669,13 @@ class VideoCreator:
             print(f"\nVideo creation successful: '{output_video_file}'")
             if self.combined_subs_list_for_frames:
                  if self.saved_subtitle_ids:
-                     # Use absolute path from config
                     print(f"Subtitle frames saved in: '{self.output_frames_dir}'")
                  else:
                     print("No subtitle frames were saved (perhaps no text content in subs?).")
 
             return output_video_file
 
+        # --- Exception Handling (Unchanged) ---
         except FileNotFoundError as e:
              print(f"\nError: Required file not found. {e}")
              traceback.print_exc()
@@ -623,9 +689,11 @@ class VideoCreator:
             traceback.print_exc()
             return None
 
+        # --- Cleanup (Important: Add new intro_background_clip) ---
         finally:
             print("Releasing resources...")
-            for clip in [audio_clip, background_clip, title_clip, subtitles_clip, final_clip_for_render]:
+            # Add intro_background_clip to the list of clips to close
+            for clip in [audio_clip, background_clip, intro_background_clip, title_clip, subtitles_clip, final_clip_for_render]:
                  if clip and hasattr(clip, 'close') and callable(getattr(clip, 'close', None)):
                     try:
                         clip.close()

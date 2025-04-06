@@ -12,7 +12,8 @@
     "fps": 25
   },
   "background": {
-    "image_path_rel_assets": "backgrounds/songs/subtitle.jpg"
+    "image_path_rel_assets": "backgrounds/songs/subtitle.jpg",
+	"intro_image_path_rel_assets": "backgrounds/songs/intro.jpg"
   },
   "title_style": {
     "font_name": "Rubik-Bold.ttf",

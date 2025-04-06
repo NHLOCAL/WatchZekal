@@ -40,29 +40,36 @@ def resolve_paths(config, base_dir):
     demo_songs_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('demo_songs_rel', 'demo_songs')))
     json_files_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('json_files_rel', 'json_files')))
 
-    # Store absolute paths back into a new 'paths' structure for VideoCreator
     resolved_config['paths'] = {
         'assets_dir': assets_dir,
         'fonts_dir': fonts_dir,
         'output_dir': output_dir,
         'output_frames_dir': output_frames_dir,
-        'demo_songs_dir': demo_songs_dir, # Pass resolved path
-        'json_files_dir': json_files_dir # Pass resolved path
+        'demo_songs_dir': demo_songs_dir,
+        'json_files_dir': json_files_dir
     }
 
-    # Resolve background image path
-    if 'background' in resolved_config and 'image_path_rel_assets' in resolved_config['background']:
-        bg_rel_path = resolved_config['background']['image_path_rel_assets']
-        resolved_config['background']['background_image_path'] = os.path.join(assets_dir, bg_rel_path)
+    # Resolve background image paths
+    bg_config = resolved_config.get('background', {})
+    if 'image_path_rel_assets' in bg_config:
+        bg_rel_path = bg_config['image_path_rel_assets']
+        bg_config['background_image_path'] = os.path.join(assets_dir, bg_rel_path)
     else:
-         print("אזהרה: נתיב תמונת רקע לא הוגדר כראוי בקונפיגורציה.")
-         # Handle missing background path - maybe raise error or use a default?
-         # For now, VideoCreator's validation will catch it if needed later.
+         print("אזהרה: נתיב תמונת רקע ראשית לא הוגדר כראוי בקונפיגורציה.")
 
+    # --- הוספת רזולוציה לרקע הפתיח ---
+    if 'intro_image_path_rel_assets' in bg_config:
+        intro_bg_rel_path = bg_config['intro_image_path_rel_assets']
+        bg_config['intro_background_image_path'] = os.path.join(assets_dir, intro_bg_rel_path)
+        print(f"נתיב רקע פתיח זוהה: {bg_config['intro_background_image_path']}")
+    else:
+        print("אזהרה: נתיב תמונת רקע לפתיח לא הוגדר בקונפיגורציה. ישתמש ברקע הראשי.")
+        bg_config['intro_background_image_path'] = None # סמן כלא קיים
+    # --- סוף ההוספה ---
 
-    # Font paths are constructed *within* VideoCreator using fonts_dir and font_name
+    resolved_config['background'] = bg_config # עדכון המילון בקונפיגורציה
 
-    return resolved_config, demo_songs_dir, json_files_dir # Return needed paths for main scope
+    return resolved_config, demo_songs_dir, json_files_dir
 
 # --- Path Setup (Relative to this file) ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
