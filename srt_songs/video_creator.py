@@ -122,73 +122,123 @@ class VideoCreator:
         return first_start_time
 
     def _create_title_clip(self, song_title_text, title_duration):
-        """Creates the title text clip using PIL rendering for reliability."""
+        """
+        Creates the title text clip using PIL rendering for reliability,
+        including text wrapping and horizontal margins.
+        """
         if title_duration <= 0:
             print("Title duration is zero or negative, skipping title clip creation.")
             return None
+        if not song_title_text or not song_title_text.strip():
+             print("Title text is empty, skipping title clip creation.")
+             return None # Don't create clip for empty text
 
-        print(f"Creating title clip using PIL for duration: {title_duration:.2f}s")
+        print(f"Creating title clip using PIL with wrapping for duration: {title_duration:.2f}s")
         try:
-            # 1. Load Font using PIL
+            # 1. Load Font and Get Settings
             title_font_size = self.title_style['font_size']
+            video_w, video_h = self.video_settings['resolution']
+            # --- הגדרת שוליים ורוחב מקסימלי ---
+            horizontal_margin = 100 # פיקסלים מכל צד
+            max_text_width = video_w - (2 * horizontal_margin)
+            if max_text_width <= 0: # הגנה במקרה של רזולוציה נמוכה מאוד
+                max_text_width = video_w * 0.8 # ברירת מחדל של 80%
+                print(f"Warning: Calculated max title width is too small due to margins. Using {max_text_width}px.")
+            # --- סוף הגדרות ---
+
             try:
                 font = ImageFont.truetype(self.title_font_path, title_font_size)
             except IOError:
                 print(f"CRITICAL Error: Could not load title font file '{self.title_font_path}' with PIL.")
-                raise # Re-raise error
+                raise
 
-            # 2. Create Transparent Image
-            video_w, video_h = self.video_settings['resolution']
+            # 2. Create Transparent Image and Draw Context
             img = Image.new('RGBA', (video_w, video_h), (0, 0, 0, 0))
             draw = ImageDraw.Draw(img)
 
-            # 3. Calculate Text Size and Position
-            # Use textbbox for accurate dimensions
-            try:
-                bbox = draw.textbbox((0, 0), song_title_text, font=font)
-                text_width = bbox[2] - bbox[0]
-                text_height = bbox[3] - bbox[1]
-            except AttributeError: # Fallback for older PIL/Pillow
-                text_width = draw.textlength(song_title_text, font=font) if hasattr(draw, 'textlength') else len(song_title_text) * title_font_size * 0.6
-                text_height = title_font_size * 1.2 # Estimate
+            # 3. Wrap Text using existing helper function
+            print(f"Wrapping title text with max width: {max_text_width}px")
+            wrapped_lines = self._wrap_text(draw, song_title_text, font, max_text_width)
 
-            # Handle Positioning (only 'center', 'center' implemented here)
-            pos_config = self.title_style['position'] # Should be ["center", "center"]
-            x_pos = (video_w - text_width) / 2
-            y_pos = (video_h - text_height) / 2
-            # TODO: Add logic here if other positions like 'top_left', 'bottom_center' are needed
+            if not wrapped_lines:
+                print("Warning: Title text resulted in no lines after wrapping.")
+                return None # Nothing to draw
 
-            # 4. Draw Text with Stroke using helper function
-            self._draw_text_with_stroke(
-                draw=draw,
-                pos=(x_pos, y_pos),
-                text=song_title_text,
-                font=font,
-                fill_color=self.title_style['color'],
-                stroke_color=self.title_style.get('stroke_color'),
-                stroke_width=self.title_style.get('stroke_width', 0)
-            )
+            # 4. Calculate Text Block Dimensions and Starting Position
+            line_height = 0
+            max_line_width = 0
+            line_details = [] # Store bbox and text for each line
 
-            # 5. Convert PIL Image to NumPy array
+            for line in wrapped_lines:
+                try:
+                    # Get accurate bounding box for the line
+                    line_bbox = draw.textbbox((0, 0), line, font=font)
+                    current_line_width = line_bbox[2] - line_bbox[0]
+                    current_line_height = line_bbox[3] - line_bbox[1]
+                    line_details.append({'text': line, 'width': current_line_width, 'bbox': line_bbox})
+                    # Use the height of the first non-empty line as the standard line height
+                    if line_height == 0 and current_line_height > 0:
+                         line_height = current_line_height # More accurate than font.size
+                    max_line_width = max(max_line_width, current_line_width)
+                except AttributeError: # Fallback for older PIL
+                     # Less accurate fallback
+                     current_line_width = draw.textlength(line, font=font) if hasattr(draw, 'textlength') else len(line) * title_font_size * 0.6
+                     line_details.append({'text': line, 'width': current_line_width, 'bbox': None}) # No bbox available
+                     if line_height == 0: line_height = title_font_size * 1.2
+                     max_line_width = max(max_line_width, current_line_width)
+
+            if line_height == 0: # If all lines were empty or calculation failed
+                 line_height = title_font_size * 1.2 # Final fallback
+
+            total_block_height = len(wrapped_lines) * line_height
+            # Calculate starting Y to center the entire block vertically
+            start_y = (video_h - total_block_height) / 2
+
+            # 5. Draw Each Line Centered Horizontally
+            current_y = start_y
+            for detail in line_details:
+                line_text = detail['text']
+                line_width = detail['width']
+                # Calculate starting X to center *this specific line* horizontally
+                line_x = (video_w - line_width) / 2
+
+                # Use the y position from the bbox if available for potentially better alignment
+                # Otherwise, use the calculated current_y
+                draw_y = current_y
+                if detail['bbox']:
+                     # Adjust draw_y to align baseline perhaps? No, keep it simple: use top alignment.
+                     # draw_y = current_y - detail['bbox'][1] # Trying to align based on bbox top
+                     pass # Stick with current_y for now
+
+                # Draw the line with stroke
+                self._draw_text_with_stroke(
+                    draw=draw,
+                    pos=(line_x, draw_y), # Use calculated X for centering and current Y
+                    text=line_text,
+                    font=font,
+                    fill_color=self.title_style['color'],
+                    stroke_color=self.title_style.get('stroke_color'),
+                    stroke_width=self.title_style.get('stroke_width', 0)
+                )
+                # Move to the next line position
+                current_y += line_height
+
+            # 6. Convert PIL Image to NumPy array
             frame_array = np.array(img)
 
-            # 6. Create MoviePy ImageClip
+            # 7. Create MoviePy ImageClip
             title_clip = mp.ImageClip(frame_array, ismask=False, transparent=True)
             title_clip = title_clip.set_duration(title_duration).set_start(0)
+            # title_clip = title_clip.set_position('center') # Positioning is handled by PIL drawing
 
-            # Optional: Resize if too wide (might not be needed with PIL bbox)
-            # max_width = video_w * 0.9
-            # if title_clip.w > max_width:
-            #      title_clip = title_clip.resize(width=max_width)
-            # title_clip = title_clip.set_position('center') # Position is handled by PIL drawing now
-
-            print("Title clip created using PIL.")
+            print("Title clip created using PIL with wrapping and margins.")
             return title_clip
 
         except Exception as e:
             print(f"Error creating title clip using PIL: {e}")
             traceback.print_exc()
-            return None # Don't halt execution for title error
+            return None
+
 
     # --- Subtitle Rendering Helpers ---
 
