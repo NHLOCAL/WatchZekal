@@ -1,0 +1,43 @@
+{
+  "paths": {
+    "assets_rel": "../assets",
+    "fonts_subdir": "fonts",
+    "output_rel": "output",
+    "output_frames_subdir": "subtitle_frames",
+    "demo_songs_rel": "demo_songs",
+    "json_files_rel": "json_files"
+  },
+  "video_settings": {
+    "resolution": [1280, 720],
+    "fps": 25
+  },
+  "background": {
+    "image_path_rel_assets": "backgrounds/songs/subtitle.jpg"
+  },
+  "title_style": {
+    "font_name": "Rubik-Bold.ttf",
+    "font_size": 120,
+    "color": "blue",
+    "stroke_color": "white",
+    "stroke_width": 4.0,
+    "position": ["center", "center"]
+  },
+  "subtitle_style": {
+    "font_name": "Rubik-Regular.ttf",
+    "english": {
+      "font_size": 60
+    },
+    "hebrew": {
+      "font_size": 57
+    },
+    "common": {
+      "color": "black",
+      "stroke_color": "white",
+      "stroke_width": 1.5
+    },
+    "layout": {
+      "spacing_within_language": 10,
+      "spacing_between_languages": 35
+    }
+  }
+}

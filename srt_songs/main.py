@@ -1,25 +1,103 @@
 import os
 import json
 import sys
+import traceback # Keep for potential errors
 
 # Import the classes from the other files
 from subtitle_generator import SubtitleGenerator
 from video_creator import VideoCreator
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ASSETS_DIR = os.path.join(BASE_DIR, '..', 'assets')
-FONTS_DIR = os.path.join(ASSETS_DIR, 'fonts')
-DEMO_SONGS_DIR = os.path.join(BASE_DIR, 'demo_songs')
-JSON_FILES_DIR = os.path.join(BASE_DIR, "json_files")
-OUTPUT_DIR = os.path.join(BASE_DIR, "output")
-OUTPUT_FRAMES_DIR = os.path.join(OUTPUT_DIR, "subtitle_frames")
-SONG_LIST_JSON_PATH = os.path.join(BASE_DIR, 'song_list.json')
+# --- Configuration Loading ---
+CONFIG_FILE_NAME = 'video_config.json'
 
+def load_config(config_path):
+    """Loads the JSON configuration file."""
+    if not os.path.exists(config_path):
+        print(f"שגיאה: קובץ הקונפיגורציה '{config_path}' לא נמצא.")
+        return None
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = json.load(f)
+        print(f"קונפיגורציה נטענה בהצלחה מ: '{config_path}'")
+        return config
+    except json.JSONDecodeError:
+        print(f"שגיאה: קובץ הקונפיגורציה '{config_path}' אינו קובץ JSON תקין.")
+        return None
+    except Exception as e:
+        print(f"שגיאה בטעינת קובץ הקונפיגורציה '{config_path}': {e}")
+        return None
+
+def resolve_paths(config, base_dir):
+    """Resolves relative paths in the config to absolute paths."""
+    resolved_config = config.copy() # Don't modify original
+    paths_cfg = resolved_config.get('paths', {})
+
+    # Resolve main directories relative to base_dir
+    assets_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('assets_rel', '../assets')))
+    fonts_dir = os.path.join(assets_dir, paths_cfg.get('fonts_subdir', 'fonts'))
+    output_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('output_rel', 'output')))
+    output_frames_dir = os.path.join(output_dir, paths_cfg.get('output_frames_subdir', 'subtitle_frames'))
+    demo_songs_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('demo_songs_rel', 'demo_songs')))
+    json_files_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('json_files_rel', 'json_files')))
+
+    # Store absolute paths back into a new 'paths' structure for VideoCreator
+    resolved_config['paths'] = {
+        'assets_dir': assets_dir,
+        'fonts_dir': fonts_dir,
+        'output_dir': output_dir,
+        'output_frames_dir': output_frames_dir,
+        'demo_songs_dir': demo_songs_dir, # Pass resolved path
+        'json_files_dir': json_files_dir # Pass resolved path
+    }
+
+    # Resolve background image path
+    if 'background' in resolved_config and 'image_path_rel_assets' in resolved_config['background']:
+        bg_rel_path = resolved_config['background']['image_path_rel_assets']
+        resolved_config['background']['background_image_path'] = os.path.join(assets_dir, bg_rel_path)
+    else:
+         print("אזהרה: נתיב תמונת רקע לא הוגדר כראוי בקונפיגורציה.")
+         # Handle missing background path - maybe raise error or use a default?
+         # For now, VideoCreator's validation will catch it if needed later.
+
+
+    # Font paths are constructed *within* VideoCreator using fonts_dir and font_name
+
+    return resolved_config, demo_songs_dir, json_files_dir # Return needed paths for main scope
+
+# --- Path Setup (Relative to this file) ---
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CONFIG_PATH = os.path.join(BASE_DIR, CONFIG_FILE_NAME)
+SONG_LIST_JSON_PATH = os.path.join(BASE_DIR, 'song_list.json') # Keep this relative for now
+
+# --- Load Configuration ---
+raw_config = load_config(CONFIG_PATH)
+if not raw_config:
+    sys.exit(1)
+
+# --- Resolve Paths ---
+resolved_config, DEMO_SONGS_DIR, JSON_FILES_DIR = resolve_paths(raw_config, BASE_DIR)
+# Extract other needed paths after resolution
+ASSETS_DIR = resolved_config['paths']['assets_dir']
+FONTS_DIR = resolved_config['paths']['fonts_dir']
+OUTPUT_DIR = resolved_config['paths']['output_dir']
+OUTPUT_FRAMES_DIR = resolved_config['paths']['output_frames_dir']
+
+# --- Directory Creation ---
+# Ensure all necessary directories exist based on resolved paths
+os.makedirs(ASSETS_DIR, exist_ok=True)
+os.makedirs(FONTS_DIR, exist_ok=True)
+os.makedirs(DEMO_SONGS_DIR, exist_ok=True)
+os.makedirs(JSON_FILES_DIR, exist_ok=True)
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+os.makedirs(OUTPUT_FRAMES_DIR, exist_ok=True) # Ensure frame dir exists too
+
+# --- Song Selection Function (Unchanged) ---
 def select_song_from_list(json_path, songs_directory):
     """
 Loads a list of songs from a JSON file, prompts the user to select one,
 checks for the corresponding MP3 file, and returns details.
 """
+    # ... (keep the existing function implementation) ...
     if not os.path.exists(json_path):
         print(f"שגיאה: קובץ רשימת השירים '{json_path}' לא נמצא.")
         print("אנא צור קובץ 'song_list.json' בפורמט:")
@@ -65,8 +143,9 @@ checks for the corresponding MP3 file, and returns details.
                 selected_song = valid_songs[choice - 1]
                 song_name = selected_song['name']
                 youtube_url = selected_song['youtube_url']
+                # CRITICAL: Use the *resolved* DEMO_SONGS_DIR here
                 expected_mp3_filename = f"{song_name}.mp3"
-                expected_mp3_path = os.path.join(songs_directory, expected_mp3_filename)
+                expected_mp3_path = os.path.join(songs_directory, expected_mp3_filename) # songs_directory is passed in
 
                 print(f"\nבחרת: {song_name}")
                 print(f"קישור YouTube: {youtube_url}")
@@ -77,8 +156,9 @@ checks for the corresponding MP3 file, and returns details.
                     print(f"קובץ האודיו הצפוי '{expected_mp3_path}' עבור השיר '{song_name}' לא נמצא בתיקייה '{songs_directory}'.")
                     print("ודא שהקובץ קיים עם השם המדויק (כולל סיומת mp3) והנתיב הנכון.")
                     print("אנא בחר שיר אחר או תקן את שם הקובץ / מיקומו ונסה שנית.")
-                    continue
+                    continue # Go back to asking for input
                 else:
+                    # Found the MP3 file
                     return song_name, youtube_url, expected_mp3_path
             else:
                 print(f"בחירה לא חוקית. אנא הזן מספר בין 1 ל-{len(valid_songs)} או 'q'.")
@@ -88,30 +168,30 @@ checks for the corresponding MP3 file, and returns details.
              print("\nיציאה לפי בקשת המשתמש.")
              return None, None, None
 
+
+# --- Main Execution Logic ---
 def main():
-    print("--- יוצר וידאו כתוביות YouTube ---")
+    print("--- יוצר וידאו כתוביות YouTube (מוגדר מ-JSON) ---")
 
-    os.makedirs(ASSETS_DIR, exist_ok=True)
-    os.makedirs(FONTS_DIR, exist_ok=True)
-    os.makedirs(DEMO_SONGS_DIR, exist_ok=True)
-    os.makedirs(JSON_FILES_DIR, exist_ok=True)
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-
+    # API Key Check
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         print("שגיאה: משתנה הסביבה 'GEMINI_API_KEY' לא הוגדר.")
         print("אנא הגדר את המפתח והפעל את הסקריפט מחדש.")
         sys.exit(1)
 
+    # Song Selection (Uses resolved DEMO_SONGS_DIR)
     selected_song_name, youtube_link, mp3_file_path = select_song_from_list(SONG_LIST_JSON_PATH, DEMO_SONGS_DIR)
     if not selected_song_name:
         print("לא נבחר שיר. יוצא מהתוכנית.")
         sys.exit(0)
 
+    # Subtitle Generation (Uses resolved JSON_FILES_DIR)
     print("\n--- יצירה או טעינה של כתוביות ---")
     subtitle_generator = SubtitleGenerator(api_key=api_key, json_output_dir=JSON_FILES_DIR)
     english_subs, hebrew_subs = subtitle_generator.generate_or_load_subtitles(youtube_link, mp3_file_path)
 
+    # Check subtitle results (logic unchanged)
     if english_subs is None and hebrew_subs is None:
         print("\nשגיאה קריטית: לא ניתן היה ליצור או לטעון כתוביות.")
         print("יוצא מהתוכנית.")
@@ -125,32 +205,12 @@ def main():
     else:
         print("\nנתוני הכתוביות הוכנו בהצלחה.")
 
+    # Video Creation
     print("\n--- יצירת הוידאו ---")
-    video_creator_config = {
-        'assets_dir': ASSETS_DIR,
-        'fonts_dir': FONTS_DIR,
-        'output_frames_dir': OUTPUT_FRAMES_DIR,
-        'output_video_dir': OUTPUT_DIR,
-        'background_image_name': os.path.join('levels', "word_background.png"),
-        'font_name': "Rubik-Regular.ttf",
-        'video_resolution': (1280, 720),
-        'video_fps': 25,
-        'fontsize_en': 60,
-        'fontsize_he': 57,
-        'color_subs': 'black',
-        'stroke_color_subs': 'white',
-        'stroke_width_subs': 1.5,
-        'spacing_within_language': 10,
-        'spacing_between_languages': 35,
-        'fontsize_title': 120,
-        'color_title': 'blue',
-        'stroke_color_title': 'white',
-        'stroke_width_title': 4.0,
-        'position_title': ('center', 'center'),
-    }
-
     try:
-        video_creator = VideoCreator(config=video_creator_config)
+        # Instantiate VideoCreator with the *resolved* configuration
+        video_creator = VideoCreator(resolved_config)
+
         output_base_name = os.path.splitext(os.path.basename(mp3_file_path))[0]
         created_video_path = video_creator.create_video(
             mp3_path=mp3_file_path,
@@ -169,11 +229,14 @@ def main():
 
     except FileNotFoundError as e:
         print(f"\nשגיאה קריטית: קובץ חיוני לא נמצא - {e}")
-        print("ודא שקובץ הפונט ותמונת הרקע קיימים בנתיבים המוגדרים.")
+        print("ודא שקובץ הפונט ותמונת הרקע קיימים בנתיבים המוגדרים בקובץ הקונפיגורציה video_config.json והם תקינים.")
         sys.exit(1)
+    except KeyError as e:
+         print(f"\nשגיאה קריטית: מפתח חסר בקובץ הקונפיגורציה video_config.json - {e}")
+         print("אנא ודא שכל המפתחות הנדרשים קיימים בקובץ.")
+         sys.exit(1)
     except Exception as e:
         print(f"\nשגיאה לא צפויה במהלך הגדרת או הרצת VideoCreator: {e}")
-        import traceback
         traceback.print_exc()
         sys.exit(1)
 

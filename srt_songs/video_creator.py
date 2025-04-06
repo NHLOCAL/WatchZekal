@@ -15,40 +15,54 @@ class VideoCreator:
     Creates a video file with background, optional title, subtitles, and audio.
     Handles subtitle rendering using PIL for advanced text layout (BiDi, stroke).
     Includes logic for saving subtitle frames.
+    Configuration is loaded from an external JSON file via the main script.
     """
-    def __init__(self, config):
+    def __init__(self, resolved_config):
         """
-        Initializes the VideoCreator with configuration settings.
+        Initializes the VideoCreator with resolved configuration settings.
 
         Args:
-            config (dict): A dictionary containing configuration like paths,
-                           resolution, fps, font details, styling, etc.
-                           Expected keys:
-                           - assets_dir, fonts_dir, output_frames_dir, output_video_dir
-                           - background_image_name (relative to assets/backgrounds)
-                           - font_name (relative to fonts_dir)
-                           - video_resolution (tuple), video_fps (int)
-                           - fontsize_en, fontsize_he, color_subs, stroke_color_subs, stroke_width_subs
-                           - spacing_within_language, spacing_between_languages
-                           - fontsize_title, color_title, stroke_color_title, stroke_width_title, position_title
+            resolved_config (dict): A dictionary containing configuration with
+                                    *absolute paths* already resolved.
+                                    Expected keys based on video_config.json structure:
+                                    - paths (dict with absolute paths: assets_dir, fonts_dir, output_frames_dir, output_video_dir)
+                                    - video_settings (dict)
+                                    - background (dict with absolute background_image_path)
+                                    - title_style (dict with font_name, size, color, etc.)
+                                    - subtitle_style (dict with font_name, common, english, hebrew, layout sections)
         """
-        self.config = config
-        self.font_path = os.path.join(config['fonts_dir'], config['font_name'])
-        self.background_image_path = os.path.join(config['assets_dir'], 'backgrounds', config['background_image_name'])
-        self.output_frames_dir = config['output_frames_dir']
-        self.output_video_dir = config['output_video_dir']
+        self.cfg = resolved_config # Store the resolved config
+
+        # Extract key paths and settings for easier access
+        self.paths = self.cfg['paths']
+        self.video_settings = self.cfg['video_settings']
+        self.bg_settings = self.cfg['background']
+        self.title_style = self.cfg['title_style']
+        self.subtitle_style = self.cfg['subtitle_style']
+
+        # Construct absolute font paths
+        self.title_font_path = os.path.join(self.paths['fonts_dir'], self.title_style['font_name'])
+        self.subtitle_font_path = os.path.join(self.paths['fonts_dir'], self.subtitle_style['font_name'])
+
+        # --- Use paths directly from resolved_config ---
+        self.background_image_path = self.bg_settings['background_image_path']
+        self.output_frames_dir = self.paths['output_frames_dir']
+        self.output_video_dir = self.paths['output_dir'] # Use the correct key 'output_dir'
+        # --- End paths ---
 
         self._validate_paths()
-        self._ensure_dirs_exist()
+        self._ensure_dirs_exist() # Directories should already be created by main, but double-check
 
         # State for frame saving during render
         self.combined_subs_list_for_frames = []
         self.saved_subtitle_ids = set()
 
     def _validate_paths(self):
-        """Checks if essential files (font, background) exist."""
-        if not os.path.exists(self.font_path):
-            raise FileNotFoundError(f"Error: Font file not found at '{self.font_path}'")
+        """Checks if essential files (fonts, background) exist using absolute paths."""
+        if not os.path.exists(self.title_font_path):
+            raise FileNotFoundError(f"Error: Title font file not found at '{self.title_font_path}'")
+        if not os.path.exists(self.subtitle_font_path):
+            raise FileNotFoundError(f"Error: Subtitle font file not found at '{self.subtitle_font_path}'")
         if not os.path.exists(self.background_image_path):
             raise FileNotFoundError(f"Error: Background image not found at '{self.background_image_path}'")
 
@@ -69,19 +83,20 @@ class VideoCreator:
             return audio_clip, duration
         except Exception as e:
             print(f"Error loading audio file '{mp3_path}': {e}")
-            raise  # Re-raise the exception to halt execution
+            raise
 
     def _create_background_clip(self, duration):
         """Creates the background video clip from an image."""
         print("Loading background image...")
         try:
             bg_clip = mp.ImageClip(self.background_image_path, duration=duration)
+            target_w, target_h = self.video_settings['resolution']
             # Resize height first, then crop width if needed, then final resize
-            bg_clip = bg_clip.resize(height=self.config['video_resolution'][1])
-            if bg_clip.w > self.config['video_resolution'][0]:
-                bg_clip = bg_clip.crop(x_center=bg_clip.w / 2, width=self.config['video_resolution'][0])
-            bg_clip = bg_clip.resize(self.config['video_resolution'])
-            bg_clip = bg_clip.set_fps(self.config['video_fps'])
+            bg_clip = bg_clip.resize(height=target_h)
+            if bg_clip.w > target_w:
+                bg_clip = bg_clip.crop(x_center=bg_clip.w / 2, width=target_w)
+            bg_clip = bg_clip.resize((target_w, target_h))
+            bg_clip = bg_clip.set_fps(self.video_settings['fps'])
             return bg_clip
         except Exception as e:
             print(f"Error loading or processing background image '{self.background_image_path}': {e}")
@@ -94,7 +109,6 @@ class VideoCreator:
             times = []
             if isinstance(subs_data_en, list):
                 for sub in subs_data_en:
-                     # Use float conversion here as data should be parsed already
                     start = float(sub.get('start_time', float('inf')))
                     if start >= 0: times.append(start)
             if isinstance(subs_data_he, list):
@@ -116,45 +130,54 @@ class VideoCreator:
         return first_start_time
 
     def _create_title_clip(self, song_title_text, title_duration):
-        """Creates the title text clip."""
+        """Creates the title text clip using settings from title_style."""
         if title_duration <= 0:
             print("Title duration is zero or negative, skipping title clip creation.")
             return None
 
         print(f"Creating title clip for duration: {title_duration:.2f}s")
         try:
-            # Use method='label' for potentially better centering of single line
-            title_clip = mp.TextClip(song_title_text, font=self.font_path,
-                                     fontsize=self.config['fontsize_title'], color=self.config['color_title'],
-                                     stroke_color=self.config['stroke_color_title'],
-                                     stroke_width=self.config['stroke_width_title'],
-                                     method='label') # Use label
+            title_clip = mp.TextClip(song_title_text, font=self.title_font_path, # Use resolved path
+                                     fontsize=self.title_style['font_size'],
+                                     color=self.title_style['color'],
+                                     stroke_color=self.title_style.get('stroke_color'), # Use .get for optional keys
+                                     stroke_width=self.title_style.get('stroke_width', 0),
+                                     method='label')
 
             # Resize if too wide
-            max_width = self.config['video_resolution'][0] * 0.9
+            max_width = self.video_settings['resolution'][0] * 0.9
             if title_clip.w > max_width:
                  title_clip = title_clip.resize(width=max_width)
 
-            title_clip = title_clip.set_position(self.config['position_title'])
+            # Position uses list from JSON -> tuple for moviepy
+            pos = tuple(self.title_style['position'])
+            title_clip = title_clip.set_position(pos)
             title_clip = title_clip.set_duration(title_duration).set_start(0)
             print("Title clip created.")
             return title_clip
         except Exception as e:
             print(f"Error creating title clip: {e}")
             traceback.print_exc()
-            return None # Don't halt execution for title error
+            return None
 
     # --- Subtitle Rendering Helpers ---
 
     def _draw_text_with_stroke(self, draw, pos, text, font, fill_color, stroke_color, stroke_width):
         """Draws text with an outline using PIL."""
         x, y = pos
-        offset = stroke_width
-        # Draw stroke in cardinal directions
-        draw.text((x - offset, y), text, font=font, fill=stroke_color)
-        draw.text((x + offset, y), text, font=font, fill=stroke_color)
-        draw.text((x, y - offset), text, font=font, fill=stroke_color)
-        draw.text((x, y + offset), text, font=font, fill=stroke_color)
+        # Only draw stroke if width > 0 and color is defined
+        if stroke_width > 0 and stroke_color:
+            offset = stroke_width
+            draw.text((x - offset, y), text, font=font, fill=stroke_color)
+            draw.text((x + offset, y), text, font=font, fill=stroke_color)
+            draw.text((x, y - offset), text, font=font, fill=stroke_color)
+            draw.text((x, y + offset), text, font=font, fill=stroke_color)
+            # Optional: Diagonal strokes for thicker outline (might be overkill)
+            # draw.text((x-offset, y-offset), text, font=font, fill=stroke_color)
+            # draw.text((x+offset, y-offset), text, font=font, fill=stroke_color)
+            # draw.text((x-offset, y+offset), text, font=font, fill=stroke_color)
+            # draw.text((x+offset, y+offset), text, font=font, fill=stroke_color)
+
         # Draw fill color on top
         draw.text((x, y), text, font=font, fill=fill_color)
 
@@ -168,28 +191,24 @@ class VideoCreator:
             wrapped_lines = []
             current_line = ''
             for word in words:
-                if not word: continue # Skip empty strings resulting from multiple spaces
+                if not word: continue
 
                 test_line = f"{current_line} {word}".strip()
                 try:
-                    # Use textbbox for potentially more accurate width calculation
                     bbox = draw.textbbox((0, 0), test_line, font=font)
                     line_width = bbox[2] - bbox[0]
-                except AttributeError: # Fallback for older PIL/Pillow or specific fonts
+                except AttributeError:
                     try:
                         line_width = draw.textlength(test_line, font=font)
-                    except AttributeError: # Absolute fallback
-                        line_width = len(test_line) * font.size * 0.6 # Rough estimate
+                    except AttributeError:
+                        line_width = len(test_line) * font.size * 0.6
 
                 if line_width <= max_width:
                     current_line = test_line
                 else:
-                    # Word doesn't fit, push the previous line (if any)
                     if current_line:
                         wrapped_lines.append(current_line)
-                    # Start new line with the current word
                     current_line = word
-                    # Check if the single word itself is too long
                     try:
                         bbox_word = draw.textbbox((0, 0), current_line, font=font)
                         word_width = bbox_word[2] - bbox_word[0]
@@ -199,30 +218,22 @@ class VideoCreator:
                          except AttributeError:
                               word_width = len(current_line) * font.size * 0.6
 
-                    # If the single word is still too long, add it anyway (it will overflow)
-                    # but only if it wasn't the *start* of a line attempt.
                     if word_width > max_width and len(wrapped_lines) > 0 :
-                         # This scenario should be rare if the previous line was added
-                         # Add the long word as its own line now
                          wrapped_lines.append(current_line)
-                         current_line = "" # Reset current line as the long word is handled
+                         current_line = ""
                     elif word_width > max_width and len(wrapped_lines) == 0:
-                         # The very first word is too long, add it and reset
                          wrapped_lines.append(current_line)
                          current_line = ""
 
-
-            # Add the last remaining line
             if current_line:
                 wrapped_lines.append(current_line)
-
-            # Return the list of wrapped lines, or the original line in a list if no wrapping occurred
             return wrapped_lines if wrapped_lines else ([line_text.strip()] if line_text.strip() else [])
 
 
     def _create_styled_subtitle_clip_pil(self, subs_data_en, subs_data_he, total_duration):
         """
-        Creates the subtitle clip using PIL for rendering BiDi text with stroke.
+        Creates the subtitle clip using PIL for rendering BiDi text with stroke,
+        using styles from subtitle_style config.
         Also prepares the list used for frame saving.
         """
         print("Processing combined subtitles (EN/HE) using PIL with BiDi...")
@@ -234,24 +245,20 @@ class VideoCreator:
 
         if not subs_en and not subs_he:
             print("Warning: No subtitle data provided (English or Hebrew).")
-            # Return an empty clip and empty list
-            empty_clip = mp.ColorClip(size=self.config['video_resolution'], color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0)
+            empty_clip = mp.ColorClip(size=self.video_settings['resolution'], color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0)
             return empty_clip, []
 
-        # --- Combine Subtitles by ID ---
-        # Convert parsed float times back for comparison/logic if needed, but keep floats for MoviePy
         subs_en_map = {str(sub.get('id', f'en_{i}')): sub for i, sub in enumerate(subs_en)}
         subs_he_map = {str(sub.get('id', f'he_{i}')): sub for i, sub in enumerate(subs_he)}
 
-        # Try to sort IDs numerically if possible, fallback to string sort
         def sort_key(id_str):
              match = re.search(r'\d+', str(id_str))
-             return int(match.group()) if match else float('inf') # Put non-numeric last
+             return int(match.group()) if match else float('inf')
 
         all_ids = sorted(list(set(subs_en_map.keys()) | set(subs_he_map.keys())), key=sort_key)
-
         print(f"DEBUG: Starting merge. Found {len(subs_en_map)} EN keys, {len(subs_he_map)} HE keys. Total unique IDs: {len(all_ids)}")
 
+        # --- Merge Logic (largely unchanged, uses parsed data) ---
         for idx_str in all_ids:
             sub_en = subs_en_map.get(idx_str)
             sub_he = subs_he_map.get(idx_str)
@@ -259,51 +266,40 @@ class VideoCreator:
             he_start, he_end, he_text = (0, 0, "")
             valid_en, valid_he = False, False
 
-            # Validate and extract English data (times are expected as floats here)
             try:
                 if sub_en and 'start_time' in sub_en and 'end_time' in sub_en and 'text' in sub_en:
                     en_start = max(0, float(sub_en['start_time']))
                     en_end = max(en_start, float(sub_en['end_time']))
-                    en_text_raw = sub_en.get('text', '') # Default to empty string
+                    en_text_raw = sub_en.get('text', '')
                     en_text = str(en_text_raw).strip().replace('\\n', '\n')
-                    if en_end > en_start: # Check for valid duration
-                        valid_en = True
+                    if en_end > en_start: valid_en = True
             except (ValueError, TypeError) as e: print(f"Warning: Invalid data in English sub ID {idx_str}: {e}")
 
-            # Validate and extract Hebrew data
             try:
                 if sub_he and 'start_time' in sub_he and 'end_time' in sub_he and 'text' in sub_he:
                     he_start = max(0, float(sub_he['start_time']))
                     he_end = max(he_start, float(sub_he['end_time']))
                     he_text_raw = sub_he.get('text', '')
                     he_text = str(he_text_raw).strip().replace('\\n', '\n')
-                    if he_end > he_start:
-                        valid_he = True
+                    if he_end > he_start: valid_he = True
             except (ValueError, TypeError) as e: print(f"Warning: Invalid data in Hebrew sub ID {idx_str}: {e}")
 
-
-            # Combine Text and Determine Overall Timing
             combined_text_parts = []
             start_time = float('inf')
             end_time = 0
-
-            has_en_text = valid_en and en_text # Check if text is non-empty
+            has_en_text = valid_en and en_text
             has_he_text = valid_he and he_text
 
-            # Append English text first if it exists
             if has_en_text:
                 combined_text_parts.append(en_text)
                 start_time = min(start_time, en_start)
                 end_time = max(end_time, en_end)
 
-            # Append Hebrew text *after* English if it exists
             if has_he_text:
                 combined_text_parts.append(he_text)
                 start_time = min(start_time, he_start)
                 end_time = max(end_time, he_end)
 
-            # If only one language has text, use its timing. If both have text, use the combined range.
-            # If NEITHER has text, but timing exists (e.g., an empty entry meant to sync), use that timing.
             if not has_en_text and not has_he_text:
                  if valid_en:
                      start_time = min(start_time, en_start)
@@ -312,134 +308,102 @@ class VideoCreator:
                      start_time = min(start_time, he_start)
                      end_time = max(end_time, he_end)
 
-
-            # Proceed if we have text OR valid timing information
             if combined_text_parts or (start_time != float('inf') and end_time > 0):
-                # Join with double newline only if both languages provided non-empty text
                 separator = "\n\n" if has_en_text and has_he_text else ""
                 combined_text = separator.join(combined_text_parts)
-
-                # Create a unique ID for this combined entry
                 sub_id = f"combined_{idx_str}_{subtitle_id_counter}"
                 subtitle_id_counter += 1
-
-                # Ensure duration is at least one frame long for MoviePy
-                min_duration = 1.0 / self.config['video_fps']
-                start_time = 0 if start_time == float('inf') else start_time # Handle no start time found
-                if end_time <= start_time:
-                    end_time = start_time + min_duration
-
-                # Clip times to total video duration
+                min_duration = 1.0 / self.video_settings['fps']
+                start_time = 0 if start_time == float('inf') else start_time
+                if end_time <= start_time: end_time = start_time + min_duration
                 start_time = min(start_time, total_duration)
                 end_time = min(end_time, total_duration)
 
-
-                if end_time > start_time: # Final check for validity
+                if end_time > start_time:
                     time_interval = (start_time, end_time)
                     combined_subs_format.append((time_interval, combined_text, sub_id))
-                # else:
-                    # print(f"DEBUG: Skipping sub {sub_id} due to invalid time range: {start_time:.3f} -> {end_time:.3f}")
-
+        # --- End Merge Logic ---
 
         if not combined_subs_format:
             print("Warning: No valid combined subtitles were created.")
-            empty_clip = mp.ColorClip(size=self.config['video_resolution'], color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0)
+            empty_clip = mp.ColorClip(size=self.video_settings['resolution'], color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0)
             return empty_clip, []
 
-        # Sort by start time
         combined_subs_format.sort(key=lambda item: item[0][0])
         print(f"DEBUG: Finished merge. Combined {len(combined_subs_format)} subtitle entries.")
-
-        # Store the list needed for the frame saver *before* passing to generator
         self.combined_subs_list_for_frames = combined_subs_format
 
         # --- PIL Text Rendering Generator Function ---
         def generator(txt):
-            # This function is called by SubtitlesClip for each unique text block.
-            # 'txt' here is the combined text (potentially multi-line, with \n\n separator)
             try:
-                font_en = ImageFont.truetype(self.font_path, self.config['fontsize_en'])
-                font_he = ImageFont.truetype(self.font_path, self.config['fontsize_he'])
+                # Use font sizes from config
+                font_en = ImageFont.truetype(self.subtitle_font_path, self.subtitle_style['english']['font_size'])
+                font_he = ImageFont.truetype(self.subtitle_font_path, self.subtitle_style['hebrew']['font_size'])
             except Exception as e:
-                print(f"CRITICAL Error loading PIL font '{self.font_path}': {e}")
-                # Return a small transparent clip on error
+                print(f"CRITICAL Error loading PIL subtitle font '{self.subtitle_font_path}': {e}")
                 return mp.ImageClip(np.zeros((10, 10, 4), dtype=np.uint8), ismask=False, transparent=True).set_duration(0.1)
 
-            video_w, video_h = self.config['video_resolution']
-            max_text_width = video_w * 0.85 # Max width allowed for text block
+            video_w, video_h = self.video_settings['resolution']
+            max_text_width = video_w * 0.85
 
-            # Handle empty text (SubtitlesClip might pass empty strings)
             if not txt or not txt.strip():
-                # Return a transparent frame matching video size
                 empty_frame = np.zeros((video_h, video_w, 4), dtype=np.uint8)
-                return mp.ImageClip(empty_frame, ismask=False, transparent=True).set_duration(1.0 / self.config['video_fps'])
+                return mp.ImageClip(empty_frame, ismask=False, transparent=True).set_duration(1.0 / self.video_settings['fps'])
 
-            # --- Process Text for Rendering ---
             img = Image.new('RGBA', (video_w, video_h), (0, 0, 0, 0))
             draw = ImageDraw.Draw(img)
-
-            # Split into potential language blocks, then lines within blocks
             language_blocks = txt.split('\n\n')
-            processed_lines_details = [] # Stores {'text', 'font', 'is_hebrew', 'width', 'height', 'spacing_after'}
-
+            processed_lines_details = []
             total_text_height = 0
             line_counter = 0
+
+            # Extract common subtitle styles
+            sub_color = self.subtitle_style['common']['color']
+            sub_stroke_color = self.subtitle_style['common'].get('stroke_color')
+            sub_stroke_width = self.subtitle_style['common'].get('stroke_width', 0)
+            spacing_within = self.subtitle_style['layout']['spacing_within_language']
+            spacing_between = self.subtitle_style['layout']['spacing_between_languages']
 
             for block_index, block in enumerate(language_blocks):
                 original_lines_in_block = [line for line in block.splitlines() if line.strip()]
                 if not original_lines_in_block: continue
 
-                # Determine language of the block (assume first line dictates it)
                 is_heb_block = self._is_hebrew(original_lines_in_block[0])
                 font_for_block = font_he if is_heb_block else font_en
-                spacing_after_block = self.config['spacing_between_languages'] if block_index < len(language_blocks) - 1 else 0
 
                 for i, line in enumerate(original_lines_in_block):
-                    # Wrap the line if needed
                     wrapped_lines = self._wrap_text(draw, line, font_for_block, max_text_width)
 
                     for k, wrapped_line in enumerate(wrapped_lines):
-                        # Calculate dimensions for the wrapped line
                         try:
                             bbox = draw.textbbox((0, 0), wrapped_line, font=font_for_block)
                             line_width = bbox[2] - bbox[0]
-                            line_height = bbox[3] - bbox[1] # Height from bbox might be more accurate
+                            line_height = bbox[3] - bbox[1]
                         except AttributeError:
                             line_width = draw.textlength(wrapped_line, font=font_for_block) if hasattr(draw, 'textlength') else 100
-                            line_height = font_for_block.size * 1.2 # Estimate height
+                            line_height = font_for_block.size * 1.2
 
-                        # Determine spacing after this specific wrapped line
                         is_last_wrapped_in_line = (k == len(wrapped_lines) - 1)
                         is_last_line_in_block = (i == len(original_lines_in_block) - 1)
                         is_last_block = (block_index == len(language_blocks) - 1)
 
                         spacing_after_this_line = 0
-                        if not is_last_wrapped_in_line:
-                            spacing_after_this_line = self.config['spacing_within_language'] # Intra-line spacing (wrapped)
-                        elif not is_last_line_in_block:
-                            spacing_after_this_line = self.config['spacing_within_language'] # Inter-line spacing (same language)
-                        elif not is_last_block:
-                            spacing_after_this_line = self.config['spacing_between_languages'] # Inter-language spacing
+                        if not is_last_wrapped_in_line: spacing_after_this_line = spacing_within
+                        elif not is_last_line_in_block: spacing_after_this_line = spacing_within
+                        elif not is_last_block: spacing_after_this_line = spacing_between
 
                         line_detail = {
-                            'text': wrapped_line,
-                            'font': font_for_block,
-                            'is_hebrew': is_heb_block,
-                            'width': line_width,
-                            'height': line_height,
-                            'spacing_after': spacing_after_this_line,
-                            'line_index': line_counter # Unique index for this rendered line
+                            'text': wrapped_line, 'font': font_for_block, 'is_hebrew': is_heb_block,
+                            'width': line_width, 'height': line_height,
+                            'spacing_after': spacing_after_this_line, 'line_index': line_counter
                         }
                         processed_lines_details.append(line_detail)
                         total_text_height += line_height + spacing_after_this_line
                         line_counter += 1
 
-            # Adjust total height (remove last spacing)
             if processed_lines_details:
                 total_text_height -= processed_lines_details[-1]['spacing_after']
 
-            # --- Draw the Processed Lines ---
-            # Calculate starting Y position to center the block vertically
             current_y = (video_h - total_text_height) / 2
 
             for detail in processed_lines_details:
@@ -452,44 +416,34 @@ class VideoCreator:
                         text_to_draw = get_display(reshaped_text)
                     except Exception as e:
                         print(f"Warning: BiDi reshaping/display failed for '{text_to_draw}': {e}")
-                        # Draw without reshaping if error occurs
 
-                # Draw using the helper function for stroke
                 self._draw_text_with_stroke(
                     draw, (x_pos, current_y), text_to_draw, detail['font'],
-                    self.config['color_subs'], self.config['stroke_color_subs'], self.config['stroke_width_subs']
+                    sub_color, sub_stroke_color, sub_stroke_width # Use extracted styles
                 )
-
-                # Move Y position for the next line
                 current_y += detail['height'] + detail['spacing_after']
 
-            # Convert PIL image to numpy array for MoviePy
             frame_array = np.array(img)
-            # Return as an ImageClip (duration doesn't matter much here, SubtitlesClip handles timing)
-            return mp.ImageClip(frame_array, ismask=False, transparent=True).set_duration(1.0 / self.config['video_fps'])
+            return mp.ImageClip(frame_array, ismask=False, transparent=True).set_duration(1.0 / self.video_settings['fps'])
         # --- End of PIL Generator Function ---
 
-        # --- Create MoviePy SubtitlesClip ---
-        # Prepare list of ((start, end), text) for SubtitlesClip
         subs_for_moviepy = [(item[0], item[1]) for item in combined_subs_format]
 
         if not subs_for_moviepy:
              print("Warning: No subtitle data to feed into MoviePy SubtitlesClip.")
-             empty_clip = mp.ColorClip(size=self.config['video_resolution'], color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0)
-             return empty_clip, self.combined_subs_list_for_frames # Return empty list
+             empty_clip = mp.ColorClip(size=self.video_settings['resolution'], color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0)
+             return empty_clip, self.combined_subs_list_for_frames
 
         try:
             subtitle_moviepy_clip = SubtitlesClip(subs_for_moviepy, generator)
-            # Set duration explicitly AFTER creation, position can be set here too
             subtitle_moviepy_clip = subtitle_moviepy_clip.set_duration(total_duration).set_position('center')
             print(f"SubtitlesClip created successfully. Duration: {subtitle_moviepy_clip.duration:.2f}s")
             return subtitle_moviepy_clip, self.combined_subs_list_for_frames
         except Exception as e:
             print(f"CRITICAL Error creating MoviePy SubtitlesClip: {e}")
             traceback.print_exc()
-            # Return an empty clip on critical error
-            empty_clip = mp.ColorClip(size=self.config['video_resolution'], color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0)
-            return empty_clip, [] # Return empty list as well
+            empty_clip = mp.ColorClip(size=self.video_settings['resolution'], color=(0,0,0,0), ismask=True, duration=total_duration).set_opacity(0)
+            return empty_clip, []
 
 
     # --- Frame Saving Logic ---
@@ -497,84 +451,65 @@ class VideoCreator:
     def _sanitize_filename(self, text, max_len=50):
         """Cleans text to be suitable for a filename."""
         text = text.replace('\n', ' ').replace('\r', '')
-        # Remove invalid filename characters
         text = re.sub(r'[\\/*?:"<>|.!@#$%^&+=~`{}\[\];\'’,]', "", text)
         text = text.strip()
-        text = re.sub(r'\s+', '_', text) # Replace whitespace with underscore
-        if not text: return "subtitle" # Default if text becomes empty
+        text = re.sub(r'\s+', '_', text)
+        if not text: return "subtitle"
 
-        # Truncate if too long
         if len(text) > max_len:
-            # Try to cut at the last underscore within the limit
             cut_point = text.rfind('_', 0, max_len)
             if cut_point != -1 and cut_point > max_len // 2 :
                  text = text[:cut_point] + "_etc"
             else:
-                 text = text[:max_len] + "_etc" # Hard cut if no good underscore found
+                 text = text[:max_len] + "_etc"
         return text
 
     def _save_subtitle_frame_processor(self, get_frame, t):
         """
         MoviePy frame processor function (called via fl).
         Saves a frame when a new subtitle (with text) appears.
-        Must be a method to access self.combined_subs_list_for_frames and self.saved_subtitle_ids.
         """
         try:
-            # Get the current frame from the input clip (background + title + subs)
             frame = get_frame(t)
-            if frame is None: # Handle potential issues in get_frame
-                 return np.zeros((self.config['video_resolution'][1], self.config['video_resolution'][0], 3), dtype=np.uint8)
-
+            if frame is None:
+                 return np.zeros((self.video_settings['resolution'][1], self.video_settings['resolution'][0], 3), dtype=np.uint8)
         except Exception as e:
-            # print(f"Warning: Error in get_frame({t:.3f}): {e}") # Optional debugging
-            # Return a black frame on error to avoid crashing the render
-            return np.zeros((self.config['video_resolution'][1], self.config['video_resolution'][0], 3), dtype=np.uint8)
+            return np.zeros((self.video_settings['resolution'][1], self.video_settings['resolution'][0], 3), dtype=np.uint8)
 
         active_sub_info = None
-        # Check against the pre-calculated list of combined subs
-        # Use a small epsilon for time comparison robustness
-        epsilon = 1 / (self.config['video_fps'] * 2)
+        epsilon = 1 / (self.video_settings['fps'] * 2)
         for interval, text, sub_id in self.combined_subs_list_for_frames:
             start_time, end_time = interval
-            # Check if current time 't' falls within the subtitle interval
             if (start_time - epsilon) <= t < (end_time - epsilon):
-                # Only consider saving if the subtitle text is not empty/whitespace
                 if text and text.strip():
-                     active_sub_info = (text, sub_id, start_time) # Include start time for filename
-                break # Found the active subtitle for this time 't'
+                     active_sub_info = (text, sub_id, start_time)
+                break
 
         if active_sub_info:
             text, sub_id, start_time = active_sub_info
-            # Check if we haven't saved a frame for this *specific* subtitle ID yet
             if sub_id not in self.saved_subtitle_ids:
                 try:
-                    # Create a unique and descriptive filename
-                    time_sec = int(start_time) # Use subtitle start time for consistency
+                    time_sec = int(start_time)
                     time_ms = int((start_time - time_sec) * 1000)
-                    time_str = f"{time_sec:04d}_{time_ms:03d}" # Format: SSSS_MMM
-                    safe_text = self._sanitize_filename(text) # Sanitize the actual text
+                    time_str = f"{time_sec:04d}_{time_ms:03d}"
+                    safe_text = self._sanitize_filename(text)
                     filename_base = f"frame_{time_str}_{safe_text}"
-                    # Limit overall filename length (including path prefix later)
                     max_fname_len = 150
+                    # Use the absolute path from config
                     filename = os.path.join(self.output_frames_dir, f"{filename_base[:max_fname_len]}.png")
 
-                    # Save the frame using imageio
-                    # Ensure frame is RGB (PIL generator gives RGBA)
-                    if frame.shape[2] == 4: # Check for alpha channel
-                        frame_rgb = frame[..., :3] # Slice off alpha
+                    if frame.shape[2] == 4:
+                        frame_rgb = frame[..., :3]
                     else:
-                         frame_rgb = frame # Assume already RGB
+                         frame_rgb = frame
 
                     imageio.imwrite(filename, frame_rgb)
-                    # print(f"Saved frame for sub ID {sub_id} at t={t:.3f}s to {filename}") # Optional debug
-                    self.saved_subtitle_ids.add(sub_id) # Mark this ID as saved
+                    self.saved_subtitle_ids.add(sub_id)
 
                 except Exception as e:
                     print(f"Error saving frame at t={t:.3f}s (sub_id: {sub_id}): {e}")
-                    # Mark as processed even if save failed to prevent repeated attempts/errors
                     self.saved_subtitle_ids.add(sub_id)
 
-        # IMPORTANT: Always return the original frame for the composition
         return frame
 
 
@@ -582,7 +517,7 @@ class VideoCreator:
 
     def create_video(self, mp3_path, song_title_text, english_subtitle_data, hebrew_subtitle_data, output_video_filename_base):
         """
-        Orchestrates the video creation process.
+        Orchestrates the video creation process using external config.
 
         Args:
             mp3_path (str): Path to the input audio file.
@@ -595,104 +530,83 @@ class VideoCreator:
             str | None: The path to the created video file, or None if creation failed.
         """
         print(f"\n--- Starting Video Creation for: {output_video_filename_base} ---")
+        # Use the absolute output dir path
         output_video_file = os.path.join(self.output_video_dir, f"{output_video_filename_base}_subtitled.mp4")
-        temp_audio_file = os.path.join(self.output_video_dir, f'temp-audio-{output_video_filename_base}-{int(time.time())}.m4a') # Unique temp name
+        temp_audio_file = os.path.join(self.output_video_dir, f'temp-audio-{output_video_filename_base}-{int(time.time())}.m4a')
 
         audio_clip = None
         background_clip = None
         title_clip = None
         subtitles_clip = None
-        final_clip_for_render = None # Use a specific variable for the clip passed to write_videofile
+        final_clip_for_render = None
 
         try:
-            # 1. Load Audio (Essential)
             audio_clip, audio_duration = self._load_audio(mp3_path)
-
-            # 2. Create Background (Essential)
             background_clip = self._create_background_clip(audio_duration)
 
-            # 3. Determine Title Duration and Create Title Clip (Optional)
             first_sub_time = self._get_first_subtitle_time(english_subtitle_data, hebrew_subtitle_data, audio_duration)
-            min_title_threshold = 0.5 # Minimum duration to show title
+            min_title_threshold = 0.5
             title_duration = first_sub_time if first_sub_time >= min_title_threshold else 0
-            title_clip = self._create_title_clip(song_title_text, title_duration) # Returns None if duration=0 or error
+            title_clip = self._create_title_clip(song_title_text, title_duration)
 
-            # 4. Create Subtitle Clip (Optional but primary feature)
-            # This populates self.combined_subs_list_for_frames needed by the frame saver
             subtitles_clip, _ = self._create_styled_subtitle_clip_pil(
                 english_subtitle_data, hebrew_subtitle_data, audio_duration
             )
             if not subtitles_clip or subtitles_clip.duration <= 0:
                  print("Warning: Subtitle clip generation failed or resulted in an empty clip.")
-                 subtitles_clip = None # Ensure it's None if invalid
-            elif subtitles_clip.duration > audio_duration + 1: # Sanity check duration
+                 subtitles_clip = None
+            elif subtitles_clip.duration > audio_duration + 1:
                 print(f"Warning: Subtitles clip duration ({subtitles_clip.duration:.2f}s) significantly exceeds audio duration ({audio_duration:.2f}s). Trimming.")
                 subtitles_clip = subtitles_clip.set_duration(audio_duration)
 
-
-            # 5. Composite Clips
             print("Compositing video layers...")
-            clips_to_composite = [background_clip] # Start with background
-            if title_clip:
-                clips_to_composite.append(title_clip)
-            if subtitles_clip:
-                clips_to_composite.append(subtitles_clip)
-            else:
-                 print("Info: No valid subtitle clip to composite.") # Info message
+            clips_to_composite = [background_clip]
+            if title_clip: clips_to_composite.append(title_clip)
+            if subtitles_clip: clips_to_composite.append(subtitles_clip)
+            else: print("Info: No valid subtitle clip to composite.")
 
-            # Create the composite clip
-            composite_video = mp.CompositeVideoClip(clips_to_composite, size=self.config['video_resolution'])
-            # Explicitly set duration based on audio
+            # Use resolution from config
+            composite_video = mp.CompositeVideoClip(clips_to_composite, size=self.video_settings['resolution'])
             composite_video = composite_video.set_duration(audio_duration)
 
-
-            # 6. Apply Frame Saving (if subtitles exist)
             print("Attaching frame saving processor...")
-            # Check if the list used by the processor has actual content
             if self.combined_subs_list_for_frames:
-                 # Apply the processor method using fl
                  final_video_layers = composite_video.fl(self._save_subtitle_frame_processor, apply_to=['color'])
-                 # Ensure duration is maintained after fl
                  final_video_layers = final_video_layers.set_duration(audio_duration)
                  print("Frame saving enabled.")
             else:
                 print("No subtitle data for frame saving, skipping processor attachment.")
-                final_video_layers = composite_video # Use the composite clip directly
+                final_video_layers = composite_video
 
-
-            # 7. Add Audio
             print("Adding audio...")
             final_clip_for_render = final_video_layers.set_audio(audio_clip)
-            # Ensure final duration matches audio precisely
             final_clip_for_render = final_clip_for_render.set_duration(audio_duration)
 
-            # 8. Write Video File
             print(f"Writing final video to '{output_video_file}'...")
             if not final_clip_for_render or final_clip_for_render.duration <= 0:
                  raise ValueError("Final video clip for rendering is invalid or has zero duration.")
 
-            # Reset saved IDs for this render pass
-            self.saved_subtitle_ids = set()
+            self.saved_subtitle_ids = set() # Reset before render
 
             final_clip_for_render.write_videofile(
                 output_video_file,
-                fps=self.config['video_fps'],
-                codec='libx264',        # Standard H.264 codec
-                audio_codec='aac',      # Standard AAC audio codec
-                temp_audiofile=temp_audio_file, # Use unique temp file
+                fps=self.video_settings['fps'], # Use FPS from config
+                codec='libx264',
+                audio_codec='aac',
+                temp_audiofile=temp_audio_file,
                 remove_temp=True,
-                threads=max(1, (os.cpu_count() or 2) // 2), # Use half CPU cores
-                preset='medium',        # Good balance of speed/quality
-                logger='bar',           # Show progress bar
-                # ffmpeg_params=["-loglevel", "error"] # Uncomment for less ffmpeg output
+                threads=max(1, (os.cpu_count() or 2) // 2),
+                preset='medium',
+                logger='bar',
+                # ffmpeg_params=["-loglevel", "error"]
             )
             print(f"\nVideo creation successful: '{output_video_file}'")
-            if self.combined_subs_list_for_frames: # Check if frames were intended
-                 if self.saved_subtitle_ids: # Check if any were actually saved
+            if self.combined_subs_list_for_frames:
+                 if self.saved_subtitle_ids:
+                     # Use absolute path from config
                     print(f"Subtitle frames saved in: '{self.output_frames_dir}'")
                  else:
                     print("No subtitle frames were saved (perhaps no text content in subs?).")
-
 
             return output_video_file
 
@@ -710,21 +624,17 @@ class VideoCreator:
             return None
 
         finally:
-            # --- Cleanup ---
             print("Releasing resources...")
-            # Close clips safely
-            for clip in [audio_clip, background_clip, title_clip, subtitles_clip, final_clip_for_render]: # Add composite_video? No, it's part of final usually
+            for clip in [audio_clip, background_clip, title_clip, subtitles_clip, final_clip_for_render]:
                  if clip and hasattr(clip, 'close') and callable(getattr(clip, 'close', None)):
                     try:
                         clip.close()
                     except Exception as e_close:
                         print(f"Warning: Error closing a clip object: {e_close}")
 
-            # Ensure temporary audio file is removed
             if os.path.exists(temp_audio_file):
                 try:
                     os.remove(temp_audio_file)
-                    # print(f"Temporary audio file removed: {temp_audio_file}") # Optional info
                 except Exception as e:
                     print(f"Warning: Could not remove temporary audio file '{temp_audio_file}': {e}")
 
