@@ -12,7 +12,7 @@ import traceback # For detailed error reporting
 
 class VideoCreator:
     """
-    Creates a video file with background, optional title, subtitles, and audio.
+    Creates a video file with background, optional title, artist name, subtitles, and audio.
     Handles subtitle rendering using PIL for advanced text layout (BiDi, stroke).
     Includes logic for saving subtitle frames.
     Configuration is loaded from an external JSON file via the main script.
@@ -28,17 +28,24 @@ class VideoCreator:
         self.bg_settings = self.cfg['background']
         self.title_style = self.cfg['title_style']
         self.subtitle_style = self.cfg['subtitle_style']
+        # --- הוספה: קריאת הגדרות עיצוב הזמר ---
+        self.artist_style = self.cfg.get('artist_style') # Use .get() in case it's missing
+        # --- סוף הוספה ---
 
         self.title_font_path = os.path.join(self.paths['fonts_dir'], self.title_style['font_name'])
         self.subtitle_font_path = os.path.join(self.paths['fonts_dir'], self.subtitle_style['font_name'])
-
-        self.background_image_path = self.bg_settings['background_image_path']
-        # --- הוספה: אחסון נתיב רקע הפתיח ---
-        self.intro_background_image_path = self.bg_settings.get('intro_background_image_path') # .get() למקרה שלא הוגדר
+        # --- הוספה: נתיב פונט הזמר (רק אם הוגדר הסגנון) ---
+        self.artist_font_path = None
+        if self.artist_style and 'font_name' in self.artist_style:
+            self.artist_font_path = os.path.join(self.paths['fonts_dir'], self.artist_style['font_name'])
         # --- סוף הוספה ---
 
+
+        self.background_image_path = self.bg_settings['background_image_path']
+        self.intro_background_image_path = self.bg_settings.get('intro_background_image_path')
+
         self.output_frames_dir = self.paths['output_frames_dir']
-        self.output_video_dir = self.paths['output_dir'] # תוקן מהפעם הקודמת
+        self.output_video_dir = self.paths['output_dir']
 
         self._validate_paths() # נעדכן את המתודה הזו
         self._ensure_dirs_exist()
@@ -54,9 +61,12 @@ class VideoCreator:
             raise FileNotFoundError(f"Error: Subtitle font file not found at '{self.subtitle_font_path}'")
         if not os.path.exists(self.background_image_path):
             raise FileNotFoundError(f"Error: Background image not found at '{self.background_image_path}'")
-        # --- הוספה: ולידציה לרקע הפתיח (אם קיים) ---
         if self.intro_background_image_path and not os.path.exists(self.intro_background_image_path):
              raise FileNotFoundError(f"Error: Intro background image specified but not found at '{self.intro_background_image_path}'")
+        # --- הוספה: ולידציה לפונט הזמר (אם הוגדר) ---
+        if self.artist_font_path and not os.path.exists(self.artist_font_path):
+             raise FileNotFoundError(f"Error: Artist font file specified in config but not found at '{self.artist_font_path}'")
+        # --- סוף הוספה ---
 
     def _ensure_dirs_exist(self):
         """Creates output directories if they don't exist."""
@@ -121,196 +131,231 @@ class VideoCreator:
 
         return first_start_time
 
-    def _create_title_clip(self, song_title_text, title_duration):
+    # --- שינוי: הוספת פרמטר artist_name_text ---
+    def _create_title_clip(self, song_title_text, artist_name_text, title_duration):
         """
-        Creates the title text clip using PIL rendering for reliability,
-        including text wrapping, horizontal margins, and simple line balancing for two lines.
+        Creates the title text clip (including artist name) using PIL rendering.
         """
         if title_duration <= 0:
             print("Title duration is zero or negative, skipping title clip creation.")
             return None
         if not song_title_text or not song_title_text.strip():
              print("Title text is empty, skipping title clip creation.")
-             return None # Don't create clip for empty text
+             return None
 
-        print(f"Creating title clip using PIL with wrapping/balancing for duration: {title_duration:.2f}s")
+        print(f"Creating title clip (Title & Artist) using PIL for duration: {title_duration:.2f}s")
         try:
-            # 1. Load Font and Get Settings
+            # 1. Load Fonts and Get Settings
             title_font_size = self.title_style['font_size']
             video_w, video_h = self.video_settings['resolution']
-            # הגדרת שוליים ורוחב מקסימלי
-            horizontal_margin = 100 # פיקסלים מכל צד
+            horizontal_margin = 100
             max_text_width = video_w - (2 * horizontal_margin)
-            if max_text_width <= 0: # הגנה במקרה של רזולוציה נמוכה מאוד
-                max_text_width = video_w * 0.8 # ברירת מחדל של 80%
-                print(f"Warning: Calculated max title width is too small due to margins. Using {max_text_width}px.")
+            if max_text_width <= 0:
+                max_text_width = video_w * 0.8
+                print(f"Warning: Calculated max title width is too small. Using {max_text_width}px.")
 
             try:
-                font = ImageFont.truetype(self.title_font_path, title_font_size)
+                title_font = ImageFont.truetype(self.title_font_path, title_font_size)
             except IOError:
                 print(f"CRITICAL Error: Could not load title font file '{self.title_font_path}' with PIL.")
-                raise # Re-raise error
+                raise
+
+            # --- הוספה: טעינת פונט וסגנון הזמר (אם קיים) ---
+            artist_font = None
+            render_artist = False
+            if artist_name_text and self.artist_style and self.artist_font_path:
+                try:
+                    artist_font_size = self.artist_style['font_size']
+                    artist_font = ImageFont.truetype(self.artist_font_path, artist_font_size)
+                    render_artist = True
+                    print(f"Artist font loaded: {self.artist_style['font_name']} ({artist_font_size}pt)")
+                except IOError:
+                    print(f"Warning: Could not load artist font file '{self.artist_font_path}'. Artist name will not be rendered.")
+                except KeyError as e:
+                     print(f"Warning: Missing key {e} in 'artist_style' config. Artist name might not render correctly.")
+                     render_artist = False # Disable rendering if style is incomplete
+            elif artist_name_text:
+                print("Warning: Artist name provided, but 'artist_style' or font is missing/invalid in config. Artist name will not be rendered.")
+            # --- סוף הוספה ---
 
             # 2. Create Transparent Image and Draw Context
             img = Image.new('RGBA', (video_w, video_h), (0, 0, 0, 0))
             draw = ImageDraw.Draw(img)
 
-            # 3. Wrap Text using existing helper function
+            # 3. Wrap Title Text
             print(f"Wrapping title text with max width: {max_text_width}px")
-            wrapped_lines = self._wrap_text(draw, song_title_text, font, max_text_width)
+            wrapped_title_lines = self._wrap_text(draw, song_title_text, title_font, max_text_width)
 
-            if not wrapped_lines:
+            if not wrapped_title_lines:
                 print("Warning: Title text resulted in no lines after wrapping.")
-                return None # Nothing to draw
+                # אם אין כותרת, כנראה גם לא נרצה אמן
+                return None
 
-            # --- הוספה: לוגיקת איזון פשוטה לשתי שורות ---
-            if len(wrapped_lines) == 2:
-                print("Attempting simple balance for 2 lines...")
-                line1_text = wrapped_lines[0]
-                line2_text = wrapped_lines[1]
+            # --- לוגיקת איזון שורות כותרת (ללא שינוי) ---
+            if len(wrapped_title_lines) == 2:
+                # ... (קוד איזון שורות כותרת נשאר זהה) ...
+                # (הדפסת ניסיון איזון, בדיקת תנאים, והתאמת wrapped_title_lines אם צריך)
+                line1_text = wrapped_title_lines[0]
+                line2_text = wrapped_title_lines[1]
                 line1_words = line1_text.split()
-
-                # תנאי לבדיקה: האם השורה השנייה קצרה מדי והראשונה ניתנת לקיצור?
                 should_adjust = False
                 try:
-                    # נסה להשתמש ברוחב פיקסלים
-                    bbox1 = draw.textbbox((0, 0), line1_text, font=font)
+                    bbox1 = draw.textbbox((0, 0), line1_text, font=title_font)
                     width1 = bbox1[2] - bbox1[0] if bbox1 else 0
-                    bbox2 = draw.textbbox((0, 0), line2_text, font=font)
+                    bbox2 = draw.textbbox((0, 0), line2_text, font=title_font)
                     width2 = bbox2[2] - bbox2[0] if bbox2 else 0
-
-                    # תנאי מבוסס רוחב (לדוגמה: שורה 2 פחות מ-40% מרוחב שורה 1)
                     if width1 > 0 and width2 > 0 and (width2 / width1 < 0.4) and len(line1_words) > 1:
-                         print(f"Condition met (width): w1={width1:.0f}, w2={width2:.0f} (<40% ratio), len(words1)>1")
                          should_adjust = True
                 except AttributeError:
-                    # גיבוי: תנאי מבוסס מספר מילים (שורה 2 היא מילה אחת, שורה 1 יותר מאחת)
                     line2_words = line2_text.split()
                     if len(line2_words) == 1 and len(line1_words) > 1:
-                        print(f"Condition met (word count): len(words2)==1, len(words1)>1")
                         should_adjust = True
 
                 if should_adjust:
-                    print(f"Adjusting lines: Moving last word from line 1 to line 2.")
-                    last_word_line1 = line1_words.pop() # הסר והחזר את המילה האחרונה
-                    new_line1_text = " ".join(line1_words) # בנה מחדש את שורה 1
-
-                    # ודא שהשורה הראשונה לא נשארה ריקה
+                    print(f"Adjusting title lines...")
+                    last_word_line1 = line1_words.pop()
+                    new_line1_text = " ".join(line1_words)
                     if new_line1_text.strip():
-                        new_line2_text = f"{last_word_line1} {line2_text}" # הוסף את המילה לתחילת שורה 2
-                        wrapped_lines = [new_line1_text, new_line2_text] # עדכון הרשימה
-                        print(f"Adjusted lines:\n1: {new_line1_text}\n2: {new_line2_text}")
+                        new_line2_text = f"{last_word_line1} {line2_text}"
+                        wrapped_title_lines = [new_line1_text, new_line2_text]
+                        print(f"Adjusted title lines:\n1: {new_line1_text}\n2: {new_line2_text}")
                     else:
-                         print("Adjustment aborted: Line 1 would become empty.")
+                         print("Title line adjustment aborted: Line 1 would become empty.")
+            # --- סוף לוגיקת איזון ---
 
-            # --- סוף הוספת לוגיקת האיזון ---
-
-            # 4. Calculate Text Block Dimensions and Starting Position (Using potentially adjusted wrapped_lines)
-            line_height = 0
-            max_line_width = 0
-            line_details = [] # Store bbox and text for each line
-
-            for line in wrapped_lines:
+            # 4. Calculate Title Block Dimensions
+            title_line_height = 0
+            max_title_line_width = 0
+            title_line_details = []
+            for line in wrapped_title_lines:
                 try:
-                    # Get accurate bounding box for the line
-                    line_bbox = draw.textbbox((0, 0), line, font=font)
+                    line_bbox = draw.textbbox((0, 0), line, font=title_font)
                     current_line_width = line_bbox[2] - line_bbox[0]
                     current_line_height = line_bbox[3] - line_bbox[1]
-                    line_details.append({'text': line, 'width': current_line_width, 'bbox': line_bbox})
-                    # Use the height of the first non-empty line as the standard line height
-                    if line_height == 0 and current_line_height > 0:
-                         line_height = current_line_height # More accurate than font.size
-                    max_line_width = max(max_line_width, current_line_width)
-                except AttributeError: # Fallback for older PIL
-                     # Less accurate fallback
-                     current_line_width = draw.textlength(line, font=font) if hasattr(draw, 'textlength') else len(line) * title_font_size * 0.6
-                     line_details.append({'text': line, 'width': current_line_width, 'bbox': None}) # No bbox available
-                     if line_height == 0: line_height = title_font_size * 1.2
-                     max_line_width = max(max_line_width, current_line_width)
+                    title_line_details.append({'text': line, 'width': current_line_width, 'height': current_line_height, 'bbox': line_bbox})
+                    if title_line_height == 0 and current_line_height > 0:
+                         title_line_height = current_line_height
+                    max_title_line_width = max(max_title_line_width, current_line_width)
+                except AttributeError:
+                     # Fallback...
+                     current_line_width = draw.textlength(line, font=title_font) if hasattr(draw, 'textlength') else len(line) * title_font_size * 0.6
+                     title_line_details.append({'text': line, 'width': current_line_width, 'height': title_font_size * 1.2, 'bbox': None}) # Approximation
+                     if title_line_height == 0: title_line_height = title_font_size * 1.2
+                     max_title_line_width = max(max_title_line_width, current_line_width)
 
-            if line_height == 0: # If all lines were empty or calculation failed
-                 line_height = title_font_size * 1.2 # Final fallback
+            if title_line_height == 0: title_line_height = title_font_size * 1.2
+            total_title_block_height = len(wrapped_title_lines) * title_line_height
 
-            total_block_height = len(wrapped_lines) * line_height
-            # Calculate starting Y to center the entire block vertically
-            start_y = (video_h - total_block_height) / 2
+            # --- הוספה: חישוב גובה ורוחב של בלוק האמן (אם קיים) ---
+            artist_line_height = 0
+            total_artist_block_height = 0
+            artist_line_details = []
+            vertical_offset = 0
+            if render_artist:
+                artist_vertical_offset_from_title = self.artist_style.get('vertical_offset_from_title', 10) # Default offset
+                vertical_offset += artist_vertical_offset_from_title # הוסף את המרווח לגובה הכולל
 
-            # 5. Draw Each Line Centered Horizontally
+                # הנחה פשוטה: שם האמן הוא שורה אחת ולא עובר גלישה (ניתן להרחיב אם צריך)
+                # אם שם האמן עלול להיות ארוך, תצטרך להוסיף כאן לוגיקת wrap_text דומה לכותרת
+                artist_line = artist_name_text.strip()
+                if artist_line:
+                    try:
+                        bbox = draw.textbbox((0,0), artist_line, font=artist_font)
+                        a_width = bbox[2] - bbox[0]
+                        a_height = bbox[3] - bbox[1]
+                        artist_line_details.append({'text': artist_line, 'width': a_width, 'height': a_height, 'bbox': bbox})
+                        artist_line_height = a_height if a_height > 0 else artist_font.size * 1.2
+                    except AttributeError:
+                         # Fallback...
+                         a_width = draw.textlength(artist_line, font=artist_font) if hasattr(draw, 'textlength') else len(artist_line) * artist_font.size * 0.6
+                         artist_line_height = artist_font.size * 1.2
+                         artist_line_details.append({'text': artist_line, 'width': a_width, 'height': artist_line_height, 'bbox': None})
+
+                    total_artist_block_height = artist_line_height
+
+            # 5. Calculate Combined Starting Position
+            total_combined_height = total_title_block_height + vertical_offset + total_artist_block_height
+            start_y = (video_h - total_combined_height) / 2
+
+            # 6. Draw Title Lines
             current_y = start_y
-            for detail in line_details:
+            for detail in title_line_details:
                 line_text = detail['text']
                 line_width = detail['width']
-                # Calculate starting X to center *this specific line* horizontally
                 line_x = (video_w - line_width) / 2
-
-                # Use the y position from the bbox if available for potentially better alignment?
-                # Stick with current_y for top alignment of the line box for now.
-                draw_y = current_y
-
-                # Draw the line with stroke using the helper function
                 self._draw_text_with_stroke(
-                    draw=draw,
-                    pos=(line_x, draw_y), # Use calculated X for centering and current Y
-                    text=line_text,
-                    font=font,
+                    draw=draw, pos=(line_x, current_y), text=line_text, font=title_font,
                     fill_color=self.title_style['color'],
                     stroke_color=self.title_style.get('stroke_color'),
                     stroke_width=self.title_style.get('stroke_width', 0)
                 )
-                # Move to the next line position
-                current_y += line_height
+                current_y += title_line_height # התקדמות לפי גובה שורת כותרת
 
-            # 6. Convert PIL Image to NumPy array
+            # --- הוספה: ציור שם הזמר ---
+            if render_artist and artist_line_details:
+                current_y += vertical_offset # הוסף את המרווח לפני ציור האמן
+
+                # נניח שכרגע יש רק שורה אחת לאמן
+                artist_detail = artist_line_details[0]
+                artist_text = artist_detail['text']
+                artist_width = artist_detail['width']
+                artist_x = (video_w - artist_width) / 2
+
+                # ציור האמן
+                self._draw_text_with_stroke(
+                    draw=draw, pos=(artist_x, current_y), text=artist_text, font=artist_font,
+                    fill_color=self.artist_style['color'],
+                    stroke_color=self.artist_style.get('stroke_color'),
+                    stroke_width=self.artist_style.get('stroke_width', 0)
+                )
+                # אם היו מספר שורות לאמן, היית צריך לולאה ולקדם את current_y בהתאם
+            # --- סוף הוספה ---
+
+
+            # 7. Convert PIL Image to NumPy array
             frame_array = np.array(img)
 
-            # 7. Create MoviePy ImageClip
+            # 8. Create MoviePy ImageClip
             title_clip = mp.ImageClip(frame_array, ismask=False, transparent=True)
             title_clip = title_clip.set_duration(title_duration).set_start(0)
-            # title_clip = title_clip.set_position('center') # Positioning is handled by PIL drawing
 
-            print("Title clip created using PIL with wrapping and potential balancing.")
+            print("Title clip (with optional artist) created using PIL.")
             return title_clip
 
         except Exception as e:
             print(f"Error creating title clip using PIL: {e}")
             traceback.print_exc()
-            return None # Return None on error
+            return None
 
 
-
-    # --- Subtitle Rendering Helpers ---
-
+    # --- Subtitle Rendering Helpers (ללא שינוי) ---
     def _draw_text_with_stroke(self, draw, pos, text, font, fill_color, stroke_color, stroke_width):
         """Draws text with an outline using PIL."""
+        # ... (קוד זהה) ...
         x, y = pos
-        # Only draw stroke if width > 0 and color is defined
         if stroke_width > 0 and stroke_color:
             offset = stroke_width
             draw.text((x - offset, y), text, font=font, fill=stroke_color)
             draw.text((x + offset, y), text, font=font, fill=stroke_color)
             draw.text((x, y - offset), text, font=font, fill=stroke_color)
             draw.text((x, y + offset), text, font=font, fill=stroke_color)
-            # Optional: Diagonal strokes for thicker outline (might be overkill)
-            # draw.text((x-offset, y-offset), text, font=font, fill=stroke_color)
-            # draw.text((x+offset, y-offset), text, font=font, fill=stroke_color)
-            # draw.text((x-offset, y+offset), text, font=font, fill=stroke_color)
-            # draw.text((x+offset, y+offset), text, font=font, fill=stroke_color)
-
-        # Draw fill color on top
         draw.text((x, y), text, font=font, fill=fill_color)
+
 
     def _is_hebrew(self, text_line):
         """Checks if a string contains Hebrew characters."""
+        # ... (קוד זהה) ...
         return any('\u0590' <= char <= '\u05FF' for char in text_line)
+
 
     def _wrap_text(self, draw, line_text, font, max_width):
             """Wraps a single line of text to fit max_width."""
+            # ... (קוד זהה) ...
             words = line_text.split(' ')
             wrapped_lines = []
             current_line = ''
             for word in words:
                 if not word: continue
-
                 test_line = f"{current_line} {word}".strip()
                 try:
                     bbox = draw.textbbox((0, 0), test_line, font=font)
@@ -350,10 +395,10 @@ class VideoCreator:
 
     def _create_styled_subtitle_clip_pil(self, subs_data_en, subs_data_he, total_duration):
         """
-        Creates the subtitle clip using PIL for rendering BiDi text with stroke,
-        using styles from subtitle_style config.
-        Also prepares the list used for frame saving.
+        Creates the subtitle clip using PIL for rendering BiDi text with stroke...
+        (הפונקציה הזו נשארת ללא שינוי מבחינת הלוגיקה שלה, היא עוסקת בכתוביות ולא בכותרת/אמן)
         """
+        # ... (כל הקוד של הפונקציה הזו נשאר זהה) ...
         print("Processing combined subtitles (EN/HE) using PIL with BiDi...")
         subs_en = subs_data_en if isinstance(subs_data_en, list) else []
         subs_he = subs_data_he if isinstance(subs_data_he, list) else []
@@ -451,10 +496,10 @@ class VideoCreator:
         print(f"DEBUG: Finished merge. Combined {len(combined_subs_format)} subtitle entries.")
         self.combined_subs_list_for_frames = combined_subs_format
 
-        # --- PIL Text Rendering Generator Function ---
+        # --- PIL Text Rendering Generator Function (ללא שינוי) ---
         def generator(txt):
+            # ... (קוד זהה) ...
             try:
-                # Use font sizes from config
                 font_en = ImageFont.truetype(self.subtitle_font_path, self.subtitle_style['english']['font_size'])
                 font_he = ImageFont.truetype(self.subtitle_font_path, self.subtitle_style['hebrew']['font_size'])
             except Exception as e:
@@ -475,7 +520,6 @@ class VideoCreator:
             total_text_height = 0
             line_counter = 0
 
-            # Extract common subtitle styles
             sub_color = self.subtitle_style['common']['color']
             sub_stroke_color = self.subtitle_style['common'].get('stroke_color')
             sub_stroke_width = self.subtitle_style['common'].get('stroke_width', 0)
@@ -522,7 +566,7 @@ class VideoCreator:
             if processed_lines_details:
                 total_text_height -= processed_lines_details[-1]['spacing_after']
 
-            current_y = (video_h - total_text_height) / 2
+            current_y = (video_h - total_text_height) / 2 # מרכוז אנכי של כל בלוק הכתוביות
 
             for detail in processed_lines_details:
                 x_pos = (video_w - detail['width']) / 2
@@ -537,7 +581,7 @@ class VideoCreator:
 
                 self._draw_text_with_stroke(
                     draw, (x_pos, current_y), text_to_draw, detail['font'],
-                    sub_color, sub_stroke_color, sub_stroke_width # Use extracted styles
+                    sub_color, sub_stroke_color, sub_stroke_width
                 )
                 current_y += detail['height'] + detail['spacing_after']
 
@@ -554,7 +598,7 @@ class VideoCreator:
 
         try:
             subtitle_moviepy_clip = SubtitlesClip(subs_for_moviepy, generator)
-            subtitle_moviepy_clip = subtitle_moviepy_clip.set_duration(total_duration).set_position('center')
+            subtitle_moviepy_clip = subtitle_moviepy_clip.set_duration(total_duration).set_position('center') # Position is handled by generator drawing now
             print(f"SubtitlesClip created successfully. Duration: {subtitle_moviepy_clip.duration:.2f}s")
             return subtitle_moviepy_clip, self.combined_subs_list_for_frames
         except Exception as e:
@@ -564,10 +608,10 @@ class VideoCreator:
             return empty_clip, []
 
 
-    # --- Frame Saving Logic ---
-
+    # --- Frame Saving Logic (ללא שינוי) ---
     def _sanitize_filename(self, text, max_len=50):
         """Cleans text to be suitable for a filename."""
+        # ... (קוד זהה) ...
         text = text.replace('\n', ' ').replace('\r', '')
         text = re.sub(r'[\\/*?:"<>|.!@#$%^&+=~`{}\[\];\'’,]', "", text)
         text = text.strip()
@@ -582,61 +626,73 @@ class VideoCreator:
                  text = text[:max_len] + "_etc"
         return text
 
+
     def _save_subtitle_frame_processor(self, get_frame, t):
         """
         MoviePy frame processor function (called via fl).
         Saves a frame when a new subtitle (with text) appears.
+        (הפונקציה הזו נשארת ללא שינוי)
         """
+        # ... (כל הקוד של הפונקציה הזו נשאר זהה) ...
         try:
             frame = get_frame(t)
             if frame is None:
                  return np.zeros((self.video_settings['resolution'][1], self.video_settings['resolution'][0], 3), dtype=np.uint8)
         except Exception as e:
-            return np.zeros((self.video_settings['resolution'][1], self.video_settings['resolution'][0], 3), dtype=np.uint8)
+             # Provide a default frame on error to avoid crashing the render
+            # print(f"Warning: Error in get_frame({t:.3f}): {e}")
+            return np.zeros((self.video_settings['resolution'][1], self.video_settings['resolution'][0], 3), dtype=np.uint8) # Return black frame
 
         active_sub_info = None
-        epsilon = 1 / (self.video_settings['fps'] * 2)
+        epsilon = 1 / (self.video_settings['fps'] * 2) # Small offset for timing checks
         for interval, text, sub_id in self.combined_subs_list_for_frames:
             start_time, end_time = interval
+            # Check if time 't' falls within the subtitle interval (considering epsilon)
             if (start_time - epsilon) <= t < (end_time - epsilon):
-                if text and text.strip():
+                if text and text.strip(): # Only consider subtitles with actual text content
                      active_sub_info = (text, sub_id, start_time)
-                break
+                break # Found the active subtitle for this time 't'
 
         if active_sub_info:
             text, sub_id, start_time = active_sub_info
             if sub_id not in self.saved_subtitle_ids:
+                # Save frame for this new subtitle ID
                 try:
                     time_sec = int(start_time)
                     time_ms = int((start_time - time_sec) * 1000)
-                    time_str = f"{time_sec:04d}_{time_ms:03d}"
+                    time_str = f"{time_sec:04d}_{time_ms:03d}" # Format: 0015_320 for 15.320s
                     safe_text = self._sanitize_filename(text)
                     filename_base = f"frame_{time_str}_{safe_text}"
-                    max_fname_len = 150
+                    max_fname_len = 150 # Limit filename length
                     # Use the absolute path from config
                     filename = os.path.join(self.output_frames_dir, f"{filename_base[:max_fname_len]}.png")
 
-                    if frame.shape[2] == 4:
-                        frame_rgb = frame[..., :3]
+                    # Ensure frame is RGB before saving
+                    if frame.shape[2] == 4: # Check if alpha channel exists
+                        frame_rgb = frame[..., :3] # Select only R, G, B channels
                     else:
-                         frame_rgb = frame
+                         frame_rgb = frame # Assume it's already RGB
 
                     imageio.imwrite(filename, frame_rgb)
                     self.saved_subtitle_ids.add(sub_id)
+                    # print(f"Saved frame for sub_id {sub_id} at t={t:.3f}s -> {os.path.basename(filename)}")
 
                 except Exception as e:
                     print(f"Error saving frame at t={t:.3f}s (sub_id: {sub_id}): {e}")
+                    # Add to set even if saving failed to prevent repeated attempts/errors
                     self.saved_subtitle_ids.add(sub_id)
 
+        # Crucially, return the original frame for video composition
         return frame
 
 
-    # --- Main Video Creation Method ---
+    # --- Main Video Creation Method (Modified Signature) ---
 
-    def create_video(self, mp3_path, song_title_text, english_subtitle_data, hebrew_subtitle_data, output_video_filename_base):
+    # --- שינוי: הוספת פרמטר artist_name_text ---
+    def create_video(self, mp3_path, song_title_text, artist_name_text, english_subtitle_data, hebrew_subtitle_data, output_video_filename_base):
         """
         Orchestrates the video creation process using external config.
-        Includes separate intro background and PIL-based title rendering.
+        Includes separate intro background and PIL-based title/artist rendering.
         """
         print(f"\n--- Starting Video Creation for: {output_video_filename_base} ---")
         output_video_file = os.path.join(self.output_video_dir, f"{output_video_filename_base}_subtitled.mp4")
@@ -644,8 +700,8 @@ class VideoCreator:
 
         audio_clip = None
         background_clip = None
-        intro_background_clip = None # קליפ חדש לרקע הפתיח
-        title_clip = None
+        intro_background_clip = None
+        title_clip = None # This will now contain both title and artist
         subtitles_clip = None
         final_clip_for_render = None
 
@@ -654,7 +710,7 @@ class VideoCreator:
             audio_clip, audio_duration = self._load_audio(mp3_path)
 
             # 2. Create Main Background (Full Duration)
-            background_clip = self._create_background_clip(audio_duration) # This uses self.background_image_path
+            background_clip = self._create_background_clip(audio_duration)
 
             # 3. Determine Title Duration
             first_sub_time = self._get_first_subtitle_time(english_subtitle_data, hebrew_subtitle_data, audio_duration)
@@ -665,29 +721,28 @@ class VideoCreator:
             if title_duration > 0 and self.intro_background_image_path:
                 print("Creating intro background clip...")
                 try:
-                    # Create clip with intro image, same duration as title
                     intro_background_clip = mp.ImageClip(self.intro_background_image_path, duration=title_duration)
                     target_w, target_h = self.video_settings['resolution']
-                    # Resize/crop intro background similarly to main background
                     intro_background_clip = intro_background_clip.resize(height=target_h)
                     if intro_background_clip.w > target_w:
                         intro_background_clip = intro_background_clip.crop(x_center=intro_background_clip.w / 2, width=target_w)
                     intro_background_clip = intro_background_clip.resize((target_w, target_h))
                     intro_background_clip = intro_background_clip.set_fps(self.video_settings['fps'])
-                    intro_background_clip = intro_background_clip.set_start(0).set_duration(title_duration) # Set start and duration explicitly
+                    intro_background_clip = intro_background_clip.set_start(0).set_duration(title_duration)
                     print("Intro background clip created.")
                 except Exception as e:
                     print(f"Warning: Could not create intro background clip from '{self.intro_background_image_path}': {e}")
-                    intro_background_clip = None # Fallback to main background if intro fails
+                    intro_background_clip = None
 
-            # 5. Create Title Clip (Using PIL)
-            title_clip = self._create_title_clip(song_title_text, title_duration) # Now uses PIL
+            # --- שינוי: העברת שם הזמר ליצירת קליפ הכותרת ---
+            # 5. Create Title Clip (Using PIL, now includes artist)
+            title_clip = self._create_title_clip(song_title_text, artist_name_text, title_duration)
+            # --- סוף שינוי ---
 
-            # 6. Create Subtitle Clip
+            # 6. Create Subtitle Clip (ללא שינוי כאן)
             subtitles_clip, _ = self._create_styled_subtitle_clip_pil(
                 english_subtitle_data, hebrew_subtitle_data, audio_duration
             )
-            # (Validation logic for subtitles_clip remains the same)
             if not subtitles_clip or subtitles_clip.duration <= 0:
                  print("Warning: Subtitle clip generation failed or resulted in an empty clip.")
                  subtitles_clip = None
@@ -696,24 +751,21 @@ class VideoCreator:
                 subtitles_clip = subtitles_clip.set_duration(audio_duration)
 
 
-            # 7. Composite Clips (Order Matters for Layering!)
+            # 7. Composite Clips (Order Matters!)
             print("Compositing video layers...")
-            clips_to_composite = [background_clip] # Start with main background (bottom layer)
+            clips_to_composite = [background_clip] # Start with main background
 
-            # Add Intro Background *on top* of main background if it exists
             if intro_background_clip:
-                clips_to_composite.append(intro_background_clip)
+                clips_to_composite.append(intro_background_clip) # Layer intro bg on top if exists
                 print("Adding intro background layer.")
             else:
                  print("Using main background for intro section.")
 
-            # Add Title Clip (rendered with PIL) on top
-            if title_clip:
-                clips_to_composite.append(title_clip)
+            if title_clip: # title_clip now potentially includes the artist
+                clips_to_composite.append(title_clip) # Add Title/Artist layer
 
-            # Add Subtitles Clip on top
             if subtitles_clip:
-                clips_to_composite.append(subtitles_clip)
+                clips_to_composite.append(subtitles_clip) # Add Subtitles layer last (topmost text)
             else:
                  print("Info: No valid subtitle clip to composite.")
 
@@ -740,7 +792,7 @@ class VideoCreator:
             if not final_clip_for_render or final_clip_for_render.duration <= 0:
                  raise ValueError("Final video clip for rendering is invalid or has zero duration.")
 
-            self.saved_subtitle_ids = set()
+            self.saved_subtitle_ids = set() # Reset before render
 
             final_clip_for_render.write_videofile(
                 output_video_file,
@@ -752,7 +804,7 @@ class VideoCreator:
                 threads=max(1, (os.cpu_count() or 2) // 2),
                 preset='medium',
                 logger='bar',
-                # ffmpeg_params=["-loglevel", "error"]
+                # ffmpeg_params=["-loglevel", "error"] # Uncomment for less ffmpeg output
             )
             print(f"\nVideo creation successful: '{output_video_file}'")
             if self.combined_subs_list_for_frames:
@@ -763,7 +815,6 @@ class VideoCreator:
 
             return output_video_file
 
-        # --- Exception Handling (Unchanged) ---
         except FileNotFoundError as e:
              print(f"\nError: Required file not found. {e}")
              traceback.print_exc()
@@ -777,7 +828,6 @@ class VideoCreator:
             traceback.print_exc()
             return None
 
-        # --- Cleanup (Important: Add new intro_background_clip) ---
         finally:
             print("Releasing resources...")
             # Add intro_background_clip to the list of clips to close

@@ -13,7 +13,7 @@
   },
   "background": {
     "image_path_rel_assets": "backgrounds/songs/subtitle.jpg",
-	"intro_image_path_rel_assets": "backgrounds/songs/intro.jpg"
+    "intro_image_path_rel_assets": "backgrounds/songs/intro.jpg"
   },
   "title_style": {
     "font_name": "Rubik-Bold.ttf",
@@ -22,6 +22,14 @@
     "stroke_color": "white",
     "stroke_width": 4.0,
     "position": ["center", "center"]
+  },
+  "artist_style": {
+    "font_name": "Rubik-Bold.ttf",
+    "font_size": 50,
+    "color": "#5A1E9C",
+    "stroke_color": "white",
+    "stroke_width": 2.0,
+    "vertical_offset_from_title": 20
   },
   "subtitle_style": {
     "font_name": "Rubik-Regular.ttf",

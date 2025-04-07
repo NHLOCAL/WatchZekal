@@ -57,7 +57,6 @@ def resolve_paths(config, base_dir):
     else:
          print("אזהרה: נתיב תמונת רקע ראשית לא הוגדר כראוי בקונפיגורציה.")
 
-    # --- הוספת רזולוציה לרקע הפתיח ---
     if 'intro_image_path_rel_assets' in bg_config:
         intro_bg_rel_path = bg_config['intro_image_path_rel_assets']
         bg_config['intro_background_image_path'] = os.path.join(assets_dir, intro_bg_rel_path)
@@ -65,9 +64,13 @@ def resolve_paths(config, base_dir):
     else:
         print("אזהרה: נתיב תמונת רקע לפתיח לא הוגדר בקונפיגורציה. ישתמש ברקע הראשי.")
         bg_config['intro_background_image_path'] = None # סמן כלא קיים
-    # --- סוף ההוספה ---
 
     resolved_config['background'] = bg_config # עדכון המילון בקונפיגורציה
+
+    # --- הוספה: ולידציה לקיום artist_style (אופציונלי) ---
+    if 'artist_style' not in resolved_config:
+        print("אזהרה: הגדרות עיצוב 'artist_style' חסרות בקובץ הקונפיגורציה. שם הזמר לא יוצג.")
+    # --- סוף הוספה ---
 
     return resolved_config, demo_songs_dir, json_files_dir
 
@@ -98,38 +101,41 @@ os.makedirs(JSON_FILES_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(OUTPUT_FRAMES_DIR, exist_ok=True) # Ensure frame dir exists too
 
-# --- Song Selection Function (Unchanged) ---
+# --- Song Selection Function (Modified) ---
 def select_song_from_list(json_path, songs_directory):
     """
-Loads a list of songs from a JSON file, prompts the user to select one,
-checks for the corresponding MP3 file, and returns details.
-"""
-    # ... (keep the existing function implementation) ...
+    Loads a list of songs from a JSON file, prompts the user to select one,
+    checks for the corresponding MP3 file, and returns details including the artist.
+    Returns: tuple (song_name, artist_name, youtube_url, mp3_path) or (None, None, None, None)
+    """
     if not os.path.exists(json_path):
         print(f"שגיאה: קובץ רשימת השירים '{json_path}' לא נמצא.")
         print("אנא צור קובץ 'song_list.json' בפורמט:")
-        print('[{"name": "שם השיר 1", "youtube_url": "קישור_יוטיוב_1"}, ...]')
-        return None, None, None
+        print('[{"name": "שם השיר 1", "artist": "שם הזמר 1", "youtube_url": "קישור_יוטיוב_1"}, ...]') # Updated example
+        return None, None, None, None # <<< שינוי: החזרת 4 ערכים
 
     try:
         with open(json_path, 'r', encoding='utf-8') as f:
             songs = json.load(f)
     except json.JSONDecodeError:
         print(f"שגיאה: קובץ ה-JSON '{json_path}' אינו תקין.")
-        return None, None, None
+        return None, None, None, None # <<< שינוי
     except Exception as e:
         print(f"שגיאה בטעינת קובץ ה-JSON '{json_path}': {e}")
-        return None, None, None
+        return None, None, None, None # <<< שינוי
 
     if not isinstance(songs, list) or not songs:
         print(f"שגיאה: קובץ ה-JSON '{json_path}' ריק או שאינו מכיל רשימה תקינה.")
-        return None, None, None
+        return None, None, None, None # <<< שינוי
 
     valid_songs = []
     print("\n--- רשימת שירים זמינים ---")
     for i, song in enumerate(songs):
+        # --- שינוי: בדיקה אם 'artist' קיים, אך לא חובה ---
         if isinstance(song, dict) and 'name' in song and 'youtube_url' in song:
-            print(f"{len(valid_songs) + 1}. {song['name']}")
+            # נציג את שם הזמר אם קיים
+            artist_display = f" - {song.get('artist', 'לא ידוע')}" if song.get('artist') else ""
+            print(f"{len(valid_songs) + 1}. {song['name']}{artist_display}")
             valid_songs.append(song)
         else:
             print(f"אזהרה: דילוג על רשומה לא תקינה באינדקס {i} בקובץ ה-JSON.")
@@ -137,24 +143,29 @@ checks for the corresponding MP3 file, and returns details.
 
     if not valid_songs:
          print("שגיאה: לא נמצאו שירים תקינים ברשימה.")
-         return None, None, None
+         return None, None, None, None # <<< שינוי
 
     while True:
         try:
             choice_str = input(f"הזן את מספר השיר שברצונך לעבד (1-{len(valid_songs)}), או 'q' ליציאה: ")
             if choice_str.lower() == 'q':
                  print("יציאה לפי בקשת המשתמש.")
-                 return None, None, None
+                 return None, None, None, None # <<< שינוי
             choice = int(choice_str)
             if 1 <= choice <= len(valid_songs):
                 selected_song = valid_songs[choice - 1]
                 song_name = selected_song['name']
                 youtube_url = selected_song['youtube_url']
-                # CRITICAL: Use the *resolved* DEMO_SONGS_DIR here
+                # --- הוספה: קבלת שם הזמר, אם קיים ---
+                artist_name = selected_song.get('artist') # יחזיר None אם לא קיים
+                # --------------------------------------
+
                 expected_mp3_filename = f"{song_name}.mp3"
                 expected_mp3_path = os.path.join(songs_directory, expected_mp3_filename) # songs_directory is passed in
 
                 print(f"\nבחרת: {song_name}")
+                if artist_name:
+                     print(f"זמר: {artist_name}") # הצגת הזמר אם יש
                 print(f"קישור YouTube: {youtube_url}")
                 print(f"נתיב MP3 צפוי: {expected_mp3_path}")
 
@@ -166,17 +177,17 @@ checks for the corresponding MP3 file, and returns details.
                     continue # Go back to asking for input
                 else:
                     # Found the MP3 file
-                    return song_name, youtube_url, expected_mp3_path
+                    return song_name, artist_name, youtube_url, expected_mp3_path # <<< שינוי: החזרת שם הזמר
             else:
                 print(f"בחירה לא חוקית. אנא הזן מספר בין 1 ל-{len(valid_songs)} או 'q'.")
         except ValueError:
             print("קלט לא תקין. אנא הזן מספר בלבד או 'q'.")
         except KeyboardInterrupt:
              print("\nיציאה לפי בקשת המשתמש.")
-             return None, None, None
+             return None, None, None, None # <<< שינוי
 
 
-# --- Main Execution Logic ---
+# --- Main Execution Logic (Modified) ---
 def main():
     print("--- יוצר וידאו כתוביות YouTube (מוגדר מ-JSON) ---")
 
@@ -187,15 +198,17 @@ def main():
         print("אנא הגדר את המפתח והפעל את הסקריפט מחדש.")
         sys.exit(1)
 
-    # Song Selection (Uses resolved DEMO_SONGS_DIR)
-    selected_song_name, youtube_link, mp3_file_path = select_song_from_list(SONG_LIST_JSON_PATH, DEMO_SONGS_DIR)
+    # --- שינוי: קבלת שם הזמר מהפונקציה ---
+    selected_song_name, selected_artist_name, youtube_link, mp3_file_path = select_song_from_list(SONG_LIST_JSON_PATH, DEMO_SONGS_DIR)
     if not selected_song_name:
         print("לא נבחר שיר. יוצא מהתוכנית.")
         sys.exit(0)
+    # --- סוף שינוי ---
 
     # Subtitle Generation (Uses resolved JSON_FILES_DIR)
     print("\n--- יצירה או טעינה של כתוביות ---")
     subtitle_generator = SubtitleGenerator(api_key=api_key, json_output_dir=JSON_FILES_DIR)
+    # אין שינוי בחלק הזה, subtitle_generator לא מושפע
     english_subs, hebrew_subs = subtitle_generator.generate_or_load_subtitles(youtube_link, mp3_file_path)
 
     # Check subtitle results (logic unchanged)
@@ -219,13 +232,16 @@ def main():
         video_creator = VideoCreator(resolved_config)
 
         output_base_name = os.path.splitext(os.path.basename(mp3_file_path))[0]
+        # --- שינוי: העברת שם הזמר לפונקציה ---
         created_video_path = video_creator.create_video(
             mp3_path=mp3_file_path,
             song_title_text=selected_song_name,
+            artist_name_text=selected_artist_name, # <-- פרמטר חדש
             english_subtitle_data=english_subs,
             hebrew_subtitle_data=hebrew_subs,
             output_video_filename_base=output_base_name
         )
+        # --- סוף שינוי ---
 
         if created_video_path:
             print(f"\n--- התהליך הושלם בהצלחה! ---")
@@ -236,11 +252,11 @@ def main():
 
     except FileNotFoundError as e:
         print(f"\nשגיאה קריטית: קובץ חיוני לא נמצא - {e}")
-        print("ודא שקובץ הפונט ותמונת הרקע קיימים בנתיבים המוגדרים בקובץ הקונפיגורציה video_config.json והם תקינים.")
+        print("ודא שקובץ הפונט (כולל פונט הזמר אם הוגדר) ותמונות הרקע קיימים בנתיבים המוגדרים בקובץ הקונפיגורציה video_config.json והם תקינים.") # עדכון הודעת שגיאה
         sys.exit(1)
     except KeyError as e:
          print(f"\nשגיאה קריטית: מפתח חסר בקובץ הקונפיגורציה video_config.json - {e}")
-         print("אנא ודא שכל המפתחות הנדרשים קיימים בקובץ.")
+         print("אנא ודא שכל המפתחות הנדרשים קיימים בקובץ, כולל 'artist_style' אם בכוונתך להשתמש בו.") # עדכון הודעת שגיאה
          sys.exit(1)
     except Exception as e:
         print(f"\nשגיאה לא צפויה במהלך הגדרת או הרצת VideoCreator: {e}")
