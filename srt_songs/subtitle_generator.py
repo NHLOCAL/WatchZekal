@@ -249,6 +249,8 @@ class SubtitleGenerator:
         """Returns the system instruction content."""
         return """You must create subtitles for the attached video. The output must be a **JSON Array** as shown below.
 
+**Pay attention**: Some songs include Hebrew words with English pronunciation (like "yerushalim habnuya"). Transcribe these words into English phonetically, as they sound in the English pronunciation.
+
 **CRITICAL REQUIREMENT for Time Format:**
 The `start_time` and `end_time` fields must be **strings** in the exact format `MM:SS.milliseconds` (two digits for minutes, two digits for seconds, a period, and three digits for milliseconds).
 **Example:** `"start_time": "01:45.320"`, `"end_time": "01:50.100"`.
