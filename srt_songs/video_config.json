@@ -25,11 +25,11 @@
   },
   "artist_style": {
     "font_name": "Rubik-Bold.ttf",
-    "font_size": 50,
-    "color": "#5A1E9C",
+    "font_size": 65,
+    "color": "#035E91",
     "stroke_color": "white",
     "stroke_width": 2.0,
-    "vertical_offset_from_title": 20
+    "vertical_offset_from_title": 45
   },
   "subtitle_style": {
     "font_name": "Rubik-Regular.ttf",
