@@ -124,7 +124,7 @@ class VideoCreator:
     def _create_title_clip(self, song_title_text, title_duration):
         """
         Creates the title text clip using PIL rendering for reliability,
-        including text wrapping and horizontal margins.
+        including text wrapping, horizontal margins, and simple line balancing for two lines.
         """
         if title_duration <= 0:
             print("Title duration is zero or negative, skipping title clip creation.")
@@ -133,24 +133,23 @@ class VideoCreator:
              print("Title text is empty, skipping title clip creation.")
              return None # Don't create clip for empty text
 
-        print(f"Creating title clip using PIL with wrapping for duration: {title_duration:.2f}s")
+        print(f"Creating title clip using PIL with wrapping/balancing for duration: {title_duration:.2f}s")
         try:
             # 1. Load Font and Get Settings
             title_font_size = self.title_style['font_size']
             video_w, video_h = self.video_settings['resolution']
-            # --- הגדרת שוליים ורוחב מקסימלי ---
+            # הגדרת שוליים ורוחב מקסימלי
             horizontal_margin = 100 # פיקסלים מכל צד
             max_text_width = video_w - (2 * horizontal_margin)
             if max_text_width <= 0: # הגנה במקרה של רזולוציה נמוכה מאוד
                 max_text_width = video_w * 0.8 # ברירת מחדל של 80%
                 print(f"Warning: Calculated max title width is too small due to margins. Using {max_text_width}px.")
-            # --- סוף הגדרות ---
 
             try:
                 font = ImageFont.truetype(self.title_font_path, title_font_size)
             except IOError:
                 print(f"CRITICAL Error: Could not load title font file '{self.title_font_path}' with PIL.")
-                raise
+                raise # Re-raise error
 
             # 2. Create Transparent Image and Draw Context
             img = Image.new('RGBA', (video_w, video_h), (0, 0, 0, 0))
@@ -164,7 +163,49 @@ class VideoCreator:
                 print("Warning: Title text resulted in no lines after wrapping.")
                 return None # Nothing to draw
 
-            # 4. Calculate Text Block Dimensions and Starting Position
+            # --- הוספה: לוגיקת איזון פשוטה לשתי שורות ---
+            if len(wrapped_lines) == 2:
+                print("Attempting simple balance for 2 lines...")
+                line1_text = wrapped_lines[0]
+                line2_text = wrapped_lines[1]
+                line1_words = line1_text.split()
+
+                # תנאי לבדיקה: האם השורה השנייה קצרה מדי והראשונה ניתנת לקיצור?
+                should_adjust = False
+                try:
+                    # נסה להשתמש ברוחב פיקסלים
+                    bbox1 = draw.textbbox((0, 0), line1_text, font=font)
+                    width1 = bbox1[2] - bbox1[0] if bbox1 else 0
+                    bbox2 = draw.textbbox((0, 0), line2_text, font=font)
+                    width2 = bbox2[2] - bbox2[0] if bbox2 else 0
+
+                    # תנאי מבוסס רוחב (לדוגמה: שורה 2 פחות מ-40% מרוחב שורה 1)
+                    if width1 > 0 and width2 > 0 and (width2 / width1 < 0.4) and len(line1_words) > 1:
+                         print(f"Condition met (width): w1={width1:.0f}, w2={width2:.0f} (<40% ratio), len(words1)>1")
+                         should_adjust = True
+                except AttributeError:
+                    # גיבוי: תנאי מבוסס מספר מילים (שורה 2 היא מילה אחת, שורה 1 יותר מאחת)
+                    line2_words = line2_text.split()
+                    if len(line2_words) == 1 and len(line1_words) > 1:
+                        print(f"Condition met (word count): len(words2)==1, len(words1)>1")
+                        should_adjust = True
+
+                if should_adjust:
+                    print(f"Adjusting lines: Moving last word from line 1 to line 2.")
+                    last_word_line1 = line1_words.pop() # הסר והחזר את המילה האחרונה
+                    new_line1_text = " ".join(line1_words) # בנה מחדש את שורה 1
+
+                    # ודא שהשורה הראשונה לא נשארה ריקה
+                    if new_line1_text.strip():
+                        new_line2_text = f"{last_word_line1} {line2_text}" # הוסף את המילה לתחילת שורה 2
+                        wrapped_lines = [new_line1_text, new_line2_text] # עדכון הרשימה
+                        print(f"Adjusted lines:\n1: {new_line1_text}\n2: {new_line2_text}")
+                    else:
+                         print("Adjustment aborted: Line 1 would become empty.")
+
+            # --- סוף הוספת לוגיקת האיזון ---
+
+            # 4. Calculate Text Block Dimensions and Starting Position (Using potentially adjusted wrapped_lines)
             line_height = 0
             max_line_width = 0
             line_details = [] # Store bbox and text for each line
@@ -202,15 +243,11 @@ class VideoCreator:
                 # Calculate starting X to center *this specific line* horizontally
                 line_x = (video_w - line_width) / 2
 
-                # Use the y position from the bbox if available for potentially better alignment
-                # Otherwise, use the calculated current_y
+                # Use the y position from the bbox if available for potentially better alignment?
+                # Stick with current_y for top alignment of the line box for now.
                 draw_y = current_y
-                if detail['bbox']:
-                     # Adjust draw_y to align baseline perhaps? No, keep it simple: use top alignment.
-                     # draw_y = current_y - detail['bbox'][1] # Trying to align based on bbox top
-                     pass # Stick with current_y for now
 
-                # Draw the line with stroke
+                # Draw the line with stroke using the helper function
                 self._draw_text_with_stroke(
                     draw=draw,
                     pos=(line_x, draw_y), # Use calculated X for centering and current Y
@@ -231,13 +268,14 @@ class VideoCreator:
             title_clip = title_clip.set_duration(title_duration).set_start(0)
             # title_clip = title_clip.set_position('center') # Positioning is handled by PIL drawing
 
-            print("Title clip created using PIL with wrapping and margins.")
+            print("Title clip created using PIL with wrapping and potential balancing.")
             return title_clip
 
         except Exception as e:
             print(f"Error creating title clip using PIL: {e}")
             traceback.print_exc()
-            return None
+            return None # Return None on error
+
 
 
     # --- Subtitle Rendering Helpers ---
