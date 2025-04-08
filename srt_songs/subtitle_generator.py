@@ -215,6 +215,12 @@ class SubtitleGenerator:
     def _get_api_config(self):
         """Returns the generation config with the required schema."""
         return types.GenerateContentConfig(
+            safety_settings=[
+                types.SafetySetting(
+                    category="HARM_CATEGORY_CIVIC_INTEGRITY",
+                    threshold="OFF",  # Off
+                ),
+            ],
             response_mime_type="application/json",
             response_schema=genai.types.Schema(
                 type = genai.types.Type.ARRAY,
