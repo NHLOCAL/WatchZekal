@@ -260,7 +260,7 @@ Each subtitle object in the JSON array must include:
 - **`id`**: Sequential number (integer).
 - **`start_time`**: Start time (string in `MM:SS.milliseconds` format).
 - **`end_time`**: End time (string in `MM:SS.milliseconds` format).
-- **`text`**: Subtitle text (string, can contain `\\n` for new lines).
+- **`text`**: Subtitle text (string).
 
 Maintain accuracy in the timings (using the specified string format) and the content. Output ONLY the JSON array.
 
@@ -271,19 +271,19 @@ Maintain accuracy in the timings (using the specified string format) and the con
     "id": 1,
     "start_time": "00:12.759",
     "end_time": "00:18.859",
-    "text": "I will never forget\\nthe night I saw my father cry"
+    "text": "I will never forget the night I saw my father cry"
   },
   {
     "id": 2,
     "start_time": "00:21.359",
     "end_time": "00:28.729",
-    "text": "I was frightened and alone\\nand his tears"
+    "text": "I was frightened and alone and his tears"
   },
   {
     "id": 3,
     "start_time": "02:30.110",
     "end_time": "02:35.800",
-    "text": "This shows the required\\nMM:SS.ms format"
+    "text": "This shows the required MM:SS.ms format"
   }
 ]
 ```"""
