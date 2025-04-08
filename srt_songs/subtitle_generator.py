@@ -384,7 +384,7 @@ Maintain the exact same JSON structure, including the 'id', 'start_time', and 'e
 
 The Hebrew translation must be accurate but phrased naturally, as someone would speak or sing.
 
-**Crucially, do not add any Hebrew diacritics (nikud) to the translated text.** Use only standard Hebrew letters. Ensure line breaks (`\\n`) are preserved or used appropriately in the Hebrew translation where needed.
+**Crucially, do not add any Hebrew diacritics (nikud) to the translated text.** Use only standard Hebrew letters.
 
 Output ONLY the translated JSON array.
 
