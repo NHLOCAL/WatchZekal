@@ -38,7 +38,7 @@ def resolve_paths(config, base_dir):
     output_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('output_rel', 'output')))
     output_frames_dir = os.path.join(output_dir, paths_cfg.get('output_frames_subdir', 'subtitle_frames'))
     demo_songs_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('demo_songs_rel', 'demo_songs')))
-    json_files_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('json_files_rel', 'json_files')))
+    srt_files_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('srt_files_rel', 'srt_files')))
 
     resolved_config['paths'] = {
         'assets_dir': assets_dir,
@@ -46,7 +46,7 @@ def resolve_paths(config, base_dir):
         'output_dir': output_dir,
         'output_frames_dir': output_frames_dir,
         'demo_songs_dir': demo_songs_dir,
-        'json_files_dir': json_files_dir
+        'srt_files_dir': srt_files_dir
     }
 
     # Resolve background image paths
@@ -72,7 +72,7 @@ def resolve_paths(config, base_dir):
         print("אזהרה: הגדרות עיצוב 'artist_style' חסרות בקובץ הקונפיגורציה. שם הזמר לא יוצג.")
     # --- סוף הוספה ---
 
-    return resolved_config, demo_songs_dir, json_files_dir
+    return resolved_config, demo_songs_dir, srt_files_dir
 
 # --- Path Setup (Relative to this file) ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -85,7 +85,7 @@ if not raw_config:
     sys.exit(1)
 
 # --- Resolve Paths ---
-resolved_config, DEMO_SONGS_DIR, JSON_FILES_DIR = resolve_paths(raw_config, BASE_DIR)
+resolved_config, DEMO_SONGS_DIR, SRT_FILES_DIR = resolve_paths(raw_config, BASE_DIR)
 # Extract other needed paths after resolution
 ASSETS_DIR = resolved_config['paths']['assets_dir']
 FONTS_DIR = resolved_config['paths']['fonts_dir']
@@ -97,7 +97,7 @@ OUTPUT_FRAMES_DIR = resolved_config['paths']['output_frames_dir']
 os.makedirs(ASSETS_DIR, exist_ok=True)
 os.makedirs(FONTS_DIR, exist_ok=True)
 os.makedirs(DEMO_SONGS_DIR, exist_ok=True)
-os.makedirs(JSON_FILES_DIR, exist_ok=True)
+os.makedirs(SRT_FILES_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(OUTPUT_FRAMES_DIR, exist_ok=True) # Ensure frame dir exists too
 
@@ -205,9 +205,8 @@ def main():
         sys.exit(0)
     # --- סוף שינוי ---
 
-    # Subtitle Generation (Uses resolved JSON_FILES_DIR)
     print("\n--- יצירה או טעינה של כתוביות ---")
-    subtitle_generator = SubtitleGenerator(api_key=api_key, json_output_dir=JSON_FILES_DIR)
+    subtitle_generator = SubtitleGenerator(api_key=api_key, srt_output_dir=SRT_FILES_DIR)
     # אין שינוי בחלק הזה, subtitle_generator לא מושפע
     english_subs, hebrew_subs = subtitle_generator.generate_or_load_subtitles(youtube_link, mp3_file_path)
 

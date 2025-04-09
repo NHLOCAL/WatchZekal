@@ -7,8 +7,8 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import arabic_reshaper
 from bidi.algorithm import get_display
-import time # For unique filenames if needed
-import traceback # For detailed error reporting
+import time
+import traceback
 
 class VideoCreator:
     """
