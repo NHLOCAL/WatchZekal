@@ -1,89 +1,67 @@
 %YAML 1.2
 ---
-# Instructions for the SubtitleGenerator Gemini API calls
+# Instructions for Gemini API: Audio Transcription and Translation
 
+# --- Transcription Task ---
 transcription_prompt: |
-  Transcribe the following song accurately, focusing on the primary vocal track.
-  Output the result as a JSON array following the specified format (id, start_time, end_time, text).
+  **TASK:** Transcribe the provided audio file into a JSON array of subtitle objects.
 
-  **Vocal Focus:**
-  *   Your primary focus should be transcribing the **lead vocalist's lyrics**.
-  *   If there is no distinct lead vocalist (e.g., a choir), focus on the **main melody line sung by the choir**.
-  *   Ignore background vocals, harmonies, or ad-libs unless they are the *only* vocal element in a specific time segment.
+  **CORE REQUIREMENTS:**
+  1.  **Vocal Focus:**
+      *   Prioritize transcription of the **lead vocalist**.
+      *   If no lead vocalist, transcribe the **main choir melody**.
+      *   IGNORE background vocals, ad-libs, and harmonies unless they are the sole vocal element.
+  2.  **Accuracy & Uncertainty:**
+      *   Accuracy is CRITICAL.
+      *   If a segment's lyrics are unclear, unintelligible, heavily obscured by noise, or non-lyrical (e.g., instrumental), set the `text` field for that subtitle object to EXACTLY: `[INAUDIBLE]`
+      *   Do NOT guess, invent, or add any other text around `[INAUDIBLE]`. Proceed to the next segment.
+  3.  **Output Format:** JSON Array ONLY.
 
-  **Accuracy and Handling Uncertainty:**
-  *   Accuracy is paramount. If a segment of the audio corresponding to a subtitle's timeframe is **unclear, unintelligible**, contains heavy background noise obscuring the voice, or consists only of non-lyrical sounds (like instrumental breaks, coughs) where lyrics might otherwise be expected, **do NOT invent or guess the text**.
-  *   Instead, for that specific subtitle object, set the `text` field precisely to the string: **`[INAUDIBLE]`**
-  *   Do not add any other words or explanations around `[INAUDIBLE]`. Just use that exact text. Then, proceed to the next subtitle segment.
+  **JSON OBJECT SPECIFICATION (Per Subtitle):**
+  *   `id`: (Integer) Sequential identifier.
+  *   `start_time`: (String) Start time in EXACT `MM:SS.milliseconds` format (e.g., "00:15.320").
+  *   `end_time`: (String) End time in EXACT `MM:SS.milliseconds` format (e.g., "00:18.100").
+  *   `text`: (String) The transcribed text OR `[INAUDIBLE]`.
 
-  **Formatting Requirements:**
-  *   **Time Format:** The `start_time` and `end_time` fields MUST be **strings** in the exact format `MM:SS.milliseconds` (e.g., `"01:45.320"`). **Do NOT use float seconds.**
-  *   **Single Line Text:** Each `text` field must contain only a **SINGLE line of text**. Do NOT use `\n` for line breaks within a subtitle. Create a new subtitle object for the next logical phrase.
-  *   **Concise Phrases:** Keep the text in each subtitle concise, representing a short, natural phrase or sentence from the focused vocal track. Prefer creating more subtitle objects with shorter text.
-  *   **No End Punctuation:** **Do NOT add a period (.)** or any other punctuation at the very end of the text in any subtitle object (unless it's part of the actual lyrics like "Oh!").
+  **TEXT FIELD RULES (`text`):**
+  *   **Single Line:** MUST contain only a single line of text. NO `\n` characters allowed.
+  *   **Conciseness:** Keep text to short, natural phrases or lyric lines from the focused vocal track. Create new objects for subsequent phrases.
+  *   **No End Period:** Do NOT add a period (.) at the end of the text.
+  *   **Phonetics:** Transcribe Hebrew words pronounced in English phonetically (e.g., "yerushalim habnuya").
 
-  **Output Structure:**
-  *   Each subtitle object in the JSON array must include: `id` (sequential integer), `start_time` (string), `end_time` (string), `text` (string).
-  *   Maintain accuracy in timings. Divide segments intelligently based on natural pauses, lyric lines, or short phrases from the focused vocal track.
-  *   Output ONLY the JSON array.
+  **SEGMENTATION:** Divide audio into subtitle objects intelligently based on natural pauses or distinct lyric phrases.
 
-  ### **Example JSON Structure (Reflecting focus, single lines, no end periods, and uncertainty):**
+  **EXAMPLE OUTPUT STRUCTURE:**
   ```json
   [
-    {
-      "id": 1,
-      "start_time": "00:12.759",
-      "end_time": "00:18.859",
-      "text": "I will never forget the night I saw my father cry" // Soloist line
-    },
-    {
-      "id": 2,
-      "start_time": "00:21.359",
-      "end_time": "00:25.500",
-      "text": "I was frightened and alone" // Soloist line
-    },
-    {
-      "id": 3,
-      "start_time": "00:25.600",
-      "end_time": "00:28.729",
-      "text": "and his tears" // Soloist line
-    },
-    {
-      "id": 4,
-      "start_time": "01:15.100",
-      "end_time": "01:19.450",
-      "text": "The choir sang in harmony" // Choir focus (assuming no soloist here)
-    },
-    {
-      "id": 5,
-      "start_time": "02:30.110",
-      "end_time": "02:35.800",
-      "text": "[INAUDIBLE]" // Segment was unclear or instrumental
-    },
-    {
-      "id": 6,
-      "start_time": "02:36.000",
-      "end_time": "02:40.120",
-      "text": "Returning to the main theme now" // Soloist resumes
-    }
+    { "id": 1, "start_time": "00:12.759", "end_time": "00:18.859", "text": "I will never forget the night I saw my father cry" },
+    { "id": 2, "start_time": "00:21.359", "end_time": "00:25.500", "text": "I was frightened and alone" },
+    { "id": 3, "start_time": "00:25.600", "end_time": "00:28.729", "text": "and his tears" },
+    { "id": 4, "start_time": "01:15.100", "end_time": "01:19.450", "text": "The choir sang together now" },
+    { "id": 5, "start_time": "02:30.110", "end_time": "02:35.800", "text": "[INAUDIBLE]" },
+    { "id": 6, "start_time": "02:36.000", "end_time": "02:40.120", "text": "He looked towards the sky" }
   ]
   ```
 
+# --- Translation Task ---
 translation_prompt_template: |
-  Translate the `text` field in the following English JSON subtitles into **natural-sounding Hebrew**.
+  **TASK:** Translate the `text` field of the provided English JSON subtitle objects into natural-sounding Hebrew.
 
-  Maintain the exact same JSON structure, including the 'id', 'start_time', and 'end_time' values (in `MM:SS.milliseconds` string format). Only translate the 'text' field for each object.
+  **INPUT:** English JSON array (provided below).
 
-  **IMPORTANT:** If the English `text` field is `[INAUDIBLE]`, the translated Hebrew `text` field should **also** be exactly `[INAUDIBLE]`. Do not attempt to translate this specific token.
+  **CORE REQUIREMENTS:**
+  1.  **Structure Preservation:** Maintain the EXACT original JSON structure, including `id`, `start_time` (string, `MM:SS.ms`), and `end_time` (string, `MM:SS.ms`) for every object.
+  2.  **Target Field:** Translate ONLY the value of the `text` field.
+  3.  **`[INAUDIBLE]` Handling:** If the English `text` field is EXACTLY `[INAUDIBLE]`, the Hebrew `text` field MUST also be EXACTLY `[INAUDIBLE]`. Do NOT translate this token.
+  4.  **Output Format:** Translated JSON Array ONLY.
 
-  For all other text fields:
-  *   The Hebrew translation must be accurate but phrased naturally, as someone would speak or sing.
-  *   Each translated 'text' field must also be a single line without a period at the end.
-  *   **Crucially, do not add any Hebrew diacritics (nikud) to the translated text.** Use only standard Hebrew letters.
+  **HEBREW TEXT RULES (Translated `text`):**
+  *   **Natural Language:** Translation must sound natural, as if spoken or sung in Hebrew.
+  *   **Single Line:** MUST contain only a single line of text. NO `\n` characters allowed.
+  *   **No End Period:** Do NOT add a period (.) at the end of the text.
+  *   **No Nikud:** Do NOT add Hebrew diacritics (nikud). Use standard Hebrew letters only.
 
-  Output ONLY the translated JSON array.
-
-  Original English JSON (with times as MM:SS.ms strings):
+  **Original English JSON:**
   ```json
   {english_json_prompt_string}
   ```
