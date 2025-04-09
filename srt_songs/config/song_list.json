@@ -20,7 +20,7 @@
     "youtube_url": "https://www.youtube.com/watch?v=_cSPv1pkeUc"
   },
   {
-    "name": "MIRACLES",
+    "name": "Miracles",
     "artist": "MBD",
     "youtube_url": "https://www.youtube.com/watch?v=66k_Wt6-kao"
   },
@@ -63,6 +63,11 @@
     "name": "Daddy Come Home",
     "artist": "Yeshiva Boys Choir",
     "youtube_url": "https://www.youtube.com/watch?v=xF7UVW6PLig"
+  },
+  {
+    "name": "Hold On",
+    "artist": "MBD",
+    "youtube_url": "https://www.youtube.com/watch?v=h9tAZbaQD6k"
   }
 ]
 
