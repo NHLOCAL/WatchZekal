@@ -2,34 +2,27 @@
 ---
 # Instructions for Gemini API: Audio Transcription and Translation
 
-# --- Transcription Task ---
+# --- Transcription Task (Concise) ---
 transcription_prompt: |
-  **TASK:** Transcribe the provided audio file into a JSON array of subtitle objects.
+  **TASK:** Transcribe ONLY primary vocals (lead/main choir) from the audio into a JSON array of subtitle objects.
 
-  **CORE REQUIREMENTS:**
-  1.  **Vocal Focus:**
-      *   Prioritize transcription of the **lead vocalist**.
-      *   If no lead vocalist, transcribe the **main choir melody**.
-      *   IGNORE background vocals, ad-libs, and harmonies unless they are the sole vocal element.
-  2.  **Accuracy & Uncertainty:**
-      *   Accuracy is CRITICAL.
-      *   If a segment's lyrics are unclear, unintelligible, heavily obscured by noise, or non-lyrical (e.g., instrumental), set the `text` field for that subtitle object to EXACTLY: `[INAUDIBLE]`
-      *   Do NOT guess, invent, or add any other text around `[INAUDIBLE]`. Proceed to the next segment.
-  3.  **Output Format:** JSON Array ONLY.
-
-  **JSON OBJECT SPECIFICATION (Per Subtitle):**
-  *   `id`: (Integer) Sequential identifier.
-  *   `start_time`: (String) Start time in EXACT `MM:SS.milliseconds` format (e.g., "00:15.320").
-  *   `end_time`: (String) End time in EXACT `MM:SS.milliseconds` format (e.g., "00:18.100").
-  *   `text`: (String) The transcribed text OR `[INAUDIBLE]`.
-
-  **TEXT FIELD RULES (`text`):**
-  *   **Single Line:** MUST contain only a single line of text. NO `\n` characters allowed.
-  *   **Conciseness:** Keep text to short, natural phrases or lyric lines from the focused vocal track. Create new objects for subsequent phrases.
-  *   **No End Period:** Do NOT add a period (.) at the end of the text.
-  *   **Phonetics:** Transcribe Hebrew words pronounced in English phonetically (e.g., "yerushalim habnuya").
-
-  **SEGMENTATION:** Divide audio into subtitle objects intelligently based on natural pauses or distinct lyric phrases.
+  **RULES:**
+  1.  **Vocal Focus:** Transcribe only lead vocalist or main choir melody. Ignore background vocals unless they are the sole vocal element.
+  2.  **Content Handling:**
+      *   **Clear Vocals:** Transcribe the text accurately.
+      *   **Unclear Vocals:** If primary vocals ARE PRESENT but indecipherable (unclear, noisy), use EXACTLY `[INAUDIBLE]` as the text.
+      *   **Music/Silence:** If a segment contains ONLY instrumental music or silence (NO primary vocals), **DO NOT generate a subtitle object for it.** Skip the segment entirely.
+  3.  **Output Format:** Must be a valid JSON array. Each object requires:
+      *   `id`: (Integer) Sequential.
+      *   `start_time`: (String) Format "MM:SS.milliseconds".
+      *   `end_time`: (String) Format "MM:SS.milliseconds".
+      *   `text`: (String) Transcribed text or `[INAUDIBLE]`.
+  4.  **Text Field (`text`):**
+      *   Single line only (NO `\n`).
+      *   Short, natural phrases/lines.
+      *   No period (.) at the end.
+      *   Use phonetic English for Hebrew words if applicable.
+  5.  **Segmentation:** Create subtitle objects based on natural vocal phrases or pauses.
 
   **EXAMPLE OUTPUT STRUCTURE:**
   ```json
