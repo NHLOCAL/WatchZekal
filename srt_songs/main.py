@@ -4,11 +4,13 @@ import sys
 import traceback # Keep for potential errors
 
 # Import the classes from the other files
-from subtitle_generator import SubtitleGenerator
-from video_creator import VideoCreator
+from video_maker.subtitle_generator import SubtitleGenerator
+from video_maker.video_creator import VideoCreator
 
 # --- Configuration Loading ---
+CONFIG_DIR = 'config'
 CONFIG_FILE_NAME = 'video_config.json'
+SONG_LIST_FILE_NAME = 'song_list.json'
 
 def load_config(config_path):
     """Loads the JSON configuration file."""
@@ -76,8 +78,11 @@ def resolve_paths(config, base_dir):
 
 # --- Path Setup (Relative to this file) ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CONFIG_PATH = os.path.join(BASE_DIR, CONFIG_FILE_NAME)
-SONG_LIST_JSON_PATH = os.path.join(BASE_DIR, 'song_list.json') # Keep this relative for now
+CONFIG_PATH = os.path.join(BASE_DIR, CONFIG_DIR, CONFIG_FILE_NAME)
+SONG_LIST_JSON_PATH = os.path.join(BASE_DIR, CONFIG_DIR, SONG_LIST_FILE_NAME)
+
+SYSTEM_INSTRUCTIONS_FILE_NAME = 'system_instructions.yaml'
+SYSTEM_INSTRUCTIONS_PATH = os.path.join(BASE_DIR, CONFIG_DIR, SYSTEM_INSTRUCTIONS_FILE_NAME)
 
 # --- Load Configuration ---
 raw_config = load_config(CONFIG_PATH)
@@ -206,7 +211,11 @@ def main():
     # --- סוף שינוי ---
 
     print("\n--- יצירה או טעינה של כתוביות ---")
-    subtitle_generator = SubtitleGenerator(api_key=api_key, srt_output_dir=SRT_FILES_DIR)
+    subtitle_generator = SubtitleGenerator(
+    api_key=api_key,
+    srt_output_dir=SRT_FILES_DIR,
+    instructions_filepath=SYSTEM_INSTRUCTIONS_PATH
+)
     # אין שינוי בחלק הזה, subtitle_generator לא מושפע
     english_subs, hebrew_subs = subtitle_generator.generate_or_load_subtitles(youtube_link, mp3_file_path)
 

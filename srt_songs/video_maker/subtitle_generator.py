@@ -15,7 +15,7 @@ class SubtitleGenerator:
     Loads system instructions from an external YAML file.
     """
     # --- CORRECTED __init__ ---
-    def __init__(self, api_key, srt_output_dir): # Changed parameter name back to srt_output_dir
+    def __init__(self, api_key, srt_output_dir, instructions_filepath):
         """
         Initializes the SubtitleGenerator.
 
@@ -35,7 +35,7 @@ class SubtitleGenerator:
         self.client = self._initialize_client()
         self._ensure_dir_exists(self.srt_output_dir)
 
-        self.instructions_filepath = os.path.join(os.path.dirname(__file__), 'system_instructions.yaml')
+        self.instructions_filepath = instructions_filepath
         self.instructions = self._load_instructions(self.instructions_filepath)
     # --- END OF CORRECTION ---
 
