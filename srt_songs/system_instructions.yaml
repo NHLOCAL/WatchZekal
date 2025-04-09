@@ -1,0 +1,62 @@
+%YAML 1.2
+---
+# Instructions for the SubtitleGenerator Gemini API calls
+
+transcription_prompt: |
+    You must create subtitles for the attached video. The output must be a **JSON Array** as shown below.
+
+    **Pay attention**: Some songs include Hebrew words with English pronunciation (like "yerushalim habnuya"). Transcribe these words into English phonetically, as they sound in the English pronunciation.
+
+    **CRITICAL REQUIREMENT for Time Format:**
+    The `start_time` and `end_time` fields must be **strings** in the exact format `MM:SS.milliseconds` (two digits for minutes, two digits for seconds, a period, and three digits for milliseconds).
+    **Example:** `"start_time": "01:45.320"`, `"end_time": "01:50.100"`.
+    **Do NOT use float seconds or any other format.**
+
+    Each subtitle object in the JSON array must include:
+    - **`id`**: Sequential number (integer).
+    - **`start_time`**: Start time (string in `MM:SS.milliseconds` format).
+    - **`end_time`**: End time (string in `MM:SS.milliseconds` format).
+    - **`text`**: Subtitle text (string).
+
+    Maintain accuracy in the timings (using the specified string format) and the content. Output ONLY the JSON array.
+
+    ### **Example JSON Structure:**
+    ```json
+    [
+      {
+        "id": 1,
+        "start_time": "00:12.759",
+        "end_time": "00:18.859",
+        "text": "I will never forget the night I saw my father cry"
+      },
+      {
+        "id": 2,
+        "start_time": "00:21.359",
+        "end_time": "00:28.729",
+        "text": "I was frightened and alone and his tears"
+      },
+      {
+        "id": 3,
+        "start_time": "02:30.110",
+        "end_time": "02:35.800",
+        "text": "This shows the required MM:SS.ms format"
+      }
+    ]
+    ```
+
+
+translation_prompt_template: |
+    Translate the `text` field in the following English JSON subtitles into **natural-sounding Hebrew**.
+
+    Maintain the exact same JSON structure, including the 'id', 'start_time', and 'end_time' values (in `MM:SS.milliseconds` string format). Only translate the 'text' field for each object.
+
+    The Hebrew translation must be accurate but phrased naturally, as someone would speak or sing.
+
+    **Crucially, do not add any Hebrew diacritics (nikud) to the translated text.** Use only standard Hebrew letters.
+
+    Output ONLY the translated JSON array.
+
+    Original English JSON (with times as MM:SS.ms strings):
+    ```json
+    {english_json_prompt_string}
+    ```

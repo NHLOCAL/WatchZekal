@@ -2,6 +2,7 @@ import os
 import json
 import re
 import urllib.parse
+import yaml  # הוספת יבוא לספריית YAML
 from google import genai
 from google.genai import types
 
@@ -9,6 +10,7 @@ class SubtitleGenerator:
     """
     Handles the generation or loading of subtitles using the Gemini API.
     Ensures the specific API structure and response format are maintained.
+    Loads system instructions from an external YAML file.
     """
     def __init__(self, api_key, json_output_dir):
         """
@@ -26,6 +28,11 @@ class SubtitleGenerator:
         self.client = self._initialize_client()
         self._ensure_dir_exists(self.json_output_dir)
 
+        # --- טעינת הנחיות מקובץ YAML ---
+        self.instructions_filepath = os.path.join(os.path.dirname(__file__), 'system_instructions.yaml')
+        self.instructions = self._load_instructions(self.instructions_filepath)
+        # --------------------------------
+
     def _ensure_dir_exists(self, dir_path):
         """Creates the directory if it doesn't exist."""
         os.makedirs(dir_path, exist_ok=True)
@@ -37,6 +44,27 @@ class SubtitleGenerator:
         except Exception as e:
             print(f"Error initializing Gemini client: {e}")
             raise
+
+    # --- פונקציה חדשה לטעינת ההנחיות ---
+    def _load_instructions(self, filepath):
+        """Loads instructions from the specified YAML file."""
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                instructions_data = yaml.safe_load(f)
+            if not instructions_data:
+                raise ValueError(f"Instructions file '{filepath}' is empty or invalid.")
+            print(f"System instructions loaded successfully from '{filepath}'")
+            return instructions_data
+        except FileNotFoundError:
+            print(f"CRITICAL ERROR: Instructions file not found at '{filepath}'.")
+            raise
+        except yaml.YAMLError as e:
+            print(f"CRITICAL ERROR: Failed to parse instructions YAML file '{filepath}': {e}")
+            raise
+        except Exception as e:
+            print(f"CRITICAL ERROR: An unexpected error occurred loading instructions file '{filepath}': {e}")
+            raise
+    # ------------------------------------
 
     def _clean_json_text(self, raw_text):
         """Removes potential Markdown fences (```json ... ```) from the raw text."""
@@ -72,10 +100,21 @@ class SubtitleGenerator:
                         raise ValueError(f"Items in {language_name} JSON list are not dictionaries.")
                     required_keys = {"start_time", "end_time", "text"}
                     if not required_keys.issubset(item.keys()):
-                        raise ValueError(f"Dictionary in {language_name} JSON is missing required keys ({required_keys}). Found: {item.keys()}")
+                        # Check if 'id' is also missing, as it's required by the *schema* but maybe not the internal logic downstream
+                        if 'id' not in item.keys():
+                             print(f"Warning: Dictionary in {language_name} JSON is missing required key 'id'. Found: {item.keys()}")
+                        else:
+                             # If only time/text are missing, it's a bigger issue for processing
+                             raise ValueError(f"Dictionary in {language_name} JSON is missing required keys ({required_keys}). Found: {item.keys()}")
+
 
                     for time_key in ["start_time", "end_time"]:
-                        time_value = item[time_key]
+                        time_value = item.get(time_key) # Use .get() for safety
+                        if time_value is None:
+                            print(f"Warning: Missing time key '{time_key}' in an item for {language_name}. Setting to 0.0")
+                            item[time_key] = 0.0
+                            continue
+
                         if isinstance(time_value, str):
                             # --- CRITICAL: Check for the MM:SS.ms format received from API ---
                             if re.match(r"\d{2}:\d{2}\.\d{3}", time_value):
@@ -131,11 +170,19 @@ class SubtitleGenerator:
             if video_id:
                 base_filename = video_id[0]
             else:
-                base_filename = re.sub(r'\W+', '_', os.path.splitext(os.path.basename(mp3_audio_path))[0])
-                print(f"Warning: Could not extract Video ID from URL. Using fallback name from MP3: {base_filename}")
+                # Sanitize filename derived from MP3 path
+                mp3_basename = os.path.splitext(os.path.basename(mp3_audio_path))[0]
+                # Replace common invalid characters and collapse whitespace
+                safe_basename = re.sub(r'[\\/*?:"<>|]', '_', mp3_basename)
+                safe_basename = re.sub(r'\s+', '_', safe_basename).strip('_')
+                base_filename = safe_basename if safe_basename else "audio_file" # Fallback if name becomes empty
+                print(f"Warning: Could not extract Video ID from URL. Using sanitized name from MP3: {base_filename}")
         except Exception as e:
-            print(f"Warning: Error parsing URL or deriving base filename: {e}. Using fallback name from MP3.")
-            base_filename = re.sub(r'\W+', '_', os.path.splitext(os.path.basename(mp3_audio_path))[0])
+            print(f"Warning: Error parsing URL or deriving base filename: {e}. Using sanitized name from MP3.")
+            mp3_basename = os.path.splitext(os.path.basename(mp3_audio_path))[0]
+            safe_basename = re.sub(r'[\\/*?:"<>|]', '_', mp3_basename)
+            safe_basename = re.sub(r'\s+', '_', safe_basename).strip('_')
+            base_filename = safe_basename if safe_basename else "audio_file"
 
         english_json_filename = os.path.join(self.json_output_dir, f"{base_filename}_en.json")
         hebrew_json_filename = os.path.join(self.json_output_dir, f"{base_filename}_he.json")
@@ -187,7 +234,7 @@ class SubtitleGenerator:
             stream_response = self.client.models.generate_content_stream(
                 model=self.model_name,
                 contents=contents,
-                config=config,
+                config=config, # Note: 'config' here is GenerateContentConfig, not system instructions text
             )
             for chunk in stream_response:
                 if chunk.text:
@@ -214,6 +261,9 @@ class SubtitleGenerator:
 
     def _get_api_config(self):
         """Returns the generation config with the required schema."""
+        # Note: The 'system_instruction' text itself isn't directly placed here.
+        # The prompt text is passed within the 'contents' argument of the API call.
+        # This config defines safety, response format, and the *expected* response schema.
         return types.GenerateContentConfig(
             safety_settings=[
                 types.SafetySetting(
@@ -244,55 +294,12 @@ class SubtitleGenerator:
                         ),
                         "text": genai.types.Schema(
                             type = genai.types.Type.STRING,
-                            description = "תוכן הכתובית, יכול להכיל תוכן קצר בעל שורה או שתיים עם הפרדה `\n`",
+                            description = "תוכן הכתובית, יכול להכיל תוכן קצר בעל שורה או שתיים עם הפרדה `\\n`",
                         ),
                     },
                 ),
             ),
         )
-
-    def _get_system_instruction(self):
-        """Returns the system instruction content."""
-        return """You must create subtitles for the attached video. The output must be a **JSON Array** as shown below.
-
-**Pay attention**: Some songs include Hebrew words with English pronunciation (like "yerushalim habnuya"). Transcribe these words into English phonetically, as they sound in the English pronunciation.
-
-**CRITICAL REQUIREMENT for Time Format:**
-The `start_time` and `end_time` fields must be **strings** in the exact format `MM:SS.milliseconds` (two digits for minutes, two digits for seconds, a period, and three digits for milliseconds).
-**Example:** `"start_time": "01:45.320"`, `"end_time": "01:50.100"`.
-**Do NOT use float seconds or any other format.**
-
-Each subtitle object in the JSON array must include:
-- **`id`**: Sequential number (integer).
-- **`start_time`**: Start time (string in `MM:SS.milliseconds` format).
-- **`end_time`**: End time (string in `MM:SS.milliseconds` format).
-- **`text`**: Subtitle text (string).
-
-Maintain accuracy in the timings (using the specified string format) and the content. Output ONLY the JSON array.
-
-### **Example JSON Structure:**
-```json
-[
-  {
-    "id": 1,
-    "start_time": "00:12.759",
-    "end_time": "00:18.859",
-    "text": "I will never forget the night I saw my father cry"
-  },
-  {
-    "id": 2,
-    "start_time": "00:21.359",
-    "end_time": "00:28.729",
-    "text": "I was frightened and alone and his tears"
-  },
-  {
-    "id": 3,
-    "start_time": "02:30.110",
-    "end_time": "02:35.800",
-    "text": "This shows the required MM:SS.ms format"
-  }
-]
-```"""
 
     def generate_or_load_subtitles(self, youtube_url, mp3_audio_path):
         """
@@ -318,16 +325,16 @@ Maintain accuracy in the timings (using the specified string format) and the con
         # --- Proceed with Generation ---
         print("\nExisting JSON files not found or invalid. Starting generation process...")
 
-        # --- Common Config and Instruction ---
+        # --- Common Config ---
         generate_content_config = self._get_api_config()
-        system_instruction = self._get_system_instruction() # Although not used directly in stream call, it defines the expected output format.
 
         # --- English Generation ---
-        transcription_prompt_text = """Transcribe the following song accurately.
-Output the result as a JSON array following the specified format (id, start_time, end_time, text).
-**CRITICAL:** Use the `MM:SS.milliseconds` string format for `start_time` and `end_time`.
-Divide segments intelligently.
-Output ONLY the JSON array."""
+        # --- שימוש בהנחיה שנטענה מה-YAML ---
+        transcription_prompt_text = self.instructions.get('transcription_prompt')
+        if not transcription_prompt_text:
+             print("CRITICAL ERROR: 'transcription_prompt' not found in instructions YAML.")
+             return None, None
+        # ------------------------------------
 
         contents_english = [
             types.Content(
@@ -335,11 +342,13 @@ Output ONLY the JSON array."""
                 parts=[
                     types.Part.from_uri(
                         file_uri=youtube_url,
-                        mime_type="video/*",
+                        mime_type="video/*", # Or appropriate mime type if using local file
                     ),
                     types.Part.from_text(text=transcription_prompt_text),
                 ],
             ),
+            # Optional: Add a model role part here if needed for few-shot prompting or context
+            # types.Content(role="model", parts=[types.Part.from_text("...")])
         ]
 
         english_subs_data = self._call_gemini_api(contents_english, generate_content_config, "English")
@@ -348,7 +357,7 @@ Output ONLY the JSON array."""
             print("Failed to generate valid English JSON data. Cannot proceed to translation.")
             return None, None
 
-        # Save English JSON
+        # Save English JSON (with float times after parsing)
         try:
              with open(english_json_path, "w", encoding="utf-8") as f:
                 json.dump(english_subs_data, f, ensure_ascii=False, indent=2)
@@ -369,14 +378,19 @@ Output ONLY the JSON array."""
                  start_sec, start_ms = divmod(start_sec_rem, 1)
                  end_min, end_sec_rem = divmod(end_s, 60)
                  end_sec, end_ms = divmod(end_sec_rem, 1)
-                 start_time_str = f"{int(start_min):02}:{int(start_sec):02}.{int(start_ms*1000):03}"
-                 end_time_str = f"{int(end_min):02}:{int(end_sec):02}.{int(end_ms*1000):03}"
+
+                 # Ensure ms part is exactly 3 digits
+                 start_ms_int = int(round(start_ms * 1000))
+                 end_ms_int = int(round(end_ms * 1000))
+
+                 start_time_str = f"{int(start_min):02}:{int(start_sec):02}.{start_ms_int:03}"
+                 end_time_str = f"{int(end_min):02}:{int(end_sec):02}.{end_ms_int:03}"
 
                  english_json_for_prompt.append({
-                     "id": item.get('id'),
+                     "id": item.get('id', 0), # Provide default id if missing
                      "start_time": start_time_str, # Use the formatted string
                      "end_time": end_time_str,     # Use the formatted string
-                     "text": item.get('text')
+                     "text": item.get('text', '') # Provide default text if missing
                  })
             english_json_prompt_string = json.dumps(english_json_for_prompt, ensure_ascii=False, indent=2)
         except Exception as e:
@@ -384,18 +398,16 @@ Output ONLY the JSON array."""
             return english_subs_data, None
 
 
-        translation_prompt_text = f"""Translate the `text` field in the following English JSON subtitles into **natural-sounding Hebrew**.
+        # --- שימוש בהנחיה שנטענה מה-YAML והשלמת התבנית ---
+        translation_prompt_template = self.instructions.get('translation_prompt_template')
+        if not translation_prompt_template:
+             print("CRITICAL ERROR: 'translation_prompt_template' not found in instructions YAML.")
+             return english_subs_data, None # Return English data if translation fails here
 
-Maintain the exact same JSON structure, including the 'id', 'start_time', and 'end_time' values (in `MM:SS.milliseconds` string format). Only translate the 'text' field for each object.
-
-The Hebrew translation must be accurate but phrased naturally, as someone would speak or sing.
-
-**Crucially, do not add any Hebrew diacritics (nikud) to the translated text.** Use only standard Hebrew letters.
-
-Output ONLY the translated JSON array.
-
-Original English JSON (with times as MM:SS.ms strings):
-{english_json_prompt_string}"""
+        translation_prompt_text = translation_prompt_template.format(
+            english_json_prompt_string=english_json_prompt_string
+        )
+        # ------------------------------------------------
 
         contents_hebrew = [
             types.Content(
@@ -404,6 +416,8 @@ Original English JSON (with times as MM:SS.ms strings):
                      types.Part.from_text(text=translation_prompt_text),
                 ],
             ),
+             # Optional: Add a model role part here if needed
+             # types.Content(role="model", parts=[types.Part.from_text("...")])
         ]
 
         hebrew_subs_data = self._call_gemini_api(contents_hebrew, generate_content_config, "Hebrew")
@@ -413,7 +427,7 @@ Original English JSON (with times as MM:SS.ms strings):
             # Return English data even if Hebrew failed
             return english_subs_data, None
 
-        # Save Hebrew JSON
+        # Save Hebrew JSON (with float times after parsing)
         try:
              with open(hebrew_json_path, "w", encoding="utf-8") as f:
                  # Again, save the parsed (float time) version

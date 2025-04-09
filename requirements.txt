@@ -4,3 +4,4 @@ Pillow
 python-bidi
 arabic-reshaper
 deepdiff
+pyyaml
