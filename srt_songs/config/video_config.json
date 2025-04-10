@@ -34,10 +34,10 @@
   "subtitle_style": {
     "font_name": "Rubik-Regular.ttf",
     "english": {
-      "font_size": 60
+      "font_size": 62
     },
     "hebrew": {
-      "font_size": 57
+      "font_size": 55
     },
     "common": {
       "color": "black",
@@ -45,8 +45,8 @@
       "stroke_width": 1.5
     },
     "layout": {
-      "spacing_within_language": 10,
-      "spacing_between_languages": 35
+      "spacing_within_language": 15,
+      "spacing_between_languages": 45
     }
   }
 }
