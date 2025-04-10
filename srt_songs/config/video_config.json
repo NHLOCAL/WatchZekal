@@ -32,21 +32,26 @@
     "vertical_offset_from_title": 40
   },
   "subtitle_style": {
-    "font_name": "Rubik-Regular.ttf",
-    "english": {
-      "font_size": 62
-    },
-    "hebrew": {
-      "font_size": 55
-    },
-    "common": {
-      "color": "black",
-      "stroke_color": "white",
+    "source": {
+      "font_name": "Rubik-Regular.ttf",
+      "font_size": 65,
+      "color": "#1D272B",
+      "stroke_color": "#FAFAFA",
       "stroke_width": 1.5
     },
+    "target": {
+      "font_name": "Rubik-Regular.ttf",
+      "font_size": 60,
+      "color": "#181924",
+      "stroke_color": "#FAFAFA",
+      "stroke_width": 0.5
+    },
     "layout": {
-      "spacing_within_language": 15,
-      "spacing_between_languages": 45
+      "spacing_within_block": 15,
+      "spacing_between_blocks": 50,
+      "vertical_alignment": "center",
+      "bottom_margin": 60,
+      "top_margin": 50
     }
   }
 }
