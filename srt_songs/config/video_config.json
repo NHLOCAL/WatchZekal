@@ -41,10 +41,10 @@
     },
     "target": {
       "font_name": "Rubik-Regular.ttf",
-      "font_size": 55,
+      "font_size": 57,
       "color": "black",
       "stroke_color": "#FAFAFA",
-      "stroke_width": 0
+      "stroke_width": 1.0
     },
     "layout": {
       "spacing_within_block": 15,
