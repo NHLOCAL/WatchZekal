@@ -11,7 +11,7 @@ transcription_prompt: |
   2.  **Content Handling:**
       *   **Clear Vocals:** Transcribe the text accurately.
       *   **Unclear Vocals:** If primary vocals ARE PRESENT but indecipherable (unclear, noisy), use EXACTLY `[INAUDIBLE]` as the text.
-      *   **Music/Silence:** If a segment contains ONLY instrumental music or silence (NO primary vocals), **DO NOT generate a subtitle object for it.** Skip the segment entirely.
+      *   **Music/Silence/Very Low Vocals:** If a segment contains ONLY instrumental music, silence, or primary vocals that are **extremely low/barely audible**, **DO NOT generate a subtitle object for it.** Skip the segment entirely.
   3.  **Output Format:** Must be a valid JSON array. Each object requires:
       *   `id`: (Integer) Sequential.
       *   `start_time`: (String) Format "MM:SS.milliseconds".
