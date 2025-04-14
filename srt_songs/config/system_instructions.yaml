@@ -35,7 +35,7 @@ transcription_prompt: |
 
 # --- Translation Task ---
 translation_prompt_template: |
-  **TASK:** Translate the `text` field of the input English JSON into natural-sounding Hebrew.
+  **TASK:** Translate the `text` field of the input English JSON into Hebrew, balancing accuracy with a style suitable for song lyrics.
 
   **INPUT:** English JSON array (provided below).
 
@@ -46,7 +46,8 @@ translation_prompt_template: |
   4.  **Output:** Translated JSON Array ONLY.
 
   **HEBREW TEXT RULES (Translated `text`):**
-  *   Natural Hebrew, single line (NO `\n`).
+  *   **Accuracy & Style:** Translation must be **accurate** to the source text's meaning, while also being **stylistically appropriate for song lyrics**. Aim for **fluent, natural, and potentially poetic Hebrew where suitable.**
+  *   Single line (NO `\n`).
   *   No period (.) at the end.
   *   **Commas:** Use commas (,) **exactly as they appear in the original English `text`**.
   *   No Nikud.
