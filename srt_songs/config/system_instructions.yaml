@@ -4,55 +4,53 @@
 
 # --- Transcription Task (Concise) ---
 transcription_prompt: |
-  **TASK:** Transcribe ONLY primary vocals (lead/main choir) from the audio into a JSON array of subtitle objects.
+  **TASK:** Transcribe primary vocals (lead/main choir) into a JSON array of subtitles.
 
   **RULES:**
-  1.  **Vocal Focus:** Transcribe only lead vocalist or main choir melody. Ignore background vocals unless they are the sole vocal element.
-  2.  **Content Handling:**
-      *   **Clear Vocals:** Transcribe the text accurately.
-      *   **Unclear Vocals:** If primary vocals ARE PRESENT but indecipherable (unclear, noisy), use EXACTLY `[INAUDIBLE]` as the text.
-      *   **Music/Silence/Very Low Vocals:** If a segment contains ONLY instrumental music, silence, or primary vocals that are **extremely low/barely audible**, **DO NOT generate a subtitle object for it.** Skip the segment entirely.
-  3.  **Output Format:** Must be a valid JSON array. Each object requires:
-      *   `id`: (Integer) Sequential.
-      *   `start_time`: (String) Format "MM:SS.milliseconds".
-      *   `end_time`: (String) Format "MM:SS.milliseconds".
-      *   `text`: (String) Transcribed text or `[INAUDIBLE]`.
-  4.  **Text Field (`text`):**
-      *   Single line only (NO `\n`).
-      *   Short, natural phrases/lines.
+  1.  **Focus:** Only lead vocalist or main choir. Ignore background unless primary.
+  2.  **Content:**
+      *   Clear Vocals: Transcribe accurately.
+      *   Unclear Vocals: Use EXACTLY `[INAUDIBLE]` if present but indecipherable.
+      *   Music/Silence/Very Low Vocals: Skip segment entirely (NO subtitle object).
+  3.  **Output:** Valid JSON array. Objects need `id` (int), `start_time` (str "MM:SS.ms"), `end_time` (str "MM:SS.ms"), `text` (str).
+  4.  **Segmentation:** Create segments based on natural vocal phrases/pauses. **Prefer shorter segments where natural breaks allow.**
+  5.  **Text Field (`text`):**
+      *   Single line (NO `\n`).
+      *   Short, natural phrases.
       *   No period (.) at the end.
-      *   Use phonetic English for Hebrew words if applicable.
-  5.  **Segmentation:** Create subtitle objects based on natural vocal phrases or pauses.
+      *   **Hebrew/Lashon Hakodesh:** Transcribe **accurately** using English phonetics.
+      *   **Commas:** Use commas (,) ONLY in **relatively long phrases** for clarity.
 
   **EXAMPLE OUTPUT STRUCTURE:**
   ```json
   [
-    { "id": 1, "start_time": "00:12.759", "end_time": "00:18.859", "text": "I will never forget the night I saw my father cry" },
-    { "id": 2, "start_time": "00:21.359", "end_time": "00:25.500", "text": "I was frightened and alone" },
-    { "id": 3, "start_time": "00:25.600", "end_time": "00:28.729", "text": "and his tears" },
-    { "id": 4, "start_time": "01:15.100", "end_time": "01:19.450", "text": "The choir sang together now" },
-    { "id": 5, "start_time": "02:30.110", "end_time": "02:35.800", "text": "[INAUDIBLE]" },
-    { "id": 6, "start_time": "02:36.000", "end_time": "02:40.120", "text": "He looked towards the sky" }
+    { "id": 1, "start_time": "00:12.759", "end_time": "00:16.100", "text": "I will never forget the night" }, # No comma needed here
+    { "id": 2, "start_time": "00:16.200", "end_time": "00:18.859", "text": "I saw my father cry" },
+    { "id": 3, "start_time": "00:21.359", "end_time": "00:25.500", "text": "I was frightened, and alone, feeling lost in the dark" }, # Comma in longer phrase
+    { "id": 4, "start_time": "00:25.600", "end_time": "00:28.729", "text": "and his tears" },
+    { "id": 5, "start_time": "01:20.100", "end_time": "01:24.500", "text": "Shema Yisrael Adonai Eloheinu" }, # Phonetic, no comma needed
+    { "id": 6, "start_time": "02:30.110", "end_time": "02:35.800", "text": "[INAUDIBLE]" }
   ]
   ```
 
 # --- Translation Task ---
 translation_prompt_template: |
-  **TASK:** Translate the `text` field of the provided English JSON subtitle objects into natural-sounding Hebrew.
+  **TASK:** Translate the `text` field of the input English JSON into natural-sounding Hebrew.
 
   **INPUT:** English JSON array (provided below).
 
   **CORE REQUIREMENTS:**
-  1.  **Structure Preservation:** Maintain the EXACT original JSON structure, including `id`, `start_time` (string, `MM:SS.ms`), and `end_time` (string, `MM:SS.ms`) for every object.
-  2.  **Target Field:** Translate ONLY the value of the `text` field.
-  3.  **`[INAUDIBLE]` Handling:** If the English `text` field is EXACTLY `[INAUDIBLE]`, the Hebrew `text` field MUST also be EXACTLY `[INAUDIBLE]`. Do NOT translate this token.
-  4.  **Output Format:** Translated JSON Array ONLY.
+  1.  **Structure:** Maintain EXACT original JSON structure (`id`, `start_time`, `end_time`).
+  2.  **Target:** Translate ONLY the `text` field value.
+  3.  **`[INAUDIBLE]`:** If English `text` is `[INAUDIBLE]`, Hebrew `text` MUST be `[INAUDIBLE]`.
+  4.  **Output:** Translated JSON Array ONLY.
 
   **HEBREW TEXT RULES (Translated `text`):**
-  *   **Natural Language:** Translation must sound natural, as if spoken or sung in Hebrew.
-  *   **Single Line:** MUST contain only a single line of text. NO `\n` characters allowed.
-  *   **No End Period:** Do NOT add a period (.) at the end of the text.
-  *   **No Nikud:** Do NOT add Hebrew diacritics (nikud). Use standard Hebrew letters only.
+  *   Natural Hebrew, single line (NO `\n`).
+  *   No period (.) at the end.
+  *   **Commas:** Use commas (,) **exactly as they appear in the original English `text`**.
+  *   No Nikud.
+  *   Default to masculine gender for unspecified entities.
 
   **Original English JSON:**
   ```json
