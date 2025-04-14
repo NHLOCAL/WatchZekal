@@ -388,6 +388,7 @@ class SubtitleGenerator:
                     threshold="OFF",
                 ),
             ],
+            temperature=1.0,
             response_mime_type="application/json",
             response_schema=genai.types.Schema(
                 type = genai.types.Type.ARRAY,
