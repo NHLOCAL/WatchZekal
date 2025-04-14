@@ -2,9 +2,11 @@
   "paths": {
     "assets_rel": "../assets",
     "fonts_subdir": "fonts",
+    "data_rel": "data",
+    "songs_subdir": "songs",
+    "lyrics_subdir": "lyrics",
     "output_rel": "output",
     "output_frames_subdir": "subtitle_frames",
-    "demo_songs_rel": "demo_songs",
     "srt_files_rel": "srt_files"
   },
   "video_settings": {

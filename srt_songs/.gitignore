@@ -1,6 +1,6 @@
 output/
-subtitle_frames/
 legacy/
 srt_files/
 json_files/
+data/
 repomix-output.*

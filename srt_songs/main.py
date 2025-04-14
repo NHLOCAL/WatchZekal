@@ -33,26 +33,33 @@ def resolve_paths(config, base_dir):
     resolved_config = config.copy()
     paths_cfg = resolved_config.get('paths', {})
 
+    # --- נכסים (Assets) --- נשאר זהה, נטען מ-assets_rel חיצוני
     assets_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('assets_rel', '../assets')))
     fonts_dir = os.path.join(assets_dir, paths_cfg.get('fonts_subdir', 'fonts'))
+
+    # --- נתונים (Data) --- חדש, נטען מ-data_rel פנימי
+    data_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('data_rel', 'data'))) # נתיב לתיקיית data
+    songs_dir = os.path.join(data_dir, paths_cfg.get('songs_subdir', 'songs')) # נתיב ל- data/songs
+    lyrics_dir = os.path.join(data_dir, paths_cfg.get('lyrics_subdir', 'lyrics')) # נתיב ל- data/lyrics
+
+    # --- פלט (Output) --- נשאר זהה
     output_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('output_rel', 'output')))
     output_frames_dir = os.path.join(output_dir, paths_cfg.get('output_frames_subdir', 'subtitle_frames'))
-    demo_songs_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('demo_songs_rel', 'demo_songs')))
     srt_files_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('srt_files_rel', 'srt_files')))
-    # Add lyrics directory relative to assets
-    lyrics_dir = os.path.join(assets_dir, paths_cfg.get('lyrics_subdir', 'lyrics'))
 
-
+    # שמירת הנתיבים המוחלטים בקונפיגורציה הפנימית
     resolved_config['paths'] = {
         'assets_dir': assets_dir,
         'fonts_dir': fonts_dir,
+        'data_dir': data_dir,        # ***חדש***
+        'songs_dir': songs_dir,      # ***חדש*** (מחליף demo_songs_dir)
+        'lyrics_dir': lyrics_dir,    # ***נשאר***
         'output_dir': output_dir,
         'output_frames_dir': output_frames_dir,
-        'demo_songs_dir': demo_songs_dir,
-        'srt_files_dir': srt_files_dir,
-        'lyrics_dir': lyrics_dir # Store lyrics path
+        'srt_files_dir': srt_files_dir
     }
 
+    # --- רקעים --- נשאר זהה, נטען מ-assets_dir
     bg_config = resolved_config.get('background', {})
     if 'image_path_rel_assets' in bg_config:
         bg_rel_path = bg_config['image_path_rel_assets']
@@ -70,22 +77,22 @@ def resolve_paths(config, base_dir):
 
     resolved_config['background'] = bg_config
 
+    # --- בדיקות נוספות --- נשאר זהה
     if 'artist_style' not in resolved_config:
         print("אזהרה: הגדרות עיצוב 'artist_style' חסרות בקובץ הקונפיגורציה. שם הזמר לא יוצג.")
-
-    # Validate new subtitle structure
     sub_style = resolved_config.get('subtitle_style', {})
     if 'source' not in sub_style or 'target' not in sub_style:
         print("שגיאת קונפיגורציה קריטית: 'subtitle_style' חייב להכיל קטעי 'source' ו-'target'.")
-        return None, None, None, None # Indicate error
+        return None, None, None # שינוי: החזרת None עבור הנתיבים החדשים
     for role in ['source', 'target']:
         role_style = sub_style[role]
         missing_keys = [key for key in ['font_name', 'font_size', 'color'] if key not in role_style]
         if missing_keys:
             print(f"שגיאת קונפיגורציה קריטית: חלק '{role}' ב-'subtitle_style' חסר את המפתחות הבאים: {', '.join(missing_keys)}")
-            return None, None, None, None # Indicate error
+            return None, None, None # שינוי: החזרת None עבור הנתיבים החדשים
 
-    return resolved_config, demo_songs_dir, srt_files_dir, lyrics_dir
+    # החזרת הנתיבים הרלוונטיים
+    return resolved_config, songs_dir, srt_files_dir, lyrics_dir # שינוי: החזרת songs_dir במקום demo_songs_dir
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -100,26 +107,26 @@ raw_config = load_config(CONFIG_PATH)
 if not raw_config:
     sys.exit(1)
 
-
-resolved_config, DEMO_SONGS_DIR, SRT_FILES_DIR, LYRICS_DIR = resolve_paths(raw_config, BASE_DIR)
+# שינוי: קבלת songs_dir במקום demo_songs_dir
+resolved_config, SONGS_DIR, SRT_FILES_DIR, LYRICS_DIR = resolve_paths(raw_config, BASE_DIR)
 if not resolved_config:
     print("יציאה עקב שגיאות בקונפיגורציה.")
     sys.exit(1)
 
-
+# קבלת הנתיבים מהקונפיגורציה המעודכנת
 ASSETS_DIR = resolved_config['paths']['assets_dir']
 FONTS_DIR = resolved_config['paths']['fonts_dir']
 OUTPUT_DIR = resolved_config['paths']['output_dir']
 OUTPUT_FRAMES_DIR = resolved_config['paths']['output_frames_dir']
+# DATA_DIR = resolved_config['paths']['data_dir'] # אפשר להשתמש אם צריך גישה לכל תיקיית data
 
-
-os.makedirs(ASSETS_DIR, exist_ok=True)
-os.makedirs(FONTS_DIR, exist_ok=True)
-os.makedirs(DEMO_SONGS_DIR, exist_ok=True)
+# יצירת תיקיות (אם לא קיימות)
+os.makedirs(ASSETS_DIR, exist_ok=True) # עדיין יוצר את תיקיית assets אם היא לא קיימת, למרות שהיא חיצונית
+os.makedirs(FONTS_DIR, exist_ok=True) # יחסי ל-assets
+os.makedirs(SONGS_DIR, exist_ok=True)   # ***חדש***: יוצר את data/songs
+os.makedirs(LYRICS_DIR, exist_ok=True)  # ***נשאר***: יוצר את data/lyrics
 os.makedirs(SRT_FILES_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
-os.makedirs(LYRICS_DIR, exist_ok=True) # Ensure lyrics directory exists
-# Frame dir is created by VideoCreator if needed
 
 
 def load_song_list(json_path):
@@ -416,8 +423,8 @@ def main():
          sys.exit(1)
 
     song_name, artist_name, youtube_link, mp3_file_path, lyrics_content = validate_and_get_song_details(
-        selected_song_data, DEMO_SONGS_DIR, LYRICS_DIR, cli_lyrics_path
-    )
+    selected_song_data, SONGS_DIR, LYRICS_DIR, cli_lyrics_path # שינוי: DEMO_SONGS_DIR -> SONGS_DIR
+)
 
     if not all([song_name, youtube_link, mp3_file_path]):
         print("שגיאה באימות פרטי השיר או מציאת קובץ MP3. יוצא מהתוכנית.")

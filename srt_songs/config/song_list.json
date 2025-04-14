@@ -82,7 +82,8 @@
   {
     "name": "Return",
     "artist": "Yeedle Werdyger",
-    "youtube_url": "https://www.youtube.com/watch?v=gvlsjNiAoEE"
+    "youtube_url": "https://www.youtube.com/watch?v=gvlsjNiAoEE",
+    "lyrics_file": "return.txt"
   },
   {
     "name": "Home",
@@ -103,5 +104,10 @@
     "name": "Ani Maamin",
     "artist": "Tai Gerszberg",
     "youtube_url": "https://www.youtube.com/watch?v=jru7taoVKM4"
+  },
+  {
+    "name": "Carry On",
+    "artist": "Lipa Schmeltzer",
+    "youtube_url": "https://www.youtube.com/watch?v=dzEzWxyU91Y"
   }
 ]
