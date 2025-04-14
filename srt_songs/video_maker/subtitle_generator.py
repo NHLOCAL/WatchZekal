@@ -508,6 +508,7 @@ class SubtitleGenerator:
     def generate_or_load_subtitles(self, song_name, youtube_url, mp3_audio_path, lyrics_content=None, force_regenerate=False):
         """
         Generates subtitles using Gemini API or loads them if SRT files exist.
+        Uses system_instruction for prompts and user role for dynamic data.
         Saves generated subtitles as SRT files with song name in the filename.
         Optionally uses lyrics_content for transcription.
         Allows forcing regeneration.
@@ -532,11 +533,9 @@ class SubtitleGenerator:
         if not force_regenerate:
             print("Checking for existing SRT files...")
             english_subs, hebrew_subs = self._load_existing_subtitles(english_srt_path, hebrew_srt_path)
-            # If both loaded successfully, we are done
             if english_subs is not None and hebrew_subs is not None:
                 print("Both English and Hebrew subtitles loaded from existing files.")
                 return english_subs, hebrew_subs
-            # If loading failed for some reason (e.g., parse error), treat as missing
             if english_subs is None:
                  print("Will attempt to generate English subtitles.")
             if hebrew_subs is None:
@@ -544,60 +543,87 @@ class SubtitleGenerator:
         else:
             print("Force regeneration requested. Skipping check for existing SRT files.")
 
+        # Get the base API config (safety, temp, schema) ONCE
+        # We will add system_instruction specifically for each call
+        base_generate_content_config = self._get_api_config()
+
         # --- English Generation ---
-        if english_subs is None: # Generate only if not loaded successfully
+        if english_subs is None:
             print("\n--- Generating English Subtitles ---")
-            generate_content_config = self._get_api_config() # Get config just before API call
 
-            transcription_prompt_text = self.instructions.get('transcription_prompt')
-            if not transcription_prompt_text:
-                 print("CRITICAL ERROR: 'transcription_prompt' not found in instructions YAML.")
-                 return None, hebrew_subs # Return whatever Hebrew subs we might have loaded
+            # Get the system prompt text for transcription
+            transcription_system_prompt_text = self.instructions.get('transcription_system_prompt')
+            if not transcription_system_prompt_text:
+                 print("CRITICAL ERROR: 'transcription_system_prompt' not found in instructions YAML.")
+                 return None, hebrew_subs # Return potentially loaded Hebrew subs
 
-            # Prepare contents for English API call
-            parts_english = [
+            # Prepare the specific config for this call, adding system_instruction
+            transcription_config = types.GenerateContentConfig(
+                safety_settings=base_generate_content_config.safety_settings,
+                temperature=base_generate_content_config.temperature,
+                response_mime_type=base_generate_content_config.response_mime_type,
+                response_schema=base_generate_content_config.response_schema,
+                # *** Add system instruction here ***
+                system_instruction=[types.Part.from_text(text=transcription_system_prompt_text)]
+            )
+
+            # Prepare user content (dynamic parts only)
+            parts_english_user = [
                 types.Part.from_uri(
                     file_uri=youtube_url,
-                    mime_type="video/*", # Use video/* as in original
+                    mime_type="video/*",
                 )
             ]
-            # Add lyrics if provided
             if lyrics_content:
-                print("Adding provided lyrics to the transcription request.")
-                parts_english.append(types.Part.from_text(text=f"\n\n--- KNOWN LYRICS ---\n{lyrics_content}\n--- END KNOWN LYRICS ---"))
+                print("Adding provided lyrics to the user input for transcription.")
+                # Add lyrics as part of the user prompt
+                parts_english_user.append(types.Part.from_text(text=f"\n\n--- KNOWN LYRICS ---\n{lyrics_content}\n--- END KNOWN LYRICS ---"))
 
-            # Add the main instruction prompt
-            parts_english.append(types.Part.from_text(text=transcription_prompt_text))
+            # Construct the 'contents' list with role="user"
+            contents_english = [types.Content(role="user", parts=parts_english_user)]
 
-            contents_english = [types.Content(role="user", parts=parts_english)]
-
-            english_subs_data_from_api = self._call_gemini_api(contents_english, generate_content_config, "English")
+            # Make the API call with the specific config and user contents
+            english_subs_data_from_api = self._call_gemini_api(contents_english, transcription_config, "English") # Use transcription_config
 
             if english_subs_data_from_api is None:
                 print("Failed to generate valid English subtitle data from API. Cannot proceed with translation if Hebrew is also missing.")
-                # Return None for English, keep potentially loaded Hebrew
                 return None, hebrew_subs
             else:
-                english_subs = english_subs_data_from_api # Use the newly generated data
+                english_subs = english_subs_data_from_api
                 print("English subtitles generated successfully.")
                 self._save_srt_file(english_srt_path, english_subs, song_name)
         else:
              print("\nSkipping English subtitle generation (already loaded).")
 
         # --- Hebrew Generation ---
-        if hebrew_subs is None: # Generate only if not loaded successfully
-            if english_subs is None or not english_subs: # Check if we have English subs to translate from
+        if hebrew_subs is None:
+            if english_subs is None or not english_subs:
                  print("\nCannot generate Hebrew subtitles because English subtitles are missing or empty.")
-                 return english_subs, None # Return loaded/generated English, None for Hebrew
+                 return english_subs, None
 
             print("\n--- Generating Hebrew Subtitles ---")
-            generate_content_config = self._get_api_config() # Get config again
 
-            # Format English subs back into the specific JSON string format expected by the translation prompt
+            # Get the system prompt text for translation
+            translation_system_prompt_text = self.instructions.get('translation_system_prompt')
+            if not translation_system_prompt_text:
+                 print("CRITICAL ERROR: 'translation_system_prompt' not found in instructions YAML.")
+                 return english_subs, None
+
+            # Prepare the specific config for this call, adding system_instruction
+            translation_config = types.GenerateContentConfig(
+                safety_settings=base_generate_content_config.safety_settings,
+                temperature=base_generate_content_config.temperature,
+                response_mime_type=base_generate_content_config.response_mime_type,
+                response_schema=base_generate_content_config.response_schema,
+                 # *** Add system instruction here ***
+                system_instruction=[types.Part.from_text(text=translation_system_prompt_text)]
+            )
+
+            # Format English subs back into the specific JSON string format
             try:
                 english_json_for_prompt = []
+                # ...(same code as before to format english_json_for_prompt)...
                 for item in english_subs:
-                     # Convert float seconds back to "MM:SS.ms" string format for the prompt
                      start_s = item.get('start_time', 0.0)
                      end_s = item.get('end_time', 0.0)
                      start_min, start_sec_rem = divmod(start_s, 60)
@@ -608,7 +634,6 @@ class SubtitleGenerator:
                      end_ms_int = min(999, int(round(end_ms * 1000)))
                      start_time_str_api = f"{int(start_min):02}:{int(start_sec):02}.{start_ms_int:03}"
                      end_time_str_api = f"{int(end_min):02}:{int(end_sec):02}.{end_ms_int:03}"
-
                      english_json_for_prompt.append({
                          "id": item.get('id', 0),
                          "start_time": start_time_str_api,
@@ -618,32 +643,35 @@ class SubtitleGenerator:
                 english_json_prompt_string = json.dumps(english_json_for_prompt, ensure_ascii=False, indent=2)
             except Exception as e:
                 print(f"Error formatting English JSON for translation prompt: {e}")
-                return english_subs, None # Return generated English, None for Hebrew
+                return english_subs, None
 
-            translation_prompt_template = self.instructions.get('translation_prompt_template')
-            if not translation_prompt_template:
-                 print("CRITICAL ERROR: 'translation_prompt_template' not found in instructions YAML.")
-                 return english_subs, None # Return generated English, None for Hebrew
+            # Get the template for the user input part
+            translation_user_input_template = self.instructions.get('translation_user_input_template')
+            if not translation_user_input_template:
+                 print("CRITICAL ERROR: 'translation_user_input_template' not found in instructions YAML.")
+                 return english_subs, None
 
-            translation_prompt_text = translation_prompt_template.format(
+            # Format the user input text including the JSON data
+            user_translation_prompt_text = translation_user_input_template.format(
                 english_json_prompt_string=english_json_prompt_string
             )
 
-            # Prepare contents for Hebrew API call (Text only)
+            # Prepare user content (the formatted JSON string)
             contents_hebrew = [
                 types.Content(
                     role="user",
-                    parts=[types.Part.from_text(text=translation_prompt_text)],
+                    parts=[types.Part.from_text(text=user_translation_prompt_text)],
                 ),
             ]
 
-            hebrew_subs_data_from_api = self._call_gemini_api(contents_hebrew, generate_content_config, "Hebrew")
+            # Make the API call with the specific config and user contents
+            hebrew_subs_data_from_api = self._call_gemini_api(contents_hebrew, translation_config, "Hebrew") # Use translation_config
 
             if hebrew_subs_data_from_api is None:
                 print("Failed to generate valid Hebrew subtitle data from API.")
-                hebrew_subs = None # Ensure it's None
+                hebrew_subs = None
             else:
-                hebrew_subs = hebrew_subs_data_from_api # Use newly generated data
+                hebrew_subs = hebrew_subs_data_from_api
                 print("Hebrew subtitles generated successfully.")
                 self._save_srt_file(hebrew_srt_path, hebrew_subs, song_name)
         else:

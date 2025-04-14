@@ -1,9 +1,7 @@
 %YAML 1.2
 ---
-# Instructions for Gemini API: Audio Transcription and Translation
-
-# --- Transcription Task (Concise) ---
-transcription_prompt: |
+# --- Transcription Task ---
+transcription_system_prompt: |
   **TASK:** Transcribe primary vocals (lead/main choir) into a JSON array of subtitles.
 
   **RULES:**
@@ -32,12 +30,9 @@ transcription_prompt: |
     { "id": 6, "start_time": "02:30.110", "end_time": "02:35.800", "text": "[INAUDIBLE]" }
   ]
   ```
-
 # --- Translation Task ---
-translation_prompt_template: |
+translation_system_prompt: |
   **TASK:** Translate the `text` field of the input English JSON into Hebrew, balancing accuracy with a style suitable for song lyrics.
-
-  **INPUT:** English JSON array (provided below).
 
   **CORE REQUIREMENTS:**
   1.  **Structure:** Maintain EXACT original JSON structure (`id`, `start_time`, `end_time`).
@@ -53,6 +48,9 @@ translation_prompt_template: |
   *   No Nikud.
   *   Default to masculine gender for unspecified entities.
 
+# --- Translation Input Formatting ---
+# This part will be used to format the user input, not part of the system prompt
+translation_user_input_template: |
   **Original English JSON:**
   ```json
   {english_json_prompt_string}
