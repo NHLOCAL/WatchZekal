@@ -25,7 +25,7 @@
     "youtube_url": "https://www.youtube.com/watch?v=66k_Wt6-kao"
   },
   {
-    "name": "so much closer",
+    "name": "So Much Closer",
     "artist": "MBD",
     "youtube_url": "https://www.youtube.com/watch?v=L8RavZ42ZLU"
   },
@@ -78,5 +78,30 @@
     "name": "Let My People Go",
     "artist": "MBD",
     "youtube_url": "https://www.youtube.com/watch?v=PKn6p8Ka9os"
+  },
+  {
+    "name": "Return",
+    "artist": "Yeedle Werdyger",
+    "youtube_url": "https://www.youtube.com/watch?v=gvlsjNiAoEE"
+  },
+  {
+    "name": "Home",
+    "artist": "Yeedle Werdyger",
+    "youtube_url": "https://www.youtube.com/watch?v=Tcj3_x3bH5c"
+  },
+  {
+    "name": "On Giants Shoulders",
+    "artist": "Avraham Fried",
+    "youtube_url": "https://www.youtube.com/watch?v=eWejKxZCIM0"
+  },
+  {
+    "name": "הלל",
+    "artist": "מרדכי בן דוד",
+    "youtube_url": "https://www.youtube.com/watch?v=2pqkMJxc9Gc"
+  },
+  {
+    "name": "Ani Maamin",
+    "artist": "Tai Gerszberg",
+    "youtube_url": "https://www.youtube.com/watch?v=jru7taoVKM4"
   }
 ]
