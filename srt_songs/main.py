@@ -377,7 +377,32 @@ def main():
             "artist": args.artist.strip() if args.artist else None,
             "youtube_url": args.url.strip()
         }
-        # We don't add lyrics_file here automatically, user needs to specify with --lyrics-file if needed for this run
+
+        # --- הוספת נתיב מילים ל-JSON אם סופק ב-CLI ---
+        if args.lyrics_file:
+            user_lyrics_path = args.lyrics_file  # הנתיב שהמשתמש הזין
+            lyrics_dir_abs_path = LYRICS_DIR     # הנתיב האבסולוטי לתיקיית המילים
+
+            # נבנה את הנתיב המלא הצפוי, בהנחה שהקלט יחסי לתיקיית המילים
+            expected_abs_path_in_lyrics_dir = os.path.join(lyrics_dir_abs_path, user_lyrics_path)
+
+            # בדיקה 1: האם הקובץ קיים בנתיב הצפוי *בתוך* תיקיית המילים?
+            if os.path.exists(expected_abs_path_in_lyrics_dir):
+                # כן, נמצא במיקום הנכון (בין אם הקלט היה יחסי או אבסולוטי בתוך התיקייה)
+                # נשמור את הנתיב המקורי שהמשתמש נתן (יחסי לתיקיית המילים)
+                relative_path_to_save = user_lyrics_path.replace(os.sep, '/') # נוודא שימוש ב- /
+                new_song['lyrics_file'] = relative_path_to_save
+                print(f"  נתיב קובץ המילים '{relative_path_to_save}' (יחסית לתיקיית המילים) ישמר ב-JSON.")
+
+            # בדיקה 2: אם לא נמצא בתיקיית המילים, האם הוא קיים במקום אחר (כנתיב אבסולוטי או יחסי ל-CWD)?
+            elif os.path.exists(user_lyrics_path):
+                # כן, אבל לא במיקום המנוהל
+                print(f"  אזהרה: קובץ המילים '{user_lyrics_path}' נמצא, אך אינו בתוך תיקיית המילים המוגדרת ('{lyrics_dir_abs_path}').")
+                print(f"           הקישור לא ישמר אוטומטית ב-song_list.json. ניתן להשתמש ב--lyrics-file בכל הרצה או לעדכן ידנית.")
+
+            # ברירת מחדל: הקובץ לא נמצא באף אחד מהמיקומים הרלוונטיים
+            else:
+                 print(f"  אזהרה: קובץ המילים שצויין '{user_lyrics_path}' לא נמצא (לא בתיקיית המילים ולא בנתיב שצוין). לא ניתן לקשר אותו ב-JSON.")
 
         # Check if song already exists (by URL is usually more unique)
         existing_song = None
@@ -388,11 +413,6 @@ def main():
         if existing_song:
              print(f"אזהרה: שיר עם ה-URL '{new_song['youtube_url']}' כבר קיים ברשימה. משתמש בנתונים הקיימים.")
              selected_song_data = existing_song
-             # Update artist if provided and differs? Optional.
-             # if new_song['artist'] and existing_song.get('artist') != new_song['artist']:
-             #     print(f"מעדכן זמר עבור '{existing_song['name']}' ל-'f{new_song['artist']}'")
-             #     existing_song['artist'] = new_song['artist']
-             #     save_song_list(SONG_LIST_JSON_PATH, songs) # Save update
         else:
             print(f"מוסיף שיר חדש לרשימה: '{new_song['name']}'")
             songs.append(new_song)
