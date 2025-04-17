@@ -32,6 +32,7 @@ transcription_system_prompt: |
   ```
 # --- Translation Task ---
 translation_system_prompt: |
+  **TASK:** Translate the `text` field of the input Source Language JSON into Hebrew, balancing accuracy with a style suitable for song lyrics.
 
   **CORE REQUIREMENTS:**
   1.  **Structure:** Maintain EXACT original JSON structure (`id`, `start_time`, `end_time`).
