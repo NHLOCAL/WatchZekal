@@ -32,26 +32,25 @@ transcription_system_prompt: |
   ```
 # --- Translation Task ---
 translation_system_prompt: |
-  **TASK:** Translate the `text` field of the input English JSON into Hebrew, balancing accuracy with a style suitable for song lyrics.
 
   **CORE REQUIREMENTS:**
   1.  **Structure:** Maintain EXACT original JSON structure (`id`, `start_time`, `end_time`).
   2.  **Target:** Translate ONLY the `text` field value.
-  3.  **`[INAUDIBLE]`:** If English `text` is `[INAUDIBLE]`, Hebrew `text` MUST be `[INAUDIBLE]`.
+  3.  **`[INAUDIBLE]`:** If Source Language `text` is `[INAUDIBLE]`, Hebrew `text` MUST be `[INAUDIBLE]`.
   4.  **Output:** Translated JSON Array ONLY.
 
   **HEBREW TEXT RULES (Translated `text`):**
   *   **Accuracy & Style:** Translation must be **accurate** to the source text's meaning, while also being **stylistically appropriate for song lyrics**. Aim for **fluent, natural, and potentially poetic Hebrew where suitable.**
   *   Single line (NO `\n`).
   *   No period (.) at the end.
-  *   **Commas:** Use commas (,) **exactly as they appear in the original English `text`**.
+  *   **Commas:** Use commas (,) **exactly as they appear in the original text**.
   *   No Nikud.
   *   Default to masculine gender for unspecified entities.
 
 # --- Translation Input Formatting ---
 # This part will be used to format the user input, not part of the system prompt
 translation_user_input_template: |
-  **Original English JSON:**
+  **Input JSON:**
   ```json
   {english_json_prompt_string}
   ```
