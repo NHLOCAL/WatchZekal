@@ -47,6 +47,8 @@ yiddish_transcription_system_prompt: |
       *   Short, natural phrases.
       *   No period (.) at the end.
       *   **Yiddish:** Transcribe using standard **HEBREW LETTERS** as commonly written in Yiddish.
+      *   **NO Abbreviations:** Write words out fully. Do NOT use abbreviations.
+      *   **NO Nikud:** Do NOT add any vowel points.
       *   **Commas:** Use commas (,) ONLY in **relatively long phrases** for clarity.
 
   **EXAMPLE OUTPUT STRUCTURE (Yiddish Transcription):**
