@@ -144,5 +144,12 @@
     "youtube_url": "https://www.youtube.com/watch?v=pWwW3Qc09LQ",
     "language": "yi",
     "lyrics_file": "גלות.txt"
+  },
+  {
+    "name": "טאטעניו",
+    "artist": "אברהם פריד",
+    "youtube_url": "https://www.youtube.com/watch?v=AADm2thgI6g",
+    "language": "yi",
+    "lyrics_file": "טאטעניו.txt"
   }
 ]
