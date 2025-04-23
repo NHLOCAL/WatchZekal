@@ -1,75 +1,85 @@
-# יוצר סרטוני כתוביות YouTube - מדריך שימוש מהיר
+# יוצר סרטוני כתוביות YouTube - מדריך שימוש
 
-## תיאור קצר
+## תיאור
 
-כלי זה מאפשר יצירת סרטוני וידאו לשירים הכוללים אודיו MP3, רקע, כותרת (עם שם אמן אופציונלי) וכתוביות מסונכרנות באנגלית ובעברית (נוצרות אוטומטית באמצעות Google Gemini API).
+כלי זה יוצר סרטוני YouTube עבור שירים באופן אוטומטי. הוא משלב קובץ אודיו (MP3), תמונת רקע, כותרות (שם שיר ואמן), וכתוביות מסונכרנות בשפת המקור (אנגלית/יידיש) ובעברית. הכתוביות נוצרות באמצעות Google Gemini API.
 
 ## דרישות
 
-1.  **Python:** גרסה 3.8 ומעלה.
-2.  **Pip:** מנהל החבילות של פייתון.
-3.  **ImageMagick:** **חובה להתקין!** זוהי תוכנה חיצונית ש-MoviePy דורשת. [הוראות התקנה](https://imagemagick.org/script/download.php).
-4.  **מפתח API של Google Gemini:** נדרש ליצירת הכתוביות. ניתן להשיג דרך [Google AI Studio](https://aistudio.google.com/app/apikey).
+*   **Python 3.10+**
+*   **Pip** (מנהל החבילות של Python)
+*   **ImageMagick:** **חובה להתקין ולהוסיף ל-PATH!** נדרש על ידי `moviepy` לעיבוד טקסט. [הוראות התקנה](https://imagemagick.org/script/download.php).
+*   **מפתח API של Google Gemini:** נדרש ליצירת כתוביות. [השג מפתח כאן](https://aistudio.google.com/app/apikey).
 
 ## התקנה והגדרה
 
-1.  **קבל את הקוד:** הורד או שכפל את קבצי הקוד לתיקייה במחשב שלך.
-2.  **התקן ספריות Python:**
-    פתח טרמינל/שורת פקודה בתיקיית הקוד והרץ (רצוי בתוך סביבה וירטואלית):
+1.  **הורד את הקוד:** שכפל (clone) או הורד את קבצי הפרויקט.
+2.  **התקן ספריות:** פתח טרמינל בתיקיית הפרויקט והרץ:
     ```bash
-    pip install google-generativeai moviepy Pillow numpy arabic_reshaper python-bidi imageio imageio-ffmpeg PyYAML
+    pip install google-genai moviepy Pillow numpy arabic_reshaper python-bidi imageio imageio-ffmpeg PyYAML
     ```
-3.  **התקן את ImageMagick:** אם לא עשית זאת קודם, התקן את ImageMagick לפי ההוראות באתר הרשמי. **זו דרישה חיונית!**
-4.  **הגדר מפתח API של Gemini:**
-    *   הגדר את המפתח שקיבלת כ**משתנה סביבה** בשם `GEMINI_API_KEY` **בטרמינל שממנו תריץ את הסקריפט**.
-    *   **Linux/macOS:** `export GEMINI_API_KEY="המפתח_שלך"`
-    *   **Windows (cmd):** `set GEMINI_API_KEY=המפתח_שלך`
-    *   **Windows (PowerShell):** `$env:GEMINI_API_KEY="המפתח_שלך"`
+3.  **התקן ImageMagick:** התקן לפי ההוראות וודא שהוא מוגדר ב-PATH של המערכת.
+4.  **הגדר מפתח Gemini API:** הגדר את המפתח שקיבלת כ**משתנה סביבה** בשם `GEMINI_API_KEY` בטרמינל שממנו תריץ את הסקריפט:
+    *   Linux/macOS: `export GEMINI_API_KEY="YOUR_API_KEY"`
+    *   Windows (cmd): `set GEMINI_API_KEY=YOUR_API_KEY`
+    *   Windows (PowerShell): `$env:GEMINI_API_KEY="YOUR_API_KEY"`
 5.  **הכן קבצי קלט:**
-    *   **`song_list.json`:**
-        *   עדכן קובץ זה עם רשימת השירים שלך. כל שיר צריך:
-            *   `"name"`: שם השיר (חייב להיות **זהה** לשם קובץ ה-MP3!).
-            *   `"artist"`: שם האמן (אופציונלי).
-            *   `"youtube_url"`: קישור YouTube תקין לשיר.
-        *   **דוגמה:** `[{"name": "My Song Title", "artist": "My Artist", "youtube_url": "https://..."}]`
-    *   **קבצי MP3:**
-        *   השג קובץ MP3 עבור כל שיר ברשימה.
-        *   מקם את קבצי ה-MP3 בתיקייה `demo_songs` (או לפי ההגדרה ב-`video_config.json`).
-        *   **חשוב:** שם כל קובץ MP3 חייב להיות **זהה** לשדה `"name"` שלו ב-`song_list.json`, בתוספת `.mp3`. (לדוגמה: `My Song Title.mp3`).
-    *   **נכסים (Assets):**
-        *   מקם את הפונטים (קבצי `.ttf`) שבהם תשתמש בתיקייה `assets/fonts`.
-        *   מקם את תמונות הרקע בתיקייה `assets/backgrounds/songs`.
-    *   **הוראות מערכת (`system_instructions.yaml`):** קובץ זה מכיל את ההנחיות הנשלחות ל-API של Gemini. ניתן לערוך אותו בזהירות כדי לשנות את אופן יצירת הכתוביות.
-6.  **בדוק תצורה (`video_config.json`):**
-    *   פתח את הקובץ `video_config.json`.
-    *   ודא שהנתיבים תחת `"paths"` נכונים ומצביעים לתיקיות הקלט/פלט שלך (במיוחד `assets_rel`, `demo_songs_rel`, `output_rel`).
-    *   ודא ששמות קבצי הפונטים תחת `"title_style"`, `"artist_style"`, ו-`"subtitle_style"` תואמים לשמות הקבצים שהעתקת לתיקיית `assets/fonts`.
+    *   **`config/song_list.json`:** רשימת השירים לעיבוד. לכל שיר:
+        *   `"name"` (חובה): שם השיר (חייב להיות **זהה** לשם קובץ ה-MP3).
+        *   `"youtube_url"` (חובה): קישור YouTube לשיר.
+        *   `"language"` (אופציונלי): `"en"` (אנגלית - ברירת מחדל) או `"yi"` (יידיש).
+        *   `"artist"` (אופציונלי): שם האמן.
+        *   `"lyrics_file"` (אופציונלי): נתיב לקובץ מילים ב-`data/lyrics/`.
+    *   **MP3:** מקם קבצי MP3 בתיקייה `data/songs/`. **שם הקובץ (בלי .mp3) חייב להיות זהה לשדה `"name"` ב-JSON.**
+    *   **מילים (אופציונלי):** קבצי טקסט ב-`data/lyrics/`.
+    *   **Assets:** פונטים (`.ttf`/`.otf`) ב-`assets/fonts/`, תמונות רקע ב-`assets/backgrounds/songs/`.
+6.  **בדוק תצורה:**
+    *   **`config/video_config.json`:** ודא נתיבים, שמות פונטים, צבעים וגדלים נכונים.
+    *   **`config/system_instructions.yaml`:** מכיל הנחיות ל-API (ערוך בזהירות).
 
 ## הרצת הסקריפט
 
-1.  פתח טרמינל/שורת פקודה בתיקיית הקוד.
-2.  ודא שמשתנה הסביבה `GEMINI_API_KEY` הוגדר בטרמינל זה.
-3.  הרץ את הסקריפט הראשי:
+פתח טרמינל בתיקיית הפרויקט, ודא ש-`GEMINI_API_KEY` מוגדר, והרץ `python main.py` עם האפשרויות הבאות:
+
+*   **מצב אינטראקטיבי (בחירת שיר מרשימה):**
     ```bash
     python main.py
     ```
-4.  הסקריפט יציג את רשימת השירים מ-`song_list.json`.
-5.  הזן את מספר השיר הרצוי ולחץ Enter.
-6.  התהליך יתחיל: בדיקת קבצים, יצירת או טעינת כתוביות, ולבסוף הרכבת הוידאו. התהליך עשוי לקחת מספר דקות.
+
+*   **בחירה ישירה של שיר:**
+    ```bash
+    python main.py --select <מזהה_שיר>
+    ```
+    `<מזהה_שיר>` יכול להיות מספר אינדקס, YouTube ID, או שם השיר המדויק מה-JSON.
+
+*   **הוספה ועיבוד שיר חדש:**
+    ```bash
+    python main.py --add --name "שם השיר" --url "קישור_יוטיוב" [אפשרויות נוספות...]
+    ```
+    *   חובה לציין `--name` ו-`--url`.
+    *   אפשר להוסיף: `--artist "שם"`, `--language yi`, `--lyrics-file "נתיב/קובץ"`.
+
+*   **אפשרויות נוספות (ניתן לשלב):**
+    *   `--lyrics-file <PATH>`: שימוש בקובץ מילים ספציפי (עוקף JSON).
+    *   `--force-regenerate`: יצירה מחדש של כתוביות מה-API (מתעלם מקבצי SRT קיימים).
+    *   `--language <en|yi>`: קביעת שפת המקור (עוקף JSON).
+
+הסקריפט יבצע את התהליך ויציג התקדמות.
 
 ## פלט
 
-*   **הסרטון הסופי:** קובץ ה-MP4 המוכן יישמר בתיקיית `output` (או לפי ההגדרה), בשם `<שם_השיר>_subtitled.mp4`.
-*   **פריימים של כתוביות:** תמונות PNG של הופעת כל כתובית יישמרו בתיקיית `output/subtitle_frames`.
-*   **קבצי SRT:** קבצי הכתוביות שנוצרו או נטענו (אנגלית ועברית) יישמרו בפורמט **SRT** בתיקייה שהוגדרה ב-`video_config.json` תחת המפתח `srt_files_rel`, לשימוש חוזר או לעריכה ידנית.
+*   **וידאו סופי (MP4):** נשמר בתיקיית `output/` (או לפי ההגדרה), בשם `<שם_השיר>_subtitled.mp4`.
+*   **קבצי כתוביות (SRT):** נשמרים בתיקיית `srt_files/` (או לפי ההגדרה) עבור כל שפה (`_en.srt` / `_yi.srt` ו-`_he.srt`). משמשים לטעינה חוזרת מהירה.
+*   **פריימים זמניים:** נוצרים ונמחקים אוטומטית מ-`output/subtitle_frames/` בסיום מוצלח.
 
 ## פתרון בעיות נפוצות
 
-*   **`FileNotFoundError`:** בדוק שכל הנתיבים ב-`video_config.json` נכונים, שקבצי הפונטים/רקע/MP3 קיימים במיקומים הנכונים וששמות קבצי ה-MP3 תואמים לשמות ב-`song_list.json`. ודא גם שקובץ `system_instructions.yaml` קיים באותה תיקייה כמו `subtitle_generator.py`.
-*   **שגיאת API Key:** ודא שהגדרת את משתנה הסביבה `GEMINI_API_KEY` *לפני* הרצת הסקריפט ובאותו חלון טרמינל. בדוק שהמפתח עצמו תקין.
-*   **שגיאות טקסט/ImageMagick:** ודא ש-ImageMagick מותקן כראוי וזמין למערכת (לפעמים נדרשת הפעלה מחדש של המחשב או הטרמינל לאחר ההתקנה).
-*   **שגיאות בטעינת SRT:** אם קיימים קבצי SRT שאתה רוצה לטעון, ודא שהם בפורמט SRT תקין.
+*   **`FileNotFoundError`:** בדוק נתיבים ב-`video_config.json`, ודא שקובצי MP3/פונטים/רקעים קיימים וששמות תואמים.
+*   **שגיאת API Key / אימות:** ודא שמשתנה הסביבה `GEMINI_API_KEY` הוגדר נכון בטרמינל הנוכחי.
+*   **שגיאות ImageMagick / טקסט:** ודא ש-ImageMagick מותקן ונמצא ב-PATH. הפעל מחדש טרמינל/מחשב.
+*   **שגיאות טעינת SRT:** ודא שקובצי SRT קיימים תקינים (UTF-8). מחק קבצים פגומים או השתמש ב-`--force-regenerate`.
+*   **`AttributeError: ... 'google.genai.types' ...`:** חוסר התאמה בגרסת SDK. ודא שהקוד תואם לגרסה המותקנת (`pip show google-genai`).
 
 ## רישיון
 
-כל התוכן בתיקייה זו ובכל תתי התיקיות שלה, כולל קוד המקור, תצורות, סקריפטים ומסמכים, מורשה תחת רישיון [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
