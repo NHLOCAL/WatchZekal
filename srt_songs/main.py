@@ -254,20 +254,33 @@ def select_song_interactive(songs):
              print("\nיציאה לפי בקשת המשתמש.")
              return None
 
-def validate_and_get_song_details(selected_song, songs_directory, lyrics_directory, cli_lyrics_path=None):
+def validate_and_get_song_details(selected_song, songs_directory, lyrics_directory, cli_lyrics_path=None, cli_language=None):
     """Validates selected song, checks MP3, prepares details."""
     if not selected_song or not isinstance(selected_song, dict):
         print("שגיאה פנימית: נתוני השיר שנבחר אינם תקינים.")
-        return None, None, None, None, None
+        return None, None, None, None, None, None # Added None for language
 
     song_name = selected_song.get('name')
     youtube_url = selected_song.get('youtube_url')
     artist_name = selected_song.get('artist')
     lyrics_rel_path = selected_song.get('lyrics_file') # From JSON
+    language_from_json = selected_song.get('language', 'en').lower() # Default to 'en' if missing
 
     if not song_name or not youtube_url:
         print(f"שגיאה: רשומת השיר אינה שלמה (חסר שם או קישור YouTube): {selected_song}")
-        return None, None, None, None, None
+        return None, None, None, None, None, None # Added None for language
+
+    # Determine source language: CLI override > JSON value > Default 'en'
+    source_language = 'en' # Default
+    if cli_language and cli_language.lower() in ['en', 'yi']:
+        source_language = cli_language.lower()
+        print(f"  שפת מקור נקבעה מה-CLI: {'אנגלית' if source_language == 'en' else 'יידיש'}")
+    elif language_from_json in ['en', 'yi']:
+        source_language = language_from_json
+        print(f"  שפת מקור נקבעה מה-JSON: {'אנגלית' if source_language == 'en' else 'יידיש'}")
+    else:
+        print(f"  שפת מקור נקבעה כברירת מחדל: {'אנגלית' if source_language == 'en' else 'יידיש'}")
+
 
     # --- MP3 Path ---
     expected_mp3_filename = f"{song_name}.mp3"
@@ -278,13 +291,14 @@ def validate_and_get_song_details(selected_song, songs_directory, lyrics_directo
     if artist_name:
          print(f"  זמר: {artist_name}")
     print(f"  קישור YouTube: {youtube_url}")
+    print(f"  שפת מקור מזוהה: {'אנגלית' if source_language == 'en' else 'יידיש'}") # Display identified language
     print(f"  נתיב MP3 צפוי: {expected_mp3_path}")
 
     if not os.path.exists(expected_mp3_path):
         print(f"\n!!! שגיאה קריטית !!!")
         print(f"קובץ האודיו הצפוי '{expected_mp3_path}' עבור השיר '{song_name}' לא נמצא בתיקייה '{songs_directory}'.")
         print("ודא שהקובץ קיים עם השם המדויק (כולל סיומת mp3) והנתיב הנכון.")
-        return None, None, None, None, None
+        return None, None, None, None, None, None # Added None for language
 
     # --- Lyrics Path & Content ---
     lyrics_content = None
@@ -325,7 +339,7 @@ def validate_and_get_song_details(selected_song, songs_directory, lyrics_directo
         else:
             print(f"  אזהרה: קובץ המילים '{lyrics_source_path}' לא נמצא.")
 
-    return song_name, artist_name, youtube_url, expected_mp3_path, lyrics_content
+    return song_name, artist_name, youtube_url, expected_mp3_path, lyrics_content, source_language # Return language
 
 
 def main():
@@ -348,6 +362,9 @@ def main():
                         help="נתיב לקובץ טקסט המכיל את מילות השיר (עוקף הגדרה ב-JSON אם קיימת).")
     parser.add_argument("-f", "--force-regenerate", action="store_true",
                         help="אלץ יצירה מחדש של קבצי הכתוביות (SRT), גם אם הם קיימים.")
+    parser.add_argument("-l", "--language", choices=['en', 'yi'],
+                        help="ציין במפורש את שפת המקור של השיר ('en' לאנגלית, 'yi' ליידיש). עוקף הגדרה ב-JSON.")
+
 
     args = parser.parse_args()
 
@@ -365,6 +382,7 @@ def main():
 
     selected_song_data = None
     cli_lyrics_path = args.lyrics_file # Get lyrics path from CLI args
+    cli_language_override = args.language # Get language override from CLI
 
     # --- Handle Song Selection/Addition ---
     if args.add:
@@ -375,7 +393,8 @@ def main():
         new_song = {
             "name": args.name.strip(),
             "artist": args.artist.strip() if args.artist else None,
-            "youtube_url": args.url.strip()
+            "youtube_url": args.url.strip(),
+            "language": cli_language_override if cli_language_override else 'en' # Set language if provided via CLI, else default to 'en'
         }
 
         # --- הוספת נתיב מילים ל-JSON אם סופק ב-CLI ---
@@ -442,9 +461,10 @@ def main():
          print("שגיאה: לא נבחרו נתוני שיר תקינים.")
          sys.exit(1)
 
-    song_name, artist_name, youtube_link, mp3_file_path, lyrics_content = validate_and_get_song_details(
-    selected_song_data, SONGS_DIR, LYRICS_DIR, cli_lyrics_path # שינוי: DEMO_SONGS_DIR -> SONGS_DIR
-)
+    song_name, artist_name, youtube_link, mp3_file_path, lyrics_content, source_language = validate_and_get_song_details(
+        selected_song_data, SONGS_DIR, LYRICS_DIR, cli_lyrics_path, cli_language_override # Pass CLI language override
+    )
+
 
     if not all([song_name, youtube_link, mp3_file_path]):
         print("שגיאה באימות פרטי השיר או מציאת קובץ MP3. יוצא מהתוכנית.")
@@ -462,6 +482,7 @@ def main():
     )
 
     source_subs, target_subs = subtitle_generator.generate_or_load_subtitles(
+        source_language=source_language, # Pass the determined source language
         song_name=song_name, # Pass song name for filename
         youtube_url=youtube_link,
         mp3_audio_path=mp3_file_path,
@@ -474,9 +495,9 @@ def main():
         print("יוצא מהתוכנית.")
         sys.exit(1)
     elif source_subs is None:
-        print("\nאזהרה: לא הופקו/נטענו כתוביות מקור (לדוגמה: אנגלית). ממשיך עם כתוביות יעד בלבד (אם קיימות).")
+        print(f"\nאזהרה: לא הופקו/נטענו כתוביות מקור ({'אנגלית' if source_language == 'en' else 'יידיש'}). ממשיך עם כתוביות יעד בלבד (אם קיימות).")
     elif target_subs is None:
-        print("\nאזהרה: לא הופקו/נטענו כתוביות יעד (לדוגמה: עברית). ממשיך עם כתוביות מקור בלבד (אם קיימות).")
+        print("\nאזהרה: לא הופקו/נטענו כתוביות יעד (עברית). ממשיך עם כתוביות מקור בלבד (אם קיימות).")
     elif not source_subs and not target_subs:
          print("\nאזהרה: שתי רשימות הכתוביות (מקור ויעד) ריקות. הוידאו ייווצר ללא כתוביות טקסט.")
     else:

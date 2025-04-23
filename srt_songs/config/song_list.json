@@ -2,103 +2,123 @@
   {
     "name": "Daddy Dear",
     "artist": "MBD",
-    "youtube_url": "https://www.youtube.com/watch?v=au4hnM0nECE"
+    "youtube_url": "https://www.youtube.com/watch?v=au4hnM0nECE",
+    "language": "en"
   },
   {
     "name": "Father Don't Cry",
     "artist": "Avraham Fried",
-    "youtube_url": "https://www.youtube.com/watch?v=Q8zNIHauJv4"
+    "youtube_url": "https://www.youtube.com/watch?v=Q8zNIHauJv4",
+    "language": "en"
   },
   {
     "name": "I'd Rather Pray & Sing",
     "artist": "MBD",
-    "youtube_url": "https://www.youtube.com/watch?v=p_fYuLnwfD0"
+    "youtube_url": "https://www.youtube.com/watch?v=p_fYuLnwfD0",
+    "language": "en"
   },
   {
     "name": "Memories",
     "artist": "MBD",
-    "youtube_url": "https://www.youtube.com/watch?v=_cSPv1pkeUc"
+    "youtube_url": "https://www.youtube.com/watch?v=_cSPv1pkeUc",
+    "language": "en"
   },
   {
     "name": "Miracles",
     "artist": "MBD",
-    "youtube_url": "https://www.youtube.com/watch?v=66k_Wt6-kao"
+    "youtube_url": "https://www.youtube.com/watch?v=66k_Wt6-kao",
+    "language": "en"
   },
   {
     "name": "So Much Closer",
     "artist": "MBD",
-    "youtube_url": "https://www.youtube.com/watch?v=L8RavZ42ZLU"
+    "youtube_url": "https://www.youtube.com/watch?v=L8RavZ42ZLU",
+    "language": "en"
   },
   {
     "name": "Hineni",
     "artist": "MBD",
-    "youtube_url": "https://www.youtube.com/watch?v=vTwnulvm6Hs"
+    "youtube_url": "https://www.youtube.com/watch?v=vTwnulvm6Hs",
+    "language": "en"
   },
   {
     "name": "Neshomele",
     "artist": "MBD",
-    "youtube_url": "https://www.youtube.com/watch?v=KxHEDn-LWQM"
+    "youtube_url": "https://www.youtube.com/watch?v=KxHEDn-LWQM",
+    "language": "en"
   },
   {
     "name": "Just One Shabbos",
     "artist": "MBD",
-    "youtube_url": "https://www.youtube.com/watch?v=55tPaMleVgs"
+    "youtube_url": "https://www.youtube.com/watch?v=55tPaMleVgs",
+    "language": "en"
   },
   {
     "name": "Unity",
     "artist": "MBD",
-    "youtube_url": "https://www.youtube.com/watch?v=G8pjN5ZS2Go"
+    "youtube_url": "https://www.youtube.com/watch?v=G8pjN5ZS2Go",
+    "language": "en"
   },
   {
     "name": "B'Siyata D'Shmaya",
     "artist": "Miami Boys Choir",
-    "youtube_url": "https://www.youtube.com/watch?v=9WEGzRU7qA0"
+    "youtube_url": "https://www.youtube.com/watch?v=9WEGzRU7qA0",
+    "language": "en"
   },
   {
     "name": "Sunshine",
     "artist": "Miami Boys Choir",
-    "youtube_url": "https://www.youtube.com/watch?v=K3o668XTG_E"
+    "youtube_url": "https://www.youtube.com/watch?v=K3o668XTG_E",
+    "language": "en"
   },
   {
     "name": "Daddy Come Home",
     "artist": "Yeshiva Boys Choir",
-    "youtube_url": "https://www.youtube.com/watch?v=xF7UVW6PLig"
+    "youtube_url": "https://www.youtube.com/watch?v=xF7UVW6PLig",
+    "language": "en"
   },
   {
     "name": "Hold On",
     "artist": "MBD",
-    "youtube_url": "https://www.youtube.com/watch?v=h9tAZbaQD6k"
+    "youtube_url": "https://www.youtube.com/watch?v=h9tAZbaQD6k",
+    "language": "en"
   },
   {
     "name": "איך האב געווארט",
     "artist": "מרדכי בן דוד",
-    "youtube_url": "https://www.youtube.com/watch?v=zk3lFJ7GxeI"
+    "youtube_url": "https://www.youtube.com/watch?v=zk3lFJ7GxeI",
+    "language": "yi"
   },
   {
     "name": "Let My People Go",
     "artist": "MBD",
-    "youtube_url": "https://www.youtube.com/watch?v=PKn6p8Ka9os"
+    "youtube_url": "https://www.youtube.com/watch?v=PKn6p8Ka9os",
+    "language": "en"
   },
   {
     "name": "Return",
     "artist": "Yeedle Werdyger",
     "youtube_url": "https://www.youtube.com/watch?v=gvlsjNiAoEE",
-    "lyrics_file": "return.txt"
+    "lyrics_file": "return.txt",
+    "language": "en"
   },
   {
     "name": "Home",
     "artist": "Yeedle Werdyger",
-    "youtube_url": "https://www.youtube.com/watch?v=Tcj3_x3bH5c"
+    "youtube_url": "https://www.youtube.com/watch?v=Tcj3_x3bH5c",
+    "language": "en"
   },
   {
     "name": "On Giants Shoulders",
     "artist": "Avraham Fried",
-    "youtube_url": "https://www.youtube.com/watch?v=eWejKxZCIM0"
+    "youtube_url": "https://www.youtube.com/watch?v=eWejKxZCIM0",
+    "language": "en"
   },
   {
     "name": "הלל",
     "artist": "מרדכי בן דוד",
-    "youtube_url": "https://www.youtube.com/watch?v=2pqkMJxc9Gc"
+    "youtube_url": "https://www.youtube.com/watch?v=2pqkMJxc9Gc",
+    "language": "yi"
   },
   {
     "name": "Ani Maamin",
@@ -109,11 +129,20 @@
     "name": "Carry On",
     "artist": "Lipa Schmeltzer",
     "youtube_url": "https://www.youtube.com/watch?v=dzEzWxyU91Y",
-    "lyrics_file": "Carry On.txt"
+    "lyrics_file": "Carry On.txt",
+    "language": "en"
   },
   {
     "name": "איזהו מקומן",
     "artist": "מרדכי בן דוד",
-    "youtube_url": "https://www.youtube.com/watch?v=IeMiBcc6ayU"
+    "youtube_url": "https://www.youtube.com/watch?v=IeMiBcc6ayU",
+    "language": "yi"
+  },
+  {
+    "name": "גלות",
+    "artist": "לוי פאלקאוויטש",
+    "youtube_url": "https://www.youtube.com/watch?v=pWwW3Qc09LQ",
+    "language": "yi",
+    "lyrics_file": "גלות.txt"
   }
 ]
