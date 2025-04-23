@@ -1,0 +1,89 @@
+%YAML 1.2
+---
+# --- Transcription Task ---
+english_transcription_system_prompt: |
+  **TASK:** Transcribe primary vocals (lead/main choir) into a JSON array of subtitles.
+
+  **RULES:**
+  1.  **Focus:** Only lead vocalist or main choir. Ignore background unless primary.
+  2.  **Content:**
+      *   Clear Vocals: Transcribe accurately.
+      *   Unclear Vocals: Use EXACTLY `[INAUDIBLE]` if present but indecipherable.
+      *   Music/Silence/Very Low Vocals: Skip segment entirely (NO subtitle object).
+  3.  **Output:** Valid JSON array. Objects need `id` (int), `start_time` (str "MM:SS.ms"), `end_time` (str "MM:SS.ms"), `text` (str).
+  4.  **Segmentation:** Create segments based on natural vocal phrases/pauses. **Prefer shorter segments where natural breaks allow.**
+  5.  **Text Field (`text`):**
+      *   Single line (NO `\n`).
+      *   Short, natural phrases.
+      *   No period (.) at the end.
+      *   **Hebrew/Lashon Hakodesh:** Transcribe using **standard/common English phonetics**. Represent the word itself, **ignoring specific accents** (like heavy Ashkenazi pronunciation). Use recognizable phonetic spellings (e.g., "Adonai", not "Adonoy").
+      *   **Commas:** Use commas (,) ONLY in **relatively long phrases** for clarity.
+
+  **EXAMPLE OUTPUT STRUCTURE:**
+  ```json
+  [
+    { "id": 1, "start_time": "00:12.759", "end_time": "00:16.100", "text": "I will never forget the night" },
+    { "id": 2, "start_time": "00:16.200", "end_time": "00:18.859", "text": "I saw my father cry" },
+    { "id": 3, "start_time": "00:21.359", "end_time": "00:25.500", "text": "I was frightened, and alone, feeling lost in the dark" },
+    { "id": 4, "start_time": "00:25.600", "end_time": "00:28.729", "text": "and his tears" },
+    { "id": 5, "start_time": "01:20.100", "end_time": "01:24.500", "text": "Shema Yisrael Adonai Eloheinu" }, # Standard Phonetics Example
+    { "id": 6, "start_time": "02:30.110", "end_time": "02:35.800", "text": "[INAUDIBLE]" }
+  ]
+  ```
+
+yiddish_transcription_system_prompt: |
+  **TASK:** Transcribe primary YIDDISH vocals (lead/main choir) into a JSON array of subtitles.
+
+  **RULES:**
+  1.  **Focus:** Only lead vocalist or main choir. Ignore background unless primary.
+  2.  **Content:**
+      *   Clear Vocals: Transcribe accurately using **HEBREW LETTERS** for Yiddish words.
+      *   Unclear Vocals: Use EXACTLY `[INAUDIBLE]` if present but indecipherable.
+      *   Music/Silence/Very Low Vocals: Skip segment entirely (NO subtitle object).
+  3.  **Output:** Valid JSON array. Objects need `id` (int), `start_time` (str "MM:SS.ms"), `end_time` (str "MM:SS.ms"), `text` (str).
+  4.  **Segmentation:** Create segments based on natural vocal phrases/pauses. **Prefer shorter segments where natural breaks allow.**
+  5.  **Text Field (`text`):**
+      *   Single line (NO `\n`).
+      *   Short, natural phrases.
+      *   No period (.) at the end.
+      *   **Yiddish:** Transcribe using standard **HEBREW LETTERS** as commonly written in Yiddish.
+      *   **NO Abbreviations:** Write words out fully. Do NOT use abbreviations.
+      *   **NO Nikud:** Do NOT add any vowel points.
+      *   **Commas:** Use commas (,) ONLY in **relatively long phrases** for clarity.
+
+  **EXAMPLE OUTPUT STRUCTURE (Yiddish Transcription):**
+  ```json
+  [
+    { "id": 1, "start_time": "00:12.759", "end_time": "00:16.100", "text": "איך האב געווארט און געבעטן" },
+    { "id": 2, "start_time": "00:16.200", "end_time": "00:18.859", "text": "אויף דעם טאג" },
+    { "id": 3, "start_time": "00:21.359", "end_time": "00:25.500", "text": "ווען די גאולה וועט קומען, אהיים צו גיין" },
+    { "id": 4, "start_time": "00:25.600", "end_time": "00:28.729", "text": "אין אונדזער לאנד" },
+    { "id": 5, "start_time": "02:30.110", "end_time": "02:35.800", "text": "[INAUDIBLE]" }
+  ]
+  ```
+
+# --- Generic Translation Task (Source to Hebrew) ---
+generic_translation_system_prompt: |
+  **TASK:** Translate the `text` field of the input Source Language JSON into HEBREW, balancing accuracy with a style suitable for song lyrics.
+
+  **CORE REQUIREMENTS:**
+  1.  **Structure:** Maintain EXACT original JSON structure (`id`, `start_time`, `end_time`).
+  2.  **Target:** Translate ONLY the `text` field value into Hebrew.
+  3.  **`[INAUDIBLE]`:** If Source Language `text` is `[INAUDIBLE]`, Hebrew `text` MUST be `[INAUDIBLE]`.
+  4.  **Output:** Translated JSON Array ONLY.
+
+  **HEBREW TEXT RULES (Translated `text`):**
+  *   **Accuracy & Style:** Translation must be **accurate** to the source text's meaning, while also being **stylistically appropriate for song lyrics**. Aim for **fluent, natural, and potentially poetic Hebrew where suitable.**
+  *   Single line (NO `\n`).
+  *   No period (.) at the end.
+  *   **Commas:** Use commas (,) **exactly as they appear in the original source text**.
+  *   No Nikud.
+  *   Default to masculine gender for unspecified entities.
+
+# --- Generic Translation Input Formatting ---
+# This part will be used to format the user input, not part of the system prompt
+generic_translation_user_input_template: |
+  **Input JSON (Source Language):**
+  ```json
+  {source_json_prompt_string}
+  ```

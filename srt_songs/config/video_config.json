@@ -1,0 +1,59 @@
+{
+  "paths": {
+    "assets_rel": "../assets",
+    "fonts_subdir": "fonts",
+    "data_rel": "data",
+    "songs_subdir": "songs",
+    "lyrics_subdir": "lyrics",
+    "output_rel": "output",
+    "output_frames_subdir": "subtitle_frames",
+    "srt_files_rel": "srt_files"
+  },
+  "video_settings": {
+    "resolution": [1280, 720],
+    "fps": 25
+  },
+  "background": {
+    "image_path_rel_assets": "backgrounds/songs/subtitle.jpg",
+    "intro_image_path_rel_assets": "backgrounds/songs/intro.jpg"
+  },
+  "title_style": {
+    "font_name": "Rubik-Bold.ttf",
+    "font_size": 100,
+    "color": "#440B7A",
+    "stroke_color": "white",
+    "stroke_width": 4.0,
+    "position": ["center", "center"]
+  },
+  "artist_style": {
+    "font_name": "Rubik-Bold.ttf",
+    "font_size": 70,
+    "color": "#024266",
+    "stroke_color": "white",
+    "stroke_width": 2.0,
+    "vertical_offset_from_title": 40
+  },
+  "subtitle_style": {
+    "source": {
+      "font_name": "Rubik-Regular.ttf",
+      "font_size": 62,
+      "color": "black",
+      "stroke_color": "#9FF0F4",
+      "stroke_width": 2.0
+    },
+    "target": {
+      "font_name": "Rubik-Regular.ttf",
+      "font_size": 57,
+      "color": "black",
+      "stroke_color": "#FAFAFA",
+      "stroke_width": 1.0
+    },
+    "layout": {
+      "spacing_within_block": 15,
+      "spacing_between_blocks": 40,
+      "vertical_alignment": "center",
+      "bottom_margin": 60,
+      "top_margin": 50
+    }
+  }
+}

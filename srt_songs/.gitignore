@@ -1,0 +1,6 @@
+output/
+legacy/
+srt_files/
+json_files/
+data/
+repomix-output.*
