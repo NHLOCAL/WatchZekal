@@ -17,7 +17,8 @@
     "name": "I'd Rather Pray & Sing",
     "artist": "MBD",
     "youtube_url": "https://www.youtube.com/watch?v=p_fYuLnwfD0",
-    "language": "en"
+    "language": "en",
+	"hebrew_name": "אני מעדיף להתפלל ולשיר"
   },
   {
     "name": "Memories",
@@ -174,6 +175,12 @@
     "name": "א ישועה'לע",
     "artist": "מרדכי בן דוד",
     "youtube_url": "https://www.youtube.com/watch?v=Z-DfFbPOixA",
+    "language": "yi"
+  },
+  {
+    "name": "בלאז דעם שופר",
+    "artist": "עקיבא גרומן",
+    "youtube_url": "https://www.youtube.com/watch?v=bdWLT-ZRcx0",
     "language": "yi"
   }
 ]
