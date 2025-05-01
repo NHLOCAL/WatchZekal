@@ -464,13 +464,22 @@ def main():
         if not args.name or not args.url:
             parser.error("--add דורש ציון של --name ו--url.")
 
+        # --- Construct the new song dictionary ---
         new_song = {
             "name": args.name.strip(),
-            "artist": args.artist.strip() if args.artist else None,
-            "hebrew_name": args.hebrew_name.strip() if args.hebrew_name else None, # Add hebrew name
             "youtube_url": args.url.strip(),
-            "language": cli_language_override if cli_language_override else 'en' # Set language if provided via CLI, else default to 'en'
+            # Start with required fields and conditionally add optional ones
         }
+
+        # Add optional fields only if they were provided and have content
+        if args.artist and args.artist.strip():
+            new_song["artist"] = args.artist.strip()
+
+        if args.hebrew_name and args.hebrew_name.strip():
+            new_song["hebrew_name"] = args.hebrew_name.strip() # Only add if provided
+
+        # Determine language (CLI override > default 'en')
+        new_song["language"] = cli_language_override if cli_language_override else 'en'
 
         # --- Link lyrics file if provided via CLI and found in lyrics dir ---
         if args.lyrics_file:
