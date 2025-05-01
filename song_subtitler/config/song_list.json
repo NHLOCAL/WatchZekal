@@ -137,10 +137,9 @@
     "language": "yi"
   },
   {
-    "name": "Ani Maamin",
-    "artist": "Tai Gerszberg",
+    "name": "אני מאמין",
+    "artist": "תאי גרזברג",
     "youtube_url": "https://www.youtube.com/watch?v=jru7taoVKM4",
-    "hebrew_name": "אני מאמין"
   },
   {
     "name": "Carry On",
@@ -174,7 +173,6 @@
   {
     "name": "א ישועה'לע",
     "artist": "מרדכי בן דוד",
-    "hebrew_name": null,
     "youtube_url": "https://www.youtube.com/watch?v=Z-DfFbPOixA",
     "language": "yi"
   }
