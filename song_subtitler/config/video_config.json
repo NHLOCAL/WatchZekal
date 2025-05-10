@@ -19,7 +19,7 @@
   },
   "title_style": {
     "font_name": "Alef-Bold.ttf",
-    "font_size": 100,
+    "font_size": 120,
     "color": "#440B7A",
     "stroke_color": "white",
     "stroke_width": 4.0,
@@ -27,7 +27,7 @@
   },
   "artist_style": {
     "font_name": "Alef-Bold.ttf",
-    "font_size": 70,
+    "font_size": 85,
     "color": "#024266",
     "stroke_color": "white",
     "stroke_width": 2.0,
