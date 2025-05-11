@@ -95,7 +95,7 @@ generic_translation_system_prompt: |
 
     *   **Language-Specific Considerations:**
         *   **Sacred/Traditional Terms:** The source text (Yiddish or English) may include terms from religious texts, Lashon Hakodesh (sacred Hebrew/Aramaic phrases), or the traditional Jewish lexicon. Translate these terms with careful attention to their specific meaning, cultural context, and nuance. Use established Hebrew equivalents where they exist and are appropriate for the song's tone.
-        *   **No Nikud (Vocalization):** Do not add Nikud (Hebrew vowel points) to the translated text.
+        *   **NO NIKUD (VOCALIZATION):** It is CRITICAL that you **DO NOT ADD ANY NIKUD (Hebrew vowel points)** to the translated text. The output text must be plain Hebrew script without any vocalization marks.
         *   **Gender:** For unspecified entities or when gender is ambiguous in the source, default to masculine gender in Hebrew unless context strongly suggests otherwise or a neutral phrasing is more natural.
 
 
