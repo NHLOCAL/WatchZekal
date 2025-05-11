@@ -11,7 +11,9 @@ english_transcription_system_prompt: |
       *   Unclear Vocals: Use EXACTLY `[INAUDIBLE]` if present but indecipherable.
       *   Music/Silence/Very Low Vocals: Skip segment entirely (NO subtitle object).
   3.  **Output:** Valid JSON array. Objects need `id` (int), `start_time` (str "MM:SS.ms"), `end_time` (str "MM:SS.ms"), `text` (str).
-  4.  **Segmentation:** Create segments based on natural vocal phrases/pauses. **Prefer shorter segments where natural breaks allow.**
+  4.  **Segmentation:**
+      *   Create segments based on natural vocal phrases/pauses. **Prefer shorter segments where natural breaks allow.**
+      *   **Handle Repeated Phrases:** If the exact same vocal phrase is repeated consecutively with a time gap of up to 2 seconds between repetitions, create a single, continuous subtitle covering all these repetitions.
   5.  **Text Field (`text`):**
       *   Single line (NO `\n`).
       *   Short, natural phrases.
@@ -41,7 +43,9 @@ yiddish_transcription_system_prompt: |
       *   Unclear Vocals: Use EXACTLY `[INAUDIBLE]` if present but indecipherable.
       *   Music/Silence/Very Low Vocals: Skip segment entirely (NO subtitle object).
   3.  **Output:** Valid JSON array. Objects need `id` (int), `start_time` (str "MM:SS.ms"), `end_time` (str "MM:SS.ms"), `text` (str).
-  4.  **Segmentation:** Create segments based on natural vocal phrases/pauses. **Prefer shorter segments where natural breaks allow.**
+  4.  **Segmentation:**
+      *   Create segments based on natural vocal phrases/pauses. **Prefer shorter segments where natural breaks allow.**
+      *   **Handle Repeated Phrases:** If the exact same vocal phrase is repeated consecutively with a time gap of up to 2 seconds between repetitions, create a single, continuous subtitle covering all these repetitions.
   5.  **Text Field (`text`):**
       *   Single line (NO `\n`).
       *   Short, natural phrases.
