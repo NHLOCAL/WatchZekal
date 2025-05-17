@@ -18,7 +18,7 @@
     "artist": "מרדכי בן דוד",
     "youtube_url": "https://www.youtube.com/watch?v=p_fYuLnwfD0",
     "language": "en",
-	"hebrew_name": "אני מעדיף להתפלל ולשיר"
+    "hebrew_name": "אני מעדיף להתפלל ולשיר"
   },
   {
     "name": "Memories",
@@ -180,6 +180,12 @@
     "name": "בלאז דעם שופר",
     "artist": "עקיבא גרומן",
     "youtube_url": "https://www.youtube.com/watch?v=bdWLT-ZRcx0",
+    "language": "yi"
+  },
+  {
+    "name": "דאס לעצטע דוכנ'ען",
+    "youtube_url": "https://www.youtube.com/watch?v=Z9tjW34vfeg",
+    "artist": "מיכאל שניצלער",
     "language": "yi"
   }
 ]
