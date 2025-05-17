@@ -31,7 +31,7 @@ class SubtitleGenerator:
         self.api_key = api_key
         self.srt_output_dir = srt_output_dir
         # *** Using the EXACT original model name ***
-        self.model_name = "gemini-2.5-pro-exp-03-25"
+        self.model_name = "gemini-2.5-pro-preview-03-25"
         self.client = self._initialize_client() # Uses the original client initialization
         self._ensure_dir_exists(self.srt_output_dir)
 
