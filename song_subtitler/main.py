@@ -5,10 +5,12 @@ import traceback
 import argparse
 import re
 import urllib.parse
+import glob # Added for listing files
 
 # Assuming these imports exist and are correct
 from video_maker.subtitle_generator import SubtitleGenerator
 from video_maker.video_creator import VideoCreator
+from video_maker.json_to_srt import convert_json_to_srt as convert_json_content_to_srt_string # Added import
 
 CONFIG_DIR = 'config'
 CONFIG_FILE_NAME = 'video_config.json'
@@ -42,6 +44,7 @@ def resolve_paths(config, base_dir):
     data_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('data_rel', 'data')))
     songs_dir = os.path.join(data_dir, paths_cfg.get('songs_subdir', 'songs'))
     lyrics_dir = os.path.join(data_dir, paths_cfg.get('lyrics_subdir', 'lyrics'))
+    json_files_dir = os.path.join(data_dir, paths_cfg.get('json_files_subdir', 'json_files')) # Added json_files_dir
 
     # Output paths
     output_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('output_rel', 'output')))
@@ -55,6 +58,7 @@ def resolve_paths(config, base_dir):
         'data_dir': data_dir,
         'songs_dir': songs_dir,
         'lyrics_dir': lyrics_dir,
+        'json_files_dir': json_files_dir, # Added json_files_dir
         'output_dir': output_dir,
         'output_frames_dir': output_frames_dir,
         'srt_files_dir': srt_files_dir
@@ -84,16 +88,16 @@ def resolve_paths(config, base_dir):
     sub_style = resolved_config.get('subtitle_style', {})
     if 'source' not in sub_style or 'target' not in sub_style:
         print("שגיאת קונפיגורציה קריטית: 'subtitle_style' חייב להכיל קטעי 'source' ו-'target'.")
-        return None, None, None, None # Added lyrics_dir return
+        return None, None, None, None, None # Updated return for 5 values
     for role in ['source', 'target']:
         role_style = sub_style[role]
         missing_keys = [key for key in ['font_name', 'font_size', 'color'] if key not in role_style]
         if missing_keys:
             print(f"שגיאת קונפיגורציה קריטית: חלק '{role}' ב-'subtitle_style' חסר את המפתחות הבאים: {', '.join(missing_keys)}")
-            return None, None, None, None # Added lyrics_dir return
+            return None, None, None, None, None # Updated return for 5 values
 
     # Return all necessary resolved paths
-    return resolved_config, songs_dir, srt_files_dir, lyrics_dir
+    return resolved_config, songs_dir, srt_files_dir, lyrics_dir, json_files_dir # Added json_files_dir
 
 
 # --- Configuration Loading ---
@@ -110,7 +114,7 @@ if not raw_config:
     sys.exit(1)
 
 # Resolve paths and get directory locations
-resolved_config, SONGS_DIR, SRT_FILES_DIR, LYRICS_DIR = resolve_paths(raw_config, BASE_DIR)
+resolved_config, SONGS_DIR, SRT_FILES_DIR, LYRICS_DIR, JSON_FILES_DIR = resolve_paths(raw_config, BASE_DIR) # Added JSON_FILES_DIR
 if not resolved_config:
     print("יציאה עקב שגיאות בקונפיגורציה.")
     sys.exit(1)
@@ -126,6 +130,7 @@ os.makedirs(ASSETS_DIR, exist_ok=True)
 os.makedirs(FONTS_DIR, exist_ok=True)
 os.makedirs(SONGS_DIR, exist_ok=True)
 os.makedirs(LYRICS_DIR, exist_ok=True)
+os.makedirs(JSON_FILES_DIR, exist_ok=True) # Added JSON_FILES_DIR creation
 os.makedirs(SRT_FILES_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 # No need to create output_frames_dir here, VideoCreator handles it
@@ -363,6 +368,60 @@ def validate_and_get_song_details(selected_song, songs_directory, lyrics_directo
 
     return song_name, artist_name, hebrew_name, youtube_url, expected_mp3_path, lyrics_content, source_language # Return hebrew_name
 
+# --- Standalone JSON to SRT Conversion ---
+def process_standalone_json_to_srt(json_files_dir, srt_output_dir):
+    """
+    Scans for .json files in json_files_dir, converts them to .srt format,
+    and saves them in srt_output_dir.
+    The generated SRT filenames will be the same as the JSON filenames, but with .srt extension.
+    """
+    print(f"\n--- בדיקת קבצי JSON עצמאיים להמרה ל-SRT בתיקייה: {json_files_dir} ---")
+    json_files_found = glob.glob(os.path.join(json_files_dir, "*.json"))
+
+    if not json_files_found:
+        print("לא נמצאו קבצי JSON לעיבוד.")
+        return
+
+    converted_count = 0
+    for json_file_path in json_files_found:
+        json_filename = os.path.basename(json_file_path)
+        # SRT filename will be the same as JSON, but with .srt extension
+        srt_filename = os.path.splitext(json_filename)[0] + ".srt"
+        srt_file_path = os.path.join(srt_output_dir, srt_filename)
+
+        print(f"  מעבד את '{json_filename}'...")
+        # The SubtitleGenerator will handle loading existing SRTs or regenerating.
+        # This step aims to convert JSONs to SRTs, potentially overwriting existing SRTs
+        # if a JSON with the same base name exists. This ensures the JSON is the source of truth if present.
+        print(f"    נתיב קובץ SRT יעד: {srt_file_path}")
+
+        srt_content = convert_json_content_to_srt_string(json_file_path)
+        if srt_content:
+            try:
+                with open(srt_file_path, 'w', encoding='utf-8') as srt_f:
+                    srt_f.write(srt_content)
+                print(f"    המרת '{json_filename}' ל-SRT הושלמה ונשמרה ב: '{srt_file_path}'")
+                converted_count += 1
+                # Optional: Consider moving or deleting the source JSON file after successful conversion
+                # For example:
+                # os.remove(json_file_path)
+                # print(f"    קובץ ה-JSON המקורי '{json_filename}' נמחק לאחר ההמרה.")
+            except IOError as e:
+                print(f"    שגיאה בכתיבת קובץ ה-SRT '{srt_file_path}': {e}")
+        else:
+            # This typically means the json_to_srt function had an issue (e.g., file not found, bad JSON)
+            # or the JSON content was empty/invalid leading to no SRT output.
+            # The convert_json_content_to_srt_string function should print its own errors.
+            print(f"    המרת '{json_filename}' נכשלה או שלא נוצר תוכן SRT (בדוק לוגים קודמים).")
+
+
+    if converted_count > 0:
+        print(f"סה\"כ {converted_count} קבצי JSON הומרו ל-SRT.")
+    elif json_files_found: # Files were found, but none converted
+        print("לא הומרו קבצי JSON (ייתכן שהמרות נכשלו או שלא נוצר תוכן).")
+    print("--- סיום בדיקת קבצי JSON עצמאיים ---")
+
+
 # --- Main Execution ---
 def main():
     parser = argparse.ArgumentParser(
@@ -448,6 +507,12 @@ def main():
         print("שגיאה: משתנה הסביבה 'GEMINI_API_KEY' לא הוגדר.")
         print("אנא הגדר את המפתח והפעל את הסקריפט מחדש.")
         sys.exit(1)
+
+    # --- Process standalone JSON files to SRT first ---
+    # This ensures any pre-existing JSON transcriptions are converted to SRT
+    # before the SubtitleGenerator tries to load or generate them.
+    process_standalone_json_to_srt(JSON_FILES_DIR, SRT_FILES_DIR)
+
 
     # --- Load Song List ---
     songs = load_song_list(SONG_LIST_JSON_PATH)
@@ -591,9 +656,11 @@ def main():
                  print(f"    -> קובץ יעד (עברית) נמצא.")
              else:
                  print(f"    -> קובץ יעד (עברית) לא נמצא.")
-             print(f"  (המערכת תנסה לטעון קבצים קיימים אלו. השתמש ב--force-regenerate ליצירה מחדש)")
+             print(f"  (המערכת תנסה לטעון קבצים קיימים אלו. השתמש ב--force-regenerate ליצירה מחדש מה-API)")
         else:
-            print("  שים לב: יצירה מחדש של הכתוביות נכפתה באמצעות '--force-regenerate'.")
+            print("  שים לב: יצירה מחדש של הכתוביות מה-API נכפתה באמצעות '--force-regenerate'.")
+            print("  קבצי SRT שנוצרו מקבצי JSON מקומיים לא יושפעו מכך, אלא אם הם יידרסו על ידי פלט API.")
+
 
     except Exception as e:
          print(f"אזהרה: לא ניתן היה לחשב נתיבי SRT צפויים מראש: {e}")

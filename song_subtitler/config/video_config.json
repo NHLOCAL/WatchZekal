@@ -5,6 +5,7 @@
     "data_rel": "data",
     "songs_subdir": "songs",
     "lyrics_subdir": "lyrics",
+    "json_files_subdir": "json_files",
     "output_rel": "output",
     "output_frames_subdir": "subtitle_frames",
     "srt_files_rel": "srt_files"
