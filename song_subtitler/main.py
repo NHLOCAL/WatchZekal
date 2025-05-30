@@ -6,6 +6,7 @@ import argparse
 import re
 import urllib.parse
 import glob # Added for listing files
+import shutil # Added for file copying
 
 # Assuming these imports exist and are correct
 from video_maker.subtitle_generator import SubtitleGenerator
@@ -44,27 +45,25 @@ def resolve_paths(config, base_dir):
     data_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('data_rel', 'data')))
     songs_dir = os.path.join(data_dir, paths_cfg.get('songs_subdir', 'songs'))
     lyrics_dir = os.path.join(data_dir, paths_cfg.get('lyrics_subdir', 'lyrics'))
-    json_files_dir = os.path.join(data_dir, paths_cfg.get('json_files_subdir', 'json_files')) # Added json_files_dir
+    json_files_dir = os.path.join(data_dir, paths_cfg.get('json_files_subdir', 'json_files'))
 
     # Output paths
     output_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('output_rel', 'output')))
     output_frames_dir = os.path.join(output_dir, paths_cfg.get('output_frames_subdir', 'subtitle_frames'))
     srt_files_dir = os.path.abspath(os.path.join(base_dir, paths_cfg.get('srt_files_rel', 'srt_files')))
 
-    # Store resolved absolute paths
     resolved_config['paths'] = {
         'assets_dir': assets_dir,
         'fonts_dir': fonts_dir,
         'data_dir': data_dir,
         'songs_dir': songs_dir,
         'lyrics_dir': lyrics_dir,
-        'json_files_dir': json_files_dir, # Added json_files_dir
+        'json_files_dir': json_files_dir,
         'output_dir': output_dir,
         'output_frames_dir': output_frames_dir,
         'srt_files_dir': srt_files_dir
     }
 
-    # Resolve background image paths
     bg_config = resolved_config.get('background', {})
     if 'image_path_rel_assets' in bg_config:
         bg_rel_path = bg_config['image_path_rel_assets']
@@ -78,66 +77,55 @@ def resolve_paths(config, base_dir):
         print(f"נתיב רקע פתיח זוהה: {bg_config['intro_background_image_path']}")
     else:
         print("אזהרה: נתיב תמונת רקע לפתיח לא הוגדר בקונפיגורציה. ישתמש ברקע הראשי.")
-        bg_config['intro_background_image_path'] = None # Explicitly set to None if not defined
+        bg_config['intro_background_image_path'] = None
 
     resolved_config['background'] = bg_config
 
-    # Validate essential style sections
     if 'artist_style' not in resolved_config:
         print("אזהרה: הגדרות עיצוב 'artist_style' חסרות בקובץ הקונפיגורציה. שם הזמר לא יוצג (אלא אם כן נבחרה כותרת משנה בעברית).")
     sub_style = resolved_config.get('subtitle_style', {})
     if 'source' not in sub_style or 'target' not in sub_style:
         print("שגיאת קונפיגורציה קריטית: 'subtitle_style' חייב להכיל קטעי 'source' ו-'target'.")
-        return None, None, None, None, None # Updated return for 5 values
+        return None, None, None, None, None
     for role in ['source', 'target']:
         role_style = sub_style[role]
         missing_keys = [key for key in ['font_name', 'font_size', 'color'] if key not in role_style]
         if missing_keys:
             print(f"שגיאת קונפיגורציה קריטית: חלק '{role}' ב-'subtitle_style' חסר את המפתחות הבאים: {', '.join(missing_keys)}")
-            return None, None, None, None, None # Updated return for 5 values
+            return None, None, None, None, None
 
-    # Return all necessary resolved paths
-    return resolved_config, songs_dir, srt_files_dir, lyrics_dir, json_files_dir # Added json_files_dir
+    return resolved_config, songs_dir, srt_files_dir, lyrics_dir, json_files_dir
 
 
-# --- Configuration Loading ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(BASE_DIR, CONFIG_DIR, CONFIG_FILE_NAME)
 SONG_LIST_JSON_PATH = os.path.join(BASE_DIR, CONFIG_DIR, SONG_LIST_FILE_NAME)
-
 SYSTEM_INSTRUCTIONS_FILE_NAME = 'system_instructions.yaml'
 SYSTEM_INSTRUCTIONS_PATH = os.path.join(BASE_DIR, CONFIG_DIR, SYSTEM_INSTRUCTIONS_FILE_NAME)
 
-# Load main config
 raw_config = load_config(CONFIG_PATH)
 if not raw_config:
     sys.exit(1)
 
-# Resolve paths and get directory locations
-resolved_config, SONGS_DIR, SRT_FILES_DIR, LYRICS_DIR, JSON_FILES_DIR = resolve_paths(raw_config, BASE_DIR) # Added JSON_FILES_DIR
+resolved_config, SONGS_DIR, SRT_FILES_DIR, LYRICS_DIR, JSON_FILES_DIR = resolve_paths(raw_config, BASE_DIR)
 if not resolved_config:
     print("יציאה עקב שגיאות בקונפיגורציה.")
     sys.exit(1)
 
-# Extract commonly used paths
 ASSETS_DIR = resolved_config['paths']['assets_dir']
 FONTS_DIR = resolved_config['paths']['fonts_dir']
 OUTPUT_DIR = resolved_config['paths']['output_dir']
 OUTPUT_FRAMES_DIR = resolved_config['paths']['output_frames_dir']
 
-# Create directories if they don't exist
 os.makedirs(ASSETS_DIR, exist_ok=True)
 os.makedirs(FONTS_DIR, exist_ok=True)
 os.makedirs(SONGS_DIR, exist_ok=True)
 os.makedirs(LYRICS_DIR, exist_ok=True)
-os.makedirs(JSON_FILES_DIR, exist_ok=True) # Added JSON_FILES_DIR creation
+os.makedirs(JSON_FILES_DIR, exist_ok=True)
 os.makedirs(SRT_FILES_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
-# No need to create output_frames_dir here, VideoCreator handles it
 
-# --- Song List Management ---
 def load_song_list(json_path):
-    """Loads the song list from the specified JSON file."""
     if not os.path.exists(json_path):
         print(f"שגיאה: קובץ רשימת השירים '{json_path}' לא נמצא.")
         print("אנא צור קובץ 'song_list.json' בפורמט:")
@@ -158,7 +146,6 @@ def load_song_list(json_path):
         return None
 
 def save_song_list(json_path, songs):
-    """Saves the updated song list to the JSON file."""
     try:
         with open(json_path, 'w', encoding='utf-8') as f:
             json.dump(songs, f, ensure_ascii=False, indent=2)
@@ -168,19 +155,12 @@ def save_song_list(json_path, songs):
         print(f"שגיאה בשמירת קובץ ה-JSON '{json_path}': {e}")
         return False
 
-# --- Utility Functions ---
 def get_youtube_video_id(url):
-    """Extracts the YouTube video ID from various URL formats."""
     if not url:
         return None
     try:
-        # Standard watch?v=
-        # youtu.be/
-        # embed/
-        # v/
         parsed_url = urllib.parse.urlparse(url)
         if parsed_url.hostname in ('youtu.be',):
-            # path is like '/VIDEOID'
             return parsed_url.path[1:]
         if parsed_url.hostname in ('www.youtube.com', 'youtube.com'):
             if parsed_url.path == '/watch':
@@ -191,22 +171,17 @@ def get_youtube_video_id(url):
             if parsed_url.path.startswith('/v/'):
                 return parsed_url.path.split('/')[2]
     except Exception:
-        # Ignore parsing errors, return None
         pass
     return None
 
 def find_song(songs, identifier):
-    """Finds a song by index, YouTube ID, or exact name."""
-    # Try by index first
     try:
         index = int(identifier)
         if 1 <= index <= len(songs):
             return songs[index - 1]
     except ValueError:
-        # Not an integer, continue searching
         pass
 
-    # Try by YouTube Video ID
     identifier_lower = identifier.lower()
     matches_id = []
     for song in songs:
@@ -218,9 +193,8 @@ def find_song(songs, identifier):
         return matches_id[0]
     elif len(matches_id) > 1:
         print(f"אזהרה: נמצאו מספר שירים עם אותו YouTube ID: '{identifier}'. לא ניתן לבחור באופן חד משמעי.")
-        return None # Ambiguous
+        return None
 
-    # Try by exact name (case-insensitive)
     matches_name = []
     for song in songs:
         if 'name' in song and song['name'].lower() == identifier_lower:
@@ -229,12 +203,10 @@ def find_song(songs, identifier):
         return matches_name[0]
     elif len(matches_name) > 1:
         print(f"אזהרה: נמצאו מספר שירים עם אותו שם: '{identifier}'. נסה לציין זמר או להשתמש ב-ID/אינדקס.")
-        return None # Ambiguous
-
-    return None # Not found
+        return None
+    return None
 
 def select_song_interactive(songs):
-    """Interactively prompts the user to select a song from the list."""
     valid_songs = []
     print("\n--- רשימת שירים זמינים ---")
     for i, song in enumerate(songs):
@@ -261,8 +233,7 @@ def select_song_interactive(songs):
                  return None
             choice = int(choice_str)
             if 1 <= choice <= len(valid_songs):
-                selected_song = valid_songs[choice - 1]
-                return selected_song
+                return valid_songs[choice - 1]
             else:
                 print(f"בחירה לא חוקית. אנא הזן מספר בין 1 ל-{len(valid_songs)} או 'q'.")
         except ValueError:
@@ -272,24 +243,21 @@ def select_song_interactive(songs):
              return None
 
 def validate_and_get_song_details(selected_song, songs_directory, lyrics_directory, cli_lyrics_path=None, cli_language=None):
-    """Validates the selected song data and finds associated files."""
     if not selected_song or not isinstance(selected_song, dict):
         print("שגיאה פנימית: נתוני השיר שנבחר אינם תקינים.")
-        return None, None, None, None, None, None, None # Added hebrew_name
+        return None, None, None, None, None, None, None
 
-    # Extract basic info
     song_name = selected_song.get('name')
     youtube_url = selected_song.get('youtube_url')
     artist_name = selected_song.get('artist')
-    hebrew_name = selected_song.get('hebrew_name') # Get Hebrew name
+    hebrew_name = selected_song.get('hebrew_name')
     lyrics_rel_path_json = selected_song.get('lyrics_file')
     language_from_json = selected_song.get('language', 'en').lower()
 
     if not song_name or not youtube_url:
         print(f"שגיאה: רשומת השיר אינה שלמה (חסר שם או קישור YouTube): {selected_song}")
-        return None, None, None, None, None, None, None # Added hebrew_name
+        return None, None, None, None, None, None, None
 
-    # Determine source language (CLI > JSON > Default 'en')
     source_language = 'en'
     if cli_language and cli_language.lower() in ['en', 'yi']:
         source_language = cli_language.lower()
@@ -300,17 +268,13 @@ def validate_and_get_song_details(selected_song, songs_directory, lyrics_directo
     else:
         print(f"  שפת מקור נקבעה כברירת מחדל: {'אנגלית' if source_language == 'en' else 'יידיש'}")
 
-    # --- Find MP3 File ---
-    # Expect MP3 filename to match the 'name' field exactly
     expected_mp3_filename = f"{song_name}.mp3"
     expected_mp3_path = os.path.join(songs_directory, expected_mp3_filename)
 
     print(f"\nפרטי השיר שנבחר:")
     print(f"  שם: {song_name}")
-    if artist_name:
-         print(f"  זמר: {artist_name}")
-    if hebrew_name: # Print Hebrew name if available
-         print(f"  שם בעברית: {hebrew_name}")
+    if artist_name: print(f"  זמר: {artist_name}")
+    if hebrew_name: print(f"  שם בעברית: {hebrew_name}")
     print(f"  קישור YouTube: {youtube_url}")
     print(f"  שפת מקור מזוהה: {'אנגלית' if source_language == 'en' else 'יידיש'}")
     print(f"  נתיב MP3 צפוי: {expected_mp3_path}")
@@ -319,18 +283,12 @@ def validate_and_get_song_details(selected_song, songs_directory, lyrics_directo
         print(f"\n!!! שגיאה קריטית !!!")
         print(f"קובץ האודיו הצפוי '{expected_mp3_filename}' עבור השיר '{song_name}' לא נמצא בתיקייה '{songs_directory}'.")
         print("ודא שהקובץ קיים עם השם המדויק (כולל סיומת mp3) והנתיב הנכון.")
-        return None, None, None, None, None, None, None # Added hebrew_name
+        return None, None, None, None, None, None, None
 
-    # --- Find Lyrics File (CLI > JSON > Auto-detect > None) ---
     lyrics_content = None
     lyrics_source_path = None
-
-    # 1. CLI Path
     if cli_lyrics_path:
-        potential_paths = [
-            cli_lyrics_path,  # Direct path (absolute or relative to CWD)
-            os.path.join(lyrics_directory, cli_lyrics_path) # Relative to lyrics dir
-        ]
+        potential_paths = [cli_lyrics_path, os.path.join(lyrics_directory, cli_lyrics_path)]
         for path in potential_paths:
             if os.path.exists(path):
                 lyrics_source_path = os.path.abspath(path)
@@ -338,7 +296,6 @@ def validate_and_get_song_details(selected_song, songs_directory, lyrics_directo
                 break
         if not lyrics_source_path:
             print(f"  אזהרה: קובץ המילים שצויין ב-CLI '{cli_lyrics_path}' לא נמצא.")
-    # 2. JSON Path
     elif lyrics_rel_path_json:
         potential_path = os.path.join(lyrics_directory, lyrics_rel_path_json)
         if os.path.exists(potential_path):
@@ -346,7 +303,6 @@ def validate_and_get_song_details(selected_song, songs_directory, lyrics_directo
             print(f"  מילים יטענו מהנתיב שהוגדר ב-JSON: {lyrics_source_path}")
         else:
             print(f"  אזהרה: קובץ המילים שהוגדר ב-JSON '{lyrics_rel_path_json}' לא נמצא בנתיב הצפוי '{potential_path}'.")
-    # 3. Auto-detect based on song name (e.g., "Song Name.txt")
     else:
         potential_lyrics_filename = f"{song_name}.txt"
         potential_path = os.path.join(lyrics_directory, potential_lyrics_filename)
@@ -356,7 +312,6 @@ def validate_and_get_song_details(selected_song, songs_directory, lyrics_directo
         else:
              print("  לא הוגדר קובץ מילים (CLI/JSON) ולא נמצא קובץ אוטומטי תואם לשם השיר.")
 
-    # Load content if path was found
     if lyrics_source_path:
         try:
             with open(lyrics_source_path, 'r', encoding='utf-8') as f:
@@ -364,37 +319,22 @@ def validate_and_get_song_details(selected_song, songs_directory, lyrics_directo
             print(f"  תוכן המילים נטען בהצלחה מ: '{lyrics_source_path}'")
         except Exception as e:
             print(f"  אזהרה: שגיאה בקריאת קובץ המילים '{lyrics_source_path}': {e}")
-            lyrics_content = None # Ensure content is None if reading failed
+            lyrics_content = None
+    return song_name, artist_name, hebrew_name, youtube_url, expected_mp3_path, lyrics_content, source_language
 
-    return song_name, artist_name, hebrew_name, youtube_url, expected_mp3_path, lyrics_content, source_language # Return hebrew_name
-
-# --- Standalone JSON to SRT Conversion ---
 def process_standalone_json_to_srt(json_files_dir, srt_output_dir):
-    """
-    Scans for .json files in json_files_dir, converts them to .srt format,
-    and saves them in srt_output_dir.
-    The generated SRT filenames will be the same as the JSON filenames, but with .srt extension.
-    """
     print(f"\n--- בדיקת קבצי JSON עצמאיים להמרה ל-SRT בתיקייה: {json_files_dir} ---")
     json_files_found = glob.glob(os.path.join(json_files_dir, "*.json"))
-
     if not json_files_found:
         print("לא נמצאו קבצי JSON לעיבוד.")
         return
-
     converted_count = 0
     for json_file_path in json_files_found:
         json_filename = os.path.basename(json_file_path)
-        # SRT filename will be the same as JSON, but with .srt extension
         srt_filename = os.path.splitext(json_filename)[0] + ".srt"
         srt_file_path = os.path.join(srt_output_dir, srt_filename)
-
         print(f"  מעבד את '{json_filename}'...")
-        # The SubtitleGenerator will handle loading existing SRTs or regenerating.
-        # This step aims to convert JSONs to SRTs, potentially overwriting existing SRTs
-        # if a JSON with the same base name exists. This ensures the JSON is the source of truth if present.
         print(f"    נתיב קובץ SRT יעד: {srt_file_path}")
-
         srt_content = convert_json_content_to_srt_string(json_file_path)
         if srt_content:
             try:
@@ -402,37 +342,82 @@ def process_standalone_json_to_srt(json_files_dir, srt_output_dir):
                     srt_f.write(srt_content)
                 print(f"    המרת '{json_filename}' ל-SRT הושלמה ונשמרה ב: '{srt_file_path}'")
                 converted_count += 1
-                # Optional: Consider moving or deleting the source JSON file after successful conversion
-                # For example:
-                # os.remove(json_file_path)
-                # print(f"    קובץ ה-JSON המקורי '{json_filename}' נמחק לאחר ההמרה.")
             except IOError as e:
                 print(f"    שגיאה בכתיבת קובץ ה-SRT '{srt_file_path}': {e}")
         else:
-            # This typically means the json_to_srt function had an issue (e.g., file not found, bad JSON)
-            # or the JSON content was empty/invalid leading to no SRT output.
-            # The convert_json_content_to_srt_string function should print its own errors.
             print(f"    המרת '{json_filename}' נכשלה או שלא נוצר תוכן SRT (בדוק לוגים קודמים).")
-
-
     if converted_count > 0:
         print(f"סה\"כ {converted_count} קבצי JSON הומרו ל-SRT.")
-    elif json_files_found: # Files were found, but none converted
+    elif json_files_found:
         print("לא הומרו קבצי JSON (ייתכן שהמרות נכשלו או שלא נוצר תוכן).")
     print("--- סיום בדיקת קבצי JSON עצמאיים ---")
 
+def copy_and_rename_file(source_path, target_dir, target_filename):
+    """Copies a file from source_path to target_dir with target_filename."""
+    if not os.path.exists(source_path):
+        print(f"שגיאה: קובץ המקור '{source_path}' לא נמצא.")
+        return None
+    if not os.path.isdir(target_dir): # Should not happen if dirs are created
+        print(f"שגיאה: תיקיית היעד '{target_dir}' אינה קיימת או אינה תיקייה.")
+        return None
+
+    target_full_path = os.path.join(target_dir, target_filename)
+    try:
+        os.makedirs(target_dir, exist_ok=True) # Ensure target_dir exists
+        shutil.copy2(source_path, target_full_path) # copy2 preserves metadata
+        print(f"הקובץ '{os.path.basename(source_path)}' הועתק בהצלחה אל '{target_full_path}'")
+        return target_full_path
+    except Exception as e:
+        print(f"שגיאה בהעתקת הקובץ מ-'s{source_path}' אל '{target_full_path}': {e}")
+        return None
+
+def handle_external_subtitle_file(external_path, expected_srt_path_in_srt_dir, json_target_dir, srt_target_dir):
+    """
+    Handles an external subtitle file (JSON or SRT).
+    Copies it to the appropriate directory (json_files or srt_files)
+    and renames it to match the system's expected naming convention
+    derived from expected_srt_path_in_srt_dir.
+    """
+    if not os.path.exists(external_path):
+        print(f"אזהרה: קובץ הכתוביות החיצוני '{external_path}' לא נמצא. מדלג.")
+        return False
+
+    _, external_ext = os.path.splitext(external_path)
+    external_ext = external_ext.lower()
+
+    target_base_name = os.path.splitext(os.path.basename(expected_srt_path_in_srt_dir))[0]
+
+    if external_ext == ".json":
+        target_json_filename = f"{target_base_name}.json"
+        copied_path = copy_and_rename_file(external_path, json_target_dir, target_json_filename)
+        if copied_path:
+            print(f"קובץ JSON חיצוני '{os.path.basename(external_path)}' הועתק אל '{copied_path}'.")
+            return True
+        else:
+            print(f"שגיאה בהעתקת קובץ JSON חיצוני '{external_path}'.")
+            return False
+    elif external_ext == ".srt":
+        target_srt_filename = os.path.basename(expected_srt_path_in_srt_dir) # This is the full target srt name
+        copied_path = copy_and_rename_file(external_path, srt_target_dir, target_srt_filename)
+        if copied_path:
+            print(f"קובץ SRT חיצוני '{os.path.basename(external_path)}' הועתק אל '{copied_path}'.")
+            return True
+        else:
+            print(f"שגיאה בהעתקת קובץ SRT חיצוני '{external_path}'.")
+            return False
+    else:
+        print(f"אזהרה: סיומת קובץ כתוביות חיצונית לא נתמכת: '{external_ext}' עבור '{external_path}'. נדרש .json או .srt. מדלג.")
+        return False
 
 # --- Main Execution ---
 def main():
     parser = argparse.ArgumentParser(
         description="יוצר סרטוני כתוביות YouTube עם תמלול ותרגום אוטומטיים (Gemini API).",
-        formatter_class=argparse.RawTextHelpFormatter # Improves help text formatting
+        formatter_class=argparse.RawTextHelpFormatter
     )
-
-    # --- Song Selection/Addition Group ---
-    group_select_add = parser.add_mutually_exclusive_group(required=False) # Optional group, default is interactive
+    group_select_add = parser.add_mutually_exclusive_group(required=False)
     group_select_add.add_argument(
-        "-s", "--select", # Existing short alias
+        "-s", "--select",
         metavar="IDENTIFIER",
         help="בחר שיר ספציפי לעיבוד.\n"
              "   <IDENTIFIER> יכול להיות:\n"
@@ -441,54 +426,69 @@ def main():
              "     - שם השיר המדויק (case-insensitive)."
     )
     group_select_add.add_argument(
-        "--add", # No short alias typically for action flags like this
+        "--add",
         action='store_true',
         help="הוסף שיר חדש לרשימה (song_list.json) ועבד אותו מיד.\n"
-             "   דורש: --name (-n), --url (-u). אופציונלי: --artist (-ar), --hebrew-name (-hn), --language (-l), --lyrics-file (-lf)."
+             "   דורש: --name (-n), --url (-u).\n"
+             "   אופציונלי: --artist (-ar), --hebrew-name (-hn), --language (-l), --lyrics-file (-lf),\n"
+             "              --source-mp3-path (-smp3), --source-subtitles-path (-ssub), --target-subtitles-path (-tsub)."
     )
-    # Note: If neither -s nor --add is used, the script runs interactively.
-
-    # --- Arguments for Adding a New Song (used with --add) ---
     parser.add_argument(
-        "-n", "--name", # Short alias: -n
+        "-n", "--name",
         help="[נדרש עם --add] שם השיר להוספה (ישמש גם כשם קובץ MP3 צפוי)."
     )
     parser.add_argument(
-        "-ar", "--artist", # Short alias: -ar (two letters for artist)
+        "-ar", "--artist",
         help="[אופציונלי עם --add] שם הזמר להוספה."
     )
     parser.add_argument(
-        "-hn", "--hebrew-name", # Short alias: -hn (two letters for hebrew name)
+        "-hn", "--hebrew-name",
         help="[אופציונלי עם --add] שם השיר בעברית (לשימוש בכותרת המשנה)."
     )
     parser.add_argument(
-        "-u", "--url", # Short alias: -u
+        "-u", "--url",
         help="[נדרש עם --add] קישור YouTube מלא של השיר להוספה."
     )
-
-    # --- General Processing Options ---
     parser.add_argument(
-        "-lf", "--lyrics-file", # Short alias: -lf (two letters for lyrics file)
+        "-smp3", "--source-mp3-path",
+        metavar="PATH",
+        help="[בשילוב עם --add] נתיב מלא לקובץ MP3 חיצוני.\n"
+             "   הקובץ יועתק לתיקיית השירים ויקבל את השם שהוגדר עם --name."
+    )
+    parser.add_argument(
+        "-ssub", "--source-subtitles-path",
+        metavar="PATH",
+        help="נתיב מלא לקובץ כתוביות מקור חיצוני (JSON או SRT).\n"
+             "   הקובץ יועתק וישונה שמו להתאמה לשיר הנבחר/נוסף."
+    )
+    parser.add_argument(
+        "-tsub", "--target-subtitles-path",
+        metavar="PATH",
+        help="נתיב מלא לקובץ כתוביות יעד חיצוני (עברית - JSON או SRT).\n"
+             "   הקובץ יועתק וישונה שמו להתאמה לשיר הנבחר/נוסף."
+    )
+    parser.add_argument(
+        "-lf", "--lyrics-file",
         metavar="PATH",
         help="נתיב לקובץ טקסט המכיל את מילות השיר.\n"
              "   - עוקף הגדרה ב-JSON וזיהוי אוטומטי.\n"
              "   - הנתיב יכול להיות אבסולוטי או יחסי."
     )
     parser.add_argument(
-        "-f", "--force-regenerate", # Existing short alias
+        "-f", "--force-regenerate",
         action="store_true",
         help="אלץ יצירה מחדש של קבצי הכתוביות (SRT) מה-API.\n"
              "   מתעלם מקבצי SRT קיימים."
     )
     parser.add_argument(
-        "-l", "--language", # Existing short alias
+        "-l", "--language",
         choices=['en', 'yi'],
         help="ציין במפורש את שפת המקור ('en' לאנגלית, 'yi' ליידיש).\n"
              "   - עוקף הגדרה ב-JSON.\n"
              "   - ברירת מחדל: מה-JSON, או 'en'."
     )
     parser.add_argument(
-        "-is", "--intro-subtitle", # Short alias: -is (two letters for intro subtitle)
+        "-is", "--intro-subtitle",
         choices=['artist', 'hebrew'],
         default='artist',
         help="קבע מה יוצג בכותרת המשנה בפתיח:\n"
@@ -496,137 +496,103 @@ def main():
              "   - 'hebrew': שם השיר בעברית.\n"
              "   (דורש שהמידע יהיה קיים ב-JSON)"
     )
-
     args = parser.parse_args()
-
     print("--- יוצר וידאו כתוביות YouTube ---")
 
-    # --- API Key Check ---
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         print("שגיאה: משתנה הסביבה 'GEMINI_API_KEY' לא הוגדר.")
         print("אנא הגדר את המפתח והפעל את הסקריפט מחדש.")
         sys.exit(1)
 
-    # --- Process standalone JSON files to SRT first ---
-    # This ensures any pre-existing JSON transcriptions are converted to SRT
-    # before the SubtitleGenerator tries to load or generate them.
-    process_standalone_json_to_srt(JSON_FILES_DIR, SRT_FILES_DIR)
+    # Initial processing of standalone JSONs (might be redundant if no new JSONs are copied later)
+    # but good to run once.
+    # process_standalone_json_to_srt(JSON_FILES_DIR, SRT_FILES_DIR) # Moved to after file handling
 
-
-    # --- Load Song List ---
     songs = load_song_list(SONG_LIST_JSON_PATH)
     if songs is None:
-        sys.exit(1) # Error message already printed by load_song_list
+        sys.exit(1)
 
     selected_song_data = None
-    cli_lyrics_path = args.lyrics_file # Get lyrics path from CLI args
-    cli_language_override = args.language # Get language override from CLI
+    cli_lyrics_path = args.lyrics_file
+    cli_language_override = args.language
 
-    # --- Handle Song Selection/Addition ---
     if args.add:
-        # Add and process a new song
         if not args.name or not args.url:
             parser.error("--add דורש ציון של --name ו--url.")
+        if args.source_mp3_path and not args.name:
+             parser.error("--source-mp3-path דורש שימוש עם --name (-n) כאשר מוסיפים שיר חדש.")
 
-        # --- Construct the new song dictionary ---
-        new_song = {
-            "name": args.name.strip(),
-            "youtube_url": args.url.strip(),
-            # Start with required fields and conditionally add optional ones
-        }
+        if args.source_mp3_path:
+            print(f"מעבד קובץ MP3 חיצוני: {args.source_mp3_path}")
+            target_mp3_filename = f"{args.name.strip()}.mp3"
+            copied_mp3_path = copy_and_rename_file(args.source_mp3_path, SONGS_DIR, target_mp3_filename)
+            if not copied_mp3_path:
+                print(f"שגיאה קריטית בהעתקת קובץ MP3 חיצוני '{args.source_mp3_path}'. יוצא מהתוכנית.")
+                sys.exit(1)
+            print(f"קובץ MP3 חיצוני הועתק בהצלחה ל: {copied_mp3_path}")
 
-        # Add optional fields only if they were provided and have content
-        if args.artist and args.artist.strip():
-            new_song["artist"] = args.artist.strip()
-
-        if args.hebrew_name and args.hebrew_name.strip():
-            new_song["hebrew_name"] = args.hebrew_name.strip() # Only add if provided
-
-        # Determine language (CLI override > default 'en')
+        new_song = {"name": args.name.strip(), "youtube_url": args.url.strip()}
+        if args.artist and args.artist.strip(): new_song["artist"] = args.artist.strip()
+        if args.hebrew_name and args.hebrew_name.strip(): new_song["hebrew_name"] = args.hebrew_name.strip()
         new_song["language"] = cli_language_override if cli_language_override else 'en'
-
-        # --- Link lyrics file if provided via CLI and found in lyrics dir ---
         if args.lyrics_file:
-            user_lyrics_path = args.lyrics_file  # Path user entered
-            lyrics_dir_abs_path = LYRICS_DIR     # Absolute path to lyrics dir
-
+            user_lyrics_path = args.lyrics_file
+            lyrics_dir_abs_path = LYRICS_DIR
             relative_path_in_lyrics_dir = None
-            # Check if the provided path IS INSIDE the lyrics directory
             try:
                 abs_user_path = os.path.abspath(user_lyrics_path)
                 if abs_user_path.startswith(lyrics_dir_abs_path) and os.path.exists(abs_user_path):
                     relative_path_in_lyrics_dir = os.path.relpath(abs_user_path, lyrics_dir_abs_path).replace(os.sep, '/')
-            except: # Handle potential errors with path manipulation
-                 pass
-
-            # Check if it exists directly relative to lyrics dir (common case)
+            except: pass
             if not relative_path_in_lyrics_dir:
                  potential_path_in_lyrics = os.path.join(lyrics_dir_abs_path, user_lyrics_path)
                  if os.path.exists(potential_path_in_lyrics):
                      relative_path_in_lyrics_dir = user_lyrics_path.replace(os.sep, '/')
-
             if relative_path_in_lyrics_dir:
                  new_song['lyrics_file'] = relative_path_in_lyrics_dir
                  print(f"  נתיב קובץ המילים '{relative_path_in_lyrics_dir}' (יחסית לתיקיית המילים) ישמר ב-JSON.")
             elif os.path.exists(user_lyrics_path):
-                 # File exists but NOT in the managed lyrics dir
                  print(f"  אזהרה: קובץ המילים '{user_lyrics_path}' נמצא, אך אינו בתוך תיקיית המילים המוגדרת ('{lyrics_dir_abs_path}').")
-                 print(f"           הקישור לא ישמר אוטומטית ב-song_list.json. השתמש ב--lyrics-file בכל הרצה או העבר את הקובץ והוסף ידנית.")
+                 print(f"           הקישור לא ישמר אוטומטית ב-song_list.json.")
             else:
                  print(f"  אזהרה: קובץ המילים שצויין '{user_lyrics_path}' לא נמצא. לא ניתן לקשר אותו ב-JSON.")
-
-        # Check if song already exists (by URL is usually more unique)
-        existing_song = None
-        for song in songs:
-            if song.get('youtube_url') == new_song['youtube_url']:
-                existing_song = song
-                break
+        existing_song = next((s for s in songs if s.get('youtube_url') == new_song['youtube_url']), None)
         if existing_song:
              print(f"אזהרה: שיר עם ה-URL '{new_song['youtube_url']}' כבר קיים ברשימה. משתמש בנתונים הקיימים.")
-             selected_song_data = existing_song # Use existing data
-             # Optionally update fields if provided? For now, just use existing.
+             selected_song_data = existing_song
         else:
             print(f"מוסיף שיר חדש לרשימה: '{new_song['name']}'")
             songs.append(new_song)
             if save_song_list(SONG_LIST_JSON_PATH, songs):
-                selected_song_data = new_song # Use the newly added data
+                selected_song_data = new_song
             else:
                 print("שגיאה בשמירת הרשימה המעודכנת, לא ניתן להמשיך.")
                 sys.exit(1)
-
     elif args.select:
-        # Select song using identifier from CLI
         print(f"מחפש שיר לפי מזהה: '{args.select}'...")
         selected_song_data = find_song(songs, args.select)
         if selected_song_data is None:
              print(f"שגיאה: לא נמצא שיר התואם למזהה '{args.select}' או שהמזהה אינו חד משמעי.")
-             # Offer to list songs?
              sys.exit(1)
-
     else:
-        # Interactive selection
         selected_song_data = select_song_interactive(songs)
         if selected_song_data is None:
-            # User chose to quit or no songs available
             print("לא נבחר שיר. יוצא מהתוכנית.")
             sys.exit(0)
 
-    # --- Validate selected song and get details ---
     if selected_song_data is None:
          print("שגיאה: לא נבחרו נתוני שיר תקינים.")
          sys.exit(1)
 
-    song_name, artist_name, hebrew_name, youtube_link, mp3_file_path, lyrics_content, source_language = validate_and_get_song_details(
-        selected_song_data, SONGS_DIR, LYRICS_DIR, cli_lyrics_path, cli_language_override # Pass CLI overrides
+    # Validate selected song and get its details. This also finds the MP3 path.
+    song_name_val, artist_name_val, hebrew_name_val, youtube_link_val, mp3_file_path_val, lyrics_content_val, source_language_val = validate_and_get_song_details(
+        selected_song_data, SONGS_DIR, LYRICS_DIR, cli_lyrics_path, cli_language_override
     )
-
-    # Check if validation failed
-    if not all([song_name, youtube_link, mp3_file_path, source_language]): # Ensure language is also valid
-        print("שגיאה באימות פרטי השיר, מציאת קובץ MP3 או קביעת שפה. יוצא מהתוכנית.")
+    if not all([song_name_val, youtube_link_val, mp3_file_path_val, source_language_val]):
+        print("שגיאה באימות פרטי השיר או מציאת קבצים חיוניים. יוצא מהתוכנית.")
         sys.exit(1)
 
-    # --- Instantiate Subtitle Generator (needed for filename calculation) ---
     try:
         subtitle_generator = SubtitleGenerator(
             api_key=api_key,
@@ -637,51 +603,59 @@ def main():
          print(f"שגיאה קריטית ביצירת SubtitleGenerator: {e}")
          sys.exit(1)
 
-    # --- Check for existing SRT files (Informational) ---
-    # Calculate expected SRT filenames *before* calling generate_or_load
-    source_language_name = "אנגלית" if source_language == 'en' else "יידיש"
-    try:
-        source_srt_path, hebrew_srt_path = subtitle_generator._calculate_filenames(
-            song_name, youtube_link, mp3_file_path, source_language
-        )
-        print(f"\n--- בדיקת קבצי כתוביות (SRT) קיימים ---")
-        print(f"  נתיב צפוי לקובץ מקור ({source_language_name}): {source_srt_path}")
-        print(f"  נתיב צפוי לקובץ יעד (עברית): {hebrew_srt_path}")
-        if not args.force_regenerate:
-             if os.path.exists(source_srt_path):
-                 print(f"    -> קובץ מקור ({source_language_name}) נמצא.")
-             else:
-                 print(f"    -> קובץ מקור ({source_language_name}) לא נמצא.")
-             if os.path.exists(hebrew_srt_path):
-                 print(f"    -> קובץ יעד (עברית) נמצא.")
-             else:
-                 print(f"    -> קובץ יעד (עברית) לא נמצא.")
-             print(f"  (המערכת תנסה לטעון קבצים קיימים אלו. השתמש ב--force-regenerate ליצירה מחדש מה-API)")
-        else:
-            print("  שים לב: יצירה מחדש של הכתוביות מה-API נכפתה באמצעות '--force-regenerate'.")
-            print("  קבצי SRT שנוצרו מקבצי JSON מקומיים לא יושפעו מכך, אלא אם הם יידרסו על ידי פלט API.")
-
-
-    except Exception as e:
-         print(f"אזהרה: לא ניתן היה לחשב נתיבי SRT צפויים מראש: {e}")
-         # Continue anyway, the generator will handle it
-
-    # --- Subtitle Generation/Loading ---
-    print("\n--- יצירה או טעינה של כתוביות ---")
-
-    source_subs, target_subs = subtitle_generator.generate_or_load_subtitles(
-        source_language=source_language, # Pass the determined source language
-        song_name=song_name,
-        youtube_url=youtube_link,
-        mp3_audio_path=mp3_file_path,
-        lyrics_content=lyrics_content, # Pass lyrics content if loaded
-        force_regenerate=args.force_regenerate # Pass force flag
+    # Calculate expected SRT filenames using validated song details
+    # These are crucial for renaming externally provided subtitle files.
+    source_srt_expected_path, hebrew_srt_expected_path = subtitle_generator._calculate_filenames(
+        song_name_val, youtube_link_val, mp3_file_path_val, source_language_val
     )
 
-    # Check results of subtitle generation/loading
+    # Handle External Subtitle Files (Source and Target)
+    if args.source_subtitles_path:
+        print(f"\n--- מעבד קובץ כתוביות מקור חיצוני: {os.path.basename(args.source_subtitles_path)} ---")
+        handle_external_subtitle_file(
+            external_path=args.source_subtitles_path,
+            expected_srt_path_in_srt_dir=source_srt_expected_path,
+            json_target_dir=JSON_FILES_DIR,
+            srt_target_dir=SRT_FILES_DIR
+        )
+    if args.target_subtitles_path:
+        print(f"\n--- מעבד קובץ כתוביות יעד (עברית) חיצוני: {os.path.basename(args.target_subtitles_path)} ---")
+        handle_external_subtitle_file(
+            external_path=args.target_subtitles_path,
+            expected_srt_path_in_srt_dir=hebrew_srt_expected_path,
+            json_target_dir=JSON_FILES_DIR,
+            srt_target_dir=SRT_FILES_DIR
+        )
+
+    # Process standalone JSON files to SRT (run *after* external files are potentially copied to JSON_FILES_DIR)
+    process_standalone_json_to_srt(JSON_FILES_DIR, SRT_FILES_DIR)
+
+    # Informational check for existing SRT files (after potential copying/conversion)
+    source_language_name = "אנגלית" if source_language_val == 'en' else "יידיש"
+    print(f"\n--- בדיקת קבצי כתוביות (SRT) קיימים לאחר טיפול בקבצים חיצוניים ---")
+    print(f"  נתיב צפוי לקובץ מקור ({source_language_name}): {source_srt_expected_path}")
+    print(f"  נתיב צפוי לקובץ יעד (עברית): {hebrew_srt_expected_path}")
+    if not args.force_regenerate:
+         if os.path.exists(source_srt_expected_path): print(f"    -> קובץ מקור ({source_language_name}) נמצא.")
+         else: print(f"    -> קובץ מקור ({source_language_name}) לא נמצא.")
+         if os.path.exists(hebrew_srt_expected_path): print(f"    -> קובץ יעד (עברית) נמצא.")
+         else: print(f"    -> קובץ יעד (עברית) לא נמצא.")
+         print(f"  (המערכת תנסה לטעון קבצים קיימים אלו. השתמש ב--force-regenerate ליצירה מחדש מה-API)")
+    else:
+        print("  שים לב: יצירה מחדש של הכתוביות מה-API נכפתה באמצעות '--force-regenerate'.")
+
+    print("\n--- יצירה או טעינה של כתוביות ---")
+    source_subs, target_subs = subtitle_generator.generate_or_load_subtitles(
+        source_language=source_language_val,
+        song_name=song_name_val,
+        youtube_url=youtube_link_val,
+        mp3_audio_path=mp3_file_path_val,
+        lyrics_content=lyrics_content_val,
+        force_regenerate=args.force_regenerate
+    )
+
     if source_subs is None and target_subs is None:
-        print("\nשגיאה קריטית: לא ניתן היה ליצור או לטעון כתוביות.")
-        print("יוצא מהתוכנית.")
+        print("\nשגיאה קריטית: לא ניתן היה ליצור או לטעון כתוביות. יוצא מהתוכנית.")
         sys.exit(1)
     elif source_subs is None:
         print(f"\nאזהרה: לא הופקו/נטענו כתוביות מקור ({source_language_name}). ממשיך עם כתוביות יעד בלבד (אם קיימות).")
@@ -692,43 +666,35 @@ def main():
     else:
         print("\nנתוני הכתוביות הוכנו בהצלחה.")
 
-    # --- Video Creation ---
     print("\n--- יצירת הוידאו ---")
     try:
-        video_creator = VideoCreator(resolved_config) # Pass the resolved config
-
-        output_base_name = os.path.splitext(os.path.basename(mp3_file_path))[0]
-
-        # Pass the intro subtitle choice and hebrew name to the creator
+        video_creator = VideoCreator(resolved_config)
+        output_base_name = os.path.splitext(os.path.basename(mp3_file_path_val))[0]
         created_video_path = video_creator.create_video(
-            mp3_path=mp3_file_path,
-            song_title_text=song_name,
-            artist_name_text=artist_name,
-            hebrew_song_name_text=hebrew_name, # Pass Hebrew name
-            intro_subtitle_mode=args.intro_subtitle, # Pass the mode ('artist' or 'hebrew')
+            mp3_path=mp3_file_path_val,
+            song_title_text=song_name_val,
+            artist_name_text=artist_name_val,
+            hebrew_song_name_text=hebrew_name_val,
+            intro_subtitle_mode=args.intro_subtitle,
             source_subtitle_data=source_subs,
             target_subtitle_data=target_subs,
             output_video_filename_base=output_base_name
         )
-
         if created_video_path:
             print(f"\n--- התהליך הושלם בהצלחה! ---")
             print(f"הוידאו נשמר ב: {created_video_path}")
         else:
             print(f"\n--- התהליך נכשל במהלך יצירת הוידאו. ---")
             sys.exit(1)
-
     except FileNotFoundError as e:
         print(f"\nשגיאה קריטית: קובץ חיוני לא נמצא - {e}")
-        print("ודא שקובצי הפונטים (כותרת, אמן, כתוביות מקור ויעד) ותמונות הרקע קיימים בנתיבים המוגדרים בקובץ הקונפיגורציה video_config.json והם תקינים.")
+        print("ודא שקובצי הפונטים ותמונות הרקע קיימים בנתיבים המוגדרים בקונפיגורציה.")
         sys.exit(1)
     except ValueError as e:
         print(f"\nשגיאה קריטית בהגדרות הקונפיגורציה או בנתונים: {e}")
-        print("אנא בדוק את קובץ video_config.json ואת הנתונים שהועברו.")
         sys.exit(1)
     except KeyError as e:
-         print(f"\nשגיאה קריטית: מפתח חסר בקובץ הקונפיגורציה video_config.json - {e}")
-         print("אנא ודא שכל המפתחות הנדרשים קיימים בקובץ, כולל בתוך 'source' ו-'target' תחת 'subtitle_style', וכן 'artist_style' (אם משתמשים בשם הזמר).")
+         print(f"\nשגיאה קריטית: מפתח חסר בקובץ הקונפיגורציה - {e}")
          sys.exit(1)
     except Exception as e:
         print(f"\nשגיאה לא צפויה במהלך הגדרת או הרצת VideoCreator: {e}")
