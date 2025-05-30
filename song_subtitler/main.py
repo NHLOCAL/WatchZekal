@@ -431,7 +431,7 @@ def main():
         help="הוסף שיר חדש לרשימה (song_list.json) ועבד אותו מיד.\n"
              "   דורש: --name (-n), --url (-u).\n"
              "   אופציונלי: --artist (-ar), --hebrew-name (-hn), --language (-l), --lyrics-file (-lf),\n"
-             "              --source-mp3-path (-smp3), --source-subtitles-path (-ssub), --target-subtitles-path (-tsub)."
+             "              --source-mp3-path (-sm), --source-subtitles-path (-ss), --target-subtitles-path (-ts)."
     )
     parser.add_argument(
         "-n", "--name",
@@ -450,19 +450,19 @@ def main():
         help="[נדרש עם --add] קישור YouTube מלא של השיר להוספה."
     )
     parser.add_argument(
-        "-smp3", "--source-mp3-path",
+        "-sm", "--source-mp3-path",
         metavar="PATH",
         help="[בשילוב עם --add] נתיב מלא לקובץ MP3 חיצוני.\n"
              "   הקובץ יועתק לתיקיית השירים ויקבל את השם שהוגדר עם --name."
     )
     parser.add_argument(
-        "-ssub", "--source-subtitles-path",
+        "-ss", "--source-subtitles-path",
         metavar="PATH",
         help="נתיב מלא לקובץ כתוביות מקור חיצוני (JSON או SRT).\n"
              "   הקובץ יועתק וישונה שמו להתאמה לשיר הנבחר/נוסף."
     )
     parser.add_argument(
-        "-tsub", "--target-subtitles-path",
+        "-ts", "--target-subtitles-path",
         metavar="PATH",
         help="נתיב מלא לקובץ כתוביות יעד חיצוני (עברית - JSON או SRT).\n"
              "   הקובץ יועתק וישונה שמו להתאמה לשיר הנבחר/נוסף."
