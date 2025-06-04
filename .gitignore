@@ -168,4 +168,3 @@ __pycache__/
 *.mp3
 *.log
 output/
-song_subtitler/config/song_list.json
