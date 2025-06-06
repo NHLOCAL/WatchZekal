@@ -143,7 +143,6 @@ class VideoCreatorGUI:
         intro_combo = ttk.Combobox(parent, textvariable=self.intro_subtitle_var, values=['artist', 'hebrew'], state='readonly')
         intro_combo.grid(row=0, column=3, padx=5, pady=5, sticky="ew")
 
-    # ######### פונקציה חדשה לניקוי קלט #########
     def _sanitize_input(self, value):
         """מנקה את הקלט: מסיר רווחים ומרכאות חיצוניות."""
         if not isinstance(value, str):
@@ -153,9 +152,7 @@ class VideoCreatorGUI:
         while len(s) >= 2 and s.startswith(('"', "'")) and s.startswith(s[0]) and s.endswith(s[0]):
             s = s[1:-1].strip()
         return s
-    # ###########################################
 
-    # ######### פונקציה חדשה לעיצוב פקודה לתצוגה #########
     def _format_command_for_display(self, command_list):
         """מעצבת רשימת ארגומנטים למחרוזת פקודה קריאה עם מרכאות."""
         display_parts = []
@@ -166,7 +163,6 @@ class VideoCreatorGUI:
             else:
                 display_parts.append(part)
         return ' '.join(display_parts)
-    # ###########################################
     
     def _copy_log_to_clipboard(self):
         log_content = self.output_console.get('1.0', tk.END)
@@ -208,7 +204,6 @@ class VideoCreatorGUI:
         self.output_console.delete('1.0', tk.END)
         self.output_console.insert(tk.END, "מתחיל עיבוד...\n" + "="*30 + "\n")
 
-        # ######### שינוי: שימוש בפונקציית הניקוי על כל הקלטים #########
         song_name = self._sanitize_input(self.song_name_var.get())
         artist_name = self._sanitize_input(self.artist_name_var.get())
         
@@ -234,7 +229,6 @@ class VideoCreatorGUI:
         lyrics_path = self._sanitize_input(self.lyrics_path_var.get())
         source_subs_path = self._sanitize_input(self.source_subs_path_var.get())
         target_subs_path = self._sanitize_input(self.target_subs_path_var.get())
-        # #############################################################
 
         language = self.lang_var.get()
         force_regenerate = self.force_regen_var.get()
@@ -272,10 +266,8 @@ class VideoCreatorGUI:
     def _process_runner_thread(self, args):
         command = [sys.executable, "main.py"] + args
         
-        # ######### שינוי: שימוש בפונקציית העיצוב לתצוגה #########
         display_command = self._format_command_for_display(command)
         self._update_output_console(f"מריץ פקודה: {display_command}\n\n")
-        # #######################################################
 
         try:
             self.process = subprocess.Popen(
