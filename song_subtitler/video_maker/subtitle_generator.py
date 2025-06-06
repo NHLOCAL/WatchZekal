@@ -310,7 +310,7 @@ class SubtitleGenerator:
         return source_subs_data, target_subs_data
 
     def _get_api_config(self, system_instruction_text):
-        """יוצר GenerateContentConfig כולל סכמת JSON מדויקת."""
+        """יוצר GenerateContentConfig כולל סכמת JSON מדויקת עם תיאורים באנגלית."""
         # יצירת הסכמה הפנימית עבור כל אובייקט ב-array
         object_schema = types.Schema(
             type=types.Type.OBJECT,
@@ -318,21 +318,21 @@ class SubtitleGenerator:
             properties={
                 "id": types.Schema(
                     type=types.Type.INTEGER,
-                    description="מספר סידורי של הכתובית",
+                    description="Sequential number of the subtitle",
                 ),
                 "start_time": types.Schema(
                     type=types.Type.STRING,
-                    description="זמן התחלת הכתובית בפורמט מחרוזת 'MM:SS.milliseconds'.",
+                    description="Start time of the subtitle in 'MM:SS.milliseconds' format",
                     pattern=r"^\d{2}:\d{2}\.\d{3}$"
                 ),
                 "end_time": types.Schema(
                     type=types.Type.STRING,
-                    description="זמן סיום הכתובית בפורמט מחרוזת 'MM:SS.milliseconds'.",
+                    description="End time of the subtitle in 'MM:SS.milliseconds' format",
                     pattern=r"^\d{2}:\d{2}\.\d{3}$"
                 ),
                 "text": types.Schema(
                     type=types.Type.STRING,
-                    description="תוכן הכתובית.",
+                    description="Subtitle text content",
                 ),
             },
         )
@@ -349,6 +349,7 @@ class SubtitleGenerator:
             response_schema=array_schema
             # ניתן להוסיף כאן פרמטרים נוספים (כמו temperature, max_output_tokens וכו').
         )
+
 
     def _call_gemini_api(self, contents, config, language_context):
         """
