@@ -1,0 +1,9 @@
+google-genai
+moviepy
+Pillow
+numpy
+arabic_reshaper
+python-bidi
+imageio
+imageio-ffmpeg
+PyYAML

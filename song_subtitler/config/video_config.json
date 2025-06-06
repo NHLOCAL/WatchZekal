@@ -5,6 +5,7 @@
     "data_rel": "data",
     "songs_subdir": "songs",
     "lyrics_subdir": "lyrics",
+    "json_files_subdir": "json_files",
     "output_rel": "output",
     "output_frames_subdir": "subtitle_frames",
     "srt_files_rel": "srt_files"
@@ -13,21 +14,24 @@
     "resolution": [1280, 720],
     "fps": 25
   },
+  "gemini_settings": {
+    "model_name": "gemini-2.5-flash-preview-05-20"
+  },
   "background": {
     "image_path_rel_assets": "backgrounds/songs/subtitle.jpg",
     "intro_image_path_rel_assets": "backgrounds/songs/intro.jpg"
   },
   "title_style": {
-    "font_name": "Rubik-Bold.ttf",
-    "font_size": 100,
+    "font_name": "Alef-Bold.ttf",
+    "font_size": 120,
     "color": "#440B7A",
     "stroke_color": "white",
     "stroke_width": 4.0,
     "position": ["center", "center"]
   },
   "artist_style": {
-    "font_name": "Rubik-Bold.ttf",
-    "font_size": 70,
+    "font_name": "Alef-Bold.ttf",
+    "font_size": 85,
     "color": "#024266",
     "stroke_color": "white",
     "stroke_width": 2.0,
@@ -35,14 +39,14 @@
   },
   "subtitle_style": {
     "source": {
-      "font_name": "Rubik-Regular.ttf",
+      "font_name": "Assistant-Regular.ttf",
       "font_size": 62,
       "color": "black",
       "stroke_color": "#9FF0F4",
       "stroke_width": 2.0
     },
     "target": {
-      "font_name": "Rubik-Regular.ttf",
+      "font_name": "Assistant-Regular.ttf",
       "font_size": 57,
       "color": "black",
       "stroke_color": "#FAFAFA",
