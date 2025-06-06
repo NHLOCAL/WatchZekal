@@ -15,10 +15,12 @@
 
 1.  **הורד את הקוד:** שכפל (clone) או הורד את קבצי הפרויקט לתיקייה במחשבך.
 
-2.  **התקן ספריות:** פתח טרמינל (Command Prompt / PowerShell / Terminal) בתיקיית הפרויקט והרץ את הפקודה:
-    ```bash
-    pip install google-genai moviepy Pillow numpy arabic_reshaper python-bidi imageio imageio-ffmpeg PyYAML
-    ```
+2. **התקן ספריות:**
+   פתח טרמינל (Command Prompt / PowerShell / Terminal) בתיקיית הפרויקט והרץ את הפקודה:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 3.  **התקן את ImageMagick:** התקן את התוכנה מהקישור למעלה. במהלך ההתקנה, ודא שסימנת את האפשרות **"Add application directory to your system path"** (או ניסוח דומה). לאחר ההתקנה, **הפעל מחדש את הטרמינל** או את המחשב.
 
