@@ -640,8 +640,12 @@ def main():
         sys.exit(1)
 
     try:
+        gemini_model_name = resolved_config.get('gemini_settings', {}).get('model_name', 'gemini-2.5-pro-preview-06-05')
+        print(f"משתמש במודל Gemini הבא: {gemini_model_name}")
+
         subtitle_generator = SubtitleGenerator(
             api_key=api_key,
+            model_name=gemini_model_name,
             srt_output_dir=SRT_FILES_DIR,
             instructions_filepath=SYSTEM_INSTRUCTIONS_PATH
         )

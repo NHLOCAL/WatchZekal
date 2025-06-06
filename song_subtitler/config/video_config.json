@@ -14,6 +14,9 @@
     "resolution": [1280, 720],
     "fps": 25
   },
+  "gemini_settings": {
+    "model_name": "gemini-2.5-flash-preview-05-20"
+  },
   "background": {
     "image_path_rel_assets": "backgrounds/songs/subtitle.jpg",
     "intro_image_path_rel_assets": "backgrounds/songs/intro.jpg"
