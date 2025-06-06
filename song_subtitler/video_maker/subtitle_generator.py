@@ -5,7 +5,7 @@ import urllib.parse
 import yaml
 from google import genai
 from google.genai import types
-from google.genai.errors import ClientError  # יבוא החריגה לטיפול בשגיאות HTTP
+from google.genai.errors import ClientError
 import datetime
 
 class SubtitleGenerator:
@@ -30,7 +30,7 @@ class SubtitleGenerator:
 
     def _initialize_client(self):
         try:
-            # מספיק להעביר רק api_key או להגדיר את GOOGLE_API_KEY כמשתנה סביבה
+            # ניתן להעביר רק api_key או להגדיר GOOGLE_API_KEY כמשתנה סביבה
             return genai.Client(api_key=self.api_key)
         except Exception as e:
             raise RuntimeError(f"Error initializing Gemini client: {e}")
@@ -136,7 +136,6 @@ class SubtitleGenerator:
                 if len(lines) < 2:
                     continue
                 try:
-                    # חיפוש קו הזמן (HH:MM:SS,mmm --> HH:MM:SS,mmm)
                     time_line_index = -1
                     for i, line in enumerate(lines):
                         if re.match(r'\d{2}:\d{2}:\d{2},\d{3}\s*-->\s*\d{2}:\d{2}:\d{2},\d{3}', line.strip()):
@@ -311,17 +310,51 @@ class SubtitleGenerator:
         return source_subs_data, target_subs_data
 
     def _get_api_config(self, system_instruction_text):
-        """Creates GenerateContentConfig עבור קריאת Gemini API."""
+        """יוצר GenerateContentConfig כולל סכמת JSON מדויקת."""
+        # יצירת הסכמה הפנימית עבור כל אובייקט ב-array
+        object_schema = types.Schema(
+            type=types.Type.OBJECT,
+            required=["id", "start_time", "end_time", "text"],
+            properties={
+                "id": types.Schema(
+                    type=types.Type.INTEGER,
+                    description="מספר סידורי של הכתובית",
+                ),
+                "start_time": types.Schema(
+                    type=types.Type.STRING,
+                    description="זמן התחלת הכתובית בפורמט מחרוזת 'MM:SS.milliseconds'.",
+                    pattern=r"^\d{2}:\d{2}\.\d{3}$"
+                ),
+                "end_time": types.Schema(
+                    type=types.Type.STRING,
+                    description="זמן סיום הכתובית בפורמט מחרוזת 'MM:SS.milliseconds'.",
+                    pattern=r"^\d{2}:\d{2}\.\d{3}$"
+                ),
+                "text": types.Schema(
+                    type=types.Type.STRING,
+                    description="תוכן הכתובית.",
+                ),
+            },
+        )
+
+        # הסכמה העיקרית: מערך של אובייקטים באותו מבנה
+        array_schema = types.Schema(
+            type=types.Type.ARRAY,
+            items=object_schema
+        )
+
         return types.GenerateContentConfig(
             system_instruction=system_instruction_text,
             response_mime_type="application/json",
-            # ניתן להוסיף כאן פרמטרים נוספים (כמו temperature, max_output_tokens וכו')
+            response_schema=array_schema
+            # ניתן להוסיף כאן פרמטרים נוספים (כמו temperature, max_output_tokens וכו').
         )
 
     def _call_gemini_api(self, contents, config, language_context):
         """
-        מבצעת קריאה ל-Gemini API עם ניהול שגיאות מסודר.
-        זורקת RuntimeError במקרה של שגיאה (למשל קוד 429), אחרת מחזירה רשימת תרגומי JSON.
+        מבצעת קריאה ל-Gemini API עם ניהול שגיאות מובנה,
+        תוך שימוש ב-response_schema כדי לוודא שהפלט מתאים.
+        זורקת RuntimeError במקרי שגיאה (למשל 429).
         """
         raw_json_output = ""
         try:
@@ -337,12 +370,10 @@ class SubtitleGenerator:
                 if prompt_feedback and prompt_feedback.block_reason:
                     print(f"Warning: Prompt blocked during streaming for {language_context}. Reason: {prompt_feedback.block_reason}")
         except ClientError as ce:
-            # אם קיבלנו 429 – Rate Limit Exceeded
             status = getattr(ce, "status_code", None)
             message = getattr(ce, "response", ce)
             if status == 429:
                 raise RuntimeError(f"Gemini API rate limit exceeded (429) for {language_context}. Response: {message}")
-            # קוד שגיאה אחר (400, 403, 500 וכו')
             raise RuntimeError(f"Gemini API returned HTTP {status} for {language_context}. Response: {message}")
         except types.generation_types.BlockedPromptException as bpe:
             raise RuntimeError(f"Gemini API blocked prompt for {language_context}. Reason: {bpe}")
@@ -351,10 +382,11 @@ class SubtitleGenerator:
         
         if not raw_json_output:
             raise RuntimeError(f"Gemini API returned no content for {language_context}.")
-        
+
         parsed = self._parse_json_response(raw_json_output, language_context)
         if parsed is None:
             raise RuntimeError(f"Failed to parse JSON response for {language_context}.")
+
         return parsed
 
     def generate_or_load_subtitles(self, source_language, song_name, youtube_url, mp3_audio_path, lyrics_content=None, force_regenerate=False):
