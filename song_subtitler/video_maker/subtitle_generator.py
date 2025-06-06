@@ -5,6 +5,7 @@ import urllib.parse
 import yaml
 from google import genai
 from google.genai import types
+from google.genai.errors import ClientError  # יבוא החריגה לטיפול בשגיאות HTTP
 import datetime
 
 class SubtitleGenerator:
@@ -29,11 +30,10 @@ class SubtitleGenerator:
 
     def _initialize_client(self):
         try:
-            # בשינוי האחרון, מספיק להעביר רק api_key או להגדיר את GOOGLE_API_KEY כמשתנה סביבה
+            # מספיק להעביר רק api_key או להגדיר את GOOGLE_API_KEY כמשתנה סביבה
             return genai.Client(api_key=self.api_key)
         except Exception as e:
-            print(f"Error initializing Gemini client: {e}")
-            raise
+            raise RuntimeError(f"Error initializing Gemini client: {e}")
 
     def _load_instructions(self, filepath):
         try:
@@ -41,17 +41,13 @@ class SubtitleGenerator:
                 instructions_data = yaml.safe_load(f)
             if not instructions_data:
                 raise ValueError(f"Instructions file '{filepath}' is empty or invalid.")
-            print(f"System instructions loaded successfully from '{filepath}'")
             return instructions_data
         except FileNotFoundError:
-            print(f"CRITICAL ERROR: Instructions file not found at '{filepath}'.")
-            raise
+            raise RuntimeError(f"Instructions file not found at '{filepath}'.")
         except yaml.YAMLError as e:
-            print(f"CRITICAL ERROR: Failed to parse instructions YAML file '{filepath}': {e}")
-            raise
+            raise RuntimeError(f"Failed to parse instructions YAML file '{filepath}': {e}")
         except Exception as e:
-            print(f"CRITICAL ERROR: An unexpected error occurred loading instructions file '{filepath}': {e}")
-            raise
+            raise RuntimeError(f"Unexpected error loading instructions file '{filepath}': {e}")
 
     def _format_time_srt(self, total_seconds):
         if not isinstance(total_seconds, (int, float)) or total_seconds < 0:
@@ -105,9 +101,8 @@ class SubtitleGenerator:
             full_srt_content = "\n".join(srt_content)
             with open(filepath, "w", encoding="utf-8") as f:
                 f.write(full_srt_content)
-            print(f"SRT file saved successfully to: {filepath}")
         except Exception as e:
-            print(f"Error saving SRT file '{filepath}': {e}")
+            raise RuntimeError(f"Error saving SRT file '{filepath}': {e}")
 
     def _parse_srt_time(self, time_str):
         try:
@@ -120,8 +115,7 @@ class SubtitleGenerator:
             seconds = int(hms_parts[2])
             total_seconds = (hours * 3600) + (minutes * 60) + seconds + (ms_part / 1000.0)
             return total_seconds
-        except Exception as e:
-            print(f"Warning: Could not parse SRT time string '{time_str}': {e}. Returning 0.0")
+        except Exception:
             return 0.0
 
     def _load_srt_file(self, filepath):
@@ -140,16 +134,15 @@ class SubtitleGenerator:
                     lines = lines[1:]
                     if not lines: continue
                 if len(lines) < 2:
-                    print(f"Warning: Skipping invalid SRT block in '{filepath}' (not enough lines):\n{block}")
                     continue
                 try:
+                    # חיפוש קו הזמן (HH:MM:SS,mmm --> HH:MM:SS,mmm)
                     time_line_index = -1
                     for i, line in enumerate(lines):
                         if re.match(r'\d{2}:\d{2}:\d{2},\d{3}\s*-->\s*\d{2}:\d{2}:\d{2},\d{3}', line.strip()):
                             time_line_index = i
                             break
                     if time_line_index == -1:
-                        print(f"Warning: Skipping SRT block with no valid time format in '{filepath}':\n{block}")
                         continue
                     if time_line_index > 0 and re.match(r'^\d+$', lines[time_line_index - 1].strip()):
                          sub_id = int(lines[time_line_index - 1].strip())
@@ -158,10 +151,10 @@ class SubtitleGenerator:
                     time_line = lines[time_line_index].strip()
                     text_lines = lines[time_line_index + 1:]
                     if not text_lines:
-                        print(f"Warning: Skipping SRT block with no text content after time line in '{filepath}':\n{block}")
                         continue
                     time_match = re.match(r'(\d{2}:\d{2}:\d{2},\d{3})\s*-->\s*(\d{2}:\d{2}:\d{2},\d{3})', time_line)
-                    if not time_match: continue
+                    if not time_match: 
+                        continue
                     start_time_str = time_match.group(1)
                     end_time_str = time_match.group(2)
                     start_time_float = self._parse_srt_time(start_time_str)
@@ -173,13 +166,11 @@ class SubtitleGenerator:
                         "end_time": end_time_float,
                         "text": text_content
                     })
-                except (ValueError, IndexError) as e:
-                    print(f"Warning: Error parsing SRT block in '{filepath}': {e}\nBlock:\n{block}")
+                except Exception:
                     continue
             return subtitle_data
         except Exception as e:
-            print(f"Error reading or parsing SRT file '{filepath}': {e}")
-            return None
+            raise RuntimeError(f"Error reading or parsing SRT file '{filepath}': {e}")
 
     def _clean_json_text(self, raw_text):
         pattern = r"```(?:json)?\s*(.*?)\s*```"
@@ -190,13 +181,11 @@ class SubtitleGenerator:
                  try:
                      single_obj = json.loads(cleaned_content)
                      if isinstance(single_obj, dict):
-                          print("Warning: Cleaned JSON appears to be a single object, wrapping in a list.")
                           return json.dumps([single_obj])
                  except json.JSONDecodeError:
                      pass
             if cleaned_content.startswith('[') and cleaned_content.endswith(']'):
                  return cleaned_content
-            print("Warning: JSON cleaning resulted in content not clearly starting/ending with [] or {}. Proceeding with cleaned text.")
             return cleaned_content
         else:
             return raw_text.strip()
@@ -204,57 +193,50 @@ class SubtitleGenerator:
     def _parse_json_response(self, json_text, language_name):
         cleaned_text = self._clean_json_text(json_text)
         if not cleaned_text:
-            print(f"Error: JSON text for {language_name} is empty after cleaning.")
             return None
         try:
             data = json.loads(cleaned_text)
             if not isinstance(data, list):
-                print(f"Warning: Expected JSON list for {language_name}, but got {type(data)}. Trying to proceed if it's a single dict in a list.")
-                if isinstance(data, dict): data = [data]
-                else: raise ValueError("JSON response is not a list.")
+                if isinstance(data, dict):
+                    data = [data]
+                else:
+                    raise ValueError("JSON response is not a list.")
             processed_data = []
-            if data:
-                for item_index, item in enumerate(data):
-                    if not isinstance(item, dict):
-                        raise ValueError(f"Item at index {item_index} in {language_name} JSON list is not a dictionary.")
-                    required_keys = {"id", "start_time", "end_time", "text"}
-                    missing_keys = required_keys - item.keys()
-                    if missing_keys:
-                         raise ValueError(f"Dictionary at index {item_index} in {language_name} JSON is missing required keys: {missing_keys}. Found: {item.keys()}")
-                    processed_item = {}
-                    processed_item['id'] = item['id']
-                    processed_item['text'] = item['text']
-                    for time_key in ["start_time", "end_time"]:
-                        time_value = item.get(time_key)
-                        if isinstance(time_value, str) and re.match(r"\d{2}:\d{2}\.\d{3}", time_value):
-                            try:
-                                minutes, seconds_milliseconds = time_value.split(":")
-                                seconds, milliseconds = seconds_milliseconds.split(".")
-                                total_seconds = int(minutes) * 60 + int(seconds) + int(milliseconds) / 1000.0
-                                processed_item[time_key] = float(total_seconds)
-                            except ValueError as e:
-                                print(f"Error converting time string '{time_value}' to float in {language_name} for key '{time_key}' at index {item_index}. Setting to 0. Error: {e}")
-                                processed_item[time_key] = 0.0
-                        elif isinstance(time_value, (int, float)):
-                             processed_item[time_key] = float(time_value)
-                        else:
-                             print(f"Warning: Unexpected time format '{time_value}' (type: {type(time_value)}) in {language_name} for key '{time_key}' at index {item_index}. Setting to 0.")
-                             processed_item[time_key] = 0.0
-                    processed_data.append(processed_item)
+            for item_index, item in enumerate(data):
+                if not isinstance(item, dict):
+                    raise ValueError(f"Item at index {item_index} in {language_name} JSON list is not a dictionary.")
+                required_keys = {"id", "start_time", "end_time", "text"}
+                missing_keys = required_keys - item.keys()
+                if missing_keys:
+                     raise ValueError(f"Item at index {item_index} missing keys: {missing_keys}.")
+                processed_item = {
+                    "id": item["id"],
+                    "text": item["text"]
+                }
+                for time_key in ["start_time", "end_time"]:
+                    time_value = item.get(time_key)
+                    if isinstance(time_value, str) and re.match(r"\d{2}:\d{2}\.\d{3}", time_value):
+                        try:
+                            minutes, seconds_milliseconds = time_value.split(":")
+                            seconds, milliseconds = seconds_milliseconds.split(".")
+                            total_seconds = int(minutes) * 60 + int(seconds) + int(milliseconds) / 1000.0
+                            processed_item[time_key] = float(total_seconds)
+                        except Exception:
+                            processed_item[time_key] = 0.0
+                    elif isinstance(time_value, (int, float)):
+                         processed_item[time_key] = float(time_value)
+                    else:
+                         processed_item[time_key] = 0.0
+                processed_data.append(processed_item)
             return processed_data
         except json.JSONDecodeError as e:
-            print(f"Error: Failed to decode JSON response for {language_name}. Error: {e}")
-            print("--- Received Text (after potential cleaning) ---")
-            print(cleaned_text[:500] + "..." if len(cleaned_text) > 500 else cleaned_text)
-            print("--- End of Received Text ---")
+            print(f"Error decoding JSON for {language_name}: {e}")
             return None
         except ValueError as e:
-            print(f"Error: Invalid JSON structure or content for {language_name}. Error: {e}")
-            try: print(f"--- Received Data Structure (attempted parse) ---\n{data}\n--- End of Received Data Structure ---")
-            except NameError: print("(Could not assign data before error)")
+            print(f"Invalid JSON structure for {language_name}: {e}")
             return None
         except Exception as e:
-            print(f"An unexpected error occurred during JSON parsing for {language_name}: {e}")
+            print(f"Unexpected error parsing JSON for {language_name}: {e}")
             return None
 
     def _sanitize_filename_part(self, text, max_len=60):
@@ -310,47 +292,39 @@ class SubtitleGenerator:
                 if legacy_hebrew_path not in read_hebrew_paths:
                     read_hebrew_paths.append(legacy_hebrew_path)
             else:
-                print(f"Info: YouTube URL '{youtube_url}' provided, but could not extract a video ID for legacy filename checking.")
+                print(f"Info: Could not extract video ID from '{youtube_url}'. Using only base filenames.")
         return (write_source_path, read_source_paths), \
                (write_hebrew_path, read_hebrew_paths)
 
     def _load_existing_subtitles(self, read_source_paths, read_target_paths, source_language_name):
         source_subs_data, target_subs_data = None, None
-        print(f"Attempting to load Source ({source_language_name}) SRTs from: {read_source_paths}")
         for path in read_source_paths:
             if os.path.exists(path):
-                print(f"  Trying path: {path}")
                 source_subs_data = self._load_srt_file(path)
                 if source_subs_data:
-                    print(f"  Successfully loaded Source ({source_language_name}) SRT: {path}")
                     break
-        if not source_subs_data:
-            print(f"  No valid Source ({source_language_name}) SRT found or loaded.")
-        print(f"Attempting to load Target (Hebrew) SRTs from: {read_target_paths}")
         for path in read_target_paths:
             if os.path.exists(path):
-                print(f"  Trying path: {path}")
                 target_subs_data = self._load_srt_file(path)
                 if target_subs_data:
-                    print(f"  Successfully loaded Target (Hebrew) SRT: {path}")
                     break
-        if not target_subs_data:
-            print(f"  No valid Target (Hebrew) SRT found or loaded.")
         return source_subs_data, target_subs_data
 
     def _get_api_config(self, system_instruction_text):
-        """Creates a GenerateContentConfig object for the Gemini API call."""
+        """Creates GenerateContentConfig עבור קריאת Gemini API."""
         return types.GenerateContentConfig(
             system_instruction=system_instruction_text,
             response_mime_type="application/json",
-            # ניתן להוסיף כאן פרמטרים נוספים (לדוגמה: temperature, max_output_tokens וכו')
+            # ניתן להוסיף כאן פרמטרים נוספים (כמו temperature, max_output_tokens וכו')
         )
 
     def _call_gemini_api(self, contents, config, language_context):
-        print(f"Generating {language_context} Subtitles (via API, model: {self.model_name})...")
+        """
+        מבצעת קריאה ל-Gemini API עם ניהול שגיאות מסודר.
+        זורקת RuntimeError במקרה של שגיאה (למשל קוד 429), אחרת מחזירה רשימת תרגומי JSON.
+        """
         raw_json_output = ""
         try:
-            # שימוש ב-param 'config' במקום 'generation_config'
             stream_response = self.client.models.generate_content_stream(
                 model=self.model_name,
                 contents=contents,
@@ -362,25 +336,26 @@ class SubtitleGenerator:
                 prompt_feedback = getattr(chunk, 'prompt_feedback', None)
                 if prompt_feedback and prompt_feedback.block_reason:
                     print(f"Warning: Prompt blocked during streaming for {language_context}. Reason: {prompt_feedback.block_reason}")
+        except ClientError as ce:
+            # אם קיבלנו 429 – Rate Limit Exceeded
+            status = getattr(ce, "status_code", None)
+            message = getattr(ce, "response", ce)
+            if status == 429:
+                raise RuntimeError(f"Gemini API rate limit exceeded (429) for {language_context}. Response: {message}")
+            # קוד שגיאה אחר (400, 403, 500 וכו')
+            raise RuntimeError(f"Gemini API returned HTTP {status} for {language_context}. Response: {message}")
         except types.generation_types.BlockedPromptException as bpe:
-            print(f"ERROR: Gemini API call for {language_context} was blocked. Reason: {bpe}")
-            return None
+            raise RuntimeError(f"Gemini API blocked prompt for {language_context}. Reason: {bpe}")
         except Exception as e:
-            print(f"Error during Gemini API stream call for {language_context}: {e}")
-            try:
-                 if hasattr(e, 'response'):
-                      print("Gemini response details (if available):", e.response)
-                 elif hasattr(e, 'args') and e.args:
-                      print("Exception arguments:", e.args)
-            except Exception as report_err:
-                 print(f"(Could not report detailed error info: {report_err})")
-            return None
-        print(f"\n{language_context} JSON stream finished. Parsing response...")
-        if raw_json_output:
-            return self._parse_json_response(raw_json_output, language_context)
-        else:
-            print(f"Warning: API stream for {language_context} finished but produced no text output.")
-            return None
+            raise RuntimeError(f"Unexpected error during Gemini API call for {language_context}: {e}")
+        
+        if not raw_json_output:
+            raise RuntimeError(f"Gemini API returned no content for {language_context}.")
+        
+        parsed = self._parse_json_response(raw_json_output, language_context)
+        if parsed is None:
+            raise RuntimeError(f"Failed to parse JSON response for {language_context}.")
+        return parsed
 
     def generate_or_load_subtitles(self, source_language, song_name, youtube_url, mp3_audio_path, lyrics_content=None, force_regenerate=False):
         source_language_name = "English" if source_language == 'en' else "Yiddish"
@@ -388,62 +363,45 @@ class SubtitleGenerator:
         (write_hebrew_srt_path, read_hebrew_srt_paths) = \
             self._calculate_filenames(song_name, youtube_url, mp3_audio_path, source_language)
         source_subs, hebrew_subs = None, None
+
         if not force_regenerate:
-            print("Checking for existing SRT files...")
             source_subs, hebrew_subs = self._load_existing_subtitles(
                 read_source_srt_paths, read_hebrew_srt_paths, source_language_name
             )
             if source_subs and hebrew_subs:
-                print(f"Both Source ({source_language_name}) and Target (Hebrew) subtitles loaded from existing files.")
                 return source_subs, hebrew_subs
-        else:
-            print("Force regeneration requested. Skipping check for existing SRT files.")
 
-        # Generate Source Subtitles if needed
+        # יצירת כתוביות מקור (source) אם אין קובץ קיים
         if source_subs is None:
-            print(f"\n--- Generating Source ({source_language_name}) Subtitles ---")
             if not youtube_url:
-                print(f"Cannot generate Source subtitles from API: YouTube URL not provided.")
-            else:
-                prompt_key = 'yiddish_transcription_system_prompt' if source_language == 'yi' else 'english_transcription_system_prompt'
-                system_prompt = self.instructions.get(prompt_key)
-                if not system_prompt:
-                     print(f"CRITICAL ERROR: '{prompt_key}' not found in instructions YAML.")
-                     return None, hebrew_subs
+                raise RuntimeError("Cannot generate source subtitles: YouTube URL not provided.")
+            prompt_key = 'yiddish_transcription_system_prompt' if source_language == 'yi' else 'english_transcription_system_prompt'
+            system_prompt = self.instructions.get(prompt_key)
+            if not system_prompt:
+                 raise RuntimeError(f"System prompt '{prompt_key}' not found in instructions.")
+            api_config = self._get_api_config(system_prompt)
 
-                api_config = self._get_api_config(system_prompt)
+            user_parts = [
+                types.Part(file_data=types.FileData(file_uri=youtube_url))
+            ]
+            if lyrics_content:
+                user_parts.append(types.Part(text=f"\n\n--- KNOWN LYRICS ---\n{lyrics_content}\n--- END KNOWN LYRICS ---"))
+            contents = [types.Content(role="user", parts=user_parts)]
 
-                # יצירת החלק הראשון כ-YouTube URL באמצעות FileData
-                user_parts = [
-                    types.Part(file_data=types.FileData(file_uri=youtube_url))
-                ]
-                if lyrics_content:
-                    print("Adding provided lyrics to the user input for transcription.")
-                    user_parts.append(types.Part(text=f"\n\n--- KNOWN LYRICS ---\n{lyrics_content}\n--- END KNOWN LYRICS ---"))
-                
-                contents = [types.Content(role="user", parts=user_parts)]
-                source_subs = self._call_gemini_api(
-                    contents=contents,
-                    config=api_config,
-                    language_context=source_language_name
-                )
-                if source_subs:
-                    print(f"Source ({source_language_name}) subtitles generated successfully from API.")
-                    self._save_srt_file(write_source_srt_path, source_subs, song_name)
-                else:
-                    print(f"Failed to generate valid Source ({source_language_name}) subtitle data from API.")
+            source_subs = self._call_gemini_api(
+                contents=contents,
+                config=api_config,
+                language_context=source_language_name
+            )
+            self._save_srt_file(write_source_srt_path, source_subs, song_name)
 
-        # Generate Hebrew Subtitles if needed
+        # יצירת תרגום לעברית אם אין קובץ קיים
         if hebrew_subs is None:
             if not source_subs:
-                 print(f"\nCannot generate Hebrew subtitles because Source ({source_language_name}) subtitles are missing or empty.")
-                 return source_subs, None
-            print("\n--- Generating Hebrew Subtitles (Translation) ---")
+                raise RuntimeError("Cannot generate Hebrew subtitles: source subtitles missing.")
             system_prompt = self.instructions.get('generic_translation_system_prompt')
             if not system_prompt:
-                 print("CRITICAL ERROR: 'generic_translation_system_prompt' not found in instructions YAML.")
-                 return source_subs, None
-
+                 raise RuntimeError("'generic_translation_system_prompt' not found in instructions.")
             api_config = self._get_api_config(system_prompt)
             try:
                 source_json_str = json.dumps([
@@ -455,13 +413,11 @@ class SubtitleGenerator:
                     } for item in source_subs
                 ], ensure_ascii=False, indent=2)
             except Exception as e:
-                print(f"Error formatting Source JSON for translation prompt: {e}")
-                return source_subs, None
+                raise RuntimeError(f"Error formatting source JSON for translation: {e}")
 
             user_input_template = self.instructions.get('generic_translation_user_input_template')
             if not user_input_template:
-                 print("CRITICAL ERROR: 'generic_translation_user_input_template' not found in instructions YAML.")
-                 return source_subs, None
+                 raise RuntimeError("'generic_translation_user_input_template' not found in instructions.")
             user_prompt = user_input_template.format(source_json_prompt_string=source_json_str)
 
             hebrew_contents = [types.Content(role="user", parts=[types.Part(text=user_prompt)])]
@@ -470,10 +426,6 @@ class SubtitleGenerator:
                 config=api_config,
                 language_context=f"Hebrew (from {source_language_name})"
             )
-            if hebrew_subs:
-                print("Hebrew subtitles generated successfully from API.")
-                self._save_srt_file(write_hebrew_srt_path, hebrew_subs, song_name)
-            else:
-                print("Failed to generate valid Hebrew subtitle data from API.")
-        
+            self._save_srt_file(write_hebrew_srt_path, hebrew_subs, song_name)
+
         return source_subs, hebrew_subs
