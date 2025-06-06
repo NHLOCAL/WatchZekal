@@ -89,6 +89,8 @@ python runner.py
 *   `--url <URL>` או `-u <URL>`: **[חובה עם `--add` אלא אם סופקו כתוביות]** קישור YouTube לשיר.
 
 #### **שימוש בקבצים חיצוניים**
+*   `--source-mp3-path <PATH>` או `-sm <PATH>`: נתיב לקובץ MP3 חיצוני (יועתק לפרויקט).
+*   `--source-subtitles-path <PATH>` או `-ss <PATH>`: **[חוסך API]** נתיב לקובץ כתוביות מקור (SRT/JSON).
 *   `--target-subtitles-path <PATH>` או `-ts <PATH>`: **[חוסך API]** נתיב לקובץ כתוביות מתורגמות (SRT/JSON).
 *   `--lyrics-file <PATH>` או `-lf <PATH>`: נתיב לקובץ טקסט עם מילות השיר (לסיוע ל-AI).
 
