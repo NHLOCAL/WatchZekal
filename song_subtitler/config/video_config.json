@@ -15,7 +15,7 @@
     "fps": 25
   },
   "gemini_settings": {
-    "model_name": "gemini-2.5-flash-preview-05-20"
+    "model_name": "gemini-2.5-pro"
   },
   "background": {
     "image_path_rel_assets": "backgrounds/songs/subtitle.jpg",
