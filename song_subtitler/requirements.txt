@@ -1,5 +1,5 @@
 google-genai
-moviepy
+moviepy==1.0.3
 Pillow
 numpy
 arabic_reshaper
