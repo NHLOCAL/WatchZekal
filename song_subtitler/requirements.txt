@@ -1,6 +1,6 @@
 google-genai
 moviepy==1.0.3
-Pillow
+Pillow<10
 numpy
 arabic_reshaper
 python-bidi
